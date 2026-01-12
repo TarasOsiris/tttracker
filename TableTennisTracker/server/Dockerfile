@@ -16,6 +16,7 @@ COPY gradle.properties .
 # Copy module build files
 COPY server/build.gradle.kts server/
 COPY shared/build.gradle.kts shared/
+COPY data/build.gradle.kts data/
 
 # Make gradlew executable
 RUN chmod +x gradlew
@@ -26,6 +27,7 @@ RUN --mount=type=cache,target=/root/.gradle \
 
 # Copy source code
 COPY shared/src shared/src
+COPY data/src data/src
 COPY server/src server/src
 
 # Build the fat JAR
