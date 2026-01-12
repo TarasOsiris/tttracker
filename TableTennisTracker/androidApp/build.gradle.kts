@@ -48,5 +48,11 @@ dependencies {
 	implementation(compose.components.resources)
 	implementation(compose.preview)
 	implementation(libs.androidx.activity.compose)
+
+	// Koin DI
+	implementation(platform(libs.koin.bom))
+	implementation(libs.koin.core)
+	implementation(libs.koin.android)
+
 	debugImplementation(compose.uiTooling)
 }

@@ -19,6 +19,12 @@ dependencies {
     implementation(libs.logback)
     implementation(libs.ktor.serverCore)
     implementation(libs.ktor.serverNetty)
+
+	// Koin DI
+	implementation(platform(libs.koin.bom))
+	implementation(libs.koin.core)
+	implementation(libs.koin.ktor)
+    
     testImplementation(libs.ktor.serverTestHost)
     testImplementation(libs.kotlin.testJunit)
 }
