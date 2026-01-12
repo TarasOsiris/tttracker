@@ -18,32 +18,33 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.compose_multiplatform
+import xyz.tleskiv.tt.data.User
 
 @Composable
 @Preview
 fun App() {
-    MaterialTheme {
-        var showContent by remember { mutableStateOf(false) }
-        Column(
-            modifier = Modifier
-                .background(MaterialTheme.colorScheme.primaryContainer)
-                .safeContentPadding()
-                .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Button(onClick = { showContent = !showContent }) {
-                Text("Click me!")
-            }
-            AnimatedVisibility(showContent) {
-                val greeting = remember { Greeting().greet() }
-                Column(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                ) {
-                    Image(painterResource(Res.drawable.compose_multiplatform), null)
-                    Text("Compose: $greeting")
-                }
-            }
-        }
-    }
+	MaterialTheme {
+		var showContent by remember { mutableStateOf(false) }
+		Column(
+			modifier = Modifier
+				.background(MaterialTheme.colorScheme.primaryContainer)
+				.safeContentPadding()
+				.fillMaxSize(),
+			horizontalAlignment = Alignment.CenterHorizontally,
+		) {
+			Button(onClick = { showContent = !showContent }) {
+				Text("Click me! " + User(id = "1", email = "test@test.tld"))
+			}
+			AnimatedVisibility(showContent) {
+				val greeting = remember { Greeting().greet() }
+				Column(
+					modifier = Modifier.fillMaxWidth(),
+					horizontalAlignment = Alignment.CenterHorizontally,
+				) {
+					Image(painterResource(Res.drawable.compose_multiplatform), null)
+					Text("Compose: $greeting")
+				}
+			}
+		}
+	}
 }
