@@ -1,0 +1,29 @@
+# Build outputs
+**/build/
+**/.gradle/
+
+# IDE files
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Git
+.git/
+.gitignore
+
+# Local configuration
+local.properties
+
+# iOS app (not needed for server)
+iosApp/
+
+# Compose app (not needed for server)
+composeApp/
+
+# Documentation
+*.md
+
+# Other unnecessary files
+.DS_Store
+*.log
