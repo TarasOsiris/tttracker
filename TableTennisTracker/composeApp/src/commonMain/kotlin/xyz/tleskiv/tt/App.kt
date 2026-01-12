@@ -1,50 +1,114 @@
 package xyz.tleskiv.tt
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import org.jetbrains.compose.resources.painterResource
+import androidx.compose.ui.unit.dp
+import androidx.navigation3.runtime.NavEntry
+import androidx.navigation3.ui.NavDisplay
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
-import tabletennistracker.composeapp.generated.resources.Res
-import tabletennistracker.composeapp.generated.resources.compose_multiplatform
-import xyz.tleskiv.tt.data.User
+private data object HomeRoute
+private data class DetailsRoute(val itemId: String)
 
 @Composable
 @Preview
 fun App() {
 	MaterialTheme {
-		var showContent by remember { mutableStateOf(false) }
-		Column(
-			modifier = Modifier
-				.background(MaterialTheme.colorScheme.primaryContainer)
-				.safeContentPadding()
-				.fillMaxSize(),
-			horizontalAlignment = Alignment.CenterHorizontally,
-		) {
-			Button(onClick = { showContent = !showContent }) {
-				Text("Click me! " + User(id = "1", email = "test@test.tld"))
-			}
-			AnimatedVisibility(showContent) {
-				val greeting = remember { Greeting().greet() }
-				Column(
-					modifier = Modifier.fillMaxWidth(),
-					horizontalAlignment = Alignment.CenterHorizontally,
-				) {
-					Image(painterResource(Res.drawable.compose_multiplatform), null)
-					Text("Compose: $greeting")
+		val backStack = remember { mutableStateListOf<Any>(HomeRoute) }
+
+		NavDisplay(
+			backStack = backStack,
+			onBack = { backStack.removeLastOrNull() },
+			entryProvider = { route ->
+				when (route) {
+					is HomeRoute -> NavEntry(route) {
+						HomeScreen(
+							onNavigateToDetails = { itemId ->
+								backStack.add(DetailsRoute(itemId))
+							}
+						)
+					}
+					is DetailsRoute -> NavEntry(route) {
+						DetailsScreen(
+							itemId = route.itemId,
+							onBack = { backStack.removeLastOrNull() }
+						)
+					}
+					else -> error("Unknown route: $route")
 				}
 			}
+		)
+	}
+}
+
+@Composable
+private fun HomeScreen(
+	onNavigateToDetails: (String) -> Unit
+) {
+	Column(
+		modifier = Modifier
+			.fillMaxSize()
+			.background(MaterialTheme.colorScheme.primaryContainer)
+			.safeContentPadding(),
+		horizontalAlignment = Alignment.CenterHorizontally,
+		verticalArrangement = Arrangement.Center
+	) {
+		Text(
+			text = "Home Screen",
+			style = MaterialTheme.typography.headlineMedium,
+			color = MaterialTheme.colorScheme.onPrimaryContainer
+		)
+		Spacer(modifier = Modifier.height(24.dp))
+		Button(onClick = { onNavigateToDetails("match-123") }) {
+			Text("View Match Details")
+		}
+		Spacer(modifier = Modifier.height(8.dp))
+		Button(onClick = { onNavigateToDetails("player-456") }) {
+			Text("View Player Details")
+		}
+	}
+}
+
+@Composable
+private fun DetailsScreen(
+	itemId: String,
+	onBack: () -> Unit
+) {
+	Column(
+		modifier = Modifier
+			.fillMaxSize()
+			.background(MaterialTheme.colorScheme.secondaryContainer)
+			.safeContentPadding(),
+		horizontalAlignment = Alignment.CenterHorizontally,
+		verticalArrangement = Arrangement.Center
+	) {
+		Text(
+			text = "Details Screen",
+			style = MaterialTheme.typography.headlineMedium,
+			color = MaterialTheme.colorScheme.onSecondaryContainer
+		)
+		Spacer(modifier = Modifier.height(16.dp))
+		Text(
+			text = "Item ID: $itemId",
+			style = MaterialTheme.typography.bodyLarge,
+			color = MaterialTheme.colorScheme.onSecondaryContainer
+		)
+		Spacer(modifier = Modifier.height(24.dp))
+		Button(onClick = onBack) {
+			Text("Go Back")
 		}
 	}
 }
