@@ -5,6 +5,7 @@ import io.ktor.server.application.install
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import io.ktor.server.response.respondText
+import io.ktor.server.routing.Routing
 import io.ktor.server.routing.get
 import io.ktor.server.routing.routing
 import org.koin.dsl.module
@@ -26,13 +27,18 @@ fun Application.module() {
 		modules(appModule)
 	}
 
-	val user by inject<User>()
 
 	routing {
-		get("/") {
-			call.respondText(
-				"Ktor: ${Greeting().greet()}, User: $user"
-			)
-		}
+		pingRoute()
+	}
+}
+
+private fun Routing.pingRoute() {
+	val user by inject<User>()
+
+	get("/") {
+		call.respondText(
+			"Ktor: ${Greeting().greet()}, User: $user"
+		)
 	}
 }
