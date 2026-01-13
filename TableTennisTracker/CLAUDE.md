@@ -1,7 +1,5 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
 ## Project Overview
 
 Table Tennis Tracker is a Kotlin Multiplatform (KMP) application targeting Android, iOS, Desktop (JVM), and Server. It
@@ -162,12 +160,3 @@ Use KMP's `expect`/`actual` pattern:
 2. Provide `actual` implementation in platform-specific source sets (`androidMain`, `iosMain`, `jvmMain`)
 
 See `shared/src/commonMain/kotlin/xyz/tleskiv/tt/Platform.kt` for reference.
-
-## Recent Architectural Changes
-
-Based on recent commits and git status:
-
-- Migration to androidx.navigation3 for modern navigation
-- Koin upgrade to 4.1.1 with Ktor integration
-- UI code reorganized into `ui/` package structure
-- SQLDelight infrastructure being set up in server module

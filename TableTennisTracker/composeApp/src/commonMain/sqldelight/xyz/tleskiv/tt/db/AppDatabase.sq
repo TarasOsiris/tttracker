@@ -1,0 +1,23 @@
+CREATE TABLE IF NOT EXISTS app_metadata (
+    key TEXT PRIMARY KEY NOT NULL,
+    value TEXT NOT NULL,
+    created_at INTEGER NOT NULL DEFAULT (strftime('%s','now') * 1000),
+    updated_at INTEGER NOT NULL DEFAULT (strftime('%s','now') * 1000)
+);
+
+-- Queries
+selectAll:
+SELECT * FROM app_metadata ORDER BY created_at DESC;
+
+selectByKey:
+SELECT * FROM app_metadata WHERE key = ?;
+
+insert:
+INSERT OR REPLACE INTO app_metadata (key, value, created_at, updated_at)
+VALUES (?, ?, ?, ?);
+
+deleteByKey:
+DELETE FROM app_metadata WHERE key = ?;
+
+deleteAll:
+DELETE FROM app_metadata;

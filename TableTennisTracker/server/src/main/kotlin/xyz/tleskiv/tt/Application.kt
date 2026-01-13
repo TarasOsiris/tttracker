@@ -1,29 +1,34 @@
 package xyz.tleskiv.tt
 
 import io.ktor.server.application.*
-import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import org.koin.ktor.ext.inject
 import org.koin.ktor.plugin.Koin
+import xyz.tleskiv.tt.config.ServerConfig
 import xyz.tleskiv.tt.data.model.SessionType
 import xyz.tleskiv.tt.db.ServerDatabase
-import xyz.tleskiv.tt.di.databaseModule
+import xyz.tleskiv.tt.di.createAppModule
 import kotlin.uuid.Uuid
 
-fun main() {
-	embeddedServer(Netty, port = SERVER_PORT, host = "0.0.0.0", module = Application::module)
-		.start(wait = true)
+fun main(args: Array<String>) {
+	EngineMain.main(args)
 }
 
 fun Application.module() {
+	val config by inject<ServerConfig>()
+
 	install(Koin) {
-		modules(databaseModule)
+		modules(createAppModule(environment.config))
 	}
+
+	log.info("Starting server in ${config.environment} environment")
+	log.info("Database path: ${config.databasePath}")
 
 	routing {
 		pingRoute()
+		configRoute()
 		databaseTestRoute()
 		usersTestRoute()
 	}
@@ -32,6 +37,23 @@ fun Application.module() {
 private fun Routing.pingRoute() {
 	get("/") {
 		call.respondText("Ktor: ${Greeting().greet()}")
+	}
+}
+
+private fun Routing.configRoute() {
+	val config by inject<ServerConfig>()
+
+	get("/config") {
+		val port = application.environment.config.property("ktor.deployment.port").getString()
+
+		val response = buildString {
+			appendLine("Server Configuration")
+			appendLine("=".repeat(50))
+			appendLine("Environment: ${config.environment}")
+			appendLine("Port: $port")
+			appendLine("Database Path: ${config.databasePath}")
+		}
+		call.respondText(response)
 	}
 }
 

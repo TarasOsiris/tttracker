@@ -1,5 +1,4 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
 	alias(libs.plugins.kotlinMultiplatform)
@@ -7,6 +6,7 @@ plugins {
 	alias(libs.plugins.composeMultiplatform)
 	alias(libs.plugins.composeCompiler)
 	alias(libs.plugins.composeHotReload)
+	alias(libs.plugins.sqldelight)
 }
 
 // Task to copy compose resources with proper package prefix for Android
@@ -16,15 +16,19 @@ val copyComposeResourcesToAndroidResources by tasks.registering(Copy::class) {
 	into("build/generatedComposeResources/composeResources/tabletennistracker.composeapp.generated.resources")
 }
 
+sqldelight {
+	databases {
+		create("AppDatabase") {
+			packageName.set("xyz.tleskiv.tt.db")
+		}
+	}
+}
+
 kotlin {
 	androidLibrary {
 		namespace = "xyz.tleskiv.tt.compose"
 		compileSdk = libs.versions.android.compileSdk.get().toInt()
 		minSdk = libs.versions.android.minSdk.get().toInt()
-
-		compilerOptions {
-			jvmTarget.set(JvmTarget.JVM_11)
-		}
 	}
 
 	listOf(

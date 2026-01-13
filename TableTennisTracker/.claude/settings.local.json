@@ -8,7 +8,8 @@
       "Bash(xargs kill -9)",
       "WebSearch",
       "WebFetch(domain:carrion.dev)",
-      "Bash(./gradlew:*)"
+      "Bash(./gradlew:*)",
+      "WebFetch(domain:ktor.io)"
     ]
   }
 }

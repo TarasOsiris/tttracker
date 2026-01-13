@@ -38,8 +38,8 @@ dependencies {
 	implementation(libs.sqldelight.runtime)
 	implementation(libs.sqldelight.coroutines)
 	implementation(libs.sqldelight.driver.jvm)
-    
-    testImplementation(libs.ktor.serverTestHost)
+
+	testImplementation(libs.ktor.serverTestHost)
     testImplementation(libs.kotlin.testJunit)
 }
 

@@ -4,6 +4,7 @@ import android.app.Application
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
+import xyz.tleskiv.tt.di.appModule
 
 class TTApplication : Application() {
 
@@ -13,10 +14,7 @@ class TTApplication : Application() {
 		startKoin {
 			androidLogger()
 			androidContext(this@TTApplication)
-			modules(
-				// Add your Koin modules here
-				// appModule,
-			)
+			modules(appModule)
 		}
 	}
 }
