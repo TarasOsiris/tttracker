@@ -42,3 +42,9 @@ dependencies {
     testImplementation(libs.ktor.serverTestHost)
     testImplementation(libs.kotlin.testJunit)
 }
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+	compilerOptions {
+		optIn.add("kotlin.uuid.ExperimentalUuidApi")
+	}
+}

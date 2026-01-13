@@ -1,10 +1,19 @@
 package xyz.tleskiv.tt.data.db
 
+import app.cash.sqldelight.ColumnAdapter
 import app.cash.sqldelight.driver.jdbc.sqlite.JdbcSqliteDriver
 import xyz.tleskiv.tt.db.ServerDatabase
+import xyz.tleskiv.tt.db.Training_session
+import xyz.tleskiv.tt.db.User
 import java.io.File
+import kotlin.uuid.Uuid
 
 object DatabaseFactory {
+	private val uuidAdapter = object : ColumnAdapter<Uuid, String> {
+		override fun decode(databaseValue: String): Uuid = Uuid.parse(databaseValue)
+
+		override fun encode(value: Uuid): String = value.toString()
+	}
 
 	fun create(dbPath: String = "server/data/server.db"): ServerDatabase {
 		// Ensure parent directory exists
@@ -21,6 +30,13 @@ object DatabaseFactory {
 		driver.execute(null, "PRAGMA foreign_keys = ON;", 0)
 		driver.execute(null, "PRAGMA temp_store = MEMORY;", 0)
 
-		return ServerDatabase.Companion(driver)
+		return ServerDatabase(
+			driver = driver,
+			userAdapter = User.Adapter(idAdapter = uuidAdapter),
+			training_sessionAdapter = Training_session.Adapter(
+				idAdapter = uuidAdapter,
+				user_idAdapter = uuidAdapter
+			)
+		)
 	}
 }

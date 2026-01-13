@@ -9,6 +9,7 @@ import org.koin.ktor.ext.inject
 import org.koin.ktor.plugin.Koin
 import xyz.tleskiv.tt.db.ServerDatabase
 import xyz.tleskiv.tt.di.databaseModule
+import kotlin.uuid.Uuid
 
 fun main() {
 	embeddedServer(Netty, port = SERVER_PORT, host = "0.0.0.0", module = Application::module)
@@ -64,45 +65,41 @@ private fun Routing.usersTestRoute() {
 	get("/users/test") {
 		val now = System.currentTimeMillis()
 
-		// Create test users with unique emails
-		val userId1 = "user_${now}_1"
-		val userId2 = "user_${now}_2"
+		// Create test users with UUID
+		val userId1 = Uuid.random()
+		val userId2 = Uuid.random()
 
 		database.serverDatabaseQueries.insertUser(
 			id = userId1,
 			email = "player_${now}@example.com",
-			role = "player",
-			created_at = now
+			role = "player"
 		)
 
 		database.serverDatabaseQueries.insertUser(
 			id = userId2,
 			email = "coach_${now}@example.com",
-			role = "coach",
-			created_at = now
+			role = "coach"
 		)
 
-		// Create training sessions for player
+		// Create training sessions for player with UUID
 		database.serverDatabaseQueries.insertSession(
-			id = "session_${now}_1",
+			id = Uuid.random(),
 			user_id = userId1,
 			date = now - 86400000, // Yesterday
 			duration_min = 90,
 			rpe = 7,
 			session_type = "Technical Training",
-			notes = "Focused on forehand drives and footwork",
-			updated_at = now
+			notes = "Focused on forehand drives and footwork"
 		)
 
 		database.serverDatabaseQueries.insertSession(
-			id = "session_${now}_2",
+			id = Uuid.random(),
 			user_id = userId1,
 			date = now - 172800000, // 2 days ago
 			duration_min = 60,
 			rpe = 5,
 			session_type = "Match Play",
-			notes = "Practice matches with club members",
-			updated_at = now
+			notes = "Practice matches with club members"
 		)
 
 		// Query all users
