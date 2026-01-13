@@ -1,4 +1,9 @@
 import kotlin.uuid.Uuid;
+import xyz.tleskiv.tt.data.model.SessionType;
+
+-- =========================
+-- SCHEMA
+-- =========================
 
 CREATE TABLE IF NOT EXISTS app_metadata (
     key TEXT PRIMARY KEY NOT NULL,
@@ -10,30 +15,38 @@ CREATE TABLE IF NOT EXISTS app_metadata (
 CREATE TABLE IF NOT EXISTS user (
     id TEXT AS Uuid PRIMARY KEY,
     email TEXT UNIQUE NOT NULL,
-    role TEXT NOT NULL, -- player | coach
+    role TEXT NOT NULL CHECK (role IN ('player', 'coach')),
+    is_deleted INTEGER NOT NULL DEFAULT 0,
     created_at INTEGER NOT NULL DEFAULT (strftime('%s','now') * 1000),
     updated_at INTEGER NOT NULL DEFAULT (strftime('%s','now') * 1000)
 );
 
 CREATE TABLE IF NOT EXISTS training_session (
     id TEXT AS Uuid PRIMARY KEY,
-    user_id TEXT AS Uuid NOT NULL, -- UUID foreign key
+    user_id TEXT AS Uuid NOT NULL,
     date INTEGER NOT NULL,
     duration_min INTEGER NOT NULL,
-    rpe INTEGER,
-    session_type TEXT,
+    rpe INTEGER CHECK (rpe BETWEEN 1 AND 10),
+    session_type TEXT AS SessionType CHECK (
+        session_type IN ('technical', 'matchplay', 'physical', 'recovery')
+    ),
     notes TEXT,
+    is_deleted INTEGER NOT NULL DEFAULT 0,
     created_at INTEGER NOT NULL DEFAULT (strftime('%s','now') * 1000),
     updated_at INTEGER NOT NULL DEFAULT (strftime('%s','now') * 1000),
     FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
--- Metadata queries
+-- =========================
+-- METADATA QUERIES
+-- =========================
+
 selectAllMetadata:
 SELECT * FROM app_metadata;
 
 insertMetadata:
-INSERT OR REPLACE INTO app_metadata (key, value) VALUES (?, ?);
+INSERT OR REPLACE INTO app_metadata (key, value, updated_at)
+VALUES (?, ?, (strftime('%s','now') * 1000));
 
 getMetadataByKey:
 SELECT value FROM app_metadata WHERE key = ?;
@@ -41,68 +54,100 @@ SELECT value FROM app_metadata WHERE key = ?;
 deleteMetadata:
 DELETE FROM app_metadata WHERE key = ?;
 
--- User queries
+-- =========================
+-- USER QUERIES
+-- =========================
+
 selectAllUsers:
-SELECT * FROM user;
+SELECT * FROM user WHERE is_deleted = 0;
 
 getUserById:
-SELECT * FROM user WHERE id = ?;
+SELECT * FROM user WHERE id = ? AND is_deleted = 0;
 
 getUserByEmail:
-SELECT * FROM user WHERE email = ?;
+SELECT * FROM user WHERE email = ? AND is_deleted = 0;
 
 getUsersByRole:
-SELECT * FROM user WHERE role = ?;
+SELECT * FROM user WHERE role = ? AND is_deleted = 0;
 
 insertUser:
-INSERT INTO user (id, email, role) VALUES (?, ?, ?);
+INSERT INTO user (id, email, role, updated_at)
+VALUES (?, ?, ?, ?);
 
 updateUser:
 UPDATE user
-SET email = ?, role = ?, updated_at = (strftime('%s','now') * 1000)
-WHERE id = ?;
+SET email = ?, role = ?, updated_at = ?
+WHERE id = ? AND is_deleted = 0;
 
 deleteUser:
-DELETE FROM user WHERE id = ?;
+UPDATE user
+SET is_deleted = 1, updated_at = ?
+WHERE id = ?;
 
--- Training session queries
+-- =========================
+-- TRAINING SESSION QUERIES
+-- =========================
+
 selectAllSessions:
-SELECT * FROM training_session;
+SELECT * FROM training_session WHERE is_deleted = 0;
 
 getSessionById:
-SELECT * FROM training_session WHERE id = ?;
+SELECT * FROM training_session WHERE id = ? AND is_deleted = 0;
 
 getSessionsByUserId:
-SELECT * FROM training_session WHERE user_id = ? ORDER BY date DESC;
+SELECT * FROM training_session
+WHERE user_id = ? AND is_deleted = 0
+ORDER BY date DESC;
 
 getSessionsByUserIdAndDateRange:
-SELECT * FROM training_session WHERE user_id = ? AND date BETWEEN ? AND ? ORDER BY date DESC;
+SELECT * FROM training_session
+WHERE user_id = ?
+  AND date BETWEEN ? AND ?
+  AND is_deleted = 0
+ORDER BY date DESC;
 
 getSessionsByType:
-SELECT * FROM training_session WHERE session_type = ? ORDER BY date DESC;
+SELECT * FROM training_session
+WHERE session_type = ? AND is_deleted = 0
+ORDER BY date DESC;
 
 insertSession:
-INSERT INTO training_session (id, user_id, date, duration_min, rpe, session_type, notes)
-VALUES (?, ?, ?, ?, ?, ?, ?);
+INSERT INTO training_session (
+    id, user_id, date, duration_min, rpe, session_type, notes, updated_at
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?);
 
 updateSession:
 UPDATE training_session
-SET date = ?, duration_min = ?, rpe = ?, session_type = ?, notes = ?,
-    updated_at = (strftime('%s','now') * 1000)
-WHERE id = ?;
+SET date = ?, duration_min = ?, rpe = ?, session_type = ?, notes = ?, updated_at = ?
+WHERE id = ? AND is_deleted = 0;
 
 deleteSession:
-DELETE FROM training_session WHERE id = ?;
+UPDATE training_session
+SET is_deleted = 1, updated_at = ?
+WHERE id = ?;
 
 deleteSessionsByUserId:
-DELETE FROM training_session WHERE user_id = ?;
+UPDATE training_session
+SET is_deleted = 1, updated_at = ?
+WHERE user_id = ?;
 
--- Statistics queries
+-- =========================
+-- STATISTICS QUERIES
+-- =========================
+
 getSessionCountByUserId:
-SELECT COUNT(*) FROM training_session WHERE user_id = ?;
+SELECT COUNT(*)
+FROM training_session
+WHERE user_id = ? AND is_deleted = 0;
 
 getTotalDurationByUserId:
-SELECT SUM(duration_min) FROM training_session WHERE user_id = ?;
+SELECT SUM(duration_min)
+FROM training_session
+WHERE user_id = ? AND is_deleted = 0;
 
 getAverageRpeByUserId:
-SELECT AVG(rpe) FROM training_session WHERE user_id = ? AND rpe IS NOT NULL;
+SELECT AVG(rpe)
+FROM training_session
+WHERE user_id = ?
+  AND rpe IS NOT NULL
+  AND is_deleted = 0;

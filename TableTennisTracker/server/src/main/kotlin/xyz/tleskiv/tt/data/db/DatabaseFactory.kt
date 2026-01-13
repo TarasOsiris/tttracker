@@ -2,6 +2,7 @@ package xyz.tleskiv.tt.data.db
 
 import app.cash.sqldelight.ColumnAdapter
 import app.cash.sqldelight.driver.jdbc.sqlite.JdbcSqliteDriver
+import xyz.tleskiv.tt.data.model.SessionType
 import xyz.tleskiv.tt.db.ServerDatabase
 import xyz.tleskiv.tt.db.Training_session
 import xyz.tleskiv.tt.db.User
@@ -13,6 +14,12 @@ object DatabaseFactory {
 		override fun decode(databaseValue: String): Uuid = Uuid.parse(databaseValue)
 
 		override fun encode(value: Uuid): String = value.toString()
+	}
+
+	private val sessionTypeAdapter = object : ColumnAdapter<SessionType, String> {
+		override fun decode(databaseValue: String): SessionType = SessionType.fromDb(databaseValue)
+
+		override fun encode(value: SessionType): String = value.dbValue
 	}
 
 	fun create(dbPath: String = "server/data/server.db"): ServerDatabase {
@@ -35,7 +42,8 @@ object DatabaseFactory {
 			userAdapter = User.Adapter(idAdapter = uuidAdapter),
 			training_sessionAdapter = Training_session.Adapter(
 				idAdapter = uuidAdapter,
-				user_idAdapter = uuidAdapter
+				user_idAdapter = uuidAdapter,
+				session_typeAdapter = sessionTypeAdapter
 			)
 		)
 	}

@@ -7,6 +7,7 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import org.koin.ktor.ext.inject
 import org.koin.ktor.plugin.Koin
+import xyz.tleskiv.tt.data.model.SessionType
 import xyz.tleskiv.tt.db.ServerDatabase
 import xyz.tleskiv.tt.di.databaseModule
 import kotlin.uuid.Uuid
@@ -72,13 +73,15 @@ private fun Routing.usersTestRoute() {
 		database.serverDatabaseQueries.insertUser(
 			id = userId1,
 			email = "player_${now}@example.com",
-			role = "player"
+			role = "player",
+			updated_at = now
 		)
 
 		database.serverDatabaseQueries.insertUser(
 			id = userId2,
 			email = "coach_${now}@example.com",
-			role = "coach"
+			role = "coach",
+			updated_at = now
 		)
 
 		// Create training sessions for player with UUID
@@ -88,8 +91,9 @@ private fun Routing.usersTestRoute() {
 			date = now - 86400000, // Yesterday
 			duration_min = 90,
 			rpe = 7,
-			session_type = "Technical Training",
-			notes = "Focused on forehand drives and footwork"
+			session_type = SessionType.TECHNICAL,
+			notes = "Focused on forehand drives and footwork",
+			updated_at = now
 		)
 
 		database.serverDatabaseQueries.insertSession(
@@ -98,8 +102,9 @@ private fun Routing.usersTestRoute() {
 			date = now - 172800000, // 2 days ago
 			duration_min = 60,
 			rpe = 5,
-			session_type = "Match Play",
-			notes = "Practice matches with club members"
+			session_type = SessionType.MATCHPLAY,
+			notes = "Practice matches with club members",
+			updated_at = now
 		)
 
 		// Query all users
