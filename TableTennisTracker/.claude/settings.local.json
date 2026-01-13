@@ -5,7 +5,10 @@
       "Bash(./gradlew :server:run:*)",
       "Bash(curl:*)",
       "Bash(lsof:*)",
-      "Bash(xargs kill -9)"
+      "Bash(xargs kill -9)",
+      "WebSearch",
+      "WebFetch(domain:carrion.dev)",
+      "Bash(./gradlew:*)"
     ]
   }
 }

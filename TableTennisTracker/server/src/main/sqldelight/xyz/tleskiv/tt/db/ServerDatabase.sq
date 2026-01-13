@@ -3,7 +3,26 @@ CREATE TABLE IF NOT EXISTS app_metadata (
     value TEXT NOT NULL
 );
 
--- Example queries
+CREATE TABLE IF NOT EXISTS user (
+    id TEXT PRIMARY KEY,
+    email TEXT UNIQUE NOT NULL,
+    role TEXT NOT NULL, -- player | coach
+    created_at INTEGER NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS training_session (
+    id TEXT PRIMARY KEY,
+    user_id TEXT NOT NULL,
+    date INTEGER NOT NULL,
+    duration_min INTEGER NOT NULL,
+    rpe INTEGER,
+    session_type TEXT,
+    notes TEXT,
+    updated_at INTEGER NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES user(id)
+);
+
+-- Metadata queries
 selectAllMetadata:
 SELECT * FROM app_metadata;
 
@@ -15,3 +34,66 @@ SELECT value FROM app_metadata WHERE key = ?;
 
 deleteMetadata:
 DELETE FROM app_metadata WHERE key = ?;
+
+-- User queries
+selectAllUsers:
+SELECT * FROM user;
+
+getUserById:
+SELECT * FROM user WHERE id = ?;
+
+getUserByEmail:
+SELECT * FROM user WHERE email = ?;
+
+getUsersByRole:
+SELECT * FROM user WHERE role = ?;
+
+insertUser:
+INSERT INTO user (id, email, role, created_at) VALUES (?, ?, ?, ?);
+
+updateUser:
+UPDATE user SET email = ?, role = ? WHERE id = ?;
+
+deleteUser:
+DELETE FROM user WHERE id = ?;
+
+-- Training session queries
+selectAllSessions:
+SELECT * FROM training_session;
+
+getSessionById:
+SELECT * FROM training_session WHERE id = ?;
+
+getSessionsByUserId:
+SELECT * FROM training_session WHERE user_id = ? ORDER BY date DESC;
+
+getSessionsByUserIdAndDateRange:
+SELECT * FROM training_session WHERE user_id = ? AND date BETWEEN ? AND ? ORDER BY date DESC;
+
+getSessionsByType:
+SELECT * FROM training_session WHERE session_type = ? ORDER BY date DESC;
+
+insertSession:
+INSERT INTO training_session (id, user_id, date, duration_min, rpe, session_type, notes, updated_at)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+
+updateSession:
+UPDATE training_session
+SET date = ?, duration_min = ?, rpe = ?, session_type = ?, notes = ?, updated_at = ?
+WHERE id = ?;
+
+deleteSession:
+DELETE FROM training_session WHERE id = ?;
+
+deleteSessionsByUserId:
+DELETE FROM training_session WHERE user_id = ?;
+
+-- Statistics queries
+getSessionCountByUserId:
+SELECT COUNT(*) FROM training_session WHERE user_id = ?;
+
+getTotalDurationByUserId:
+SELECT SUM(duration_min) FROM training_session WHERE user_id = ?;
+
+getAverageRpeByUserId:
+SELECT AVG(rpe) FROM training_session WHERE user_id = ? AND rpe IS NOT NULL;
