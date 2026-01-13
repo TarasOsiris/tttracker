@@ -17,7 +17,12 @@ class ApplicationTest {
 			    "ktor.deployment.host" to "0.0.0.0",
 			    "ktor.deployment.port" to "8080",
 			    "app.environment" to "LOCAL",
-			    "app.database.path" to "build/test-db/server.db"
+			    "app.database.path" to "build/test-db/server.db",
+			    "app.auth.jwt.issuer" to "test-issuer",
+			    "app.auth.jwt.audience" to "test-audience",
+			    "app.auth.jwt.realm" to "test-realm",
+			    "app.auth.jwt.secret" to "test-secret",
+			    "app.auth.jwt.tokenTtlMillis" to "3600000"
 		    )
 	    }
         application {

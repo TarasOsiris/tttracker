@@ -6,6 +6,7 @@ import xyz.tleskiv.tt.data.model.SessionType
 import xyz.tleskiv.tt.db.ServerDatabase
 import xyz.tleskiv.tt.db.Training_session
 import xyz.tleskiv.tt.db.User
+import xyz.tleskiv.tt.db.User_credentials
 import java.io.File
 import kotlin.uuid.Uuid
 
@@ -40,6 +41,7 @@ object DatabaseFactory {
 		return ServerDatabase(
 			driver = driver,
 			userAdapter = User.Adapter(idAdapter = uuidAdapter),
+			user_credentialsAdapter = User_credentials.Adapter(user_idAdapter = uuidAdapter),
 			training_sessionAdapter = Training_session.Adapter(
 				idAdapter = uuidAdapter,
 				user_idAdapter = uuidAdapter,

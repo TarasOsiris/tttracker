@@ -5,7 +5,10 @@ import org.koin.dsl.module
 import xyz.tleskiv.tt.config.ConfigLoader
 import xyz.tleskiv.tt.config.ServerConfig
 import xyz.tleskiv.tt.data.db.DatabaseFactory
+import xyz.tleskiv.tt.data.repo.UserRepository
+import xyz.tleskiv.tt.data.repo.impl.UserRepositoryImpl
 import xyz.tleskiv.tt.db.ServerDatabase
+import xyz.tleskiv.tt.security.JwtService
 
 fun createAppModule(config: ApplicationConfig) = module {
 	single<ServerConfig> {
@@ -15,5 +18,14 @@ fun createAppModule(config: ApplicationConfig) = module {
 	single<ServerDatabase> {
 		val serverConfig = get<ServerConfig>()
 		DatabaseFactory.create(dbPath = serverConfig.databasePath)
+	}
+
+	single<JwtService> {
+		val serverConfig = get<ServerConfig>()
+		JwtService(serverConfig.jwt)
+	}
+
+	single<UserRepository> {
+		UserRepositoryImpl(get())
 	}
 }

@@ -1,15 +1,22 @@
 package xyz.tleskiv.tt
 
 import io.ktor.server.application.*
+import io.ktor.server.auth.*
+import io.ktor.server.auth.jwt.*
 import io.ktor.server.netty.*
+import io.ktor.server.plugins.contentnegotiation.*
+import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import kotlinx.serialization.json.Json
 import org.koin.ktor.ext.inject
 import org.koin.ktor.plugin.Koin
 import xyz.tleskiv.tt.config.ServerConfig
 import xyz.tleskiv.tt.data.model.SessionType
 import xyz.tleskiv.tt.db.ServerDatabase
 import xyz.tleskiv.tt.di.createAppModule
+import xyz.tleskiv.tt.routes.authRoutes
+import xyz.tleskiv.tt.security.JwtService
 import kotlin.uuid.Uuid
 
 fun main(args: Array<String>) {
@@ -17,10 +24,31 @@ fun main(args: Array<String>) {
 }
 
 fun Application.module() {
-	val config by inject<ServerConfig>()
-
 	install(Koin) {
 		modules(createAppModule(environment.config))
+	}
+
+	val config by inject<ServerConfig>()
+	val jwtService by inject<JwtService>()
+
+	install(ContentNegotiation) {
+		json(
+			Json {
+				ignoreUnknownKeys = true
+				isLenient = true
+			}
+		)
+	}
+
+	install(Authentication) {
+		jwt("auth-jwt") {
+			realm = config.jwt.realm
+			verifier(jwtService.verifier())
+			validate { credential ->
+				val userId = credential.payload.getClaim("userId").asString()
+				if (userId.isNullOrBlank()) null else JWTPrincipal(credential.payload)
+			}
+		}
 	}
 
 	log.info("Starting server in ${config.environment} environment")
@@ -31,6 +59,7 @@ fun Application.module() {
 		configRoute()
 		databaseTestRoute()
 		usersTestRoute()
+		authRoutes()
 	}
 }
 

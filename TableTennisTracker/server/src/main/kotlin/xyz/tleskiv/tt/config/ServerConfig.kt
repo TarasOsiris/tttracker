@@ -8,5 +8,14 @@ enum class Environment {
 
 data class ServerConfig(
 	val environment: Environment,
-	val databasePath: String
+	val databasePath: String,
+	val jwt: JwtConfig
+)
+
+data class JwtConfig(
+	val issuer: String,
+	val audience: String,
+	val realm: String,
+	val secret: String,
+	val tokenTtlMillis: Long
 )
