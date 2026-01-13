@@ -48,6 +48,25 @@ CREATE TABLE IF NOT EXISTS training_session (
 );
 
 -- =========================
+-- INDEXES
+-- =========================
+
+-- Index for user email lookups (getUserByEmail, getUserWithCredentialsByEmail)
+CREATE INDEX IF NOT EXISTS idx_user_email ON user(email) WHERE is_deleted = 0;
+
+-- Index for training session queries by user_id
+CREATE INDEX IF NOT EXISTS idx_training_session_user_id ON training_session(user_id) WHERE is_deleted = 0;
+
+-- Index for training session queries by date (with DESC for ORDER BY optimization)
+CREATE INDEX IF NOT EXISTS idx_training_session_date ON training_session(date DESC) WHERE is_deleted = 0;
+
+-- Composite index for user_id + date range queries (most common query pattern)
+CREATE INDEX IF NOT EXISTS idx_training_session_user_date ON training_session(user_id, date DESC) WHERE is_deleted = 0;
+
+-- Index for session type queries
+CREATE INDEX IF NOT EXISTS idx_training_session_type ON training_session(session_type) WHERE is_deleted = 0;
+
+-- =========================
 -- METADATA QUERIES
 -- =========================
 
