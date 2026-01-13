@@ -1,44 +1,58 @@
 package xyz.tleskiv.tt
 
-import io.ktor.server.application.Application
-import io.ktor.server.application.install
-import io.ktor.server.engine.embeddedServer
-import io.ktor.server.netty.Netty
-import io.ktor.server.response.respondText
-import io.ktor.server.routing.Routing
-import io.ktor.server.routing.get
-import io.ktor.server.routing.routing
-import org.koin.dsl.module
+import io.ktor.server.application.*
+import io.ktor.server.engine.*
+import io.ktor.server.netty.*
+import io.ktor.server.response.*
+import io.ktor.server.routing.*
 import org.koin.ktor.ext.inject
 import org.koin.ktor.plugin.Koin
-import xyz.tleskiv.tt.data.User
+import xyz.tleskiv.tt.db.ServerDatabase
+import xyz.tleskiv.tt.di.databaseModule
 
 fun main() {
 	embeddedServer(Netty, port = SERVER_PORT, host = "0.0.0.0", module = Application::module)
 		.start(wait = true)
 }
 
-private val appModule = module {
-	single { User(id = "1", email = "heelo@test.tld") }
-}
-
 fun Application.module() {
 	install(Koin) {
-		modules(appModule)
+		modules(databaseModule)
 	}
-
 
 	routing {
 		pingRoute()
+		databaseTestRoute()
 	}
 }
 
 private fun Routing.pingRoute() {
-	val user by inject<User>()
-
 	get("/") {
-		call.respondText(
-			"Ktor: ${Greeting().greet()}, User: $user"
-		)
+		call.respondText("Ktor: ${Greeting().greet()}")
+	}
+}
+
+private fun Routing.databaseTestRoute() {
+	val database by inject<ServerDatabase>()
+
+	get("/db/test") {
+		// Insert test data
+		database.serverDatabaseQueries.insertMetadata("test_key", "test_value_${System.currentTimeMillis()}")
+		database.serverDatabaseQueries.insertMetadata("server_started", System.currentTimeMillis().toString())
+
+		// Query all metadata
+		val allMetadata = database.serverDatabaseQueries.selectAllMetadata().executeAsList()
+
+		// Build response
+		val response = buildString {
+			appendLine("Database connection successful!")
+			appendLine("Total entries: ${allMetadata.size}")
+			appendLine("\nAll metadata:")
+			allMetadata.forEach { metadata ->
+				appendLine("  ${metadata.key} = ${metadata.value_}")
+			}
+		}
+
+		call.respondText(response)
 	}
 }

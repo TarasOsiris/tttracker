@@ -1,12 +1,7 @@
-package xyz.tleskiv.tt
+package xyz.tleskiv.tt.ui
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.safeContentPadding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -19,9 +14,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.ui.NavDisplay
 import org.jetbrains.compose.ui.tooling.preview.Preview
-
-private data object HomeRoute
-private data class DetailsRoute(val itemId: String)
+import xyz.tleskiv.tt.ui.nav.DetailsRoute
+import xyz.tleskiv.tt.ui.nav.HomeRoute
 
 @Composable
 @Preview

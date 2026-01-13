@@ -1,0 +1,17 @@
+CREATE TABLE IF NOT EXISTS app_metadata (
+    key TEXT PRIMARY KEY NOT NULL,
+    value TEXT NOT NULL
+);
+
+-- Example queries
+selectAllMetadata:
+SELECT * FROM app_metadata;
+
+insertMetadata:
+INSERT OR REPLACE INTO app_metadata (key, value) VALUES (?, ?);
+
+getMetadataByKey:
+SELECT value FROM app_metadata WHERE key = ?;
+
+deleteMetadata:
+DELETE FROM app_metadata WHERE key = ?;

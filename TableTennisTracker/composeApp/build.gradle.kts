@@ -45,6 +45,7 @@ kotlin {
 			dependencies {
 				implementation(compose.preview)
 				implementation(libs.androidx.activity.compose)
+				implementation(libs.sqldelight.driver.android)
 			}
 		}
 		commonMain.dependencies {
@@ -69,6 +70,10 @@ kotlin {
 			implementation(libs.koin.compose)
 			implementation(libs.koin.compose.viewmodel)
 
+			// SQLDelight
+			implementation(libs.sqldelight.runtime)
+			implementation(libs.sqldelight.coroutines)
+
 			implementation(projects.shared)
 			implementation(projects.data)
 		}
@@ -78,6 +83,10 @@ kotlin {
 		jvmMain.dependencies {
 			implementation(compose.desktop.currentOs)
 			implementation(libs.kotlinx.coroutinesSwing)
+			implementation(libs.sqldelight.driver.jvm)
+		}
+		iosMain.dependencies {
+			implementation(libs.sqldelight.driver.native)
 		}
 	}
 }
