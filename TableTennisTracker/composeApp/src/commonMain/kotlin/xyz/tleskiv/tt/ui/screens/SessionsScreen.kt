@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import com.kizitonwose.calendar.compose.CalendarState
-import com.kizitonwose.calendar.compose.VerticalCalendar
+import com.kizitonwose.calendar.compose.HorizontalCalendar
 import com.kizitonwose.calendar.compose.WeekCalendar
 import com.kizitonwose.calendar.compose.rememberCalendarState
 import com.kizitonwose.calendar.compose.weekcalendar.WeekCalendarState
@@ -269,7 +269,7 @@ private fun MonthCalendarView(
 ) {
 	val alpha by animateFloatAsState(if (isWeekMode) 0f else 1f)
 
-	VerticalCalendar(
+	HorizontalCalendar(
 		modifier = Modifier
 			.height(height)
 			.alpha(alpha)
