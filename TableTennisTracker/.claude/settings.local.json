@@ -11,7 +11,8 @@
       "Bash(./gradlew:*)",
       "WebFetch(domain:ktor.io)",
       "Bash(ls:*)",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "mcp__ide__getDiagnostics"
     ]
   }
 }
