@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import com.kizitonwose.calendar.compose.CalendarState
-import com.kizitonwose.calendar.compose.HorizontalCalendar
+import com.kizitonwose.calendar.compose.VerticalCalendar
 import com.kizitonwose.calendar.compose.WeekCalendar
 import com.kizitonwose.calendar.compose.rememberCalendarState
 import com.kizitonwose.calendar.compose.weekcalendar.WeekCalendarState
@@ -139,6 +139,11 @@ private fun CalendarHeader(
 	onWeekModeToggle: (Boolean) -> Unit
 ) {
 	val coroutineScope = rememberCoroutineScope()
+	val visibleYearMonth = if (isWeekMode) {
+		weekState.firstVisibleWeek.days.first().date.yearMonth
+	} else {
+		monthState.firstVisibleMonth.yearMonth
+	}
 
 	Row(
 		modifier = Modifier
@@ -148,7 +153,7 @@ private fun CalendarHeader(
 		verticalAlignment = Alignment.CenterVertically
 	) {
 		Text(
-			text = formatMonthYear(selectedDate),
+			text = formatMonthYear(visibleYearMonth),
 			style = MaterialTheme.typography.titleLarge,
 			fontWeight = FontWeight.Bold,
 			color = MaterialTheme.colorScheme.onPrimaryContainer
@@ -158,12 +163,10 @@ private fun CalendarHeader(
 			isWeekMode = isWeekMode,
 			onToggle = {
 				coroutineScope.launch {
-					if (!isWeekMode) {
-						val targetDate = monthState.firstVisibleMonth.weekDays.last().last().date
-						weekState.scrollToWeek(targetDate)
+					if (isWeekMode) {
+						monthState.scrollToMonth(selectedDate.yearMonth)
 					} else {
-						val targetMonth = weekState.firstVisibleWeek.days.first().date.yearMonth
-						monthState.scrollToMonth(targetMonth)
+						weekState.scrollToWeek(selectedDate)
 					}
 					onWeekModeToggle(!isWeekMode)
 				}
@@ -269,12 +272,14 @@ private fun MonthCalendarView(
 ) {
 	val alpha by animateFloatAsState(if (isWeekMode) 0f else 1f)
 
-	HorizontalCalendar(
+	VerticalCalendar(
 		modifier = Modifier
 			.height(height)
 			.alpha(alpha)
 			.zIndex(if (isWeekMode) 0f else 1f),
 		state = state,
+		calendarScrollPaged = true,
+		userScrollEnabled = !isWeekMode,
 		dayContent = { day ->
 			DayCell(
 				date = day.date,
@@ -309,6 +314,7 @@ private fun WeekCalendarView(
 			.alpha(alpha)
 			.zIndex(if (isWeekMode) 1f else 0f),
 		state = state,
+		userScrollEnabled = isWeekMode,
 		dayContent = { day ->
 			DayCell(
 				date = day.date,
@@ -409,9 +415,9 @@ private fun DayOfWeek.displayText(): String {
 	return name.take(3).lowercase().replaceFirstChar { it.uppercase() }
 }
 
-private fun formatMonthYear(date: LocalDate): String {
-	val monthName = date.month.name.lowercase().replaceFirstChar { it.uppercase() }
-	return "$monthName ${date.year}"
+private fun formatMonthYear(yearMonth: kotlinx.datetime.YearMonth): String {
+	val monthName = yearMonth.month.name.lowercase().replaceFirstChar { it.uppercase() }
+	return "$monthName ${yearMonth.year}"
 }
 
 private fun formatDayMonth(date: LocalDate): String {
