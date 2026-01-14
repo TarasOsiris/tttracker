@@ -17,11 +17,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kizitonwose.calendar.compose.WeekCalendar
 import com.kizitonwose.calendar.compose.weekcalendar.rememberWeekCalendarState
-import kotlinx.datetime.*
+import com.kizitonwose.calendar.core.WeekDayPosition
+import com.kizitonwose.calendar.core.daysOfWeek
+import com.kizitonwose.calendar.core.now
+import kotlinx.datetime.DayOfWeek
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.number
 import org.jetbrains.compose.resources.vectorResource
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.ic_add
-import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
 
 @Composable
@@ -29,16 +33,18 @@ fun SessionsScreen(
 	onNavigateToDetails: (String) -> Unit = {},
 	onAddSession: () -> Unit = {}
 ) {
-	val currentDate = remember { Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).date }
+	val currentDate = remember { LocalDate.now() }
 	var selectedDate by remember { mutableStateOf(currentDate) }
+	val daysOfWeek = remember { daysOfWeek(firstDayOfWeek = DayOfWeek.MONDAY) }
 
-	val startDate = remember { LocalDate(currentDate.year, currentDate.month.number, 1).minus(DatePeriod(months = 6)) }
-	val endDate = remember { LocalDate(currentDate.year, currentDate.month.number, 1).plus(DatePeriod(months = 6)) }
+	val startDate = remember { LocalDate(currentDate.year - 1, currentDate.month.number, 1) }
+	val endDate = remember { LocalDate(currentDate.year + 1, currentDate.month.number, 28) }
 
-	val weekCalendarState = rememberWeekCalendarState(
+	val weekState = rememberWeekCalendarState(
 		startDate = startDate,
 		endDate = endDate,
 		firstVisibleWeekDate = currentDate,
+		firstDayOfWeek = daysOfWeek.first()
 	)
 
 	Box(modifier = Modifier.fillMaxSize()) {
@@ -47,75 +53,51 @@ fun SessionsScreen(
 				.fillMaxSize()
 				.background(MaterialTheme.colorScheme.surface)
 		) {
+			// Calendar header
 			Surface(
 				color = MaterialTheme.colorScheme.primaryContainer,
 				tonalElevation = 2.dp
 			) {
-				Column(
-					modifier = Modifier.fillMaxWidth()
-				) {
+				Column(modifier = Modifier.fillMaxWidth()) {
 					// Month and year title
 					Text(
-						text = selectedDate.month.name.lowercase()
-							.replaceFirstChar { it.uppercase() } + " " + selectedDate.year,
+						text = formatMonthYear(selectedDate),
 						style = MaterialTheme.typography.titleLarge,
 						fontWeight = FontWeight.Bold,
 						color = MaterialTheme.colorScheme.onPrimaryContainer,
 						modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)
 					)
 
+					// Days of week header
+					Row(modifier = Modifier.fillMaxWidth()) {
+						daysOfWeek.forEach { dayOfWeek ->
+							Text(
+								text = dayOfWeek.displayText(),
+								modifier = Modifier.weight(1f),
+								textAlign = TextAlign.Center,
+								fontSize = 12.sp,
+								fontWeight = FontWeight.Medium,
+								color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f)
+							)
+						}
+					}
+
+					Spacer(modifier = Modifier.height(8.dp))
+
 					// Week calendar
 					WeekCalendar(
-						state = weekCalendarState,
+						state = weekState,
 						dayContent = { day ->
-							val isSelected = day.date == selectedDate
-							val isToday = day.date == currentDate
-
-							Column(
-								modifier = Modifier
-									.padding(vertical = 4.dp)
-									.clip(CircleShape)
-									.clickable { selectedDate = day.date }
-									.then(
-										if (isSelected) {
-											Modifier.background(
-												MaterialTheme.colorScheme.primary,
-												CircleShape
-											)
-										} else {
-											Modifier
-										}
-									)
-									.padding(8.dp),
-								horizontalAlignment = Alignment.CenterHorizontally
-							) {
-								Text(
-									text = day.date.dayOfWeek.name.take(3),
-									fontSize = 10.sp,
-									color = if (isSelected) {
-										MaterialTheme.colorScheme.onPrimary
-									} else {
-										MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f)
-									},
-									textAlign = TextAlign.Center
-								)
-								Spacer(modifier = Modifier.height(4.dp))
-								Text(
-									text = day.date.day.toString(),
-									fontSize = 16.sp,
-									fontWeight = if (isToday || isSelected) FontWeight.Bold else FontWeight.Normal,
-									color = if (isSelected) {
-										MaterialTheme.colorScheme.onPrimary
-									} else if (isToday) {
-										MaterialTheme.colorScheme.primary
-									} else {
-										MaterialTheme.colorScheme.onPrimaryContainer
-									},
-									textAlign = TextAlign.Center
-								)
-							}
+							val isSelectable = day.position == WeekDayPosition.RangeDate
+							Day(
+								date = day.date,
+								isSelected = day.date == selectedDate,
+								isToday = day.date == currentDate,
+								isSelectable = isSelectable,
+								onClick = { selectedDate = it }
+							)
 						},
-						modifier = Modifier.padding(bottom = 8.dp)
+						modifier = Modifier.padding(bottom = 12.dp)
 					)
 				}
 			}
@@ -129,7 +111,9 @@ fun SessionsScreen(
 				verticalArrangement = Arrangement.Center
 			) {
 				Text(
-					text = "Sessions for ${selectedDate.dayOfMonth} ${selectedDate.month.name.take(3)}",
+					text = "Sessions for ${selectedDate.day} ${
+						selectedDate.month.name.take(3).lowercase().replaceFirstChar { it.uppercase() }
+					}",
 					style = MaterialTheme.typography.titleMedium,
 					color = MaterialTheme.colorScheme.onSurface
 				)
@@ -159,4 +143,49 @@ fun SessionsScreen(
 			)
 		}
 	}
+}
+
+@Composable
+private fun Day(
+	date: LocalDate,
+	isSelected: Boolean,
+	isToday: Boolean,
+	isSelectable: Boolean,
+	onClick: (LocalDate) -> Unit
+) {
+	Box(
+		modifier = Modifier
+			.aspectRatio(1f)
+			.padding(4.dp)
+			.clip(CircleShape)
+			.background(
+				color = when {
+					isSelected -> MaterialTheme.colorScheme.primary
+					else -> MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0f)
+				}
+			)
+			.clickable(enabled = isSelectable) { onClick(date) },
+		contentAlignment = Alignment.Center
+	) {
+		Text(
+			text = date.dayOfMonth.toString(),
+			fontSize = 14.sp,
+			fontWeight = if (isToday || isSelected) FontWeight.Bold else FontWeight.Normal,
+			color = when {
+				isSelected -> MaterialTheme.colorScheme.onPrimary
+				isToday -> MaterialTheme.colorScheme.primary
+				isSelectable -> MaterialTheme.colorScheme.onPrimaryContainer
+				else -> MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.4f)
+			}
+		)
+	}
+}
+
+private fun DayOfWeek.displayText(): String {
+	return name.take(3).lowercase().replaceFirstChar { it.uppercase() }
+}
+
+private fun formatMonthYear(date: LocalDate): String {
+	val monthName = date.month.name.lowercase().replaceFirstChar { it.uppercase() }
+	return "$monthName ${date.year}"
 }

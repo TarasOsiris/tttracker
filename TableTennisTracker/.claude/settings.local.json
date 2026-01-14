@@ -12,7 +12,8 @@
       "WebFetch(domain:ktor.io)",
       "Bash(ls:*)",
       "WebFetch(domain:github.com)",
-      "mcp__ide__getDiagnostics"
+      "mcp__ide__getDiagnostics",
+      "WebFetch(domain:raw.githubusercontent.com)"
     ]
   }
 }
