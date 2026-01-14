@@ -46,15 +46,13 @@ docker build -f server/Dockerfile .          # Build Docker image
 The project consists of 5 modules with clear separation of concerns:
 
 ### composeApp
-
 Shared Compose UI for Android, iOS, and Desktop. This is a **multiplatform library** (not an application module).
 
 - **Platform targets:** Android Library, iOS framework, JVM
 - **UI Framework:** Compose Multiplatform with Material3
-- **Navigation:** androidx.navigation3 (alpha) with route-based stack navigation
-    - Routes defined in `composeApp/src/commonMain/kotlin/xyz/tleskiv/tt/ui/nav/Routes.kt`
-    - Manual backstack management using `mutableStateListOf<Any>`
 - **DI:** Koin for Compose (`koin-compose`, `koin-compose-viewmodel`)
+- **Navigation:** Compose Navigation 3
+  Multiplatform: https://kotlinlang.org/docs/multiplatform/compose-navigation-3.html
 - **Database:** SQLDelight with platform-specific drivers (Android, iOS native, JVM)
 - **Entry points:**
     - Desktop: `composeApp/src/jvmMain/kotlin/xyz/tleskiv/tt/main.kt`
@@ -136,21 +134,10 @@ To add new tables:
 
 ## Navigation Pattern
 
-The app uses androidx.navigation3 (alpha):
-
-- **Route definitions:** Data classes in `Routes.kt` (e.g., `HomeRoute`, `DetailsRoute(itemId: String)`)
-- **Navigation:** Use `NavDisplay` composable from androidx.navigation3
-- **Backstack:** Currently manual management with `mutableStateListOf<Any>`
 
 ## Version Catalog
 
-All dependencies are managed via `gradle/libs.versions.toml`. Key versions:
-
-- Kotlin: 2.3.0
-- Compose Multiplatform: 1.9.3
-- Koin: 4.1.1
-- Ktor: 3.3.3
-- SQLDelight: 2.0.2
+All dependencies are managed via `gradle/libs.versions.toml`.
 
 ## Platform-Specific Code
 
