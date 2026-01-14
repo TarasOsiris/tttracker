@@ -91,7 +91,8 @@ private fun CalendarSection(
 		startMonth = startYearMonth,
 		endMonth = endYearMonth,
 		firstVisibleMonth = currentYearMonth,
-		firstDayOfWeek = daysOfWeek.first()
+		firstDayOfWeek = daysOfWeek.first(),
+		outDateStyle = OutDateStyle.EndOfGrid
 	)
 
 	val weekState = rememberWeekCalendarState(
@@ -229,13 +230,13 @@ private fun AnimatedCalendarContainer(
 	onDateSelected: (LocalDate) -> Unit
 ) {
 	var weekCalendarSize by remember { mutableStateOf(DpSize.Zero) }
-	val weeksInVisibleMonth = monthState.firstVisibleMonth.weekDays.count()
+	val weeksInMonth = 6
 
 	val monthCalendarHeight by animateDpAsState(
 		targetValue = if (isWeekMode) {
 			weekCalendarSize.height
 		} else {
-			weekCalendarSize.height * weeksInVisibleMonth
+			weekCalendarSize.height * weeksInMonth
 		},
 		animationSpec = tween(durationMillis = 250)
 	)
@@ -285,7 +286,7 @@ private fun MonthCalendarView(
 				date = day.date,
 				isSelected = day.date == selectedDate,
 				isToday = day.date == currentDate,
-				isSelectable = day.position == DayPosition.MonthDate,
+				isInCurrentMonth = day.position == DayPosition.MonthDate,
 				onClick = onDateSelected
 			)
 		}
@@ -320,7 +321,7 @@ private fun WeekCalendarView(
 				date = day.date,
 				isSelected = day.date == selectedDate,
 				isToday = day.date == currentDate,
-				isSelectable = day.position == WeekDayPosition.RangeDate,
+				isInCurrentMonth = day.position == WeekDayPosition.RangeDate,
 				onClick = onDateSelected
 			)
 		}
@@ -332,7 +333,7 @@ private fun DayCell(
 	date: LocalDate,
 	isSelected: Boolean,
 	isToday: Boolean,
-	isSelectable: Boolean,
+	isInCurrentMonth: Boolean,
 	onClick: (LocalDate) -> Unit
 ) {
 	val backgroundColor = when {
@@ -342,7 +343,7 @@ private fun DayCell(
 	val textColor = when {
 		isSelected -> MaterialTheme.colorScheme.onPrimary
 		isToday -> MaterialTheme.colorScheme.primary
-		isSelectable -> MaterialTheme.colorScheme.onPrimaryContainer
+		isInCurrentMonth -> MaterialTheme.colorScheme.onPrimaryContainer
 		else -> MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.4f)
 	}
 
@@ -352,7 +353,7 @@ private fun DayCell(
 			.padding(4.dp)
 			.clip(CircleShape)
 			.background(backgroundColor)
-			.clickable(enabled = isSelectable) { onClick(date) },
+			.clickable { onClick(date) },
 		contentAlignment = Alignment.Center
 	) {
 		Text(
