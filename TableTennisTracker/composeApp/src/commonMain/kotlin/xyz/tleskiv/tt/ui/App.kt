@@ -22,11 +22,12 @@ import xyz.tleskiv.tt.ui.nav.*
 import xyz.tleskiv.tt.ui.screens.AnalyticsScreen
 import xyz.tleskiv.tt.ui.screens.ProfileScreen
 import xyz.tleskiv.tt.ui.screens.SessionsScreen
+import xyz.tleskiv.tt.ui.theme.AppTheme
 
 @Composable
 @Preview
 fun App() {
-	MaterialTheme {
+	AppTheme {
 		val topLevelBackStack = remember { mutableStateListOf<Any>(RouteA) }
 
 		Top(topLevelBackStack)
