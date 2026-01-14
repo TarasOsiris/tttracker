@@ -183,26 +183,57 @@ private fun WeekMonthToggle(
 	onToggle: () -> Unit
 ) {
 	Row(
-		verticalAlignment = Alignment.CenterVertically,
 		modifier = Modifier
-			.clip(MaterialTheme.shapes.small)
+			.clip(MaterialTheme.shapes.medium)
+			.background(MaterialTheme.colorScheme.surfaceVariant)
+	) {
+		SegmentButton(
+			text = "Week",
+			isSelected = isWeekMode,
+			onClick = { if (!isWeekMode) onToggle() }
+		)
+		SegmentButton(
+			text = "Month",
+			isSelected = !isWeekMode,
+			onClick = { if (isWeekMode) onToggle() }
+		)
+	}
+}
+
+@Composable
+private fun SegmentButton(
+	text: String,
+	isSelected: Boolean,
+	onClick: () -> Unit
+) {
+	val backgroundColor = if (isSelected) {
+		MaterialTheme.colorScheme.primary
+	} else {
+		MaterialTheme.colorScheme.surfaceVariant
+	}
+	val textColor = if (isSelected) {
+		MaterialTheme.colorScheme.onPrimary
+	} else {
+		MaterialTheme.colorScheme.onSurfaceVariant
+	}
+
+	Box(
+		modifier = Modifier
+			.clip(MaterialTheme.shapes.medium)
+			.background(backgroundColor)
 			.clickable(
 				interactionSource = remember { MutableInteractionSource() },
 				indication = null,
-				onClick = onToggle
+				onClick = onClick
 			)
-			.padding(8.dp)
+			.padding(horizontal = 16.dp, vertical = 8.dp),
+		contentAlignment = Alignment.Center
 	) {
-		Switch(
-			checked = !isWeekMode,
-			onCheckedChange = null,
-			modifier = Modifier.height(20.dp)
-		)
-		Spacer(modifier = Modifier.width(8.dp))
 		Text(
-			text = if (isWeekMode) "Week" else "Month",
+			text = text,
 			style = MaterialTheme.typography.labelMedium,
-			color = MaterialTheme.colorScheme.onPrimaryContainer
+			fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Normal,
+			color = textColor
 		)
 	}
 }
