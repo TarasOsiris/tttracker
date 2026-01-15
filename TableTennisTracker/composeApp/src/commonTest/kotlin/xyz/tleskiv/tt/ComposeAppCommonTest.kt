@@ -7,6 +7,7 @@ class ComposeAppCommonTest {
 
     @Test
     fun example() {
+        println("TESTING........................")
         assertEquals(3, 1 + 2)
     }
 }

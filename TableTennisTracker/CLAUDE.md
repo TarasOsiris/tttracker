@@ -2,8 +2,7 @@
 
 ## Project Overview
 
-Table Tennis Tracker is a Kotlin Multiplatform (KMP) application targeting Android, iOS, Desktop (JVM), and Server. It
-uses Compose Multiplatform for shared UI across platforms and Ktor for the backend server.
+Table Tennis Tracker is a Kotlin Multiplatform (KMP) application targeting Android, iOS, Desktop (JVM), and Server. It uses Compose Multiplatform for shared UI across platforms and Ktor for the backend server.
 
 ## Build Commands
 
@@ -18,7 +17,6 @@ uses Compose Multiplatform for shared UI across platforms and Ktor for the backe
 
 ```bash
 ./gradlew :composeApp:run                    # Run desktop app
-./gradlew :composeApp:packageDistributionForCurrentOS  # Create native installer
 ```
 
 ### iOS
@@ -30,7 +28,6 @@ Open `/iosApp` directory in Xcode and build/run from there, or use the IDE's run
 ```bash
 ./gradlew :server:run                        # Run server locally (port 8080)
 ./gradlew :server:buildFatJar                # Build standalone fat JAR
-docker build -f server/Dockerfile .          # Build Docker image
 ```
 
 ### Testing
@@ -43,7 +40,7 @@ docker build -f server/Dockerfile .          # Build Docker image
 
 ## Module Architecture
 
-The project consists of 5 modules with clear separation of concerns:
+The project consists of 4 modules with clear separation of concerns:
 
 ### composeApp
 Shared Compose UI for Android, iOS, and Desktop. This is a **multiplatform library** (not an application module).
@@ -62,6 +59,32 @@ Shared Compose UI for Android, iOS, and Desktop. This is a **multiplatform libra
 **Important:** Android resource handling requires special build task `copyComposeResourcesToAndroidResources` that
 prefixes resources with `tabletennistracker.composeapp.generated.resources`.
 
+#### composeApp Architecture
+
+**Pattern:** MVVM + Clean Architecture with layered separation:
+
+```
+UI Layer (Screens) → ViewModel Layer → Service Layer → Repository Layer → Database
+```
+
+**ViewModel Pattern:**
+- Abstract interface class extending `ViewModelBase` (which extends `androidx.lifecycle.ViewModel`)
+- Concrete implementation class (e.g., `SessionScreenViewModel` + `SessionScreenViewModelImpl`)
+- State exposed as immutable `StateFlow`, internal state as `MutableStateFlow`
+- Koin registration: `viewModelOf(::ImplementationClass) bind InterfaceClass::class`
+- Parameters via `koinViewModel { parametersOf(args) }` for route data
+
+**Service Layer:**
+- Interface + implementation pattern
+- Business logic and data transformation (e.g., LocalDateTime ↔ epoch milliseconds)
+- Registered as Koin singletons: `single<Interface> { ImplementationClass(get()) }`
+
+**Repository Layer:**
+- Interface + implementation pattern
+- Data access via SQLDelight queries
+- Uses `withContext(ioDispatcher)` for suspend functions
+- Injected with named dispatcher qualifier
+
 ### androidApp
 
 Android application entry point that depends on composeApp.
@@ -75,7 +98,7 @@ Android application entry point that depends on composeApp.
 Ktor backend server (JVM only).
 
 - **Framework:** Ktor 3.3.3 with Netty engine
-- **Port:** 8080 (defined in `shared` module as `SERVER_PORT`)
+- **Port:** 8080
 - **DI:** Koin for Ktor (`koin-ktor`)
     - Modules defined in `Application.kt`
     - Use `@inject<T>` pattern in route handlers
@@ -86,22 +109,13 @@ Ktor backend server (JVM only).
 - **Routing:** Extension functions on `Routing` (see `Application.kt`)
 - **Deployment:** Multi-stage Dockerfile with Java 21 runtime, produces fat JAR
 
-### data
+### shared
 
 Shared data models across all platforms (Android, iOS, Desktop, Server).
 
 - **Pattern:** Kotlinx serialization-compatible data classes
 - **Example:** `User.kt` - `@Serializable data class`
 - **Purpose:** Single source of truth for API contracts and domain models
-
-### shared
-
-Cross-platform utilities and business logic.
-
-- **Pattern:** KMP `expect`/`actual` for platform-specific implementations
-- **Example:** `Platform.kt` interface with implementations in `jvmMain`, `androidMain`
-- **Constants:** `SERVER_PORT = 8080`
-- **Utilities:** Helper classes like `Greeting.kt`
 
 ## Dependency Injection with Koin
 
@@ -134,6 +148,28 @@ To add new tables:
 
 ## Navigation Pattern
 
+Uses Compose Navigation 3 with type-safe route definitions:
+
+**Route Structure (`ui/nav/Routes.kt`):**
+```kotlin
+sealed interface TopLevelRoute  // Bottom nav destinations with icon + label
+├── SessionsRoute              // Sessions list (default)
+├── AnalyticsRoute             // Analytics screen
+└── ProfileRoute               // Profile screen
+
+data class CreateSessionRoute(val initialDate: LocalDate?)  // Modal route
+data class SessionDetailsRoute(val sessionId: String)        // Modal route
+```
+
+**Navigation Components:**
+- `TopLevelBackStack<T>` - Custom class managing per-tab back stack persistence
+- `NavDisplay` - Renders routes with entry decorators for state/ViewModel preservation
+- Entry decorators: `rememberSaveableStateHolderNavEntryDecorator()`, `rememberViewModelStoreNavEntryDecorator()`
+
+**ViewModel Injection with Route Parameters:**
+```kotlin
+koinViewModel<CreateSessionScreenViewModel> { parametersOf(route.initialDate) }
+```
 
 ## Version Catalog
 
@@ -145,8 +181,6 @@ Use KMP's `expect`/`actual` pattern:
 
 1. Define `expect` declaration in `commonMain`
 2. Provide `actual` implementation in platform-specific source sets (`androidMain`, `iosMain`, `jvmMain`)
-
-See `shared/src/commonMain/kotlin/xyz/tleskiv/tt/Platform.kt` for reference.
 
 # Other instructions
 

@@ -1,8 +1,10 @@
 package xyz.tleskiv.tt.viewmodel.impl.sessions
 
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
@@ -21,18 +23,20 @@ class SessionScreenViewModelImpl(private val sessionService: TrainingSessionServ
 	}
 
 	private fun loadSessions() {
-		val allSessions = sessionService.getAllSessions()
-		val grouped = allSessions.map { session ->
-			val dateTime = Instant.fromEpochMilliseconds(session.date).toLocalDateTime(TimeZone.currentSystemDefault())
-			SessionUiModel(
-				id = session.id,
-				date = dateTime.date,
-				durationMinutes = session.duration_min.toInt(),
-				sessionType = session.session_type?.let { SessionType.fromDb(it) },
-				rpe = session.rpe?.toInt(),
-				notes = session.notes
-			)
-		}.groupBy { it.date }
-		_sessions.value = grouped
+		viewModelScope.launch {
+			val allSessions = sessionService.getAllSessions()
+			val grouped = allSessions.map { session ->
+				val dateTime = Instant.fromEpochMilliseconds(session.date).toLocalDateTime(TimeZone.currentSystemDefault())
+				SessionUiModel(
+					id = session.id,
+					date = dateTime.date,
+					durationMinutes = session.duration_min.toInt(),
+					sessionType = session.session_type?.let { SessionType.fromDb(it) },
+					rpe = session.rpe?.toInt(),
+					notes = session.notes
+				)
+			}.groupBy { it.date }
+			_sessions.value = grouped
+		}
 	}
 }

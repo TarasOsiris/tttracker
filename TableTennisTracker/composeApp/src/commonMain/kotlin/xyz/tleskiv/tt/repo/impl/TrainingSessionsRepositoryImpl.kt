@@ -1,5 +1,7 @@
 package xyz.tleskiv.tt.repo.impl
 
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.withContext
 import xyz.tleskiv.tt.data.model.enums.SessionType
 import xyz.tleskiv.tt.db.AppDatabase
 import xyz.tleskiv.tt.db.Training_session
@@ -7,16 +9,17 @@ import xyz.tleskiv.tt.repo.TrainingSessionsRepository
 import kotlin.uuid.Uuid
 
 class TrainingSessionsRepositoryImpl(
-	private val database: AppDatabase
+	private val database: AppDatabase,
+	private val ioDispatcher: CoroutineDispatcher
 ) : TrainingSessionsRepository {
 
-	override fun addSession(
+	override suspend fun addSession(
 		date: Long,
 		durationMinutes: Int,
 		rpe: Int?,
 		sessionType: SessionType?,
 		notes: String?
-	): Uuid {
+	): Uuid = withContext(ioDispatcher) {
 		val now = System.currentTimeMillis()
 		val sessionId = Uuid.random()
 
@@ -30,17 +33,17 @@ class TrainingSessionsRepositoryImpl(
 			updated_at = now
 		)
 
-		return sessionId
+		sessionId
 	}
 
-	override fun editSession(
+	override suspend fun editSession(
 		id: Uuid,
 		date: Long,
 		durationMinutes: Int,
 		rpe: Int?,
 		sessionType: SessionType?,
 		notes: String?
-	) {
+	) = withContext(ioDispatcher) {
 		val now = System.currentTimeMillis()
 
 		database.appDatabaseQueries.updateSession(
@@ -54,11 +57,11 @@ class TrainingSessionsRepositoryImpl(
 		)
 	}
 
-	override fun getAllSessions(): List<Training_session> {
-		return database.appDatabaseQueries.selectAllSessions().executeAsList()
+	override suspend fun getAllSessions(): List<Training_session> = withContext(ioDispatcher) {
+		database.appDatabaseQueries.selectAllSessions().executeAsList()
 	}
 
-	override fun getSessionById(id: Uuid): Training_session? {
-		return database.appDatabaseQueries.getSessionById(id).executeAsOneOrNull()
+	override suspend fun getSessionById(id: Uuid): Training_session? = withContext(ioDispatcher) {
+		database.appDatabaseQueries.getSessionById(id).executeAsOneOrNull()
 	}
 }

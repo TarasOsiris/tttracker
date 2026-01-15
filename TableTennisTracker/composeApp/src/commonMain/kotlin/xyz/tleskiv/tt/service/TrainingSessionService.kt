@@ -6,7 +6,7 @@ import xyz.tleskiv.tt.db.Training_session
 import kotlin.uuid.Uuid
 
 interface TrainingSessionService {
-	fun addSession(
+	suspend fun addSession(
 		dateTime: LocalDateTime,
 		durationMinutes: Int,
 		rpe: Int?,
@@ -14,7 +14,7 @@ interface TrainingSessionService {
 		notes: String?
 	): Uuid
 
-	fun editSession(
+	suspend fun editSession(
 		id: Uuid,
 		dateTime: LocalDateTime,
 		durationMinutes: Int,
@@ -23,7 +23,7 @@ interface TrainingSessionService {
 		notes: String?
 	)
 
-	fun getAllSessions(): List<Training_session>
+	suspend fun getAllSessions(): List<Training_session>
 
-	fun getSessionById(id: Uuid): Training_session?
+	suspend fun getSessionById(id: Uuid): Training_session?
 }

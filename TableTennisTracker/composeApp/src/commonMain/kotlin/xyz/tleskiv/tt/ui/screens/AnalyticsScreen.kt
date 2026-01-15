@@ -8,9 +8,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.launch
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import org.jetbrains.compose.resources.stringResource
@@ -25,10 +27,11 @@ import kotlin.uuid.Uuid
 fun AnalyticsScreen() {
 	val service = koinInject<TrainingSessionService>()
 	val lastCreatedId = remember { mutableStateOf<Uuid?>(null) }
+	val scope = rememberCoroutineScope()
 
 	// Extract string resource to composable scope
 	val testNotes = stringResource(Res.string.analytics_test_notes)
-	
+
 	Column(
 		modifier = Modifier
 			.fillMaxSize()
@@ -51,14 +54,16 @@ fun AnalyticsScreen() {
 		Spacer(modifier = Modifier.height(12.dp))
 		Button(
 			onClick = {
-				val now = Clock.System.now()
-				lastCreatedId.value = service.addSession(
-					dateTime = now.toLocalDateTime(TimeZone.currentSystemDefault()),
-					durationMinutes = 60,
-					rpe = 6,
-					sessionType = SessionType.TECHNIQUE,
-					notes = testNotes
-				)
+				scope.launch {
+					val now = Clock.System.now()
+					lastCreatedId.value = service.addSession(
+						dateTime = now.toLocalDateTime(TimeZone.currentSystemDefault()),
+						durationMinutes = 60,
+						rpe = 6,
+						sessionType = SessionType.TECHNIQUE,
+						notes = testNotes
+					)
+				}
 			}
 		) {
 			Text(stringResource(Res.string.analytics_create_test_session))

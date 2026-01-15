@@ -34,6 +34,5 @@ plugins {
 
 include(":androidApp")
 include(":composeApp")
-include(":data")
-include(":server")
 include(":shared")
+include(":server")

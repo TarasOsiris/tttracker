@@ -98,7 +98,6 @@ kotlin {
 			implementation(libs.calendar.compose.multiplatform)
 
 			implementation(projects.shared)
-			implementation(projects.data)
 		}
 		commonTest.dependencies {
 			implementation(libs.kotlin.test)

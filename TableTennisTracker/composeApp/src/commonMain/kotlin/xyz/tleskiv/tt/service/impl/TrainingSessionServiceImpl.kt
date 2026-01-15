@@ -13,7 +13,7 @@ class TrainingSessionServiceImpl(
 	private val repository: TrainingSessionsRepository
 ) : TrainingSessionService {
 
-	override fun addSession(
+	override suspend fun addSession(
 		dateTime: LocalDateTime,
 		durationMinutes: Int,
 		rpe: Int?,
@@ -29,7 +29,7 @@ class TrainingSessionServiceImpl(
 		)
 	}
 
-	override fun editSession(
+	override suspend fun editSession(
 		id: Uuid,
 		dateTime: LocalDateTime,
 		durationMinutes: Int,
@@ -47,11 +47,11 @@ class TrainingSessionServiceImpl(
 		)
 	}
 
-	override fun getAllSessions(): List<Training_session> {
+	override suspend fun getAllSessions(): List<Training_session> {
 		return repository.getAllSessions()
 	}
 
-	override fun getSessionById(id: Uuid): Training_session? {
+	override suspend fun getSessionById(id: Uuid): Training_session? {
 		return repository.getSessionById(id)
 	}
 }
