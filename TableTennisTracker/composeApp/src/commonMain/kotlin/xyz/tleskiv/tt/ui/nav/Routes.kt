@@ -1,5 +1,6 @@
 package xyz.tleskiv.tt.ui.nav
 
+import kotlinx.datetime.LocalDate
 import org.jetbrains.compose.resources.DrawableResource
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.ic_analytics
@@ -28,6 +29,6 @@ data object ProfileRoute : TopLevelRoute {
 
 data class DetailsRoute(val itemId: String)
 
-data object CreateSessionRoute
+data class CreateSessionRoute(val initialDate: LocalDate? = null)
 
 val TOP_LEVEL_ROUTES: List<TopLevelRoute> = listOf(SessionsRoute, AnalyticsRoute, ProfileRoute)

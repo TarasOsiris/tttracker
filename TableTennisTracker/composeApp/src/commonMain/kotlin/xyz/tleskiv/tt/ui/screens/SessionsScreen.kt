@@ -51,7 +51,7 @@ private const val DATE_LIST_RANGE_DAYS = 365
 @Composable
 fun SessionsScreen(
 	onNavigateToDetails: (String) -> Unit = {},
-	onAddSession: () -> Unit = {}
+	onAddSession: (LocalDate) -> Unit = {}
 ) {
 	val currentDate = remember { LocalDate.now() }
 	var selectedDate by remember { mutableStateOf(currentDate) }
@@ -97,7 +97,7 @@ fun SessionsScreen(
 		}
 
 		AddSessionFab(
-			onClick = onAddSession,
+			onClick = { onAddSession(selectedDate) },
 			modifier = Modifier.align(Alignment.BottomEnd)
 		)
 	}

@@ -25,12 +25,13 @@ import kotlin.math.roundToInt
 
 @Composable
 fun CreateSessionScreen(
+	initialDate: LocalDate? = null,
 	onNavigateBack: () -> Unit = {},
 	onSave: () -> Unit = {}
 ) {
-	val today = remember { LocalDate.now() }
+	val defaultDate = remember { initialDate ?: LocalDate.now() }
 
-	var selectedDate by remember { mutableStateOf(today) }
+	var selectedDate by remember { mutableStateOf(defaultDate) }
 	var durationText by remember { mutableStateOf("") }
 	var selectedSessionType by remember { mutableStateOf<SessionType?>(null) }
 	var rpeValue by remember { mutableFloatStateOf(5f) }

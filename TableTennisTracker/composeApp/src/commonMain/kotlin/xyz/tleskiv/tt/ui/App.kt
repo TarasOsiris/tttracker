@@ -67,6 +67,7 @@ private fun Top(topLevelbackStack: SnapshotStateList<Any>) {
 
 				is CreateSessionRoute -> NavEntry(key) {
 					CreateSessionScreen(
+						initialDate = key.initialDate,
 						onNavigateBack = { topLevelbackStack.removeLastOrNull() }
 					)
 				}
@@ -142,8 +143,8 @@ private fun NavBarScreens(topLevelBackStack: SnapshotStateList<Any>) {
 							onNavigateToDetails = { id ->
 								topLevelBackStack.add(RouteB(id))
 							},
-							onAddSession = {
-								topLevelBackStack.add(CreateSessionRoute)
+							onAddSession = { selectedDate ->
+								topLevelBackStack.add(CreateSessionRoute(selectedDate))
 							}
 						)
 					}

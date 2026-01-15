@@ -8,4 +8,5 @@ fun SessionType.displayName(): String = when (this) {
 	SessionType.SERVE_PRACTICE -> "Serve Practice"
 	SessionType.PHYSICAL -> "Physical"
 	SessionType.FREE_PLAY -> "Free Play"
+	else -> "Other"
 }
