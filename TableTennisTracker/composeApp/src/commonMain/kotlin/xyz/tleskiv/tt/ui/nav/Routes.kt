@@ -2,29 +2,27 @@ package xyz.tleskiv.tt.ui.nav
 
 import kotlinx.datetime.LocalDate
 import org.jetbrains.compose.resources.DrawableResource
-import tabletennistracker.composeapp.generated.resources.Res
-import tabletennistracker.composeapp.generated.resources.ic_analytics
-import tabletennistracker.composeapp.generated.resources.ic_person
-import tabletennistracker.composeapp.generated.resources.ic_sessions
+import org.jetbrains.compose.resources.StringResource
+import tabletennistracker.composeapp.generated.resources.*
 
 sealed interface TopLevelRoute {
 	val icon: DrawableResource
-	val label: String
+	val label: StringResource
 }
 
 data object SessionsRoute : TopLevelRoute {
 	override val icon = Res.drawable.ic_sessions
-	override val label = "Sessions"
+	override val label = Res.string.nav_sessions
 }
 
 data object AnalyticsRoute : TopLevelRoute {
 	override val icon = Res.drawable.ic_analytics
-	override val label = "Analytics"
+	override val label = Res.string.nav_analytics
 }
 
 data object ProfileRoute : TopLevelRoute {
 	override val icon = Res.drawable.ic_person
-	override val label = "Profile"
+	override val label = Res.string.nav_profile
 }
 
 data class CreateSessionRoute(val initialDate: LocalDate? = null)

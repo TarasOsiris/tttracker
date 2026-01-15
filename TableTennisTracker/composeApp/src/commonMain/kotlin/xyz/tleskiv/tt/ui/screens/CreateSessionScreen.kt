@@ -20,8 +20,8 @@ import tabletennistracker.composeapp.generated.resources.*
 import xyz.tleskiv.tt.data.model.enums.SessionType
 import xyz.tleskiv.tt.ui.widgets.BackButton
 import xyz.tleskiv.tt.ui.widgets.BottomBarButtons
-import xyz.tleskiv.tt.util.displayName
 import xyz.tleskiv.tt.util.formatSessionDateFull
+import xyz.tleskiv.tt.util.labelRes
 import xyz.tleskiv.tt.util.ui.getRpeLabel
 import xyz.tleskiv.tt.viewmodel.sessions.CreateSessionScreenViewModel
 import kotlin.math.roundToInt
@@ -49,7 +49,7 @@ fun CreateSessionScreen(
 	Scaffold(
 		topBar = {
 			TopAppBar(
-				title = { Text("Create Training Session") },
+				title = { Text(stringResource(Res.string.title_create_session)) },
 				navigationIcon = { BackButton { onNavigateBack() } },
 				colors = TopAppBarDefaults.topAppBarColors(
 					containerColor = MaterialTheme.colorScheme.surface
@@ -119,7 +119,7 @@ private fun DateField(
 ) {
 	Column {
 		Text(
-			text = "Date",
+			text = stringResource(Res.string.label_date),
 			style = MaterialTheme.typography.labelLarge,
 			color = MaterialTheme.colorScheme.onSurface,
 			fontWeight = FontWeight.Medium
@@ -144,7 +144,7 @@ private fun DateField(
 					color = MaterialTheme.colorScheme.onSurface
 				)
 				Text(
-					text = "Change",
+					text = stringResource(Res.string.action_change),
 					style = MaterialTheme.typography.labelMedium,
 					color = MaterialTheme.colorScheme.primary
 				)
@@ -160,7 +160,7 @@ private fun DurationField(
 ) {
 	Column {
 		Text(
-			text = "Duration",
+			text = stringResource(Res.string.label_duration),
 			style = MaterialTheme.typography.labelLarge,
 			color = MaterialTheme.colorScheme.onSurface,
 			fontWeight = FontWeight.Medium
@@ -170,12 +170,12 @@ private fun DurationField(
 			value = durationText,
 			onValueChange = onDurationChange,
 			modifier = Modifier.fillMaxWidth(),
-			placeholder = { Text("Enter duration") },
-			suffix = { Text("minutes") },
+			placeholder = { Text(stringResource(Res.string.hint_duration)) },
+			suffix = { Text(stringResource(Res.string.suffix_minutes)) },
 			keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
 			singleLine = true,
 			supportingText = {
-				Text("5-300 minutes")
+				Text(stringResource(Res.string.rule_duration))
 			},
 			isError = durationText.isNotEmpty() && (durationText.toIntOrNull()?.let { it !in 5..300 } ?: true)
 		)
@@ -189,7 +189,7 @@ private fun SessionTypeField(
 ) {
 	Column {
 		Text(
-			text = "Session Type",
+			text = stringResource(Res.string.label_session_type),
 			style = MaterialTheme.typography.labelLarge,
 			color = MaterialTheme.colorScheme.onSurface,
 			fontWeight = FontWeight.Medium
@@ -203,7 +203,7 @@ private fun SessionTypeField(
 				FilterChip(
 					selected = selectedType == type,
 					onClick = { onTypeSelected(type) },
-					label = { Text(type.displayName()) },
+					label = { Text(stringResource(type.labelRes())) },
 					colors = FilterChipDefaults.filterChipColors(
 						selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
 						selectedLabelColor = MaterialTheme.colorScheme.onPrimaryContainer
@@ -226,7 +226,7 @@ private fun RpeField(
 			verticalAlignment = Alignment.CenterVertically
 		) {
 			Text(
-				text = "Intensity (RPE)",
+				text = stringResource(Res.string.label_intensity_rpe),
 				style = MaterialTheme.typography.labelLarge,
 				color = MaterialTheme.colorScheme.onSurface,
 				fontWeight = FontWeight.Medium
@@ -309,7 +309,7 @@ private fun NotesField(
 ) {
 	Column {
 		Text(
-			text = "Notes (optional)",
+			text = stringResource(Res.string.label_notes_optional),
 			style = MaterialTheme.typography.labelLarge,
 			color = MaterialTheme.colorScheme.onSurface,
 			fontWeight = FontWeight.Medium
@@ -321,9 +321,9 @@ private fun NotesField(
 			modifier = Modifier
 				.fillMaxWidth()
 				.height(120.dp),
-			placeholder = { Text("Add notes about your session...") },
+			placeholder = { Text(stringResource(Res.string.hint_notes)) },
 			supportingText = {
-				Text("${notes.length}/1000")
+				Text(stringResource(Res.string.counter_notes, notes.length))
 			}
 		)
 	}
@@ -351,12 +351,12 @@ private fun SessionDatePickerDialog(
 					}
 				}
 			) {
-				Text("OK")
+				Text(stringResource(Res.string.action_ok))
 			}
 		},
 		dismissButton = {
 			TextButton(onClick = onDismiss) {
-				Text("Cancel")
+				Text(stringResource(Res.string.action_cancel))
 			}
 		}
 	) {

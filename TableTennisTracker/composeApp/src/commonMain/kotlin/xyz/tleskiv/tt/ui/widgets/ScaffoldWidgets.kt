@@ -8,14 +8,17 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
-import tabletennistracker.composeapp.generated.resources.Res
-import tabletennistracker.composeapp.generated.resources.ic_arrow_back
+import tabletennistracker.composeapp.generated.resources.*
 
 @Composable
 fun BackButton(onClick: () -> Unit) {
 	IconButton(onClick = onClick) {
-		Icon(imageVector = vectorResource(Res.drawable.ic_arrow_back), contentDescription = "Back")
+		Icon(
+			imageVector = vectorResource(Res.drawable.ic_arrow_back),
+			contentDescription = stringResource(Res.string.action_back)
+		)
 	}
 }
 
@@ -40,14 +43,14 @@ fun BottomBarButtons(
 				onClick = onLeftButtonClick,
 				modifier = Modifier.weight(1f)
 			) {
-				Text("Cancel")
+				Text(stringResource(Res.string.action_cancel))
 			}
 			Button(
 				onClick = onRightButtonClick,
 				enabled = rightButtonEnabled,
 				modifier = Modifier.weight(1f)
 			) {
-				Text("Save Session")
+				Text(stringResource(Res.string.action_save))
 			}
 		}
 	}

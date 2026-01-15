@@ -13,7 +13,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
+import tabletennistracker.composeapp.generated.resources.*
 import xyz.tleskiv.tt.data.model.enums.SessionType
 import xyz.tleskiv.tt.service.TrainingSessionService
 import kotlin.time.Clock
@@ -23,6 +25,10 @@ import kotlin.uuid.Uuid
 fun AnalyticsScreen() {
 	val service = koinInject<TrainingSessionService>()
 	val lastCreatedId = remember { mutableStateOf<Uuid?>(null) }
+
+	// Extract string resource to composable scope
+	val testNotes = stringResource(Res.string.analytics_test_notes)
+	
 	Column(
 		modifier = Modifier
 			.fillMaxSize()
@@ -32,13 +38,13 @@ fun AnalyticsScreen() {
 		verticalArrangement = Arrangement.Center
 	) {
 		Text(
-			text = "Analytics",
+			text = stringResource(Res.string.title_analytics),
 			style = MaterialTheme.typography.headlineMedium,
 			color = MaterialTheme.colorScheme.onPrimaryContainer
 		)
 		Spacer(modifier = Modifier.height(12.dp))
 		Text(
-			text = "Service injected: ${service.hashCode()}",
+			text = stringResource(Res.string.analytics_service_injected, service.hashCode()),
 			style = MaterialTheme.typography.bodyMedium,
 			color = MaterialTheme.colorScheme.onPrimaryContainer
 		)
@@ -51,21 +57,21 @@ fun AnalyticsScreen() {
 					durationMinutes = 60,
 					rpe = 6,
 					sessionType = SessionType.TECHNIQUE,
-					notes = "Test session from AnalyticsScreen"
+					notes = testNotes
 				)
 			}
 		) {
-			Text("Create Test Session")
+			Text(stringResource(Res.string.analytics_create_test_session))
 		}
 		Spacer(modifier = Modifier.height(12.dp))
 		Text(
-			text = "Last created session: ${lastCreatedId.value?.toString() ?: "None"}",
+			text = stringResource(Res.string.analytics_last_created, lastCreatedId.value?.toString() ?: "None"),
 			style = MaterialTheme.typography.bodyMedium,
 			color = MaterialTheme.colorScheme.onPrimaryContainer
 		)
 		Spacer(modifier = Modifier.height(16.dp))
 		Text(
-			text = "Your performance analytics will appear here",
+			text = stringResource(Res.string.analytics_placeholder),
 			style = MaterialTheme.typography.bodyLarge,
 			color = MaterialTheme.colorScheme.onPrimaryContainer
 		)

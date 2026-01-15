@@ -19,14 +19,12 @@ import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.parameter.parametersOf
-import tabletennistracker.composeapp.generated.resources.Res
-import tabletennistracker.composeapp.generated.resources.ic_more_vert
-import tabletennistracker.composeapp.generated.resources.ic_search
-import tabletennistracker.composeapp.generated.resources.ic_settings
+import tabletennistracker.composeapp.generated.resources.*
 import xyz.tleskiv.tt.ui.nav.*
 import xyz.tleskiv.tt.ui.screens.*
 import xyz.tleskiv.tt.ui.theme.AppTheme
@@ -94,16 +92,25 @@ private fun NavBarScreens(topLevelBackStack: SnapshotStateList<Any>) {
 	Scaffold(
 		topBar = {
 			TopAppBar(
-				title = { Text(currentRoute?.label ?: "") },
+				title = { Text(currentRoute?.let { stringResource(it.label) } ?: "") },
 				actions = {
 					IconButton(onClick = { /* Search action */ }) {
-						Icon(vectorResource(Res.drawable.ic_search), contentDescription = "Search")
+						Icon(
+							vectorResource(Res.drawable.ic_search),
+							contentDescription = stringResource(Res.string.action_search)
+						)
 					}
 					IconButton(onClick = { /* Settings action */ }) {
-						Icon(vectorResource(Res.drawable.ic_settings), contentDescription = "Settings")
+						Icon(
+							vectorResource(Res.drawable.ic_settings),
+							contentDescription = stringResource(Res.string.action_settings)
+						)
 					}
 					IconButton(onClick = { /* More options */ }) {
-						Icon(vectorResource(Res.drawable.ic_more_vert), contentDescription = "More")
+						Icon(
+							vectorResource(Res.drawable.ic_more_vert),
+							contentDescription = stringResource(Res.string.action_more)
+						)
 					}
 				},
 				colors = TopAppBarDefaults.topAppBarColors(
@@ -129,11 +136,11 @@ private fun NavBarScreens(topLevelBackStack: SnapshotStateList<Any>) {
 						icon = {
 							Icon(
 								imageVector = vectorResource(topLevelRoute.icon),
-								contentDescription = topLevelRoute.label,
+								contentDescription = stringResource(topLevelRoute.label),
 								modifier = Modifier.scale(scale)
 							)
 						},
-						label = { Text(topLevelRoute.label) }
+						label = { Text(stringResource(topLevelRoute.label)) }
 					)
 				}
 			}

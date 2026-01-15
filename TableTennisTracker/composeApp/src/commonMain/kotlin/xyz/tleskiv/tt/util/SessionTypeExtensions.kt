@@ -1,12 +1,14 @@
 package xyz.tleskiv.tt.util
 
+import org.jetbrains.compose.resources.StringResource
+import tabletennistracker.composeapp.generated.resources.*
 import xyz.tleskiv.tt.data.model.enums.SessionType
 
-fun SessionType.displayName(): String = when (this) {
-	SessionType.TECHNIQUE -> "Technique"
-	SessionType.MATCH_PLAY -> "Match Play"
-	SessionType.SERVE_PRACTICE -> "Serve Practice"
-	SessionType.PHYSICAL -> "Physical"
-	SessionType.FREE_PLAY -> "Free Play"
-	else -> "Other"
+fun SessionType.labelRes(): StringResource = when (this) {
+	SessionType.TECHNIQUE -> Res.string.session_type_technique
+	SessionType.MATCH_PLAY -> Res.string.session_type_match_play
+	SessionType.SERVE_PRACTICE -> Res.string.session_type_serve_practice
+	SessionType.PHYSICAL -> Res.string.session_type_physical
+	SessionType.FREE_PLAY -> Res.string.session_type_free_play
+	else -> Res.string.session_type_other
 }

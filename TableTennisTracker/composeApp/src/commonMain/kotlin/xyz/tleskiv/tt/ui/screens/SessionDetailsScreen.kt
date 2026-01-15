@@ -21,13 +21,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
-import tabletennistracker.composeapp.generated.resources.Res
-import tabletennistracker.composeapp.generated.resources.ic_edit
+import tabletennistracker.composeapp.generated.resources.*
 import xyz.tleskiv.tt.ui.widgets.BackButton
-import xyz.tleskiv.tt.util.displayName
 import xyz.tleskiv.tt.util.formatDuration
 import xyz.tleskiv.tt.util.formatSessionDateFull
+import xyz.tleskiv.tt.util.labelRes
 import xyz.tleskiv.tt.util.ui.getRpeColor
 import xyz.tleskiv.tt.util.ui.getRpeLabel
 import xyz.tleskiv.tt.util.ui.toColor
@@ -79,7 +79,7 @@ private fun ErrorScreen(error: String, onNavigateBack: () -> Unit) {
 	Scaffold(
 		topBar = {
 			TopAppBar(
-				title = { Text("Error") },
+				title = { Text(stringResource(Res.string.title_error)) },
 				navigationIcon = { BackButton(onNavigateBack) }
 			)
 		}
@@ -124,7 +124,8 @@ private fun SessionDetailsContent(
 				title = {
 					Column {
 						Text(
-							text = session.sessionType?.displayName() ?: "Training Session",
+							text = session.sessionType?.labelRes()?.let { stringResource(it) }
+								?: stringResource(Res.string.session_default_title),
 							fontWeight = FontWeight.Bold
 						)
 						if (collapsedFraction < 0.7f) {
@@ -141,7 +142,7 @@ private fun SessionDetailsContent(
 					IconButton(onClick = onEdit) {
 						Icon(
 							imageVector = vectorResource(Res.drawable.ic_edit),
-							contentDescription = "Edit session"
+							contentDescription = stringResource(Res.string.action_edit)
 						)
 					}
 				},
@@ -172,9 +173,21 @@ private fun SessionDetailsContent(
 		) {
 			item { QuickStatsRow(session) }
 			item { Spacer(modifier = Modifier.height(8.dp)) }
-			item { DetailCard(label = "Duration", value = formatDuration(session.durationMinutes), emoji = "⏱️") }
+			item {
+				DetailCard(
+					label = stringResource(Res.string.label_duration),
+					value = formatDuration(session.durationMinutes),
+					emoji = "⏱️"
+				)
+			}
 			session.sessionType?.let { type ->
-				item { DetailCard(label = "Session Type", value = type.displayName(), emoji = "🏓") }
+				item {
+					DetailCard(
+						label = stringResource(Res.string.label_session_type),
+						value = stringResource(type.labelRes()),
+						emoji = "🏓"
+					)
+				}
 			}
 			session.rpe?.let { rpe ->
 				item { RpeCard(rpe = rpe) }
@@ -194,14 +207,14 @@ private fun QuickStatsRow(session: SessionUiModel) {
 	) {
 		StatCard(
 			value = "${session.durationMinutes}",
-			label = "minutes",
+			label = stringResource(Res.string.suffix_minutes),
 			emoji = "⏱️",
 			modifier = Modifier.weight(1f)
 		)
 		session.rpe?.let { rpe ->
 			StatCard(
 				value = rpe.toString(),
-				label = "RPE",
+				label = stringResource(Res.string.label_rpe),
 				emoji = "💪",
 				color = getRpeColor(rpe),
 				modifier = Modifier.weight(1f)
@@ -303,7 +316,7 @@ private fun RpeCard(rpe: Int) {
 			Spacer(modifier = Modifier.width(16.dp))
 			Column(modifier = Modifier.weight(1f)) {
 				Text(
-					text = "Intensity (RPE)",
+					text = stringResource(Res.string.label_intensity_rpe),
 					style = MaterialTheme.typography.labelMedium,
 					color = MaterialTheme.colorScheme.onSurfaceVariant
 				)
@@ -342,7 +355,7 @@ private fun NotesCard(notes: String) {
 				Text(text = "📝", style = MaterialTheme.typography.titleLarge)
 				Spacer(modifier = Modifier.width(16.dp))
 				Text(
-					text = "Notes",
+					text = stringResource(Res.string.label_notes),
 					style = MaterialTheme.typography.labelMedium,
 					color = MaterialTheme.colorScheme.onSurfaceVariant
 				)

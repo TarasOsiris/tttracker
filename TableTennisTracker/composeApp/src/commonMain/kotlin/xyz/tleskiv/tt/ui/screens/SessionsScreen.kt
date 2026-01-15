@@ -36,9 +36,9 @@ import com.kizitonwose.calendar.compose.weekcalendar.rememberWeekCalendarState
 import com.kizitonwose.calendar.core.*
 import kotlinx.coroutines.launch
 import kotlinx.datetime.*
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
-import tabletennistracker.composeapp.generated.resources.Res
-import tabletennistracker.composeapp.generated.resources.ic_add
+import tabletennistracker.composeapp.generated.resources.*
 import xyz.tleskiv.tt.util.*
 import xyz.tleskiv.tt.viewmodel.sessions.SessionScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.SessionUiModel
@@ -218,12 +218,12 @@ private fun WeekMonthToggle(
 			.background(MaterialTheme.colorScheme.surfaceVariant)
 	) {
 		SegmentButton(
-			text = "Week",
+			text = stringResource(Res.string.sessions_week_mode),
 			isSelected = isWeekMode,
 			onClick = { if (!isWeekMode) onToggle() }
 		)
 		SegmentButton(
-			text = "Month",
+			text = stringResource(Res.string.sessions_month_mode),
 			isSelected = !isWeekMode,
 			onClick = { if (isWeekMode) onToggle() }
 		)
@@ -567,14 +567,15 @@ private fun SessionItem(session: SessionUiModel, onClick: () -> Unit) {
 
 			Column(modifier = Modifier.weight(1f)) {
 				Text(
-					text = session.sessionType?.displayName() ?: "Training",
+					text = session.sessionType?.labelRes()?.let { stringResource(it) }
+						?: stringResource(Res.string.session_default_title),
 					style = MaterialTheme.typography.bodyLarge,
 					fontWeight = FontWeight.Medium,
 					color = MaterialTheme.colorScheme.onSurface
 				)
 				Spacer(modifier = Modifier.height(2.dp))
 				Text(
-					text = "${session.durationMinutes} min",
+					text = stringResource(Res.string.session_duration_format, session.durationMinutes),
 					style = MaterialTheme.typography.bodySmall,
 					color = MaterialTheme.colorScheme.onSurfaceVariant
 				)
@@ -606,7 +607,7 @@ private fun NoSessionsPlaceholder() {
 			.padding(horizontal = 16.dp, vertical = 16.dp)
 	) {
 		Text(
-			text = "No sessions",
+			text = stringResource(Res.string.sessions_empty),
 			style = MaterialTheme.typography.bodyMedium,
 			color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
 		)
@@ -625,7 +626,7 @@ private fun AddSessionFab(
 	) {
 		Icon(
 			imageVector = vectorResource(Res.drawable.ic_add),
-			contentDescription = "Add Session"
+			contentDescription = stringResource(Res.string.action_add_session)
 		)
 	}
 }

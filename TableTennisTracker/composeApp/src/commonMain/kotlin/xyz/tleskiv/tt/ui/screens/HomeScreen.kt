@@ -9,6 +9,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import org.jetbrains.compose.resources.stringResource
+import tabletennistracker.composeapp.generated.resources.Res
+import tabletennistracker.composeapp.generated.resources.home_view_match
+import tabletennistracker.composeapp.generated.resources.home_view_player
+import tabletennistracker.composeapp.generated.resources.title_home
 
 @Composable
 fun HomeScreen(
@@ -23,17 +28,17 @@ fun HomeScreen(
 		verticalArrangement = Arrangement.Center
 	) {
 		Text(
-			text = "Home Screen",
+			text = stringResource(Res.string.title_home),
 			style = MaterialTheme.typography.headlineMedium,
 			color = MaterialTheme.colorScheme.onPrimaryContainer
 		)
 		Spacer(modifier = Modifier.height(24.dp))
 		Button(onClick = { onNavigateToDetails("match-123") }) {
-			Text("View Match Details")
+			Text(stringResource(Res.string.home_view_match))
 		}
 		Spacer(modifier = Modifier.height(8.dp))
 		Button(onClick = { onNavigateToDetails("player-456") }) {
-			Text("View Player Details")
+			Text(stringResource(Res.string.home_view_player))
 		}
 	}
 }
