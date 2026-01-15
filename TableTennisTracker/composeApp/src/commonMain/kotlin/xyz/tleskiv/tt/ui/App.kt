@@ -4,6 +4,7 @@ import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -36,9 +37,13 @@ import xyz.tleskiv.tt.viewmodel.sessions.SessionDetailsScreenViewModel
 @Preview
 fun App() {
 	AppTheme {
-		val topLevelBackStack = remember { mutableStateListOf<Any>(RouteA) }
-
-		Top(topLevelBackStack)
+		Surface(
+			modifier = Modifier.fillMaxSize(),
+			color = MaterialTheme.colorScheme.surface
+		) {
+			val topLevelBackStack = remember { mutableStateListOf<Any>(RouteA) }
+			Top(topLevelBackStack)
+		}
 	}
 }
 
@@ -59,14 +64,14 @@ private fun Top(topLevelBackStack: SnapshotStateList<Any>) {
 					NavBarScreens(topLevelBackStack)
 				}
 
-				is CreateSessionRoute -> NavEntry(key) {
+				is CreateSessionRoute -> NavEntry(key, metadata = createSessionEntryMetadata) {
 					CreateSessionScreen(
 						viewModel = koinViewModel<CreateSessionScreenViewModel> { parametersOf(key.initialDate) },
 						onNavigateBack = { topLevelBackStack.removeLastOrNull() }
 					)
 				}
 
-				is SessionDetailsRoute -> NavEntry(key) {
+				is SessionDetailsRoute -> NavEntry(key, metadata = sessionDetailsEntryMetadata) {
 					SessionDetailsScreen(
 						viewModel = koinViewModel<SessionDetailsScreenViewModel> { parametersOf(key.sessionId) },
 						onNavigateBack = { topLevelBackStack.removeLastOrNull() }
@@ -165,4 +170,3 @@ private fun NavBarScreens(topLevelBackStack: SnapshotStateList<Any>) {
 		}
 	}
 }
-
