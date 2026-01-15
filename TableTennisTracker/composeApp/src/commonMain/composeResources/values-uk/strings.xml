@@ -6,4 +6,73 @@
     <string name="rpe_moderate">Помірно</string>
     <string name="rpe_hard">Важко</string>
     <string name="rpe_max_effort">Максимальне зусилля</string>
+
+    <!-- General Actions -->
+    <string name="action_ok">ОК</string>
+    <string name="action_cancel">Скасувати</string>
+    <string name="action_change">Змінити</string>
+    <string name="action_edit">Редагувати сесію</string>
+    <string name="action_save">Зберегти сесію</string>
+    <string name="action_add_session">Додати сесію</string>
+    <string name="action_search">Пошук</string>
+    <string name="action_settings">Налаштування</string>
+    <string name="action_more">Більше</string>
+    <string name="action_back">Назад</string>
+
+    <!-- Navigation -->
+    <string name="nav_sessions">Сесії</string>
+    <string name="nav_analytics">Аналітика</string>
+    <string name="nav_profile">Профіль</string>
+
+    <!-- Screen Titles -->
+    <string name="title_home">Головний екран</string>
+    <string name="title_create_session">Створити тренування</string>
+    <string name="title_analytics">Аналітика</string>
+    <string name="title_profile">Профіль</string>
+    <string name="title_error">Помилка</string>
+
+    <!-- Sessions Screen -->
+    <string name="sessions_week_mode">Тиждень</string>
+    <string name="sessions_month_mode">Місяць</string>
+    <string name="sessions_empty">Немає сесій</string>
+    <string name="session_duration_format">%1$d хв</string>
+
+    <!-- Create Session Screen -->
+    <string name="label_date">Дата</string>
+    <string name="label_duration">Тривалість</string>
+    <string name="hint_duration">Введіть тривалість</string>
+    <string name="suffix_minutes">хвилин</string>
+    <string name="rule_duration">5-300 хвилин</string>
+    <string name="label_session_type">Тип сесії</string>
+    <string name="label_intensity_rpe">Інтенсивність (RPE)</string>
+    <string name="label_notes_optional">Нотатки (опціонально)</string>
+    <string name="hint_notes">Додайте нотатки про ваше тренування...</string>
+    <string name="counter_notes">%1$d/1000</string>
+
+    <!-- Session Details Screen -->
+    <string name="session_default_title">Тренування</string>
+    <string name="label_rpe">RPE</string>
+    <string name="label_notes">Нотатки</string>
+
+    <!-- Session Types -->
+    <string name="session_type_technique">Техніка</string>
+    <string name="session_type_match_play">Гра на рахунок</string>
+    <string name="session_type_serve_practice">Відпрацювання подач</string>
+    <string name="session_type_physical">Фізпідготовка</string>
+    <string name="session_type_free_play">Вільна гра</string>
+    <string name="session_type_other">Інше</string>
+
+    <!-- Analytics Screen -->
+    <string name="analytics_service_injected">Сервіс інжектовано: %1$d</string>
+    <string name="analytics_create_test_session">Створити тестову сесію</string>
+    <string name="analytics_last_created">Останнє створене тренування: %1$s</string>
+    <string name="analytics_test_notes">Тестове тренування з екрану Аналітики</string>
+    <string name="analytics_placeholder">Тут з\'явиться аналітика вашої продуктивності</string>
+
+    <!-- Profile Screen -->
+    <string name="profile_placeholder">Тут з\'являться налаштування вашого профілю</string>
+
+    <!-- Home Screen -->
+    <string name="home_view_match">Переглянути деталі матчу</string>
+    <string name="home_view_player">Переглянути деталі гравця</string>
 </resources>
