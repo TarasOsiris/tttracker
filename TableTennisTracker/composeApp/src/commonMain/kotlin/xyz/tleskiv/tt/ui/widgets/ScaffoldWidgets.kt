@@ -1,0 +1,55 @@
+package xyz.tleskiv.tt.ui.widgets
+
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.*
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import org.jetbrains.compose.resources.vectorResource
+import tabletennistracker.composeapp.generated.resources.Res
+import tabletennistracker.composeapp.generated.resources.ic_arrow_back
+
+@Composable
+fun BackButton(onClick: () -> Unit) {
+	IconButton(onClick = onClick) {
+		Icon(imageVector = vectorResource(Res.drawable.ic_arrow_back), contentDescription = "Back")
+	}
+}
+
+
+@Composable
+fun BottomBarButtons(
+	onLeftButtonClick: () -> Unit,
+	onRightButtonClick: () -> Unit,
+	rightButtonEnabled: Boolean
+) {
+	Surface(
+		tonalElevation = 3.dp,
+		shadowElevation = 8.dp
+	) {
+		Row(
+			modifier = Modifier
+				.fillMaxWidth()
+				.padding(16.dp),
+			horizontalArrangement = Arrangement.spacedBy(12.dp)
+		) {
+			OutlinedButton(
+				onClick = onLeftButtonClick,
+				modifier = Modifier.weight(1f)
+			) {
+				Text("Cancel")
+			}
+			Button(
+				onClick = onRightButtonClick,
+				enabled = rightButtonEnabled,
+				modifier = Modifier.weight(1f)
+			) {
+				Text("Save Session")
+			}
+		}
+	}
+}
+

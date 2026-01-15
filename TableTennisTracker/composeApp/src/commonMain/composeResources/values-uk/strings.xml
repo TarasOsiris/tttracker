@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- RPE Labels -->
+    <string name="rpe_very_easy">Дуже легко</string>
+    <string name="rpe_easy">Легко</string>
+    <string name="rpe_moderate">Помірно</string>
+    <string name="rpe_hard">Важко</string>
+    <string name="rpe_max_effort">Максимальне зусилля</string>
+</resources>

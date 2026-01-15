@@ -1,11 +1,13 @@
 package xyz.tleskiv.tt.ui.screens
 
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -13,17 +15,26 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.vectorResource
 import tabletennistracker.composeapp.generated.resources.Res
-import tabletennistracker.composeapp.generated.resources.ic_arrow_back
-import tabletennistracker.composeapp.generated.resources.ic_sessions
+import tabletennistracker.composeapp.generated.resources.ic_edit
+import xyz.tleskiv.tt.ui.widgets.BackButton
 import xyz.tleskiv.tt.util.displayName
+import xyz.tleskiv.tt.util.formatDuration
+import xyz.tleskiv.tt.util.formatSessionDateFull
+import xyz.tleskiv.tt.util.ui.getRpeColor
+import xyz.tleskiv.tt.util.ui.getRpeLabel
+import xyz.tleskiv.tt.util.ui.toColor
 import xyz.tleskiv.tt.viewmodel.sessions.SessionDetailsScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.SessionUiModel
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SessionDetailsScreen(
 	viewModel: SessionDetailsScreenViewModel,
@@ -31,151 +42,210 @@ fun SessionDetailsScreen(
 	onEdit: (String) -> Unit = {}
 ) {
 	val uiState by viewModel.uiState.collectAsState()
+	val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
 
+	when {
+		uiState.isLoading -> LoadingScreen(onNavigateBack)
+		uiState.error != null -> ErrorScreen(error = uiState.error!!, onNavigateBack = onNavigateBack)
+		uiState.session != null -> SessionDetailsContent(
+			session = uiState.session!!,
+			scrollBehavior = scrollBehavior,
+			onNavigateBack = onNavigateBack,
+			onEdit = { onEdit(uiState.session!!.id.toString()) }
+		)
+	}
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun LoadingScreen(onNavigateBack: () -> Unit) {
 	Scaffold(
 		topBar = {
 			TopAppBar(
 				title = { },
-				navigationIcon = {
-					IconButton(onClick = onNavigateBack) {
-						Icon(imageVector = vectorResource(Res.drawable.ic_arrow_back), contentDescription = "Back")
-					}
-				},
-				colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.surface)
+				navigationIcon = { BackButton(onNavigateBack) }
 			)
 		}
-	) { paddingValues ->
-		Box(modifier = Modifier.fillMaxSize().padding(paddingValues)) {
-			when {
-				uiState.isLoading -> CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
-				uiState.error != null -> ErrorContent(
-					error = uiState.error!!,
-					modifier = Modifier.align(Alignment.Center)
-				)
+	) { padding ->
+		Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
+			CircularProgressIndicator()
+		}
+	}
+}
 
-				uiState.session != null -> SessionDetailsContent(session = uiState.session!!)
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun ErrorScreen(error: String, onNavigateBack: () -> Unit) {
+	Scaffold(
+		topBar = {
+			TopAppBar(
+				title = { Text("Error") },
+				navigationIcon = { BackButton(onNavigateBack) }
+			)
+		}
+	) { padding ->
+		Column(
+			modifier = Modifier.fillMaxSize().padding(padding),
+			horizontalAlignment = Alignment.CenterHorizontally,
+			verticalArrangement = Arrangement.Center
+		) {
+			Text(text = "⚠️", style = MaterialTheme.typography.displayMedium)
+			Spacer(modifier = Modifier.height(16.dp))
+			Text(
+				text = error,
+				style = MaterialTheme.typography.bodyLarge,
+				color = MaterialTheme.colorScheme.onSurfaceVariant
+			)
+		}
+	}
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun SessionDetailsContent(
+	session: SessionUiModel,
+	scrollBehavior: TopAppBarScrollBehavior,
+	onNavigateBack: () -> Unit,
+	onEdit: () -> Unit
+) {
+	val sessionColor = session.sessionType.toColor()
+	val collapsedFraction = scrollBehavior.state.collapsedFraction
+
+	val containerColor by animateColorAsState(
+		targetValue = if (collapsedFraction > 0.5f) MaterialTheme.colorScheme.surface
+		else MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.3f),
+		animationSpec = spring(stiffness = Spring.StiffnessLow)
+	)
+
+	Scaffold(
+		modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+		topBar = {
+			LargeTopAppBar(
+				title = {
+					Column {
+						Text(
+							text = session.sessionType?.displayName() ?: "Training Session",
+							fontWeight = FontWeight.Bold
+						)
+						if (collapsedFraction < 0.7f) {
+							Text(
+								text = formatSessionDateFull(session.date),
+								style = MaterialTheme.typography.bodyMedium,
+								color = MaterialTheme.colorScheme.onSurfaceVariant
+							)
+						}
+					}
+				},
+				navigationIcon = { BackButton(onNavigateBack) },
+				actions = {
+					IconButton(onClick = onEdit) {
+						Icon(
+							imageVector = vectorResource(Res.drawable.ic_edit),
+							contentDescription = "Edit session"
+						)
+					}
+				},
+				colors = TopAppBarDefaults.topAppBarColors(
+					containerColor = containerColor,
+					scrolledContainerColor = MaterialTheme.colorScheme.surface
+				),
+				scrollBehavior = scrollBehavior,
+				modifier = Modifier.drawBehind {
+					drawRect(
+						color = sessionColor,
+						topLeft = Offset(0f, 0f),
+						size = androidx.compose.ui.geometry.Size(6.dp.toPx(), size.height)
+					)
+				}
+			)
+		}
+	) { padding ->
+		LazyColumn(
+			modifier = Modifier.fillMaxSize(),
+			contentPadding = PaddingValues(
+				top = padding.calculateTopPadding(),
+				bottom = padding.calculateBottomPadding() + 24.dp,
+				start = 16.dp,
+				end = 16.dp
+			),
+			verticalArrangement = Arrangement.spacedBy(12.dp)
+		) {
+			item { QuickStatsRow(session) }
+			item { Spacer(modifier = Modifier.height(8.dp)) }
+			item { DetailCard(label = "Duration", value = formatDuration(session.durationMinutes), emoji = "⏱️") }
+			session.sessionType?.let { type ->
+				item { DetailCard(label = "Session Type", value = type.displayName(), emoji = "🏓") }
+			}
+			session.rpe?.let { rpe ->
+				item { RpeCard(rpe = rpe) }
+			}
+			if (!session.notes.isNullOrBlank()) {
+				item { NotesCard(notes = session.notes) }
 			}
 		}
 	}
 }
 
 @Composable
-private fun ErrorContent(error: String, modifier: Modifier = Modifier) {
-	Column(
-		modifier = modifier.padding(32.dp),
-		horizontalAlignment = Alignment.CenterHorizontally,
-		verticalArrangement = Arrangement.spacedBy(16.dp)
+private fun QuickStatsRow(session: SessionUiModel) {
+	Row(
+		modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
+		horizontalArrangement = Arrangement.spacedBy(12.dp)
 	) {
-		Text(text = "⚠️", style = MaterialTheme.typography.displayMedium)
-		Text(
-			text = error,
-			style = MaterialTheme.typography.bodyLarge,
-			color = MaterialTheme.colorScheme.onSurfaceVariant
+		StatCard(
+			value = "${session.durationMinutes}",
+			label = "minutes",
+			emoji = "⏱️",
+			modifier = Modifier.weight(1f)
+		)
+		session.rpe?.let { rpe ->
+			StatCard(
+				value = rpe.toString(),
+				label = "RPE",
+				emoji = "💪",
+				color = getRpeColor(rpe),
+				modifier = Modifier.weight(1f)
+			)
+		}
+		StatCard(
+			value = session.date.dayOfWeek.name.take(3),
+			label = session.date.month.name.take(3) + " ${session.date.day}",
+			emoji = "📅",
+			modifier = Modifier.weight(1f)
 		)
 	}
 }
 
 @Composable
-private fun SessionDetailsContent(session: SessionUiModel) {
-	Column(modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState())) {
-		SessionHeader(session)
-		Spacer(modifier = Modifier.height(24.dp))
-		Column(
-			modifier = Modifier.padding(horizontal = 16.dp),
-			verticalArrangement = Arrangement.spacedBy(12.dp)
-		) {
-			DetailCard(label = "Date", value = formatSessionDate(session), emoji = "📅")
-			DetailCard(label = "Duration", value = formatDuration(session.durationMinutes), emoji = "⏱️")
-			session.sessionType?.let { type ->
-				DetailCard(label = "Session Type", value = type.displayName(), emoji = "🏓")
-			}
-			session.rpe?.let { rpe ->
-				RpeCard(rpe = rpe)
-			}
-			if (!session.notes.isNullOrBlank()) {
-				NotesCard(notes = session.notes)
-			}
-		}
-		Spacer(modifier = Modifier.height(32.dp))
-	}
-}
-
-@Composable
-private fun SessionHeader(session: SessionUiModel) {
-	Box(
-		modifier = Modifier
-			.fillMaxWidth()
-			.background(
-				brush = Brush.verticalGradient(
-					colors = listOf(MaterialTheme.colorScheme.primaryContainer, MaterialTheme.colorScheme.surface)
-				)
-			)
-			.padding(horizontal = 24.dp, vertical = 32.dp)
-	) {
-		Column {
-			Row(
-				verticalAlignment = Alignment.CenterVertically,
-				horizontalArrangement = Arrangement.spacedBy(16.dp)
-			) {
-				Box(
-					modifier = Modifier.size(56.dp).clip(RoundedCornerShape(16.dp))
-						.background(MaterialTheme.colorScheme.primary),
-					contentAlignment = Alignment.Center
-				) {
-					Icon(
-						imageVector = vectorResource(Res.drawable.ic_sessions),
-						contentDescription = null,
-						modifier = Modifier.size(32.dp),
-						tint = MaterialTheme.colorScheme.onPrimary
-					)
-				}
-				Column {
-					Text(
-						text = session.sessionType?.displayName() ?: "Training Session",
-						style = MaterialTheme.typography.headlineSmall,
-						fontWeight = FontWeight.Bold,
-						color = MaterialTheme.colorScheme.onSurface
-					)
-					Text(
-						text = formatSessionDateShort(session),
-						style = MaterialTheme.typography.bodyLarge,
-						color = MaterialTheme.colorScheme.onSurfaceVariant
-					)
-				}
-			}
-
-			Spacer(modifier = Modifier.height(20.dp))
-
-			Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-				StatChip(label = "${session.durationMinutes} min", emoji = "⏱️", modifier = Modifier.weight(1f))
-				session.rpe?.let { rpe ->
-					StatChip(label = "RPE $rpe", emoji = "💪", modifier = Modifier.weight(1f))
-				}
-			}
-		}
-	}
-}
-
-@Composable
-private fun StatChip(label: String, emoji: String, modifier: Modifier = Modifier) {
+private fun StatCard(
+	value: String,
+	label: String,
+	emoji: String,
+	modifier: Modifier = Modifier,
+	color: Color = MaterialTheme.colorScheme.primary
+) {
 	Surface(
 		modifier = modifier,
-		shape = RoundedCornerShape(12.dp),
+		shape = RoundedCornerShape(16.dp),
 		color = MaterialTheme.colorScheme.surfaceContainerHigh,
-		tonalElevation = 1.dp
+		tonalElevation = 2.dp
 	) {
-		Row(
-			modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
-			horizontalArrangement = Arrangement.Center,
-			verticalAlignment = Alignment.CenterVertically
+		Column(
+			modifier = Modifier.padding(16.dp),
+			horizontalAlignment = Alignment.CenterHorizontally
 		) {
-			Text(text = emoji, style = MaterialTheme.typography.titleMedium)
-			Spacer(modifier = Modifier.width(8.dp))
+			Text(text = emoji, style = MaterialTheme.typography.titleLarge)
+			Spacer(modifier = Modifier.height(8.dp))
+			Text(
+				text = value,
+				style = MaterialTheme.typography.headlineSmall,
+				fontWeight = FontWeight.Bold,
+				color = color
+			)
 			Text(
 				text = label,
-				style = MaterialTheme.typography.labelLarge,
-				fontWeight = FontWeight.Medium,
-				color = MaterialTheme.colorScheme.onSurface
+				style = MaterialTheme.typography.labelSmall,
+				color = MaterialTheme.colorScheme.onSurfaceVariant
 			)
 		}
 	}
@@ -239,7 +309,7 @@ private fun RpeCard(rpe: Int) {
 				)
 				Spacer(modifier = Modifier.height(2.dp))
 				Text(
-					text = getRpeDescription(rpe),
+					text = getRpeLabel(rpe),
 					style = MaterialTheme.typography.bodyLarge,
 					color = MaterialTheme.colorScheme.onSurface
 				)
@@ -286,32 +356,4 @@ private fun NotesCard(notes: String) {
 			)
 		}
 	}
-}
-
-private fun formatSessionDate(session: SessionUiModel): String {
-	val date = session.date
-	val dayOfWeek = date.dayOfWeek.name.lowercase().replaceFirstChar { it.uppercase() }
-	val month = date.month.name.lowercase().replaceFirstChar { it.uppercase() }
-	return "$dayOfWeek, $month ${date.day}, ${date.year}"
-}
-
-private fun formatSessionDateShort(session: SessionUiModel): String {
-	val date = session.date
-	val month = date.month.name.take(3).lowercase().replaceFirstChar { it.uppercase() }
-	return "$month ${date.day}, ${date.year}"
-}
-
-private fun formatDuration(minutes: Int): String = when {
-	minutes < 60 -> "$minutes minutes"
-	minutes % 60 == 0 -> "${minutes / 60} hour${if (minutes / 60 > 1) "s" else ""}"
-	else -> "${minutes / 60}h ${minutes % 60}min"
-}
-
-private fun getRpeDescription(rpe: Int): String = when (rpe) {
-	1, 2 -> "Very easy"
-	3, 4 -> "Easy"
-	5, 6 -> "Moderate"
-	7, 8 -> "Hard"
-	9, 10 -> "Maximum effort"
-	else -> ""
 }

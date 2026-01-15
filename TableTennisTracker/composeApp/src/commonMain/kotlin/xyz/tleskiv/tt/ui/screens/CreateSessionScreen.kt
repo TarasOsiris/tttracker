@@ -15,11 +15,14 @@ import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.atStartOfDayIn
 import kotlinx.datetime.toLocalDateTime
-import org.jetbrains.compose.resources.vectorResource
-import tabletennistracker.composeapp.generated.resources.Res
-import tabletennistracker.composeapp.generated.resources.ic_arrow_back
+import org.jetbrains.compose.resources.stringResource
+import tabletennistracker.composeapp.generated.resources.*
 import xyz.tleskiv.tt.data.model.enums.SessionType
+import xyz.tleskiv.tt.ui.widgets.BackButton
+import xyz.tleskiv.tt.ui.widgets.BottomBarButtons
 import xyz.tleskiv.tt.util.displayName
+import xyz.tleskiv.tt.util.formatSessionDateFull
+import xyz.tleskiv.tt.util.ui.getRpeLabel
 import xyz.tleskiv.tt.viewmodel.sessions.CreateSessionScreenViewModel
 import kotlin.math.roundToInt
 
@@ -47,45 +50,18 @@ fun CreateSessionScreen(
 		topBar = {
 			TopAppBar(
 				title = { Text("Create Training Session") },
-				navigationIcon = {
-					IconButton(onClick = onNavigateBack) {
-						Icon(
-							imageVector = vectorResource(Res.drawable.ic_arrow_back),
-							contentDescription = "Back"
-						)
-					}
-				},
+				navigationIcon = { BackButton { onNavigateBack() } },
 				colors = TopAppBarDefaults.topAppBarColors(
 					containerColor = MaterialTheme.colorScheme.surface
 				)
 			)
 		},
 		bottomBar = {
-			Surface(
-				tonalElevation = 3.dp,
-				shadowElevation = 8.dp
-			) {
-				Row(
-					modifier = Modifier
-						.fillMaxWidth()
-						.padding(16.dp),
-					horizontalArrangement = Arrangement.spacedBy(12.dp)
-				) {
-					OutlinedButton(
-						onClick = onNavigateBack,
-						modifier = Modifier.weight(1f)
-					) {
-						Text("Cancel")
-					}
-					Button(
-						onClick = onSave,
-						enabled = isFormValid,
-						modifier = Modifier.weight(1f)
-					) {
-						Text("Save Session")
-					}
-				}
-			}
+			BottomBarButtons(
+				onLeftButtonClick = onNavigateBack,
+				onRightButtonClick = onSave,
+				rightButtonEnabled = isFormValid
+			)
 		}
 	) { paddingValues ->
 		Column(
@@ -163,7 +139,7 @@ private fun DateField(
 				verticalAlignment = Alignment.CenterVertically
 			) {
 				Text(
-					text = formatDateDisplay(selectedDate),
+					text = formatSessionDateFull(selectedDate),
 					style = MaterialTheme.typography.bodyLarge,
 					color = MaterialTheme.colorScheme.onSurface
 				)
@@ -297,11 +273,11 @@ private fun RpeGuide() {
 				.padding(12.dp),
 			verticalArrangement = Arrangement.spacedBy(4.dp)
 		) {
-			RpeGuideRow("1-2", "Very easy")
-			RpeGuideRow("3-4", "Easy")
-			RpeGuideRow("5-6", "Moderate")
-			RpeGuideRow("7-8", "Hard")
-			RpeGuideRow("9-10", "Max effort")
+			RpeGuideRow("1-2", stringResource(Res.string.rpe_very_easy))
+			RpeGuideRow("3-4", stringResource(Res.string.rpe_easy))
+			RpeGuideRow("5-6", stringResource(Res.string.rpe_moderate))
+			RpeGuideRow("7-8", stringResource(Res.string.rpe_hard))
+			RpeGuideRow("9-10", stringResource(Res.string.rpe_max_effort))
 		}
 	}
 }
@@ -386,19 +362,4 @@ private fun SessionDatePickerDialog(
 	) {
 		DatePicker(state = datePickerState)
 	}
-}
-
-private fun formatDateDisplay(date: LocalDate): String {
-	val monthName = date.month.name.lowercase().replaceFirstChar { it.uppercase() }
-	val dayOfWeek = date.dayOfWeek.name.lowercase().replaceFirstChar { it.uppercase() }
-	return "$dayOfWeek, $monthName ${date.day}, ${date.year}"
-}
-
-private fun getRpeLabel(rpe: Int): String = when (rpe) {
-	1, 2 -> "Very easy"
-	3, 4 -> "Easy"
-	5, 6 -> "Moderate"
-	7, 8 -> "Hard"
-	9, 10 -> "Max effort"
-	else -> ""
 }

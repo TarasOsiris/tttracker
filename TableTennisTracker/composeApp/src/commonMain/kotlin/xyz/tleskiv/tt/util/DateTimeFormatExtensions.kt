@@ -3,20 +3,13 @@ package xyz.tleskiv.tt.util
 import kotlinx.datetime.DayOfWeek
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.YearMonth
+import xyz.tleskiv.tt.util.ext.capCase
 
-fun DayOfWeek.displayText(): String {
-	return name.take(3).lowercase().replaceFirstChar { it.uppercase() }
-}
+fun DayOfWeek.displayText(): String = name.take(3).capCase()
 
-fun YearMonth.formatMonthYear(): String {
-	val monthName = month.name.lowercase().replaceFirstChar { it.uppercase() }
-	return "$monthName $year"
-}
+fun YearMonth.formatMonthYear(): String = "${month.name.capCase()} $year"
 
-fun LocalDate.formatDayMonth(): String {
-	val monthName = month.name.take(3).lowercase().replaceFirstChar { it.uppercase() }
-	return "$day $monthName"
-}
+fun LocalDate.formatDayMonth(): String = "$day ${month.name.take(3).capCase()}"
 
 fun LocalDate.formatDateHeader(currentDate: LocalDate): String {
 	val daysDiff = toEpochDays() - currentDate.toEpochDays()
@@ -24,11 +17,18 @@ fun LocalDate.formatDateHeader(currentDate: LocalDate): String {
 		-1 -> "Yesterday"
 		0 -> "Today"
 		1 -> "Tomorrow"
-		else -> dayOfWeek.name.lowercase().replaceFirstChar { it.uppercase() }
+		else -> dayOfWeek.name.capCase()
 	}
 }
 
-fun LocalDate.formatFullDate(): String {
-	val monthName = month.name.lowercase().replaceFirstChar { it.uppercase() }
-	return "$monthName $day, $year"
+fun LocalDate.formatFullDate(): String = "${month.name.capCase()} $day, $year"
+
+fun formatSessionDateFull(date: LocalDate): String =
+	"${date.dayOfWeek.name.capCase()}, ${date.month.name.capCase()} ${date.day}, ${date.year}"
+
+fun formatDuration(minutes: Int): String = when {
+	minutes < 60 -> "$minutes minutes"
+	minutes % 60 == 0 -> "${minutes / 60} hour${if (minutes / 60 > 1) "s" else ""}"
+	else -> "${minutes / 60}h ${minutes % 60}min"
 }
+

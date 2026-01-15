@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- RPE Labels -->
+    <string name="rpe_very_easy">Very easy</string>
+    <string name="rpe_easy">Easy</string>
+    <string name="rpe_moderate">Moderate</string>
+    <string name="rpe_hard">Hard</string>
+    <string name="rpe_max_effort">Max effort</string>
+</resources>
