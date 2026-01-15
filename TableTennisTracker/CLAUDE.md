@@ -152,3 +152,5 @@ See `shared/src/commonMain/kotlin/xyz/tleskiv/tt/Platform.kt` for reference.
 
 - Do not comment on the code unless absolutely necessary.
 - Prefer keeping code a single line if less than 120 characters.
+- for clock use `kotlin.time.Clock`
+- Use docs folder in the root for any additional functional documentation needed

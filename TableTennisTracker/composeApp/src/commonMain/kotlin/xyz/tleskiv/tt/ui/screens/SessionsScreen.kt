@@ -37,12 +37,14 @@ import com.kizitonwose.calendar.core.*
 import kotlinx.coroutines.launch
 import kotlinx.datetime.*
 import org.jetbrains.compose.resources.vectorResource
+import org.koin.compose.viewmodel.koinViewModel
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.ic_add
 import xyz.tleskiv.tt.util.displayText
 import xyz.tleskiv.tt.util.formatDateHeader
 import xyz.tleskiv.tt.util.formatFullDate
 import xyz.tleskiv.tt.util.formatMonthYear
+import xyz.tleskiv.tt.viewmodel.sessions.SessionScreenViewModel
 
 private val FIRST_DAY_OF_WEEK = DayOfWeek.MONDAY
 private const val CALENDAR_RANGE_MONTHS = 12
@@ -50,6 +52,7 @@ private const val DATE_LIST_RANGE_DAYS = 365
 
 @Composable
 fun SessionsScreen(
+	viewModel: SessionScreenViewModel = koinViewModel(),
 	onNavigateToDetails: (String) -> Unit = {},
 	onAddSession: (LocalDate) -> Unit = {}
 ) {

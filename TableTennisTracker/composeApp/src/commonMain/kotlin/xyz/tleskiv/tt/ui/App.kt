@@ -13,11 +13,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
+import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.runtime.entryProvider
+import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import org.jetbrains.compose.resources.vectorResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import org.koin.compose.viewmodel.koinViewModel
+import org.koin.core.parameter.parametersOf
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.ic_more_vert
 import tabletennistracker.composeapp.generated.resources.ic_search
@@ -28,6 +32,7 @@ import xyz.tleskiv.tt.ui.screens.CreateSessionScreen
 import xyz.tleskiv.tt.ui.screens.ProfileScreen
 import xyz.tleskiv.tt.ui.screens.SessionsScreen
 import xyz.tleskiv.tt.ui.theme.AppTheme
+import xyz.tleskiv.tt.viewmodel.sessions.CreateSessionScreenViewModel
 
 @Composable
 @Preview
@@ -44,21 +49,18 @@ private data object RouteA
 private data class RouteB(val id: String)
 
 @Composable
-private fun Top(topLevelbackStack: SnapshotStateList<Any>) {
+private fun Top(topLevelBackStack: SnapshotStateList<Any>) {
 	NavDisplay(
-		backStack = topLevelbackStack,
-		onBack = { topLevelbackStack.removeLastOrNull() },
+		backStack = topLevelBackStack,
+		onBack = { topLevelBackStack.removeLastOrNull() },
+		entryDecorators = listOf(
+			rememberSaveableStateHolderNavEntryDecorator(),
+			rememberViewModelStoreNavEntryDecorator()
+		),
 		entryProvider = { key ->
 			when (key) {
 				is RouteA -> NavEntry(key) {
-//					ContentGreen("Welcome to Nav3") {
-//						Button(onClick = {
-//							backStack.add(RouteB("123"))
-//						}) {
-//							Text("Click to navigate")
-//						}
-//					}
-					NavBarScreens(topLevelbackStack)
+					NavBarScreens(topLevelBackStack)
 				}
 
 				is RouteB -> NavEntry(key) {
@@ -67,8 +69,8 @@ private fun Top(topLevelbackStack: SnapshotStateList<Any>) {
 
 				is CreateSessionRoute -> NavEntry(key) {
 					CreateSessionScreen(
-						initialDate = key.initialDate,
-						onNavigateBack = { topLevelbackStack.removeLastOrNull() }
+						viewModel = koinViewModel<CreateSessionScreenViewModel> { parametersOf(key.initialDate) },
+						onNavigateBack = { topLevelBackStack.removeLastOrNull() }
 					)
 				}
 
@@ -137,6 +139,10 @@ private fun NavBarScreens(topLevelBackStack: SnapshotStateList<Any>) {
 			NavDisplay(
 				backStack = navBarScreenBackStack.backStack,
 				onBack = { navBarScreenBackStack.removeLast() },
+				entryDecorators = listOf(
+					rememberSaveableStateHolderNavEntryDecorator(),
+					rememberViewModelStoreNavEntryDecorator()
+				),
 				entryProvider = entryProvider {
 					entry<SessionsRoute> {
 						SessionsScreen(

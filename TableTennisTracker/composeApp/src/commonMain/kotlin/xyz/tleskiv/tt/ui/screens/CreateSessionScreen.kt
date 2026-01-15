@@ -11,7 +11,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import com.kizitonwose.calendar.core.now
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.atStartOfDayIn
@@ -21,17 +20,16 @@ import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.ic_arrow_back
 import xyz.tleskiv.tt.data.model.enums.SessionType
 import xyz.tleskiv.tt.util.displayName
+import xyz.tleskiv.tt.viewmodel.sessions.CreateSessionScreenViewModel
 import kotlin.math.roundToInt
 
 @Composable
 fun CreateSessionScreen(
-	initialDate: LocalDate? = null,
+	viewModel: CreateSessionScreenViewModel,
 	onNavigateBack: () -> Unit = {},
 	onSave: () -> Unit = {}
 ) {
-	val defaultDate = remember { initialDate ?: LocalDate.now() }
-
-	var selectedDate by remember { mutableStateOf(defaultDate) }
+	var selectedDate by remember { mutableStateOf(viewModel.initialDate) }
 	var durationText by remember { mutableStateOf("") }
 	var selectedSessionType by remember { mutableStateOf<SessionType?>(null) }
 	var rpeValue by remember { mutableFloatStateOf(5f) }
