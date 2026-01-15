@@ -1,6 +1,5 @@
 package xyz.tleskiv.tt.ui
 
-import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -59,7 +58,6 @@ fun SampleContent(title: String, backgroundColor: Color, onNext: (() -> Unit)? =
 	}
 
 
-@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 fun ContentBase(
 	title: String,

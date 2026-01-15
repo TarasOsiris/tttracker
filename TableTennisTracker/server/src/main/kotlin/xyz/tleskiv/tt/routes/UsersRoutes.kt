@@ -3,7 +3,7 @@ package xyz.tleskiv.tt.routes
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import org.koin.ktor.ext.inject
-import xyz.tleskiv.tt.data.model.SessionType
+import xyz.tleskiv.tt.data.model.enums.SessionType
 import xyz.tleskiv.tt.db.ServerDatabase
 import kotlin.uuid.Uuid
 
@@ -38,7 +38,7 @@ fun Routing.usersTestRoute() {
 			date = now - 86400000, // Yesterday
 			duration_min = 90,
 			rpe = 7,
-			session_type = SessionType.TECHNICAL,
+			session_type = SessionType.TECHNIQUE,
 			notes = "Focused on forehand drives and footwork",
 			updated_at = now
 		)
@@ -49,7 +49,7 @@ fun Routing.usersTestRoute() {
 			date = now - 172800000, // 2 days ago
 			duration_min = 60,
 			rpe = 5,
-			session_type = SessionType.MATCHPLAY,
+			session_type = SessionType.MATCH_PLAY,
 			notes = "Practice matches with club members",
 			updated_at = now
 		)

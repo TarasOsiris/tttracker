@@ -6,10 +6,6 @@ import androidx.compose.animation.core.spring
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.*
-import tabletennistracker.composeapp.generated.resources.Res
-import tabletennistracker.composeapp.generated.resources.ic_more_vert
-import tabletennistracker.composeapp.generated.resources.ic_search
-import tabletennistracker.composeapp.generated.resources.ic_settings
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
@@ -22,9 +18,13 @@ import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.ui.NavDisplay
 import org.jetbrains.compose.resources.vectorResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import androidx.compose.foundation.layout.fillMaxSize
+import tabletennistracker.composeapp.generated.resources.Res
+import tabletennistracker.composeapp.generated.resources.ic_more_vert
+import tabletennistracker.composeapp.generated.resources.ic_search
+import tabletennistracker.composeapp.generated.resources.ic_settings
 import xyz.tleskiv.tt.ui.nav.*
 import xyz.tleskiv.tt.ui.screens.AnalyticsScreen
+import xyz.tleskiv.tt.ui.screens.CreateSessionScreen
 import xyz.tleskiv.tt.ui.screens.ProfileScreen
 import xyz.tleskiv.tt.ui.screens.SessionsScreen
 import xyz.tleskiv.tt.ui.theme.AppTheme
@@ -65,6 +65,12 @@ private fun Top(topLevelbackStack: SnapshotStateList<Any>) {
 					ContentBlue("Route id: ${key.id} ")
 				}
 
+				is CreateSessionRoute -> NavEntry(key) {
+					CreateSessionScreen(
+						onNavigateBack = { topLevelbackStack.removeLastOrNull() }
+					)
+				}
+
 				else -> {
 					error("Unknown route: $key")
 				}
@@ -73,7 +79,6 @@ private fun Top(topLevelbackStack: SnapshotStateList<Any>) {
 	)
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun NavBarScreens(topLevelBackStack: SnapshotStateList<Any>) {
 	val navBarScreenBackStack = remember { TopLevelBackStack<Any>(SessionsRoute) }
@@ -136,6 +141,9 @@ private fun NavBarScreens(topLevelBackStack: SnapshotStateList<Any>) {
 						SessionsScreen(
 							onNavigateToDetails = { id ->
 								topLevelBackStack.add(RouteB(id))
+							},
+							onAddSession = {
+								topLevelBackStack.add(CreateSessionRoute)
 							}
 						)
 					}

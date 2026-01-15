@@ -1,5 +1,5 @@
 import kotlin.uuid.Uuid;
-import xyz.tleskiv.tt.data.model.SessionType;
+import xyz.tleskiv.tt.data.model.enums.SessionType;
 
 -- =========================
 -- SCHEMA
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS training_session (
     duration_min INTEGER NOT NULL,
     rpe INTEGER CHECK (rpe BETWEEN 1 AND 10),
     session_type TEXT AS SessionType CHECK (
-        session_type IN ('technical', 'matchplay', 'physical', 'recovery')
+        session_type IN ('technique', 'match_play', 'serve_practice', 'physical', 'free_play', 'other')
     ),
     notes TEXT,
     is_deleted INTEGER NOT NULL DEFAULT 0,

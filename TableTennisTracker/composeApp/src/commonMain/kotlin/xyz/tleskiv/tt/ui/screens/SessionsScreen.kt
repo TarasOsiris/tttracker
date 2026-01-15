@@ -7,7 +7,11 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -31,17 +35,19 @@ import com.kizitonwose.calendar.compose.weekcalendar.WeekCalendarState
 import com.kizitonwose.calendar.compose.weekcalendar.rememberWeekCalendarState
 import com.kizitonwose.calendar.core.*
 import kotlinx.coroutines.launch
-import kotlinx.datetime.DayOfWeek
-import kotlinx.datetime.LocalDate
-import kotlinx.datetime.yearMonth
+import kotlinx.datetime.*
 import org.jetbrains.compose.resources.vectorResource
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.ic_add
+import xyz.tleskiv.tt.util.displayText
+import xyz.tleskiv.tt.util.formatDateHeader
+import xyz.tleskiv.tt.util.formatFullDate
+import xyz.tleskiv.tt.util.formatMonthYear
 
 private val FIRST_DAY_OF_WEEK = DayOfWeek.MONDAY
 private const val CALENDAR_RANGE_MONTHS = 12
+private const val DATE_LIST_RANGE_DAYS = 365
 
-@OptIn(kotlin.time.ExperimentalTime::class)
 @Composable
 fun SessionsScreen(
 	onNavigateToDetails: (String) -> Unit = {},
@@ -49,6 +55,26 @@ fun SessionsScreen(
 ) {
 	val currentDate = remember { LocalDate.now() }
 	var selectedDate by remember { mutableStateOf(currentDate) }
+
+	val startDate = remember(currentDate) {
+		currentDate.minus(DatePeriod(days = DATE_LIST_RANGE_DAYS))
+	}
+
+	val initialIndex = remember(currentDate, startDate) {
+		(currentDate.toEpochDays() - startDate.toEpochDays()).toInt()
+	}
+
+	val listState = rememberLazyListState(initialFirstVisibleItemIndex = initialIndex)
+	val coroutineScope = rememberCoroutineScope()
+
+	LaunchedEffect(selectedDate) {
+		val targetIndex = (selectedDate.toEpochDays() - startDate.toEpochDays()).toInt()
+		if (targetIndex in 0 until (DATE_LIST_RANGE_DAYS * 2 + 1)) {
+			coroutineScope.launch {
+				listState.animateScrollToItem(targetIndex)
+			}
+		}
+	}
 
 	Box(modifier = Modifier.fillMaxSize()) {
 		Column(
@@ -62,8 +88,10 @@ fun SessionsScreen(
 				onDateSelected = { selectedDate = it }
 			)
 
-			SessionsContent(
+			SessionsListContent(
+				currentDate = currentDate,
 				selectedDate = selectedDate,
+				listState = listState,
 				onNavigateToDetails = onNavigateToDetails
 			)
 		}
@@ -155,7 +183,7 @@ private fun CalendarHeader(
 		verticalAlignment = Alignment.CenterVertically
 	) {
 		Text(
-			text = formatMonthYear(visibleYearMonth),
+			text = visibleYearMonth.formatMonthYear(),
 			style = MaterialTheme.typography.titleLarge,
 			fontWeight = FontWeight.Bold,
 			color = MaterialTheme.colorScheme.onPrimaryContainer
@@ -402,32 +430,183 @@ private fun DayCell(
 }
 
 @Composable
-private fun SessionsContent(
+private fun SessionsListContent(
+	currentDate: LocalDate,
 	selectedDate: LocalDate,
+	listState: LazyListState,
 	onNavigateToDetails: (String) -> Unit
 ) {
-	Column(
+	val startDate = remember(currentDate) {
+		currentDate.minus(DatePeriod(days = DATE_LIST_RANGE_DAYS))
+	}
+	val totalDays = remember { DATE_LIST_RANGE_DAYS * 2 + 1 }
+
+	LazyColumn(
+		state = listState,
+		modifier = Modifier.fillMaxSize(),
+		contentPadding = PaddingValues(bottom = 88.dp)
+	) {
+		items(
+			count = totalDays,
+			key = { index -> startDate.plus(DatePeriod(days = index)).toEpochDays() }
+		) { index ->
+			val date = remember(index) { startDate.plus(DatePeriod(days = index)) }
+			DateSection(
+				date = date,
+				currentDate = currentDate,
+				onSessionClick = onNavigateToDetails
+			)
+		}
+	}
+}
+
+@Composable
+private fun DateSection(
+	date: LocalDate,
+	currentDate: LocalDate,
+	onSessionClick: (String) -> Unit
+) {
+	Column(modifier = Modifier.fillMaxWidth()) {
+		DateHeader(
+			date = date,
+			currentDate = currentDate
+		)
+
+		// Placeholder session - show every 3rd day for demo purposes
+		if (date.toEpochDays() % 3 == 0L) {
+			SessionPlaceholderItem(
+				sessionType = if (date.toEpochDays() % 2 == 0L) "Technical Training" else "Match Play",
+				timeRange = "9:00 AM - 10:30 AM",
+				onClick = { onSessionClick("session-${date.toEpochDays()}") }
+			)
+		} else {
+			NoSessionsPlaceholder()
+		}
+	}
+}
+
+@Composable
+private fun DateHeader(
+	date: LocalDate,
+	currentDate: LocalDate
+) {
+	val dateText = date.formatDateHeader(currentDate)
+	val isToday = date == currentDate
+
+	Surface(
+		modifier = Modifier.fillMaxWidth(),
+		color = MaterialTheme.colorScheme.surface
+	) {
+		Row(
+			modifier = Modifier
+				.fillMaxWidth()
+				.padding(horizontal = 16.dp, vertical = 12.dp),
+			verticalAlignment = Alignment.CenterVertically
+		) {
+			Box(
+				modifier = Modifier
+					.size(40.dp)
+					.background(
+						color = if (isToday) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceVariant,
+						shape = RoundedCornerShape(8.dp)
+					),
+				contentAlignment = Alignment.Center
+			) {
+				Text(
+					text = date.day.toString(),
+					style = MaterialTheme.typography.titleMedium,
+					fontWeight = FontWeight.Bold,
+					color = if (isToday) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant
+				)
+			}
+
+			Spacer(modifier = Modifier.width(12.dp))
+
+			Column {
+				Text(
+					text = dateText,
+					style = MaterialTheme.typography.titleSmall,
+					fontWeight = if (isToday) FontWeight.Bold else FontWeight.Medium,
+					color = if (isToday) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface
+				)
+				Text(
+					text = date.formatFullDate(),
+					style = MaterialTheme.typography.bodySmall,
+					color = MaterialTheme.colorScheme.onSurfaceVariant
+				)
+			}
+		}
+	}
+
+	HorizontalDivider(
+		color = MaterialTheme.colorScheme.outlineVariant,
+		thickness = 0.5.dp
+	)
+}
+
+@Composable
+private fun SessionPlaceholderItem(
+	sessionType: String,
+	timeRange: String,
+	onClick: () -> Unit
+) {
+	Surface(
 		modifier = Modifier
-			.fillMaxSize()
-			.padding(16.dp),
-		horizontalAlignment = Alignment.CenterHorizontally,
-		verticalArrangement = Arrangement.Center
+			.fillMaxWidth()
+			.padding(horizontal = 16.dp, vertical = 8.dp)
+			.clickable(onClick = onClick),
+		shape = RoundedCornerShape(12.dp),
+		color = MaterialTheme.colorScheme.surfaceContainerLow,
+		tonalElevation = 1.dp
+	) {
+		Row(
+			modifier = Modifier
+				.fillMaxWidth()
+				.padding(12.dp),
+			verticalAlignment = Alignment.CenterVertically
+		) {
+			Box(
+				modifier = Modifier
+					.width(4.dp)
+					.height(40.dp)
+					.background(
+						color = MaterialTheme.colorScheme.primary,
+						shape = RoundedCornerShape(2.dp)
+					)
+			)
+
+			Spacer(modifier = Modifier.width(12.dp))
+
+			Column(modifier = Modifier.weight(1f)) {
+				Text(
+					text = sessionType,
+					style = MaterialTheme.typography.bodyLarge,
+					fontWeight = FontWeight.Medium,
+					color = MaterialTheme.colorScheme.onSurface
+				)
+				Spacer(modifier = Modifier.height(2.dp))
+				Text(
+					text = timeRange,
+					style = MaterialTheme.typography.bodySmall,
+					color = MaterialTheme.colorScheme.onSurfaceVariant
+				)
+			}
+		}
+	}
+}
+
+@Composable
+private fun NoSessionsPlaceholder() {
+	Box(
+		modifier = Modifier
+			.fillMaxWidth()
+			.padding(horizontal = 16.dp, vertical = 16.dp)
 	) {
 		Text(
-			text = "Sessions for ${formatDayMonth(selectedDate)}",
-			style = MaterialTheme.typography.titleMedium,
-			color = MaterialTheme.colorScheme.onSurface
+			text = "No sessions",
+			style = MaterialTheme.typography.bodyMedium,
+			color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
 		)
-		Spacer(modifier = Modifier.height(16.dp))
-		Text(
-			text = "No training sessions on this day",
-			style = MaterialTheme.typography.bodyLarge,
-			color = MaterialTheme.colorScheme.onSurfaceVariant
-		)
-		Spacer(modifier = Modifier.height(24.dp))
-		Button(onClick = { onNavigateToDetails("session-123") }) {
-			Text("View Session Details")
-		}
 	}
 }
 
@@ -446,18 +625,4 @@ private fun AddSessionFab(
 			contentDescription = "Add Session"
 		)
 	}
-}
-
-private fun DayOfWeek.displayText(): String {
-	return name.take(3).lowercase().replaceFirstChar { it.uppercase() }
-}
-
-private fun formatMonthYear(yearMonth: kotlinx.datetime.YearMonth): String {
-	val monthName = yearMonth.month.name.lowercase().replaceFirstChar { it.uppercase() }
-	return "$monthName ${yearMonth.year}"
-}
-
-private fun formatDayMonth(date: LocalDate): String {
-	val monthName = date.month.name.take(3).lowercase().replaceFirstChar { it.uppercase() }
-	return "${date.day} $monthName"
 }

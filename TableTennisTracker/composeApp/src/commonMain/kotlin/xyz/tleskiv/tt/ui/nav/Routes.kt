@@ -28,4 +28,6 @@ data object ProfileRoute : TopLevelRoute {
 
 data class DetailsRoute(val itemId: String)
 
+data object CreateSessionRoute
+
 val TOP_LEVEL_ROUTES: List<TopLevelRoute> = listOf(SessionsRoute, AnalyticsRoute, ProfileRoute)

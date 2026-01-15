@@ -26,6 +26,13 @@ sqldelight {
 }
 
 kotlin {
+	sourceSets.all {
+		languageSettings.optIn("kotlin.time.ExperimentalTime")
+		languageSettings.optIn("androidx.compose.material3.ExperimentalMaterial3Api")
+		languageSettings.optIn("androidx.compose.foundation.layout.ExperimentalLayoutApi")
+		languageSettings.optIn("androidx.compose.animation.ExperimentalSharedTransitionApi")
+	}
+
 	androidLibrary {
 		namespace = "xyz.tleskiv.tt.compose"
 		compileSdk = libs.versions.android.compileSdk.get().toInt()

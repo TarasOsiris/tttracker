@@ -1,10 +1,12 @@
-package xyz.tleskiv.tt.data.model
+package xyz.tleskiv.tt.data.model.enums
 
 enum class SessionType(val dbValue: String) {
-	TECHNICAL("technical"),
-	MATCHPLAY("matchplay"),
+	TECHNIQUE("technique"),
+	MATCH_PLAY("match_play"),
+	SERVE_PRACTICE("serve_practice"),
 	PHYSICAL("physical"),
-	RECOVERY("recovery");
+	FREE_PLAY("free_play"),
+	OTHER("other");
 
 	companion object {
 		fun fromDb(value: String): SessionType =

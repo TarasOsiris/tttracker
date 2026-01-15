@@ -147,3 +147,8 @@ Use KMP's `expect`/`actual` pattern:
 2. Provide `actual` implementation in platform-specific source sets (`androidMain`, `iosMain`, `jvmMain`)
 
 See `shared/src/commonMain/kotlin/xyz/tleskiv/tt/Platform.kt` for reference.
+
+# Other instructions
+
+- Do not comment on the code unless absolutely necessary.
+- Prefer keeping code a single line if less than 120 characters.

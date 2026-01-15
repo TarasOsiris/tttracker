@@ -2,7 +2,7 @@ package xyz.tleskiv.tt.data.db
 
 import app.cash.sqldelight.ColumnAdapter
 import app.cash.sqldelight.driver.jdbc.sqlite.JdbcSqliteDriver
-import xyz.tleskiv.tt.data.model.SessionType
+import xyz.tleskiv.tt.data.model.enums.SessionType
 import xyz.tleskiv.tt.db.ServerDatabase
 import xyz.tleskiv.tt.db.Training_session
 import xyz.tleskiv.tt.db.User
