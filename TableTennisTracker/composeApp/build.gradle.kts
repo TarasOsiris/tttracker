@@ -32,7 +32,6 @@ kotlin {
 		languageSettings.optIn("androidx.compose.foundation.layout.ExperimentalLayoutApi")
 		languageSettings.optIn("androidx.compose.animation.ExperimentalSharedTransitionApi")
 		languageSettings.optIn("kotlin.uuid.ExperimentalUuidApi")
-		languageSettings.apiVersion = "2.0"
 	}
 
 	androidLibrary {
