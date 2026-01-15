@@ -50,4 +50,8 @@ class TrainingSessionServiceImpl(
 	override fun getAllSessions(): List<Training_session> {
 		return repository.getAllSessions()
 	}
+
+	override fun getSessionById(id: Uuid): Training_session? {
+		return repository.getSessionById(id)
+	}
 }

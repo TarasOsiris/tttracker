@@ -27,8 +27,8 @@ data object ProfileRoute : TopLevelRoute {
 	override val label = "Profile"
 }
 
-data class DetailsRoute(val itemId: String)
-
 data class CreateSessionRoute(val initialDate: LocalDate? = null)
+
+data class SessionDetailsRoute(val sessionId: String)
 
 val TOP_LEVEL_ROUTES: List<TopLevelRoute> = listOf(SessionsRoute, AnalyticsRoute, ProfileRoute)

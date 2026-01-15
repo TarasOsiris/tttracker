@@ -57,4 +57,8 @@ class TrainingSessionsRepositoryImpl(
 	override fun getAllSessions(): List<Training_session> {
 		return database.appDatabaseQueries.selectAllSessions().executeAsList()
 	}
+
+	override fun getSessionById(id: Uuid): Training_session? {
+		return database.appDatabaseQueries.getSessionById(id).executeAsOneOrNull()
+	}
 }

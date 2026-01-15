@@ -27,12 +27,10 @@ import tabletennistracker.composeapp.generated.resources.ic_more_vert
 import tabletennistracker.composeapp.generated.resources.ic_search
 import tabletennistracker.composeapp.generated.resources.ic_settings
 import xyz.tleskiv.tt.ui.nav.*
-import xyz.tleskiv.tt.ui.screens.AnalyticsScreen
-import xyz.tleskiv.tt.ui.screens.CreateSessionScreen
-import xyz.tleskiv.tt.ui.screens.ProfileScreen
-import xyz.tleskiv.tt.ui.screens.SessionsScreen
+import xyz.tleskiv.tt.ui.screens.*
 import xyz.tleskiv.tt.ui.theme.AppTheme
 import xyz.tleskiv.tt.viewmodel.sessions.CreateSessionScreenViewModel
+import xyz.tleskiv.tt.viewmodel.sessions.SessionDetailsScreenViewModel
 
 @Composable
 @Preview
@@ -45,8 +43,6 @@ fun App() {
 }
 
 private data object RouteA
-
-private data class RouteB(val id: String)
 
 @Composable
 private fun Top(topLevelBackStack: SnapshotStateList<Any>) {
@@ -63,13 +59,16 @@ private fun Top(topLevelBackStack: SnapshotStateList<Any>) {
 					NavBarScreens(topLevelBackStack)
 				}
 
-				is RouteB -> NavEntry(key) {
-					ContentBlue("Route id: ${key.id} ")
-				}
-
 				is CreateSessionRoute -> NavEntry(key) {
 					CreateSessionScreen(
 						viewModel = koinViewModel<CreateSessionScreenViewModel> { parametersOf(key.initialDate) },
+						onNavigateBack = { topLevelBackStack.removeLastOrNull() }
+					)
+				}
+
+				is SessionDetailsRoute -> NavEntry(key) {
+					SessionDetailsScreen(
+						viewModel = koinViewModel<SessionDetailsScreenViewModel> { parametersOf(key.sessionId) },
 						onNavigateBack = { topLevelBackStack.removeLastOrNull() }
 					)
 				}
@@ -148,7 +147,7 @@ private fun NavBarScreens(topLevelBackStack: SnapshotStateList<Any>) {
 						SessionsScreen(
 							viewModel = koinViewModel(),
 							onNavigateToDetails = { id ->
-								topLevelBackStack.add(RouteB(id))
+								topLevelBackStack.add(SessionDetailsRoute(id))
 							},
 							onAddSession = { selectedDate ->
 								topLevelBackStack.add(CreateSessionRoute(selectedDate))

@@ -7,8 +7,8 @@ import xyz.tleskiv.tt.db.Training_session
 import kotlin.uuid.Uuid
 
 val uuidAdapter = object : ColumnAdapter<Uuid, String> {
-	override fun decode(databaseValue: String): Uuid = Uuid.parse(databaseValue)
-	override fun encode(value: Uuid): String = value.toString()
+	override fun decode(databaseValue: String): Uuid = Uuid.parseHex(databaseValue)
+	override fun encode(value: Uuid): String = value.toHexString()
 }
 
 val dbModule = module {

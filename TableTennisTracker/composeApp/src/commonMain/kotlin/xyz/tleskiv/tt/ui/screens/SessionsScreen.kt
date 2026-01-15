@@ -39,11 +39,9 @@ import kotlinx.datetime.*
 import org.jetbrains.compose.resources.vectorResource
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.ic_add
-import xyz.tleskiv.tt.util.displayText
-import xyz.tleskiv.tt.util.formatDateHeader
-import xyz.tleskiv.tt.util.formatFullDate
-import xyz.tleskiv.tt.util.formatMonthYear
+import xyz.tleskiv.tt.util.*
 import xyz.tleskiv.tt.viewmodel.sessions.SessionScreenViewModel
+import xyz.tleskiv.tt.viewmodel.sessions.SessionUiModel
 
 private val FIRST_DAY_OF_WEEK = DayOfWeek.MONDAY
 private const val CALENDAR_RANGE_MONTHS = 12
@@ -57,6 +55,7 @@ fun SessionsScreen(
 ) {
 	val currentDate = remember { LocalDate.now() }
 	var selectedDate by remember { mutableStateOf(currentDate) }
+	val sessionsByDate by viewModel.sessions.collectAsState()
 
 	val startDate = remember(currentDate) {
 		currentDate.minus(DatePeriod(days = DATE_LIST_RANGE_DAYS))
@@ -94,6 +93,7 @@ fun SessionsScreen(
 				currentDate = currentDate,
 				selectedDate = selectedDate,
 				listState = listState,
+				sessionsByDate = sessionsByDate,
 				onNavigateToDetails = onNavigateToDetails
 			)
 		}
@@ -436,6 +436,7 @@ private fun SessionsListContent(
 	currentDate: LocalDate,
 	selectedDate: LocalDate,
 	listState: LazyListState,
+	sessionsByDate: Map<LocalDate, List<SessionUiModel>>,
 	onNavigateToDetails: (String) -> Unit
 ) {
 	val startDate = remember(currentDate) {
@@ -453,9 +454,11 @@ private fun SessionsListContent(
 			key = { index -> startDate.plus(DatePeriod(days = index)).toEpochDays() }
 		) { index ->
 			val date = remember(index) { startDate.plus(DatePeriod(days = index)) }
+			val sessions = sessionsByDate[date] ?: emptyList()
 			DateSection(
 				date = date,
 				currentDate = currentDate,
+				sessions = sessions,
 				onSessionClick = onNavigateToDetails
 			)
 		}
@@ -466,23 +469,18 @@ private fun SessionsListContent(
 private fun DateSection(
 	date: LocalDate,
 	currentDate: LocalDate,
+	sessions: List<SessionUiModel>,
 	onSessionClick: (String) -> Unit
 ) {
 	Column(modifier = Modifier.fillMaxWidth()) {
-		DateHeader(
-			date = date,
-			currentDate = currentDate
-		)
+		DateHeader(date = date, currentDate = currentDate)
 
-		// Placeholder session - show every 3rd day for demo purposes
-		if (date.toEpochDays() % 3 == 0L) {
-			SessionPlaceholderItem(
-				sessionType = if (date.toEpochDays() % 2 == 0L) "Technical Training" else "Match Play",
-				timeRange = "9:00 AM - 10:30 AM",
-				onClick = { onSessionClick("session-${date.toEpochDays()}") }
-			)
-		} else {
+		if (sessions.isEmpty()) {
 			NoSessionsPlaceholder()
+		} else {
+			sessions.forEach { session ->
+				SessionItem(session = session, onClick = { onSessionClick(session.id.toString()) })
+			}
 		}
 	}
 }
@@ -547,51 +545,54 @@ private fun DateHeader(
 }
 
 @Composable
-private fun SessionPlaceholderItem(
-	sessionType: String,
-	timeRange: String,
-	onClick: () -> Unit
-) {
+private fun SessionItem(session: SessionUiModel, onClick: () -> Unit) {
 	Surface(
-		modifier = Modifier
-			.fillMaxWidth()
-			.padding(horizontal = 16.dp, vertical = 8.dp)
-			.clickable(onClick = onClick),
+		modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp).clickable(onClick = onClick),
 		shape = RoundedCornerShape(12.dp),
 		color = MaterialTheme.colorScheme.surfaceContainerLow,
 		tonalElevation = 1.dp
 	) {
 		Row(
-			modifier = Modifier
-				.fillMaxWidth()
-				.padding(12.dp),
+			modifier = Modifier.fillMaxWidth().padding(12.dp),
 			verticalAlignment = Alignment.CenterVertically
 		) {
 			Box(
 				modifier = Modifier
 					.width(4.dp)
 					.height(40.dp)
-					.background(
-						color = MaterialTheme.colorScheme.primary,
-						shape = RoundedCornerShape(2.dp)
-					)
+					.background(color = MaterialTheme.colorScheme.primary, shape = RoundedCornerShape(2.dp))
 			)
 
 			Spacer(modifier = Modifier.width(12.dp))
 
 			Column(modifier = Modifier.weight(1f)) {
 				Text(
-					text = sessionType,
+					text = session.sessionType?.displayName() ?: "Training",
 					style = MaterialTheme.typography.bodyLarge,
 					fontWeight = FontWeight.Medium,
 					color = MaterialTheme.colorScheme.onSurface
 				)
 				Spacer(modifier = Modifier.height(2.dp))
 				Text(
-					text = timeRange,
+					text = "${session.durationMinutes} min",
 					style = MaterialTheme.typography.bodySmall,
 					color = MaterialTheme.colorScheme.onSurfaceVariant
 				)
+			}
+
+			session.rpe?.let { rpe ->
+				Box(
+					modifier = Modifier
+						.size(32.dp)
+						.background(color = MaterialTheme.colorScheme.secondaryContainer, shape = CircleShape),
+					contentAlignment = Alignment.Center
+				) {
+					Text(
+						text = rpe.toString(),
+						style = MaterialTheme.typography.labelMedium,
+						color = MaterialTheme.colorScheme.onSecondaryContainer
+					)
+				}
 			}
 		}
 	}

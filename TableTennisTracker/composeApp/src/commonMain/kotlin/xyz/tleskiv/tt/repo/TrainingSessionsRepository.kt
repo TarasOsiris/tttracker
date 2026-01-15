@@ -23,4 +23,6 @@ interface TrainingSessionsRepository {
 	)
 
 	fun getAllSessions(): List<Training_session>
+
+	fun getSessionById(id: Uuid): Training_session?
 }
