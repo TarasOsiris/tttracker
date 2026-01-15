@@ -146,6 +146,7 @@ private fun NavBarScreens(topLevelBackStack: SnapshotStateList<Any>) {
 				entryProvider = entryProvider {
 					entry<SessionsRoute> {
 						SessionsScreen(
+							viewModel = koinViewModel(),
 							onNavigateToDetails = { id ->
 								topLevelBackStack.add(RouteB(id))
 							},
