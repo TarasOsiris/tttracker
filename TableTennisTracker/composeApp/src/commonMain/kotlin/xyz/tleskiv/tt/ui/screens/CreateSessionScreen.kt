@@ -16,11 +16,11 @@ import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.stringResource
 import tabletennistracker.composeapp.generated.resources.*
 import xyz.tleskiv.tt.data.model.enums.SessionType
-import xyz.tleskiv.tt.ui.FieldLabel
 import xyz.tleskiv.tt.ui.dialogs.DatePickerDialog
-import xyz.tleskiv.tt.ui.fields.DatePickerField
 import xyz.tleskiv.tt.ui.widgets.BottomBarButtons
+import xyz.tleskiv.tt.ui.widgets.FieldLabel
 import xyz.tleskiv.tt.ui.widgets.SimpleTopAppBar
+import xyz.tleskiv.tt.ui.widgets.fields.DatePickerField
 import xyz.tleskiv.tt.util.labelRes
 import xyz.tleskiv.tt.util.ui.getRpeLabel
 import xyz.tleskiv.tt.viewmodel.sessions.CreateSessionScreenViewModel

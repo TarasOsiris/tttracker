@@ -11,16 +11,16 @@
     <string name="action_ok">ОК</string>
     <string name="action_cancel">Скасувати</string>
     <string name="action_change">Змінити</string>
-    <string name="action_edit">Редагувати сесію</string>
-    <string name="action_save">Зберегти сесію</string>
-    <string name="action_add_session">Додати сесію</string>
+    <string name="action_edit">Редагувати тренування</string>
+    <string name="action_save">Зберегти тренування</string>
+    <string name="action_add_session">Додати тренування</string>
     <string name="action_search">Пошук</string>
     <string name="action_settings">Налаштування</string>
     <string name="action_more">Більше</string>
     <string name="action_back">Назад</string>
 
     <!-- Navigation -->
-    <string name="nav_sessions">Сесії</string>
+    <string name="nav_sessions">Тренування</string>
     <string name="nav_analytics">Аналітика</string>
     <string name="nav_profile">Профіль</string>
 
@@ -34,7 +34,7 @@
     <!-- Sessions Screen -->
     <string name="sessions_week_mode">Тиждень</string>
     <string name="sessions_month_mode">Місяць</string>
-    <string name="sessions_empty">Немає сесій</string>
+    <string name="sessions_empty">Немає тренувань</string>
     <string name="session_duration_format">%1$d хв</string>
 
     <!-- Create Session Screen -->
@@ -43,7 +43,7 @@
     <string name="hint_duration">Введіть тривалість</string>
     <string name="suffix_minutes">хвилин</string>
     <string name="rule_duration">5-300 хвилин</string>
-    <string name="label_session_type">Тип сесії</string>
+    <string name="label_session_type">Тип тренування</string>
     <string name="label_intensity_rpe">Інтенсивність (RPE)</string>
     <string name="label_notes_optional">Нотатки (опціонально)</string>
     <string name="hint_notes">Додайте нотатки про ваше тренування...</string>
@@ -64,7 +64,7 @@
 
     <!-- Analytics Screen -->
     <string name="analytics_service_injected">Сервіс інжектовано: %1$d</string>
-    <string name="analytics_create_test_session">Створити тестову сесію</string>
+    <string name="analytics_create_test_session">Створити тестове тренування</string>
     <string name="analytics_last_created">Останнє створене тренування: %1$s</string>
     <string name="analytics_test_notes">Тестове тренування з екрану Аналітики</string>
     <string name="analytics_placeholder">Тут з\'явиться аналітика вашої продуктивності</string>

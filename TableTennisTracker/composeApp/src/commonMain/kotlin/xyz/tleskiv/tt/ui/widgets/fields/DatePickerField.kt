@@ -1,4 +1,4 @@
-package xyz.tleskiv.tt.ui.fields
+package xyz.tleskiv.tt.ui.widgets.fields
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme

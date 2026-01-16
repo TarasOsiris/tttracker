@@ -1,4 +1,4 @@
-package xyz.tleskiv.tt.ui
+package xyz.tleskiv.tt.ui.widgets
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
