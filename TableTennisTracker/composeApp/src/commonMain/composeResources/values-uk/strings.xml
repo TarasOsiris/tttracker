@@ -75,4 +75,52 @@
     <!-- Home Screen -->
     <string name="home_view_match">Переглянути деталі матчу</string>
     <string name="home_view_player">Переглянути деталі гравця</string>
+
+    <!-- Date & Time -->
+    <string name="time_today">Сьогодні</string>
+    <string name="time_yesterday">Вчора</string>
+    <string name="time_tomorrow">Завтра</string>
+    <string name="month_january">Січень</string>
+    <string name="month_february">Лютий</string>
+    <string name="month_march">Березень</string>
+    <string name="month_april">Квітень</string>
+    <string name="month_may">Травень</string>
+    <string name="month_june">Червень</string>
+    <string name="month_july">Липень</string>
+    <string name="month_august">Серпень</string>
+    <string name="month_september">Вересень</string>
+    <string name="month_october">Жовтень</string>
+    <string name="month_november">Листопад</string>
+    <string name="month_december">Грудень</string>
+    <string name="day_monday">Понеділок</string>
+    <string name="day_tuesday">Вівторок</string>
+    <string name="day_wednesday">Середа</string>
+    <string name="day_thursday">Четвер</string>
+    <string name="day_friday">П’ятниця</string>
+    <string name="day_saturday">Субота</string>
+    <string name="day_sunday">Неділя</string>
+    <string name="day_monday_short">Пн</string>
+    <string name="day_tuesday_short">Вт</string>
+    <string name="day_wednesday_short">Ср</string>
+    <string name="day_thursday_short">Чт</string>
+    <string name="day_friday_short">Пт</string>
+    <string name="day_saturday_short">Сб</string>
+    <string name="day_sunday_short">Нд</string>
+    <string name="month_january_short">Січ</string>
+    <string name="month_february_short">Лют</string>
+    <string name="month_march_short">Бер</string>
+    <string name="month_april_short">Кві</string>
+    <string name="month_may_short">Тра</string>
+    <string name="month_june_short">Чер</string>
+    <string name="month_july_short">Лип</string>
+    <string name="month_august_short">Сер</string>
+    <string name="month_september_short">Вер</string>
+    <string name="month_october_short">Жов</string>
+    <string name="month_november_short">Лис</string>
+    <string name="month_december_short">Гру</string>
+
+    <string name="duration_minutes_full">%1$d хвилин</string>
+    <string name="duration_hours_full">%1$d година</string>
+    <string name="duration_hours_plural_full">%1$d годин</string>
+    <string name="duration_hm_short">%1$dгод %2$dхв</string>
 </resources>

@@ -7,6 +7,7 @@ import xyz.tleskiv.tt.viewmodel.sessions.CreateSessionScreenViewModel
 class CreateSessionScreenViewModelImpl(val date: LocalDate?) : CreateSessionScreenViewModel() {
 	private val _startDate = date ?: LocalDate.now()
 	override val initialDate: LocalDate = _startDate
+	override val inputData = InputData(_startDate)
 
 	init {
 		println("CreateSessionScreenViewModelImpl created")
@@ -16,6 +17,4 @@ class CreateSessionScreenViewModelImpl(val date: LocalDate?) : CreateSessionScre
 		println("CreateSessionScreenViewModelImpl cleared")
 		super.onCleared()
 	}
-
-
 }
