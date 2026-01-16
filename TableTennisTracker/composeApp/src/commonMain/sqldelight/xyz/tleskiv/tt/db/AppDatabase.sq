@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS training_session (
     id TEXT AS Uuid PRIMARY KEY,
     date INTEGER NOT NULL,
     duration_min INTEGER NOT NULL,
-    rpe INTEGER CHECK (rpe BETWEEN 1 AND 10),
+    rpe INTEGER NOT NULL CHECK (rpe BETWEEN 1 AND 10),
     session_type TEXT CHECK (
         session_type IN ('technique', 'match_play', 'serve_practice', 'physical', 'free_play', 'other')
     ),

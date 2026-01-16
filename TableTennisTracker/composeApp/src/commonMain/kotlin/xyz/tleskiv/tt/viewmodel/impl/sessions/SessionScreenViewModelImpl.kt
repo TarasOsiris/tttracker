@@ -32,7 +32,7 @@ class SessionScreenViewModelImpl(private val sessionService: TrainingSessionServ
 					date = dateTime.date,
 					durationMinutes = session.duration_min.toInt(),
 					sessionType = session.session_type?.let { SessionType.fromDb(it) },
-					rpe = session.rpe?.toInt(),
+					rpe = session.rpe.toInt(),
 					notes = session.notes
 				)
 			}.groupBy { it.date }

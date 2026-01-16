@@ -1,4 +1,4 @@
-package xyz.tleskiv.tt.util
+package xyz.tleskiv.tt.util.ext
 
 import androidx.compose.runtime.Composable
 import kotlinx.datetime.DayOfWeek
@@ -18,7 +18,6 @@ fun DayOfWeek.displayText(): String = stringResource(
 		DayOfWeek.FRIDAY -> Res.string.day_friday_short
 		DayOfWeek.SATURDAY -> Res.string.day_saturday_short
 		DayOfWeek.SUNDAY -> Res.string.day_sunday_short
-		else -> Res.string.day_monday_short // Fallback
 	}
 )
 
@@ -32,7 +31,6 @@ fun DayOfWeek.fullText(): String = stringResource(
 		DayOfWeek.FRIDAY -> Res.string.day_friday
 		DayOfWeek.SATURDAY -> Res.string.day_saturday
 		DayOfWeek.SUNDAY -> Res.string.day_sunday
-		else -> Res.string.day_monday
 	}
 )
 
@@ -51,7 +49,6 @@ fun Month.displayText(): String = stringResource(
 		Month.OCTOBER -> Res.string.month_october
 		Month.NOVEMBER -> Res.string.month_november
 		Month.DECEMBER -> Res.string.month_december
-		else -> Res.string.month_january
 	}
 )
 
@@ -70,7 +67,6 @@ fun Month.shortDisplayText(): String = stringResource(
 		Month.OCTOBER -> Res.string.month_october_short
 		Month.NOVEMBER -> Res.string.month_november_short
 		Month.DECEMBER -> Res.string.month_december_short
-		else -> Res.string.month_january_short
 	}
 )
 

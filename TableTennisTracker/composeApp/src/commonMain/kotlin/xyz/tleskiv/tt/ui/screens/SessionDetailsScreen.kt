@@ -25,8 +25,8 @@ import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
 import tabletennistracker.composeapp.generated.resources.*
 import xyz.tleskiv.tt.ui.widgets.BackButton
-import xyz.tleskiv.tt.util.formatDuration
-import xyz.tleskiv.tt.util.formatSessionDateFull
+import xyz.tleskiv.tt.util.ext.formatDuration
+import xyz.tleskiv.tt.util.ext.formatSessionDateFull
 import xyz.tleskiv.tt.util.labelRes
 import xyz.tleskiv.tt.util.ui.getRpeColor
 import xyz.tleskiv.tt.util.ui.getRpeLabel
@@ -189,9 +189,7 @@ private fun SessionDetailsContent(
 					)
 				}
 			}
-			session.rpe?.let { rpe ->
-				item { RpeCard(rpe = rpe) }
-			}
+			item { RpeCard(rpe = session.rpe) }
 			if (!session.notes.isNullOrBlank()) {
 				item { NotesCard(notes = session.notes) }
 			}
@@ -211,15 +209,13 @@ private fun QuickStatsRow(session: SessionUiModel) {
 			emoji = "⏱️",
 			modifier = Modifier.weight(1f)
 		)
-		session.rpe?.let { rpe ->
-			StatCard(
-				value = rpe.toString(),
-				label = stringResource(Res.string.label_rpe),
-				emoji = "💪",
-				color = getRpeColor(rpe),
-				modifier = Modifier.weight(1f)
-			)
-		}
+		StatCard(
+			value = session.rpe.toString(),
+			label = stringResource(Res.string.label_rpe),
+			emoji = "💪",
+			color = getRpeColor(session.rpe),
+			modifier = Modifier.weight(1f)
+		)
 		StatCard(
 			value = session.date.dayOfWeek.name.take(3),
 			label = session.date.month.name.take(3) + " ${session.date.day}",

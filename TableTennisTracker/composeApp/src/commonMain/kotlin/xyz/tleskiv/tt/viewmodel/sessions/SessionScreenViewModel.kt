@@ -11,7 +11,7 @@ data class SessionUiModel(
 	val date: LocalDate,
 	val durationMinutes: Int,
 	val sessionType: SessionType?,
-	val rpe: Int?,
+	val rpe: Int,
 	val notes: String?
 )
 

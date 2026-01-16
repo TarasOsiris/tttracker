@@ -188,3 +188,4 @@ Use KMP's `expect`/`actual` pattern:
 - Prefer keeping code a single line if less than 120 characters.
 - for clock use `kotlin.time.Clock`
 - Use docs folder in the root for any additional functional documentation needed
+- Never use `System.currentTimeMillis()` in commonApp module, use `nowMillis` from DateTimeUtils instead.

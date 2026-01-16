@@ -9,7 +9,7 @@ interface TrainingSessionService {
 	suspend fun addSession(
 		dateTime: LocalDateTime,
 		durationMinutes: Int,
-		rpe: Int?,
+		rpe: Int,
 		sessionType: SessionType?,
 		notes: String?
 	): Uuid
@@ -18,7 +18,7 @@ interface TrainingSessionService {
 		id: Uuid,
 		dateTime: LocalDateTime,
 		durationMinutes: Int,
-		rpe: Int?,
+		rpe: Int,
 		sessionType: SessionType?,
 		notes: String?
 	)

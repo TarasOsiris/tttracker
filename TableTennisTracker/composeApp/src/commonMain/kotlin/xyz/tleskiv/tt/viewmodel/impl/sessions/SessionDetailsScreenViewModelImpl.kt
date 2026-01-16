@@ -39,7 +39,7 @@ class SessionDetailsScreenViewModelImpl(
 						date = dateTime.date,
 						durationMinutes = session.duration_min.toInt(),
 						sessionType = session.session_type?.let { SessionType.fromDb(it) },
-						rpe = session.rpe?.toInt(),
+						rpe = session.rpe.toInt(),
 						notes = session.notes
 					)
 					_uiState.value = SessionDetailsUiState(session = uiModel, isLoading = false)

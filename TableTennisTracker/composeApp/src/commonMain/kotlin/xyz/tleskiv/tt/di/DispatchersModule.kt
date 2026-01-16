@@ -13,7 +13,7 @@ object DispatcherQualifiers {
 }
 
 val dispatchersModule = module {
-    single<CoroutineDispatcher>(named(DispatcherQualifiers.IO)) { Dispatchers.IO }
+    // IO Dispatcher is provided by platform-specific modules
     single<CoroutineDispatcher>(named(DispatcherQualifiers.DEFAULT)) { Dispatchers.Default }
     single<CoroutineDispatcher>(named(DispatcherQualifiers.MAIN)) { Dispatchers.Main }
     single<CoroutineDispatcher>(named(DispatcherQualifiers.UNCONFINED)) { Dispatchers.Unconfined }

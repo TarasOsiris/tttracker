@@ -14,7 +14,7 @@ import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.action_change
-import xyz.tleskiv.tt.util.formatSessionDateFull
+import xyz.tleskiv.tt.util.ext.formatSessionDateFull
 
 @Composable
 fun DatePickerField(

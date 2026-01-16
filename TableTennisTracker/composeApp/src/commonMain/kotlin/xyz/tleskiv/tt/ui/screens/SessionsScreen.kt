@@ -39,7 +39,11 @@ import kotlinx.datetime.*
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
 import tabletennistracker.composeapp.generated.resources.*
-import xyz.tleskiv.tt.util.*
+import xyz.tleskiv.tt.util.ext.displayText
+import xyz.tleskiv.tt.util.ext.formatDateHeader
+import xyz.tleskiv.tt.util.ext.formatFullDate
+import xyz.tleskiv.tt.util.ext.formatMonthYear
+import xyz.tleskiv.tt.util.labelRes
 import xyz.tleskiv.tt.viewmodel.sessions.SessionScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.SessionUiModel
 
@@ -581,19 +585,17 @@ private fun SessionItem(session: SessionUiModel, onClick: () -> Unit) {
 				)
 			}
 
-			session.rpe?.let { rpe ->
-				Box(
-					modifier = Modifier
-						.size(32.dp)
-						.background(color = MaterialTheme.colorScheme.secondaryContainer, shape = CircleShape),
-					contentAlignment = Alignment.Center
-				) {
-					Text(
-						text = rpe.toString(),
-						style = MaterialTheme.typography.labelMedium,
-						color = MaterialTheme.colorScheme.onSecondaryContainer
-					)
-				}
+			Box(
+				modifier = Modifier
+					.size(32.dp)
+					.background(color = MaterialTheme.colorScheme.secondaryContainer, shape = CircleShape),
+				contentAlignment = Alignment.Center
+			) {
+				Text(
+					text = session.rpe.toString(),
+					style = MaterialTheme.typography.labelMedium,
+					color = MaterialTheme.colorScheme.onSecondaryContainer
+				)
 			}
 		}
 	}

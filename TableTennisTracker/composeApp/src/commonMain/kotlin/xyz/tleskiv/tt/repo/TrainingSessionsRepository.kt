@@ -8,7 +8,7 @@ interface TrainingSessionsRepository {
 	suspend fun addSession(
 		date: Long,
 		durationMinutes: Int,
-		rpe: Int?,
+		rpe: Int,
 		sessionType: SessionType?,
 		notes: String?
 	): Uuid
@@ -17,7 +17,7 @@ interface TrainingSessionsRepository {
 		id: Uuid,
 		date: Long,
 		durationMinutes: Int,
-		rpe: Int?,
+		rpe: Int,
 		sessionType: SessionType?,
 		notes: String?
 	)

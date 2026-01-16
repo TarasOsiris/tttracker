@@ -16,7 +16,7 @@ class TrainingSessionServiceImpl(
 	override suspend fun addSession(
 		dateTime: LocalDateTime,
 		durationMinutes: Int,
-		rpe: Int?,
+		rpe: Int,
 		sessionType: SessionType?,
 		notes: String?
 	): Uuid {
@@ -33,7 +33,7 @@ class TrainingSessionServiceImpl(
 		id: Uuid,
 		dateTime: LocalDateTime,
 		durationMinutes: Int,
-		rpe: Int?,
+		rpe: Int,
 		sessionType: SessionType?,
 		notes: String?
 	) {
