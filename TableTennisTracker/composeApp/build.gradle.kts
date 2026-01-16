@@ -56,7 +56,15 @@ kotlin {
 		}
 	}
 
-	jvm()
+	jvm {
+		testRuns["test"].executionTask.configure {
+			useJUnitPlatform()
+			testLogging {
+				events("started", "passed", "failed", "skipped", "standardOut", "standardError")
+				showStandardStreams = true
+			}
+		}
+	}
 
 	sourceSets {
 		androidMain {
@@ -99,7 +107,11 @@ kotlin {
 			implementation(projects.shared)
 		}
 		commonTest.dependencies {
-			implementation(libs.kotlin.test)
+			implementation(libs.kotest.assertions.core)
+			implementation(libs.kotest.framework.engine)
+		}
+		jvmTest.dependencies {
+			implementation(libs.kotest.runner.junit5)
 		}
 		jvmMain.dependencies {
 			implementation(compose.desktop.currentOs)

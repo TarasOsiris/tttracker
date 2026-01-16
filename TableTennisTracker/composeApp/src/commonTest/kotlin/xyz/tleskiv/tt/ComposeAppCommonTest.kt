@@ -1,13 +1,11 @@
 package xyz.tleskiv.tt
 
-import kotlin.test.Test
-import kotlin.test.assertEquals
+import io.kotest.core.spec.style.FunSpec
+import io.kotest.matchers.shouldBe
 
-class ComposeAppCommonTest {
-
-    @Test
-    fun example() {
-        println("TESTING........................")
-        assertEquals(3, 1 + 2)
+class ComposeAppCommonTest : FunSpec({
+    test("adds numbers") { 
+        println("Running common test")
+        (1 + 2) shouldBe 3 
     }
-}
+})
