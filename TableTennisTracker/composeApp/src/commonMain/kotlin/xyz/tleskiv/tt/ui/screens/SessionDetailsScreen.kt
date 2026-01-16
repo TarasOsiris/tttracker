@@ -25,6 +25,7 @@ import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
 import tabletennistracker.composeapp.generated.resources.*
 import xyz.tleskiv.tt.ui.widgets.BackButton
+import xyz.tleskiv.tt.ui.widgets.ContentCard
 import xyz.tleskiv.tt.util.ext.formatDuration
 import xyz.tleskiv.tt.util.ext.formatSessionDateFull
 import xyz.tleskiv.tt.util.labelRes
@@ -262,12 +263,7 @@ private fun StatCard(
 
 @Composable
 private fun DetailCard(label: String, value: String, emoji: String) {
-	Surface(
-		modifier = Modifier.fillMaxWidth(),
-		shape = RoundedCornerShape(12.dp),
-		color = MaterialTheme.colorScheme.surfaceContainerLow,
-		tonalElevation = 1.dp
-	) {
+	ContentCard {
 		Row(modifier = Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
 			Text(text = emoji, style = MaterialTheme.typography.titleLarge)
 			Spacer(modifier = Modifier.width(16.dp))
@@ -301,12 +297,7 @@ private fun RpeCard(rpe: Int) {
 		else -> MaterialTheme.colorScheme.onErrorContainer
 	}
 
-	Surface(
-		modifier = Modifier.fillMaxWidth(),
-		shape = RoundedCornerShape(12.dp),
-		color = MaterialTheme.colorScheme.surfaceContainerLow,
-		tonalElevation = 1.dp
-	) {
+	ContentCard {
 		Row(modifier = Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
 			Text(text = "💪", style = MaterialTheme.typography.titleLarge)
 			Spacer(modifier = Modifier.width(16.dp))
@@ -340,12 +331,7 @@ private fun RpeCard(rpe: Int) {
 
 @Composable
 private fun NotesCard(notes: String) {
-	Surface(
-		modifier = Modifier.fillMaxWidth(),
-		shape = RoundedCornerShape(12.dp),
-		color = MaterialTheme.colorScheme.surfaceContainerLow,
-		tonalElevation = 1.dp
-	) {
+	ContentCard {
 		Column(modifier = Modifier.padding(16.dp)) {
 			Row(verticalAlignment = Alignment.CenterVertically) {
 				Text(text = "📝", style = MaterialTheme.typography.titleLarge)
