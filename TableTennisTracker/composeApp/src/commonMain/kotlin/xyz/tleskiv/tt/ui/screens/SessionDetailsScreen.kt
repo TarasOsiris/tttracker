@@ -286,16 +286,7 @@ private fun DetailCard(label: String, value: String, emoji: String) {
 
 @Composable
 private fun RpeCard(rpe: Int) {
-	val backgroundColor = when {
-		rpe <= 3 -> MaterialTheme.colorScheme.tertiaryContainer
-		rpe <= 6 -> MaterialTheme.colorScheme.secondaryContainer
-		else -> MaterialTheme.colorScheme.errorContainer
-	}
-	val textColor = when {
-		rpe <= 3 -> MaterialTheme.colorScheme.onTertiaryContainer
-		rpe <= 6 -> MaterialTheme.colorScheme.onSecondaryContainer
-		else -> MaterialTheme.colorScheme.onErrorContainer
-	}
+
 
 	ContentCard {
 		Row(modifier = Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
@@ -311,18 +302,19 @@ private fun RpeCard(rpe: Int) {
 				Text(
 					text = getRpeLabel(rpe),
 					style = MaterialTheme.typography.bodyLarge,
-					color = MaterialTheme.colorScheme.onSurface
+					color = getRpeColor(rpe)
 				)
 			}
 			Box(
-				modifier = Modifier.size(44.dp).clip(CircleShape).background(backgroundColor),
+				modifier = Modifier.size(44.dp).clip(CircleShape)
+					.background(MaterialTheme.colorScheme.surfaceContainerHigh),
 				contentAlignment = Alignment.Center
 			) {
 				Text(
 					text = rpe.toString(),
 					style = MaterialTheme.typography.titleMedium,
 					fontWeight = FontWeight.Bold,
-					color = textColor
+					color = getRpeColor(rpe)
 				)
 			}
 		}

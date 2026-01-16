@@ -44,6 +44,7 @@ import xyz.tleskiv.tt.util.ext.formatDateHeader
 import xyz.tleskiv.tt.util.ext.formatFullDate
 import xyz.tleskiv.tt.util.ext.formatMonthYear
 import xyz.tleskiv.tt.util.labelRes
+import xyz.tleskiv.tt.util.ui.getRpeColor
 import xyz.tleskiv.tt.viewmodel.sessions.SessionUiModel
 import xyz.tleskiv.tt.viewmodel.sessions.SessionsScreenViewModel
 
@@ -588,13 +589,14 @@ private fun SessionItem(session: SessionUiModel, onClick: () -> Unit) {
 			Box(
 				modifier = Modifier
 					.size(32.dp)
-					.background(color = MaterialTheme.colorScheme.secondaryContainer, shape = CircleShape),
+					.background(color = MaterialTheme.colorScheme.surfaceContainerHigh, shape = CircleShape),
 				contentAlignment = Alignment.Center
 			) {
 				Text(
 					text = session.rpe.toString(),
 					style = MaterialTheme.typography.labelMedium,
-					color = MaterialTheme.colorScheme.onSecondaryContainer
+					fontWeight = FontWeight.Bold,
+					color = getRpeColor(session.rpe)
 				)
 			}
 		}

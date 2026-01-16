@@ -1,8 +1,8 @@
 package xyz.tleskiv.tt.util.ui
 
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.lerp
 import org.jetbrains.compose.resources.stringResource
 import tabletennistracker.composeapp.generated.resources.*
 import xyz.tleskiv.tt.data.model.enums.SessionType
@@ -17,11 +17,18 @@ fun SessionType?.toColor(): Color = when (this) {
 	SessionType.OTHER, null -> Color(0xFF607D8B)
 }
 
-@Composable
-fun getRpeColor(rpe: Int): Color = when {
-	rpe <= 3 -> MaterialTheme.colorScheme.tertiary
-	rpe <= 6 -> MaterialTheme.colorScheme.secondary
-	else -> MaterialTheme.colorScheme.error
+private val RpeColorGreen = Color(0xFF4CAF50)
+private val RpeColorYellow = Color(0xFFFFC107)
+private val RpeColorRed = Color(0xFFF44336)
+
+fun getRpeColor(rpe: Int): Color = getRpeColor(rpe.toFloat())
+
+fun getRpeColor(value: Float): Color {
+	val fraction = (value - 1f) / 9f
+	return when {
+		fraction <= 0.5f -> lerp(RpeColorGreen, RpeColorYellow, fraction * 2f)
+		else -> lerp(RpeColorYellow, RpeColorRed, (fraction - 0.5f) * 2f)
+	}
 }
 
 @Composable

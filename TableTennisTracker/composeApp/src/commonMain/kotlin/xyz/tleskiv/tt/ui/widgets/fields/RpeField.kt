@@ -5,27 +5,14 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.stringResource
 import tabletennistracker.composeapp.generated.resources.*
 import xyz.tleskiv.tt.ui.widgets.FieldLabel
+import xyz.tleskiv.tt.util.ui.getRpeColor
 import xyz.tleskiv.tt.util.ui.getRpeLabel
 import kotlin.math.roundToInt
-
-private val RpeColorGreen = Color(0xFF4CAF50)
-private val RpeColorYellow = Color(0xFFFFC107)
-private val RpeColorRed = Color(0xFFF44336)
-
-private fun getRpeColor(value: Float): Color {
-	val fraction = (value - 1f) / 9f
-	return when {
-		fraction <= 0.5f -> lerp(RpeColorGreen, RpeColorYellow, fraction * 2f)
-		else -> lerp(RpeColorYellow, RpeColorRed, (fraction - 0.5f) * 2f)
-	}
-}
 
 @Composable
 fun RpeField(rpeValue: Float, onRpeChange: (Float) -> Unit) {
