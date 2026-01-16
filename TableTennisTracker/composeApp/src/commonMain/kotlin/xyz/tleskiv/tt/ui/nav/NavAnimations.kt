@@ -1,6 +1,8 @@
 package xyz.tleskiv.tt.ui.nav
 
 import androidx.compose.animation.AnimatedContentTransitionScope.SlideDirection
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -83,3 +85,10 @@ val sessionDetailsEntryMetadata = directionalMetadata(
 	popFadeInMillis = 120,
 	popFadeOutMillis = 100
 )
+
+val instantTransitionMetadata = run {
+	val emptyTransition = EnterTransition.None togetherWith ExitTransition.None
+	val forward = NavDisplay.transitionSpec { emptyTransition }
+	val pop = NavDisplay.popTransitionSpec { emptyTransition }
+	forward + pop
+}
