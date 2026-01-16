@@ -10,18 +10,19 @@ abstract class CreateSessionScreenViewModel : ViewModelBase() {
 
 	abstract val inputData: InputData
 
+	abstract fun saveSession(onSuccess: () -> Unit)
+
 	@Stable
-	class InputData(initialDate: LocalDate) {
+	class InputData(initialDate: LocalDate, initialDurationMinutes: Int = 60) {
 		val selectedDate = mutableStateOf(initialDate)
-		val durationText = mutableStateOf("")
-		val selectedSessionType = mutableStateOf<SessionType?>(null)
+		val durationMinutes = mutableIntStateOf(initialDurationMinutes)
+		val selectedSessionType = mutableStateOf<SessionType>(SessionType.TECHNIQUE)
 		val rpeValue = mutableFloatStateOf(5f)
 		val notes = mutableStateOf("")
 		val showDatePicker = mutableStateOf(false)
 
 		val isFormValid by derivedStateOf {
-			val duration = durationText.value.toIntOrNull()
-			duration != null && duration in 5..300 && selectedSessionType.value != null
+			durationMinutes.intValue in 10..300
 		}
 	}
 }

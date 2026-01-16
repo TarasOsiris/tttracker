@@ -1,13 +1,12 @@
 package xyz.tleskiv.tt.ui.widgets.fields
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Slider
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.stringResource
@@ -16,10 +15,22 @@ import xyz.tleskiv.tt.ui.widgets.FieldLabel
 import xyz.tleskiv.tt.util.ui.getRpeLabel
 import kotlin.math.roundToInt
 
+private val RpeColorGreen = Color(0xFF4CAF50)
+private val RpeColorYellow = Color(0xFFFFC107)
+private val RpeColorRed = Color(0xFFF44336)
+
+private fun getRpeColor(value: Float): Color {
+	val fraction = (value - 1f) / 9f
+	return when {
+		fraction <= 0.5f -> lerp(RpeColorGreen, RpeColorYellow, fraction * 2f)
+		else -> lerp(RpeColorYellow, RpeColorRed, (fraction - 0.5f) * 2f)
+	}
+}
+
 @Composable
-fun RpeField(
-	rpeValue: Float, onRpeChange: (Float) -> Unit
-) {
+fun RpeField(rpeValue: Float, onRpeChange: (Float) -> Unit) {
+	val rpeColor = getRpeColor(rpeValue)
+
 	Column {
 		Row(
 			modifier = Modifier.fillMaxWidth(),
@@ -30,7 +41,7 @@ fun RpeField(
 			Text(
 				text = rpeValue.roundToInt().toString(),
 				style = MaterialTheme.typography.titleLarge,
-				color = MaterialTheme.colorScheme.primary,
+				color = rpeColor,
 				fontWeight = FontWeight.Bold
 			)
 		}
@@ -40,7 +51,11 @@ fun RpeField(
 			onValueChange = onRpeChange,
 			valueRange = 1f..10f,
 			steps = 8,
-			modifier = Modifier.fillMaxWidth()
+			modifier = Modifier.fillMaxWidth(),
+			colors = SliderDefaults.colors(
+				thumbColor = rpeColor,
+				activeTrackColor = rpeColor
+			)
 		)
 		Row(
 			modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween
@@ -48,7 +63,7 @@ fun RpeField(
 			Text(
 				text = getRpeLabel(rpeValue.roundToInt()),
 				style = MaterialTheme.typography.bodyMedium,
-				color = MaterialTheme.colorScheme.onSurfaceVariant
+				color = rpeColor
 			)
 		}
 		Spacer(modifier = Modifier.height(8.dp))

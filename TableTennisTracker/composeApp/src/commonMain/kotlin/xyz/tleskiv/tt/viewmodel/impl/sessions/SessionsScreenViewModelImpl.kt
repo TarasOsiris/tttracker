@@ -10,11 +10,11 @@ import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import xyz.tleskiv.tt.data.model.enums.SessionType
 import xyz.tleskiv.tt.service.TrainingSessionService
-import xyz.tleskiv.tt.viewmodel.sessions.SessionScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.SessionUiModel
+import xyz.tleskiv.tt.viewmodel.sessions.SessionsScreenViewModel
 import kotlin.time.Instant
 
-class SessionScreenViewModelImpl(sessionService: TrainingSessionService) : SessionScreenViewModel() {
+class SessionsScreenViewModelImpl(sessionService: TrainingSessionService) : SessionsScreenViewModel() {
 	override val sessions: StateFlow<Map<LocalDate, List<SessionUiModel>>> = sessionService.allSessions
 		.map { allSessions ->
 			allSessions.map { session ->

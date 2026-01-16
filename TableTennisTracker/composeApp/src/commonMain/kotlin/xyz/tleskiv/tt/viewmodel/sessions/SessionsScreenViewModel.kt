@@ -15,6 +15,6 @@ data class SessionUiModel(
 	val notes: String?
 )
 
-abstract class SessionScreenViewModel : ViewModelBase() {
+abstract class SessionsScreenViewModel : ViewModelBase() {
 	abstract val sessions: StateFlow<Map<LocalDate, List<SessionUiModel>>>
 }

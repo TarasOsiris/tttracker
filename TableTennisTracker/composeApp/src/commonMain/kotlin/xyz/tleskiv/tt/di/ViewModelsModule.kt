@@ -5,13 +5,13 @@ import org.koin.dsl.bind
 import org.koin.dsl.module
 import xyz.tleskiv.tt.viewmodel.impl.sessions.CreateSessionScreenViewModelImpl
 import xyz.tleskiv.tt.viewmodel.impl.sessions.SessionDetailsScreenViewModelImpl
-import xyz.tleskiv.tt.viewmodel.impl.sessions.SessionScreenViewModelImpl
+import xyz.tleskiv.tt.viewmodel.impl.sessions.SessionsScreenViewModelImpl
 import xyz.tleskiv.tt.viewmodel.sessions.CreateSessionScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.SessionDetailsScreenViewModel
-import xyz.tleskiv.tt.viewmodel.sessions.SessionScreenViewModel
+import xyz.tleskiv.tt.viewmodel.sessions.SessionsScreenViewModel
 
 val viewModelModule = module {
-	viewModelOf(::SessionScreenViewModelImpl) bind SessionScreenViewModel::class
+	viewModelOf(::SessionsScreenViewModelImpl) bind SessionsScreenViewModel::class
 	viewModelOf(::CreateSessionScreenViewModelImpl) bind CreateSessionScreenViewModel::class
 	viewModelOf(::SessionDetailsScreenViewModelImpl) bind SessionDetailsScreenViewModel::class
 }

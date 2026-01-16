@@ -44,8 +44,8 @@ import xyz.tleskiv.tt.util.ext.formatDateHeader
 import xyz.tleskiv.tt.util.ext.formatFullDate
 import xyz.tleskiv.tt.util.ext.formatMonthYear
 import xyz.tleskiv.tt.util.labelRes
-import xyz.tleskiv.tt.viewmodel.sessions.SessionScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.SessionUiModel
+import xyz.tleskiv.tt.viewmodel.sessions.SessionsScreenViewModel
 
 private val FIRST_DAY_OF_WEEK = DayOfWeek.MONDAY
 private const val CALENDAR_RANGE_MONTHS = 12
@@ -53,7 +53,7 @@ private const val DATE_LIST_RANGE_DAYS = 365
 
 @Composable
 fun SessionsScreen(
-	viewModel: SessionScreenViewModel,
+	viewModel: SessionsScreenViewModel,
 	onNavigateToDetails: (String) -> Unit = {},
 	onAddSession: (LocalDate) -> Unit = {}
 ) {

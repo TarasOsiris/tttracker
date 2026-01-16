@@ -23,7 +23,7 @@ import xyz.tleskiv.tt.viewmodel.sessions.CreateSessionScreenViewModel
 
 @Composable
 fun CreateSessionScreen(
-	viewModel: CreateSessionScreenViewModel, onNavigateBack: () -> Unit = {}, onSave: () -> Unit = {}
+	viewModel: CreateSessionScreenViewModel, onNavigateBack: () -> Unit = {}
 ) {
 	val inputData = viewModel.inputData
 
@@ -31,7 +31,9 @@ fun CreateSessionScreen(
 		SimpleTopAppBar(Res.string.title_create_session, onNavigateBack = onNavigateBack)
 	}, bottomBar = {
 		BottomBarButtons(
-			onLeftButtonClick = onNavigateBack, onRightButtonClick = onSave, rightButtonEnabled = inputData.isFormValid
+			onLeftButtonClick = onNavigateBack,
+			onRightButtonClick = { viewModel.saveSession(onNavigateBack) },
+			rightButtonEnabled = inputData.isFormValid
 		)
 	}) { paddingValues ->
 		Column(
@@ -56,7 +58,7 @@ fun CreateSessionScreen(
 @Composable
 fun CreateSessionScreenContent(inputData: CreateSessionScreenViewModel.InputData) {
 	var selectedDate by inputData.selectedDate
-	var durationText by inputData.durationText
+	var durationMinutes by inputData.durationMinutes
 	var selectedSessionType by inputData.selectedSessionType
 	var rpeValue by inputData.rpeValue
 	var notes by inputData.notes
@@ -69,12 +71,9 @@ fun CreateSessionScreenContent(inputData: CreateSessionScreenViewModel.InputData
 	)
 
 	DurationField(
-		durationText = durationText,
-		onDurationChange = { newValue ->
-			if (newValue.isEmpty() || newValue.all { it.isDigit() }) {
-				durationText = newValue
-			}
-		})
+		durationMinutes = durationMinutes,
+		onDurationChange = { durationMinutes = it }
+	)
 
 	SessionTypeField(
 		selectedType = selectedSessionType, onTypeSelected = { selectedSessionType = it })

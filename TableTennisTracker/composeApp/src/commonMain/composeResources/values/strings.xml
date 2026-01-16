@@ -42,6 +42,7 @@
     <string name="label_duration">Duration</string>
     <string name="hint_duration">Enter duration</string>
     <string name="suffix_minutes">minutes</string>
+    <string name="suffix_minutes_value">%1$d min</string>
     <string name="rule_duration">5-300 minutes</string>
     <string name="label_session_type">Session Type</string>
     <string name="label_intensity_rpe">Intensity (RPE)</string>
