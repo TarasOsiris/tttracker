@@ -1,5 +1,6 @@
 package xyz.tleskiv.tt.service.impl
 
+import kotlinx.coroutines.flow.Flow
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
@@ -12,6 +13,8 @@ import kotlin.uuid.Uuid
 class TrainingSessionServiceImpl(
 	private val repository: TrainingSessionsRepository
 ) : TrainingSessionService {
+
+	override val allSessions: Flow<List<Training_session>> = repository.allSessions
 
 	override suspend fun addSession(
 		dateTime: LocalDateTime,
@@ -54,4 +57,6 @@ class TrainingSessionServiceImpl(
 	override suspend fun getSessionById(id: Uuid): Training_session? {
 		return repository.getSessionById(id)
 	}
+
+
 }

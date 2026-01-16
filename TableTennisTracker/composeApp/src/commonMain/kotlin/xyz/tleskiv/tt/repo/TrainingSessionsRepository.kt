@@ -1,10 +1,13 @@
 package xyz.tleskiv.tt.repo
 
+import kotlinx.coroutines.flow.Flow
 import xyz.tleskiv.tt.data.model.enums.SessionType
 import xyz.tleskiv.tt.db.Training_session
 import kotlin.uuid.Uuid
 
 interface TrainingSessionsRepository {
+	val allSessions: Flow<List<Training_session>>
+
 	suspend fun addSession(
 		date: Long,
 		durationMinutes: Int,
@@ -25,4 +28,6 @@ interface TrainingSessionsRepository {
 	suspend fun getAllSessions(): List<Training_session>
 
 	suspend fun getSessionById(id: Uuid): Training_session?
+
+
 }

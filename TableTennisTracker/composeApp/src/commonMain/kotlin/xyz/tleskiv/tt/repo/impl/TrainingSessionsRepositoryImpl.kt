@@ -1,6 +1,9 @@
 package xyz.tleskiv.tt.repo.impl
 
+import app.cash.sqldelight.coroutines.asFlow
+import app.cash.sqldelight.coroutines.mapToList
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import xyz.tleskiv.tt.data.model.enums.SessionType
 import xyz.tleskiv.tt.db.AppDatabase
@@ -13,6 +16,9 @@ class TrainingSessionsRepositoryImpl(
 	private val database: AppDatabase,
 	private val ioDispatcher: CoroutineDispatcher
 ) : TrainingSessionsRepository {
+
+	override val allSessions: Flow<List<Training_session>> =
+		database.appDatabaseQueries.selectAllSessions().asFlow().mapToList(ioDispatcher)
 
 	override suspend fun addSession(
 		date: Long,
