@@ -1,6 +1,5 @@
-package xyz.tleskiv.tt.ui.nav
+package xyz.tleskiv.tt.ui.nav.routes
 
-import kotlinx.datetime.LocalDate
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
 import tabletennistracker.composeapp.generated.resources.Res
@@ -10,6 +9,10 @@ import tabletennistracker.composeapp.generated.resources.ic_sessions
 import tabletennistracker.composeapp.generated.resources.nav_analytics
 import tabletennistracker.composeapp.generated.resources.nav_profile
 import tabletennistracker.composeapp.generated.resources.nav_sessions
+
+
+val NAV_BAR_TAB_ROUTES: List<NavBarTabLevelRoute> =
+	listOf(SessionsRoute, AnalyticsRoute, ProfileRoute)
 
 sealed interface NavBarTabLevelRoute {
 	val icon: DrawableResource
@@ -30,12 +33,3 @@ data object ProfileRoute : NavBarTabLevelRoute {
 	override val icon = Res.drawable.ic_person
 	override val label = Res.string.nav_profile
 }
-
-data class CreateSessionRoute(val initialDate: LocalDate? = null)
-
-data class SessionDetailsRoute(val sessionId: String)
-
-data class EditSessionRoute(val sessionId: String)
-
-val NAV_BAR_TAB_ROUTES: List<NavBarTabLevelRoute> =
-	listOf(SessionsRoute, AnalyticsRoute, ProfileRoute)
