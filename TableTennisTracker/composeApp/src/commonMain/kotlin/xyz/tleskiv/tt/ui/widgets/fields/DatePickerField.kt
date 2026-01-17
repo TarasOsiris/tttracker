@@ -1,6 +1,7 @@
 package xyz.tleskiv.tt.ui.widgets.fields
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -12,8 +13,10 @@ import androidx.compose.ui.unit.dp
 import kotlinx.datetime.LocalDate
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.resources.vectorResource
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.action_change
+import tabletennistracker.composeapp.generated.resources.ic_calendar
 import xyz.tleskiv.tt.util.ext.formatSessionDateFull
 
 @Composable
@@ -41,11 +44,21 @@ fun DatePickerField(
 				horizontalArrangement = Arrangement.SpaceBetween,
 				verticalAlignment = Alignment.CenterVertically
 			) {
-				Text(
-					text = formatSessionDateFull(selectedDate),
-					style = MaterialTheme.typography.bodyLarge,
-					color = MaterialTheme.colorScheme.onSurface
-				)
+				Row(
+					verticalAlignment = Alignment.CenterVertically,
+					horizontalArrangement = Arrangement.spacedBy(12.dp)
+				) {
+					Icon(
+						imageVector = vectorResource(Res.drawable.ic_calendar),
+						contentDescription = stringResource(label),
+						tint = MaterialTheme.colorScheme.primary
+					)
+					Text(
+						text = formatSessionDateFull(selectedDate),
+						style = MaterialTheme.typography.bodyLarge,
+						color = MaterialTheme.colorScheme.onSurface
+					)
+				}
 				Text(
 					text = stringResource(Res.string.action_change),
 					style = MaterialTheme.typography.labelMedium,
