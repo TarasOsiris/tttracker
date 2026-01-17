@@ -39,6 +39,7 @@ import tabletennistracker.composeapp.generated.resources.ic_search
 import tabletennistracker.composeapp.generated.resources.ic_settings
 import xyz.tleskiv.tt.ui.nav.AnalyticsRoute
 import xyz.tleskiv.tt.ui.nav.CreateSessionRoute
+import xyz.tleskiv.tt.ui.nav.EditSessionRoute
 import xyz.tleskiv.tt.ui.nav.NAV_BAR_TAB_ROUTES
 import xyz.tleskiv.tt.ui.nav.NavBarTabLevelRoute
 import xyz.tleskiv.tt.ui.nav.ProfileRoute
@@ -50,6 +51,7 @@ import xyz.tleskiv.tt.ui.nav.instantTransitionMetadata
 import xyz.tleskiv.tt.ui.nav.sessionDetailsEntryMetadata
 import xyz.tleskiv.tt.ui.screens.AnalyticsScreen
 import xyz.tleskiv.tt.ui.screens.CreateSessionScreen
+import xyz.tleskiv.tt.ui.screens.EditSessionScreen
 import xyz.tleskiv.tt.ui.screens.ProfileScreen
 import xyz.tleskiv.tt.ui.screens.SessionDetailsScreen
 import xyz.tleskiv.tt.ui.screens.SessionsScreen
@@ -95,10 +97,24 @@ private fun Top(topLevelBackStack: SnapshotStateList<Any>) {
 					)
 				}
 
+				is EditSessionRoute -> NavEntry(key, metadata = instantTransitionMetadata) {
+					EditSessionScreen(
+						sessionId = key.sessionId,
+						onClose = { topLevelBackStack.removeLastOrNull() }
+					)
+				}
+
 				is SessionDetailsRoute -> NavEntry(key, metadata = sessionDetailsEntryMetadata) {
 					SessionDetailsScreen(
 						viewModel = koinViewModel<SessionDetailsScreenViewModel> { parametersOf(key.sessionId) },
-						onNavigateBack = { topLevelBackStack.removeLastOrNull() }
+						onNavigateBack = { topLevelBackStack.removeLastOrNull() },
+						onEdit = { sessionId ->
+							if (topLevelBackStack.lastOrNull() is SessionDetailsRoute) {
+								topLevelBackStack[topLevelBackStack.lastIndex] = EditSessionRoute(sessionId)
+							} else {
+								topLevelBackStack.add(EditSessionRoute(sessionId))
+							}
+						}
 					)
 				}
 

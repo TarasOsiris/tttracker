@@ -35,5 +35,7 @@ data class CreateSessionRoute(val initialDate: LocalDate? = null)
 
 data class SessionDetailsRoute(val sessionId: String)
 
+data class EditSessionRoute(val sessionId: String)
+
 val NAV_BAR_TAB_ROUTES: List<NavBarTabLevelRoute> =
 	listOf(SessionsRoute, AnalyticsRoute, ProfileRoute)
