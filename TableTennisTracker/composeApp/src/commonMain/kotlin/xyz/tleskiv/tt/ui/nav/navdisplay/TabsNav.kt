@@ -1,5 +1,7 @@
 package xyz.tleskiv.tt.ui.nav.navdisplay
 
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
@@ -12,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
@@ -82,7 +85,10 @@ fun TabsNavDisplay(topLevelBackStack: SnapshotStateList<TopLevelRoute>) {
 			NavigationBar {
 				NAV_BAR_TAB_ROUTES.forEach { topLevelRoute ->
 					val isSelected = topLevelRoute == navBarScreenBackStack.topLevelKey
-					val scale = if (isSelected) 1.15f else 1f
+					val scale by animateFloatAsState(
+						targetValue = if (isSelected) 1.1f else 1f,
+						animationSpec = tween(200)
+					)
 					NavigationBarItem(
 						selected = isSelected,
 						onClick = { navBarScreenBackStack.addTopLevel(topLevelRoute) },
