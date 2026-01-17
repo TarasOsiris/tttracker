@@ -71,6 +71,9 @@
 
     <!-- Profile Screen -->
     <string name="profile_placeholder">Тут з\'являться налаштування вашого профілю</string>
+    <string name="profile_menu_privacy">Приватність</string>
+    <string name="profile_menu_about">Про застосунок</string>
+    <string name="profile_menu_support">Підтримка</string>
 
     <!-- Home Screen -->
     <string name="home_view_match">Переглянути деталі матчу</string>
