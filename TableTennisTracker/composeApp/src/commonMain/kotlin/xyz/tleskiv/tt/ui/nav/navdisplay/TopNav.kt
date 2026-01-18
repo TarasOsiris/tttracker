@@ -1,6 +1,7 @@
 package xyz.tleskiv.tt.ui.nav.navdisplay
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
 import androidx.navigation3.runtime.NavEntry
@@ -8,6 +9,7 @@ import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.parameter.parametersOf
+import xyz.tleskiv.tt.ui.nav.TopLevelBackStack
 import xyz.tleskiv.tt.ui.nav.instantTransitionMetadata
 import xyz.tleskiv.tt.ui.nav.lateralEntryTransitionMetadata
 import xyz.tleskiv.tt.ui.nav.modalEntryTransitionMetadata
@@ -16,6 +18,7 @@ import xyz.tleskiv.tt.ui.nav.routes.CreateSessionRoute
 import xyz.tleskiv.tt.ui.nav.routes.EditSessionRoute
 import xyz.tleskiv.tt.ui.nav.routes.SessionDetailsRoute
 import xyz.tleskiv.tt.ui.nav.routes.GeneralSettingsRoute
+import xyz.tleskiv.tt.ui.nav.routes.SessionsRoute
 import xyz.tleskiv.tt.ui.nav.routes.TopLevelRoute
 import xyz.tleskiv.tt.ui.screens.CreateSessionScreen
 import xyz.tleskiv.tt.ui.screens.EditSessionScreen
@@ -29,6 +32,7 @@ import xyz.tleskiv.tt.viewmodel.settings.GeneralSettingsScreenViewModel
 
 @Composable
 fun TopNavDisplay(topLevelBackStack: SnapshotStateList<TopLevelRoute>) {
+	val tabsBackStack = remember { TopLevelBackStack<Any>(SessionsRoute) }
 	NavDisplay(
 		backStack = topLevelBackStack,
 		onBack = { topLevelBackStack.removeLastOrNull() },
@@ -39,7 +43,7 @@ fun TopNavDisplay(topLevelBackStack: SnapshotStateList<TopLevelRoute>) {
 		entryProvider = { key ->
 			when (key) {
 				is CoreAppRoute -> NavEntry(key) {
-					TabsNavDisplay(topLevelBackStack)
+					TabsNavDisplay(topLevelBackStack, tabsBackStack)
 				}
 
 				is CreateSessionRoute -> NavEntry(key, metadata = modalEntryTransitionMetadata) {

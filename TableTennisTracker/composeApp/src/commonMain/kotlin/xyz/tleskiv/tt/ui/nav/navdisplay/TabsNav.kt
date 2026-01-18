@@ -49,8 +49,10 @@ import xyz.tleskiv.tt.ui.screens.SettingsScreen
 import xyz.tleskiv.tt.ui.screens.SessionsScreen
 
 @Composable
-fun TabsNavDisplay(topLevelBackStack: SnapshotStateList<TopLevelRoute>) {
-	val navBarScreenBackStack = remember { TopLevelBackStack<Any>(SessionsRoute) }
+fun TabsNavDisplay(
+	topLevelBackStack: SnapshotStateList<TopLevelRoute>,
+	navBarScreenBackStack: TopLevelBackStack<Any> = remember { TopLevelBackStack<Any>(SessionsRoute) }
+) {
 	val currentRoute = navBarScreenBackStack.topLevelKey as? NavBarTabLevelRoute
 
 	Scaffold(
