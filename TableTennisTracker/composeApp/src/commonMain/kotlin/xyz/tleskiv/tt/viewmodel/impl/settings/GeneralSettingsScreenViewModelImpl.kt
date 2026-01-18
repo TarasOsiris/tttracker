@@ -5,11 +5,11 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import xyz.tleskiv.tt.service.UserPreferencesService
 import xyz.tleskiv.tt.service.UserPreferencesService.UserPreferences
-import xyz.tleskiv.tt.viewmodel.settings.SettingsScreenViewModel
+import xyz.tleskiv.tt.viewmodel.settings.GeneralSettingsScreenViewModel
 
-class SettingsScreenViewModelImpl(
+class GeneralSettingsScreenViewModelImpl(
 	private val userPreferencesService: UserPreferencesService
-) : SettingsScreenViewModel() {
+) : GeneralSettingsScreenViewModel() {
 
 	override val inputData = InputData()
 

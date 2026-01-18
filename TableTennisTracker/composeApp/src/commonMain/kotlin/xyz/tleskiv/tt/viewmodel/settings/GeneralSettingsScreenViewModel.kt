@@ -7,7 +7,7 @@ import xyz.tleskiv.tt.data.model.enums.SessionType
 import xyz.tleskiv.tt.service.UserPreferencesService
 import xyz.tleskiv.tt.viewmodel.ViewModelBase
 
-abstract class SettingsScreenViewModel : ViewModelBase() {
+abstract class GeneralSettingsScreenViewModel : ViewModelBase() {
 	abstract val inputData: InputData
 
 	@Stable

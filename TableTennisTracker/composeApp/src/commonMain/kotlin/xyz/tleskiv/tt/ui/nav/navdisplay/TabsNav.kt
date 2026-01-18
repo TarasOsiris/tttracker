@@ -39,13 +39,13 @@ import xyz.tleskiv.tt.ui.nav.routes.AnalyticsRoute
 import xyz.tleskiv.tt.ui.nav.routes.CreateSessionRoute
 import xyz.tleskiv.tt.ui.nav.routes.NAV_BAR_TAB_ROUTES
 import xyz.tleskiv.tt.ui.nav.routes.NavBarTabLevelRoute
-import xyz.tleskiv.tt.ui.nav.routes.ProfileRoute
+
 import xyz.tleskiv.tt.ui.nav.routes.SessionDetailsRoute
 import xyz.tleskiv.tt.ui.nav.routes.SessionsRoute
 import xyz.tleskiv.tt.ui.nav.routes.SettingsRoute
 import xyz.tleskiv.tt.ui.nav.routes.TopLevelRoute
 import xyz.tleskiv.tt.ui.screens.AnalyticsScreen
-import xyz.tleskiv.tt.ui.screens.ProfileScreen
+import xyz.tleskiv.tt.ui.screens.SettingsScreen
 import xyz.tleskiv.tt.ui.screens.SessionsScreen
 
 @Composable
@@ -109,9 +109,9 @@ fun TabsNavDisplay(topLevelBackStack: SnapshotStateList<TopLevelRoute>) {
 					entry<AnalyticsRoute>(metadata = instantTransitionMetadata) {
 						AnalyticsScreen()
 					}
-					entry<ProfileRoute>(metadata = instantTransitionMetadata) {
-						ProfileScreen(
-							onNavigateToSettings = { topLevelBackStack.add(SettingsRoute) }
+					entry<SettingsRoute>(metadata = instantTransitionMetadata) {
+						SettingsScreen(
+							onNavigateToGeneralSettings = { topLevelBackStack.add(xyz.tleskiv.tt.ui.nav.routes.GeneralSettingsRoute) }
 						)
 					}
 				}

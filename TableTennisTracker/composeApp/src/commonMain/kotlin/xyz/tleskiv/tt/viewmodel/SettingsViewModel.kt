@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 import xyz.tleskiv.tt.model.AppThemeMode
 import xyz.tleskiv.tt.repo.UserPreferencesRepository
 
-class ProfileViewModel(
+class SettingsViewModel(
 	private val userPreferencesRepository: UserPreferencesRepository
 ) : ViewModel() {
 

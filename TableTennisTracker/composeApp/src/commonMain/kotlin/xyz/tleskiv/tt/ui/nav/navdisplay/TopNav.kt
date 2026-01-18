@@ -15,16 +15,16 @@ import xyz.tleskiv.tt.ui.nav.routes.CoreAppRoute
 import xyz.tleskiv.tt.ui.nav.routes.CreateSessionRoute
 import xyz.tleskiv.tt.ui.nav.routes.EditSessionRoute
 import xyz.tleskiv.tt.ui.nav.routes.SessionDetailsRoute
-import xyz.tleskiv.tt.ui.nav.routes.SettingsRoute
+import xyz.tleskiv.tt.ui.nav.routes.GeneralSettingsRoute
 import xyz.tleskiv.tt.ui.nav.routes.TopLevelRoute
 import xyz.tleskiv.tt.ui.screens.CreateSessionScreen
 import xyz.tleskiv.tt.ui.screens.EditSessionScreen
 import xyz.tleskiv.tt.ui.screens.SessionDetailsScreen
-import xyz.tleskiv.tt.ui.screens.SettingsScreen
+import xyz.tleskiv.tt.ui.screens.GeneralSettingsScreen
 import xyz.tleskiv.tt.viewmodel.sessions.CreateSessionScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.EditSessionScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.SessionDetailsScreenViewModel
-import xyz.tleskiv.tt.viewmodel.settings.SettingsScreenViewModel
+import xyz.tleskiv.tt.viewmodel.settings.GeneralSettingsScreenViewModel
 
 
 @Composable
@@ -70,9 +70,9 @@ fun TopNavDisplay(topLevelBackStack: SnapshotStateList<TopLevelRoute>) {
 					)
 				}
 
-				is SettingsRoute -> NavEntry(key, metadata = lateralEntryTransitionMetadata) {
-					SettingsScreen(
-						viewModel = koinViewModel<SettingsScreenViewModel>(),
+				is GeneralSettingsRoute -> NavEntry(key, metadata = lateralEntryTransitionMetadata) {
+					GeneralSettingsScreen(
+						viewModel = koinViewModel<GeneralSettingsScreenViewModel>(),
 						onNavigateBack = { topLevelBackStack.removeLastOrNull() }
 					)
 				}
