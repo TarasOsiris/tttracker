@@ -16,6 +16,12 @@ import tabletennistracker.composeapp.generated.resources.suffix_minutes_value
 import xyz.tleskiv.tt.ui.widgets.FieldLabel
 import kotlin.math.roundToInt
 
+private const val MinDurationMinutes = 10
+private const val MaxDurationMinutes = 180
+private const val DurationStepMinutes = 10
+private val DurationSliderSteps =
+	((MaxDurationMinutes - MinDurationMinutes) / DurationStepMinutes) - 1
+
 @Composable
 fun DurationField(durationMinutes: Int, onDurationChange: (Int) -> Unit) {
 	Column {
@@ -35,19 +41,21 @@ fun DurationField(durationMinutes: Int, onDurationChange: (Int) -> Unit) {
 		Spacer(modifier = Modifier.height(8.dp))
 		Slider(
 			value = durationMinutes.toFloat(),
-			onValueChange = { onDurationChange((it / 10).roundToInt() * 10) },
-			valueRange = 10f..180f,
-			steps = 16,
+			onValueChange = {
+				onDurationChange((it / DurationStepMinutes).roundToInt() * DurationStepMinutes)
+			},
+			valueRange = MinDurationMinutes.toFloat()..MaxDurationMinutes.toFloat(),
+			steps = DurationSliderSteps,
 			modifier = Modifier.fillMaxWidth()
 		)
 		Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
 			Text(
-				text = stringResource(Res.string.suffix_minutes_value, 10),
+				text = stringResource(Res.string.suffix_minutes_value, MinDurationMinutes),
 				style = MaterialTheme.typography.bodySmall,
 				color = MaterialTheme.colorScheme.onSurfaceVariant
 			)
 			Text(
-				text = stringResource(Res.string.suffix_minutes_value, 180),
+				text = stringResource(Res.string.suffix_minutes_value, MaxDurationMinutes),
 				style = MaterialTheme.typography.bodySmall,
 				color = MaterialTheme.colorScheme.onSurfaceVariant
 			)

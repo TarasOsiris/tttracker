@@ -21,6 +21,13 @@ import xyz.tleskiv.tt.ui.widgets.FieldLabel
 import xyz.tleskiv.tt.util.ui.getRpeColor
 import xyz.tleskiv.tt.util.ui.getRpeLabel
 import kotlin.math.roundToInt
+
+private const val MinRpeValue = 1
+private const val MaxRpeValue = 10
+private const val RpeStepValue = 1
+private val RpeSliderSteps = ((MaxRpeValue - MinRpeValue) / RpeStepValue) - 1
+private const val ValueTextSpacingDp = 8
+
 @Composable
 fun RpeField(rpeValue: Int, onRpeChange: (Int) -> Unit) {
 	val rpeColor = getRpeColor(rpeValue)
@@ -39,12 +46,12 @@ fun RpeField(rpeValue: Int, onRpeChange: (Int) -> Unit) {
 				fontWeight = FontWeight.Bold
 			)
 		}
-		Spacer(modifier = Modifier.height(8.dp))
+		Spacer(modifier = Modifier.height(ValueTextSpacingDp.dp))
 		Slider(
 			value = rpeValue.toFloat(),
 			onValueChange = { onRpeChange(it.roundToInt()) },
-			valueRange = 1f..10f,
-			steps = 8,
+			valueRange = MinRpeValue.toFloat()..MaxRpeValue.toFloat(),
+			steps = RpeSliderSteps,
 			modifier = Modifier.fillMaxWidth(),
 			colors = SliderDefaults.colors(
 				thumbColor = rpeColor,
@@ -53,7 +60,7 @@ fun RpeField(rpeValue: Int, onRpeChange: (Int) -> Unit) {
 		)
 		Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
 			Text(
-				text = "1",
+				text = MinRpeValue.toString(),
 				style = MaterialTheme.typography.bodySmall,
 				color = MaterialTheme.colorScheme.onSurfaceVariant
 			)
@@ -64,7 +71,7 @@ fun RpeField(rpeValue: Int, onRpeChange: (Int) -> Unit) {
 				fontWeight = FontWeight.Medium
 			)
 			Text(
-				text = "10",
+				text = MaxRpeValue.toString(),
 				style = MaterialTheme.typography.bodySmall,
 				color = MaterialTheme.colorScheme.onSurfaceVariant
 			)
