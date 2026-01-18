@@ -29,6 +29,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -39,17 +40,18 @@ import org.jetbrains.compose.resources.stringResource
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.action_settings
 import tabletennistracker.composeapp.generated.resources.profile_guest_user
+import tabletennistracker.composeapp.generated.resources.action_privacy_policy
 import tabletennistracker.composeapp.generated.resources.profile_menu_about
-import tabletennistracker.composeapp.generated.resources.profile_menu_privacy
 import tabletennistracker.composeapp.generated.resources.profile_menu_support
 import tabletennistracker.composeapp.generated.resources.profile_sign_in_prompt
 import xyz.tleskiv.tt.ui.widgets.ContentCard
 
 @Composable
 fun ProfileScreen(onNavigateToSettings: () -> Unit = {}) {
+	val uriHandler = LocalUriHandler.current
 	val menuItems = listOf(
 		ProfileMenuItem(Res.string.action_settings, Icons.Outlined.Settings, onNavigateToSettings),
-		ProfileMenuItem(Res.string.profile_menu_privacy, Icons.Outlined.Lock, {}),
+		ProfileMenuItem(Res.string.action_privacy_policy, Icons.Outlined.Lock, { uriHandler.openUri("https://google.com") }),
 		ProfileMenuItem(Res.string.profile_menu_about, Icons.Outlined.Info, {}),
 		ProfileMenuItem(Res.string.profile_menu_support, Icons.AutoMirrored.Outlined.HelpOutline, {})
 	)

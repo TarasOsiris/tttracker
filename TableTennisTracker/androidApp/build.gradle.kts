@@ -60,4 +60,5 @@ dependencies {
 	androidTestImplementation(libs.androidx.testExt.junit)
 	androidTestImplementation(libs.androidx.espresso.core)
 	androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+	implementation(libs.sqldelight.driver.android)
 }

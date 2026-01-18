@@ -4,8 +4,8 @@ import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.jdbc.sqlite.JdbcSqliteDriver
 import java.io.File
 
-actual class DatabaseFactory {
-	actual fun createDriver(): SqlDriver {
+class DatabaseFactory {
+	fun createDriver(): SqlDriver {
 		val databasePath = File(System.getProperty("user.home"), ".tabletennistracker/app.db")
 		databasePath.parentFile?.mkdirs()
 

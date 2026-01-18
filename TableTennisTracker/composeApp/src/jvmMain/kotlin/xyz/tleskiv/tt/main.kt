@@ -6,11 +6,12 @@ import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import org.koin.core.context.startKoin
 import xyz.tleskiv.tt.di.appModule
+import xyz.tleskiv.tt.di.platformModule
 import xyz.tleskiv.tt.ui.App
 
 fun main() {
 	startKoin {
-		modules(appModule)
+		modules(appModule, platformModule)
 	}
 
 	application {

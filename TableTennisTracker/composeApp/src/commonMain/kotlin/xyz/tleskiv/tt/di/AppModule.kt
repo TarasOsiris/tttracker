@@ -7,10 +7,8 @@ import xyz.tleskiv.tt.repo.UserPreferencesRepository
 import xyz.tleskiv.tt.repo.impl.TrainingSessionsRepositoryImpl
 import xyz.tleskiv.tt.repo.impl.UserPreferencesRepositoryImpl
 
-expect val platformModule: org.koin.core.module.Module
-
 val appModule = module {
-	includes(platformModule, viewModelModule, serviceModule, dbModule, dispatchersModule)
+	includes(viewModelModule, serviceModule, dbModule, dispatchersModule)
 	single<TrainingSessionsRepository> {
 		TrainingSessionsRepositoryImpl(get(), get(named(DispatcherQualifiers.IO)))
 	}
