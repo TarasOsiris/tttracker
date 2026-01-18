@@ -9,14 +9,12 @@ import com.kizitonwose.calendar.core.now
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.LocalTime
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.toLocalDateTime
 import xyz.tleskiv.tt.data.model.enums.SessionType
 import xyz.tleskiv.tt.service.TrainingSessionService
+import xyz.tleskiv.tt.util.ext.toLocalDateTime
 import xyz.tleskiv.tt.viewmodel.sessions.CreateSessionScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.EditSessionScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.EditSessionUiState
-import kotlin.time.Instant
 import kotlin.math.roundToInt
 import kotlin.uuid.Uuid
 
@@ -43,8 +41,7 @@ class EditSessionScreenViewModelImpl(
 				"Session not found"
 			}
 
-			val dateTime =
-				Instant.fromEpochMilliseconds(session.date).toLocalDateTime(TimeZone.currentSystemDefault())
+			val dateTime = session.date.toLocalDateTime()
 			sessionTime = dateTime.time
 			inputData.selectedDate.value = dateTime.date
 			inputData.durationMinutes.intValue = session.duration_min.toInt()

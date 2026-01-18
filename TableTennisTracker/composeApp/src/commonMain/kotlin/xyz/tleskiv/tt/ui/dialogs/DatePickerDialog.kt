@@ -5,12 +5,11 @@ import androidx.compose.runtime.Composable
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.atStartOfDayIn
-import kotlinx.datetime.toLocalDateTime
 import org.jetbrains.compose.resources.stringResource
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.action_cancel
 import tabletennistracker.composeapp.generated.resources.action_ok
-import kotlin.time.Instant
+import xyz.tleskiv.tt.util.ext.toLocalDateUtc
 
 @Composable
 fun DatePickerDialog(
@@ -28,9 +27,7 @@ fun DatePickerDialog(
 			TextButton(
 				onClick = {
 					datePickerState.selectedDateMillis?.let { millis ->
-						val instant = Instant.fromEpochMilliseconds(millis)
-						val date = instant.toLocalDateTime(TimeZone.UTC).date
-						onDateSelected(date)
+						onDateSelected(millis.toLocalDateUtc())
 					}
 				}
 			) {

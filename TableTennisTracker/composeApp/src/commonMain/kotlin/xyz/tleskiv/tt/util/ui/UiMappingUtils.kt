@@ -7,6 +7,26 @@ import org.jetbrains.compose.resources.stringResource
 import tabletennistracker.composeapp.generated.resources.*
 import xyz.tleskiv.tt.data.model.enums.SessionType
 
+enum class HeatMapLevel {
+	Zero,
+	One,
+	Two,
+	Three,
+	Four
+}
+
+@Composable
+fun HeatMapLevel.toColor(): Color {
+	val base = androidx.compose.material3.MaterialTheme.colorScheme.primary
+	return when (this) {
+		HeatMapLevel.Zero -> androidx.compose.material3.MaterialTheme.colorScheme.surfaceVariant
+		HeatMapLevel.One -> base.copy(alpha = 0.25f)
+		HeatMapLevel.Two -> base.copy(alpha = 0.45f)
+		HeatMapLevel.Three -> base.copy(alpha = 0.65f)
+		HeatMapLevel.Four -> base
+	}
+}
+
 @Composable
 fun SessionType?.toColor(): Color = when (this) {
 	SessionType.TECHNIQUE -> Color(0xFF4CAF50)

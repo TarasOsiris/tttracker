@@ -12,14 +12,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -28,11 +26,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.kizitonwose.calendar.compose.CalendarLayoutInfo
 import com.kizitonwose.calendar.compose.HeatMapCalendar
 import com.kizitonwose.calendar.compose.heatmapcalendar.HeatMapCalendarState
@@ -42,59 +38,37 @@ import com.kizitonwose.calendar.core.CalendarDay
 import com.kizitonwose.calendar.core.CalendarMonth
 import com.kizitonwose.calendar.core.firstDayOfWeekFromLocale
 import com.kizitonwose.calendar.core.now
-import com.kizitonwose.calendar.core.plusDays
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.DayOfWeek
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.YearMonth
-import kotlinx.datetime.daysUntil
 import kotlinx.datetime.minus
 import kotlinx.datetime.yearMonth
+import org.koin.compose.viewmodel.koinViewModel
+import xyz.tleskiv.tt.viewmodel.analytics.AnalyticsScreenViewModel
 import xyz.tleskiv.tt.util.ext.displayText
 import xyz.tleskiv.tt.util.ext.shortDisplayText
-
-private enum class Level {
-	Zero,
-	One,
-	Two,
-	Three,
-	Four
-}
+import xyz.tleskiv.tt.util.ui.HeatMapLevel
+import xyz.tleskiv.tt.util.ui.toColor
 
 @Composable
-private fun Level.color(): Color {
-	val base = MaterialTheme.colorScheme.primary
-	return when (this) {
-		Level.Zero -> MaterialTheme.colorScheme.surfaceVariant
-		Level.One -> base.copy(alpha = 0.25f)
-		Level.Two -> base.copy(alpha = 0.45f)
-		Level.Three -> base.copy(alpha = 0.65f)
-		Level.Four -> base
+fun AnalyticsScreen(viewModel: AnalyticsScreenViewModel = koinViewModel()) {
+	val sessionsByDate by viewModel.sessionsByDate.collectAsState()
+	val endDate = remember(sessionsByDate) {
+		sessionsByDate.keys.maxOrNull() ?: LocalDate.now()
 	}
-}
-
-private fun generateRandomData(startDate: LocalDate, endDate: LocalDate): Map<LocalDate, Level> {
-	val levels = Level.entries
-	return (0..startDate.daysUntil(endDate)).associateTo(hashMapOf()) { count ->
-		startDate.plusDays(count) to levels.random()
+	val startDate = remember(sessionsByDate, endDate) {
+		val minDate = sessionsByDate.keys.minOrNull()
+		val rangeStart = endDate.minus(12, DateTimeUnit.MONTH)
+		if (minDate != null && minDate < rangeStart) minDate else rangeStart
 	}
-}
-
-@Composable
-fun AnalyticsScreen() {
-	var refreshKey by remember { mutableIntStateOf(1) }
-	val endDate = remember { LocalDate.now() }
-	val startDate = remember { endDate.minus(12, DateTimeUnit.MONTH) }
-	val data = remember { mutableStateOf<Map<LocalDate, Level>>(emptyMap()) }
-	var selection by remember { mutableStateOf<Pair<LocalDate, Level>?>(null) }
-	LaunchedEffect(startDate, endDate, refreshKey) {
-		selection = null
-		data.value = withContext(Dispatchers.Default) {
-			generateRandomData(startDate, endDate)
-		}
+	val maxCount = remember(sessionsByDate) {
+		sessionsByDate.values.maxOrNull() ?: 0
 	}
+	val data = remember(sessionsByDate, maxCount) {
+		sessionsByDate.mapValues { (_, count) -> levelForCount(count, maxCount) }
+	}
+	var selection by remember { mutableStateOf<LocalDate?>(null) }
 	Column(
 		modifier = Modifier
 			.fillMaxSize()
@@ -117,9 +91,9 @@ fun AnalyticsScreen() {
 					startDate = startDate,
 					endDate = endDate,
 					week = week,
-					level = data.value[day.date] ?: Level.Zero
+					level = data[day.date] ?: HeatMapLevel.Zero
 				) { clicked ->
-					selection = Pair(clicked, data.value[clicked] ?: Level.Zero)
+					selection = clicked
 				}
 			},
 			weekHeader = { WeekHeader(it) },
@@ -130,14 +104,19 @@ fun AnalyticsScreen() {
 				.fillMaxWidth()
 				.padding(horizontal = 44.dp)
 		)
+
+		val totalMinutesByDate by viewModel.totalMinutesByDate.collectAsState()
 		Box(modifier = Modifier.weight(1f)) {
 			BottomContent(
 				modifier = Modifier
 					.fillMaxWidth()
 					.padding(20.dp)
 					.align(Alignment.BottomCenter),
-				selection = selection
-			) { refreshKey += 1 }
+				selection = selection,
+				daySessionCount = selection?.let { sessionsByDate[it] ?: 0 } ?: 0,
+				dayTotalMinutes = selection?.let { totalMinutesByDate[it] ?: 0 } ?: 0,
+				level = selection?.let { data[it] ?: HeatMapLevel.Zero }
+			)
 		}
 	}
 }
@@ -145,38 +124,28 @@ fun AnalyticsScreen() {
 @Composable
 private fun BottomContent(
 	modifier: Modifier = Modifier,
-	selection: Pair<LocalDate, Level>? = null,
-	refresh: (() -> Unit)
+	selection: LocalDate? = null,
+	daySessionCount: Int = 0,
+	dayTotalMinutes: Int = 0,
+	level: HeatMapLevel? = null
 ) {
 	Column(
 		modifier = modifier,
 		verticalArrangement = Arrangement.spacedBy(20.dp)
 	) {
-		if (selection != null) {
+		if (selection != null && level != null) {
 			Row(
 				modifier = Modifier.align(Alignment.CenterHorizontally),
 				verticalAlignment = Alignment.CenterVertically,
 				horizontalArrangement = Arrangement.spacedBy(6.dp)
 			) {
 				Text(
-					text = "Clicked: ${selection.first}",
+					text = "Selected: $selection · $daySessionCount sessions · ${dayTotalMinutes} min",
 					style = MaterialTheme.typography.bodySmall,
 					color = MaterialTheme.colorScheme.onSurface
 				)
-				LevelBox(color = selection.second.color())
+				LevelBox(color = level.toColor())
 			}
-		}
-		Button(
-			modifier = Modifier
-				.fillMaxWidth()
-				.height(50.dp),
-			onClick = refresh
-		) {
-			Text(
-				text = "Generate random data",
-				style = MaterialTheme.typography.labelLarge,
-				fontWeight = FontWeight.Bold
-			)
 		}
 	}
 }
@@ -193,8 +162,8 @@ private fun CalendarInfo(modifier: Modifier = Modifier) {
 			style = MaterialTheme.typography.labelSmall,
 			color = MaterialTheme.colorScheme.onSurfaceVariant
 		)
-		Level.entries.forEach { level ->
-			LevelBox(level.color())
+		HeatMapLevel.entries.forEach { level ->
+			LevelBox(level.toColor())
 		}
 		Text(
 			text = "More",
@@ -212,12 +181,12 @@ private fun Day(
 	startDate: LocalDate,
 	endDate: LocalDate,
 	week: HeatMapWeek,
-	level: Level,
+	level: HeatMapLevel,
 	onClick: (LocalDate) -> Unit
 ) {
 	val weekDates = week.days.map { it.date }
 	if (day.date in startDate..endDate) {
-		LevelBox(level.color()) { onClick(day.date) }
+		LevelBox(level.toColor()) { onClick(day.date) }
 	} else if (weekDates.contains(startDate)) {
 		LevelBox(Color.Transparent)
 	}
@@ -233,6 +202,17 @@ private fun LevelBox(color: Color, onClick: (() -> Unit)? = null) {
 			.background(color = color)
 			.clickable(enabled = onClick != null) { onClick?.invoke() }
 	)
+}
+
+private fun levelForCount(count: Int, maxCount: Int): HeatMapLevel {
+	if (count <= 0 || maxCount <= 0) return HeatMapLevel.Zero
+	val ratio = count.toFloat() / maxCount.toFloat()
+	return when {
+		ratio <= 0.25f -> HeatMapLevel.One
+		ratio <= 0.5f -> HeatMapLevel.Two
+		ratio <= 0.75f -> HeatMapLevel.Three
+		else -> HeatMapLevel.Four
+	}
 }
 
 @Composable

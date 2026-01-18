@@ -5,14 +5,12 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.toLocalDateTime
 import xyz.tleskiv.tt.data.model.enums.SessionType
 import xyz.tleskiv.tt.service.TrainingSessionService
+import xyz.tleskiv.tt.util.ext.toLocalDateTime
 import xyz.tleskiv.tt.viewmodel.sessions.SessionDetailsScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.SessionDetailsUiState
 import xyz.tleskiv.tt.viewmodel.sessions.SessionUiModel
-import kotlin.time.Instant
 import kotlin.uuid.Uuid
 
 class SessionDetailsScreenViewModelImpl(
@@ -32,8 +30,7 @@ class SessionDetailsScreenViewModelImpl(
 			val session = requireNotNull(sessionService.getSessionById(uuid)) {
 				"Session not found"
 			}
-			val dateTime =
-				Instant.fromEpochMilliseconds(session.date).toLocalDateTime(TimeZone.currentSystemDefault())
+			val dateTime = session.date.toLocalDateTime()
 			val uiModel = SessionUiModel(
 				id = session.id,
 				date = dateTime.date,
