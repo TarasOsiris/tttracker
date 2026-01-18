@@ -31,15 +31,14 @@ class UserPreferencesServiceImpl(
 		)
 	}
 
-	override suspend fun setDefaultSessionDuration(minutes: Int) =
-		repository.setPreference(KEY_DEFAULT_SESSION_DURATION_MINUTES, minutes.toString())
-
-	override suspend fun setDefaultRpe(rpe: Int) =
-		repository.setPreference(KEY_DEFAULT_RPE, rpe.toString())
-
-	override suspend fun setDefaultSessionType(sessionType: SessionType) =
-		repository.setPreference(KEY_DEFAULT_SESSION_TYPE, sessionType.dbValue)
-
-	override suspend fun setDefaultNotes(notes: String) =
-		repository.setPreference(KEY_DEFAULT_NOTES, notes)
+	override suspend fun setAllPreferences(preferences: UserPreferences) {
+		repository.setPreferences(
+			mapOf(
+				KEY_DEFAULT_SESSION_DURATION_MINUTES to preferences.defaultSessionDurationMinutes.toString(),
+				KEY_DEFAULT_RPE to preferences.defaultRpe.toString(),
+				KEY_DEFAULT_SESSION_TYPE to preferences.defaultSessionType.dbValue,
+				KEY_DEFAULT_NOTES to preferences.defaultNotes
+			)
+		)
+	}
 }

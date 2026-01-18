@@ -21,9 +21,8 @@ import xyz.tleskiv.tt.ui.widgets.FieldLabel
 import xyz.tleskiv.tt.util.ui.getRpeColor
 import xyz.tleskiv.tt.util.ui.getRpeLabel
 import kotlin.math.roundToInt
-
 @Composable
-fun RpeField(rpeValue: Float, onRpeChange: (Float) -> Unit) {
+fun RpeField(rpeValue: Int, onRpeChange: (Int) -> Unit) {
 	val rpeColor = getRpeColor(rpeValue)
 
 	Column {
@@ -34,7 +33,7 @@ fun RpeField(rpeValue: Float, onRpeChange: (Float) -> Unit) {
 		) {
 			FieldLabel(Res.string.label_intensity_rpe)
 			Text(
-				text = rpeValue.roundToInt().toString(),
+				text = rpeValue.toString(),
 				style = MaterialTheme.typography.titleLarge,
 				color = rpeColor,
 				fontWeight = FontWeight.Bold
@@ -42,8 +41,8 @@ fun RpeField(rpeValue: Float, onRpeChange: (Float) -> Unit) {
 		}
 		Spacer(modifier = Modifier.height(8.dp))
 		Slider(
-			value = rpeValue,
-			onValueChange = onRpeChange,
+			value = rpeValue.toFloat(),
+			onValueChange = { onRpeChange(it.roundToInt()) },
 			valueRange = 1f..10f,
 			steps = 8,
 			modifier = Modifier.fillMaxWidth(),
@@ -59,7 +58,7 @@ fun RpeField(rpeValue: Float, onRpeChange: (Float) -> Unit) {
 				color = MaterialTheme.colorScheme.onSurfaceVariant
 			)
 			Text(
-				text = getRpeLabel(rpeValue.roundToInt()),
+				text = getRpeLabel(rpeValue),
 				style = MaterialTheme.typography.bodySmall,
 				color = rpeColor,
 				fontWeight = FontWeight.Medium

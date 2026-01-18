@@ -15,7 +15,6 @@ import xyz.tleskiv.tt.util.ext.toLocalDateTime
 import xyz.tleskiv.tt.viewmodel.sessions.CreateSessionScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.EditSessionScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.EditSessionUiState
-import kotlin.math.roundToInt
 import kotlin.uuid.Uuid
 
 class EditSessionScreenViewModelImpl(
@@ -45,7 +44,7 @@ class EditSessionScreenViewModelImpl(
 			sessionTime = dateTime.time
 			inputData.selectedDate.value = dateTime.date
 			inputData.durationMinutes.intValue = session.duration_min.toInt()
-			inputData.rpeValue.floatValue = session.rpe.toFloat()
+			inputData.rpeValue.intValue = session.rpe.toInt()
 			inputData.selectedSessionType.value =
 				session.session_type?.let { SessionType.fromDb(it) } ?: SessionType.TECHNIQUE
 			inputData.notes.value = session.notes.orEmpty()
@@ -60,7 +59,7 @@ class EditSessionScreenViewModelImpl(
 				id = sessionUuid,
 				dateTime = LocalDateTime(inputData.selectedDate.value, sessionTime),
 				durationMinutes = inputData.durationMinutes.intValue,
-				rpe = inputData.rpeValue.floatValue.roundToInt(),
+				rpe = inputData.rpeValue.intValue,
 				sessionType = inputData.selectedSessionType.value,
 				notes = inputData.notes.value.takeIf { it.isNotBlank() }
 			)

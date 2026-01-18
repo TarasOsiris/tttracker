@@ -12,6 +12,8 @@ interface UserPreferencesRepository {
 
 	suspend fun setPreference(key: String, value: String)
 
+	suspend fun setPreferences(preferences: Map<String, String>)
+
 	suspend fun deletePreference(key: String)
 
 	suspend fun deleteAllPreferences()

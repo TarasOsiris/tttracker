@@ -23,8 +23,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -49,10 +49,10 @@ fun SettingsScreen(
 	viewModel: SettingsScreenViewModel,
 	onNavigateBack: () -> Unit
 ) {
-	val defaultDuration by viewModel.defaultSessionDuration.collectAsState()
-	val defaultRpe by viewModel.defaultRpe.collectAsState()
-	val defaultSessionType by viewModel.defaultSessionType.collectAsState()
-	val defaultNotes by viewModel.defaultNotes.collectAsState()
+	var defaultDuration by viewModel.inputData.defaultSessionDuration
+	var defaultRpe by viewModel.inputData.defaultRpe
+	var defaultSessionType by viewModel.inputData.defaultSessionType
+	var defaultNotes by viewModel.inputData.defaultNotes
 
 	Column(
 		modifier = Modifier
@@ -74,7 +74,7 @@ fun SettingsScreen(
 				Column(modifier = Modifier.padding(16.dp)) {
 					DefaultDurationSetting(
 						durationMinutes = defaultDuration,
-						onDurationChange = { viewModel.setDefaultSessionDuration(it) }
+						onDurationChange = { defaultDuration = it }
 					)
 
 					HorizontalDivider(
@@ -83,8 +83,8 @@ fun SettingsScreen(
 					)
 
 					RpeField(
-						rpeValue = defaultRpe.toFloat(),
-						onRpeChange = { viewModel.setDefaultRpe(it.roundToInt()) }
+						rpeValue = defaultRpe,
+						onRpeChange = { defaultRpe = it }
 					)
 
 					HorizontalDivider(
@@ -94,7 +94,7 @@ fun SettingsScreen(
 
 					SessionTypeField(
 						selectedType = defaultSessionType,
-						onTypeSelected = { viewModel.setDefaultSessionType(it) }
+						onTypeSelected = { defaultSessionType = it }
 					)
 
 					HorizontalDivider(
@@ -104,7 +104,7 @@ fun SettingsScreen(
 
 					NotesField(
 						notes = defaultNotes,
-						onNotesChange = { viewModel.setDefaultNotes(it) }
+						onNotesChange = { defaultNotes = it }
 					)
 				}
 			}

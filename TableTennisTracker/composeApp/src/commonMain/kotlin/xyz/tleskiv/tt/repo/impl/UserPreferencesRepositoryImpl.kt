@@ -31,6 +31,15 @@ class UserPreferencesRepositoryImpl(
 		database.appDatabaseQueries.insertOrUpdatePreference(key, value, now, now)
 	}
 
+	override suspend fun setPreferences(preferences: Map<String, String>): Unit = withContext(ioDispatcher) {
+		val now = nowMillis
+		database.transaction {
+			preferences.forEach { (key, value) ->
+				database.appDatabaseQueries.insertOrUpdatePreference(key, value, now, now)
+			}
+		}
+	}
+
 	override suspend fun deletePreference(key: String): Unit = withContext(ioDispatcher) {
 		database.appDatabaseQueries.deletePreferenceByKey(key)
 	}

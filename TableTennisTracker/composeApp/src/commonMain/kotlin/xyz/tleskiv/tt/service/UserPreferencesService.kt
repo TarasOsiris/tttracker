@@ -5,13 +5,7 @@ import xyz.tleskiv.tt.data.model.enums.SessionType
 interface UserPreferencesService {
 	suspend fun getAllPreferences(): UserPreferences
 
-	suspend fun setDefaultSessionDuration(minutes: Int)
-
-	suspend fun setDefaultRpe(rpe: Int)
-
-	suspend fun setDefaultSessionType(sessionType: SessionType)
-
-	suspend fun setDefaultNotes(notes: String)
+	suspend fun setAllPreferences(preferences: UserPreferences)
 
 	companion object {
 		const val KEY_DEFAULT_SESSION_DURATION_MINUTES = "default_session_duration_minutes"

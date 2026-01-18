@@ -17,7 +17,7 @@ abstract class CreateSessionScreenViewModel : ViewModelBase() {
 		val selectedDate = mutableStateOf(initialDate)
 		val durationMinutes = mutableIntStateOf(initialDurationMinutes)
 		val selectedSessionType = mutableStateOf<SessionType>(SessionType.TECHNIQUE)
-		val rpeValue = mutableFloatStateOf(5f)
+		val rpeValue = mutableIntStateOf(5)
 		val notes = mutableStateOf("")
 		val showDatePicker = mutableStateOf(false)
 

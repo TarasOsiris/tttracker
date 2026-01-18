@@ -9,8 +9,6 @@ import kotlinx.datetime.LocalTime
 import xyz.tleskiv.tt.service.TrainingSessionService
 import xyz.tleskiv.tt.service.UserPreferencesService
 import xyz.tleskiv.tt.viewmodel.sessions.CreateSessionScreenViewModel
-import kotlin.math.roundToInt
-
 class CreateSessionScreenViewModelImpl(
 	date: LocalDate?,
 	private val sessionService: TrainingSessionService,
@@ -24,7 +22,7 @@ class CreateSessionScreenViewModelImpl(
 		viewModelScope.launch {
 			val prefs = preferencesService.getAllPreferences()
 			inputData.durationMinutes.intValue = prefs.defaultSessionDurationMinutes
-			inputData.rpeValue.floatValue = prefs.defaultRpe.toFloat()
+			inputData.rpeValue.intValue = prefs.defaultRpe
 			inputData.selectedSessionType.value = prefs.defaultSessionType
 			inputData.notes.value = prefs.defaultNotes
 		}
@@ -35,7 +33,7 @@ class CreateSessionScreenViewModelImpl(
 			sessionService.addSession(
 				dateTime = LocalDateTime(inputData.selectedDate.value, LocalTime(12, 0)),
 				durationMinutes = inputData.durationMinutes.intValue,
-				rpe = inputData.rpeValue.floatValue.roundToInt(),
+				rpe = inputData.rpeValue.intValue,
 				sessionType = inputData.selectedSessionType.value,
 				notes = inputData.notes.value.takeIf { it.isNotBlank() }
 			)
