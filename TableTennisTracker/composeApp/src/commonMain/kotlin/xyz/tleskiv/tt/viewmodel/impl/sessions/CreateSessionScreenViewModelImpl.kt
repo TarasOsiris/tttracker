@@ -24,6 +24,7 @@ class CreateSessionScreenViewModelImpl(
 		viewModelScope.launch {
 			val prefs = preferencesService.getAllPreferences()
 			inputData.durationMinutes.intValue = prefs.defaultSessionDurationMinutes
+			inputData.rpeValue.floatValue = prefs.defaultRpe.toFloat()
 		}
 	}
 

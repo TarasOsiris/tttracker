@@ -78,8 +78,8 @@
     <string name="profile_menu_support">Підтримка</string>
 
     <!-- Settings Screen -->
-    <string name="settings_section_sessions">Тренування</string>
-    <string name="settings_default_duration">Тривалість за замовчуванням</string>
+    <string name="settings_section_sessions">Налаштування тренувань</string>
+    <string name="settings_default_duration">Тривалість тренування</string>
     <string name="settings_default_duration_description">Початкова тривалість при створенні нових тренувань</string>
 
     <!-- Home Screen -->

@@ -9,7 +9,7 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
 import androidx.navigation3.ui.NavDisplay
 
-private fun directionalMetadata(
+private fun animationMetadata(
 	forwardDirection: SlideDirection,
 	forwardSlideInMillis: Int,
 	forwardSlideOutMillis: Int,
@@ -60,7 +60,8 @@ private fun directionalMetadata(
 	return forwardSpec + popSpec + predictivePopSpec
 }
 
-val createSessionEntryMetadata = directionalMetadata(
+// Generic metadata for modal-style entries that slide up from the bottom and down when popped.
+val modalEntryTransitionMetadata = animationMetadata(
 	forwardDirection = SlideDirection.Up,
 	forwardSlideInMillis = 320,
 	forwardSlideOutMillis = 260,
@@ -73,7 +74,8 @@ val createSessionEntryMetadata = directionalMetadata(
 	popFadeOutMillis = 120
 )
 
-val sessionDetailsEntryMetadata = directionalMetadata(
+// Generic metadata for lateral entries that slide in from the side (used for details/settings screens).
+val lateralEntryTransitionMetadata = animationMetadata(
 	forwardDirection = SlideDirection.Left,
 	forwardSlideInMillis = 300,
 	forwardSlideOutMillis = 240,

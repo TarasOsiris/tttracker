@@ -8,15 +8,15 @@ import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.parameter.parametersOf
-import xyz.tleskiv.tt.ui.nav.createSessionEntryMetadata
 import xyz.tleskiv.tt.ui.nav.instantTransitionMetadata
+import xyz.tleskiv.tt.ui.nav.lateralEntryTransitionMetadata
+import xyz.tleskiv.tt.ui.nav.modalEntryTransitionMetadata
 import xyz.tleskiv.tt.ui.nav.routes.CoreAppRoute
 import xyz.tleskiv.tt.ui.nav.routes.CreateSessionRoute
 import xyz.tleskiv.tt.ui.nav.routes.EditSessionRoute
 import xyz.tleskiv.tt.ui.nav.routes.SessionDetailsRoute
 import xyz.tleskiv.tt.ui.nav.routes.SettingsRoute
 import xyz.tleskiv.tt.ui.nav.routes.TopLevelRoute
-import xyz.tleskiv.tt.ui.nav.sessionDetailsEntryMetadata
 import xyz.tleskiv.tt.ui.screens.CreateSessionScreen
 import xyz.tleskiv.tt.ui.screens.EditSessionScreen
 import xyz.tleskiv.tt.ui.screens.SessionDetailsScreen
@@ -41,7 +41,7 @@ fun TopNavDisplay(topLevelBackStack: SnapshotStateList<TopLevelRoute>) {
 					TabsNavDisplay(topLevelBackStack)
 				}
 
-				is CreateSessionRoute -> NavEntry(key, metadata = createSessionEntryMetadata) {
+				is CreateSessionRoute -> NavEntry(key, metadata = modalEntryTransitionMetadata) {
 					CreateSessionScreen(
 						viewModel = koinViewModel<CreateSessionScreenViewModel> { parametersOf(key.initialDate) },
 						onNavigateBack = { topLevelBackStack.removeLastOrNull() }
@@ -55,7 +55,7 @@ fun TopNavDisplay(topLevelBackStack: SnapshotStateList<TopLevelRoute>) {
 					)
 				}
 
-				is SessionDetailsRoute -> NavEntry(key, metadata = sessionDetailsEntryMetadata) {
+				is SessionDetailsRoute -> NavEntry(key, metadata = lateralEntryTransitionMetadata) {
 					SessionDetailsScreen(
 						viewModel = koinViewModel<SessionDetailsScreenViewModel> { parametersOf(key.sessionId) },
 						onNavigateBack = { topLevelBackStack.removeLastOrNull() },
@@ -69,15 +69,11 @@ fun TopNavDisplay(topLevelBackStack: SnapshotStateList<TopLevelRoute>) {
 					)
 				}
 
-				is SettingsRoute -> NavEntry(key, metadata = sessionDetailsEntryMetadata) {
+				is SettingsRoute -> NavEntry(key, metadata = lateralEntryTransitionMetadata) {
 					SettingsScreen(
 						viewModel = koinViewModel<SettingsScreenViewModel>(),
 						onNavigateBack = { topLevelBackStack.removeLastOrNull() }
 					)
-				}
-
-				else -> {
-					error("Unknown route: $key")
 				}
 			}
 		}

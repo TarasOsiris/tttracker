@@ -13,6 +13,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -37,6 +38,7 @@ import tabletennistracker.composeapp.generated.resources.settings_default_durati
 import tabletennistracker.composeapp.generated.resources.settings_section_sessions
 import tabletennistracker.composeapp.generated.resources.suffix_minutes_value
 import xyz.tleskiv.tt.ui.widgets.ContentCard
+import xyz.tleskiv.tt.ui.widgets.fields.RpeField
 import xyz.tleskiv.tt.viewmodel.settings.SettingsScreenViewModel
 import kotlin.math.roundToInt
 
@@ -46,6 +48,7 @@ fun SettingsScreen(
 	onNavigateBack: () -> Unit
 ) {
 	val defaultDuration by viewModel.defaultSessionDuration.collectAsState()
+	val defaultRpe by viewModel.defaultRpe.collectAsState()
 
 	Column(
 		modifier = Modifier
@@ -68,6 +71,16 @@ fun SettingsScreen(
 					DefaultDurationSetting(
 						durationMinutes = defaultDuration,
 						onDurationChange = { viewModel.setDefaultSessionDuration(it) }
+					)
+
+					HorizontalDivider(
+						modifier = Modifier.padding(vertical = 16.dp),
+						color = MaterialTheme.colorScheme.outlineVariant
+					)
+
+					RpeField(
+						rpeValue = defaultRpe.toFloat(),
+						onRpeChange = { viewModel.setDefaultRpe(it.roundToInt()) }
 					)
 				}
 			}

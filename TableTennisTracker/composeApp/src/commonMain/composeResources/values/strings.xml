@@ -79,8 +79,8 @@
     <string name="profile_menu_support">Support</string>
 
     <!-- Settings Screen -->
-    <string name="settings_section_sessions">Sessions</string>
-    <string name="settings_default_duration">Default session duration</string>
+    <string name="settings_section_sessions">Training session defaults</string>
+    <string name="settings_default_duration">Session duration</string>
     <string name="settings_default_duration_description">Initial duration when creating new sessions</string>
 
     <!-- Home Screen -->

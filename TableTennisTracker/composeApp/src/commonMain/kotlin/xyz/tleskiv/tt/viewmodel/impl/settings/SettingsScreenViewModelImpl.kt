@@ -15,10 +15,14 @@ class SettingsScreenViewModelImpl(
 	private val _defaultSessionDuration = MutableStateFlow(UserPreferencesService.DEFAULT_SESSION_DURATION_MINUTES)
 	override val defaultSessionDuration: StateFlow<Int> = _defaultSessionDuration.asStateFlow()
 
+	private val _defaultRpe = MutableStateFlow(UserPreferencesService.DEFAULT_RPE)
+	override val defaultRpe: StateFlow<Int> = _defaultRpe.asStateFlow()
+
 	init {
 		viewModelScope.launch {
 			val prefs = userPreferencesService.getAllPreferences()
 			_defaultSessionDuration.value = prefs.defaultSessionDurationMinutes
+			_defaultRpe.value = prefs.defaultRpe
 		}
 	}
 
@@ -26,6 +30,13 @@ class SettingsScreenViewModelImpl(
 		viewModelScope.launch {
 			userPreferencesService.setDefaultSessionDuration(minutes)
 			_defaultSessionDuration.value = minutes
+		}
+	}
+
+	override fun setDefaultRpe(rpe: Int) {
+		viewModelScope.launch {
+			userPreferencesService.setDefaultRpe(rpe)
+			_defaultRpe.value = rpe
 		}
 	}
 }
