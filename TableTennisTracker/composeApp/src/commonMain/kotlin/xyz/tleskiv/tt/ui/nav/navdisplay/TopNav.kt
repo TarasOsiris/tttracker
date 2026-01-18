@@ -14,13 +14,16 @@ import xyz.tleskiv.tt.ui.nav.routes.CoreAppRoute
 import xyz.tleskiv.tt.ui.nav.routes.CreateSessionRoute
 import xyz.tleskiv.tt.ui.nav.routes.EditSessionRoute
 import xyz.tleskiv.tt.ui.nav.routes.SessionDetailsRoute
+import xyz.tleskiv.tt.ui.nav.routes.SettingsRoute
 import xyz.tleskiv.tt.ui.nav.routes.TopLevelRoute
 import xyz.tleskiv.tt.ui.nav.sessionDetailsEntryMetadata
 import xyz.tleskiv.tt.ui.screens.CreateSessionScreen
 import xyz.tleskiv.tt.ui.screens.EditSessionScreen
 import xyz.tleskiv.tt.ui.screens.SessionDetailsScreen
+import xyz.tleskiv.tt.ui.screens.SettingsScreen
 import xyz.tleskiv.tt.viewmodel.sessions.CreateSessionScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.SessionDetailsScreenViewModel
+import xyz.tleskiv.tt.viewmodel.settings.SettingsScreenViewModel
 
 
 @Composable
@@ -63,6 +66,13 @@ fun TopNavDisplay(topLevelBackStack: SnapshotStateList<TopLevelRoute>) {
 								topLevelBackStack.add(EditSessionRoute(sessionId))
 							}
 						}
+					)
+				}
+
+				is SettingsRoute -> NavEntry(key, metadata = sessionDetailsEntryMetadata) {
+					SettingsScreen(
+						viewModel = koinViewModel<SettingsScreenViewModel>(),
+						onNavigateBack = { topLevelBackStack.removeLastOrNull() }
 					)
 				}
 

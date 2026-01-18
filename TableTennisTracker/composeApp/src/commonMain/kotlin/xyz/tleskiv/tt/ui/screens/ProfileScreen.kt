@@ -46,12 +46,12 @@ import tabletennistracker.composeapp.generated.resources.profile_sign_in_prompt
 import xyz.tleskiv.tt.ui.widgets.ContentCard
 
 @Composable
-fun ProfileScreen() {
+fun ProfileScreen(onNavigateToSettings: () -> Unit = {}) {
 	val menuItems = listOf(
-		ProfileMenuItem(Res.string.action_settings, Icons.Outlined.Settings),
-		ProfileMenuItem(Res.string.profile_menu_privacy, Icons.Outlined.Lock),
-		ProfileMenuItem(Res.string.profile_menu_about, Icons.Outlined.Info),
-		ProfileMenuItem(Res.string.profile_menu_support, Icons.AutoMirrored.Outlined.HelpOutline)
+		ProfileMenuItem(Res.string.action_settings, Icons.Outlined.Settings, onNavigateToSettings),
+		ProfileMenuItem(Res.string.profile_menu_privacy, Icons.Outlined.Lock, {}),
+		ProfileMenuItem(Res.string.profile_menu_about, Icons.Outlined.Info, {}),
+		ProfileMenuItem(Res.string.profile_menu_support, Icons.AutoMirrored.Outlined.HelpOutline, {})
 	)
 
 	Column(
@@ -66,7 +66,7 @@ fun ProfileScreen() {
 			ContentCard {
 				Column(modifier = Modifier.fillMaxWidth()) {
 					menuItems.forEachIndexed { index, item ->
-						ProfileMenuRow(item = item, onClick = { })
+						ProfileMenuRow(item = item, onClick = item.onClick)
 						if (index < menuItems.lastIndex) {
 							HorizontalDivider(
 								modifier = Modifier.padding(start = 52.dp),
@@ -131,7 +131,8 @@ private fun ProfileHeader() {
 
 private data class ProfileMenuItem(
 	val title: StringResource,
-	val icon: ImageVector
+	val icon: ImageVector,
+	val onClick: () -> Unit
 )
 
 @Composable

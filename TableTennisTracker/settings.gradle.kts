@@ -32,7 +32,14 @@ plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
 
-include(":androidApp")
-include(":composeApp")
-include(":shared")
-include(":server")
+fun includeIfExists(name: String) {
+    val projectDir = file(name)
+    if (projectDir.isDirectory) {
+        include(":$name")
+    }
+}
+
+includeIfExists("androidApp")
+includeIfExists("composeApp")
+includeIfExists("shared")
+includeIfExists("server")
