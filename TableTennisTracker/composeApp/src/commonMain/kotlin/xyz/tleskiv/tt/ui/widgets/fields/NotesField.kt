@@ -9,19 +9,21 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.counter_notes
 import tabletennistracker.composeapp.generated.resources.hint_notes
-import tabletennistracker.composeapp.generated.resources.label_notes_optional
 import xyz.tleskiv.tt.ui.widgets.FieldLabel
 
 @Composable
 fun NotesField(
-	notes: String, onNotesChange: (String) -> Unit
+	labelRes: StringResource,
+	notes: String,
+	onNotesChange: (String) -> Unit
 ) {
 	Column {
-		FieldLabel(Res.string.label_notes_optional)
+		FieldLabel(labelRes)
 		Spacer(modifier = Modifier.height(8.dp))
 		OutlinedTextField(
 			value = notes,

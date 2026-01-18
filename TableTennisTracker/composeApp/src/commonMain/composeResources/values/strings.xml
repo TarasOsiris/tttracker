@@ -47,6 +47,7 @@
     <string name="label_session_type">Session Type</string>
     <string name="label_intensity_rpe">Intensity (RPE)</string>
     <string name="label_notes_optional">Notes (optional)</string>
+    <string name="label_default_notes">Default notes</string>
     <string name="hint_notes">Add notes about your session...</string>
     <string name="counter_notes">%1$d/1000</string>
 

@@ -24,6 +24,7 @@ import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.action_edit
 import tabletennistracker.composeapp.generated.resources.action_save
 import tabletennistracker.composeapp.generated.resources.label_date
+import tabletennistracker.composeapp.generated.resources.label_notes_optional
 import xyz.tleskiv.tt.ui.dialogs.DatePickerDialog
 import xyz.tleskiv.tt.ui.widgets.BackButton
 import xyz.tleskiv.tt.ui.widgets.fields.DatePickerField
@@ -117,5 +118,9 @@ private fun EditSessionScreenContent(inputData: CreateSessionScreenViewModel.Inp
 
 	RpeField(rpeValue = rpeValue, onRpeChange = { rpeValue = it })
 
-	NotesField(notes = notes, onNotesChange = { notes = it })
+	NotesField(
+		labelRes = Res.string.label_notes_optional,
+		notes = notes,
+		onNotesChange = { notes = it }
+	)
 }

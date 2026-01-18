@@ -28,6 +28,7 @@ import org.jetbrains.compose.resources.stringResource
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.action_back
 import tabletennistracker.composeapp.generated.resources.action_settings
+import tabletennistracker.composeapp.generated.resources.label_default_notes
 import tabletennistracker.composeapp.generated.resources.settings_section_sessions
 import xyz.tleskiv.tt.ui.widgets.ContentCard
 import xyz.tleskiv.tt.ui.widgets.fields.DurationField
@@ -92,6 +93,7 @@ fun SettingsScreen(
 					)
 
 					NotesField(
+						labelRes = Res.string.label_default_notes,
 						notes = defaultNotes,
 						onNotesChange = { defaultNotes = it }
 					)

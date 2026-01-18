@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.label_date
+import tabletennistracker.composeapp.generated.resources.label_notes_optional
 import tabletennistracker.composeapp.generated.resources.title_create_session
 import xyz.tleskiv.tt.ui.dialogs.DatePickerDialog
 import xyz.tleskiv.tt.ui.widgets.BottomBarButtons
@@ -81,5 +82,8 @@ fun CreateSessionScreenContent(inputData: CreateSessionScreenViewModel.InputData
 	RpeField(rpeValue = rpeValue, onRpeChange = { rpeValue = it })
 
 	NotesField(
-		notes = notes, onNotesChange = { notes = it })
+		labelRes = Res.string.label_notes_optional,
+		notes = notes,
+		onNotesChange = { notes = it }
+	)
 }
