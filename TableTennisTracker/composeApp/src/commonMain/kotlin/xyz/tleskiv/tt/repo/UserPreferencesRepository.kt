@@ -5,12 +5,15 @@ import xyz.tleskiv.tt.db.User_preferences
 
 interface UserPreferencesRepository {
 	val allPreferences: Flow<List<User_preferences>>
+	val themeMode: Flow<xyz.tleskiv.tt.model.AppThemeMode>
 
 	suspend fun getAllPreferences(): Map<String, String>
 
 	suspend fun getPreference(key: String): String?
 
 	suspend fun setPreference(key: String, value: String)
+	
+	suspend fun setThemeMode(mode: xyz.tleskiv.tt.model.AppThemeMode)
 
 	suspend fun setPreferences(preferences: Map<String, String>)
 

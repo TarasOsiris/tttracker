@@ -57,26 +57,6 @@ fun TabsNavDisplay(topLevelBackStack: SnapshotStateList<TopLevelRoute>) {
 		topBar = {
 			TopAppBar(
 				title = { Text(currentRoute?.let { stringResource(it.label) } ?: "") },
-				actions = {
-					IconButton(onClick = { /* Search action */ }) {
-						Icon(
-							vectorResource(Res.drawable.ic_search),
-							contentDescription = stringResource(Res.string.action_search)
-						)
-					}
-					IconButton(onClick = { /* Settings action */ }) {
-						Icon(
-							vectorResource(Res.drawable.ic_settings),
-							contentDescription = stringResource(Res.string.action_settings)
-						)
-					}
-					IconButton(onClick = { /* More options */ }) {
-						Icon(
-							vectorResource(Res.drawable.ic_more_vert),
-							contentDescription = stringResource(Res.string.action_more)
-						)
-					}
-				},
 				colors = TopAppBarDefaults.topAppBarColors(
 					containerColor = MaterialTheme.colorScheme.surface
 				)

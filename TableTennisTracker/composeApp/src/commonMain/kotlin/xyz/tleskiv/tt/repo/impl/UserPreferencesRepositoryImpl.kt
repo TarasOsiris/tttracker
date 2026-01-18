@@ -5,8 +5,10 @@ import app.cash.sqldelight.coroutines.mapToList
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.flow.map
 import xyz.tleskiv.tt.db.AppDatabase
 import xyz.tleskiv.tt.db.User_preferences
+import xyz.tleskiv.tt.model.AppThemeMode
 import xyz.tleskiv.tt.repo.UserPreferencesRepository
 import xyz.tleskiv.tt.util.nowMillis
 
@@ -15,8 +17,20 @@ class UserPreferencesRepositoryImpl(
 	private val ioDispatcher: CoroutineDispatcher
 ) : UserPreferencesRepository {
 
+	private val KEY_AVATAR_URI = "avatar_uri"
+	private val KEY_APP_THEME = "app_theme"
+
 	override val allPreferences: Flow<List<User_preferences>> =
 		database.appDatabaseQueries.selectAllPreferences().asFlow().mapToList(ioDispatcher)
+
+	override val themeMode: Flow<AppThemeMode> = allPreferences.map { prefs ->
+		val themeString = prefs.find { it.key == KEY_APP_THEME }?.value_
+		try {
+			if (themeString != null) AppThemeMode.valueOf(themeString) else AppThemeMode.SYSTEM
+		} catch (e: Exception) {
+			AppThemeMode.SYSTEM
+		}
+	}
 
 	override suspend fun getAllPreferences(): Map<String, String> = withContext(ioDispatcher) {
 		database.appDatabaseQueries.selectAllPreferences().executeAsList().associate { it.key to it.value_ }
@@ -29,6 +43,10 @@ class UserPreferencesRepositoryImpl(
 	override suspend fun setPreference(key: String, value: String): Unit = withContext(ioDispatcher) {
 		val now = nowMillis
 		database.appDatabaseQueries.insertOrUpdatePreference(key, value, now, now)
+	}
+
+	override suspend fun setThemeMode(mode: AppThemeMode) {
+		setPreference(KEY_APP_THEME, mode.name)
 	}
 
 	override suspend fun setPreferences(preferences: Map<String, String>): Unit = withContext(ioDispatcher) {
