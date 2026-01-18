@@ -22,6 +22,7 @@ android {
 		targetSdk = libs.versions.android.targetSdk.get().toInt()
 		versionCode = 1
 		versionName = "1.0"
+		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 	}
 
 	packaging {
@@ -54,4 +55,9 @@ dependencies {
 	implementation(libs.koin.android)
 
 	debugImplementation(compose.uiTooling)
+	debugImplementation(libs.androidx.compose.ui.test.manifest)
+
+	androidTestImplementation(libs.androidx.testExt.junit)
+	androidTestImplementation(libs.androidx.espresso.core)
+	androidTestImplementation(libs.androidx.compose.ui.test.junit4)
 }

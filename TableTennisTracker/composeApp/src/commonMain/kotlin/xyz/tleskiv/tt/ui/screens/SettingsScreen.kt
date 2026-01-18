@@ -38,7 +38,9 @@ import tabletennistracker.composeapp.generated.resources.settings_default_durati
 import tabletennistracker.composeapp.generated.resources.settings_section_sessions
 import tabletennistracker.composeapp.generated.resources.suffix_minutes_value
 import xyz.tleskiv.tt.ui.widgets.ContentCard
+import xyz.tleskiv.tt.ui.widgets.fields.NotesField
 import xyz.tleskiv.tt.ui.widgets.fields.RpeField
+import xyz.tleskiv.tt.ui.widgets.fields.SessionTypeField
 import xyz.tleskiv.tt.viewmodel.settings.SettingsScreenViewModel
 import kotlin.math.roundToInt
 
@@ -49,6 +51,8 @@ fun SettingsScreen(
 ) {
 	val defaultDuration by viewModel.defaultSessionDuration.collectAsState()
 	val defaultRpe by viewModel.defaultRpe.collectAsState()
+	val defaultSessionType by viewModel.defaultSessionType.collectAsState()
+	val defaultNotes by viewModel.defaultNotes.collectAsState()
 
 	Column(
 		modifier = Modifier
@@ -81,6 +85,26 @@ fun SettingsScreen(
 					RpeField(
 						rpeValue = defaultRpe.toFloat(),
 						onRpeChange = { viewModel.setDefaultRpe(it.roundToInt()) }
+					)
+
+					HorizontalDivider(
+						modifier = Modifier.padding(vertical = 16.dp),
+						color = MaterialTheme.colorScheme.outlineVariant
+					)
+
+					SessionTypeField(
+						selectedType = defaultSessionType,
+						onTypeSelected = { viewModel.setDefaultSessionType(it) }
+					)
+
+					HorizontalDivider(
+						modifier = Modifier.padding(vertical = 16.dp),
+						color = MaterialTheme.colorScheme.outlineVariant
+					)
+
+					NotesField(
+						notes = defaultNotes,
+						onNotesChange = { viewModel.setDefaultNotes(it) }
 					)
 				}
 			}

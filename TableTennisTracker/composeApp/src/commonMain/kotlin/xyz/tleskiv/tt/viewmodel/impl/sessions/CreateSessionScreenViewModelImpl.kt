@@ -25,6 +25,8 @@ class CreateSessionScreenViewModelImpl(
 			val prefs = preferencesService.getAllPreferences()
 			inputData.durationMinutes.intValue = prefs.defaultSessionDurationMinutes
 			inputData.rpeValue.floatValue = prefs.defaultRpe.toFloat()
+			inputData.selectedSessionType.value = prefs.defaultSessionType
+			inputData.notes.value = prefs.defaultNotes
 		}
 	}
 
