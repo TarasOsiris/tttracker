@@ -14,7 +14,9 @@
       "WebFetch(domain:github.com)",
       "mcp__ide__getDiagnostics",
       "WebFetch(domain:raw.githubusercontent.com)",
-      "Bash(tree:*)"
+      "Bash(tree:*)",
+      "Bash(bash gradlew:*)",
+      "Bash(chmod:*)"
     ]
   }
 }

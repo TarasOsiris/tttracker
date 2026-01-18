@@ -70,6 +70,8 @@
     <string name="analytics_placeholder">Тут з\'явиться аналітика вашої продуктивності</string>
 
     <!-- Profile Screen -->
+    <string name="profile_guest_user">Гість</string>
+    <string name="profile_sign_in_prompt">Увійдіть для синхронізації даних</string>
     <string name="profile_placeholder">Тут з\'являться налаштування вашого профілю</string>
     <string name="profile_menu_privacy">Приватність</string>
     <string name="profile_menu_about">Про застосунок</string>
