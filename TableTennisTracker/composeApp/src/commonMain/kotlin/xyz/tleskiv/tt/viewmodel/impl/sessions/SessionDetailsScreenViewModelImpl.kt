@@ -28,27 +28,21 @@ class SessionDetailsScreenViewModelImpl(
 
 	private fun loadSession(sessionId: String) {
 		viewModelScope.launch {
-			try {
-				val uuid = Uuid.parse(sessionId)
-				val session = sessionService.getSessionById(uuid)
-				if (session != null) {
-					val dateTime =
-						Instant.fromEpochMilliseconds(session.date).toLocalDateTime(TimeZone.currentSystemDefault())
-					val uiModel = SessionUiModel(
-						id = session.id,
-						date = dateTime.date,
-						durationMinutes = session.duration_min.toInt(),
-						sessionType = session.session_type?.let { SessionType.fromDb(it) },
-						rpe = session.rpe.toInt(),
-						notes = session.notes
-					)
-					_uiState.value = SessionDetailsUiState(session = uiModel, isLoading = false)
-				} else {
-					_uiState.value = SessionDetailsUiState(isLoading = false, error = "Session not found")
-				}
-			} catch (e: Exception) {
-				_uiState.value = SessionDetailsUiState(isLoading = false, error = "Invalid session ID")
+			val uuid = Uuid.parse(sessionId)
+			val session = requireNotNull(sessionService.getSessionById(uuid)) {
+				"Session not found"
 			}
+			val dateTime =
+				Instant.fromEpochMilliseconds(session.date).toLocalDateTime(TimeZone.currentSystemDefault())
+			val uiModel = SessionUiModel(
+				id = session.id,
+				date = dateTime.date,
+				durationMinutes = session.duration_min.toInt(),
+				sessionType = session.session_type?.let { SessionType.fromDb(it) },
+				rpe = session.rpe.toInt(),
+				notes = session.notes
+			)
+			_uiState.value = SessionDetailsUiState(session = uiModel, isLoading = false)
 		}
 	}
 }

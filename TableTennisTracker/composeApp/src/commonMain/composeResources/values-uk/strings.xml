@@ -11,8 +11,8 @@
     <string name="action_ok">ОК</string>
     <string name="action_cancel">Скасувати</string>
     <string name="action_change">Змінити</string>
-    <string name="action_edit">Редагувати тренування</string>
-    <string name="action_save">Зберегти тренування</string>
+    <string name="action_edit">Редагувати</string>
+    <string name="action_save">Зберегти</string>
     <string name="action_add_session">Додати тренування</string>
     <string name="action_search">Пошук</string>
     <string name="action_settings">Налаштування</string>

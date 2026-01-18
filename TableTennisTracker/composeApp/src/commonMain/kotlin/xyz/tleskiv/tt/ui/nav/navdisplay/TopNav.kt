@@ -22,6 +22,7 @@ import xyz.tleskiv.tt.ui.screens.EditSessionScreen
 import xyz.tleskiv.tt.ui.screens.SessionDetailsScreen
 import xyz.tleskiv.tt.ui.screens.SettingsScreen
 import xyz.tleskiv.tt.viewmodel.sessions.CreateSessionScreenViewModel
+import xyz.tleskiv.tt.viewmodel.sessions.EditSessionScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.SessionDetailsScreenViewModel
 import xyz.tleskiv.tt.viewmodel.settings.SettingsScreenViewModel
 
@@ -50,7 +51,7 @@ fun TopNavDisplay(topLevelBackStack: SnapshotStateList<TopLevelRoute>) {
 
 				is EditSessionRoute -> NavEntry(key, metadata = instantTransitionMetadata) {
 					EditSessionScreen(
-						sessionId = key.sessionId,
+						viewModel = koinViewModel<EditSessionScreenViewModel> { parametersOf(key.sessionId) },
 						onClose = { topLevelBackStack.removeLastOrNull() }
 					)
 				}
