@@ -29,4 +29,6 @@ interface TrainingSessionService {
 	suspend fun getAllSessions(): List<Training_session>
 
 	suspend fun getSessionById(id: Uuid): Training_session?
+
+	suspend fun deleteSession(id: Uuid)
 }

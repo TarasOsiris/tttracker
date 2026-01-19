@@ -71,7 +71,8 @@ fun TopNavDisplay(topLevelBackStack: SnapshotStateList<TopLevelRoute>) {
 							} else {
 								topLevelBackStack.add(EditSessionRoute(sessionId))
 							}
-						}
+						},
+						onDeleted = { topLevelBackStack.removeLastOrNull() }
 					)
 				}
 

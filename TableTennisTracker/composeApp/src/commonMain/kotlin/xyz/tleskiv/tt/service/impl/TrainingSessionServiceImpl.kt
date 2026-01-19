@@ -58,5 +58,7 @@ class TrainingSessionServiceImpl(
 		return repository.getSessionById(id)
 	}
 
-
+	override suspend fun deleteSession(id: Uuid) {
+		repository.deleteSession(id)
+	}
 }

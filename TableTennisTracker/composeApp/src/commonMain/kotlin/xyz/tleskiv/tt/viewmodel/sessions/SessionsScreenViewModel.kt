@@ -1,5 +1,9 @@
 package xyz.tleskiv.tt.viewmodel.sessions
 
+import androidx.compose.runtime.Stable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.datetime.LocalDate
 import xyz.tleskiv.tt.data.model.enums.SessionType
@@ -17,4 +21,10 @@ data class SessionUiModel(
 
 abstract class SessionsScreenViewModel : ViewModelBase() {
 	abstract val sessions: StateFlow<Map<LocalDate, List<SessionUiModel>>>
+	abstract val inputData: InputData
+
+	@Stable
+	class InputData {
+		var isWeekMode by mutableStateOf(true)
+	}
 }

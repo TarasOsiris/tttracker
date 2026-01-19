@@ -124,7 +124,7 @@ fun SessionsScreen(
 	val startYearMonth = remember { currentYearMonth.minusMonths(CALENDAR_RANGE_MONTHS) }
 	val endYearMonth = remember { currentYearMonth.plusMonths(CALENDAR_RANGE_MONTHS) }
 
-	var isWeekMode by remember { mutableStateOf(true) }
+	val inputData = viewModel.inputData
 
 	val monthState = rememberCalendarState(
 		startMonth = startYearMonth,
@@ -141,7 +141,7 @@ fun SessionsScreen(
 		firstDayOfWeek = daysOfWeek.first()
 	)
 
-	val visibleYearMonth = if (isWeekMode) {
+	val visibleYearMonth = if (inputData.isWeekMode) {
 		weekState.firstVisibleWeek.days.first().date.yearMonth
 	} else {
 		monthState.firstVisibleMonth.yearMonth
@@ -165,15 +165,15 @@ fun SessionsScreen(
 		}
 		state.actions = {
 			WeekMonthToggle(
-				isWeekMode = isWeekMode,
+				isWeekMode = inputData.isWeekMode,
 				onToggle = {
 					coroutineScope.launch {
-						if (isWeekMode) {
+						if (inputData.isWeekMode) {
 							monthState.scrollToMonth(selectedDate.yearMonth)
 						} else {
 							weekState.scrollToWeek(selectedDate)
 						}
-						isWeekMode = !isWeekMode
+						inputData.isWeekMode = !inputData.isWeekMode
 					}
 				}
 			)
@@ -199,7 +199,7 @@ fun SessionsScreen(
 				currentDate = currentDate,
 				selectedDate = selectedDate,
 				sessionsByDate = sessionsByDate,
-				isWeekMode = isWeekMode,
+				isWeekMode = inputData.isWeekMode,
 				monthState = monthState,
 				weekState = weekState,
 				onDateSelected = { selectedDate = it }

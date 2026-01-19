@@ -42,4 +42,12 @@ class SessionDetailsScreenViewModelImpl(
 			_uiState.value = SessionDetailsUiState(session = uiModel, isLoading = false)
 		}
 	}
+
+	override fun deleteSession(onDeleted: () -> Unit) {
+		val session = _uiState.value.session ?: return
+		viewModelScope.launch {
+			sessionService.deleteSession(session.id)
+			onDeleted()
+		}
+	}
 }

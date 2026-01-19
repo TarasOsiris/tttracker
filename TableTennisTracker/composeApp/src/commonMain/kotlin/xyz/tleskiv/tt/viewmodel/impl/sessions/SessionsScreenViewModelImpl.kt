@@ -13,6 +13,7 @@ import xyz.tleskiv.tt.viewmodel.sessions.SessionUiModel
 import xyz.tleskiv.tt.viewmodel.sessions.SessionsScreenViewModel
 
 class SessionsScreenViewModelImpl(sessionService: TrainingSessionService) : SessionsScreenViewModel() {
+	override val inputData = InputData()
 	override val sessions: StateFlow<Map<LocalDate, List<SessionUiModel>>> = sessionService.allSessions
 		.map { allSessions ->
 			allSessions.map { session ->

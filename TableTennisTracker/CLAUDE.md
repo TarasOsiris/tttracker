@@ -85,6 +85,13 @@ UI Layer (Screens) → ViewModel Layer → Service Layer → Repository Layer �
 - Uses `withContext(ioDispatcher)` for suspend functions
 - Injected with named dispatcher qualifier
 
+**Dialogs:**
+
+- All dialogs go in `ui/dialogs/` package as separate composable functions
+- Pattern: `@Composable fun XxxDialog(onConfirm: () -> Unit, onDismiss: () -> Unit)`
+- Use Material 3 `AlertDialog` for confirmation dialogs
+- Examples: `DatePickerDialog.kt`, `DeleteSessionDialog.kt`
+
 ### androidApp
 
 Android application entry point that depends on composeApp.

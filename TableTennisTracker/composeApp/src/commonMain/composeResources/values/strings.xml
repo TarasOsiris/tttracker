@@ -55,6 +55,9 @@
     <string name="session_default_title">Training Session</string>
     <string name="label_rpe">RPE</string>
     <string name="label_notes">Notes</string>
+	<string name="action_delete">Delete</string>
+	<string name="delete_session_title">Delete session?</string>
+	<string name="delete_session_message">This action cannot be undone. The session will be permanently removed.</string>
 
     <!-- Session Types -->
     <string name="session_type_technique">Technique</string>

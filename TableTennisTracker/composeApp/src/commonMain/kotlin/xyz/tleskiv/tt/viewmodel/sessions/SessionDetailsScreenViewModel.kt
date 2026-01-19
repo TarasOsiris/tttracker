@@ -11,4 +11,5 @@ data class SessionDetailsUiState(
 
 abstract class SessionDetailsScreenViewModel : ViewModelBase() {
 	abstract val uiState: StateFlow<SessionDetailsUiState>
+	abstract fun deleteSession(onDeleted: () -> Unit)
 }

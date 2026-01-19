@@ -68,4 +68,8 @@ class TrainingSessionsRepositoryImpl(
 	override suspend fun getSessionById(id: Uuid): Training_session? = withContext(ioDispatcher) {
 		database.appDatabaseQueries.getSessionById(id).executeAsOneOrNull()
 	}
+
+	override suspend fun deleteSession(id: Uuid): Unit = withContext(ioDispatcher) {
+		database.appDatabaseQueries.deleteSession(updated_at = nowMillis, id = id)
+	}
 }
