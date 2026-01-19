@@ -14,7 +14,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshots.SnapshotStateList
@@ -51,11 +50,6 @@ fun TabsNavDisplay(
 ) {
 	val currentRoute = navBarScreenBackStack.topLevelKey
 	val topAppBarState = remember { TopAppBarState() }
-
-	LaunchedEffect(currentRoute) {
-		topAppBarState.title = null
-		topAppBarState.actions = null
-	}
 
 	Scaffold(
 		topBar = {

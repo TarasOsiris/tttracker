@@ -83,6 +83,7 @@ import tabletennistracker.composeapp.generated.resources.session_duration_format
 import tabletennistracker.composeapp.generated.resources.sessions_empty
 import tabletennistracker.composeapp.generated.resources.sessions_month_mode
 import tabletennistracker.composeapp.generated.resources.sessions_week_mode
+import xyz.tleskiv.tt.ui.nav.navdisplay.RegisterTopAppBarCleanup
 import xyz.tleskiv.tt.ui.nav.navdisplay.TopAppBarState
 import xyz.tleskiv.tt.util.ext.displayText
 import xyz.tleskiv.tt.util.ext.formatDateHeader
@@ -149,6 +150,7 @@ fun SessionsScreen(
 
 	val subtitleText = visibleYearMonth.formatMonthYear()
 	topAppBarState?.let { state ->
+		RegisterTopAppBarCleanup(state)
 		state.title = {
 			Column(horizontalAlignment = Alignment.CenterHorizontally) {
 				Text(
