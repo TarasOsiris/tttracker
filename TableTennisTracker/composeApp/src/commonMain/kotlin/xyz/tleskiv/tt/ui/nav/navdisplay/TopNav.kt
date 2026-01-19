@@ -16,14 +16,15 @@ import xyz.tleskiv.tt.ui.nav.modalEntryTransitionMetadata
 import xyz.tleskiv.tt.ui.nav.routes.CoreAppRoute
 import xyz.tleskiv.tt.ui.nav.routes.CreateSessionRoute
 import xyz.tleskiv.tt.ui.nav.routes.EditSessionRoute
-import xyz.tleskiv.tt.ui.nav.routes.SessionDetailsRoute
 import xyz.tleskiv.tt.ui.nav.routes.GeneralSettingsRoute
+import xyz.tleskiv.tt.ui.nav.routes.NavBarTabLevelRoute
+import xyz.tleskiv.tt.ui.nav.routes.SessionDetailsRoute
 import xyz.tleskiv.tt.ui.nav.routes.SessionsRoute
 import xyz.tleskiv.tt.ui.nav.routes.TopLevelRoute
 import xyz.tleskiv.tt.ui.screens.CreateSessionScreen
 import xyz.tleskiv.tt.ui.screens.EditSessionScreen
-import xyz.tleskiv.tt.ui.screens.SessionDetailsScreen
 import xyz.tleskiv.tt.ui.screens.GeneralSettingsScreen
+import xyz.tleskiv.tt.ui.screens.SessionDetailsScreen
 import xyz.tleskiv.tt.viewmodel.sessions.CreateSessionScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.EditSessionScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.SessionDetailsScreenViewModel
@@ -32,7 +33,7 @@ import xyz.tleskiv.tt.viewmodel.settings.GeneralSettingsScreenViewModel
 
 @Composable
 fun TopNavDisplay(topLevelBackStack: SnapshotStateList<TopLevelRoute>) {
-	val tabsBackStack = remember { TopLevelBackStack<Any>(SessionsRoute) }
+	val tabsBackStack = remember { TopLevelBackStack<NavBarTabLevelRoute>(SessionsRoute) }
 	NavDisplay(
 		backStack = topLevelBackStack,
 		onBack = { topLevelBackStack.removeLastOrNull() },

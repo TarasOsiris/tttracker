@@ -77,11 +77,13 @@ import org.jetbrains.compose.resources.vectorResource
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.action_add_session
 import tabletennistracker.composeapp.generated.resources.ic_add
+import tabletennistracker.composeapp.generated.resources.nav_sessions
 import tabletennistracker.composeapp.generated.resources.session_default_title
 import tabletennistracker.composeapp.generated.resources.session_duration_format
 import tabletennistracker.composeapp.generated.resources.sessions_empty
 import tabletennistracker.composeapp.generated.resources.sessions_month_mode
 import tabletennistracker.composeapp.generated.resources.sessions_week_mode
+import xyz.tleskiv.tt.ui.nav.navdisplay.TopAppBarState
 import xyz.tleskiv.tt.util.ext.displayText
 import xyz.tleskiv.tt.util.ext.formatDateHeader
 import xyz.tleskiv.tt.util.ext.formatFullDate
@@ -99,7 +101,8 @@ private const val DATE_LIST_RANGE_DAYS = 365
 fun SessionsScreen(
 	viewModel: SessionsScreenViewModel,
 	onNavigateToDetails: (String) -> Unit = {},
-	onAddSession: (LocalDate) -> Unit = {}
+	onAddSession: (LocalDate) -> Unit = {},
+	topAppBarState: TopAppBarState? = null
 ) {
 	val currentDate = remember { LocalDate.now() }
 	var selectedDate by remember { mutableStateOf(currentDate) }
@@ -115,6 +118,67 @@ fun SessionsScreen(
 
 	val listState = rememberLazyListState(initialFirstVisibleItemIndex = initialIndex)
 	val coroutineScope = rememberCoroutineScope()
+
+	val daysOfWeek = remember { daysOfWeek() }
+	val currentYearMonth = remember { currentDate.yearMonth }
+	val startYearMonth = remember { currentYearMonth.minusMonths(CALENDAR_RANGE_MONTHS) }
+	val endYearMonth = remember { currentYearMonth.plusMonths(CALENDAR_RANGE_MONTHS) }
+
+	var isWeekMode by remember { mutableStateOf(true) }
+
+	val monthState = rememberCalendarState(
+		startMonth = startYearMonth,
+		endMonth = endYearMonth,
+		firstVisibleMonth = currentYearMonth,
+		firstDayOfWeek = daysOfWeek.first(),
+		outDateStyle = OutDateStyle.EndOfGrid
+	)
+
+	val weekState = rememberWeekCalendarState(
+		startDate = LocalDate(startYearMonth.year, startYearMonth.month, 1),
+		endDate = LocalDate(endYearMonth.year, endYearMonth.month, 28),
+		firstVisibleWeekDate = currentDate,
+		firstDayOfWeek = daysOfWeek.first()
+	)
+
+	val visibleYearMonth = if (isWeekMode) {
+		weekState.firstVisibleWeek.days.first().date.yearMonth
+	} else {
+		monthState.firstVisibleMonth.yearMonth
+	}
+
+	val subtitleText = visibleYearMonth.formatMonthYear()
+	topAppBarState?.let { state ->
+		state.title = {
+			Column(horizontalAlignment = Alignment.CenterHorizontally) {
+				Text(
+					text = stringResource(Res.string.nav_sessions),
+					style = MaterialTheme.typography.titleMedium,
+					fontWeight = FontWeight.Bold
+				)
+				Text(
+					text = subtitleText,
+					style = MaterialTheme.typography.bodySmall,
+					color = MaterialTheme.colorScheme.onSurfaceVariant
+				)
+			}
+		}
+		state.actions = {
+			WeekMonthToggle(
+				isWeekMode = isWeekMode,
+				onToggle = {
+					coroutineScope.launch {
+						if (isWeekMode) {
+							monthState.scrollToMonth(selectedDate.yearMonth)
+						} else {
+							weekState.scrollToWeek(selectedDate)
+						}
+						isWeekMode = !isWeekMode
+					}
+				}
+			)
+		}
+	}
 
 	LaunchedEffect(selectedDate) {
 		val targetIndex = (selectedDate.toEpochDays() - startDate.toEpochDays()).toInt()
@@ -135,6 +199,9 @@ fun SessionsScreen(
 				currentDate = currentDate,
 				selectedDate = selectedDate,
 				sessionsByDate = sessionsByDate,
+				isWeekMode = isWeekMode,
+				monthState = monthState,
+				weekState = weekState,
 				onDateSelected = { selectedDate = it }
 			)
 
@@ -159,43 +226,16 @@ private fun CalendarSection(
 	currentDate: LocalDate,
 	selectedDate: LocalDate,
 	sessionsByDate: Map<LocalDate, List<SessionUiModel>>,
+	isWeekMode: Boolean,
+	monthState: CalendarState,
+	weekState: WeekCalendarState,
 	onDateSelected: (LocalDate) -> Unit
 ) {
-	val daysOfWeek = remember { daysOfWeek() }
-	val currentYearMonth = remember { currentDate.yearMonth }
-	val startYearMonth = remember { currentYearMonth.minusMonths(CALENDAR_RANGE_MONTHS) }
-	val endYearMonth = remember { currentYearMonth.plusMonths(CALENDAR_RANGE_MONTHS) }
-
-	var isWeekMode by remember { mutableStateOf(true) }
-
-	val monthState = rememberCalendarState(
-		startMonth = startYearMonth,
-		endMonth = endYearMonth,
-		firstVisibleMonth = currentYearMonth,
-		firstDayOfWeek = daysOfWeek.first(),
-		outDateStyle = OutDateStyle.EndOfGrid
-	)
-
-	val weekState = rememberWeekCalendarState(
-		startDate = LocalDate(startYearMonth.year, startYearMonth.month, 1),
-		endDate = LocalDate(endYearMonth.year, endYearMonth.month, 28),
-		firstVisibleWeekDate = currentDate,
-		firstDayOfWeek = daysOfWeek.first()
-	)
-
 	Surface(
 		color = MaterialTheme.colorScheme.primaryContainer,
 		tonalElevation = 2.dp
 	) {
 		Column(modifier = Modifier.fillMaxWidth()) {
-			CalendarHeader(
-				selectedDate = selectedDate,
-				isWeekMode = isWeekMode,
-				monthState = monthState,
-				weekState = weekState,
-				onWeekModeToggle = { isWeekMode = it }
-			)
-
 			DaysOfWeekHeader()
 
 			Spacer(modifier = Modifier.height(8.dp))
@@ -214,57 +254,13 @@ private fun CalendarSection(
 }
 
 @Composable
-private fun CalendarHeader(
-	selectedDate: LocalDate,
+fun WeekMonthToggle(
 	isWeekMode: Boolean,
-	monthState: CalendarState,
-	weekState: WeekCalendarState,
-	onWeekModeToggle: (Boolean) -> Unit
-) {
-	val coroutineScope = rememberCoroutineScope()
-	val visibleYearMonth = if (isWeekMode) {
-		weekState.firstVisibleWeek.days.first().date.yearMonth
-	} else {
-		monthState.firstVisibleMonth.yearMonth
-	}
-
-	Row(
-		modifier = Modifier
-			.fillMaxWidth()
-			.padding(horizontal = 16.dp, vertical = 8.dp),
-		horizontalArrangement = Arrangement.SpaceBetween,
-		verticalAlignment = Alignment.CenterVertically
-	) {
-		Text(
-			text = visibleYearMonth.formatMonthYear(),
-			style = MaterialTheme.typography.titleLarge,
-			fontWeight = FontWeight.Bold,
-			color = MaterialTheme.colorScheme.onPrimaryContainer
-		)
-
-		WeekMonthToggle(
-			isWeekMode = isWeekMode,
-			onToggle = {
-				coroutineScope.launch {
-					if (isWeekMode) {
-						monthState.scrollToMonth(selectedDate.yearMonth)
-					} else {
-						weekState.scrollToWeek(selectedDate)
-					}
-					onWeekModeToggle(!isWeekMode)
-				}
-			}
-		)
-	}
-}
-
-@Composable
-private fun WeekMonthToggle(
-	isWeekMode: Boolean,
-	onToggle: () -> Unit
+	onToggle: () -> Unit,
+	modifier: Modifier = Modifier
 ) {
 	Row(
-		modifier = Modifier
+		modifier = modifier
 			.clip(MaterialTheme.shapes.medium)
 			.background(MaterialTheme.colorScheme.surfaceVariant)
 	) {
@@ -323,7 +319,7 @@ private fun SegmentButton(
 private fun DaysOfWeekHeader() {
 	val daysOfWeek = remember { daysOfWeek(firstDayOfWeek = FIRST_DAY_OF_WEEK) }
 
-	Row(modifier = Modifier.fillMaxWidth()) {
+	Row(modifier = Modifier.fillMaxWidth().padding(top = 8.dp)) {
 		daysOfWeek.forEach { dayOfWeek ->
 			Text(
 				text = dayOfWeek.displayText(),
@@ -684,10 +680,7 @@ private fun NoSessionsPlaceholder() {
 }
 
 @Composable
-private fun AddSessionFab(
-	onClick: () -> Unit,
-	modifier: Modifier = Modifier
-) {
+private fun AddSessionFab(onClick: () -> Unit, modifier: Modifier = Modifier) {
 	FloatingActionButton(
 		onClick = onClick,
 		modifier = modifier.padding(16.dp),

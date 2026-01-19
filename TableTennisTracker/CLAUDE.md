@@ -189,3 +189,4 @@ Use KMP's `expect`/`actual` pattern:
 - for clock use `kotlin.time.Clock`
 - Use docs folder in the root for any additional functional documentation needed
 - Never use `System.currentTimeMillis()` in commonApp module, use `nowMillis` from DateTimeUtils instead.
+- Never nest Scaffolds in composeApp module, use simple Column/Box instead.
