@@ -70,19 +70,19 @@ kotlin {
 		androidMain {
 			resources.srcDirs("build/generatedComposeResources")
 			dependencies {
-				implementation(compose.preview)
+				implementation(libs.compose.ui.tooling)
 				implementation(libs.androidx.activity.compose)
 				implementation(libs.sqldelight.driver.android)
 			}
 		}
 		commonMain.dependencies {
-			implementation(compose.runtime)
-			implementation(compose.foundation)
-			implementation(compose.material3)
-			implementation(compose.materialIconsExtended)
-			implementation(compose.ui)
-			implementation(compose.components.resources)
-			implementation(compose.components.uiToolingPreview)
+			implementation(libs.compose.runtime)
+			implementation(libs.compose.foundation)
+			implementation(libs.compose.material3)
+			implementation(libs.compose.material.icons.extended)
+			implementation(libs.compose.ui)
+			implementation(libs.compose.components.resources)
+			implementation(libs.compose.ui.tooling.preview)
 
 			implementation(libs.androidx.lifecycle.viewmodel)
 			implementation(libs.androidx.lifecycle.viewmodel.nav3)
@@ -138,7 +138,7 @@ compose.desktop {
 }
 
 composeCompiler {
-	stabilityConfigurationFile = file("compose-stability.conf")
+	stabilityConfigurationFiles.add(layout.projectDirectory.file("compose-stability.conf"))
 	reportsDestination = layout.buildDirectory.dir("compose_compiler")
 }
 

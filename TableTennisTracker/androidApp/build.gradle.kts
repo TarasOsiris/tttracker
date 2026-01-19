@@ -45,8 +45,8 @@ android {
 
 dependencies {
 	implementation(projects.composeApp)
-	implementation(compose.components.resources)
-	implementation(compose.preview)
+	implementation(libs.compose.components.resources)
+	implementation(libs.compose.ui.tooling.preview)
 	implementation(libs.androidx.activity.compose)
 
 	// Koin DI
@@ -54,7 +54,7 @@ dependencies {
 	implementation(libs.koin.core)
 	implementation(libs.koin.android)
 
-	debugImplementation(compose.uiTooling)
+	debugImplementation(libs.compose.ui.tooling)
 	debugImplementation(libs.androidx.compose.ui.test.manifest)
 
 	androidTestImplementation(libs.androidx.testExt.junit)
