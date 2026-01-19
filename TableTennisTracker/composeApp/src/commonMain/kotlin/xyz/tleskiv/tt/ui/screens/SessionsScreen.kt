@@ -62,14 +62,10 @@ import com.kizitonwose.calendar.core.DayPosition
 import com.kizitonwose.calendar.core.OutDateStyle
 import com.kizitonwose.calendar.core.WeekDayPosition
 import com.kizitonwose.calendar.core.daysOfWeek
-import com.kizitonwose.calendar.core.minusMonths
-import com.kizitonwose.calendar.core.now
-import com.kizitonwose.calendar.core.plusMonths
 import kotlinx.coroutines.launch
 import kotlinx.datetime.DatePeriod
 import kotlinx.datetime.DayOfWeek
 import kotlinx.datetime.LocalDate
-import kotlinx.datetime.minus
 import kotlinx.datetime.plus
 import kotlinx.datetime.yearMonth
 import org.jetbrains.compose.resources.stringResource
@@ -94,8 +90,6 @@ import xyz.tleskiv.tt.util.ui.getRpeColor
 import xyz.tleskiv.tt.viewmodel.sessions.SessionUiModel
 import xyz.tleskiv.tt.viewmodel.sessions.SessionsScreenViewModel
 
-private val FIRST_DAY_OF_WEEK = DayOfWeek.MONDAY
-private const val CALENDAR_RANGE_MONTHS = 12
 private const val DATE_LIST_RANGE_DAYS = 365
 
 @Composable
@@ -105,41 +99,23 @@ fun SessionsScreen(
 	onAddSession: (LocalDate) -> Unit = {},
 	topAppBarState: TopAppBarState? = null
 ) {
-	val currentDate = remember { LocalDate.now() }
-	var selectedDate by remember { mutableStateOf(currentDate) }
+	val inputData = viewModel.inputData
 	val sessionsByDate by viewModel.sessions.collectAsState()
 
-	val startDate = remember(currentDate) {
-		currentDate.minus(DatePeriod(days = DATE_LIST_RANGE_DAYS))
-	}
-
-	val initialIndex = remember(currentDate, startDate) {
-		(currentDate.toEpochDays() - startDate.toEpochDays()).toInt()
-	}
-
-	val listState = rememberLazyListState(initialFirstVisibleItemIndex = initialIndex)
+	val listState = rememberLazyListState(initialFirstVisibleItemIndex = inputData.initialListIndex)
 	val coroutineScope = rememberCoroutineScope()
 
-	val daysOfWeek = remember { daysOfWeek() }
-	val currentYearMonth = remember { currentDate.yearMonth }
-	val startYearMonth = remember { currentYearMonth.minusMonths(CALENDAR_RANGE_MONTHS) }
-	val endYearMonth = remember { currentYearMonth.plusMonths(CALENDAR_RANGE_MONTHS) }
-
-	val inputData = viewModel.inputData
-
 	val monthState = rememberCalendarState(
-		startMonth = startYearMonth,
-		endMonth = endYearMonth,
-		firstVisibleMonth = currentYearMonth,
-		firstDayOfWeek = daysOfWeek.first(),
+		startMonth = inputData.startYearMonth,
+		endMonth = inputData.endYearMonth,
+		firstVisibleMonth = inputData.currentYearMonth,
 		outDateStyle = OutDateStyle.EndOfGrid
 	)
 
 	val weekState = rememberWeekCalendarState(
-		startDate = LocalDate(startYearMonth.year, startYearMonth.month, 1),
-		endDate = LocalDate(endYearMonth.year, endYearMonth.month, 28),
-		firstVisibleWeekDate = currentDate,
-		firstDayOfWeek = daysOfWeek.first()
+		startDate = LocalDate(inputData.startYearMonth.year, inputData.startYearMonth.month, 1),
+		endDate = LocalDate(inputData.endYearMonth.year, inputData.endYearMonth.month, 28),
+		firstVisibleWeekDate = inputData.currentDate,
 	)
 
 	val visibleYearMonth = if (inputData.isWeekMode) {
@@ -171,9 +147,9 @@ fun SessionsScreen(
 				onToggle = {
 					coroutineScope.launch {
 						if (inputData.isWeekMode) {
-							monthState.scrollToMonth(selectedDate.yearMonth)
+							monthState.scrollToMonth(inputData.selectedDate.yearMonth)
 						} else {
-							weekState.scrollToWeek(selectedDate)
+							weekState.scrollToWeek(inputData.selectedDate)
 						}
 						inputData.isWeekMode = !inputData.isWeekMode
 					}
@@ -182,8 +158,8 @@ fun SessionsScreen(
 		}
 	}
 
-	LaunchedEffect(selectedDate) {
-		val targetIndex = (selectedDate.toEpochDays() - startDate.toEpochDays()).toInt()
+	LaunchedEffect(inputData.selectedDate) {
+		val targetIndex = (inputData.selectedDate.toEpochDays() - inputData.startDate.toEpochDays()).toInt()
 		if (targetIndex in 0 until (DATE_LIST_RANGE_DAYS * 2 + 1)) {
 			coroutineScope.launch {
 				listState.animateScrollToItem(targetIndex)
@@ -198,18 +174,18 @@ fun SessionsScreen(
 				.background(MaterialTheme.colorScheme.surface)
 		) {
 			CalendarSection(
-				currentDate = currentDate,
-				selectedDate = selectedDate,
+				currentDate = inputData.currentDate,
+				selectedDate = inputData.selectedDate,
 				sessionsByDate = sessionsByDate,
 				isWeekMode = inputData.isWeekMode,
 				monthState = monthState,
 				weekState = weekState,
-				onDateSelected = { selectedDate = it }
+				onDateSelected = { inputData.selectedDate = it }
 			)
 
 			SessionsListContent(
-				currentDate = currentDate,
-				selectedDate = selectedDate,
+				currentDate = inputData.currentDate,
+				startDate = inputData.startDate,
 				listState = listState,
 				sessionsByDate = sessionsByDate,
 				onNavigateToDetails = onNavigateToDetails
@@ -217,7 +193,7 @@ fun SessionsScreen(
 		}
 
 		AddSessionFab(
-			onClick = { onAddSession(selectedDate) },
+			onClick = { onAddSession(inputData.selectedDate) },
 			modifier = Modifier.align(Alignment.BottomEnd)
 		)
 	}
@@ -319,7 +295,7 @@ private fun SegmentButton(
 
 @Composable
 private fun DaysOfWeekHeader() {
-	val daysOfWeek = remember { daysOfWeek(firstDayOfWeek = FIRST_DAY_OF_WEEK) }
+	val daysOfWeek = remember { daysOfWeek(firstDayOfWeek = DayOfWeek.MONDAY) }
 
 	Row(modifier = Modifier.fillMaxWidth().padding(top = 8.dp)) {
 		daysOfWeek.forEach { dayOfWeek ->
@@ -502,14 +478,11 @@ private fun DayCell(
 @Composable
 private fun SessionsListContent(
 	currentDate: LocalDate,
-	selectedDate: LocalDate,
+	startDate: LocalDate,
 	listState: LazyListState,
 	sessionsByDate: Map<LocalDate, List<SessionUiModel>>,
 	onNavigateToDetails: (String) -> Unit
 ) {
-	val startDate = remember(currentDate) {
-		currentDate.minus(DatePeriod(days = DATE_LIST_RANGE_DAYS))
-	}
 	val totalDays = remember { DATE_LIST_RANGE_DAYS * 2 + 1 }
 
 	LazyColumn(

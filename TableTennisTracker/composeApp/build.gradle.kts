@@ -137,6 +137,11 @@ compose.desktop {
 	}
 }
 
+composeCompiler {
+	stabilityConfigurationFile = file("compose-stability.conf")
+	reportsDestination = layout.buildDirectory.dir("compose_compiler")
+}
+
 compose.resources {
 	publicResClass = true
 	generateResClass = always
