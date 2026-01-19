@@ -12,10 +12,10 @@ class AppViewModel(
 	private val userPreferencesRepository: UserPreferencesRepository
 ) : ViewModel() {
 
-	val themeMode: StateFlow<AppThemeMode> = userPreferencesRepository.themeMode
+	val themeMode: StateFlow<AppThemeMode?> = userPreferencesRepository.themeMode
 		.stateIn(
 			scope = viewModelScope,
-			started = SharingStarted.WhileSubscribed(5000),
-			initialValue = AppThemeMode.SYSTEM
+			started = SharingStarted.Eagerly,
+			initialValue = null
 		)
 }
