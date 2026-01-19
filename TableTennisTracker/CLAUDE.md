@@ -132,10 +132,16 @@ Koin 4.1.1 is used throughout the project:
 - **Android:** Initialized in `TTApplication.kt` with Android context
 - **Compose:** Use `koin-compose-viewmodel` for ViewModel injection in Composables
 
+**Composable Dependency Injection Rules:**
+
+- **NEVER** use `koinInject<T>()` directly in composables
+- **ALWAYS** inject dependencies into ViewModels and expose functionality through the ViewModel
+- Composables should only receive ViewModels via `koinViewModel()` and UI callbacks via parameters
+
 Pattern for adding new Koin modules:
 
 1. Define module in appropriate location (Application.kt for server, App.kt for UI)
-2. Inject dependencies using `@inject<T>()` (Ktor) or `koinInject<T>()` (Compose)
+2. Inject dependencies using `@inject<T>()` (Ktor routes) or constructor injection in ViewModels
 
 ## Database with SQLDelight
 
