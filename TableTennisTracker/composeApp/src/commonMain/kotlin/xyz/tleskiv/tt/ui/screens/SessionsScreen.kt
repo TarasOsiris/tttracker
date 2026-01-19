@@ -6,14 +6,39 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -33,12 +58,30 @@ import com.kizitonwose.calendar.compose.WeekCalendar
 import com.kizitonwose.calendar.compose.rememberCalendarState
 import com.kizitonwose.calendar.compose.weekcalendar.WeekCalendarState
 import com.kizitonwose.calendar.compose.weekcalendar.rememberWeekCalendarState
-import com.kizitonwose.calendar.core.*
+import com.kizitonwose.calendar.core.DayPosition
+import com.kizitonwose.calendar.core.OutDateStyle
+import com.kizitonwose.calendar.core.WeekDayPosition
+import com.kizitonwose.calendar.core.daysOfWeek
+import com.kizitonwose.calendar.core.minusMonths
+import com.kizitonwose.calendar.core.now
+import com.kizitonwose.calendar.core.plusMonths
 import kotlinx.coroutines.launch
-import kotlinx.datetime.*
+import kotlinx.datetime.DatePeriod
+import kotlinx.datetime.DayOfWeek
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.minus
+import kotlinx.datetime.plus
+import kotlinx.datetime.yearMonth
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
-import tabletennistracker.composeapp.generated.resources.*
+import tabletennistracker.composeapp.generated.resources.Res
+import tabletennistracker.composeapp.generated.resources.action_add_session
+import tabletennistracker.composeapp.generated.resources.ic_add
+import tabletennistracker.composeapp.generated.resources.session_default_title
+import tabletennistracker.composeapp.generated.resources.session_duration_format
+import tabletennistracker.composeapp.generated.resources.sessions_empty
+import tabletennistracker.composeapp.generated.resources.sessions_month_mode
+import tabletennistracker.composeapp.generated.resources.sessions_week_mode
 import xyz.tleskiv.tt.util.ext.displayText
 import xyz.tleskiv.tt.util.ext.formatDateHeader
 import xyz.tleskiv.tt.util.ext.formatFullDate
@@ -91,6 +134,7 @@ fun SessionsScreen(
 			CalendarSection(
 				currentDate = currentDate,
 				selectedDate = selectedDate,
+				sessionsByDate = sessionsByDate,
 				onDateSelected = { selectedDate = it }
 			)
 
@@ -114,6 +158,7 @@ fun SessionsScreen(
 private fun CalendarSection(
 	currentDate: LocalDate,
 	selectedDate: LocalDate,
+	sessionsByDate: Map<LocalDate, List<SessionUiModel>>,
 	onDateSelected: (LocalDate) -> Unit
 ) {
 	val daysOfWeek = remember { daysOfWeek() }
@@ -161,6 +206,7 @@ private fun CalendarSection(
 				isWeekMode = isWeekMode,
 				monthState = monthState,
 				weekState = weekState,
+				sessionsByDate = sessionsByDate,
 				onDateSelected = onDateSelected
 			)
 		}
@@ -298,6 +344,7 @@ private fun AnimatedCalendarContainer(
 	isWeekMode: Boolean,
 	monthState: CalendarState,
 	weekState: WeekCalendarState,
+	sessionsByDate: Map<LocalDate, List<SessionUiModel>>,
 	onDateSelected: (LocalDate) -> Unit
 ) {
 	var weekCalendarSize by remember { mutableStateOf(DpSize.Zero) }
@@ -319,6 +366,7 @@ private fun AnimatedCalendarContainer(
 			state = monthState,
 			selectedDate = selectedDate,
 			currentDate = currentDate,
+			sessionsByDate = sessionsByDate,
 			onDateSelected = onDateSelected
 		)
 
@@ -327,6 +375,7 @@ private fun AnimatedCalendarContainer(
 			state = weekState,
 			selectedDate = selectedDate,
 			currentDate = currentDate,
+			sessionsByDate = sessionsByDate,
 			onDateSelected = onDateSelected,
 			onSizeChanged = { weekCalendarSize = it }
 		)
@@ -340,6 +389,7 @@ private fun MonthCalendarView(
 	state: CalendarState,
 	selectedDate: LocalDate,
 	currentDate: LocalDate,
+	sessionsByDate: Map<LocalDate, List<SessionUiModel>>,
 	onDateSelected: (LocalDate) -> Unit
 ) {
 	val alpha by animateFloatAsState(if (isWeekMode) 0f else 1f)
@@ -358,6 +408,7 @@ private fun MonthCalendarView(
 				isSelected = day.date == selectedDate,
 				isToday = day.date == currentDate,
 				isInCurrentMonth = day.position == DayPosition.MonthDate,
+				sessionCount = sessionsByDate[day.date]?.size ?: 0,
 				onClick = onDateSelected
 			)
 		}
@@ -370,6 +421,7 @@ private fun WeekCalendarView(
 	state: WeekCalendarState,
 	selectedDate: LocalDate,
 	currentDate: LocalDate,
+	sessionsByDate: Map<LocalDate, List<SessionUiModel>>,
 	onDateSelected: (LocalDate) -> Unit,
 	onSizeChanged: (DpSize) -> Unit
 ) {
@@ -393,6 +445,7 @@ private fun WeekCalendarView(
 				isSelected = day.date == selectedDate,
 				isToday = day.date == currentDate,
 				isInCurrentMonth = day.position == WeekDayPosition.RangeDate,
+				sessionCount = sessionsByDate[day.date]?.size ?: 0,
 				onClick = onDateSelected
 			)
 		}
@@ -405,10 +458,12 @@ private fun DayCell(
 	isSelected: Boolean,
 	isToday: Boolean,
 	isInCurrentMonth: Boolean,
+	sessionCount: Int,
 	onClick: (LocalDate) -> Unit
 ) {
 	val backgroundColor = when {
 		isSelected -> MaterialTheme.colorScheme.primary
+		sessionCount > 0 -> MaterialTheme.colorScheme.primary.copy(alpha = 0.15f)
 		else -> MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0f)
 	}
 	val textColor = when {
@@ -417,6 +472,7 @@ private fun DayCell(
 		isInCurrentMonth -> MaterialTheme.colorScheme.onPrimaryContainer
 		else -> MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.4f)
 	}
+	val dotColor = if (isSelected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.tertiary
 
 	Box(
 		modifier = Modifier
@@ -427,12 +483,21 @@ private fun DayCell(
 			.clickable { onClick(date) },
 		contentAlignment = Alignment.Center
 	) {
-		Text(
-			text = date.day.toString(),
-			fontSize = 14.sp,
-			fontWeight = if (isToday || isSelected) FontWeight.Bold else FontWeight.Normal,
-			color = textColor
-		)
+		Column(horizontalAlignment = Alignment.CenterHorizontally) {
+			Text(
+				text = date.day.toString(),
+				fontSize = 14.sp,
+				fontWeight = if (isToday || isSelected) FontWeight.Bold else FontWeight.Normal,
+				color = textColor
+			)
+			if (sessionCount > 0) {
+				Row(horizontalArrangement = Arrangement.spacedBy(2.dp)) {
+					repeat(minOf(sessionCount, 4)) {
+						Box(modifier = Modifier.size(4.dp).background(dotColor, CircleShape))
+					}
+				}
+			}
+		}
 	}
 }
 

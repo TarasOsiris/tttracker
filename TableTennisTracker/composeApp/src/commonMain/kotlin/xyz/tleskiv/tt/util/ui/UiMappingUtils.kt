@@ -4,7 +4,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.lerp
 import org.jetbrains.compose.resources.stringResource
-import tabletennistracker.composeapp.generated.resources.*
+import tabletennistracker.composeapp.generated.resources.Res
+import tabletennistracker.composeapp.generated.resources.rpe_easy
+import tabletennistracker.composeapp.generated.resources.rpe_hard
+import tabletennistracker.composeapp.generated.resources.rpe_max_effort
+import tabletennistracker.composeapp.generated.resources.rpe_moderate
+import tabletennistracker.composeapp.generated.resources.rpe_very_easy
 import xyz.tleskiv.tt.data.model.enums.SessionType
 
 enum class HeatMapLevel {
@@ -17,12 +22,12 @@ enum class HeatMapLevel {
 
 @Composable
 fun HeatMapLevel.toColor(): Color {
-	val base = androidx.compose.material3.MaterialTheme.colorScheme.primary
+	val base = androidx.compose.material3.MaterialTheme.colorScheme.tertiary
 	return when (this) {
 		HeatMapLevel.Zero -> androidx.compose.material3.MaterialTheme.colorScheme.surfaceVariant
-		HeatMapLevel.One -> base.copy(alpha = 0.25f)
-		HeatMapLevel.Two -> base.copy(alpha = 0.45f)
-		HeatMapLevel.Three -> base.copy(alpha = 0.65f)
+		HeatMapLevel.One -> base.copy(alpha = 0.35f)
+		HeatMapLevel.Two -> base.copy(alpha = 0.55f)
+		HeatMapLevel.Three -> base.copy(alpha = 0.75f)
 		HeatMapLevel.Four -> base
 	}
 }

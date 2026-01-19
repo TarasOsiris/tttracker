@@ -1,6 +1,7 @@
 package xyz.tleskiv.tt.ui.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -45,11 +46,11 @@ import kotlinx.datetime.YearMonth
 import kotlinx.datetime.minus
 import kotlinx.datetime.yearMonth
 import org.koin.compose.viewmodel.koinViewModel
-import xyz.tleskiv.tt.viewmodel.analytics.AnalyticsScreenViewModel
 import xyz.tleskiv.tt.util.ext.displayText
 import xyz.tleskiv.tt.util.ext.shortDisplayText
 import xyz.tleskiv.tt.util.ui.HeatMapLevel
 import xyz.tleskiv.tt.util.ui.toColor
+import xyz.tleskiv.tt.viewmodel.analytics.AnalyticsScreenViewModel
 
 @Composable
 fun AnalyticsScreen(viewModel: AnalyticsScreenViewModel = koinViewModel()) {
@@ -91,7 +92,8 @@ fun AnalyticsScreen(viewModel: AnalyticsScreenViewModel = koinViewModel()) {
 					startDate = startDate,
 					endDate = endDate,
 					week = week,
-					level = data[day.date] ?: HeatMapLevel.Zero
+					level = data[day.date] ?: HeatMapLevel.Zero,
+					isSelected = day.date == selection
 				) { clicked ->
 					selection = clicked
 				}
@@ -182,23 +184,26 @@ private fun Day(
 	endDate: LocalDate,
 	week: HeatMapWeek,
 	level: HeatMapLevel,
+	isSelected: Boolean,
 	onClick: (LocalDate) -> Unit
 ) {
 	val weekDates = week.days.map { it.date }
 	if (day.date in startDate..endDate) {
-		LevelBox(level.toColor()) { onClick(day.date) }
+		LevelBox(color = level.toColor(), isSelected = isSelected) { onClick(day.date) }
 	} else if (weekDates.contains(startDate)) {
-		LevelBox(Color.Transparent)
+		LevelBox(color = Color.Transparent)
 	}
 }
 
 @Composable
-private fun LevelBox(color: Color, onClick: (() -> Unit)? = null) {
+private fun LevelBox(color: Color, isSelected: Boolean = false, onClick: (() -> Unit)? = null) {
+	val outlineColor = MaterialTheme.colorScheme.onSurface
 	Box(
 		modifier = Modifier
 			.size(daySize)
 			.padding(2.dp)
 			.clip(MaterialTheme.shapes.extraSmall)
+			.then(if (isSelected) Modifier.border(1.5.dp, outlineColor, MaterialTheme.shapes.extraSmall) else Modifier)
 			.background(color = color)
 			.clickable(enabled = onClick != null) { onClick?.invoke() }
 	)
