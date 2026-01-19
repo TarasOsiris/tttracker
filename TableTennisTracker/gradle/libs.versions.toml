@@ -5,23 +5,22 @@ android-minSdk = "24"
 android-targetSdk = "36"
 androidx-activity = "1.12.2"
 androidx-appcompat = "1.7.1"
-androidx-compose = "1.7.8"
+androidx-compose = "1.10.1"
 androidx-core = "1.17.0"
 androidx-espresso = "3.7.0"
 androidx-testExt = "1.3.0"
 composeHotReload = "1.0.0"
-composeMultiplatform = "1.9.3"
+composeMultiplatform = "1.10.0"
 junit = "4.13.2"
-kaml = "0.61.0"
 kotlin = "2.3.0"
 kotlinx-coroutines = "1.10.2"
 kotlinx-serialization = "1.9.0"
 kotest = "6.0.7"
 koin = "4.1.1"
 ktor = "3.3.3"
-logback = "1.5.24"
-sqldelight = "2.0.2"
-calendar = "2.9.0"
+logback = "1.5.25"
+sqldelight = "2.2.1"
+calendar = "2.10.0"
 
 androidx-lifecycle = "2.10.0-alpha07"
 androidx-nav3 = "1.0.0-alpha06"
@@ -50,7 +49,6 @@ koin-android = { module = "io.insert-koin:koin-android" }
 koin-ktor = { module = "io.insert-koin:koin-ktor" }
 koin-compose = { module = "io.insert-koin:koin-compose" }
 koin-compose-viewmodel = { module = "io.insert-koin:koin-compose-viewmodel" }
-kaml = { module = "com.charleskorn.kaml:kaml", version.ref = "kaml" }
 ktor-serverCore = { module = "io.ktor:ktor-server-core-jvm", version.ref = "ktor" }
 ktor-serverNetty = { module = "io.ktor:ktor-server-netty-jvm", version.ref = "ktor" }
 ktor-serverAuth = { module = "io.ktor:ktor-server-auth-jvm", version.ref = "ktor" }
