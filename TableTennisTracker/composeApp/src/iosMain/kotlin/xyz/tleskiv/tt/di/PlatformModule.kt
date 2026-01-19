@@ -5,9 +5,15 @@ import kotlinx.coroutines.Dispatchers
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import xyz.tleskiv.tt.db.DatabaseFactory
+import xyz.tleskiv.tt.di.components.ExternalAppLauncher
+import xyz.tleskiv.tt.di.components.IosExternalAppLauncher
+import xyz.tleskiv.tt.di.components.IosNativeInfoProvider
+import xyz.tleskiv.tt.di.components.NativeInfoProvider
 
 val platformModule = module {
 	single { DatabaseFactory() }
 	single { get<DatabaseFactory>().createDriver() }
 	single<CoroutineDispatcher>(named(DispatcherQualifiers.IO)) { Dispatchers.Default }
+	single<NativeInfoProvider> { IosNativeInfoProvider() }
+	single<ExternalAppLauncher> { IosExternalAppLauncher() }
 }
