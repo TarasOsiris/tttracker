@@ -12,7 +12,9 @@ import xyz.tleskiv.tt.viewmodel.ViewModelBase
 abstract class GeneralSettingsScreenViewModel : ViewModelBase() {
 	abstract val inputData: InputData
 	abstract val weekStartDay: StateFlow<WeekStartDay>
+	abstract val highlightCurrentDay: StateFlow<Boolean>
 	abstract fun setWeekStartDay(day: WeekStartDay)
+	abstract fun setHighlightCurrentDay(highlight: Boolean)
 
 	@Stable
 	class InputData(

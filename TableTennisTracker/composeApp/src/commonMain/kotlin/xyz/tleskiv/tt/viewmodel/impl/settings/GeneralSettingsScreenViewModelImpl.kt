@@ -22,9 +22,18 @@ class GeneralSettingsScreenViewModelImpl(
 	override val weekStartDay: StateFlow<WeekStartDay> = userPreferencesRepository.weekStartDay
 		.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), WeekStartDay.MONDAY)
 
+	override val highlightCurrentDay: StateFlow<Boolean> = userPreferencesRepository.highlightCurrentDay
+		.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), true)
+
 	override fun setWeekStartDay(day: WeekStartDay) {
 		viewModelScope.launch {
 			userPreferencesRepository.setWeekStartDay(day)
+		}
+	}
+
+	override fun setHighlightCurrentDay(highlight: Boolean) {
+		viewModelScope.launch {
+			userPreferencesRepository.setHighlightCurrentDay(highlight)
 		}
 	}
 

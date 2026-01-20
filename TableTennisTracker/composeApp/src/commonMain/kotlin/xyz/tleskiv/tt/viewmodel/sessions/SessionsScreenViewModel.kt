@@ -33,6 +33,7 @@ private const val DATE_LIST_RANGE_DAYS = 365
 abstract class SessionsScreenViewModel : ViewModelBase() {
 	abstract val sessions: StateFlow<Map<LocalDate, List<SessionUiModel>>>
 	abstract val firstDayOfWeek: StateFlow<DayOfWeek>
+	abstract val highlightCurrentDay: StateFlow<Boolean>
 	abstract val inputData: InputData
 
 	@Stable

@@ -25,6 +25,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
@@ -46,6 +47,7 @@ import tabletennistracker.composeapp.generated.resources.action_cancel
 import tabletennistracker.composeapp.generated.resources.action_general_settings
 import tabletennistracker.composeapp.generated.resources.action_week_start
 import tabletennistracker.composeapp.generated.resources.label_default_notes
+import tabletennistracker.composeapp.generated.resources.settings_highlight_current_day
 import tabletennistracker.composeapp.generated.resources.settings_section_calendar
 import tabletennistracker.composeapp.generated.resources.settings_section_sessions
 import tabletennistracker.composeapp.generated.resources.week_start_monday
@@ -70,6 +72,7 @@ fun GeneralSettingsScreen(
 	var defaultSessionType by viewModel.inputData.defaultSessionType
 	var defaultNotes by viewModel.inputData.defaultNotes
 	val weekStartDay by viewModel.weekStartDay.collectAsState()
+	val highlightCurrentDay by viewModel.highlightCurrentDay.collectAsState()
 	var showWeekStartDialog by rememberSaveable { mutableStateOf(false) }
 
 	if (showWeekStartDialog) {
@@ -100,10 +103,17 @@ fun GeneralSettingsScreen(
 			SettingsSectionHeader(stringResource(Res.string.settings_section_calendar))
 			Spacer(modifier = Modifier.height(8.dp))
 			ContentCard {
-				WeekStartRow(
-					currentDay = weekStartDay,
-					onClick = { showWeekStartDialog = true }
-				)
+				Column {
+					WeekStartRow(
+						currentDay = weekStartDay,
+						onClick = { showWeekStartDialog = true }
+					)
+					HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
+					HighlightCurrentDayRow(
+						enabled = highlightCurrentDay,
+						onToggle = { viewModel.setHighlightCurrentDay(it) }
+					)
+				}
 			}
 
 			Spacer(modifier = Modifier.height(24.dp))
@@ -228,6 +238,33 @@ private fun WeekStartRow(currentDay: WeekStartDay, onClick: () -> Unit) {
 				contentDescription = null,
 				tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
 			)
+		}
+	}
+}
+
+@Composable
+private fun HighlightCurrentDayRow(enabled: Boolean, onToggle: (Boolean) -> Unit) {
+	Surface(
+		modifier = Modifier.fillMaxWidth(),
+		color = MaterialTheme.colorScheme.surfaceContainerLow
+	) {
+		Row(
+			modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 10.dp),
+			verticalAlignment = Alignment.CenterVertically
+		) {
+			Icon(
+				imageVector = Icons.Outlined.CalendarMonth,
+				contentDescription = null,
+				tint = MaterialTheme.colorScheme.onSurfaceVariant
+			)
+			Spacer(modifier = Modifier.width(16.dp))
+			Text(
+				text = stringResource(Res.string.settings_highlight_current_day),
+				style = MaterialTheme.typography.bodyLarge,
+				color = MaterialTheme.colorScheme.onSurface,
+				modifier = Modifier.weight(1f)
+			)
+			Switch(checked = enabled, onCheckedChange = onToggle)
 		}
 	}
 }

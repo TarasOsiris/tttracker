@@ -104,6 +104,7 @@
     <string name="week_start_monday">Monday</string>
     <string name="week_start_sunday">Sunday</string>
     <string name="week_start_saturday">Saturday</string>
+    <string name="settings_highlight_current_day">Highlight current day</string>
 	<string name="settings_section_developer">Developer</string>
 	<string name="action_debug">Debug</string>
 	<string name="settings_version_format">Version %1$s (%2$s)</string>

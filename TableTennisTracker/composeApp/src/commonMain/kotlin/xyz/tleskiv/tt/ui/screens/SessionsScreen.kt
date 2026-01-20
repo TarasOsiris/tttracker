@@ -45,6 +45,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
@@ -101,6 +102,7 @@ fun SessionsScreen(
 	val inputData = viewModel.inputData
 	val sessionsByDate by viewModel.sessions.collectAsState()
 	val firstDayOfWeek by viewModel.firstDayOfWeek.collectAsState()
+	val highlightCurrentDay by viewModel.highlightCurrentDay.collectAsState()
 
 	val listState = rememberLazyListState(initialFirstVisibleItemIndex = inputData.initialListIndex)
 	val coroutineScope = rememberCoroutineScope()
@@ -189,6 +191,7 @@ fun SessionsScreen(
 				monthState = monthState,
 				weekState = weekState,
 				firstDayOfWeek = firstDayOfWeek,
+				highlightCurrentDay = highlightCurrentDay,
 				onDateSelected = { inputData.selectedDate = it },
 				isLandscape = isLandscape
 			)
@@ -218,6 +221,7 @@ private fun CalendarSection(
 	monthState: CalendarState,
 	weekState: WeekCalendarState,
 	firstDayOfWeek: DayOfWeek,
+	highlightCurrentDay: Boolean,
 	onDateSelected: (LocalDate) -> Unit,
 	isLandscape: Boolean
 ) {
@@ -237,6 +241,7 @@ private fun CalendarSection(
 				monthState = monthState,
 				weekState = weekState,
 				sessionsByDate = sessionsByDate,
+				highlightCurrentDay = highlightCurrentDay,
 				onDateSelected = onDateSelected,
 				isLandscape = isLandscape
 			)
@@ -332,6 +337,7 @@ private fun AnimatedCalendarContainer(
 	monthState: CalendarState,
 	weekState: WeekCalendarState,
 	sessionsByDate: Map<LocalDate, List<SessionUiModel>>,
+	highlightCurrentDay: Boolean,
 	onDateSelected: (LocalDate) -> Unit,
 	isLandscape: Boolean
 ) {
@@ -355,6 +361,7 @@ private fun AnimatedCalendarContainer(
 			selectedDate = selectedDate,
 			currentDate = currentDate,
 			sessionsByDate = sessionsByDate,
+			highlightCurrentDay = highlightCurrentDay,
 			onDateSelected = onDateSelected,
 			isLandscape = isLandscape
 		)
@@ -365,6 +372,7 @@ private fun AnimatedCalendarContainer(
 			selectedDate = selectedDate,
 			currentDate = currentDate,
 			sessionsByDate = sessionsByDate,
+			highlightCurrentDay = highlightCurrentDay,
 			onDateSelected = onDateSelected,
 			onSizeChanged = { weekCalendarSize = it },
 			isLandscape = isLandscape
@@ -380,6 +388,7 @@ private fun MonthCalendarView(
 	selectedDate: LocalDate,
 	currentDate: LocalDate,
 	sessionsByDate: Map<LocalDate, List<SessionUiModel>>,
+	highlightCurrentDay: Boolean,
 	onDateSelected: (LocalDate) -> Unit,
 	isLandscape: Boolean
 ) {
@@ -397,7 +406,7 @@ private fun MonthCalendarView(
 			DayCell(
 				date = day.date,
 				isSelected = day.date == selectedDate,
-				isToday = day.date == currentDate,
+				isToday = highlightCurrentDay && day.date == currentDate,
 				isInCurrentMonth = day.position == DayPosition.MonthDate,
 				sessionCount = sessionsByDate[day.date]?.size ?: 0,
 				onClick = onDateSelected,
@@ -414,6 +423,7 @@ private fun WeekCalendarView(
 	selectedDate: LocalDate,
 	currentDate: LocalDate,
 	sessionsByDate: Map<LocalDate, List<SessionUiModel>>,
+	highlightCurrentDay: Boolean,
 	onDateSelected: (LocalDate) -> Unit,
 	onSizeChanged: (DpSize) -> Unit,
 	isLandscape: Boolean
@@ -436,7 +446,7 @@ private fun WeekCalendarView(
 			DayCell(
 				date = day.date,
 				isSelected = day.date == selectedDate,
-				isToday = day.date == currentDate,
+				isToday = highlightCurrentDay && day.date == currentDate,
 				isInCurrentMonth = day.position == WeekDayPosition.RangeDate,
 				sessionCount = sessionsByDate[day.date]?.size ?: 0,
 				onClick = onDateSelected,
@@ -458,12 +468,11 @@ private fun DayCell(
 ) {
 	val backgroundColor = when {
 		isSelected -> MaterialTheme.colorScheme.primary
-		sessionCount > 0 -> MaterialTheme.colorScheme.primary.copy(alpha = 0.15f)
-		else -> MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0f)
+		isToday -> MaterialTheme.colorScheme.primary.copy(alpha = 0.25f)
+		else -> Color.Transparent
 	}
 	val textColor = when {
 		isSelected -> MaterialTheme.colorScheme.onPrimary
-		isToday -> MaterialTheme.colorScheme.primary
 		isInCurrentMonth -> MaterialTheme.colorScheme.onPrimaryContainer
 		else -> MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.4f)
 	}

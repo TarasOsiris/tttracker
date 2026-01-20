@@ -102,6 +102,7 @@
 	<string name="week_start_monday">Понеділок</string>
 	<string name="week_start_sunday">Неділя</string>
 	<string name="week_start_saturday">Субота</string>
+	<string name="settings_highlight_current_day">Підсвічувати поточний день</string>
 	<string name="settings_section_calendar">Календар</string>
     <string name="settings_section_sessions">Налаштування тренувань</string>
     <string name="settings_default_duration">Тривалість тренування</string>

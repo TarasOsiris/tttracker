@@ -21,6 +21,7 @@ class UserPreferencesRepositoryImpl(
 	private val KEY_AVATAR_URI = "avatar_uri"
 	private val KEY_APP_THEME = "app_theme"
 	private val KEY_WEEK_START_DAY = "week_start_day"
+	private val KEY_HIGHLIGHT_CURRENT_DAY = "highlight_current_day"
 
 	override val allPreferences: Flow<List<User_preferences>> =
 		database.appDatabaseQueries.selectAllPreferences().asFlow().mapToList(ioDispatcher)
@@ -29,7 +30,7 @@ class UserPreferencesRepositoryImpl(
 		val themeString = prefs.find { it.key == KEY_APP_THEME }?.value_
 		try {
 			if (themeString != null) AppThemeMode.valueOf(themeString) else AppThemeMode.SYSTEM
-		} catch (e: Exception) {
+		} catch (_: Exception) {
 			AppThemeMode.SYSTEM
 		}
 	}
@@ -38,9 +39,14 @@ class UserPreferencesRepositoryImpl(
 		val dayString = prefs.find { it.key == KEY_WEEK_START_DAY }?.value_
 		try {
 			if (dayString != null) WeekStartDay.valueOf(dayString) else WeekStartDay.MONDAY
-		} catch (e: Exception) {
+		} catch (_: Exception) {
 			WeekStartDay.MONDAY
 		}
+	}
+
+	override val highlightCurrentDay: Flow<Boolean> = allPreferences.map { prefs ->
+		val value = prefs.find { it.key == KEY_HIGHLIGHT_CURRENT_DAY }?.value_
+		value?.toBooleanStrictOrNull() ?: true
 	}
 
 	override suspend fun getAllPreferences(): Map<String, String> = withContext(ioDispatcher) {
@@ -62,6 +68,10 @@ class UserPreferencesRepositoryImpl(
 
 	override suspend fun setWeekStartDay(day: WeekStartDay) {
 		setPreference(KEY_WEEK_START_DAY, day.name)
+	}
+
+	override suspend fun setHighlightCurrentDay(highlight: Boolean) {
+		setPreference(KEY_HIGHLIGHT_CURRENT_DAY, highlight.toString())
 	}
 
 	override suspend fun setPreferences(preferences: Map<String, String>): Unit = withContext(ioDispatcher) {

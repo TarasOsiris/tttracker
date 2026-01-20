@@ -9,6 +9,7 @@ interface UserPreferencesRepository {
 	val allPreferences: Flow<List<User_preferences>>
 	val themeMode: Flow<AppThemeMode>
 	val weekStartDay: Flow<WeekStartDay>
+	val highlightCurrentDay: Flow<Boolean>
 
 	suspend fun getAllPreferences(): Map<String, String>
 
@@ -19,6 +20,8 @@ interface UserPreferencesRepository {
 	suspend fun setThemeMode(mode: AppThemeMode)
 
 	suspend fun setWeekStartDay(day: WeekStartDay)
+
+	suspend fun setHighlightCurrentDay(highlight: Boolean)
 
 	suspend fun setPreferences(preferences: Map<String, String>)
 

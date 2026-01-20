@@ -24,6 +24,9 @@ class SessionsScreenViewModelImpl(
 		.map { it.toDayOfWeek() }
 		.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), DayOfWeek.MONDAY)
 
+	override val highlightCurrentDay: StateFlow<Boolean> = userPreferencesRepository.highlightCurrentDay
+		.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), true)
+
 	override val sessions: StateFlow<Map<LocalDate, List<SessionUiModel>>> = sessionService.allSessions
 		.map { allSessions ->
 			allSessions.map { session ->
