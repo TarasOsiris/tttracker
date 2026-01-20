@@ -16,4 +16,8 @@ class JvmExternalAppLauncher : ExternalAppLauncher {
 			}
 		}
 	}
+
+	override fun openAppStore() {
+		// Desktop doesn't have an app store rating mechanism
+	}
 }

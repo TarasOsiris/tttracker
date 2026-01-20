@@ -19,6 +19,7 @@ class SettingsViewModel(
 
 	val versionName: String get() = nativeInfoProvider.versionName
 	val buildNumber: String get() = nativeInfoProvider.buildNumber
+	val isDebugBuild: Boolean get() = nativeInfoProvider.isDebugBuild
 
 	val currentThemeMode: StateFlow<AppThemeMode> = userPreferencesRepository.themeMode
 		.stateIn(
@@ -39,5 +40,9 @@ class SettingsViewModel(
 			subject = "Table Tennis Tracker Feedback",
 			body = "\n\n---\nApp Version: $versionName ($buildNumber)"
 		)
+	}
+
+	fun rateApp() {
+		externalAppLauncher.openAppStore()
 	}
 }

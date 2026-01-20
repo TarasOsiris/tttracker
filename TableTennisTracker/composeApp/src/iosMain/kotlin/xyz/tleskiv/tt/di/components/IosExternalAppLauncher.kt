@@ -1,6 +1,7 @@
 package xyz.tleskiv.tt.di.components
 
 import platform.Foundation.NSURL
+import platform.StoreKit.SKStoreReviewController
 import platform.UIKit.UIApplication
 
 class IosExternalAppLauncher : ExternalAppLauncher {
@@ -11,6 +12,10 @@ class IosExternalAppLauncher : ExternalAppLauncher {
 		NSURL.URLWithString(urlString)?.let { url ->
 			UIApplication.sharedApplication.openURL(url)
 		}
+	}
+
+	override fun openAppStore() {
+		SKStoreReviewController.requestReview()
 	}
 
 	private fun String.encodeURLComponent(): String {

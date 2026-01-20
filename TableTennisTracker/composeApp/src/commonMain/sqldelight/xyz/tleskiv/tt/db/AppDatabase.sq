@@ -103,3 +103,6 @@ deleteSession:
 UPDATE training_session
 SET is_deleted = 1, updated_at = ?
 WHERE id = ?;
+
+deleteAllSessions:
+DELETE FROM training_session;

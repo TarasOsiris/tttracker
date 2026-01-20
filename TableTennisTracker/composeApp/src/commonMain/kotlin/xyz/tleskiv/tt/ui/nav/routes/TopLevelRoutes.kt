@@ -14,3 +14,5 @@ data class EditSessionRoute(val sessionId: String) : TopLevelRoute
 
 data object GeneralSettingsRoute : TopLevelRoute
 
+data object DebugRoute : TopLevelRoute
+

@@ -15,6 +15,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.KeyboardArrowRight
 import androidx.compose.material.icons.outlined.BrightnessMedium
+import androidx.compose.material.icons.outlined.BugReport
 import androidx.compose.material.icons.outlined.Feedback
 import androidx.compose.material.icons.outlined.Language
 import androidx.compose.material.icons.outlined.Lock
@@ -66,6 +67,7 @@ import xyz.tleskiv.tt.viewmodel.SettingsViewModel
 @Composable
 fun SettingsScreen(
 	onNavigateToGeneralSettings: () -> Unit = {},
+	onNavigateToDebug: () -> Unit = {},
 	viewModel: SettingsViewModel = koinViewModel()
 ) {
 	val uriHandler = LocalUriHandler.current
@@ -136,12 +138,12 @@ fun SettingsScreen(
 			ContentCard {
 				Column(modifier = Modifier.fillMaxWidth()) {
 					val aboutItems = listOf(
-						SettingsMenuItem(Res.string.action_visit_website, Icons.Outlined.Language, {}),
+						SettingsMenuItem(Res.string.action_visit_website, Icons.Outlined.Language, { uriHandler.openUri("https://ttapp.tleskiv.xyz") }),
 						SettingsMenuItem(
 							Res.string.action_privacy_policy,
 							Icons.Outlined.Lock,
 							{ uriHandler.openUri("https://google.com") }),
-						SettingsMenuItem(Res.string.action_rate_app, Icons.Outlined.Star, {})
+						SettingsMenuItem(Res.string.action_rate_app, Icons.Outlined.Star, { viewModel.rateApp() })
 					)
 
 					aboutItems.forEachIndexed { index, item ->
@@ -153,6 +155,21 @@ fun SettingsScreen(
 								thickness = 0.5.dp
 							)
 						}
+					}
+				}
+			}
+
+			if (viewModel.isDebugBuild) {
+				Spacer(modifier = Modifier.height(24.dp))
+
+				SettingsSectionHeader(title = "Developer")
+				Spacer(modifier = Modifier.height(8.dp))
+				ContentCard {
+					Column(modifier = Modifier.fillMaxWidth()) {
+						SettingsMenuRow(
+							item = SettingsMenuItem(Icons.Outlined.BugReport, "Debug", onNavigateToDebug),
+							onClick = onNavigateToDebug
+						)
 					}
 				}
 			}
@@ -246,10 +263,14 @@ private fun SettingsSectionHeader(title: String) {
 }
 
 private data class SettingsMenuItem(
-	val title: StringResource,
+	val titleRes: StringResource?,
+	val title: String?,
 	val icon: ImageVector,
 	val onClick: () -> Unit
-)
+) {
+	constructor(titleRes: StringResource, icon: ImageVector, onClick: () -> Unit) : this(titleRes, null, icon, onClick)
+	constructor(icon: ImageVector, title: String, onClick: () -> Unit) : this(null, title, icon, onClick)
+}
 
 @Composable
 private fun SettingsMenuRow(item: SettingsMenuItem, onClick: () -> Unit) {
@@ -268,7 +289,7 @@ private fun SettingsMenuRow(item: SettingsMenuItem, onClick: () -> Unit) {
 			)
 			Spacer(modifier = Modifier.width(16.dp))
 			Text(
-				text = stringResource(item.title),
+				text = item.titleRes?.let { stringResource(it) } ?: item.title ?: "",
 				modifier = Modifier.weight(1f),
 				style = MaterialTheme.typography.bodyLarge,
 				color = MaterialTheme.colorScheme.onSurface

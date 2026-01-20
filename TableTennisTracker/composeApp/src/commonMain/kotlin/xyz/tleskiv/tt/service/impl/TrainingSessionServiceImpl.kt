@@ -61,4 +61,8 @@ class TrainingSessionServiceImpl(
 	override suspend fun deleteSession(id: Uuid) {
 		repository.deleteSession(id)
 	}
+
+	override suspend fun deleteAllSessions() {
+		repository.deleteAllSessions()
+	}
 }

@@ -11,6 +11,7 @@ import xyz.tleskiv.tt.viewmodel.impl.settings.GeneralSettingsScreenViewModelImpl
 import xyz.tleskiv.tt.viewmodel.impl.analytics.AnalyticsScreenViewModelImpl
 import xyz.tleskiv.tt.viewmodel.analytics.AnalyticsScreenViewModel
 import xyz.tleskiv.tt.viewmodel.AppViewModel
+import xyz.tleskiv.tt.viewmodel.DebugScreenViewModel
 import xyz.tleskiv.tt.viewmodel.SettingsViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.CreateSessionScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.EditSessionScreenViewModel
@@ -27,5 +28,6 @@ val viewModelModule = module {
 	viewModelOf(::GeneralSettingsScreenViewModelImpl) bind GeneralSettingsScreenViewModel::class
 	viewModelOf(::AppViewModel)
 	viewModelOf(::SettingsViewModel)
+	viewModelOf(::DebugScreenViewModel)
 }
 

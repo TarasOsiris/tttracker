@@ -1,6 +1,7 @@
 package xyz.tleskiv.tt.di.components
 
 import platform.Foundation.NSBundle
+import kotlin.experimental.ExperimentalNativeApi
 
 class IosNativeInfoProvider : NativeInfoProvider {
 	override val versionName: String =
@@ -8,4 +9,7 @@ class IosNativeInfoProvider : NativeInfoProvider {
 
 	override val buildNumber: String =
 		NSBundle.mainBundle.objectForInfoDictionaryKey("CFBundleVersion") as? String ?: "1"
+
+	@OptIn(ExperimentalNativeApi::class)
+	override val isDebugBuild: Boolean = Platform.isDebugBinary
 }

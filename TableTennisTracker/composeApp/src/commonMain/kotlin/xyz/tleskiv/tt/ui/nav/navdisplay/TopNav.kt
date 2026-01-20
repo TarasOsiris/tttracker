@@ -15,6 +15,7 @@ import xyz.tleskiv.tt.ui.nav.lateralEntryTransitionMetadata
 import xyz.tleskiv.tt.ui.nav.modalEntryTransitionMetadata
 import xyz.tleskiv.tt.ui.nav.routes.CoreAppRoute
 import xyz.tleskiv.tt.ui.nav.routes.CreateSessionRoute
+import xyz.tleskiv.tt.ui.nav.routes.DebugRoute
 import xyz.tleskiv.tt.ui.nav.routes.EditSessionRoute
 import xyz.tleskiv.tt.ui.nav.routes.GeneralSettingsRoute
 import xyz.tleskiv.tt.ui.nav.routes.NAV_BAR_TAB_ROUTES
@@ -23,6 +24,7 @@ import xyz.tleskiv.tt.ui.nav.routes.SessionDetailsRoute
 import xyz.tleskiv.tt.ui.nav.routes.SessionsRoute
 import xyz.tleskiv.tt.ui.nav.routes.TopLevelRoute
 import xyz.tleskiv.tt.ui.screens.CreateSessionScreen
+import xyz.tleskiv.tt.ui.screens.DebugScreen
 import xyz.tleskiv.tt.ui.screens.EditSessionScreen
 import xyz.tleskiv.tt.ui.screens.GeneralSettingsScreen
 import xyz.tleskiv.tt.ui.screens.SessionDetailsScreen
@@ -84,6 +86,10 @@ fun TopNavDisplay(topLevelBackStack: SnapshotStateList<TopLevelRoute>) {
 						viewModel = koinViewModel<GeneralSettingsScreenViewModel>(),
 						onNavigateBack = { topLevelBackStack.removeLastOrNull() }
 					)
+				}
+
+				is DebugRoute -> NavEntry(key, metadata = lateralEntryTransitionMetadata) {
+					DebugScreen(onNavigateBack = { topLevelBackStack.removeLastOrNull() })
 				}
 			}
 		}

@@ -1,6 +1,7 @@
 package xyz.tleskiv.tt.di.components
 
 import android.content.Context
+import android.content.pm.ApplicationInfo
 
 class AndroidNativeInfoProvider(context: Context) : NativeInfoProvider {
 	override val versionName: String = context.packageManager
@@ -8,4 +9,7 @@ class AndroidNativeInfoProvider(context: Context) : NativeInfoProvider {
 
 	override val buildNumber: String = context.packageManager
 		.getPackageInfo(context.packageName, 0).longVersionCode.toString()
+
+	override val isDebugBuild: Boolean =
+		(context.applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE) != 0
 }

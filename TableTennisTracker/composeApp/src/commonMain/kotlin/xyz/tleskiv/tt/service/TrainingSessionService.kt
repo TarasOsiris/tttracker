@@ -31,4 +31,6 @@ interface TrainingSessionService {
 	suspend fun getSessionById(id: Uuid): Training_session?
 
 	suspend fun deleteSession(id: Uuid)
+
+	suspend fun deleteAllSessions()
 }
