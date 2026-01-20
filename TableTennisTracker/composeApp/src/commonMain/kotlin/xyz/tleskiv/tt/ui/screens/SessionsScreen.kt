@@ -41,6 +41,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -167,13 +168,30 @@ fun SessionsScreen(
 		}
 	}
 
-	LaunchedEffect(inputData.selectedDate) {
-		val targetIndex = (inputData.selectedDate.toEpochDays() - inputData.startDate.toEpochDays()).toInt()
+	// Calendar → List: scroll when user taps a date on the calendar
+	fun scrollListToDate(date: LocalDate) {
+		val targetIndex = (date.toEpochDays() - inputData.startDate.toEpochDays()).toInt()
 		if (targetIndex in 0 until (DATE_LIST_RANGE_DAYS * 2 + 1)) {
 			coroutineScope.launch {
 				listState.scrollToItem(targetIndex)
 			}
 		}
+	}
+
+	// List → Calendar: When user scrolls the list, update the selected date
+	LaunchedEffect(listState, weekState, monthState) {
+		snapshotFlow { listState.firstVisibleItemIndex }
+			.collect { index ->
+				val visibleDate = inputData.startDate.plus(DatePeriod(days = index))
+				if (visibleDate != inputData.selectedDate) {
+					inputData.selectedDate = visibleDate
+				}
+				if (inputData.isWeekMode) {
+					weekState.animateScrollToWeek(visibleDate)
+				} else {
+					monthState.animateScrollToMonth(visibleDate.yearMonth)
+				}
+			}
 	}
 
 	BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
@@ -192,7 +210,10 @@ fun SessionsScreen(
 				weekState = weekState,
 				firstDayOfWeek = firstDayOfWeek,
 				highlightCurrentDay = highlightCurrentDay,
-				onDateSelected = { inputData.selectedDate = it },
+				onDateSelected = {
+					inputData.selectedDate = it
+					scrollListToDate(it)
+				},
 				isLandscape = isLandscape
 			)
 
