@@ -16,7 +16,9 @@
       "WebFetch(domain:raw.githubusercontent.com)",
       "Bash(tree:*)",
       "Bash(bash gradlew:*)",
-      "Bash(chmod:*)"
+      "Bash(chmod:*)",
+      "Bash(xargs ls:*)",
+      "WebFetch(domain:docs.sentry.io)"
     ]
   }
 }

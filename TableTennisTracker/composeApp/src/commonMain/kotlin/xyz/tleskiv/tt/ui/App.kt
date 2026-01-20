@@ -12,6 +12,7 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import io.sentry.kotlin.multiplatform.Sentry
 import org.koin.compose.viewmodel.koinViewModel
 import xyz.tleskiv.tt.model.AppThemeMode
 import xyz.tleskiv.tt.ui.nav.navdisplay.TopNavDisplay
@@ -25,6 +26,9 @@ import xyz.tleskiv.tt.viewmodel.AppViewModel
 fun App() {
 	val viewModel = koinViewModel<AppViewModel>()
 	val themeMode by viewModel.themeMode.collectAsState()
+
+	// TODO: Remove after testing Sentry
+	Sentry.captureException(RuntimeException("Test Sentry crash on app start"))
 
 	// Wait for theme to load before rendering to prevent flicker
 	val currentTheme = themeMode ?: return

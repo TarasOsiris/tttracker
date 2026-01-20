@@ -8,6 +8,7 @@ plugins {
 	alias(libs.plugins.composeCompiler)
 	alias(libs.plugins.composeHotReload)
 	alias(libs.plugins.sqldelight)
+	alias(libs.plugins.sentryKmp)
 }
 
 // Task to copy compose resources with proper package prefix for Android

@@ -4,5 +4,8 @@
 <dict>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
+    <key>SENTRY_DSN</key>
+    <string>https://a4cfb73df75a9e559b75277dab13abea@o1145835.ingest.us.sentry.io/4510742821273600
+    </string>
 </dict>
 </plist>

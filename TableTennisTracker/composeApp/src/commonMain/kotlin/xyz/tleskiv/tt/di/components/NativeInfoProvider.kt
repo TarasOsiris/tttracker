@@ -4,4 +4,5 @@ interface NativeInfoProvider {
 	val buildNumber: String
 	val versionName: String
 	val isDebugBuild: Boolean
+	val sentryDsn: String
 }

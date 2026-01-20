@@ -101,11 +101,6 @@ fun AnalyticsScreen(viewModel: AnalyticsScreenViewModel = koinViewModel()) {
 			weekHeader = { WeekHeader(it) },
 			monthHeader = { MonthHeader(it, endDate, state) }
 		)
-		CalendarInfo(
-			modifier = Modifier
-				.fillMaxWidth()
-				.padding(horizontal = 44.dp)
-		)
 
 		val totalMinutesByDate by viewModel.totalMinutesByDate.collectAsState()
 		Box(modifier = Modifier.weight(1f)) {
@@ -149,29 +144,6 @@ private fun BottomContent(
 				LevelBox(color = level.toColor())
 			}
 		}
-	}
-}
-
-@Composable
-private fun CalendarInfo(modifier: Modifier = Modifier) {
-	Row(
-		modifier = modifier,
-		horizontalArrangement = Arrangement.End,
-		verticalAlignment = Alignment.Bottom
-	) {
-		Text(
-			text = "Less",
-			style = MaterialTheme.typography.labelSmall,
-			color = MaterialTheme.colorScheme.onSurfaceVariant
-		)
-		HeatMapLevel.entries.forEach { level ->
-			LevelBox(level.toColor())
-		}
-		Text(
-			text = "More",
-			style = MaterialTheme.typography.labelSmall,
-			color = MaterialTheme.colorScheme.onSurfaceVariant
-		)
 	}
 }
 

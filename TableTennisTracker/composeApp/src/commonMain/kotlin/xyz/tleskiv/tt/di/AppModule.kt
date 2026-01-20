@@ -16,3 +16,7 @@ val appModule = module {
 		UserPreferencesRepositoryImpl(get(), get(named(DispatcherQualifiers.IO)))
 	}
 }
+
+fun startKoinAndroid() {
+
+}

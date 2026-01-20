@@ -12,4 +12,7 @@ class IosNativeInfoProvider : NativeInfoProvider {
 
 	@OptIn(ExperimentalNativeApi::class)
 	override val isDebugBuild: Boolean = Platform.isDebugBinary
+
+	override val sentryDsn: String =
+		NSBundle.mainBundle.objectForInfoDictionaryKey("SENTRY_DSN") as? String ?: ""
 }

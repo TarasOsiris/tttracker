@@ -23,6 +23,16 @@ android {
 		versionCode = 1
 		versionName = "1.0"
 		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+		buildConfigField(
+			"String",
+			"SENTRY_DSN",
+			"\"https://ce3694f2e50b4bb0196220b338bd5974@o1145835.ingest.us.sentry.io/4510742786867200\""
+		)
+	}
+
+	buildFeatures {
+		buildConfig = true
 	}
 
 	packaging {
