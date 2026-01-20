@@ -35,6 +35,8 @@ fun App() {
 		AppThemeMode.DARK -> true
 	}
 
+	SystemAppearanceEffect(isDarkTheme = darkTheme)
+
 	AppTheme(darkTheme = darkTheme) {
 		Surface(
 			modifier = Modifier.fillMaxSize(),

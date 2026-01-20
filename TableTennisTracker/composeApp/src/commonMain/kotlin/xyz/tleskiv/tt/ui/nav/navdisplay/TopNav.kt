@@ -1,7 +1,7 @@
 package xyz.tleskiv.tt.ui.nav.navdisplay
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
 import androidx.navigation3.runtime.NavEntry
@@ -17,6 +17,7 @@ import xyz.tleskiv.tt.ui.nav.routes.CoreAppRoute
 import xyz.tleskiv.tt.ui.nav.routes.CreateSessionRoute
 import xyz.tleskiv.tt.ui.nav.routes.EditSessionRoute
 import xyz.tleskiv.tt.ui.nav.routes.GeneralSettingsRoute
+import xyz.tleskiv.tt.ui.nav.routes.NAV_BAR_TAB_ROUTES
 import xyz.tleskiv.tt.ui.nav.routes.NavBarTabLevelRoute
 import xyz.tleskiv.tt.ui.nav.routes.SessionDetailsRoute
 import xyz.tleskiv.tt.ui.nav.routes.SessionsRoute
@@ -33,7 +34,9 @@ import xyz.tleskiv.tt.viewmodel.settings.GeneralSettingsScreenViewModel
 
 @Composable
 fun TopNavDisplay(topLevelBackStack: SnapshotStateList<TopLevelRoute>) {
-	val tabsBackStack = remember { TopLevelBackStack<NavBarTabLevelRoute>(SessionsRoute) }
+	val tabsBackStack = rememberSaveable(saver = TopLevelBackStack.saver(NAV_BAR_TAB_ROUTES)) {
+		TopLevelBackStack(SessionsRoute)
+	}
 	NavDisplay(
 		backStack = topLevelBackStack,
 		onBack = { topLevelBackStack.removeLastOrNull() },
