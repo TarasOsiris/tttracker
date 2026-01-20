@@ -541,41 +541,29 @@ private fun SessionsListContent(
 		modifier = Modifier.fillMaxSize(),
 		contentPadding = PaddingValues(bottom = 88.dp)
 	) {
-		items(
-			count = totalDays,
-			key = { index -> startDate.plus(DatePeriod(days = index)).toEpochDays() }
-		) { index ->
-			val date = remember(index) { startDate.plus(DatePeriod(days = index)) }
+		(0 until totalDays).forEach { index ->
+			val date = startDate.plus(DatePeriod(days = index))
 			val sessions = sessionsByDate[date] ?: emptyList()
-			DateSection(
-				date = date,
-				currentDate = currentDate,
-				sessions = sessions,
-				onSessionClick = onNavigateToDetails
-			)
-		}
-	}
-}
 
-@Composable
-private fun DateSection(
-	date: LocalDate,
-	currentDate: LocalDate,
-	sessions: List<SessionUiModel>,
-	onSessionClick: (String) -> Unit
-) {
-	Column(modifier = Modifier.fillMaxWidth()) {
-		DateHeader(date = date, currentDate = currentDate)
+			stickyHeader(key = date.toEpochDays()) {
+				DateHeader(date = date, currentDate = currentDate)
+			}
 
-		if (sessions.isEmpty()) {
-			NoSessionsPlaceholder()
-		} else {
-			sessions.forEach { session ->
-				SessionListItem(
-					session = session,
-					onClick = { onSessionClick(session.id.toString()) },
-					modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
-				)
+			if (sessions.isEmpty()) {
+				item(key = "empty_${date.toEpochDays()}") {
+					NoSessionsPlaceholder()
+				}
+			} else {
+				items(
+					count = sessions.size,
+					key = { sessions[it].id }
+				) { sessionIndex ->
+					SessionListItem(
+						session = sessions[sessionIndex],
+						onClick = { onNavigateToDetails(sessions[sessionIndex].id.toString()) },
+						modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+					)
+				}
 			}
 		}
 	}
