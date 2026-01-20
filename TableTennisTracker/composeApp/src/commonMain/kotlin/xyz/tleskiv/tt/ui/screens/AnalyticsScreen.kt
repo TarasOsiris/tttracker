@@ -3,11 +3,9 @@ package xyz.tleskiv.tt.ui.screens
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -15,12 +13,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -39,6 +39,7 @@ import com.kizitonwose.calendar.core.CalendarDay
 import com.kizitonwose.calendar.core.CalendarMonth
 import com.kizitonwose.calendar.core.firstDayOfWeekFromLocale
 import com.kizitonwose.calendar.core.now
+import kotlinx.coroutines.launch
 import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.DayOfWeek
 import kotlinx.datetime.LocalDate
@@ -46,6 +47,7 @@ import kotlinx.datetime.YearMonth
 import kotlinx.datetime.minus
 import kotlinx.datetime.yearMonth
 import org.koin.compose.viewmodel.koinViewModel
+import xyz.tleskiv.tt.ui.bottomsheets.DaySessionsBottomSheet
 import xyz.tleskiv.tt.util.ext.displayText
 import xyz.tleskiv.tt.util.ext.shortDisplayText
 import xyz.tleskiv.tt.util.ui.HeatMapLevel
@@ -53,8 +55,12 @@ import xyz.tleskiv.tt.util.ui.toColor
 import xyz.tleskiv.tt.viewmodel.analytics.AnalyticsScreenViewModel
 
 @Composable
-fun AnalyticsScreen(viewModel: AnalyticsScreenViewModel = koinViewModel()) {
+fun AnalyticsScreen(
+	viewModel: AnalyticsScreenViewModel = koinViewModel(),
+	onNavigateToSession: (String) -> Unit = {}
+) {
 	val sessionsByDate by viewModel.sessionsByDate.collectAsState()
+	val sessionsListByDate by viewModel.sessionsListByDate.collectAsState()
 	val endDate = remember(sessionsByDate) {
 		sessionsByDate.keys.maxOrNull() ?: LocalDate.now()
 	}
@@ -70,6 +76,24 @@ fun AnalyticsScreen(viewModel: AnalyticsScreenViewModel = koinViewModel()) {
 		sessionsByDate.mapValues { (_, count) -> levelForCount(count, maxCount) }
 	}
 	var selection by remember { mutableStateOf<LocalDate?>(null) }
+	val sheetState = rememberModalBottomSheetState()
+	val scope = rememberCoroutineScope()
+
+	selection?.let { selectedDate ->
+		DaySessionsBottomSheet(
+			date = selectedDate,
+			sessions = sessionsListByDate[selectedDate] ?: emptyList(),
+			sheetState = sheetState,
+			onDismiss = { selection = null },
+			onSessionClick = { session ->
+				scope.launch { sheetState.hide() }.invokeOnCompletion {
+					selection = null
+					onNavigateToSession(session.id.toString())
+				}
+			}
+		)
+	}
+
 	Column(
 		modifier = Modifier
 			.fillMaxSize()
@@ -101,49 +125,6 @@ fun AnalyticsScreen(viewModel: AnalyticsScreenViewModel = koinViewModel()) {
 			weekHeader = { WeekHeader(it) },
 			monthHeader = { MonthHeader(it, endDate, state) }
 		)
-
-		val totalMinutesByDate by viewModel.totalMinutesByDate.collectAsState()
-		Box(modifier = Modifier.weight(1f)) {
-			BottomContent(
-				modifier = Modifier
-					.fillMaxWidth()
-					.padding(20.dp)
-					.align(Alignment.BottomCenter),
-				selection = selection,
-				daySessionCount = selection?.let { sessionsByDate[it] ?: 0 } ?: 0,
-				dayTotalMinutes = selection?.let { totalMinutesByDate[it] ?: 0 } ?: 0,
-				level = selection?.let { data[it] ?: HeatMapLevel.Zero }
-			)
-		}
-	}
-}
-
-@Composable
-private fun BottomContent(
-	modifier: Modifier = Modifier,
-	selection: LocalDate? = null,
-	daySessionCount: Int = 0,
-	dayTotalMinutes: Int = 0,
-	level: HeatMapLevel? = null
-) {
-	Column(
-		modifier = modifier,
-		verticalArrangement = Arrangement.spacedBy(20.dp)
-	) {
-		if (selection != null && level != null) {
-			Row(
-				modifier = Modifier.align(Alignment.CenterHorizontally),
-				verticalAlignment = Alignment.CenterVertically,
-				horizontalArrangement = Arrangement.spacedBy(6.dp)
-			) {
-				Text(
-					text = "Selected: $selection · $daySessionCount sessions · ${dayTotalMinutes} min",
-					style = MaterialTheme.typography.bodySmall,
-					color = MaterialTheme.colorScheme.onSurface
-				)
-				LevelBox(color = level.toColor())
-			}
-		}
 	}
 }
 
@@ -169,13 +150,18 @@ private fun Day(
 
 @Composable
 private fun LevelBox(color: Color, isSelected: Boolean = false, onClick: (() -> Unit)? = null) {
-	val outlineColor = MaterialTheme.colorScheme.onSurface
 	Box(
 		modifier = Modifier
 			.size(daySize)
 			.padding(2.dp)
 			.clip(MaterialTheme.shapes.extraSmall)
-			.then(if (isSelected) Modifier.border(1.5.dp, outlineColor, MaterialTheme.shapes.extraSmall) else Modifier)
+			.then(
+				if (isSelected) Modifier.border(
+					2.dp,
+					MaterialTheme.colorScheme.primary,
+					MaterialTheme.shapes.extraSmall
+				) else Modifier
+			)
 			.background(color = color)
 			.clickable(enabled = onClick != null) { onClick?.invoke() }
 	)

@@ -98,6 +98,9 @@
     <string name="theme_light">Light</string>
     <string name="theme_dark">Dark</string>
     <string name="action_privacy_policy">Privacy Policy</string>
+	<string name="settings_section_developer">Developer</string>
+	<string name="action_debug">Debug</string>
+	<string name="settings_version_format">Version %1$s (%2$s)</string>
 
     <!-- Home Screen -->
     <string name="home_view_match">View Match Details</string>

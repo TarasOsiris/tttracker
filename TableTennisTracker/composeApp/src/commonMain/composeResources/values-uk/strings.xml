@@ -22,13 +22,13 @@
     <!-- Navigation -->
     <string name="nav_sessions">Тренування</string>
     <string name="nav_analytics">Аналітика</string>
-    <string name="nav_profile">Профіль</string>
+	<string name="nav_settings">Налаштування</string>
 
     <!-- Screen Titles -->
     <string name="title_home">Головний екран</string>
     <string name="title_create_session">Створити тренування</string>
     <string name="title_analytics">Аналітика</string>
-    <string name="title_profile">Профіль</string>
+	<string name="title_settings">Налаштування</string>
     <string name="title_error">Помилка</string>
 
     <!-- Sessions Screen -->
@@ -42,6 +42,7 @@
     <string name="label_duration">Тривалість</string>
     <string name="hint_duration">Введіть тривалість</string>
     <string name="suffix_minutes">хвилин</string>
+	<string name="suffix_minutes_value">%1$d хв</string>
     <string name="rule_duration">5-300 хвилин</string>
     <string name="label_session_type">Тип тренування</string>
     <string name="label_intensity_rpe">Інтенсивність (RPE)</string>
@@ -54,6 +55,9 @@
     <string name="session_default_title">Тренування</string>
     <string name="label_rpe">RPE</string>
     <string name="label_notes">Нотатки</string>
+	<string name="action_delete">Видалити</string>
+	<string name="delete_session_title">Видалити тренування?</string>
+	<string name="delete_session_message">Цю дію неможливо скасувати. Тренування буде видалено назавжди.</string>
 
     <!-- Session Types -->
     <string name="session_type_technique">Техніка</string>
@@ -79,9 +83,26 @@
     <string name="profile_menu_support">Підтримка</string>
 
     <!-- Settings Screen -->
+	<string name="settings_placeholder">Тут з\'являться ваші налаштування</string>
+	<string name="settings_section_general">Загальні</string>
+	<string name="settings_section_help">Допомога</string>
+	<string name="settings_section_about">Про застосунок</string>
+	<string name="action_general_settings">Загальні налаштування</string>
+	<string name="action_send_feedback">Надіслати відгук</string>
+	<string name="action_visit_website">Вебсайт</string>
+	<string name="action_rate_app">Оцінити застосунок</string>
+	<string name="action_theme">Тема</string>
+	<string name="theme_select_title">Обрати тему</string>
+	<string name="theme_system">Системна</string>
+	<string name="theme_light">Світла</string>
+	<string name="theme_dark">Темна</string>
+	<string name="action_privacy_policy">Політика конфіденційності</string>
     <string name="settings_section_sessions">Налаштування тренувань</string>
     <string name="settings_default_duration">Тривалість тренування</string>
     <string name="settings_default_duration_description">Початкова тривалість при створенні нових тренувань</string>
+	<string name="settings_section_developer">Розробник</string>
+	<string name="action_debug">Налагодження</string>
+	<string name="settings_version_format">Версія %1$s (%2$s)</string>
 
     <!-- Home Screen -->
     <string name="home_view_match">Переглянути деталі матчу</string>

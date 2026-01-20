@@ -13,7 +13,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import org.koin.compose.viewmodel.koinViewModel
-import xyz.tleskiv.tt.model.AppThemeMode
+import xyz.tleskiv.tt.model.AppThemeMode.DARK
+import xyz.tleskiv.tt.model.AppThemeMode.LIGHT
+import xyz.tleskiv.tt.model.AppThemeMode.SYSTEM
 import xyz.tleskiv.tt.ui.nav.navdisplay.TopNavDisplay
 import xyz.tleskiv.tt.ui.nav.routes.CoreAppRoute
 import xyz.tleskiv.tt.ui.nav.routes.TopLevelRoute
@@ -29,9 +31,9 @@ fun App() {
 	val currentTheme = themeMode ?: return
 
 	val darkTheme = when (currentTheme) {
-		AppThemeMode.SYSTEM -> isSystemInDarkTheme()
-		AppThemeMode.LIGHT -> false
-		AppThemeMode.DARK -> true
+		SYSTEM -> isSystemInDarkTheme()
+		LIGHT -> false
+		DARK -> true
 	}
 
 	SystemAppearanceEffect(isDarkTheme = darkTheme)

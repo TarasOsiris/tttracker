@@ -114,7 +114,9 @@ fun TabsNavDisplay(
 						)
 					}
 					entry<AnalyticsRoute>(metadata = instantTransitionMetadata) {
-						AnalyticsScreen()
+						AnalyticsScreen(
+							onNavigateToSession = { id -> topLevelBackStack.add(SessionDetailsRoute(id)) }
+						)
 					}
 					entry<SettingsRoute>(metadata = instantTransitionMetadata) {
 						SettingsScreen(

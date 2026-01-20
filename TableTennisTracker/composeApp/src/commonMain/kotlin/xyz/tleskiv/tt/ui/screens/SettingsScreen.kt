@@ -47,6 +47,7 @@ import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.action_cancel
+import tabletennistracker.composeapp.generated.resources.action_debug
 import tabletennistracker.composeapp.generated.resources.action_general_settings
 import tabletennistracker.composeapp.generated.resources.action_privacy_policy
 import tabletennistracker.composeapp.generated.resources.action_rate_app
@@ -54,8 +55,10 @@ import tabletennistracker.composeapp.generated.resources.action_send_feedback
 import tabletennistracker.composeapp.generated.resources.action_theme
 import tabletennistracker.composeapp.generated.resources.action_visit_website
 import tabletennistracker.composeapp.generated.resources.settings_section_about
+import tabletennistracker.composeapp.generated.resources.settings_section_developer
 import tabletennistracker.composeapp.generated.resources.settings_section_general
 import tabletennistracker.composeapp.generated.resources.settings_section_help
+import tabletennistracker.composeapp.generated.resources.settings_version_format
 import tabletennistracker.composeapp.generated.resources.theme_dark
 import tabletennistracker.composeapp.generated.resources.theme_light
 import tabletennistracker.composeapp.generated.resources.theme_select_title
@@ -162,12 +165,16 @@ fun SettingsScreen(
 			if (viewModel.isDebugBuild) {
 				Spacer(modifier = Modifier.height(24.dp))
 
-				SettingsSectionHeader(title = "Developer")
+				SettingsSectionHeader(title = stringResource(Res.string.settings_section_developer))
 				Spacer(modifier = Modifier.height(8.dp))
 				ContentCard {
 					Column(modifier = Modifier.fillMaxWidth()) {
 						SettingsMenuRow(
-							item = SettingsMenuItem(Icons.Outlined.BugReport, "Debug", onNavigateToDebug),
+							item = SettingsMenuItem(
+								Res.string.action_debug,
+								Icons.Outlined.BugReport,
+								onNavigateToDebug
+							),
 							onClick = onNavigateToDebug
 						)
 					}
@@ -177,7 +184,7 @@ fun SettingsScreen(
 			Spacer(modifier = Modifier.height(32.dp))
 
 			Text(
-				text = "Version ${viewModel.versionName} (${viewModel.buildNumber})",
+				text = stringResource(Res.string.settings_version_format, viewModel.versionName, viewModel.buildNumber),
 				modifier = Modifier.fillMaxWidth(),
 				textAlign = androidx.compose.ui.text.style.TextAlign.Center,
 				style = MaterialTheme.typography.bodySmall,
@@ -263,14 +270,10 @@ private fun SettingsSectionHeader(title: String) {
 }
 
 private data class SettingsMenuItem(
-	val titleRes: StringResource?,
-	val title: String?,
+	val titleRes: StringResource,
 	val icon: ImageVector,
 	val onClick: () -> Unit
-) {
-	constructor(titleRes: StringResource, icon: ImageVector, onClick: () -> Unit) : this(titleRes, null, icon, onClick)
-	constructor(icon: ImageVector, title: String, onClick: () -> Unit) : this(null, title, icon, onClick)
-}
+)
 
 @Composable
 private fun SettingsMenuRow(item: SettingsMenuItem, onClick: () -> Unit) {
@@ -289,7 +292,7 @@ private fun SettingsMenuRow(item: SettingsMenuItem, onClick: () -> Unit) {
 			)
 			Spacer(modifier = Modifier.width(16.dp))
 			Text(
-				text = item.titleRes?.let { stringResource(it) } ?: item.title ?: "",
+				text = stringResource(item.titleRes),
 				modifier = Modifier.weight(1f),
 				style = MaterialTheme.typography.bodyLarge,
 				color = MaterialTheme.colorScheme.onSurface

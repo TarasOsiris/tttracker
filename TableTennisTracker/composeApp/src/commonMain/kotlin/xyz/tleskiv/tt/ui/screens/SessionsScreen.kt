@@ -129,7 +129,7 @@ fun SessionsScreen(
 	topAppBarState?.let { state ->
 		RegisterTopAppBarCleanup(state)
 		state.title = {
-			Column(horizontalAlignment = Alignment.CenterHorizontally) {
+			Column {
 				Text(
 					text = stringResource(Res.string.nav_sessions),
 					style = MaterialTheme.typography.titleMedium,
