@@ -145,7 +145,7 @@ fun SettingsScreen(
 						SettingsMenuItem(
 							Res.string.action_privacy_policy,
 							Icons.Outlined.Lock,
-							{ uriHandler.openUri("https://google.com") }),
+							{ uriHandler.openUri("https://ninevastudios.com/privacy-policy") }),
 						SettingsMenuItem(Res.string.action_rate_app, Icons.Outlined.Star, { viewModel.rateApp() })
 					)
 
