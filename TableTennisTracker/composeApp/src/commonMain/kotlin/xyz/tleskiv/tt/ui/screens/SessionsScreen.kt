@@ -171,7 +171,7 @@ fun SessionsScreen(
 		val targetIndex = (inputData.selectedDate.toEpochDays() - inputData.startDate.toEpochDays()).toInt()
 		if (targetIndex in 0 until (DATE_LIST_RANGE_DAYS * 2 + 1)) {
 			coroutineScope.launch {
-				listState.animateScrollToItem(targetIndex)
+				listState.scrollToItem(targetIndex)
 			}
 		}
 	}
