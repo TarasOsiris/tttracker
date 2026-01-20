@@ -75,19 +75,16 @@ import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.action_add_session
 import tabletennistracker.composeapp.generated.resources.ic_add
 import tabletennistracker.composeapp.generated.resources.nav_sessions
-import tabletennistracker.composeapp.generated.resources.session_default_title
-import tabletennistracker.composeapp.generated.resources.session_duration_format
 import tabletennistracker.composeapp.generated.resources.sessions_empty
 import tabletennistracker.composeapp.generated.resources.sessions_month_mode
 import tabletennistracker.composeapp.generated.resources.sessions_week_mode
 import xyz.tleskiv.tt.ui.nav.navdisplay.RegisterTopAppBarCleanup
 import xyz.tleskiv.tt.ui.nav.navdisplay.TopAppBarState
+import xyz.tleskiv.tt.ui.widgets.SessionListItem
 import xyz.tleskiv.tt.util.ext.displayText
 import xyz.tleskiv.tt.util.ext.formatDateHeader
 import xyz.tleskiv.tt.util.ext.formatFullDate
 import xyz.tleskiv.tt.util.ext.formatMonthYear
-import xyz.tleskiv.tt.util.labelRes
-import xyz.tleskiv.tt.util.ui.getRpeColor
 import xyz.tleskiv.tt.viewmodel.sessions.SessionUiModel
 import xyz.tleskiv.tt.viewmodel.sessions.SessionsScreenViewModel
 
@@ -533,7 +530,11 @@ private fun DateSection(
 			NoSessionsPlaceholder()
 		} else {
 			sessions.forEach { session ->
-				SessionItem(session = session, onClick = { onSessionClick(session.id.toString()) })
+				SessionListItem(
+					session = session,
+					onClick = { onSessionClick(session.id.toString()) },
+					modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+				)
 			}
 		}
 	}
@@ -596,60 +597,6 @@ private fun DateHeader(
 		color = MaterialTheme.colorScheme.outlineVariant,
 		thickness = 0.5.dp
 	)
-}
-
-@Composable
-private fun SessionItem(session: SessionUiModel, onClick: () -> Unit) {
-	Surface(
-		modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp).clickable(onClick = onClick),
-		shape = RoundedCornerShape(12.dp),
-		color = MaterialTheme.colorScheme.surfaceContainerLow,
-		tonalElevation = 1.dp
-	) {
-		Row(
-			modifier = Modifier.fillMaxWidth().padding(12.dp),
-			verticalAlignment = Alignment.CenterVertically
-		) {
-			Box(
-				modifier = Modifier
-					.width(4.dp)
-					.height(40.dp)
-					.background(color = MaterialTheme.colorScheme.primary, shape = RoundedCornerShape(2.dp))
-			)
-
-			Spacer(modifier = Modifier.width(12.dp))
-
-			Column(modifier = Modifier.weight(1f)) {
-				Text(
-					text = session.sessionType?.labelRes()?.let { stringResource(it) }
-						?: stringResource(Res.string.session_default_title),
-					style = MaterialTheme.typography.bodyLarge,
-					fontWeight = FontWeight.Medium,
-					color = MaterialTheme.colorScheme.onSurface
-				)
-				Spacer(modifier = Modifier.height(2.dp))
-				Text(
-					text = stringResource(Res.string.session_duration_format, session.durationMinutes),
-					style = MaterialTheme.typography.bodySmall,
-					color = MaterialTheme.colorScheme.onSurfaceVariant
-				)
-			}
-
-			Box(
-				modifier = Modifier
-					.size(32.dp)
-					.background(color = MaterialTheme.colorScheme.surfaceContainerHigh, shape = CircleShape),
-				contentAlignment = Alignment.Center
-			) {
-				Text(
-					text = session.rpe.toString(),
-					style = MaterialTheme.typography.labelMedium,
-					fontWeight = FontWeight.Bold,
-					color = getRpeColor(session.rpe)
-				)
-			}
-		}
-	}
 }
 
 @Composable
