@@ -8,6 +8,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -167,7 +168,8 @@ fun SessionsScreen(
 		}
 	}
 
-	Box(modifier = Modifier.fillMaxSize()) {
+	BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
+		val isLandscape = maxWidth > maxHeight
 		Column(
 			modifier = Modifier
 				.fillMaxSize()
@@ -180,7 +182,8 @@ fun SessionsScreen(
 				isWeekMode = inputData.isWeekMode,
 				monthState = monthState,
 				weekState = weekState,
-				onDateSelected = { inputData.selectedDate = it }
+				onDateSelected = { inputData.selectedDate = it },
+				isLandscape = isLandscape
 			)
 
 			SessionsListContent(
@@ -207,7 +210,8 @@ private fun CalendarSection(
 	isWeekMode: Boolean,
 	monthState: CalendarState,
 	weekState: WeekCalendarState,
-	onDateSelected: (LocalDate) -> Unit
+	onDateSelected: (LocalDate) -> Unit,
+	isLandscape: Boolean
 ) {
 	Surface(
 		color = MaterialTheme.colorScheme.primaryContainer,
@@ -225,7 +229,8 @@ private fun CalendarSection(
 				monthState = monthState,
 				weekState = weekState,
 				sessionsByDate = sessionsByDate,
-				onDateSelected = onDateSelected
+				onDateSelected = onDateSelected,
+				isLandscape = isLandscape
 			)
 		}
 	}
@@ -319,7 +324,8 @@ private fun AnimatedCalendarContainer(
 	monthState: CalendarState,
 	weekState: WeekCalendarState,
 	sessionsByDate: Map<LocalDate, List<SessionUiModel>>,
-	onDateSelected: (LocalDate) -> Unit
+	onDateSelected: (LocalDate) -> Unit,
+	isLandscape: Boolean
 ) {
 	var weekCalendarSize by remember { mutableStateOf(DpSize.Zero) }
 	val weeksInMonth = 6
@@ -341,7 +347,8 @@ private fun AnimatedCalendarContainer(
 			selectedDate = selectedDate,
 			currentDate = currentDate,
 			sessionsByDate = sessionsByDate,
-			onDateSelected = onDateSelected
+			onDateSelected = onDateSelected,
+			isLandscape = isLandscape
 		)
 
 		WeekCalendarView(
@@ -351,7 +358,8 @@ private fun AnimatedCalendarContainer(
 			currentDate = currentDate,
 			sessionsByDate = sessionsByDate,
 			onDateSelected = onDateSelected,
-			onSizeChanged = { weekCalendarSize = it }
+			onSizeChanged = { weekCalendarSize = it },
+			isLandscape = isLandscape
 		)
 	}
 }
@@ -364,7 +372,8 @@ private fun MonthCalendarView(
 	selectedDate: LocalDate,
 	currentDate: LocalDate,
 	sessionsByDate: Map<LocalDate, List<SessionUiModel>>,
-	onDateSelected: (LocalDate) -> Unit
+	onDateSelected: (LocalDate) -> Unit,
+	isLandscape: Boolean
 ) {
 	val alpha by animateFloatAsState(if (isWeekMode) 0f else 1f)
 
@@ -383,7 +392,8 @@ private fun MonthCalendarView(
 				isToday = day.date == currentDate,
 				isInCurrentMonth = day.position == DayPosition.MonthDate,
 				sessionCount = sessionsByDate[day.date]?.size ?: 0,
-				onClick = onDateSelected
+				onClick = onDateSelected,
+				isLandscape = isLandscape
 			)
 		}
 	)
@@ -397,7 +407,8 @@ private fun WeekCalendarView(
 	currentDate: LocalDate,
 	sessionsByDate: Map<LocalDate, List<SessionUiModel>>,
 	onDateSelected: (LocalDate) -> Unit,
-	onSizeChanged: (DpSize) -> Unit
+	onSizeChanged: (DpSize) -> Unit,
+	isLandscape: Boolean
 ) {
 	val density = LocalDensity.current
 	val alpha by animateFloatAsState(if (isWeekMode) 1f else 0f)
@@ -420,7 +431,8 @@ private fun WeekCalendarView(
 				isToday = day.date == currentDate,
 				isInCurrentMonth = day.position == WeekDayPosition.RangeDate,
 				sessionCount = sessionsByDate[day.date]?.size ?: 0,
-				onClick = onDateSelected
+				onClick = onDateSelected,
+				isLandscape = isLandscape
 			)
 		}
 	)
@@ -433,7 +445,8 @@ private fun DayCell(
 	isToday: Boolean,
 	isInCurrentMonth: Boolean,
 	sessionCount: Int,
-	onClick: (LocalDate) -> Unit
+	onClick: (LocalDate) -> Unit,
+	isLandscape: Boolean
 ) {
 	val backgroundColor = when {
 		isSelected -> MaterialTheme.colorScheme.primary
@@ -450,7 +463,7 @@ private fun DayCell(
 
 	Box(
 		modifier = Modifier
-			.aspectRatio(1f)
+			.aspectRatio(if (isLandscape) 2f else 1f)
 			.padding(4.dp)
 			.clip(CircleShape)
 			.background(backgroundColor)
