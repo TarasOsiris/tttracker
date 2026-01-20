@@ -11,13 +11,13 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.stringResource
 import tabletennistracker.composeapp.generated.resources.Res
@@ -32,6 +32,7 @@ import xyz.tleskiv.tt.ui.widgets.fields.DurationField
 import xyz.tleskiv.tt.ui.widgets.fields.NotesField
 import xyz.tleskiv.tt.ui.widgets.fields.RpeField
 import xyz.tleskiv.tt.ui.widgets.fields.SessionTypeField
+import xyz.tleskiv.tt.util.ui.clearFocusOnTap
 import xyz.tleskiv.tt.viewmodel.sessions.CreateSessionScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.EditSessionScreenViewModel
 
@@ -43,6 +44,7 @@ fun EditSessionScreen(
 ) {
 	val inputData = viewModel.inputData
 	val uiState by viewModel.uiState.collectAsState()
+	val focusManager = LocalFocusManager.current
 
 	Scaffold(
 		topBar = {
@@ -61,7 +63,11 @@ fun EditSessionScreen(
 		}
 	) { paddingValues ->
 		Column(
-			modifier = Modifier.fillMaxSize().padding(paddingValues).verticalScroll(rememberScrollState())
+			modifier = Modifier
+				.fillMaxSize()
+				.clearFocusOnTap(focusManager)
+				.padding(paddingValues)
+				.verticalScroll(rememberScrollState())
 				.padding(16.dp),
 			verticalArrangement = Arrangement.spacedBy(24.dp)
 		) {
