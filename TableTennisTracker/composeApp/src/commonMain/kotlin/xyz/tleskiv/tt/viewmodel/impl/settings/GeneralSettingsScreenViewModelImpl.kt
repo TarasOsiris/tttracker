@@ -1,17 +1,32 @@
 package xyz.tleskiv.tt.viewmodel.impl.settings
 
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import xyz.tleskiv.tt.model.WeekStartDay
+import xyz.tleskiv.tt.repo.UserPreferencesRepository
 import xyz.tleskiv.tt.service.UserPreferencesService
 import xyz.tleskiv.tt.service.UserPreferencesService.UserPreferences
 import xyz.tleskiv.tt.viewmodel.settings.GeneralSettingsScreenViewModel
 
 class GeneralSettingsScreenViewModelImpl(
-	private val userPreferencesService: UserPreferencesService
+	private val userPreferencesService: UserPreferencesService,
+	private val userPreferencesRepository: UserPreferencesRepository
 ) : GeneralSettingsScreenViewModel() {
 
 	override val inputData = InputData()
+
+	override val weekStartDay: StateFlow<WeekStartDay> = userPreferencesRepository.weekStartDay
+		.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), WeekStartDay.MONDAY)
+
+	override fun setWeekStartDay(day: WeekStartDay) {
+		viewModelScope.launch {
+			userPreferencesRepository.setWeekStartDay(day)
+		}
+	}
 
 	init {
 		viewModelScope.launch {

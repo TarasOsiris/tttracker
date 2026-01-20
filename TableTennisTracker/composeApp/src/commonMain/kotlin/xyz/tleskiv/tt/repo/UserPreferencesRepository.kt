@@ -2,18 +2,23 @@ package xyz.tleskiv.tt.repo
 
 import kotlinx.coroutines.flow.Flow
 import xyz.tleskiv.tt.db.User_preferences
+import xyz.tleskiv.tt.model.AppThemeMode
+import xyz.tleskiv.tt.model.WeekStartDay
 
 interface UserPreferencesRepository {
 	val allPreferences: Flow<List<User_preferences>>
-	val themeMode: Flow<xyz.tleskiv.tt.model.AppThemeMode>
+	val themeMode: Flow<AppThemeMode>
+	val weekStartDay: Flow<WeekStartDay>
 
 	suspend fun getAllPreferences(): Map<String, String>
 
 	suspend fun getPreference(key: String): String?
 
 	suspend fun setPreference(key: String, value: String)
-	
-	suspend fun setThemeMode(mode: xyz.tleskiv.tt.model.AppThemeMode)
+
+	suspend fun setThemeMode(mode: AppThemeMode)
+
+	suspend fun setWeekStartDay(day: WeekStartDay)
 
 	suspend fun setPreferences(preferences: Map<String, String>)
 

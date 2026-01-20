@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.map
 import xyz.tleskiv.tt.db.AppDatabase
 import xyz.tleskiv.tt.db.User_preferences
 import xyz.tleskiv.tt.model.AppThemeMode
+import xyz.tleskiv.tt.model.WeekStartDay
 import xyz.tleskiv.tt.repo.UserPreferencesRepository
 import xyz.tleskiv.tt.util.nowMillis
 
@@ -19,6 +20,7 @@ class UserPreferencesRepositoryImpl(
 
 	private val KEY_AVATAR_URI = "avatar_uri"
 	private val KEY_APP_THEME = "app_theme"
+	private val KEY_WEEK_START_DAY = "week_start_day"
 
 	override val allPreferences: Flow<List<User_preferences>> =
 		database.appDatabaseQueries.selectAllPreferences().asFlow().mapToList(ioDispatcher)
@@ -29,6 +31,15 @@ class UserPreferencesRepositoryImpl(
 			if (themeString != null) AppThemeMode.valueOf(themeString) else AppThemeMode.SYSTEM
 		} catch (e: Exception) {
 			AppThemeMode.SYSTEM
+		}
+	}
+
+	override val weekStartDay: Flow<WeekStartDay> = allPreferences.map { prefs ->
+		val dayString = prefs.find { it.key == KEY_WEEK_START_DAY }?.value_
+		try {
+			if (dayString != null) WeekStartDay.valueOf(dayString) else WeekStartDay.MONDAY
+		} catch (e: Exception) {
+			WeekStartDay.MONDAY
 		}
 	}
 
@@ -47,6 +58,10 @@ class UserPreferencesRepositoryImpl(
 
 	override suspend fun setThemeMode(mode: AppThemeMode) {
 		setPreference(KEY_APP_THEME, mode.name)
+	}
+
+	override suspend fun setWeekStartDay(day: WeekStartDay) {
+		setPreference(KEY_WEEK_START_DAY, day.name)
 	}
 
 	override suspend fun setPreferences(preferences: Map<String, String>): Unit = withContext(ioDispatcher) {

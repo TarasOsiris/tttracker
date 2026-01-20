@@ -3,12 +3,16 @@ package xyz.tleskiv.tt.viewmodel.settings
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
+import kotlinx.coroutines.flow.StateFlow
 import xyz.tleskiv.tt.data.model.enums.SessionType
+import xyz.tleskiv.tt.model.WeekStartDay
 import xyz.tleskiv.tt.service.UserPreferencesService
 import xyz.tleskiv.tt.viewmodel.ViewModelBase
 
 abstract class GeneralSettingsScreenViewModel : ViewModelBase() {
 	abstract val inputData: InputData
+	abstract val weekStartDay: StateFlow<WeekStartDay>
+	abstract fun setWeekStartDay(day: WeekStartDay)
 
 	@Stable
 	class InputData(

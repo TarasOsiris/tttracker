@@ -97,6 +97,12 @@
 	<string name="theme_light">Світла</string>
 	<string name="theme_dark">Темна</string>
 	<string name="action_privacy_policy">Політика конфіденційності</string>
+	<string name="action_week_start">Перший день тижня</string>
+	<string name="week_start_select_title">Перший день тижня</string>
+	<string name="week_start_monday">Понеділок</string>
+	<string name="week_start_sunday">Неділя</string>
+	<string name="week_start_saturday">Субота</string>
+	<string name="settings_section_calendar">Календар</string>
     <string name="settings_section_sessions">Налаштування тренувань</string>
     <string name="settings_default_duration">Тривалість тренування</string>
     <string name="settings_default_duration_description">Початкова тривалість при створенні нових тренувань</string>

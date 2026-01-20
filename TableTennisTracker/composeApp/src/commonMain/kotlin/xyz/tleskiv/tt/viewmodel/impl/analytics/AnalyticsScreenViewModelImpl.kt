@@ -5,16 +5,23 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.datetime.DayOfWeek
 import kotlinx.datetime.LocalDate
 import xyz.tleskiv.tt.data.model.enums.SessionType
+import xyz.tleskiv.tt.repo.UserPreferencesRepository
 import xyz.tleskiv.tt.service.TrainingSessionService
 import xyz.tleskiv.tt.util.ext.toLocalDate
 import xyz.tleskiv.tt.viewmodel.analytics.AnalyticsScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.SessionUiModel
 
 class AnalyticsScreenViewModelImpl(
-	sessionService: TrainingSessionService
+	sessionService: TrainingSessionService,
+	userPreferencesRepository: UserPreferencesRepository
 ) : AnalyticsScreenViewModel() {
+
+	override val firstDayOfWeek: StateFlow<DayOfWeek> = userPreferencesRepository.weekStartDay
+		.map { it.toDayOfWeek() }
+		.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), DayOfWeek.MONDAY)
 	override val sessionsListByDate: StateFlow<Map<LocalDate, List<SessionUiModel>>> = sessionService.allSessions
 		.map { allSessions ->
 			allSessions.groupBy { it.date.toLocalDate() }

@@ -18,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -37,7 +38,6 @@ import com.kizitonwose.calendar.compose.heatmapcalendar.HeatMapWeek
 import com.kizitonwose.calendar.compose.heatmapcalendar.rememberHeatMapCalendarState
 import com.kizitonwose.calendar.core.CalendarDay
 import com.kizitonwose.calendar.core.CalendarMonth
-import com.kizitonwose.calendar.core.firstDayOfWeekFromLocale
 import com.kizitonwose.calendar.core.now
 import kotlinx.coroutines.launch
 import kotlinx.datetime.DateTimeUnit
@@ -61,6 +61,7 @@ fun AnalyticsScreen(
 ) {
 	val sessionsByDate by viewModel.sessionsByDate.collectAsState()
 	val sessionsListByDate by viewModel.sessionsListByDate.collectAsState()
+	val firstDayOfWeek by viewModel.firstDayOfWeek.collectAsState()
 	val endDate = remember(sessionsByDate) {
 		sessionsByDate.keys.maxOrNull() ?: LocalDate.now()
 	}
@@ -100,12 +101,15 @@ fun AnalyticsScreen(
 			.background(MaterialTheme.colorScheme.surface)
 			.padding(16.dp)
 	) {
-		val state = rememberHeatMapCalendarState(
-			startMonth = startDate.yearMonth,
-			endMonth = endDate.yearMonth,
-			firstVisibleMonth = endDate.yearMonth,
-			firstDayOfWeek = firstDayOfWeekFromLocale()
-		)
+		// Key on firstDayOfWeek to recreate calendar state when the setting changes
+		val state = key(firstDayOfWeek) {
+			rememberHeatMapCalendarState(
+				startMonth = startDate.yearMonth,
+				endMonth = endDate.yearMonth,
+				firstVisibleMonth = endDate.yearMonth,
+				firstDayOfWeek = firstDayOfWeek
+			)
+		}
 		HeatMapCalendar(
 			modifier = Modifier.padding(vertical = 10.dp),
 			state = state,

@@ -9,6 +9,7 @@ import com.kizitonwose.calendar.core.now
 import com.kizitonwose.calendar.core.plusMonths
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.datetime.DatePeriod
+import kotlinx.datetime.DayOfWeek
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.YearMonth
 import kotlinx.datetime.minus
@@ -31,6 +32,7 @@ private const val DATE_LIST_RANGE_DAYS = 365
 
 abstract class SessionsScreenViewModel : ViewModelBase() {
 	abstract val sessions: StateFlow<Map<LocalDate, List<SessionUiModel>>>
+	abstract val firstDayOfWeek: StateFlow<DayOfWeek>
 	abstract val inputData: InputData
 
 	@Stable

@@ -36,6 +36,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -99,22 +100,30 @@ fun SessionsScreen(
 ) {
 	val inputData = viewModel.inputData
 	val sessionsByDate by viewModel.sessions.collectAsState()
+	val firstDayOfWeek by viewModel.firstDayOfWeek.collectAsState()
 
 	val listState = rememberLazyListState(initialFirstVisibleItemIndex = inputData.initialListIndex)
 	val coroutineScope = rememberCoroutineScope()
 
-	val monthState = rememberCalendarState(
-		startMonth = inputData.startYearMonth,
-		endMonth = inputData.endYearMonth,
-		firstVisibleMonth = inputData.currentYearMonth,
-		outDateStyle = OutDateStyle.EndOfGrid
-	)
+	// Key on firstDayOfWeek to recreate calendar states when the setting changes
+	val monthState = key(firstDayOfWeek) {
+		rememberCalendarState(
+			startMonth = inputData.startYearMonth,
+			endMonth = inputData.endYearMonth,
+			firstVisibleMonth = inputData.currentYearMonth,
+			firstDayOfWeek = firstDayOfWeek,
+			outDateStyle = OutDateStyle.EndOfGrid
+		)
+	}
 
-	val weekState = rememberWeekCalendarState(
-		startDate = LocalDate(inputData.startYearMonth.year, inputData.startYearMonth.month, 1),
-		endDate = LocalDate(inputData.endYearMonth.year, inputData.endYearMonth.month, 28),
-		firstVisibleWeekDate = inputData.currentDate,
-	)
+	val weekState = key(firstDayOfWeek) {
+		rememberWeekCalendarState(
+			startDate = LocalDate(inputData.startYearMonth.year, inputData.startYearMonth.month, 1),
+			endDate = LocalDate(inputData.endYearMonth.year, inputData.endYearMonth.month, 28),
+			firstVisibleWeekDate = inputData.currentDate,
+			firstDayOfWeek = firstDayOfWeek
+		)
+	}
 
 	val visibleYearMonth = if (inputData.isWeekMode) {
 		weekState.firstVisibleWeek.days.first().date.yearMonth
@@ -179,6 +188,7 @@ fun SessionsScreen(
 				isWeekMode = inputData.isWeekMode,
 				monthState = monthState,
 				weekState = weekState,
+				firstDayOfWeek = firstDayOfWeek,
 				onDateSelected = { inputData.selectedDate = it },
 				isLandscape = isLandscape
 			)
@@ -207,6 +217,7 @@ private fun CalendarSection(
 	isWeekMode: Boolean,
 	monthState: CalendarState,
 	weekState: WeekCalendarState,
+	firstDayOfWeek: DayOfWeek,
 	onDateSelected: (LocalDate) -> Unit,
 	isLandscape: Boolean
 ) {
@@ -215,7 +226,7 @@ private fun CalendarSection(
 		tonalElevation = 2.dp
 	) {
 		Column(modifier = Modifier.fillMaxWidth()) {
-			DaysOfWeekHeader()
+			DaysOfWeekHeader(firstDayOfWeek = firstDayOfWeek)
 
 			Spacer(modifier = Modifier.height(8.dp))
 
@@ -296,11 +307,11 @@ private fun SegmentButton(
 }
 
 @Composable
-private fun DaysOfWeekHeader() {
-	val daysOfWeek = remember { daysOfWeek(firstDayOfWeek = DayOfWeek.MONDAY) }
+private fun DaysOfWeekHeader(firstDayOfWeek: DayOfWeek) {
+	val daysOfWeekList = remember(firstDayOfWeek) { daysOfWeek(firstDayOfWeek = firstDayOfWeek) }
 
 	Row(modifier = Modifier.fillMaxWidth().padding(top = 8.dp)) {
-		daysOfWeek.forEach { dayOfWeek ->
+		daysOfWeekList.forEach { dayOfWeek ->
 			Text(
 				text = dayOfWeek.displayText(),
 				modifier = Modifier.weight(1f),
