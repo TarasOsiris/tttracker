@@ -20,3 +20,9 @@ node_modules/
 server/data/*
 !server/data/.gitkeep
 /server/bin/*
+
+# Signing
+*.keystore
+*.jks
+keystore.properties
+/androidApp/release/

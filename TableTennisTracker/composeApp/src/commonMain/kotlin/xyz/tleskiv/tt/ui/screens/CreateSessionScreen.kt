@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
@@ -35,26 +34,24 @@ fun CreateSessionScreen(
 	val inputData = viewModel.inputData
 	val focusManager = LocalFocusManager.current
 
-	Scaffold(topBar = {
+	Column(modifier = Modifier.fillMaxSize().clearFocusOnTap(focusManager)) {
 		SimpleTopAppBar(Res.string.title_create_session, onNavigateBack = onNavigateBack)
-	}, bottomBar = {
-		BottomBarButtons(
-			onLeftButtonClick = onNavigateBack,
-			onRightButtonClick = { viewModel.saveSession(onNavigateBack) },
-			rightButtonEnabled = inputData.isFormValid
-		)
-	}) { paddingValues ->
+
 		Column(
 			modifier = Modifier
-				.fillMaxSize()
-				.clearFocusOnTap(focusManager)
-				.padding(paddingValues)
+				.weight(1f)
 				.verticalScroll(rememberScrollState())
 				.padding(16.dp),
 			verticalArrangement = Arrangement.spacedBy(24.dp)
 		) {
 			CreateSessionScreenContent(inputData)
 		}
+
+		BottomBarButtons(
+			onLeftButtonClick = onNavigateBack,
+			onRightButtonClick = { viewModel.saveSession(onNavigateBack) },
+			rightButtonEnabled = inputData.isFormValid,
+		)
 	}
 
 	var showDatePicker by inputData.showDatePicker

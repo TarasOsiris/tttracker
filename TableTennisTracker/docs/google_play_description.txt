@@ -1,0 +1,50 @@
+Track Your Table Tennis Training Like a Pro
+
+Table Tennis Tracker is the ultimate training companion for players of all levels. Build consistent training habits and visualize your improvement over time.
+
+LOG SESSIONS IN SECONDS
+
+Quickly record your training with all the details that matter:
+
+• Duration – Track sessions from 5 minutes to 5 hours
+• Session Type – Technique, Match Play, Serve Practice, Physical Training, Free Play, or Other
+• RPE (Rate of Perceived Exertion) – Rate intensity from 1-10 to monitor training load
+• Notes – Add observations, drills practiced, or areas to improve
+• Date – Log today's session or backfill past training days
+
+SMART CALENDAR VIEW
+
+Navigate your training history with an intuitive calendar:
+
+• Switch between month and week views
+• Visual indicators show session density at a glance
+• Tap any date to see that day's sessions
+• Customize your week start day
+
+ANALYTICS HEAT MAP
+
+Visualize your training consistency:
+
+• See your last 12 months of training at a glance
+• Color-coded intensity shows when you trained most
+• Identify patterns in your training habits
+
+PERSONALIZED DEFAULTS
+
+Set your preferred defaults for faster session logging. Spend less time logging, more time training.
+
+DESIGNED FOR PLAYERS
+
+• Clean, distraction-free interface
+• Works offline – your data stays on your device
+• Dark mode support
+• Material Design 3 for a modern experience
+
+PERFECT FOR
+
+✓ Competitive players tracking training volume
+✓ Club players building consistent habits
+✓ Coaches monitoring athlete workload
+✓ Recreational players wanting to stay motivated
+
+Start tracking your table tennis journey today. Every session counts!

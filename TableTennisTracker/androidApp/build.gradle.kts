@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import java.util.Properties
 
 plugins {
 	alias(libs.plugins.androidApplication)
@@ -12,9 +13,27 @@ kotlin {
 	}
 }
 
+val keystorePropertiesFile = rootProject.file("androidApp/keystore.properties")
+val keystoreProperties = Properties().apply {
+	if (keystorePropertiesFile.exists()) {
+		load(keystorePropertiesFile.inputStream())
+	}
+}
+
 android {
 	namespace = "xyz.tleskiv.tt"
 	compileSdk = libs.versions.android.compileSdk.get().toInt()
+
+	signingConfigs {
+		create("release") {
+			if (keystorePropertiesFile.exists()) {
+				storeFile = file(keystoreProperties["storeFile"] as String)
+				storePassword = keystoreProperties["storePassword"] as String
+				keyAlias = keystoreProperties["keyAlias"] as String
+				keyPassword = keystoreProperties["keyPassword"] as String
+			}
+		}
+	}
 
 	defaultConfig {
 		applicationId = "xyz.tleskiv.tt"
@@ -44,6 +63,7 @@ android {
 	buildTypes {
 		getByName("release") {
 			isMinifyEnabled = false
+			signingConfig = signingConfigs.getByName("release")
 		}
 	}
 
