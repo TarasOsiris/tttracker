@@ -10,11 +10,13 @@ import xyz.tleskiv.tt.di.components.ExternalAppLauncher
 import xyz.tleskiv.tt.di.components.NativeInfoProvider
 import xyz.tleskiv.tt.model.AppThemeMode
 import xyz.tleskiv.tt.repo.UserPreferencesRepository
+import xyz.tleskiv.tt.service.UserIdService
 
 class SettingsViewModel(
 	private val userPreferencesRepository: UserPreferencesRepository,
 	private val nativeInfoProvider: NativeInfoProvider,
-	private val externalAppLauncher: ExternalAppLauncher
+	private val externalAppLauncher: ExternalAppLauncher,
+	private val userIdService: UserIdService
 ) : ViewModel() {
 
 	val versionName: String get() = nativeInfoProvider.versionName
@@ -35,11 +37,14 @@ class SettingsViewModel(
 	}
 
 	fun sendFeedbackEmail() {
-		externalAppLauncher.sendEmail(
-			to = "info@ninevastudios.com",
-			subject = "Table Tennis Tracker Feedback",
-			body = "\n\n---\nApp Version: $versionName ($buildNumber)"
-		)
+		viewModelScope.launch {
+			val userId = userIdService.getUserId()
+			externalAppLauncher.sendEmail(
+				to = "info@ninevastudios.com",
+				subject = "Table Tennis Tracker Feedback",
+				body = "\n\n---\nApp Version: $versionName ($buildNumber)\nUser ID: $userId"
+			)
+		}
 	}
 
 	fun rateApp() {
