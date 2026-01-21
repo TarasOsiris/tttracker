@@ -190,8 +190,10 @@ All dependencies are managed via `gradle/libs.versions.toml`.
 
 ## Platform-Specific Code
 
-Use KMP's `expect`/`actual` pattern:
+Instead of using KMP's `expect`/`actual` pattern prefer creating an interface in `di.components` package in `commonMain` and adding platform specific implementations,
+also add it to Koin injection. 
 
+If it's not possible fallback to `expect`/`actual` pattern:
 1. Define `expect` declaration in `commonMain`
 2. Provide `actual` implementation in platform-specific source sets (`androidMain`, `iosMain`, `jvmMain`)
 
@@ -204,3 +206,4 @@ Use KMP's `expect`/`actual` pattern:
 - Never use `System.currentTimeMillis()` in commonApp module, use `nowMillis` from DateTimeUtils instead.
 - Never nest Scaffolds in composeApp module, use simple Column/Box instead.
 - Never inline full package names, always use imports
+- In Android instrumentation tests, never hardcode UI strings - use Compose resources via `Res.string.*` with `runBlocking { getString(res) }`
