@@ -7,12 +7,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.stringResource
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.label_duration
 import tabletennistracker.composeapp.generated.resources.suffix_minutes_value
+import xyz.tleskiv.tt.ui.TestTags
 import xyz.tleskiv.tt.ui.widgets.FieldLabel
 import kotlin.math.roundToInt
 
@@ -46,7 +48,7 @@ fun DurationField(durationMinutes: Int, onDurationChange: (Int) -> Unit) {
 			},
 			valueRange = MinDurationMinutes.toFloat()..MaxDurationMinutes.toFloat(),
 			steps = DurationSliderSteps,
-			modifier = Modifier.fillMaxWidth()
+			modifier = Modifier.fillMaxWidth().testTag(TestTags.DURATION_SLIDER)
 		)
 		Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
 			Text(
