@@ -1,16 +1,6 @@
 package xyz.tleskiv.tt
 
-import androidx.compose.ui.semantics.SemanticsActions
-import androidx.compose.ui.test.assertIsDisplayed
-import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.compose.ui.test.onAllNodesWithText
-import androidx.compose.ui.test.onFirst
-import androidx.compose.ui.test.onNodeWithContentDescription
-import androidx.compose.ui.test.onNodeWithTag
-import androidx.compose.ui.test.onNodeWithText
-import androidx.compose.ui.test.performClick
-import androidx.compose.ui.test.performSemanticsAction
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Rule
 import org.junit.Test
@@ -26,7 +16,15 @@ import tabletennistracker.composeapp.generated.resources.session_type_technique
 import tabletennistracker.composeapp.generated.resources.sessions_week_mode
 import tabletennistracker.composeapp.generated.resources.title_create_session
 import xyz.tleskiv.tt.ui.TestTags
+import xyz.tleskiv.tt.util.assertFirstTextDisplayed
+import xyz.tleskiv.tt.util.assertTextDisplayed
+import xyz.tleskiv.tt.util.clickContentDescription
+import xyz.tleskiv.tt.util.clickFirstText
+import xyz.tleskiv.tt.util.clickText
+import xyz.tleskiv.tt.util.inputText
+import xyz.tleskiv.tt.util.setSliderValue
 import xyz.tleskiv.tt.util.str
+import xyz.tleskiv.tt.util.waitForText
 
 @RunWith(AndroidJUnit4::class)
 class SessionsScreenTest {
@@ -34,39 +32,33 @@ class SessionsScreenTest {
 	val composeTestRule = createAndroidComposeRule<MainActivity>()
 
 	@Test
-	fun launchesSessionsScreen() {
-		composeTestRule.onNodeWithText(str(Res.string.sessions_week_mode)).assertIsDisplayed()
+	fun launchesSessionsScreen() = with(composeTestRule) {
+		assertTextDisplayed(Res.string.sessions_week_mode)
 	}
 
 	@Test
-	fun addSessionAndVerifyDetails() {
+	fun addSessionAndVerifyDetails() = with(composeTestRule) {
 		val testDurationMinutes = 30
-
-		composeTestRule.onNodeWithContentDescription(str(Res.string.action_add_session)).performClick()
-		composeTestRule.onNodeWithText(str(Res.string.title_create_session)).assertIsDisplayed()
-
-		composeTestRule.onNodeWithTag(TestTags.DURATION_SLIDER)
-			.performSemanticsAction(SemanticsActions.SetProgress) { it(testDurationMinutes.toFloat()) }
-		composeTestRule.waitForIdle()
-
+		val testNotes = "Great practice session today"
 		val techniqueText = str(Res.string.session_type_technique)
-		composeTestRule.onNodeWithText(techniqueText).performClick()
-		composeTestRule.onNodeWithText(str(Res.string.action_save)).performClick()
 
-		composeTestRule.waitForIdle()
-		composeTestRule.waitUntil(timeoutMillis = 5000) {
-			composeTestRule.onAllNodesWithText(techniqueText).fetchSemanticsNodes().isNotEmpty()
-		}
+		clickContentDescription(Res.string.action_add_session)
+		assertTextDisplayed(Res.string.title_create_session)
 
-		val durationInList = str(Res.string.session_duration_format, testDurationMinutes)
-		composeTestRule.onNode(hasText(durationInList)).assertIsDisplayed()
+		setSliderValue(TestTags.DURATION_SLIDER, testDurationMinutes.toFloat())
+		clickText(techniqueText)
+		inputText(TestTags.NOTES_FIELD, testNotes)
+		clickText(Res.string.action_save)
 
-		composeTestRule.onAllNodesWithText(techniqueText).onFirst().performClick()
+		waitForText(techniqueText)
+		assertTextDisplayed(Res.string.session_duration_format, testDurationMinutes)
+		assertTextDisplayed(testNotes)
 
-		composeTestRule.waitForIdle()
-		composeTestRule.onNode(hasText(str(Res.string.label_session_type))).assertIsDisplayed()
-		composeTestRule.onAllNodesWithText(techniqueText).onFirst().assertIsDisplayed()
-		composeTestRule.onNode(hasText(str(Res.string.label_duration))).assertIsDisplayed()
-		composeTestRule.onNode(hasText(str(Res.string.duration_minutes_full, testDurationMinutes))).assertIsDisplayed()
+		clickFirstText(techniqueText)
+
+		assertTextDisplayed(Res.string.label_session_type)
+		assertFirstTextDisplayed(techniqueText)
+		assertTextDisplayed(Res.string.label_duration)
+		assertTextDisplayed(Res.string.duration_minutes_full, testDurationMinutes)
 	}
 }
