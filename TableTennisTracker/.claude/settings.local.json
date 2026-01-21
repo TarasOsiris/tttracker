@@ -18,7 +18,10 @@
       "Bash(bash gradlew:*)",
       "Bash(chmod:*)",
       "Bash(xargs ls:*)",
-      "WebFetch(domain:docs.sentry.io)"
+      "WebFetch(domain:docs.sentry.io)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push)"
     ]
   }
 }

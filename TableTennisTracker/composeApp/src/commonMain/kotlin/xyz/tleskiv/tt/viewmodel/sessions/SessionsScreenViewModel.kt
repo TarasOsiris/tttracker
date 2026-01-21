@@ -42,8 +42,8 @@ abstract class SessionsScreenViewModel : ViewModelBase() {
 		var selectedDate by mutableStateOf(currentDate)
 		var isWeekMode by mutableStateOf(true)
 
-		// Derived date values for calendar
 		val startDate: LocalDate = currentDate.minus(DatePeriod(days = DATE_LIST_RANGE_DAYS))
+
 		// Each day has: 1 sticky header + N items (sessions or 1 placeholder if empty)
 		// With empty sessions, each day = 2 items, so header index = dayOffset * 2
 		val initialListIndex: Int = (currentDate.toEpochDays() - startDate.toEpochDays()).toInt() * 2

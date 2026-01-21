@@ -136,13 +136,7 @@ fun SessionsScreen(
 	val titleText = visibleYearMonth.formatMonthYear()
 	topAppBarState?.let { state ->
 		RegisterTopAppBarCleanup(state)
-		state.title = {
-			Text(
-				text = titleText,
-				style = MaterialTheme.typography.titleMedium,
-				fontWeight = FontWeight.Bold
-			)
-		}
+		state.title = { Text(titleText) }
 		state.actions = {
 			WeekMonthToggle(
 				isWeekMode = inputData.isWeekMode,
