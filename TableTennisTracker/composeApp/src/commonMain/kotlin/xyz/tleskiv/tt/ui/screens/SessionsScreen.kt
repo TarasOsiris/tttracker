@@ -86,7 +86,6 @@ import xyz.tleskiv.tt.ui.nav.navdisplay.TopAppBarState
 import xyz.tleskiv.tt.ui.widgets.SessionListItem
 import xyz.tleskiv.tt.util.ext.displayText
 import xyz.tleskiv.tt.util.ext.formatDateHeader
-import xyz.tleskiv.tt.util.ext.formatFullDate
 import xyz.tleskiv.tt.util.ext.formatMonthYear
 import xyz.tleskiv.tt.viewmodel.sessions.SessionUiModel
 import xyz.tleskiv.tt.viewmodel.sessions.SessionsScreenViewModel
@@ -589,55 +588,42 @@ private fun DateHeader(
 	val dateText = date.formatDateHeader(currentDate)
 	val isToday = date == currentDate
 
-	Surface(
-		modifier = Modifier.fillMaxWidth(),
-		color = MaterialTheme.colorScheme.surface
-	) {
+	Column {
+		HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant, thickness = 0.5.dp)
 		Row(
 			modifier = Modifier
 				.fillMaxWidth()
-				.padding(horizontal = 16.dp, vertical = 12.dp),
+				.padding(horizontal = 16.dp, vertical = 8.dp),
 			verticalAlignment = Alignment.CenterVertically
 		) {
 			Box(
 				modifier = Modifier
-					.size(40.dp)
+					.size(32.dp)
 					.background(
 						color = if (isToday) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceVariant,
-						shape = RoundedCornerShape(8.dp)
+						shape = RoundedCornerShape(6.dp)
 					),
 				contentAlignment = Alignment.Center
 			) {
 				Text(
 					text = date.day.toString(),
-					style = MaterialTheme.typography.titleMedium,
+					style = MaterialTheme.typography.bodyLarge,
 					fontWeight = FontWeight.Bold,
 					color = if (isToday) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant
 				)
 			}
 
-			Spacer(modifier = Modifier.width(12.dp))
+			Spacer(modifier = Modifier.width(10.dp))
 
-			Column {
-				Text(
-					text = dateText,
-					style = MaterialTheme.typography.titleSmall,
-					fontWeight = if (isToday) FontWeight.Bold else FontWeight.Medium,
-					color = if (isToday) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface
-				)
-				Text(
-					text = date.formatFullDate(),
-					style = MaterialTheme.typography.bodySmall,
-					color = MaterialTheme.colorScheme.onSurfaceVariant
-				)
-			}
+			Text(
+				text = "$dateText, ${date.month.displayText()} ${date.year}",
+				style = MaterialTheme.typography.bodyMedium,
+				fontWeight = if (isToday) FontWeight.SemiBold else FontWeight.Normal,
+				color = if (isToday) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
+			)
 		}
+		HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant, thickness = 0.5.dp)
 	}
-
-	HorizontalDivider(
-		color = MaterialTheme.colorScheme.outlineVariant,
-		thickness = 0.5.dp
-	)
 }
 
 @Composable
