@@ -227,11 +227,14 @@ const FeatureCard = ({ icon, title, desc }) => (
 
 const StoreBadge = ({ store }) => {
   const isAppStore = store === 'appstore';
+  const href = isAppStore ? '#' : 'https://play.google.com/store/apps/details?id=xyz.tleskiv.tt';
 
   return (
     <a
-      href="#"
+      href={href}
       className="store-badge-link"
+      target={isAppStore ? undefined : '_blank'}
+      rel={isAppStore ? undefined : 'noopener noreferrer'}
       aria-label={isAppStore ? 'Download on the App Store' : 'Get it on Google Play'}
     >
       <img
