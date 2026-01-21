@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- RPE Labels -->
+    <string name="rpe_very_easy">とても楽</string>
+    <string name="rpe_easy">楽</string>
+    <string name="rpe_moderate">普通</string>
+    <string name="rpe_hard">きつい</string>
+    <string name="rpe_max_effort">最大強度</string>
+
+    <!-- General Actions -->
+    <string name="action_ok">OK</string>
+    <string name="action_cancel">キャンセル</string>
+    <string name="action_change">変更</string>
+    <string name="action_edit">編集</string>
+    <string name="action_save">保存</string>
+    <string name="action_add_session">練習を追加</string>
+    <string name="action_search">検索</string>
+    <string name="action_general_settings">一般設定</string>
+    <string name="action_more">その他</string>
+    <string name="action_back">戻る</string>
+
+    <!-- Navigation -->
+    <string name="nav_sessions">練習</string>
+    <string name="nav_analytics">分析</string>
+    <string name="nav_settings">設定</string>
+
+    <!-- Screen Titles -->
+    <string name="title_home">ホーム</string>
+    <string name="title_create_session">練習を作成</string>
+    <string name="title_analytics">分析</string>
+    <string name="title_settings">設定</string>
+    <string name="title_error">エラー</string>
+
+    <!-- Sessions Screen -->
+    <string name="sessions_week_mode">週</string>
+    <string name="sessions_month_mode">月</string>
+    <string name="sessions_empty">練習がありません</string>
+    <string name="session_duration_format">%1$d分</string>
+
+    <!-- Create Session Screen -->
+    <string name="label_date">日付</string>
+    <string name="label_duration">時間</string>
+    <string name="hint_duration">時間を入力</string>
+    <string name="suffix_minutes">分</string>
+    <string name="suffix_minutes_value">%1$d分</string>
+    <string name="rule_duration">5-300分</string>
+    <string name="label_session_type">練習タイプ</string>
+    <string name="label_intensity_rpe">強度（RPE）</string>
+    <string name="label_notes_optional">メモ（任意）</string>
+    <string name="label_default_notes">デフォルトメモ</string>
+    <string name="hint_notes">練習についてのメモを追加...</string>
+    <string name="counter_notes">%1$d/1000</string>
+
+    <!-- Session Details Screen -->
+    <string name="session_default_title">練習</string>
+    <string name="label_rpe">RPE</string>
+    <string name="label_notes">メモ</string>
+    <string name="action_delete">削除</string>
+    <string name="delete_session_title">練習を削除しますか？</string>
+    <string name="delete_session_message">この操作は元に戻せません。練習は完全に削除されます。</string>
+
+    <!-- Session Types -->
+    <string name="session_type_technique">技術練習</string>
+    <string name="session_type_match_play">試合形式</string>
+    <string name="session_type_serve_practice">サーブ練習</string>
+    <string name="session_type_physical">フィジカル</string>
+    <string name="session_type_free_play">フリー練習</string>
+    <string name="session_type_other">その他</string>
+
+    <!-- Analytics Screen -->
+    <string name="analytics_service_injected">サービス注入: %1$d</string>
+    <string name="analytics_create_test_session">テスト練習を作成</string>
+    <string name="analytics_last_created">最後に作成した練習: %1$s</string>
+    <string name="analytics_test_notes">分析画面からのテスト練習</string>
+    <string name="analytics_placeholder">パフォーマンス分析がここに表示されます</string>
+
+    <!-- Settings Screen -->
+    <string name="profile_guest_user">ゲスト</string>
+    <string name="profile_sign_in_prompt">データを同期するにはサインインしてください</string>
+    <string name="settings_placeholder">設定がここに表示されます</string>
+    <string name="profile_menu_privacy">プライバシー</string>
+    <string name="profile_menu_about">このアプリについて</string>
+    <string name="profile_menu_support">サポート</string>
+    <string name="settings_section_general">一般</string>
+    <string name="settings_section_help">ヘルプ</string>
+    <string name="settings_section_about">このアプリについて</string>
+    <string name="action_send_feedback">フィードバックを送信</string>
+    <string name="action_visit_website">ウェブサイト</string>
+    <string name="action_rate_app">アプリを評価</string>
+
+    <!-- General Settings Screen -->
+    <string name="settings_section_calendar">カレンダー</string>
+    <string name="settings_section_sessions">練習のデフォルト設定</string>
+    <string name="settings_default_duration">練習時間</string>
+    <string name="settings_default_duration_description">新しい練習作成時の初期時間</string>
+    <string name="action_theme">テーマ</string>
+    <string name="theme_select_title">テーマを選択</string>
+    <string name="theme_system">システム設定</string>
+    <string name="theme_light">ライト</string>
+    <string name="theme_dark">ダーク</string>
+    <string name="action_privacy_policy">プライバシーポリシー</string>
+    <string name="action_week_start">週の開始曜日</string>
+    <string name="week_start_select_title">週の開始曜日</string>
+    <string name="week_start_monday">月曜日</string>
+    <string name="week_start_sunday">日曜日</string>
+    <string name="week_start_saturday">土曜日</string>
+    <string name="settings_highlight_current_day">今日を強調表示</string>
+    <string name="settings_section_developer">開発者</string>
+    <string name="action_debug">デバッグ</string>
+    <string name="settings_version_format">バージョン %1$s (%2$s)</string>
+    <string name="settings_made_with_prefix">❤️ で作成</string>
+    <string name="settings_company_name">Nineva Studios</string>
+
+    <!-- Home Screen -->
+    <string name="home_view_match">試合の詳細を見る</string>
+    <string name="home_view_player">選手の詳細を見る</string>
+
+    <!-- Debug Screen -->
+    <string name="debug_data_generation_title">データ生成</string>
+    <string name="debug_data_generation_description">過去1年分のランダムな練習データを生成して、アプリをテストします。</string>
+    <string name="debug_generate_random_sessions">100件のランダム練習を生成</string>
+    <string name="debug_clear_database_title">データベースをクリア</string>
+    <string name="debug_clear_database_description">データベースからすべての練習を完全に削除します。この操作は元に戻せません。</string>
+    <string name="debug_clear_all_sessions">すべての練習を削除</string>
+
+    <!-- Date & Time -->
+    <string name="time_today">今日</string>
+    <string name="time_yesterday">昨日</string>
+    <string name="time_tomorrow">明日</string>
+    <string name="month_january">1月</string>
+    <string name="month_february">2月</string>
+    <string name="month_march">3月</string>
+    <string name="month_april">4月</string>
+    <string name="month_may">5月</string>
+    <string name="month_june">6月</string>
+    <string name="month_july">7月</string>
+    <string name="month_august">8月</string>
+    <string name="month_september">9月</string>
+    <string name="month_october">10月</string>
+    <string name="month_november">11月</string>
+    <string name="month_december">12月</string>
+    <string name="day_monday">月曜日</string>
+    <string name="day_tuesday">火曜日</string>
+    <string name="day_wednesday">水曜日</string>
+    <string name="day_thursday">木曜日</string>
+    <string name="day_friday">金曜日</string>
+    <string name="day_saturday">土曜日</string>
+    <string name="day_sunday">日曜日</string>
+    <string name="day_monday_short">月</string>
+    <string name="day_tuesday_short">火</string>
+    <string name="day_wednesday_short">水</string>
+    <string name="day_thursday_short">木</string>
+    <string name="day_friday_short">金</string>
+    <string name="day_saturday_short">土</string>
+    <string name="day_sunday_short">日</string>
+    <string name="month_january_short">1月</string>
+    <string name="month_february_short">2月</string>
+    <string name="month_march_short">3月</string>
+    <string name="month_april_short">4月</string>
+    <string name="month_may_short">5月</string>
+    <string name="month_june_short">6月</string>
+    <string name="month_july_short">7月</string>
+    <string name="month_august_short">8月</string>
+    <string name="month_september_short">9月</string>
+    <string name="month_october_short">10月</string>
+    <string name="month_november_short">11月</string>
+    <string name="month_december_short">12月</string>
+
+    <string name="duration_minutes_full">%1$d分</string>
+    <string name="duration_hours_full">%1$d時間</string>
+    <string name="duration_hours_plural_full">%1$d時間</string>
+    <string name="duration_hm_short">%1$d時間%2$d分</string>
+</resources>

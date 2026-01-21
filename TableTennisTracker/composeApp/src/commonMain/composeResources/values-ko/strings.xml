@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- RPE Labels -->
+    <string name="rpe_very_easy">매우 쉬움</string>
+    <string name="rpe_easy">쉬움</string>
+    <string name="rpe_moderate">보통</string>
+    <string name="rpe_hard">어려움</string>
+    <string name="rpe_max_effort">최대 강도</string>
+
+    <!-- General Actions -->
+    <string name="action_ok">확인</string>
+    <string name="action_cancel">취소</string>
+    <string name="action_change">변경</string>
+    <string name="action_edit">편집</string>
+    <string name="action_save">저장</string>
+    <string name="action_add_session">훈련 추가</string>
+    <string name="action_search">검색</string>
+    <string name="action_general_settings">일반 설정</string>
+    <string name="action_more">더 보기</string>
+    <string name="action_back">뒤로</string>
+
+    <!-- Navigation -->
+    <string name="nav_sessions">훈련</string>
+    <string name="nav_analytics">분석</string>
+    <string name="nav_settings">설정</string>
+
+    <!-- Screen Titles -->
+    <string name="title_home">홈</string>
+    <string name="title_create_session">훈련 만들기</string>
+    <string name="title_analytics">분석</string>
+    <string name="title_settings">설정</string>
+    <string name="title_error">오류</string>
+
+    <!-- Sessions Screen -->
+    <string name="sessions_week_mode">주</string>
+    <string name="sessions_month_mode">월</string>
+    <string name="sessions_empty">훈련 없음</string>
+    <string name="session_duration_format">%1$d분</string>
+
+    <!-- Create Session Screen -->
+    <string name="label_date">날짜</string>
+    <string name="label_duration">시간</string>
+    <string name="hint_duration">시간 입력</string>
+    <string name="suffix_minutes">분</string>
+    <string name="suffix_minutes_value">%1$d분</string>
+    <string name="rule_duration">5-300분</string>
+    <string name="label_session_type">훈련 유형</string>
+    <string name="label_intensity_rpe">강도 (RPE)</string>
+    <string name="label_notes_optional">메모 (선택사항)</string>
+    <string name="label_default_notes">기본 메모</string>
+    <string name="hint_notes">훈련에 대한 메모 추가...</string>
+    <string name="counter_notes">%1$d/1000</string>
+
+    <!-- Session Details Screen -->
+    <string name="session_default_title">훈련</string>
+    <string name="label_rpe">RPE</string>
+    <string name="label_notes">메모</string>
+    <string name="action_delete">삭제</string>
+    <string name="delete_session_title">훈련을 삭제하시겠습니까?</string>
+    <string name="delete_session_message">이 작업은 취소할 수 없습니다. 훈련이 영구적으로 삭제됩니다.</string>
+
+    <!-- Session Types -->
+    <string name="session_type_technique">기술 훈련</string>
+    <string name="session_type_match_play">경기</string>
+    <string name="session_type_serve_practice">서브 연습</string>
+    <string name="session_type_physical">체력 훈련</string>
+    <string name="session_type_free_play">자유 연습</string>
+    <string name="session_type_other">기타</string>
+
+    <!-- Analytics Screen -->
+    <string name="analytics_service_injected">서비스 주입: %1$d</string>
+    <string name="analytics_create_test_session">테스트 훈련 만들기</string>
+    <string name="analytics_last_created">마지막으로 생성된 훈련: %1$s</string>
+    <string name="analytics_test_notes">분석 화면에서의 테스트 훈련</string>
+    <string name="analytics_placeholder">성능 분석이 여기에 표시됩니다</string>
+
+    <!-- Settings Screen -->
+    <string name="profile_guest_user">손님</string>
+    <string name="profile_sign_in_prompt">데이터를 동기화하려면 로그인하세요</string>
+    <string name="settings_placeholder">설정이 여기에 표시됩니다</string>
+    <string name="profile_menu_privacy">개인정보</string>
+    <string name="profile_menu_about">정보</string>
+    <string name="profile_menu_support">지원</string>
+    <string name="settings_section_general">일반</string>
+    <string name="settings_section_help">도움말</string>
+    <string name="settings_section_about">정보</string>
+    <string name="action_send_feedback">피드백 보내기</string>
+    <string name="action_visit_website">웹사이트</string>
+    <string name="action_rate_app">앱 평가하기</string>
+
+    <!-- General Settings Screen -->
+    <string name="settings_section_calendar">캘린더</string>
+    <string name="settings_section_sessions">훈련 기본 설정</string>
+    <string name="settings_default_duration">훈련 시간</string>
+    <string name="settings_default_duration_description">새 훈련 생성 시 초기 시간</string>
+    <string name="action_theme">테마</string>
+    <string name="theme_select_title">테마 선택</string>
+    <string name="theme_system">시스템 기본값</string>
+    <string name="theme_light">라이트</string>
+    <string name="theme_dark">다크</string>
+    <string name="action_privacy_policy">개인정보 처리방침</string>
+    <string name="action_week_start">주의 시작 요일</string>
+    <string name="week_start_select_title">주의 시작 요일</string>
+    <string name="week_start_monday">월요일</string>
+    <string name="week_start_sunday">일요일</string>
+    <string name="week_start_saturday">토요일</string>
+    <string name="settings_highlight_current_day">오늘 날짜 강조</string>
+    <string name="settings_section_developer">개발자</string>
+    <string name="action_debug">디버그</string>
+    <string name="settings_version_format">버전 %1$s (%2$s)</string>
+    <string name="settings_made_with_prefix">❤️로 제작</string>
+    <string name="settings_company_name">Nineva Studios</string>
+
+    <!-- Home Screen -->
+    <string name="home_view_match">경기 상세 보기</string>
+    <string name="home_view_player">선수 상세 보기</string>
+
+    <!-- Debug Screen -->
+    <string name="debug_data_generation_title">데이터 생성</string>
+    <string name="debug_data_generation_description">지난 1년간의 무작위 훈련 데이터를 생성하여 앱을 테스트합니다.</string>
+    <string name="debug_generate_random_sessions">100개의 무작위 훈련 생성</string>
+    <string name="debug_clear_database_title">데이터베이스 삭제</string>
+    <string name="debug_clear_database_description">데이터베이스에서 모든 훈련을 영구적으로 삭제합니다. 이 작업은 취소할 수 없습니다.</string>
+    <string name="debug_clear_all_sessions">모든 훈련 삭제</string>
+
+    <!-- Date & Time -->
+    <string name="time_today">오늘</string>
+    <string name="time_yesterday">어제</string>
+    <string name="time_tomorrow">내일</string>
+    <string name="month_january">1월</string>
+    <string name="month_february">2월</string>
+    <string name="month_march">3월</string>
+    <string name="month_april">4월</string>
+    <string name="month_may">5월</string>
+    <string name="month_june">6월</string>
+    <string name="month_july">7월</string>
+    <string name="month_august">8월</string>
+    <string name="month_september">9월</string>
+    <string name="month_october">10월</string>
+    <string name="month_november">11월</string>
+    <string name="month_december">12월</string>
+    <string name="day_monday">월요일</string>
+    <string name="day_tuesday">화요일</string>
+    <string name="day_wednesday">수요일</string>
+    <string name="day_thursday">목요일</string>
+    <string name="day_friday">금요일</string>
+    <string name="day_saturday">토요일</string>
+    <string name="day_sunday">일요일</string>
+    <string name="day_monday_short">월</string>
+    <string name="day_tuesday_short">화</string>
+    <string name="day_wednesday_short">수</string>
+    <string name="day_thursday_short">목</string>
+    <string name="day_friday_short">금</string>
+    <string name="day_saturday_short">토</string>
+    <string name="day_sunday_short">일</string>
+    <string name="month_january_short">1월</string>
+    <string name="month_february_short">2월</string>
+    <string name="month_march_short">3월</string>
+    <string name="month_april_short">4월</string>
+    <string name="month_may_short">5월</string>
+    <string name="month_june_short">6월</string>
+    <string name="month_july_short">7월</string>
+    <string name="month_august_short">8월</string>
+    <string name="month_september_short">9월</string>
+    <string name="month_october_short">10월</string>
+    <string name="month_november_short">11월</string>
+    <string name="month_december_short">12월</string>
+
+    <string name="duration_minutes_full">%1$d분</string>
+    <string name="duration_hours_full">%1$d시간</string>
+    <string name="duration_hours_plural_full">%1$d시간</string>
+    <string name="duration_hm_short">%1$d시간 %2$d분</string>
+</resources>

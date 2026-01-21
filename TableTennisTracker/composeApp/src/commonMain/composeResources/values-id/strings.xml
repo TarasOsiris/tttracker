@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- RPE Labels -->
+    <string name="rpe_very_easy">Sangat mudah</string>
+    <string name="rpe_easy">Mudah</string>
+    <string name="rpe_moderate">Sedang</string>
+    <string name="rpe_hard">Sulit</string>
+    <string name="rpe_max_effort">Usaha maksimal</string>
+
+    <!-- General Actions -->
+    <string name="action_ok">OK</string>
+    <string name="action_cancel">Batal</string>
+    <string name="action_change">Ubah</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_save">Simpan</string>
+    <string name="action_add_session">Tambah Latihan</string>
+    <string name="action_search">Cari</string>
+    <string name="action_general_settings">Pengaturan Umum</string>
+    <string name="action_more">Lainnya</string>
+    <string name="action_back">Kembali</string>
+
+    <!-- Navigation -->
+    <string name="nav_sessions">Latihan</string>
+    <string name="nav_analytics">Analisis</string>
+    <string name="nav_settings">Pengaturan</string>
+
+    <!-- Screen Titles -->
+    <string name="title_home">Beranda</string>
+    <string name="title_create_session">Buat Latihan</string>
+    <string name="title_analytics">Analisis</string>
+    <string name="title_settings">Pengaturan</string>
+    <string name="title_error">Error</string>
+
+    <!-- Sessions Screen -->
+    <string name="sessions_week_mode">Minggu</string>
+    <string name="sessions_month_mode">Bulan</string>
+    <string name="sessions_empty">Tidak ada latihan</string>
+    <string name="session_duration_format">%1$d mnt</string>
+
+    <!-- Create Session Screen -->
+    <string name="label_date">Tanggal</string>
+    <string name="label_duration">Durasi</string>
+    <string name="hint_duration">Masukkan durasi</string>
+    <string name="suffix_minutes">menit</string>
+    <string name="suffix_minutes_value">%1$d mnt</string>
+    <string name="rule_duration">5-300 menit</string>
+    <string name="label_session_type">Jenis Latihan</string>
+    <string name="label_intensity_rpe">Intensitas (RPE)</string>
+    <string name="label_notes_optional">Catatan (opsional)</string>
+    <string name="label_default_notes">Catatan default</string>
+    <string name="hint_notes">Tambahkan catatan tentang latihan Anda...</string>
+    <string name="counter_notes">%1$d/1000</string>
+
+    <!-- Session Details Screen -->
+    <string name="session_default_title">Latihan</string>
+    <string name="label_rpe">RPE</string>
+    <string name="label_notes">Catatan</string>
+    <string name="action_delete">Hapus</string>
+    <string name="delete_session_title">Hapus latihan?</string>
+    <string name="delete_session_message">Tindakan ini tidak dapat dibatalkan. Latihan akan dihapus secara permanen.</string>
+
+    <!-- Session Types -->
+    <string name="session_type_technique">Teknik</string>
+    <string name="session_type_match_play">Pertandingan</string>
+    <string name="session_type_serve_practice">Latihan Servis</string>
+    <string name="session_type_physical">Fisik</string>
+    <string name="session_type_free_play">Bermain Bebas</string>
+    <string name="session_type_other">Lainnya</string>
+
+    <!-- Analytics Screen -->
+    <string name="analytics_service_injected">Layanan disuntikkan: %1$d</string>
+    <string name="analytics_create_test_session">Buat Latihan Tes</string>
+    <string name="analytics_last_created">Latihan terakhir dibuat: %1$s</string>
+    <string name="analytics_test_notes">Latihan tes dari AnalyticsScreen</string>
+    <string name="analytics_placeholder">Analisis performa Anda akan muncul di sini</string>
+
+    <!-- Settings Screen -->
+    <string name="profile_guest_user">Tamu</string>
+    <string name="profile_sign_in_prompt">Masuk untuk menyinkronkan data</string>
+    <string name="settings_placeholder">Pengaturan Anda akan muncul di sini</string>
+    <string name="profile_menu_privacy">Privasi</string>
+    <string name="profile_menu_about">Tentang</string>
+    <string name="profile_menu_support">Dukungan</string>
+    <string name="settings_section_general">Umum</string>
+    <string name="settings_section_help">Bantuan</string>
+    <string name="settings_section_about">Tentang</string>
+    <string name="action_send_feedback">Kirim masukan</string>
+    <string name="action_visit_website">Situs web</string>
+    <string name="action_rate_app">Beri nilai aplikasi</string>
+
+    <!-- General Settings Screen -->
+    <string name="settings_section_calendar">Kalender</string>
+    <string name="settings_section_sessions">Pengaturan default latihan</string>
+    <string name="settings_default_duration">Durasi latihan</string>
+    <string name="settings_default_duration_description">Durasi awal saat membuat latihan baru</string>
+    <string name="action_theme">Tema</string>
+    <string name="theme_select_title">Pilih tema</string>
+    <string name="theme_system">Default sistem</string>
+    <string name="theme_light">Terang</string>
+    <string name="theme_dark">Gelap</string>
+    <string name="action_privacy_policy">Kebijakan Privasi</string>
+    <string name="action_week_start">Hari pertama dalam seminggu</string>
+    <string name="week_start_select_title">Hari pertama dalam seminggu</string>
+    <string name="week_start_monday">Senin</string>
+    <string name="week_start_sunday">Minggu</string>
+    <string name="week_start_saturday">Sabtu</string>
+    <string name="settings_highlight_current_day">Sorot hari ini</string>
+    <string name="settings_section_developer">Pengembang</string>
+    <string name="action_debug">Debug</string>
+    <string name="settings_version_format">Versi %1$s (%2$s)</string>
+    <string name="settings_made_with_prefix">Dibuat dengan ❤️ di</string>
+    <string name="settings_company_name">Nineva Studios</string>
+
+    <!-- Home Screen -->
+    <string name="home_view_match">Lihat Detail Pertandingan</string>
+    <string name="home_view_player">Lihat Detail Pemain</string>
+
+    <!-- Debug Screen -->
+    <string name="debug_data_generation_title">Pembuatan Data</string>
+    <string name="debug_data_generation_description">Buat latihan acak selama setahun terakhir untuk menguji aplikasi dengan data realistis.</string>
+    <string name="debug_generate_random_sessions">Buat 100 Latihan Acak</string>
+    <string name="debug_clear_database_title">Hapus Database</string>
+    <string name="debug_clear_database_description">Hapus semua latihan dari database secara permanen. Tindakan ini tidak dapat dibatalkan.</string>
+    <string name="debug_clear_all_sessions">Hapus Semua Latihan</string>
+
+    <!-- Date & Time -->
+    <string name="time_today">Hari ini</string>
+    <string name="time_yesterday">Kemarin</string>
+    <string name="time_tomorrow">Besok</string>
+    <string name="month_january">Januari</string>
+    <string name="month_february">Februari</string>
+    <string name="month_march">Maret</string>
+    <string name="month_april">April</string>
+    <string name="month_may">Mei</string>
+    <string name="month_june">Juni</string>
+    <string name="month_july">Juli</string>
+    <string name="month_august">Agustus</string>
+    <string name="month_september">September</string>
+    <string name="month_october">Oktober</string>
+    <string name="month_november">November</string>
+    <string name="month_december">Desember</string>
+    <string name="day_monday">Senin</string>
+    <string name="day_tuesday">Selasa</string>
+    <string name="day_wednesday">Rabu</string>
+    <string name="day_thursday">Kamis</string>
+    <string name="day_friday">Jumat</string>
+    <string name="day_saturday">Sabtu</string>
+    <string name="day_sunday">Minggu</string>
+    <string name="day_monday_short">Sen</string>
+    <string name="day_tuesday_short">Sel</string>
+    <string name="day_wednesday_short">Rab</string>
+    <string name="day_thursday_short">Kam</string>
+    <string name="day_friday_short">Jum</string>
+    <string name="day_saturday_short">Sab</string>
+    <string name="day_sunday_short">Min</string>
+    <string name="month_january_short">Jan</string>
+    <string name="month_february_short">Feb</string>
+    <string name="month_march_short">Mar</string>
+    <string name="month_april_short">Apr</string>
+    <string name="month_may_short">Mei</string>
+    <string name="month_june_short">Jun</string>
+    <string name="month_july_short">Jul</string>
+    <string name="month_august_short">Agu</string>
+    <string name="month_september_short">Sep</string>
+    <string name="month_october_short">Okt</string>
+    <string name="month_november_short">Nov</string>
+    <string name="month_december_short">Des</string>
+
+    <string name="duration_minutes_full">%1$d menit</string>
+    <string name="duration_hours_full">%1$d jam</string>
+    <string name="duration_hours_plural_full">%1$d jam</string>
+    <string name="duration_hm_short">%1$dj %2$dmnt</string>
+</resources>

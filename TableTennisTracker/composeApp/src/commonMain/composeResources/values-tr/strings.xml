@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- RPE Labels -->
+    <string name="rpe_very_easy">Çok kolay</string>
+    <string name="rpe_easy">Kolay</string>
+    <string name="rpe_moderate">Orta</string>
+    <string name="rpe_hard">Zor</string>
+    <string name="rpe_max_effort">Maksimum çaba</string>
+
+    <!-- General Actions -->
+    <string name="action_ok">Tamam</string>
+    <string name="action_cancel">İptal</string>
+    <string name="action_change">Değiştir</string>
+    <string name="action_edit">Düzenle</string>
+    <string name="action_save">Kaydet</string>
+    <string name="action_add_session">Antrenman ekle</string>
+    <string name="action_search">Ara</string>
+    <string name="action_general_settings">Genel ayarlar</string>
+    <string name="action_more">Daha fazla</string>
+    <string name="action_back">Geri</string>
+
+    <!-- Navigation -->
+    <string name="nav_sessions">Antrenmanlar</string>
+    <string name="nav_analytics">Analiz</string>
+    <string name="nav_settings">Ayarlar</string>
+
+    <!-- Screen Titles -->
+    <string name="title_home">Ana Sayfa</string>
+    <string name="title_create_session">Antrenman oluştur</string>
+    <string name="title_analytics">Analiz</string>
+    <string name="title_settings">Ayarlar</string>
+    <string name="title_error">Hata</string>
+
+    <!-- Sessions Screen -->
+    <string name="sessions_week_mode">Hafta</string>
+    <string name="sessions_month_mode">Ay</string>
+    <string name="sessions_empty">Antrenman yok</string>
+    <string name="session_duration_format">%1$d dk</string>
+
+    <!-- Create Session Screen -->
+    <string name="label_date">Tarih</string>
+    <string name="label_duration">Süre</string>
+    <string name="hint_duration">Süreyi girin</string>
+    <string name="suffix_minutes">dakika</string>
+    <string name="suffix_minutes_value">%1$d dk</string>
+    <string name="rule_duration">5-300 dakika</string>
+    <string name="label_session_type">Antrenman türü</string>
+    <string name="label_intensity_rpe">Yoğunluk (RPE)</string>
+    <string name="label_notes_optional">Notlar (isteğe bağlı)</string>
+    <string name="label_default_notes">Varsayılan notlar</string>
+    <string name="hint_notes">Antrenmanınız hakkında not ekleyin...</string>
+    <string name="counter_notes">%1$d/1000</string>
+
+    <!-- Session Details Screen -->
+    <string name="session_default_title">Antrenman</string>
+    <string name="label_rpe">RPE</string>
+    <string name="label_notes">Notlar</string>
+    <string name="action_delete">Sil</string>
+    <string name="delete_session_title">Antrenman silinsin mi?</string>
+    <string name="delete_session_message">Bu işlem geri alınamaz. Antrenman kalıcı olarak kaldırılacak.</string>
+
+    <!-- Session Types -->
+    <string name="session_type_technique">Teknik</string>
+    <string name="session_type_match_play">Maç</string>
+    <string name="session_type_serve_practice">Servis antrenmanı</string>
+    <string name="session_type_physical">Fiziksel</string>
+    <string name="session_type_free_play">Serbest oyun</string>
+    <string name="session_type_other">Diğer</string>
+
+    <!-- Analytics Screen -->
+    <string name="analytics_service_injected">Servis enjekte edildi: %1$d</string>
+    <string name="analytics_create_test_session">Test antrenmanı oluştur</string>
+    <string name="analytics_last_created">Son oluşturulan antrenman: %1$s</string>
+    <string name="analytics_test_notes">AnalyticsScreen\'den test antrenmanı</string>
+    <string name="analytics_placeholder">Performans analiziniz burada görünecek</string>
+
+    <!-- Settings Screen -->
+    <string name="profile_guest_user">Misafir</string>
+    <string name="profile_sign_in_prompt">Verilerinizi senkronize etmek için oturum açın</string>
+    <string name="settings_placeholder">Ayarlarınız burada görünecek</string>
+    <string name="profile_menu_privacy">Gizlilik</string>
+    <string name="profile_menu_about">Hakkında</string>
+    <string name="profile_menu_support">Destek</string>
+    <string name="settings_section_general">Genel</string>
+    <string name="settings_section_help">Yardım</string>
+    <string name="settings_section_about">Hakkında</string>
+    <string name="action_send_feedback">Geri bildirim gönder</string>
+    <string name="action_visit_website">Web sitesi</string>
+    <string name="action_rate_app">Uygulamayı değerlendir</string>
+
+    <!-- General Settings Screen -->
+    <string name="settings_section_calendar">Takvim</string>
+    <string name="settings_section_sessions">Antrenman varsayılanları</string>
+    <string name="settings_default_duration">Antrenman süresi</string>
+    <string name="settings_default_duration_description">Yeni antrenman oluştururken başlangıç süresi</string>
+    <string name="action_theme">Tema</string>
+    <string name="theme_select_title">Tema seç</string>
+    <string name="theme_system">Sistem varsayılanı</string>
+    <string name="theme_light">Açık</string>
+    <string name="theme_dark">Koyu</string>
+    <string name="action_privacy_policy">Gizlilik politikası</string>
+    <string name="action_week_start">Haftanın ilk günü</string>
+    <string name="week_start_select_title">Haftanın ilk günü</string>
+    <string name="week_start_monday">Pazartesi</string>
+    <string name="week_start_sunday">Pazar</string>
+    <string name="week_start_saturday">Cumartesi</string>
+    <string name="settings_highlight_current_day">Bugünü vurgula</string>
+    <string name="settings_section_developer">Geliştirici</string>
+    <string name="action_debug">Hata ayıklama</string>
+    <string name="settings_version_format">Sürüm %1$s (%2$s)</string>
+    <string name="settings_made_with_prefix">❤️ ile yapıldı</string>
+    <string name="settings_company_name">Nineva Studios</string>
+
+    <!-- Home Screen -->
+    <string name="home_view_match">Maç detaylarını görüntüle</string>
+    <string name="home_view_player">Oyuncu detaylarını görüntüle</string>
+
+    <!-- Debug Screen -->
+    <string name="debug_data_generation_title">Veri oluşturma</string>
+    <string name="debug_data_generation_description">Uygulamayı gerçekçi verilerle test etmek için geçen yıl için rastgele antrenmanlar oluşturun.</string>
+    <string name="debug_generate_random_sessions">100 rastgele antrenman oluştur</string>
+    <string name="debug_clear_database_title">Veritabanını temizle</string>
+    <string name="debug_clear_database_description">Veritabanından tüm antrenmanları kalıcı olarak silin. Bu işlem geri alınamaz.</string>
+    <string name="debug_clear_all_sessions">Tüm antrenmanları temizle</string>
+
+    <!-- Date & Time -->
+    <string name="time_today">Bugün</string>
+    <string name="time_yesterday">Dün</string>
+    <string name="time_tomorrow">Yarın</string>
+    <string name="month_january">Ocak</string>
+    <string name="month_february">Şubat</string>
+    <string name="month_march">Mart</string>
+    <string name="month_april">Nisan</string>
+    <string name="month_may">Mayıs</string>
+    <string name="month_june">Haziran</string>
+    <string name="month_july">Temmuz</string>
+    <string name="month_august">Ağustos</string>
+    <string name="month_september">Eylül</string>
+    <string name="month_october">Ekim</string>
+    <string name="month_november">Kasım</string>
+    <string name="month_december">Aralık</string>
+    <string name="day_monday">Pazartesi</string>
+    <string name="day_tuesday">Salı</string>
+    <string name="day_wednesday">Çarşamba</string>
+    <string name="day_thursday">Perşembe</string>
+    <string name="day_friday">Cuma</string>
+    <string name="day_saturday">Cumartesi</string>
+    <string name="day_sunday">Pazar</string>
+    <string name="day_monday_short">Pzt</string>
+    <string name="day_tuesday_short">Sal</string>
+    <string name="day_wednesday_short">Çar</string>
+    <string name="day_thursday_short">Per</string>
+    <string name="day_friday_short">Cum</string>
+    <string name="day_saturday_short">Cmt</string>
+    <string name="day_sunday_short">Paz</string>
+    <string name="month_january_short">Oca</string>
+    <string name="month_february_short">Şub</string>
+    <string name="month_march_short">Mar</string>
+    <string name="month_april_short">Nis</string>
+    <string name="month_may_short">May</string>
+    <string name="month_june_short">Haz</string>
+    <string name="month_july_short">Tem</string>
+    <string name="month_august_short">Ağu</string>
+    <string name="month_september_short">Eyl</string>
+    <string name="month_october_short">Eki</string>
+    <string name="month_november_short">Kas</string>
+    <string name="month_december_short">Ara</string>
+
+    <string name="duration_minutes_full">%1$d dakika</string>
+    <string name="duration_hours_full">%1$d saat</string>
+    <string name="duration_hours_plural_full">%1$d saat</string>
+    <string name="duration_hm_short">%1$ds %2$ddk</string>
+</resources>

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- RPE Labels -->
+    <string name="rpe_very_easy">बहुत आसान</string>
+    <string name="rpe_easy">आसान</string>
+    <string name="rpe_moderate">मध्यम</string>
+    <string name="rpe_hard">कठिन</string>
+    <string name="rpe_max_effort">अधिकतम प्रयास</string>
+
+    <!-- General Actions -->
+    <string name="action_ok">ठीक</string>
+    <string name="action_cancel">रद्द करें</string>
+    <string name="action_change">बदलें</string>
+    <string name="action_edit">संपादित करें</string>
+    <string name="action_save">सहेजें</string>
+    <string name="action_add_session">अभ्यास जोड़ें</string>
+    <string name="action_search">खोजें</string>
+    <string name="action_general_settings">सामान्य सेटिंग्स</string>
+    <string name="action_more">और देखें</string>
+    <string name="action_back">वापस</string>
+
+    <!-- Navigation -->
+    <string name="nav_sessions">अभ्यास</string>
+    <string name="nav_analytics">विश्लेषण</string>
+    <string name="nav_settings">सेटिंग्स</string>
+
+    <!-- Screen Titles -->
+    <string name="title_home">होम</string>
+    <string name="title_create_session">अभ्यास बनाएं</string>
+    <string name="title_analytics">विश्लेषण</string>
+    <string name="title_settings">सेटिंग्स</string>
+    <string name="title_error">त्रुटि</string>
+
+    <!-- Sessions Screen -->
+    <string name="sessions_week_mode">सप्ताह</string>
+    <string name="sessions_month_mode">महीना</string>
+    <string name="sessions_empty">कोई अभ्यास नहीं</string>
+    <string name="session_duration_format">%1$d मिनट</string>
+
+    <!-- Create Session Screen -->
+    <string name="label_date">तारीख</string>
+    <string name="label_duration">अवधि</string>
+    <string name="hint_duration">अवधि दर्ज करें</string>
+    <string name="suffix_minutes">मिनट</string>
+    <string name="suffix_minutes_value">%1$d मिनट</string>
+    <string name="rule_duration">5-300 मिनट</string>
+    <string name="label_session_type">अभ्यास प्रकार</string>
+    <string name="label_intensity_rpe">तीव्रता (RPE)</string>
+    <string name="label_notes_optional">नोट्स (वैकल्पिक)</string>
+    <string name="label_default_notes">डिफ़ॉल्ट नोट्स</string>
+    <string name="hint_notes">अपने अभ्यास के बारे में नोट्स जोड़ें...</string>
+    <string name="counter_notes">%1$d/1000</string>
+
+    <!-- Session Details Screen -->
+    <string name="session_default_title">अभ्यास</string>
+    <string name="label_rpe">RPE</string>
+    <string name="label_notes">नोट्स</string>
+    <string name="action_delete">हटाएं</string>
+    <string name="delete_session_title">अभ्यास हटाएं?</string>
+    <string name="delete_session_message">यह क्रिया पूर्ववत नहीं की जा सकती। अभ्यास स्थायी रूप से हटा दिया जाएगा।</string>
+
+    <!-- Session Types -->
+    <string name="session_type_technique">तकनीक</string>
+    <string name="session_type_match_play">मैच खेल</string>
+    <string name="session_type_serve_practice">सर्विस अभ्यास</string>
+    <string name="session_type_physical">शारीरिक</string>
+    <string name="session_type_free_play">फ्री प्ले</string>
+    <string name="session_type_other">अन्य</string>
+
+    <!-- Analytics Screen -->
+    <string name="analytics_service_injected">सेवा इंजेक्ट: %1$d</string>
+    <string name="analytics_create_test_session">टेस्ट अभ्यास बनाएं</string>
+    <string name="analytics_last_created">अंतिम बनाया गया अभ्यास: %1$s</string>
+    <string name="analytics_test_notes">विश्लेषण स्क्रीन से टेस्ट अभ्यास</string>
+    <string name="analytics_placeholder">आपका प्रदर्शन विश्लेषण यहां दिखाई देगा</string>
+
+    <!-- Settings Screen -->
+    <string name="profile_guest_user">अतिथि</string>
+    <string name="profile_sign_in_prompt">अपने डेटा को सिंक करने के लिए साइन इन करें</string>
+    <string name="settings_placeholder">आपकी सेटिंग्स यहां दिखाई देंगी</string>
+    <string name="profile_menu_privacy">गोपनीयता</string>
+    <string name="profile_menu_about">जानकारी</string>
+    <string name="profile_menu_support">सहायता</string>
+    <string name="settings_section_general">सामान्य</string>
+    <string name="settings_section_help">मदद</string>
+    <string name="settings_section_about">जानकारी</string>
+    <string name="action_send_feedback">फीडबैक भेजें</string>
+    <string name="action_visit_website">वेबसाइट</string>
+    <string name="action_rate_app">ऐप को रेट करें</string>
+
+    <!-- General Settings Screen -->
+    <string name="settings_section_calendar">कैलेंडर</string>
+    <string name="settings_section_sessions">अभ्यास की डिफ़ॉल्ट सेटिंग्स</string>
+    <string name="settings_default_duration">अभ्यास की अवधि</string>
+    <string name="settings_default_duration_description">नया अभ्यास बनाते समय आरंभिक अवधि</string>
+    <string name="action_theme">थीम</string>
+    <string name="theme_select_title">थीम चुनें</string>
+    <string name="theme_system">सिस्टम डिफ़ॉल्ट</string>
+    <string name="theme_light">लाइट</string>
+    <string name="theme_dark">डार्क</string>
+    <string name="action_privacy_policy">गोपनीयता नीति</string>
+    <string name="action_week_start">सप्ताह का पहला दिन</string>
+    <string name="week_start_select_title">सप्ताह का पहला दिन</string>
+    <string name="week_start_monday">सोमवार</string>
+    <string name="week_start_sunday">रविवार</string>
+    <string name="week_start_saturday">शनिवार</string>
+    <string name="settings_highlight_current_day">वर्तमान दिन को हाइलाइट करें</string>
+    <string name="settings_section_developer">डेवलपर</string>
+    <string name="action_debug">डीबग</string>
+    <string name="settings_version_format">संस्करण %1$s (%2$s)</string>
+    <string name="settings_made_with_prefix">❤️ के साथ बनाया गया</string>
+    <string name="settings_company_name">Nineva Studios</string>
+
+    <!-- Home Screen -->
+    <string name="home_view_match">मैच विवरण देखें</string>
+    <string name="home_view_player">खिलाड़ी विवरण देखें</string>
+
+    <!-- Debug Screen -->
+    <string name="debug_data_generation_title">डेटा जनरेशन</string>
+    <string name="debug_data_generation_description">वास्तविक डेटा के साथ ऐप का परीक्षण करने के लिए पिछले वर्ष के लिए यादृच्छिक अभ्यास बनाएं।</string>
+    <string name="debug_generate_random_sessions">100 यादृच्छिक अभ्यास उत्पन्न करें</string>
+    <string name="debug_clear_database_title">डेटाबेस साफ़ करें</string>
+    <string name="debug_clear_database_description">डेटाबेस से सभी अभ्यास स्थायी रूप से हटाएं। यह क्रिया पूर्ववत नहीं की जा सकती।</string>
+    <string name="debug_clear_all_sessions">सभी अभ्यास हटाएं</string>
+
+    <!-- Date & Time -->
+    <string name="time_today">आज</string>
+    <string name="time_yesterday">कल (बीता हुआ)</string>
+    <string name="time_tomorrow">कल (आने वाला)</string>
+    <string name="month_january">जनवरी</string>
+    <string name="month_february">फरवरी</string>
+    <string name="month_march">मार्च</string>
+    <string name="month_april">अप्रैल</string>
+    <string name="month_may">मई</string>
+    <string name="month_june">जून</string>
+    <string name="month_july">जुलाई</string>
+    <string name="month_august">अगस्त</string>
+    <string name="month_september">सितंबर</string>
+    <string name="month_october">अक्टूबर</string>
+    <string name="month_november">नवंबर</string>
+    <string name="month_december">दिसंबर</string>
+    <string name="day_monday">सोमवार</string>
+    <string name="day_tuesday">मंगलवार</string>
+    <string name="day_wednesday">बुधवार</string>
+    <string name="day_thursday">गुरुवार</string>
+    <string name="day_friday">शुक्रवार</string>
+    <string name="day_saturday">शनिवार</string>
+    <string name="day_sunday">रविवार</string>
+    <string name="day_monday_short">सोम</string>
+    <string name="day_tuesday_short">मंगल</string>
+    <string name="day_wednesday_short">बुध</string>
+    <string name="day_thursday_short">गुरु</string>
+    <string name="day_friday_short">शुक्र</string>
+    <string name="day_saturday_short">शनि</string>
+    <string name="day_sunday_short">रवि</string>
+    <string name="month_january_short">जन</string>
+    <string name="month_february_short">फर</string>
+    <string name="month_march_short">मार्च</string>
+    <string name="month_april_short">अप्रैल</string>
+    <string name="month_may_short">मई</string>
+    <string name="month_june_short">जून</string>
+    <string name="month_july_short">जुलाई</string>
+    <string name="month_august_short">अग</string>
+    <string name="month_september_short">सित</string>
+    <string name="month_october_short">अक्टू</string>
+    <string name="month_november_short">नव</string>
+    <string name="month_december_short">दिस</string>
+
+    <string name="duration_minutes_full">%1$d मिनट</string>
+    <string name="duration_hours_full">%1$d घंटा</string>
+    <string name="duration_hours_plural_full">%1$d घंटे</string>
+    <string name="duration_hm_short">%1$dघं %2$dमि</string>
+</resources>

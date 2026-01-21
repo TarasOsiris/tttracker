@@ -30,6 +30,13 @@ import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.action_back
+import tabletennistracker.composeapp.generated.resources.action_debug
+import tabletennistracker.composeapp.generated.resources.debug_clear_all_sessions
+import tabletennistracker.composeapp.generated.resources.debug_clear_database_description
+import tabletennistracker.composeapp.generated.resources.debug_clear_database_title
+import tabletennistracker.composeapp.generated.resources.debug_data_generation_description
+import tabletennistracker.composeapp.generated.resources.debug_data_generation_title
+import tabletennistracker.composeapp.generated.resources.debug_generate_random_sessions
 import xyz.tleskiv.tt.ui.widgets.ContentCard
 import xyz.tleskiv.tt.viewmodel.DebugScreenViewModel
 
@@ -57,13 +64,13 @@ fun DebugScreen(
 			ContentCard {
 				Column(modifier = Modifier.padding(16.dp)) {
 					Text(
-						text = "Data Generation",
+						text = stringResource(Res.string.debug_data_generation_title),
 						style = MaterialTheme.typography.titleMedium,
 						color = MaterialTheme.colorScheme.onSurface
 					)
 					Spacer(modifier = Modifier.height(8.dp))
 					Text(
-						text = "Generate random training sessions for the last year to test the app with realistic data.",
+						text = stringResource(Res.string.debug_data_generation_description),
 						style = MaterialTheme.typography.bodyMedium,
 						color = MaterialTheme.colorScheme.onSurfaceVariant
 					)
@@ -80,7 +87,7 @@ fun DebugScreen(
 								color = MaterialTheme.colorScheme.onPrimary
 							)
 						} else {
-							Text("Generate 100 Random Sessions")
+							Text(stringResource(Res.string.debug_generate_random_sessions))
 						}
 					}
 				}
@@ -91,13 +98,13 @@ fun DebugScreen(
 			ContentCard {
 				Column(modifier = Modifier.padding(16.dp)) {
 					Text(
-						text = "Clear Database",
+						text = stringResource(Res.string.debug_clear_database_title),
 						style = MaterialTheme.typography.titleMedium,
 						color = MaterialTheme.colorScheme.error
 					)
 					Spacer(modifier = Modifier.height(8.dp))
 					Text(
-						text = "Permanently delete all training sessions from the database. This action cannot be undone.",
+						text = stringResource(Res.string.debug_clear_database_description),
 						style = MaterialTheme.typography.bodyMedium,
 						color = MaterialTheme.colorScheme.onSurfaceVariant
 					)
@@ -118,7 +125,7 @@ fun DebugScreen(
 								color = MaterialTheme.colorScheme.onError
 							)
 						} else {
-							Text("Clear All Sessions")
+							Text(stringResource(Res.string.debug_clear_all_sessions))
 						}
 					}
 				}
@@ -136,7 +143,7 @@ private fun DebugTopBar(onNavigateBack: () -> Unit) {
 		TopAppBar(
 			title = {
 				Text(
-					text = "Debug",
+					text = stringResource(Res.string.action_debug),
 					style = MaterialTheme.typography.titleLarge
 				)
 			},

@@ -59,6 +59,8 @@ import tabletennistracker.composeapp.generated.resources.settings_section_develo
 import tabletennistracker.composeapp.generated.resources.settings_section_general
 import tabletennistracker.composeapp.generated.resources.settings_section_help
 import tabletennistracker.composeapp.generated.resources.settings_version_format
+import tabletennistracker.composeapp.generated.resources.settings_company_name
+import tabletennistracker.composeapp.generated.resources.settings_made_with_prefix
 import tabletennistracker.composeapp.generated.resources.theme_dark
 import tabletennistracker.composeapp.generated.resources.theme_light
 import tabletennistracker.composeapp.generated.resources.theme_select_title
@@ -198,12 +200,13 @@ fun SettingsScreen(
 				horizontalArrangement = androidx.compose.foundation.layout.Arrangement.Center
 			) {
 				Text(
-					text = "Made with ❤️ at ",
+					text = stringResource(Res.string.settings_made_with_prefix),
 					style = MaterialTheme.typography.bodySmall,
 					color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
 				)
+				Spacer(modifier = Modifier.width(4.dp))
 				Text(
-					text = "Nineva Studios",
+					text = stringResource(Res.string.settings_company_name),
 					modifier = Modifier.clickable { uriHandler.openUri("https://ninevastudios.com") },
 					style = MaterialTheme.typography.bodySmall,
 					color = MaterialTheme.colorScheme.primary.copy(alpha = 0.8f)

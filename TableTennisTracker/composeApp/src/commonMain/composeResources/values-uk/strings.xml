@@ -110,10 +110,20 @@
 	<string name="settings_section_developer">Розробник</string>
 	<string name="action_debug">Налагодження</string>
 	<string name="settings_version_format">Версія %1$s (%2$s)</string>
+	<string name="settings_made_with_prefix">Створено з ❤️ у</string>
+	<string name="settings_company_name">Nineva Studios</string>
 
     <!-- Home Screen -->
     <string name="home_view_match">Переглянути деталі матчу</string>
     <string name="home_view_player">Переглянути деталі гравця</string>
+
+    <!-- Debug Screen -->
+    <string name="debug_data_generation_title">Генерація даних</string>
+    <string name="debug_data_generation_description">Згенеруйте випадкові тренування за останній рік, щоб протестувати застосунок на реалістичних даних.</string>
+    <string name="debug_generate_random_sessions">Згенерувати 100 випадкових тренувань</string>
+    <string name="debug_clear_database_title">Очистити базу даних</string>
+    <string name="debug_clear_database_description">Безповоротно видалити всі тренування з бази даних. Цю дію неможливо скасувати.</string>
+    <string name="debug_clear_all_sessions">Видалити всі тренування</string>
 
     <!-- Date & Time -->
     <string name="time_today">Сьогодні</string>

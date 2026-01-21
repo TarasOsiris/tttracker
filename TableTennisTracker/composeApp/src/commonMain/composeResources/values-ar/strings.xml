@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- RPE Labels -->
+    <string name="rpe_very_easy">سهل جدًا</string>
+    <string name="rpe_easy">سهل</string>
+    <string name="rpe_moderate">متوسط</string>
+    <string name="rpe_hard">صعب</string>
+    <string name="rpe_max_effort">أقصى جهد</string>
+
+    <!-- General Actions -->
+    <string name="action_ok">موافق</string>
+    <string name="action_cancel">إلغاء</string>
+    <string name="action_change">تغيير</string>
+    <string name="action_edit">تحرير</string>
+    <string name="action_save">حفظ</string>
+    <string name="action_add_session">إضافة تدريب</string>
+    <string name="action_search">بحث</string>
+    <string name="action_general_settings">الإعدادات العامة</string>
+    <string name="action_more">المزيد</string>
+    <string name="action_back">رجوع</string>
+
+    <!-- Navigation -->
+    <string name="nav_sessions">التدريبات</string>
+    <string name="nav_analytics">التحليلات</string>
+    <string name="nav_settings">الإعدادات</string>
+
+    <!-- Screen Titles -->
+    <string name="title_home">الرئيسية</string>
+    <string name="title_create_session">إنشاء تدريب</string>
+    <string name="title_analytics">التحليلات</string>
+    <string name="title_settings">الإعدادات</string>
+    <string name="title_error">خطأ</string>
+
+    <!-- Sessions Screen -->
+    <string name="sessions_week_mode">أسبوع</string>
+    <string name="sessions_month_mode">شهر</string>
+    <string name="sessions_empty">لا توجد تدريبات</string>
+    <string name="session_duration_format">%1$d دقيقة</string>
+
+    <!-- Create Session Screen -->
+    <string name="label_date">التاريخ</string>
+    <string name="label_duration">المدة</string>
+    <string name="hint_duration">أدخل المدة</string>
+    <string name="suffix_minutes">دقيقة</string>
+    <string name="suffix_minutes_value">%1$d دقيقة</string>
+    <string name="rule_duration">5-300 دقيقة</string>
+    <string name="label_session_type">نوع التدريب</string>
+    <string name="label_intensity_rpe">الشدة (RPE)</string>
+    <string name="label_notes_optional">ملاحظات (اختياري)</string>
+    <string name="label_default_notes">ملاحظات افتراضية</string>
+    <string name="hint_notes">أضف ملاحظات عن التدريب...</string>
+    <string name="counter_notes">%1$d/1000</string>
+
+    <!-- Session Details Screen -->
+    <string name="session_default_title">تدريب</string>
+    <string name="label_rpe">RPE</string>
+    <string name="label_notes">ملاحظات</string>
+    <string name="action_delete">حذف</string>
+    <string name="delete_session_title">حذف التدريب؟</string>
+    <string name="delete_session_message">لا يمكن التراجع عن هذا الإجراء. سيتم حذف التدريب نهائيًا.</string>
+
+    <!-- Session Types -->
+    <string name="session_type_technique">تقنية</string>
+    <string name="session_type_match_play">مباراة</string>
+    <string name="session_type_serve_practice">تدريب الإرسال</string>
+    <string name="session_type_physical">بدني</string>
+    <string name="session_type_free_play">لعب حر</string>
+    <string name="session_type_other">أخرى</string>
+
+    <!-- Analytics Screen -->
+    <string name="analytics_service_injected">الخدمة المُدخلة: %1$d</string>
+    <string name="analytics_create_test_session">إنشاء تدريب اختباري</string>
+    <string name="analytics_last_created">آخر تدريب تم إنشاؤه: %1$s</string>
+    <string name="analytics_test_notes">تدريب اختباري من شاشة التحليلات</string>
+    <string name="analytics_placeholder">ستظهر تحليلات أدائك هنا</string>
+
+    <!-- Settings Screen -->
+    <string name="profile_guest_user">ضيف</string>
+    <string name="profile_sign_in_prompt">سجّل الدخول لمزامنة بياناتك</string>
+    <string name="settings_placeholder">ستظهر إعداداتك هنا</string>
+    <string name="profile_menu_privacy">الخصوصية</string>
+    <string name="profile_menu_about">حول</string>
+    <string name="profile_menu_support">الدعم</string>
+    <string name="settings_section_general">عام</string>
+    <string name="settings_section_help">المساعدة</string>
+    <string name="settings_section_about">حول</string>
+    <string name="action_send_feedback">إرسال ملاحظات</string>
+    <string name="action_visit_website">الموقع</string>
+    <string name="action_rate_app">تقييم التطبيق</string>
+
+    <!-- General Settings Screen -->
+    <string name="settings_section_calendar">التقويم</string>
+    <string name="settings_section_sessions">الإعدادات الافتراضية للتدريب</string>
+    <string name="settings_default_duration">مدة التدريب</string>
+    <string name="settings_default_duration_description">المدة الأولية عند إنشاء تدريبات جديدة</string>
+    <string name="action_theme">المظهر</string>
+    <string name="theme_select_title">اختر المظهر</string>
+    <string name="theme_system">افتراضي النظام</string>
+    <string name="theme_light">فاتح</string>
+    <string name="theme_dark">داكن</string>
+    <string name="action_privacy_policy">سياسة الخصوصية</string>
+    <string name="action_week_start">أول يوم في الأسبوع</string>
+    <string name="week_start_select_title">أول يوم في الأسبوع</string>
+    <string name="week_start_monday">الإثنين</string>
+    <string name="week_start_sunday">الأحد</string>
+    <string name="week_start_saturday">السبت</string>
+    <string name="settings_highlight_current_day">تمييز اليوم الحالي</string>
+    <string name="settings_section_developer">المطور</string>
+    <string name="action_debug">التصحيح</string>
+    <string name="settings_version_format">الإصدار %1$s (%2$s)</string>
+    <string name="settings_made_with_prefix">صُنع بـ ❤️ في</string>
+    <string name="settings_company_name">Nineva Studios</string>
+
+    <!-- Home Screen -->
+    <string name="home_view_match">عرض تفاصيل المباراة</string>
+    <string name="home_view_player">عرض تفاصيل اللاعب</string>
+
+    <!-- Debug Screen -->
+    <string name="debug_data_generation_title">إنشاء البيانات</string>
+    <string name="debug_data_generation_description">إنشاء تدريبات عشوائية للعام الماضي لاختبار التطبيق ببيانات واقعية.</string>
+    <string name="debug_generate_random_sessions">إنشاء 100 تدريب عشوائي</string>
+    <string name="debug_clear_database_title">مسح قاعدة البيانات</string>
+    <string name="debug_clear_database_description">حذف جميع التدريبات من قاعدة البيانات نهائيًا. لا يمكن التراجع عن هذا الإجراء.</string>
+    <string name="debug_clear_all_sessions">مسح جميع التدريبات</string>
+
+    <!-- Date & Time -->
+    <string name="time_today">اليوم</string>
+    <string name="time_yesterday">أمس</string>
+    <string name="time_tomorrow">غدًا</string>
+    <string name="month_january">يناير</string>
+    <string name="month_february">فبراير</string>
+    <string name="month_march">مارس</string>
+    <string name="month_april">أبريل</string>
+    <string name="month_may">مايو</string>
+    <string name="month_june">يونيو</string>
+    <string name="month_july">يوليو</string>
+    <string name="month_august">أغسطس</string>
+    <string name="month_september">سبتمبر</string>
+    <string name="month_october">أكتوبر</string>
+    <string name="month_november">نوفمبر</string>
+    <string name="month_december">ديسمبر</string>
+    <string name="day_monday">الإثنين</string>
+    <string name="day_tuesday">الثلاثاء</string>
+    <string name="day_wednesday">الأربعاء</string>
+    <string name="day_thursday">الخميس</string>
+    <string name="day_friday">الجمعة</string>
+    <string name="day_saturday">السبت</string>
+    <string name="day_sunday">الأحد</string>
+    <string name="day_monday_short">إث</string>
+    <string name="day_tuesday_short">ث</string>
+    <string name="day_wednesday_short">أر</string>
+    <string name="day_thursday_short">خ</string>
+    <string name="day_friday_short">ج</string>
+    <string name="day_saturday_short">س</string>
+    <string name="day_sunday_short">أح</string>
+    <string name="month_january_short">يناير</string>
+    <string name="month_february_short">فبراير</string>
+    <string name="month_march_short">مارس</string>
+    <string name="month_april_short">أبريل</string>
+    <string name="month_may_short">مايو</string>
+    <string name="month_june_short">يونيو</string>
+    <string name="month_july_short">يوليو</string>
+    <string name="month_august_short">أغسطس</string>
+    <string name="month_september_short">سبتمبر</string>
+    <string name="month_october_short">أكتوبر</string>
+    <string name="month_november_short">نوفمبر</string>
+    <string name="month_december_short">ديسمبر</string>
+
+    <string name="duration_minutes_full">%1$d دقيقة</string>
+    <string name="duration_hours_full">%1$d ساعة</string>
+    <string name="duration_hours_plural_full">%1$d ساعات</string>
+    <string name="duration_hm_short">%1$dس %2$dد</string>
+</resources>

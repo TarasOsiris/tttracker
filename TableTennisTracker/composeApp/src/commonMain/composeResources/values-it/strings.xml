@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- RPE Labels -->
+    <string name="rpe_very_easy">Molto facile</string>
+    <string name="rpe_easy">Facile</string>
+    <string name="rpe_moderate">Moderato</string>
+    <string name="rpe_hard">Difficile</string>
+    <string name="rpe_max_effort">Sforzo massimo</string>
+
+    <!-- General Actions -->
+    <string name="action_ok">OK</string>
+    <string name="action_cancel">Annulla</string>
+    <string name="action_change">Cambia</string>
+    <string name="action_edit">Modifica</string>
+    <string name="action_save">Salva</string>
+    <string name="action_add_session">Aggiungi allenamento</string>
+    <string name="action_search">Cerca</string>
+    <string name="action_general_settings">Impostazioni generali</string>
+    <string name="action_more">Altro</string>
+    <string name="action_back">Indietro</string>
+
+    <!-- Navigation -->
+    <string name="nav_sessions">Allenamenti</string>
+    <string name="nav_analytics">Analisi</string>
+    <string name="nav_settings">Impostazioni</string>
+
+    <!-- Screen Titles -->
+    <string name="title_home">Home</string>
+    <string name="title_create_session">Crea allenamento</string>
+    <string name="title_analytics">Analisi</string>
+    <string name="title_settings">Impostazioni</string>
+    <string name="title_error">Errore</string>
+
+    <!-- Sessions Screen -->
+    <string name="sessions_week_mode">Settimana</string>
+    <string name="sessions_month_mode">Mese</string>
+    <string name="sessions_empty">Nessun allenamento</string>
+    <string name="session_duration_format">%1$d min</string>
+
+    <!-- Create Session Screen -->
+    <string name="label_date">Data</string>
+    <string name="label_duration">Durata</string>
+    <string name="hint_duration">Inserisci durata</string>
+    <string name="suffix_minutes">minuti</string>
+    <string name="suffix_minutes_value">%1$d min</string>
+    <string name="rule_duration">5-300 minuti</string>
+    <string name="label_session_type">Tipo allenamento</string>
+    <string name="label_intensity_rpe">Intensità (RPE)</string>
+    <string name="label_notes_optional">Note (facoltativo)</string>
+    <string name="label_default_notes">Note predefinite</string>
+    <string name="hint_notes">Aggiungi note sull\'allenamento...</string>
+    <string name="counter_notes">%1$d/1000</string>
+
+    <!-- Session Details Screen -->
+    <string name="session_default_title">Allenamento</string>
+    <string name="label_rpe">RPE</string>
+    <string name="label_notes">Note</string>
+    <string name="action_delete">Elimina</string>
+    <string name="delete_session_title">Eliminare l\'allenamento?</string>
+    <string name="delete_session_message">Questa azione non può essere annullata. L\'allenamento verrà rimosso definitivamente.</string>
+
+    <!-- Session Types -->
+    <string name="session_type_technique">Tecnica</string>
+    <string name="session_type_match_play">Partita</string>
+    <string name="session_type_serve_practice">Allenamento servizio</string>
+    <string name="session_type_physical">Fisico</string>
+    <string name="session_type_free_play">Gioco libero</string>
+    <string name="session_type_other">Altro</string>
+
+    <!-- Analytics Screen -->
+    <string name="analytics_service_injected">Servizio inserito: %1$d</string>
+    <string name="analytics_create_test_session">Crea allenamento di test</string>
+    <string name="analytics_last_created">Ultimo allenamento creato: %1$s</string>
+    <string name="analytics_test_notes">Allenamento di test da AnalyticsScreen</string>
+    <string name="analytics_placeholder">Le tue analisi delle prestazioni appariranno qui</string>
+
+    <!-- Settings Screen -->
+    <string name="profile_guest_user">Ospite</string>
+    <string name="profile_sign_in_prompt">Accedi per sincronizzare i tuoi dati</string>
+    <string name="settings_placeholder">Le tue impostazioni appariranno qui</string>
+    <string name="profile_menu_privacy">Privacy</string>
+    <string name="profile_menu_about">Informazioni</string>
+    <string name="profile_menu_support">Supporto</string>
+    <string name="settings_section_general">Generale</string>
+    <string name="settings_section_help">Aiuto</string>
+    <string name="settings_section_about">Informazioni</string>
+    <string name="action_send_feedback">Invia feedback</string>
+    <string name="action_visit_website">Sito web</string>
+    <string name="action_rate_app">Valuta l\'app</string>
+
+    <!-- General Settings Screen -->
+    <string name="settings_section_calendar">Calendario</string>
+    <string name="settings_section_sessions">Impostazioni predefinite allenamento</string>
+    <string name="settings_default_duration">Durata allenamento</string>
+    <string name="settings_default_duration_description">Durata iniziale durante la creazione di nuovi allenamenti</string>
+    <string name="action_theme">Tema</string>
+    <string name="theme_select_title">Seleziona tema</string>
+    <string name="theme_system">Predefinito del sistema</string>
+    <string name="theme_light">Chiaro</string>
+    <string name="theme_dark">Scuro</string>
+    <string name="action_privacy_policy">Informativa sulla privacy</string>
+    <string name="action_week_start">Primo giorno della settimana</string>
+    <string name="week_start_select_title">Primo giorno della settimana</string>
+    <string name="week_start_monday">Lunedì</string>
+    <string name="week_start_sunday">Domenica</string>
+    <string name="week_start_saturday">Sabato</string>
+    <string name="settings_highlight_current_day">Evidenzia giorno corrente</string>
+    <string name="settings_section_developer">Sviluppatore</string>
+    <string name="action_debug">Debug</string>
+    <string name="settings_version_format">Versione %1$s (%2$s)</string>
+    <string name="settings_made_with_prefix">Creato con ❤️ da</string>
+    <string name="settings_company_name">Nineva Studios</string>
+
+    <!-- Home Screen -->
+    <string name="home_view_match">Visualizza dettagli partita</string>
+    <string name="home_view_player">Visualizza dettagli giocatore</string>
+
+    <!-- Debug Screen -->
+    <string name="debug_data_generation_title">Generazione dati</string>
+    <string name="debug_data_generation_description">Genera allenamenti casuali per l\'ultimo anno per testare l\'app con dati realistici.</string>
+    <string name="debug_generate_random_sessions">Genera 100 allenamenti casuali</string>
+    <string name="debug_clear_database_title">Cancella database</string>
+    <string name="debug_clear_database_description">Elimina definitivamente tutti gli allenamenti dal database. Questa azione non può essere annullata.</string>
+    <string name="debug_clear_all_sessions">Cancella tutti gli allenamenti</string>
+
+    <!-- Date & Time -->
+    <string name="time_today">Oggi</string>
+    <string name="time_yesterday">Ieri</string>
+    <string name="time_tomorrow">Domani</string>
+    <string name="month_january">Gennaio</string>
+    <string name="month_february">Febbraio</string>
+    <string name="month_march">Marzo</string>
+    <string name="month_april">Aprile</string>
+    <string name="month_may">Maggio</string>
+    <string name="month_june">Giugno</string>
+    <string name="month_july">Luglio</string>
+    <string name="month_august">Agosto</string>
+    <string name="month_september">Settembre</string>
+    <string name="month_october">Ottobre</string>
+    <string name="month_november">Novembre</string>
+    <string name="month_december">Dicembre</string>
+    <string name="day_monday">Lunedì</string>
+    <string name="day_tuesday">Martedì</string>
+    <string name="day_wednesday">Mercoledì</string>
+    <string name="day_thursday">Giovedì</string>
+    <string name="day_friday">Venerdì</string>
+    <string name="day_saturday">Sabato</string>
+    <string name="day_sunday">Domenica</string>
+    <string name="day_monday_short">Lun</string>
+    <string name="day_tuesday_short">Mar</string>
+    <string name="day_wednesday_short">Mer</string>
+    <string name="day_thursday_short">Gio</string>
+    <string name="day_friday_short">Ven</string>
+    <string name="day_saturday_short">Sab</string>
+    <string name="day_sunday_short">Dom</string>
+    <string name="month_january_short">Gen</string>
+    <string name="month_february_short">Feb</string>
+    <string name="month_march_short">Mar</string>
+    <string name="month_april_short">Apr</string>
+    <string name="month_may_short">Mag</string>
+    <string name="month_june_short">Giu</string>
+    <string name="month_july_short">Lug</string>
+    <string name="month_august_short">Ago</string>
+    <string name="month_september_short">Set</string>
+    <string name="month_october_short">Ott</string>
+    <string name="month_november_short">Nov</string>
+    <string name="month_december_short">Dic</string>
+
+    <string name="duration_minutes_full">%1$d minuti</string>
+    <string name="duration_hours_full">%1$d ora</string>
+    <string name="duration_hours_plural_full">%1$d ore</string>
+    <string name="duration_hm_short">%1$dh %2$dmin</string>
+</resources>

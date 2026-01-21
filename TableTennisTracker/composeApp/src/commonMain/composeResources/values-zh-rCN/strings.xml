@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- RPE Labels -->
+    <string name="rpe_very_easy">非常轻松</string>
+    <string name="rpe_easy">轻松</string>
+    <string name="rpe_moderate">中等</string>
+    <string name="rpe_hard">困难</string>
+    <string name="rpe_max_effort">最大强度</string>
+
+    <!-- General Actions -->
+    <string name="action_ok">确定</string>
+    <string name="action_cancel">取消</string>
+    <string name="action_change">更改</string>
+    <string name="action_edit">编辑</string>
+    <string name="action_save">保存</string>
+    <string name="action_add_session">添加训练</string>
+    <string name="action_search">搜索</string>
+    <string name="action_general_settings">常规设置</string>
+    <string name="action_more">更多</string>
+    <string name="action_back">返回</string>
+
+    <!-- Navigation -->
+    <string name="nav_sessions">训练</string>
+    <string name="nav_analytics">分析</string>
+    <string name="nav_settings">设置</string>
+
+    <!-- Screen Titles -->
+    <string name="title_home">主页</string>
+    <string name="title_create_session">创建训练</string>
+    <string name="title_analytics">分析</string>
+    <string name="title_settings">设置</string>
+    <string name="title_error">错误</string>
+
+    <!-- Sessions Screen -->
+    <string name="sessions_week_mode">周</string>
+    <string name="sessions_month_mode">月</string>
+    <string name="sessions_empty">暂无训练</string>
+    <string name="session_duration_format">%1$d分钟</string>
+
+    <!-- Create Session Screen -->
+    <string name="label_date">日期</string>
+    <string name="label_duration">时长</string>
+    <string name="hint_duration">输入时长</string>
+    <string name="suffix_minutes">分钟</string>
+    <string name="suffix_minutes_value">%1$d分钟</string>
+    <string name="rule_duration">5-300分钟</string>
+    <string name="label_session_type">训练类型</string>
+    <string name="label_intensity_rpe">强度（RPE）</string>
+    <string name="label_notes_optional">备注（可选）</string>
+    <string name="label_default_notes">默认备注</string>
+    <string name="hint_notes">添加关于训练的备注...</string>
+    <string name="counter_notes">%1$d/1000</string>
+
+    <!-- Session Details Screen -->
+    <string name="session_default_title">训练</string>
+    <string name="label_rpe">RPE</string>
+    <string name="label_notes">备注</string>
+    <string name="action_delete">删除</string>
+    <string name="delete_session_title">删除训练？</string>
+    <string name="delete_session_message">此操作无法撤消。训练将被永久删除。</string>
+
+    <!-- Session Types -->
+    <string name="session_type_technique">技术训练</string>
+    <string name="session_type_match_play">比赛对打</string>
+    <string name="session_type_serve_practice">发球练习</string>
+    <string name="session_type_physical">体能训练</string>
+    <string name="session_type_free_play">自由练习</string>
+    <string name="session_type_other">其他</string>
+
+    <!-- Analytics Screen -->
+    <string name="analytics_service_injected">服务已注入：%1$d</string>
+    <string name="analytics_create_test_session">创建测试训练</string>
+    <string name="analytics_last_created">最近创建的训练：%1$s</string>
+    <string name="analytics_test_notes">来自分析页面的测试训练</string>
+    <string name="analytics_placeholder">您的表现分析将显示在此处</string>
+
+    <!-- Settings Screen -->
+    <string name="profile_guest_user">访客</string>
+    <string name="profile_sign_in_prompt">登录以同步您的数据</string>
+    <string name="settings_placeholder">您的设置将显示在此处</string>
+    <string name="profile_menu_privacy">隐私</string>
+    <string name="profile_menu_about">关于</string>
+    <string name="profile_menu_support">支持</string>
+    <string name="settings_section_general">通用</string>
+    <string name="settings_section_help">帮助</string>
+    <string name="settings_section_about">关于</string>
+    <string name="action_send_feedback">发送反馈</string>
+    <string name="action_visit_website">网站</string>
+    <string name="action_rate_app">为应用评分</string>
+
+    <!-- General Settings Screen -->
+    <string name="settings_section_calendar">日历</string>
+    <string name="settings_section_sessions">训练默认设置</string>
+    <string name="settings_default_duration">训练时长</string>
+    <string name="settings_default_duration_description">创建新训练时的初始时长</string>
+    <string name="action_theme">主题</string>
+    <string name="theme_select_title">选择主题</string>
+    <string name="theme_system">跟随系统</string>
+    <string name="theme_light">浅色</string>
+    <string name="theme_dark">深色</string>
+    <string name="action_privacy_policy">隐私政策</string>
+    <string name="action_week_start">每周起始日</string>
+    <string name="week_start_select_title">每周起始日</string>
+    <string name="week_start_monday">星期一</string>
+    <string name="week_start_sunday">星期日</string>
+    <string name="week_start_saturday">星期六</string>
+    <string name="settings_highlight_current_day">高亮显示当前日期</string>
+    <string name="settings_section_developer">开发者</string>
+    <string name="action_debug">调试</string>
+    <string name="settings_version_format">版本 %1$s (%2$s)</string>
+    <string name="settings_made_with_prefix">用 ❤️ 制作于</string>
+    <string name="settings_company_name">Nineva Studios</string>
+
+    <!-- Home Screen -->
+    <string name="home_view_match">查看比赛详情</string>
+    <string name="home_view_player">查看选手详情</string>
+
+    <!-- Debug Screen -->
+    <string name="debug_data_generation_title">数据生成</string>
+    <string name="debug_data_generation_description">生成过去一年的随机训练数据，用于测试应用。</string>
+    <string name="debug_generate_random_sessions">生成100条随机训练</string>
+    <string name="debug_clear_database_title">清除数据库</string>
+    <string name="debug_clear_database_description">永久删除数据库中的所有训练。此操作无法撤消。</string>
+    <string name="debug_clear_all_sessions">清除所有训练</string>
+
+    <!-- Date & Time -->
+    <string name="time_today">今天</string>
+    <string name="time_yesterday">昨天</string>
+    <string name="time_tomorrow">明天</string>
+    <string name="month_january">一月</string>
+    <string name="month_february">二月</string>
+    <string name="month_march">三月</string>
+    <string name="month_april">四月</string>
+    <string name="month_may">五月</string>
+    <string name="month_june">六月</string>
+    <string name="month_july">七月</string>
+    <string name="month_august">八月</string>
+    <string name="month_september">九月</string>
+    <string name="month_october">十月</string>
+    <string name="month_november">十一月</string>
+    <string name="month_december">十二月</string>
+    <string name="day_monday">星期一</string>
+    <string name="day_tuesday">星期二</string>
+    <string name="day_wednesday">星期三</string>
+    <string name="day_thursday">星期四</string>
+    <string name="day_friday">星期五</string>
+    <string name="day_saturday">星期六</string>
+    <string name="day_sunday">星期日</string>
+    <string name="day_monday_short">一</string>
+    <string name="day_tuesday_short">二</string>
+    <string name="day_wednesday_short">三</string>
+    <string name="day_thursday_short">四</string>
+    <string name="day_friday_short">五</string>
+    <string name="day_saturday_short">六</string>
+    <string name="day_sunday_short">日</string>
+    <string name="month_january_short">1月</string>
+    <string name="month_february_short">2月</string>
+    <string name="month_march_short">3月</string>
+    <string name="month_april_short">4月</string>
+    <string name="month_may_short">5月</string>
+    <string name="month_june_short">6月</string>
+    <string name="month_july_short">7月</string>
+    <string name="month_august_short">8月</string>
+    <string name="month_september_short">9月</string>
+    <string name="month_october_short">10月</string>
+    <string name="month_november_short">11月</string>
+    <string name="month_december_short">12月</string>
+
+    <string name="duration_minutes_full">%1$d分钟</string>
+    <string name="duration_hours_full">%1$d小时</string>
+    <string name="duration_hours_plural_full">%1$d小时</string>
+    <string name="duration_hm_short">%1$d时%2$d分</string>
+</resources>

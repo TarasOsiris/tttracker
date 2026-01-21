@@ -107,11 +107,21 @@
     <string name="settings_highlight_current_day">Highlight current day</string>
 	<string name="settings_section_developer">Developer</string>
 	<string name="action_debug">Debug</string>
-	<string name="settings_version_format">Version %1$s (%2$s)</string>
+    <string name="settings_version_format">Version %1$s (%2$s)</string>
+    <string name="settings_made_with_prefix">Made with ❤️ at</string>
+    <string name="settings_company_name">Nineva Studios</string>
 
     <!-- Home Screen -->
     <string name="home_view_match">View Match Details</string>
     <string name="home_view_player">View Player Details</string>
+
+    <!-- Debug Screen -->
+    <string name="debug_data_generation_title">Data Generation</string>
+    <string name="debug_data_generation_description">Generate random training sessions for the last year to test the app with realistic data.</string>
+    <string name="debug_generate_random_sessions">Generate 100 Random Sessions</string>
+    <string name="debug_clear_database_title">Clear Database</string>
+    <string name="debug_clear_database_description">Permanently delete all training sessions from the database. This action cannot be undone.</string>
+    <string name="debug_clear_all_sessions">Clear All Sessions</string>
 
     <!-- Date & Time -->
     <string name="time_today">Today</string>
