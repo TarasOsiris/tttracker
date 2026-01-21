@@ -44,7 +44,9 @@ abstract class SessionsScreenViewModel : ViewModelBase() {
 
 		// Derived date values for calendar
 		val startDate: LocalDate = currentDate.minus(DatePeriod(days = DATE_LIST_RANGE_DAYS))
-		val initialListIndex: Int = (currentDate.toEpochDays() - startDate.toEpochDays()).toInt()
+		// Each day has: 1 sticky header + N items (sessions or 1 placeholder if empty)
+		// With empty sessions, each day = 2 items, so header index = dayOffset * 2
+		val initialListIndex: Int = (currentDate.toEpochDays() - startDate.toEpochDays()).toInt() * 2
 
 		val currentYearMonth: YearMonth = currentDate.yearMonth
 		val startYearMonth: YearMonth = currentYearMonth.minusMonths(CALENDAR_RANGE_MONTHS)

@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
@@ -77,7 +78,6 @@ import org.jetbrains.compose.resources.vectorResource
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.action_add_session
 import tabletennistracker.composeapp.generated.resources.ic_add
-import tabletennistracker.composeapp.generated.resources.nav_sessions
 import tabletennistracker.composeapp.generated.resources.sessions_empty
 import tabletennistracker.composeapp.generated.resources.sessions_month_mode
 import tabletennistracker.composeapp.generated.resources.sessions_week_mode
@@ -133,22 +133,15 @@ fun SessionsScreen(
 		monthState.firstVisibleMonth.yearMonth
 	}
 
-	val subtitleText = visibleYearMonth.formatMonthYear()
+	val titleText = visibleYearMonth.formatMonthYear()
 	topAppBarState?.let { state ->
 		RegisterTopAppBarCleanup(state)
 		state.title = {
-			Column {
-				Text(
-					text = stringResource(Res.string.nav_sessions),
-					style = MaterialTheme.typography.titleMedium,
-					fontWeight = FontWeight.Bold
-				)
-				Text(
-					text = subtitleText,
-					style = MaterialTheme.typography.bodySmall,
-					color = MaterialTheme.colorScheme.onSurfaceVariant
-				)
-			}
+			Text(
+				text = titleText,
+				style = MaterialTheme.typography.titleMedium,
+				fontWeight = FontWeight.Bold
+			)
 		}
 		state.actions = {
 			WeekMonthToggle(
@@ -169,8 +162,9 @@ fun SessionsScreen(
 
 	// Calendar → List: scroll when user taps a date on the calendar
 	fun scrollListToDate(date: LocalDate) {
-		val targetIndex = (date.toEpochDays() - inputData.startDate.toEpochDays()).toInt()
-		if (targetIndex in 0 until (DATE_LIST_RANGE_DAYS * 2 + 1)) {
+		val dayOffset = (date.toEpochDays() - inputData.startDate.toEpochDays()).toInt()
+		if (dayOffset in 0 until (DATE_LIST_RANGE_DAYS * 2 + 1)) {
+			val targetIndex = getHeaderIndexForDate(date, inputData.startDate, sessionsByDate)
 			coroutineScope.launch {
 				listState.scrollToItem(targetIndex)
 			}
@@ -178,10 +172,10 @@ fun SessionsScreen(
 	}
 
 	// List → Calendar: When user scrolls the list, update the selected date
-	LaunchedEffect(listState, weekState, monthState) {
+	LaunchedEffect(listState, weekState, monthState, sessionsByDate) {
 		snapshotFlow { listState.firstVisibleItemIndex }
 			.collect { index ->
-				val visibleDate = inputData.startDate.plus(DatePeriod(days = index))
+				val visibleDate = getDateForIndex(index, inputData.startDate, sessionsByDate)
 				if (visibleDate != inputData.selectedDate) {
 					inputData.selectedDate = visibleDate
 				}
@@ -540,13 +534,10 @@ private fun SessionsListContent(
 		modifier = Modifier.fillMaxSize(),
 		contentPadding = PaddingValues(bottom = 88.dp)
 	) {
-		items(
-			count = totalDays,
-			key = { index -> startDate.plus(DatePeriod(days = index)).toEpochDays() }
-		) { index ->
-			val date = remember(index) { startDate.plus(DatePeriod(days = index)) }
+		for (dayOffset in 0 until totalDays) {
+			val date = startDate.plus(DatePeriod(days = dayOffset))
 			val sessions = sessionsByDate[date] ?: emptyList()
-			DateSection(
+			dateSection(
 				date = date,
 				currentDate = currentDate,
 				sessions = sessions,
@@ -556,26 +547,30 @@ private fun SessionsListContent(
 	}
 }
 
-@Composable
-private fun DateSection(
+private fun LazyListScope.dateSection(
 	date: LocalDate,
 	currentDate: LocalDate,
 	sessions: List<SessionUiModel>,
 	onSessionClick: (String) -> Unit
 ) {
-	Column(modifier = Modifier.fillMaxWidth()) {
+	stickyHeader(key = "header-${date.toEpochDays()}") {
 		DateHeader(date = date, currentDate = currentDate)
+	}
 
-		if (sessions.isEmpty()) {
+	if (sessions.isEmpty()) {
+		item(key = "empty-${date.toEpochDays()}") {
 			NoSessionsPlaceholder()
-		} else {
-			sessions.forEach { session ->
-				SessionListItem(
-					session = session,
-					onClick = { onSessionClick(session.id.toString()) },
-					modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
-				)
-			}
+		}
+	} else {
+		items(
+			count = sessions.size,
+			key = { index -> "session-${sessions[index].id}" }
+		) { index ->
+			SessionListItem(
+				session = sessions[index],
+				onClick = { onSessionClick(sessions[index].id.toString()) },
+				modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+			)
 		}
 	}
 }
@@ -588,7 +583,7 @@ private fun DateHeader(
 	val dateText = date.formatDateHeader(currentDate)
 	val isToday = date == currentDate
 
-	Column {
+	Column(modifier = Modifier.fillMaxWidth().background(MaterialTheme.colorScheme.surface)) {
 		HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant, thickness = 0.5.dp)
 		Row(
 			modifier = Modifier
@@ -616,7 +611,7 @@ private fun DateHeader(
 			Spacer(modifier = Modifier.width(10.dp))
 
 			Text(
-				text = "$dateText, ${date.month.displayText()} ${date.year}",
+				text = dateText,
 				style = MaterialTheme.typography.bodyMedium,
 				fontWeight = if (isToday) FontWeight.SemiBold else FontWeight.Normal,
 				color = if (isToday) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
@@ -653,4 +648,38 @@ private fun AddSessionFab(onClick: () -> Unit, modifier: Modifier = Modifier) {
 			contentDescription = stringResource(Res.string.action_add_session)
 		)
 	}
+}
+
+private fun getHeaderIndexForDate(
+	date: LocalDate,
+	startDate: LocalDate,
+	sessionsByDate: Map<LocalDate, List<SessionUiModel>>
+): Int {
+	var index = 0
+	val targetDayOffset = (date.toEpochDays() - startDate.toEpochDays()).toInt()
+	for (dayOffset in 0 until targetDayOffset) {
+		val currentDate = startDate.plus(DatePeriod(days = dayOffset))
+		val sessions = sessionsByDate[currentDate] ?: emptyList()
+		index += 1 + if (sessions.isEmpty()) 1 else sessions.size
+	}
+	return index
+}
+
+private fun getDateForIndex(
+	index: Int,
+	startDate: LocalDate,
+	sessionsByDate: Map<LocalDate, List<SessionUiModel>>
+): LocalDate {
+	var currentIndex = 0
+	val totalDays = DATE_LIST_RANGE_DAYS * 2 + 1
+	for (dayOffset in 0 until totalDays) {
+		val currentDate = startDate.plus(DatePeriod(days = dayOffset))
+		val sessions = sessionsByDate[currentDate] ?: emptyList()
+		val itemsForThisDay = 1 + if (sessions.isEmpty()) 1 else sessions.size
+		if (index < currentIndex + itemsForThisDay) {
+			return currentDate
+		}
+		currentIndex += itemsForThisDay
+	}
+	return startDate.plus(DatePeriod(days = totalDays - 1))
 }
