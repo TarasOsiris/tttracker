@@ -191,6 +191,25 @@ fun SettingsScreen(
 				color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
 			)
 
+			Spacer(modifier = Modifier.height(4.dp))
+
+			Row(
+				modifier = Modifier.fillMaxWidth(),
+				horizontalArrangement = androidx.compose.foundation.layout.Arrangement.Center
+			) {
+				Text(
+					text = "Made with ❤️ at ",
+					style = MaterialTheme.typography.bodySmall,
+					color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
+				)
+				Text(
+					text = "Nineva Studios",
+					modifier = Modifier.clickable { uriHandler.openUri("https://ninevastudios.com") },
+					style = MaterialTheme.typography.bodySmall,
+					color = MaterialTheme.colorScheme.primary.copy(alpha = 0.8f)
+				)
+			}
+
 			Spacer(modifier = Modifier.height(16.dp))
 		}
 	}
