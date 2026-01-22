@@ -87,6 +87,7 @@
     <string name="action_send_feedback">Send feedback</string>
     <string name="action_visit_website">Website</string>
     <string name="action_rate_app">Rate the app</string>
+	<string name="action_copy_user_id">Copy User ID</string>
 
     <!-- General Settings Screen -->
     <string name="settings_section_calendar">Calendar</string>

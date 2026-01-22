@@ -20,6 +20,7 @@ import androidx.compose.material.icons.outlined.Feedback
 import androidx.compose.material.icons.outlined.Language
 import androidx.compose.material.icons.outlined.Lock
 import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material3.BasicAlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -47,6 +48,7 @@ import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.action_cancel
+import tabletennistracker.composeapp.generated.resources.action_copy_user_id
 import tabletennistracker.composeapp.generated.resources.action_debug
 import tabletennistracker.composeapp.generated.resources.action_general_settings
 import tabletennistracker.composeapp.generated.resources.action_privacy_policy
@@ -148,7 +150,11 @@ fun SettingsScreen(
 							Res.string.action_privacy_policy,
 							Icons.Outlined.Lock,
 							{ uriHandler.openUri("https://ninevastudios.com/privacy-policy") }),
-						SettingsMenuItem(Res.string.action_rate_app, Icons.Outlined.Star, { viewModel.rateApp() })
+						SettingsMenuItem(Res.string.action_rate_app, Icons.Outlined.Star, { viewModel.rateApp() }),
+						SettingsMenuItem(
+							Res.string.action_copy_user_id,
+							Icons.Outlined.Person,
+							{ viewModel.copyUserId() })
 					)
 
 					aboutItems.forEachIndexed { index, item ->
