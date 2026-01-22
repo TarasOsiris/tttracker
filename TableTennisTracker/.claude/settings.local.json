@@ -24,7 +24,9 @@
       "Bash(git push)",
       "Bash(keytool:*)",
       "Bash($ANDROID_HOME/build-tools/35.0.0/apksigner verify --print-certs androidApp/build/outputs/apk/release/androidApp-release.apk)",
-      "Bash(/usr/bin/env -i PATH=/usr/bin:/bin HOME=$HOME ANDROID_HOME=$ANDROID_HOME $ANDROID_HOME/build-tools/35.0.0/apksigner verify:*)"
+      "Bash(/usr/bin/env -i PATH=/usr/bin:/bin HOME=$HOME ANDROID_HOME=$ANDROID_HOME $ANDROID_HOME/build-tools/35.0.0/apksigner verify:*)",
+      "Bash(mdfind:*)",
+      "Bash(open:*)"
     ]
   }
 }
