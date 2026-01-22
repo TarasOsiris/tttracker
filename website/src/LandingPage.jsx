@@ -28,11 +28,6 @@ const LandingPage = () => {
         <div className="nav-logo">
           TableTennis<span>Tracker</span>
         </div>
-        <div>
-          <button className="nav-cta">
-            Get the App
-          </button>
-        </div>
       </nav>
 
       {/* Hero Section */}
