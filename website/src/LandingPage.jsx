@@ -227,7 +227,9 @@ const FeatureCard = ({ icon, title, desc }) => (
 
 const StoreBadge = ({ store }) => {
   const isAppStore = store === 'appstore';
-  const href = isAppStore ? '#' : 'https://play.google.com/store/apps/details?id=xyz.tleskiv.tt';
+  const href = isAppStore
+    ? 'https://apps.apple.com/us/app/tt-training-tracker/id6758044383'
+    : 'https://play.google.com/store/apps/details?id=xyz.tleskiv.tt';
 
   return (
     <a
