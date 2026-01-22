@@ -24,6 +24,7 @@ logback = "1.5.25"
 sqldelight = "2.2.1"
 calendar = "2.10.0"
 sentryKmp = "0.23.0"
+sentryAndroid = "6.0.0-rc.1"
 
 androidx-lifecycle = "2.10.0-alpha07"
 androidx-nav3 = "1.0.0-alpha06"
@@ -99,3 +100,4 @@ kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref =
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
 sentryKmp = { id = "io.sentry.kotlin.multiplatform.gradle", version.ref = "sentryKmp" }
+sentryAndroid = { id = "io.sentry.android.gradle", version.ref = "sentryAndroid" }

@@ -5,6 +5,7 @@ plugins {
 	alias(libs.plugins.androidApplication)
 	alias(libs.plugins.composeMultiplatform)
 	alias(libs.plugins.composeCompiler)
+	alias(libs.plugins.sentryAndroid)
 }
 
 kotlin {
@@ -39,8 +40,8 @@ android {
 		applicationId = "xyz.tleskiv.tt"
 		minSdk = libs.versions.android.minSdk.get().toInt()
 		targetSdk = libs.versions.android.targetSdk.get().toInt()
-		versionCode = 2
-		versionName = "1.1"
+		versionCode = 3
+		versionName = "1.2"
 		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
 		buildConfigField(
@@ -61,8 +62,13 @@ android {
 	}
 
 	buildTypes {
+		getByName("debug") {
+			applicationIdSuffix = ".debug"
+		}
 		getByName("release") {
-			isMinifyEnabled = false
+			isMinifyEnabled = true
+			isShrinkResources = true
+			proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
 			signingConfig = signingConfigs.getByName("release")
 		}
 	}
@@ -92,4 +98,14 @@ dependencies {
 	androidTestImplementation(libs.androidx.compose.ui.test.junit4)
 	androidTestImplementation(libs.compose.components.resources)
 	implementation(libs.sqldelight.driver.android)
+}
+
+sentry {
+	org = "nineva-studios"
+	projectName = "tt-tracker-android"
+	authToken = System.getenv("SENTRY_AUTH_TOKEN_PERSONAL")
+	autoUploadProguardMapping.set(true)
+	uploadNativeSymbols.set(false)
+	autoInstallation.enabled.set(false)
+	includeDependenciesReport.set(false)
 }
