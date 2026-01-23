@@ -172,4 +172,16 @@
     <string name="duration_hours_full">%1$d година</string>
     <string name="duration_hours_plural_full">%1$d годин</string>
     <string name="duration_hm_short">%1$dгод %2$dхв</string>
+
+	<!-- Help -->
+	<string name="help_icon_content_description">Показати довідку</string>
+	<string name="help_rpe_title">Що таке RPE?</string>
+	<string name="help_rpe_description">RPE (Rate of Perceived Exertion) вимірює, наскільки інтенсивно ви відчуваєте навантаження під час тренування.</string>
+	<string name="help_rpe_scale_intro">Шкала від 1 до 10 допомагає відстежувати інтенсивність тренувань:</string>
+	<string name="help_rpe_level_1_2">1-2: Дуже легко - Легка активність, можна вільно розмовляти</string>
+	<string name="help_rpe_level_3_4">3-4: Легко - Комфортний темп, розмова можлива</string>
+	<string name="help_rpe_level_5_6">5-6: Помірно - Дихання важче, певне навантаження</string>
+	<string name="help_rpe_level_7_8">7-8: Важко - Складно говорити, значне зусилля</string>
+	<string name="help_rpe_level_9_10">9-10: Максимум - Гранична інтенсивність, неможливо підтримувати</string>
+	<string name="help_rpe_tip">Порада: Більшість тренувань повинні бути в діапазоні 5-7.</string>
 </resources>
