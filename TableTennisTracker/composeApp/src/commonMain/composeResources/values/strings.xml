@@ -171,4 +171,16 @@
     <string name="duration_hours_full">%1$d hour</string>
     <string name="duration_hours_plural_full">%1$d hours</string>
     <string name="duration_hm_short">%1$dh %2$dmin</string>
+
+	<!-- Help -->
+	<string name="help_icon_content_description">Show help</string>
+	<string name="help_rpe_title">What is RPE?</string>
+	<string name="help_rpe_description">RPE (Rate of Perceived Exertion) measures how hard you feel your body is working during exercise.</string>
+	<string name="help_rpe_scale_intro">The 1-10 scale helps you track workout intensity:</string>
+	<string name="help_rpe_level_1_2">1-2: Very Easy - Light activity, can talk easily</string>
+	<string name="help_rpe_level_3_4">3-4: Easy - Comfortable pace, conversation possible</string>
+	<string name="help_rpe_level_5_6">5-6: Moderate - Breathing harder, some challenge</string>
+	<string name="help_rpe_level_7_8">7-8: Hard - Difficult to talk, pushing yourself</string>
+	<string name="help_rpe_level_9_10">9-10: Max Effort - All-out intensity, cannot sustain</string>
+	<string name="help_rpe_tip">Tip: Most training sessions should be in the 5-7 range.</string>
 </resources>
