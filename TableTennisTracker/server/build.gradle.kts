@@ -18,6 +18,8 @@ sqldelight {
 	databases {
 		create("ServerDatabase") {
 			packageName.set("xyz.tleskiv.tt.db")
+			schemaOutputDirectory.set(file("src/main/sqldelight/migrations"))
+			verifyMigrations.set(true)
 		}
 	}
 }

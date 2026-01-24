@@ -22,6 +22,8 @@ sqldelight {
 	databases {
 		create("AppDatabase") {
 			packageName.set("xyz.tleskiv.tt.db")
+			schemaOutputDirectory.set(file("src/commonMain/sqldelight/migrations"))
+			verifyMigrations.set(true)
 		}
 	}
 }

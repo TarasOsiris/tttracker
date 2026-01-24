@@ -1,6 +1,7 @@
 package xyz.tleskiv.tt.data.db
 
 import app.cash.sqldelight.ColumnAdapter
+import app.cash.sqldelight.db.QueryResult
 import app.cash.sqldelight.driver.jdbc.sqlite.JdbcSqliteDriver
 import xyz.tleskiv.tt.data.model.enums.SessionType
 import xyz.tleskiv.tt.db.ServerDatabase
@@ -29,8 +30,8 @@ object DatabaseFactory {
 
 		val driver = JdbcSqliteDriver("jdbc:sqlite:$dbPath")
 
-		// Create schema if needed
-		ServerDatabase.Companion.Schema.create(driver)
+		// Create schema or migrate if needed
+		migrateIfNeeded(driver)
 
 		// Apply SQLite optimizations
 		driver.execute(null, "PRAGMA journal_mode = WAL;", 0)
@@ -48,5 +49,29 @@ object DatabaseFactory {
 				session_typeAdapter = sessionTypeAdapter
 			)
 		)
+	}
+
+	private fun migrateIfNeeded(driver: JdbcSqliteDriver) {
+		val currentVersion = getCurrentVersion(driver)
+		val schemaVersion = ServerDatabase.Schema.version
+
+		if (currentVersion == 0L) {
+			ServerDatabase.Schema.create(driver)
+			setVersion(driver, schemaVersion)
+		} else if (currentVersion < schemaVersion) {
+			ServerDatabase.Schema.migrate(driver, currentVersion, schemaVersion)
+			setVersion(driver, schemaVersion)
+		}
+	}
+
+	private fun getCurrentVersion(driver: JdbcSqliteDriver): Long {
+		return driver.executeQuery<Long>(null, "PRAGMA user_version;", { cursor ->
+			cursor.next()
+			QueryResult.Value(cursor.getLong(0) ?: 0L)
+		}, 0).value
+	}
+
+	private fun setVersion(driver: JdbcSqliteDriver, version: Long) {
+		driver.execute(null, "PRAGMA user_version = $version;", 0)
 	}
 }

@@ -1,0 +1,31 @@
+-- Initial schema migration for AppDatabase
+
+CREATE TABLE IF NOT EXISTS app_metadata (
+    key TEXT PRIMARY KEY NOT NULL,
+    value TEXT NOT NULL,
+    created_at INTEGER NOT NULL DEFAULT (strftime('%s','now') * 1000),
+    updated_at INTEGER NOT NULL DEFAULT (strftime('%s','now') * 1000)
+);
+
+CREATE TABLE IF NOT EXISTS user_preferences (
+    key TEXT PRIMARY KEY NOT NULL,
+    value TEXT NOT NULL,
+    created_at INTEGER NOT NULL DEFAULT (strftime('%s','now') * 1000),
+    updated_at INTEGER NOT NULL DEFAULT (strftime('%s','now') * 1000)
+);
+
+CREATE TABLE IF NOT EXISTS training_session (
+    id TEXT PRIMARY KEY,
+    date INTEGER NOT NULL,
+    duration_min INTEGER NOT NULL,
+    rpe INTEGER NOT NULL CHECK (rpe BETWEEN 1 AND 10),
+    session_type TEXT CHECK (
+        session_type IN ('technique', 'match_play', 'serve_practice', 'physical', 'free_play', 'other')
+    ),
+    notes TEXT,
+    is_deleted INTEGER NOT NULL DEFAULT 0,
+    created_at INTEGER NOT NULL DEFAULT (strftime('%s','now') * 1000),
+    updated_at INTEGER NOT NULL DEFAULT (strftime('%s','now') * 1000)
+);
+
+CREATE INDEX IF NOT EXISTS idx_training_session_date ON training_session(date DESC) WHERE is_deleted = 0;
