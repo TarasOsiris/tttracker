@@ -41,8 +41,8 @@ android {
 		applicationId = "xyz.tleskiv.tt"
 		minSdk = libs.versions.android.minSdk.get().toInt()
 		targetSdk = libs.versions.android.targetSdk.get().toInt()
-		versionCode = 4
-		versionName = "1.2.1"
+		versionCode = 5
+		versionName = "1.2.2"
 		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
 		buildConfigField(
