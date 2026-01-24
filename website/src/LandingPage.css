@@ -397,6 +397,33 @@
     line-height: 1.6;
 }
 
+/* Contact Section */
+.contact-section {
+    padding: 4rem 1.5rem;
+    width: 100%;
+    max-width: 72rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contact-text {
+    font-size: 1.125rem;
+    opacity: 0.8;
+    line-height: 1.6;
+}
+
+.contact-email {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity 0.2s ease;
+}
+
+.contact-email:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
 /* Footer */
 .landing-footer {
     width: 100%;

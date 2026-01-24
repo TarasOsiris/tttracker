@@ -26,7 +26,7 @@ const LandingPage = () => {
       {/* Navigation */}
       <nav className="landing-nav">
         <div className="nav-logo">
-          TableTennis<span>Tracker</span>
+          🏓 TableTennis<span>Tracker</span>
         </div>
       </nav>
 
@@ -38,7 +38,7 @@ const LandingPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          Track Your <br />
+          Track Your 🏓<br />
           <span className="hero-title-highlight">
             Training Progress
           </span>
@@ -125,6 +125,31 @@ const LandingPage = () => {
           title="Cross-Platform"
           desc="Available on iOS, Android, and Desktop. Your training data syncs seamlessly across devices."
         />
+      </section>
+
+      {/* Contact Section */}
+      <section className="contact-section">
+        <motion.h2
+          className="section-title"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          Questions or Suggestions?
+        </motion.h2>
+        <motion.p
+          className="contact-text"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          We'd love to hear from you! Reach out at{' '}
+          <a href="mailto:info@ninevastudios.com" className="contact-email">
+            info@ninevastudios.com
+          </a>
+        </motion.p>
       </section>
 
       {/* CTA Footer */}
