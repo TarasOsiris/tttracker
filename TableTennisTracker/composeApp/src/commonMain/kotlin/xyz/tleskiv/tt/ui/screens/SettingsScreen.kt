@@ -19,8 +19,9 @@ import androidx.compose.material.icons.outlined.BugReport
 import androidx.compose.material.icons.outlined.Feedback
 import androidx.compose.material.icons.outlined.Language
 import androidx.compose.material.icons.outlined.Lock
-import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.material.icons.outlined.People
 import androidx.compose.material.icons.outlined.Person
+import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material3.BasicAlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -51,18 +52,19 @@ import tabletennistracker.composeapp.generated.resources.action_cancel
 import tabletennistracker.composeapp.generated.resources.action_copy_user_id
 import tabletennistracker.composeapp.generated.resources.action_debug
 import tabletennistracker.composeapp.generated.resources.action_general_settings
+import tabletennistracker.composeapp.generated.resources.action_opponents
 import tabletennistracker.composeapp.generated.resources.action_privacy_policy
 import tabletennistracker.composeapp.generated.resources.action_rate_app
 import tabletennistracker.composeapp.generated.resources.action_send_feedback
 import tabletennistracker.composeapp.generated.resources.action_theme
 import tabletennistracker.composeapp.generated.resources.action_visit_website
+import tabletennistracker.composeapp.generated.resources.settings_company_name
+import tabletennistracker.composeapp.generated.resources.settings_made_with_prefix
 import tabletennistracker.composeapp.generated.resources.settings_section_about
 import tabletennistracker.composeapp.generated.resources.settings_section_developer
 import tabletennistracker.composeapp.generated.resources.settings_section_general
 import tabletennistracker.composeapp.generated.resources.settings_section_help
 import tabletennistracker.composeapp.generated.resources.settings_version_format
-import tabletennistracker.composeapp.generated.resources.settings_company_name
-import tabletennistracker.composeapp.generated.resources.settings_made_with_prefix
 import tabletennistracker.composeapp.generated.resources.theme_dark
 import tabletennistracker.composeapp.generated.resources.theme_light
 import tabletennistracker.composeapp.generated.resources.theme_select_title
@@ -74,6 +76,7 @@ import xyz.tleskiv.tt.viewmodel.SettingsViewModel
 @Composable
 fun SettingsScreen(
 	onNavigateToGeneralSettings: () -> Unit = {},
+	onNavigateToOpponents: () -> Unit = {},
 	onNavigateToDebug: () -> Unit = {},
 	viewModel: SettingsViewModel = koinViewModel()
 ) {
@@ -119,6 +122,19 @@ fun SettingsScreen(
 					SettingsMenuRow(
 						item = SettingsMenuItem(Res.string.action_theme, Icons.Outlined.BrightnessMedium, {}),
 						onClick = { showThemeDialog = true }
+					)
+					HorizontalDivider(
+						modifier = Modifier.padding(start = 52.dp),
+						color = MaterialTheme.colorScheme.outlineVariant,
+						thickness = 0.5.dp
+					)
+					SettingsMenuRow(
+						item = SettingsMenuItem(
+							Res.string.action_opponents,
+							Icons.Outlined.People,
+							onNavigateToOpponents
+						),
+						onClick = onNavigateToOpponents
 					)
 				}
 			}

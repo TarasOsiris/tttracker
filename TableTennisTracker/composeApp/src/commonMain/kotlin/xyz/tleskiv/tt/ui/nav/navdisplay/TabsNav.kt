@@ -34,6 +34,7 @@ import xyz.tleskiv.tt.ui.nav.routes.DebugRoute
 import xyz.tleskiv.tt.ui.nav.routes.GeneralSettingsRoute
 import xyz.tleskiv.tt.ui.nav.routes.NAV_BAR_TAB_ROUTES
 import xyz.tleskiv.tt.ui.nav.routes.NavBarTabLevelRoute
+import xyz.tleskiv.tt.ui.nav.routes.OpponentsRoute
 import xyz.tleskiv.tt.ui.nav.routes.SessionDetailsRoute
 import xyz.tleskiv.tt.ui.nav.routes.SessionsRoute
 import xyz.tleskiv.tt.ui.nav.routes.SettingsRoute
@@ -119,6 +120,7 @@ fun TabsNavDisplay(
 					entry<SettingsRoute>(metadata = instantTransitionMetadata) {
 						SettingsScreen(
 							onNavigateToGeneralSettings = { topLevelBackStack.add(GeneralSettingsRoute) },
+							onNavigateToOpponents = { topLevelBackStack.add(OpponentsRoute) },
 							onNavigateToDebug = { topLevelBackStack.add(DebugRoute) }
 						)
 					}

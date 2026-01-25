@@ -17,7 +17,7 @@ import xyz.tleskiv.tt.ui.nav.routes.DebugRoute
 import xyz.tleskiv.tt.ui.nav.routes.EditSessionRoute
 import xyz.tleskiv.tt.ui.nav.routes.GeneralSettingsRoute
 import xyz.tleskiv.tt.ui.nav.routes.NAV_BAR_TAB_ROUTES
-import xyz.tleskiv.tt.ui.nav.routes.NavBarTabLevelRoute
+import xyz.tleskiv.tt.ui.nav.routes.OpponentsRoute
 import xyz.tleskiv.tt.ui.nav.routes.SessionDetailsRoute
 import xyz.tleskiv.tt.ui.nav.routes.SessionsRoute
 import xyz.tleskiv.tt.ui.nav.routes.TopLevelRoute
@@ -25,6 +25,7 @@ import xyz.tleskiv.tt.ui.screens.CreateSessionScreen
 import xyz.tleskiv.tt.ui.screens.DebugScreen
 import xyz.tleskiv.tt.ui.screens.EditSessionScreen
 import xyz.tleskiv.tt.ui.screens.GeneralSettingsScreen
+import xyz.tleskiv.tt.ui.screens.OpponentsScreen
 import xyz.tleskiv.tt.ui.screens.SessionDetailsScreen
 
 
@@ -77,6 +78,12 @@ fun TopNavDisplay(topLevelBackStack: SnapshotStateList<TopLevelRoute>) {
 
 				is GeneralSettingsRoute -> NavEntry(key, metadata = lateralEntryTransitionMetadata) {
 					GeneralSettingsScreen(
+						onNavigateBack = { topLevelBackStack.removeLastOrNull() }
+					)
+				}
+
+				is OpponentsRoute -> NavEntry(key, metadata = lateralEntryTransitionMetadata) {
+					OpponentsScreen(
 						onNavigateBack = { topLevelBackStack.removeLastOrNull() }
 					)
 				}

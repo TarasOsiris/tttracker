@@ -6,7 +6,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import kotlinx.coroutines.flow.StateFlow
-import xyz.tleskiv.tt.data.model.enums.CompetitionLevel
 import xyz.tleskiv.tt.db.Opponent
 import xyz.tleskiv.tt.viewmodel.ViewModelBase
 import xyz.tleskiv.tt.viewmodel.sessions.PendingMatch
@@ -24,7 +23,7 @@ abstract class AddMatchDialogViewModel : ViewModelBase() {
 		private val matchId = editingMatch?.id ?: Uuid.random().toString()
 
 		val opponentName = mutableStateOf(editingMatch?.opponentName ?: "")
-		val opponentId = mutableStateOf<Uuid?>(editingMatch?.opponentId)
+		val opponentId = mutableStateOf(editingMatch?.opponentId)
 		val myScore = mutableIntStateOf(editingMatch?.myGamesWon ?: 0)
 		val opponentScore = mutableIntStateOf(editingMatch?.opponentGamesWon ?: 0)
 		val isDoubles = mutableStateOf(editingMatch?.isDoubles ?: false)

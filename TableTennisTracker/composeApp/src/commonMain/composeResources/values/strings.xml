@@ -16,6 +16,9 @@
     <string name="action_add_session">Add Session</string>
     <string name="action_search">Search</string>
     <string name="action_general_settings">General Settings</string>
+    <string name="action_opponents">Opponents</string>
+    <string name="opponents_empty">No opponents yet</string>
+    <string name="title_opponents">Opponents</string>
     <string name="action_more">More</string>
     <string name="action_back">Back</string>
 
