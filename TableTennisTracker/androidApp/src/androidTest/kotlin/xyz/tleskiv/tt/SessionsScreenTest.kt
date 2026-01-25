@@ -104,11 +104,9 @@ class SessionsScreenTest {
 
 		repeat(myScore) {
 			clickTag(TestTags.MY_SCORE_PLUS)
-			idle()
 		}
 		repeat(opponentScore) {
 			clickTag(TestTags.OPPONENT_SCORE_PLUS)
-			idle()
 		}
 
 		clickTag(TestTags.ADD_MATCH_DIALOG_SAVE)
