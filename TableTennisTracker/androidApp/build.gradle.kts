@@ -98,6 +98,8 @@ dependencies {
 	androidTestImplementation(libs.androidx.espresso.core)
 	androidTestImplementation(libs.androidx.compose.ui.test.junit4)
 	androidTestImplementation(libs.compose.components.resources)
+	androidTestImplementation(projects.shared)
+	androidTestImplementation(libs.calendar.compose.multiplatform)
 	implementation(libs.sqldelight.driver.android)
 }
 

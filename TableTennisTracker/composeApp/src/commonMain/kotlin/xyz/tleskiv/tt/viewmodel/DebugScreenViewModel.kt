@@ -12,6 +12,7 @@ import xyz.tleskiv.tt.data.model.enums.CompetitionLevel
 import xyz.tleskiv.tt.data.model.enums.Handedness
 import xyz.tleskiv.tt.data.model.enums.PlayingStyle
 import xyz.tleskiv.tt.data.model.enums.SessionType
+import xyz.tleskiv.tt.service.MatchInput
 import xyz.tleskiv.tt.service.MatchService
 import xyz.tleskiv.tt.service.OpponentService
 import xyz.tleskiv.tt.service.TrainingSessionService
@@ -65,16 +66,16 @@ class DebugScreenViewModel(
 					val rpe = Random.nextInt(1, 11)
 					val sessionType = if (Random.nextBoolean()) sessionTypes.random() else null
 					val notes = if (Random.nextInt(100) < 30) "Random session note #${Random.nextInt(1000)}" else null
+					val matches = generateRandomMatches(opponentIds)
 
-					val sessionId = trainingSessionService.addSession(
+					trainingSessionService.addSession(
 						dateTime = sessionDateTime,
 						durationMinutes = durationMinutes,
 						rpe = rpe,
 						sessionType = sessionType,
-						notes = notes
+						notes = notes,
+						matches = matches
 					)
-
-					generateRandomMatchesForSession(sessionId, opponentIds)
 				}
 			} finally {
 				_isGenerating.value = false
@@ -82,9 +83,9 @@ class DebugScreenViewModel(
 		}
 	}
 
-	private suspend fun generateRandomOpponents(): List<Uuid> {
+	private suspend fun generateRandomOpponents(): List<Pair<Uuid, String>> {
 		return opponentNames.map { name ->
-			opponentService.addOpponent(
+			val id = opponentService.addOpponent(
 				name = name,
 				club = clubNames.random(),
 				rating = if (Random.nextBoolean()) Random.nextDouble(800.0, 2500.0) else null,
@@ -92,28 +93,27 @@ class DebugScreenViewModel(
 				style = if (Random.nextBoolean()) PlayingStyle.entries.random() else null,
 				notes = if (Random.nextInt(100) < 20) "Notes about $name" else null
 			)
+			id to name
 		}
 	}
 
-	private suspend fun generateRandomMatchesForSession(sessionId: Uuid, opponentIds: List<Uuid>) {
+	private fun generateRandomMatches(opponents: List<Pair<Uuid, String>>): List<MatchInput> {
 		val matchCount = Random.nextInt(0, 6)
 		val competitionLevels = CompetitionLevel.entries
 
-		repeat(matchCount) {
+		return List(matchCount) {
 			val myGamesWon = Random.nextInt(0, 4)
 			val opponentGamesWon = if (myGamesWon == 3) Random.nextInt(0, 3) else Random.nextInt(myGamesWon + 1, 4)
+			val opponent = opponents.random()
 
-			matchService.addMatch(
-				sessionId = sessionId,
-				opponentId = opponentIds.random(),
+			MatchInput(
+				opponentId = opponent.first,
+				opponentName = opponent.second,
 				myGamesWon = myGamesWon,
 				opponentGamesWon = opponentGamesWon,
-				games = null,
 				isDoubles = Random.nextInt(100) < 15,
 				isRanked = Random.nextInt(100) < 40,
-				competitionLevel = if (Random.nextBoolean()) competitionLevels.random() else null,
-				rpe = if (Random.nextBoolean()) Random.nextInt(1, 11) else null,
-				notes = if (Random.nextInt(100) < 10) "Match note #${Random.nextInt(100)}" else null
+				competitionLevel = if (Random.nextBoolean()) competitionLevels.random() else null
 			)
 		}
 	}

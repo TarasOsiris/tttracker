@@ -222,3 +222,10 @@ If it's not possible fallback to `expect`/`actual` pattern:
 - Never inline full package names, always use imports
 - In Android instrumentation tests, never hardcode UI strings - use Compose resources via `Res.string.*` with `runBlocking { getString(res) }`
 - After modifying Android instrumentation tests, always run them to verify: `./gradlew :androidApp:connectedDebugAndroidTest`
+- In tests, never use hardcoded values inline - always extract values into named variables (e.g.,
+  `val expectedCount = 1` instead of `assertEquals(1, list.size)`)
+- Test naming convention: `action_condition_expectedResult` using underscores to separate parts.
+  Examples:
+    - `addSession_withAllFields_displaysSessionDetails`
+    - `getSessionById_withNonExistentId_returnsNull`
+    - `deleteSession_removesFromDatabase` (condition can be omitted if obvious)

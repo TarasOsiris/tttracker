@@ -8,8 +8,6 @@ import org.junit.runner.RunWith
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.action_add_match
 import tabletennistracker.composeapp.generated.resources.action_add_session
-import tabletennistracker.composeapp.generated.resources.action_increase_my_score
-import tabletennistracker.composeapp.generated.resources.action_increase_opponent_score
 import tabletennistracker.composeapp.generated.resources.action_save
 import tabletennistracker.composeapp.generated.resources.duration_minutes_full
 import tabletennistracker.composeapp.generated.resources.label_duration
@@ -30,15 +28,12 @@ import xyz.tleskiv.tt.util.clickFirstText
 import xyz.tleskiv.tt.util.clickTag
 import xyz.tleskiv.tt.util.clickText
 import xyz.tleskiv.tt.util.closeSoftKeyboard
-import xyz.tleskiv.tt.util.espressoClickContentDescription
 import xyz.tleskiv.tt.util.idle
 import xyz.tleskiv.tt.util.inputText
-import xyz.tleskiv.tt.util.scrollToAndClickTag
 import xyz.tleskiv.tt.util.scrollToAndClickText
 import xyz.tleskiv.tt.util.scrollToText
 import xyz.tleskiv.tt.util.setSliderValue
 import xyz.tleskiv.tt.util.str
-import xyz.tleskiv.tt.util.swipeUpOnTag
 import xyz.tleskiv.tt.util.waitForText
 
 @RunWith(AndroidJUnit4::class)
@@ -47,12 +42,12 @@ class SessionsScreenTest {
 	val composeTestRule = createAndroidComposeRule<MainActivity>()
 
 	@Test
-	fun launchesSessionsScreen() = with(composeTestRule) {
+	fun appLaunch_displaysSessionsScreen() = with(composeTestRule) {
 		assertTextDisplayed(Res.string.sessions_week_mode)
 	}
 
 	@Test
-	fun addSessionAndVerifyDetails() = with(composeTestRule) {
+	fun addSession_withAllFields_displaysSessionDetails() = with(composeTestRule) {
 		val testDurationMinutes = 30
 		val testNotes = "Great practice session today"
 		val techniqueText = str(Res.string.session_type_technique)
@@ -78,7 +73,7 @@ class SessionsScreenTest {
 	}
 
 	@Test
-	fun addMatchToSession() = with(composeTestRule) {
+	fun addSession_withMatch_displaysMatchDetails() = with(composeTestRule) {
 		val testDurationMinutes = 45
 		val testOpponentName = "John Doe"
 		val myScore = 3
