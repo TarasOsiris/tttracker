@@ -184,4 +184,24 @@
 	<string name="help_rpe_level_7_8">7-8: Hard - Difficult to talk, pushing yourself</string>
 	<string name="help_rpe_level_9_10">9-10: Max Effort - All-out intensity, cannot sustain</string>
 	<string name="help_rpe_tip">Tip: Most training sessions should be in the 5-7 range.</string>
+
+    <!-- Match Creation -->
+    <string name="label_matches_optional">Matches (optional)</string>
+    <string name="action_add_match">Add Match</string>
+    <string name="add_match">Add Match</string>
+    <string name="edit_match">Edit Match</string>
+    <string name="label_opponent">Opponent</string>
+    <string name="hint_opponent_name">Enter opponent name</string>
+    <string name="label_score">Score</string>
+    <string name="label_me">Me</string>
+    <string name="label_competition_level_optional">Competition Level (optional)</string>
+    <string name="matches_empty_hint">No matches added yet</string>
+    <string name="label_doubles">Doubles</string>
+    <string name="label_ranked">Ranked</string>
+    <string name="competition_level_practice">Practice</string>
+    <string name="competition_level_league">League</string>
+    <string name="competition_level_tournament">Tournament</string>
+    <string name="match_score_format">%1$d - %2$d</string>
+    <string name="match_win">W</string>
+    <string name="match_loss">L</string>
 </resources>
