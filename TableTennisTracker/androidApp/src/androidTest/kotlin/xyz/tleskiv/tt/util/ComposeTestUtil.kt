@@ -3,6 +3,8 @@ package xyz.tleskiv.tt.util
 import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import androidx.test.espresso.Espresso
+import androidx.test.espresso.action.ViewActions
+import androidx.test.espresso.matcher.ViewMatchers
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.ComposeTestRule
@@ -16,6 +18,8 @@ import androidx.compose.ui.test.performImeAction
 import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performSemanticsAction
 import androidx.compose.ui.test.performTextInput
+import androidx.compose.ui.test.performTouchInput
+import androidx.compose.ui.test.swipeUp
 import kotlinx.coroutines.runBlocking
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.getString
@@ -48,6 +52,18 @@ fun SemanticsNodeInteractionsProvider.scrollToAndClickText(res: StringResource) 
 	scrollToAndClickText(str(res))
 }
 
+fun SemanticsNodeInteractionsProvider.scrollToText(text: String) {
+	onNodeWithText(text).performScrollTo()
+}
+
+fun SemanticsNodeInteractionsProvider.scrollToText(res: StringResource) {
+	scrollToText(str(res))
+}
+
+fun SemanticsNodeInteractionsProvider.scrollToText(res: StringResource, vararg args: Any) {
+	scrollToText(str(res, *args))
+}
+
 fun SemanticsNodeInteractionsProvider.clickFirstText(text: String) {
 	onAllNodesWithText(text).onFirst().performClick()
 }
@@ -74,11 +90,19 @@ fun SemanticsNodeInteractionsProvider.inputTextAndDismissKeyboard(tag: String, t
 }
 
 fun SemanticsNodeInteractionsProvider.clickTag(tag: String) {
-	onNodeWithTag(tag).performClick()
+	onNodeWithTag(tag, useUnmergedTree = true).performClick()
 }
 
 fun SemanticsNodeInteractionsProvider.scrollToAndClickTag(tag: String) {
-	onNodeWithTag(tag).performScrollTo().performClick()
+	onNodeWithTag(tag, useUnmergedTree = true).performScrollTo().performClick()
+}
+
+fun SemanticsNodeInteractionsProvider.scrollToTag(tag: String) {
+	onNodeWithTag(tag).performScrollTo()
+}
+
+fun SemanticsNodeInteractionsProvider.swipeUpOnTag(tag: String) {
+	onNodeWithTag(tag).performTouchInput { swipeUp() }
 }
 
 fun pressBack() {
@@ -89,7 +113,19 @@ fun closeSoftKeyboard() {
 	Espresso.closeSoftKeyboard()
 }
 
+fun espressoClickContentDescription(description: String) {
+	Espresso.onView(ViewMatchers.withContentDescription(description)).perform(ViewActions.click())
+}
+
+fun espressoClickContentDescription(res: StringResource) {
+	espressoClickContentDescription(str(res))
+}
+
 fun <R : ComposeTestRule> R.waitForText(text: String, timeoutMillis: Long = 5000) {
 	waitForIdle()
 	waitUntil(timeoutMillis) { onAllNodesWithText(text).fetchSemanticsNodes().isNotEmpty() }
+}
+
+fun <R : ComposeTestRule> R.idle() {
+	waitForIdle()
 }

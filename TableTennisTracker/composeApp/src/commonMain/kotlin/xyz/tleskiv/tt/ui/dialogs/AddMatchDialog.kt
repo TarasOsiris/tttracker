@@ -61,7 +61,7 @@ fun AddMatchDialog(
 		},
 		text = {
 			Column(
-				modifier = Modifier.fillMaxWidth().verticalScroll(rememberScrollState()),
+				modifier = Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).testTag(TestTags.ADD_MATCH_DIALOG_CONTENT),
 				verticalArrangement = Arrangement.spacedBy(16.dp)
 			) {
 				OpponentField(

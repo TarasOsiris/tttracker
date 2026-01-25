@@ -8,11 +8,16 @@ import org.junit.runner.RunWith
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.action_add_match
 import tabletennistracker.composeapp.generated.resources.action_add_session
+import tabletennistracker.composeapp.generated.resources.action_increase_my_score
+import tabletennistracker.composeapp.generated.resources.action_increase_opponent_score
 import tabletennistracker.composeapp.generated.resources.action_save
 import tabletennistracker.composeapp.generated.resources.duration_minutes_full
 import tabletennistracker.composeapp.generated.resources.label_duration
 import tabletennistracker.composeapp.generated.resources.label_opponent
+import tabletennistracker.composeapp.generated.resources.label_score
 import tabletennistracker.composeapp.generated.resources.label_session_type
+import tabletennistracker.composeapp.generated.resources.match_score_format
+import tabletennistracker.composeapp.generated.resources.match_win
 import tabletennistracker.composeapp.generated.resources.session_duration_format
 import tabletennistracker.composeapp.generated.resources.session_type_technique
 import tabletennistracker.composeapp.generated.resources.sessions_week_mode
@@ -25,10 +30,15 @@ import xyz.tleskiv.tt.util.clickFirstText
 import xyz.tleskiv.tt.util.clickTag
 import xyz.tleskiv.tt.util.clickText
 import xyz.tleskiv.tt.util.closeSoftKeyboard
+import xyz.tleskiv.tt.util.espressoClickContentDescription
+import xyz.tleskiv.tt.util.idle
 import xyz.tleskiv.tt.util.inputText
+import xyz.tleskiv.tt.util.scrollToAndClickTag
 import xyz.tleskiv.tt.util.scrollToAndClickText
+import xyz.tleskiv.tt.util.scrollToText
 import xyz.tleskiv.tt.util.setSliderValue
 import xyz.tleskiv.tt.util.str
+import xyz.tleskiv.tt.util.swipeUpOnTag
 import xyz.tleskiv.tt.util.waitForText
 
 @RunWith(AndroidJUnit4::class)
@@ -71,6 +81,8 @@ class SessionsScreenTest {
 	fun addMatchToSession() = with(composeTestRule) {
 		val testDurationMinutes = 45
 		val testOpponentName = "John Doe"
+		val myScore = 3
+		val opponentScore = 1
 		val techniqueText = str(Res.string.session_type_technique)
 
 		clickContentDescription(Res.string.action_add_session)
@@ -84,9 +96,27 @@ class SessionsScreenTest {
 
 		inputText(TestTags.OPPONENT_FIELD, testOpponentName)
 		closeSoftKeyboard()
+		idle()
+
+		// Click Score label to dismiss dropdown and scroll it into view
+		scrollToAndClickText(Res.string.label_score)
+		idle()
+
+		repeat(myScore) {
+			clickTag(TestTags.MY_SCORE_PLUS)
+			idle()
+		}
+		repeat(opponentScore) {
+			clickTag(TestTags.OPPONENT_SCORE_PLUS)
+			idle()
+		}
 
 		clickTag(TestTags.ADD_MATCH_DIALOG_SAVE)
 
 		waitForText(testOpponentName)
+		val scoreText = str(Res.string.match_score_format, myScore, opponentScore)
+		scrollToText(scoreText)
+		assertTextDisplayed(scoreText)
+		assertTextDisplayed(Res.string.match_win)
 	}
 }

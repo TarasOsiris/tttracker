@@ -15,10 +15,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import xyz.tleskiv.tt.ui.TestTags
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
 import org.jetbrains.compose.resources.StringResource
@@ -51,7 +53,8 @@ fun ScoreField(
 				label = stringResource(Res.string.label_me),
 				score = myScore,
 				onScoreChange = onMyScoreChange,
-				plusButtonContentDescription = Res.string.action_increase_my_score
+				plusButtonContentDescription = Res.string.action_increase_my_score,
+				plusButtonTag = TestTags.MY_SCORE_PLUS
 			)
 			Text(
 				text = "-",
@@ -62,7 +65,8 @@ fun ScoreField(
 				label = stringResource(Res.string.label_opponent),
 				score = opponentScore,
 				onScoreChange = onOpponentScoreChange,
-				plusButtonContentDescription = Res.string.action_increase_opponent_score
+				plusButtonContentDescription = Res.string.action_increase_opponent_score,
+				plusButtonTag = TestTags.OPPONENT_SCORE_PLUS
 			)
 		}
 	}
@@ -73,7 +77,8 @@ private fun ScoreCounter(
 	label: String,
 	score: Int,
 	onScoreChange: (Int) -> Unit,
-	plusButtonContentDescription: StringResource
+	plusButtonContentDescription: StringResource,
+	plusButtonTag: String
 ) {
 	Column(horizontalAlignment = Alignment.CenterHorizontally) {
 		Text(
@@ -109,7 +114,7 @@ private fun ScoreCounter(
 			val plusButtonDesc = stringResource(plusButtonContentDescription)
 			FilledIconButton(
 				onClick = { onScoreChange(score + 1) },
-				modifier = Modifier.size(36.dp).semantics { contentDescription = plusButtonDesc },
+				modifier = Modifier.size(36.dp).testTag(plusButtonTag).semantics { contentDescription = plusButtonDesc },
 				colors = IconButtonDefaults.filledIconButtonColors(
 					containerColor = MaterialTheme.colorScheme.surfaceContainerHighest
 				)
