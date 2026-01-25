@@ -15,7 +15,7 @@
     <string name="action_save">Enregistrer</string>
     <string name="action_add_session">Ajouter une séance</string>
     <string name="action_search">Rechercher</string>
-    <string name="action_general_settings">Paramètres généraux</string>
+	<string name="action_ui_settings">Paramètres d\'interface</string>
     <string name="action_more">Plus</string>
     <string name="action_back">Retour</string>
 
@@ -90,6 +90,7 @@
     <string name="action_rate_app">Évaluer l\'application</string>
 
     <!-- General Settings Screen -->
+	<string name="settings_section_appearance">Apparence</string>
     <string name="settings_section_calendar">Calendrier</string>
     <string name="settings_section_sessions">Paramètres par défaut des séances</string>
     <string name="settings_default_duration">Durée de la séance</string>

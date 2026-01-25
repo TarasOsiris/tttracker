@@ -15,7 +15,7 @@
     <string name="action_save">Guardar</string>
     <string name="action_add_session">Agregar sesión</string>
     <string name="action_search">Buscar</string>
-    <string name="action_general_settings">Configuración general</string>
+	<string name="action_ui_settings">Configuración de interfaz</string>
     <string name="action_more">Más</string>
     <string name="action_back">Atrás</string>
 
@@ -90,6 +90,7 @@
     <string name="action_rate_app">Calificar la aplicación</string>
 
     <!-- General Settings Screen -->
+	<string name="settings_section_appearance">Apariencia</string>
     <string name="settings_section_calendar">Calendario</string>
     <string name="settings_section_sessions">Valores predeterminados de sesión</string>
     <string name="settings_default_duration">Duración de la sesión</string>

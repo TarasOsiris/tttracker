@@ -15,7 +15,7 @@
     <string name="action_save">Salva</string>
     <string name="action_add_session">Aggiungi allenamento</string>
     <string name="action_search">Cerca</string>
-    <string name="action_general_settings">Impostazioni generali</string>
+	<string name="action_ui_settings">Impostazioni interfaccia</string>
     <string name="action_more">Altro</string>
     <string name="action_back">Indietro</string>
 
@@ -90,6 +90,7 @@
     <string name="action_rate_app">Valuta l\'app</string>
 
     <!-- General Settings Screen -->
+	<string name="settings_section_appearance">Aspetto</string>
     <string name="settings_section_calendar">Calendario</string>
     <string name="settings_section_sessions">Impostazioni predefinite allenamento</string>
     <string name="settings_default_duration">Durata allenamento</string>

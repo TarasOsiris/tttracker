@@ -88,7 +88,8 @@
 	<string name="settings_section_general">Загальні</string>
 	<string name="settings_section_help">Допомога</string>
 	<string name="settings_section_about">Про застосунок</string>
-	<string name="action_general_settings">Загальні налаштування</string>
+	<string name="action_ui_settings">Налаштування інтерфейсу</string>
+	<string name="settings_section_appearance">Зовнішній вигляд</string>
 	<string name="action_send_feedback">Надіслати відгук</string>
 	<string name="action_visit_website">Вебсайт</string>
 	<string name="action_rate_app">Оцінити застосунок</string>

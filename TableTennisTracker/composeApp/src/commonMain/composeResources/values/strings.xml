@@ -15,7 +15,7 @@
     <string name="action_save">Save</string>
     <string name="action_add_session">Add Session</string>
     <string name="action_search">Search</string>
-    <string name="action_general_settings">General Settings</string>
+    <string name="action_ui_settings">UI Settings</string>
     <string name="action_opponents">Opponents</string>
     <string name="opponents_empty">No opponents yet</string>
     <string name="title_opponents">Opponents</string>
@@ -94,6 +94,7 @@
 	<string name="action_copy_user_id">Copy User ID</string>
 
     <!-- General Settings Screen -->
+    <string name="settings_section_appearance">Appearance</string>
     <string name="settings_section_calendar">Calendar</string>
     <string name="settings_section_sessions">Training session defaults</string>
     <string name="settings_default_duration">Session duration</string>

@@ -15,7 +15,7 @@
     <string name="action_save">保存</string>
     <string name="action_add_session">練習を追加</string>
     <string name="action_search">検索</string>
-    <string name="action_general_settings">一般設定</string>
+	<string name="action_ui_settings">UI設定</string>
     <string name="action_more">その他</string>
     <string name="action_back">戻る</string>
 
@@ -90,6 +90,7 @@
     <string name="action_rate_app">アプリを評価</string>
 
     <!-- General Settings Screen -->
+	<string name="settings_section_appearance">外観</string>
     <string name="settings_section_calendar">カレンダー</string>
     <string name="settings_section_sessions">練習のデフォルト設定</string>
     <string name="settings_default_duration">練習時間</string>

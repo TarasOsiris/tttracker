@@ -15,7 +15,7 @@
     <string name="action_save">Speichern</string>
     <string name="action_add_session">Einheit hinzufügen</string>
     <string name="action_search">Suchen</string>
-    <string name="action_general_settings">Allgemeine Einstellungen</string>
+	<string name="action_ui_settings">UI-Einstellungen</string>
     <string name="action_more">Mehr</string>
     <string name="action_back">Zurück</string>
 
@@ -90,6 +90,7 @@
     <string name="action_rate_app">App bewerten</string>
 
     <!-- General Settings Screen -->
+	<string name="settings_section_appearance">Erscheinungsbild</string>
     <string name="settings_section_calendar">Kalender</string>
     <string name="settings_section_sessions">Standardwerte für Trainingseinheiten</string>
     <string name="settings_default_duration">Einheitsdauer</string>

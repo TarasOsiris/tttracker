@@ -15,7 +15,7 @@
     <string name="action_save">保存</string>
     <string name="action_add_session">添加训练</string>
     <string name="action_search">搜索</string>
-    <string name="action_general_settings">常规设置</string>
+	<string name="action_ui_settings">界面设置</string>
     <string name="action_more">更多</string>
     <string name="action_back">返回</string>
 
@@ -90,6 +90,7 @@
     <string name="action_rate_app">为应用评分</string>
 
     <!-- General Settings Screen -->
+	<string name="settings_section_appearance">外观</string>
     <string name="settings_section_calendar">日历</string>
     <string name="settings_section_sessions">训练默认设置</string>
     <string name="settings_default_duration">训练时长</string>

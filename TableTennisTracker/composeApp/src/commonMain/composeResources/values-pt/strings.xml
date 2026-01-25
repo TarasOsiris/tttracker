@@ -15,7 +15,7 @@
     <string name="action_save">Salvar</string>
     <string name="action_add_session">Adicionar sessão</string>
     <string name="action_search">Pesquisar</string>
-    <string name="action_general_settings">Configurações gerais</string>
+	<string name="action_ui_settings">Configurações de interface</string>
     <string name="action_more">Mais</string>
     <string name="action_back">Voltar</string>
 
@@ -90,6 +90,7 @@
     <string name="action_rate_app">Avalie o aplicativo</string>
 
     <!-- General Settings Screen -->
+	<string name="settings_section_appearance">Aparência</string>
     <string name="settings_section_calendar">Calendário</string>
     <string name="settings_section_sessions">Padrões de sessão de treino</string>
     <string name="settings_default_duration">Duração da sessão</string>

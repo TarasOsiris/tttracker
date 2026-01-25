@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import xyz.tleskiv.tt.model.AppThemeMode
 import xyz.tleskiv.tt.model.WeekStartDay
 import xyz.tleskiv.tt.repo.UserPreferencesRepository
 import xyz.tleskiv.tt.service.UserPreferencesService
@@ -19,11 +20,20 @@ class GeneralSettingsScreenViewModelImpl(
 
 	override val inputData = InputData()
 
+	override val themeMode: StateFlow<AppThemeMode> = userPreferencesRepository.themeMode
+		.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), AppThemeMode.SYSTEM)
+
 	override val weekStartDay: StateFlow<WeekStartDay> = userPreferencesRepository.weekStartDay
 		.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), WeekStartDay.MONDAY)
 
 	override val highlightCurrentDay: StateFlow<Boolean> = userPreferencesRepository.highlightCurrentDay
 		.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), true)
+
+	override fun setThemeMode(mode: AppThemeMode) {
+		viewModelScope.launch {
+			userPreferencesRepository.setThemeMode(mode)
+		}
+	}
 
 	override fun setWeekStartDay(day: WeekStartDay) {
 		viewModelScope.launch {

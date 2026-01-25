@@ -15,7 +15,7 @@
     <string name="action_save">저장</string>
     <string name="action_add_session">훈련 추가</string>
     <string name="action_search">검색</string>
-    <string name="action_general_settings">일반 설정</string>
+	<string name="action_ui_settings">UI 설정</string>
     <string name="action_more">더 보기</string>
     <string name="action_back">뒤로</string>
 
@@ -90,6 +90,7 @@
     <string name="action_rate_app">앱 평가하기</string>
 
     <!-- General Settings Screen -->
+	<string name="settings_section_appearance">외관</string>
     <string name="settings_section_calendar">캘린더</string>
     <string name="settings_section_sessions">훈련 기본 설정</string>
     <string name="settings_default_duration">훈련 시간</string>

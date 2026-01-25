@@ -15,7 +15,7 @@
     <string name="action_save">Simpan</string>
     <string name="action_add_session">Tambah Latihan</string>
     <string name="action_search">Cari</string>
-    <string name="action_general_settings">Pengaturan Umum</string>
+	<string name="action_ui_settings">Pengaturan Antarmuka</string>
     <string name="action_more">Lainnya</string>
     <string name="action_back">Kembali</string>
 
@@ -90,6 +90,7 @@
     <string name="action_rate_app">Beri nilai aplikasi</string>
 
     <!-- General Settings Screen -->
+	<string name="settings_section_appearance">Tampilan</string>
     <string name="settings_section_calendar">Kalender</string>
     <string name="settings_section_sessions">Pengaturan default latihan</string>
     <string name="settings_default_duration">Durasi latihan</string>

@@ -5,14 +5,17 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import kotlinx.coroutines.flow.StateFlow
 import xyz.tleskiv.tt.data.model.enums.SessionType
+import xyz.tleskiv.tt.model.AppThemeMode
 import xyz.tleskiv.tt.model.WeekStartDay
 import xyz.tleskiv.tt.service.UserPreferencesService
 import xyz.tleskiv.tt.viewmodel.ViewModelBase
 
 abstract class GeneralSettingsScreenViewModel : ViewModelBase() {
 	abstract val inputData: InputData
+	abstract val themeMode: StateFlow<AppThemeMode>
 	abstract val weekStartDay: StateFlow<WeekStartDay>
 	abstract val highlightCurrentDay: StateFlow<Boolean>
+	abstract fun setThemeMode(mode: AppThemeMode)
 	abstract fun setWeekStartDay(day: WeekStartDay)
 	abstract fun setHighlightCurrentDay(highlight: Boolean)
 

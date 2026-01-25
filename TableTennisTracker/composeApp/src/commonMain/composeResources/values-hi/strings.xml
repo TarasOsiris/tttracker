@@ -15,7 +15,7 @@
     <string name="action_save">सहेजें</string>
     <string name="action_add_session">अभ्यास जोड़ें</string>
     <string name="action_search">खोजें</string>
-    <string name="action_general_settings">सामान्य सेटिंग्स</string>
+	<string name="action_ui_settings">UI सेटिंग्स</string>
     <string name="action_more">और देखें</string>
     <string name="action_back">वापस</string>
 
@@ -90,6 +90,7 @@
     <string name="action_rate_app">ऐप को रेट करें</string>
 
     <!-- General Settings Screen -->
+	<string name="settings_section_appearance">दिखावट</string>
     <string name="settings_section_calendar">कैलेंडर</string>
     <string name="settings_section_sessions">अभ्यास की डिफ़ॉल्ट सेटिंग्स</string>
     <string name="settings_default_duration">अभ्यास की अवधि</string>

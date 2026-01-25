@@ -14,7 +14,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.KeyboardArrowRight
-import androidx.compose.material.icons.outlined.BrightnessMedium
 import androidx.compose.material.icons.outlined.BugReport
 import androidx.compose.material.icons.outlined.Feedback
 import androidx.compose.material.icons.outlined.Language
@@ -23,21 +22,12 @@ import androidx.compose.material.icons.outlined.People
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material.icons.outlined.Star
-import androidx.compose.material3.BasicAlertDialog
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -48,15 +38,13 @@ import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import tabletennistracker.composeapp.generated.resources.Res
-import tabletennistracker.composeapp.generated.resources.action_cancel
 import tabletennistracker.composeapp.generated.resources.action_copy_user_id
 import tabletennistracker.composeapp.generated.resources.action_debug
-import tabletennistracker.composeapp.generated.resources.action_general_settings
 import tabletennistracker.composeapp.generated.resources.action_opponents
 import tabletennistracker.composeapp.generated.resources.action_privacy_policy
 import tabletennistracker.composeapp.generated.resources.action_rate_app
 import tabletennistracker.composeapp.generated.resources.action_send_feedback
-import tabletennistracker.composeapp.generated.resources.action_theme
+import tabletennistracker.composeapp.generated.resources.action_ui_settings
 import tabletennistracker.composeapp.generated.resources.action_visit_website
 import tabletennistracker.composeapp.generated.resources.settings_company_name
 import tabletennistracker.composeapp.generated.resources.settings_made_with_prefix
@@ -65,11 +53,6 @@ import tabletennistracker.composeapp.generated.resources.settings_section_develo
 import tabletennistracker.composeapp.generated.resources.settings_section_general
 import tabletennistracker.composeapp.generated.resources.settings_section_help
 import tabletennistracker.composeapp.generated.resources.settings_version_format
-import tabletennistracker.composeapp.generated.resources.theme_dark
-import tabletennistracker.composeapp.generated.resources.theme_light
-import tabletennistracker.composeapp.generated.resources.theme_select_title
-import tabletennistracker.composeapp.generated.resources.theme_system
-import xyz.tleskiv.tt.model.AppThemeMode
 import xyz.tleskiv.tt.ui.widgets.ContentCard
 import xyz.tleskiv.tt.viewmodel.SettingsViewModel
 
@@ -81,18 +64,6 @@ fun SettingsScreen(
 	viewModel: SettingsViewModel = koinViewModel()
 ) {
 	val uriHandler = LocalUriHandler.current
-	var showThemeDialog by rememberSaveable { mutableStateOf(false) }
-
-	if (showThemeDialog) {
-		ThemeSelectionDialog(
-			currentMode = viewModel.currentThemeMode.collectAsState().value,
-			onDismissRequest = { showThemeDialog = false },
-			onThemeSelected = { mode ->
-				viewModel.setThemeMode(mode)
-				showThemeDialog = false
-			}
-		)
-	}
 
 	Column(
 		modifier = Modifier
@@ -108,20 +79,11 @@ fun SettingsScreen(
 				Column(modifier = Modifier.fillMaxWidth()) {
 					SettingsMenuRow(
 						item = SettingsMenuItem(
-							Res.string.action_general_settings,
+							Res.string.action_ui_settings,
 							Icons.Outlined.Settings,
 							onNavigateToGeneralSettings
 						),
 						onClick = onNavigateToGeneralSettings
-					)
-					HorizontalDivider(
-						modifier = Modifier.padding(start = 52.dp),
-						color = MaterialTheme.colorScheme.outlineVariant,
-						thickness = 0.5.dp
-					)
-					SettingsMenuRow(
-						item = SettingsMenuItem(Res.string.action_theme, Icons.Outlined.BrightnessMedium, {}),
-						onClick = { showThemeDialog = true }
 					)
 					HorizontalDivider(
 						modifier = Modifier.padding(start = 52.dp),
@@ -236,68 +198,6 @@ fun SettingsScreen(
 			}
 
 			Spacer(modifier = Modifier.height(16.dp))
-		}
-	}
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun ThemeSelectionDialog(
-	currentMode: AppThemeMode,
-	onDismissRequest: () -> Unit,
-	onThemeSelected: (AppThemeMode) -> Unit
-) {
-	BasicAlertDialog(
-		onDismissRequest = onDismissRequest
-	) {
-		Surface(
-			shape = MaterialTheme.shapes.large,
-			color = MaterialTheme.colorScheme.surfaceContainerHigh
-		) {
-			Column(modifier = Modifier.padding(24.dp)) {
-				Text(
-					text = stringResource(Res.string.theme_select_title),
-					style = MaterialTheme.typography.headlineSmall,
-					color = MaterialTheme.colorScheme.onSurface
-				)
-				Spacer(modifier = Modifier.height(16.dp))
-
-				AppThemeMode.entries.forEach { mode ->
-					Row(
-						modifier = Modifier
-							.fillMaxWidth()
-							.clickable { onThemeSelected(mode) }
-							.padding(vertical = 8.dp),
-						verticalAlignment = Alignment.CenterVertically
-					) {
-						RadioButton(
-							selected = mode == currentMode,
-							onClick = null // Handled by Row clickable
-						)
-						Spacer(modifier = Modifier.width(8.dp))
-						Text(
-							text = when (mode) {
-								AppThemeMode.SYSTEM -> stringResource(Res.string.theme_system)
-								AppThemeMode.LIGHT -> stringResource(Res.string.theme_light)
-								AppThemeMode.DARK -> stringResource(Res.string.theme_dark)
-							},
-							style = MaterialTheme.typography.bodyLarge,
-							color = MaterialTheme.colorScheme.onSurface
-						)
-					}
-				}
-
-				Spacer(modifier = Modifier.height(24.dp))
-
-				Row(
-					modifier = Modifier.fillMaxWidth(),
-					horizontalArrangement = androidx.compose.foundation.layout.Arrangement.End
-				) {
-					TextButton(onClick = onDismissRequest) {
-						Text(stringResource(Res.string.action_cancel))
-					}
-				}
-			}
 		}
 	}
 }

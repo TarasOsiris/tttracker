@@ -15,7 +15,7 @@
     <string name="action_save">Kaydet</string>
     <string name="action_add_session">Antrenman ekle</string>
     <string name="action_search">Ara</string>
-    <string name="action_general_settings">Genel ayarlar</string>
+	<string name="action_ui_settings">Arayüz ayarları</string>
     <string name="action_more">Daha fazla</string>
     <string name="action_back">Geri</string>
 
@@ -90,6 +90,7 @@
     <string name="action_rate_app">Uygulamayı değerlendir</string>
 
     <!-- General Settings Screen -->
+	<string name="settings_section_appearance">Görünüm</string>
     <string name="settings_section_calendar">Takvim</string>
     <string name="settings_section_sessions">Antrenman varsayılanları</string>
     <string name="settings_default_duration">Antrenman süresi</string>

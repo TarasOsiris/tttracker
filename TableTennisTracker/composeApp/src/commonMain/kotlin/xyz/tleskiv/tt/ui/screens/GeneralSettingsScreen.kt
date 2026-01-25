@@ -16,6 +16,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.outlined.KeyboardArrowRight
+import androidx.compose.material.icons.outlined.BrightnessMedium
 import androidx.compose.material.icons.outlined.CalendarMonth
 import androidx.compose.material3.BasicAlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -45,16 +46,23 @@ import org.koin.compose.viewmodel.koinViewModel
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.action_back
 import tabletennistracker.composeapp.generated.resources.action_cancel
-import tabletennistracker.composeapp.generated.resources.action_general_settings
+import tabletennistracker.composeapp.generated.resources.action_theme
+import tabletennistracker.composeapp.generated.resources.action_ui_settings
 import tabletennistracker.composeapp.generated.resources.action_week_start
 import tabletennistracker.composeapp.generated.resources.label_default_notes
 import tabletennistracker.composeapp.generated.resources.settings_highlight_current_day
+import tabletennistracker.composeapp.generated.resources.settings_section_appearance
 import tabletennistracker.composeapp.generated.resources.settings_section_calendar
 import tabletennistracker.composeapp.generated.resources.settings_section_sessions
+import tabletennistracker.composeapp.generated.resources.theme_dark
+import tabletennistracker.composeapp.generated.resources.theme_light
+import tabletennistracker.composeapp.generated.resources.theme_select_title
+import tabletennistracker.composeapp.generated.resources.theme_system
 import tabletennistracker.composeapp.generated.resources.week_start_monday
 import tabletennistracker.composeapp.generated.resources.week_start_saturday
 import tabletennistracker.composeapp.generated.resources.week_start_select_title
 import tabletennistracker.composeapp.generated.resources.week_start_sunday
+import xyz.tleskiv.tt.model.AppThemeMode
 import xyz.tleskiv.tt.model.WeekStartDay
 import xyz.tleskiv.tt.ui.widgets.ContentCard
 import xyz.tleskiv.tt.ui.widgets.fields.DurationField
@@ -72,9 +80,22 @@ fun GeneralSettingsScreen(
 	var defaultRpe by viewModel.inputData.defaultRpe
 	var defaultSessionType by viewModel.inputData.defaultSessionType
 	var defaultNotes by viewModel.inputData.defaultNotes
+	val themeMode by viewModel.themeMode.collectAsState()
 	val weekStartDay by viewModel.weekStartDay.collectAsState()
 	val highlightCurrentDay by viewModel.highlightCurrentDay.collectAsState()
+	var showThemeDialog by rememberSaveable { mutableStateOf(false) }
 	var showWeekStartDialog by rememberSaveable { mutableStateOf(false) }
+
+	if (showThemeDialog) {
+		ThemeSelectionDialog(
+			currentMode = themeMode,
+			onDismissRequest = { showThemeDialog = false },
+			onThemeSelected = { mode ->
+				viewModel.setThemeMode(mode)
+				showThemeDialog = false
+			}
+		)
+	}
 
 	if (showWeekStartDialog) {
 		WeekStartSelectionDialog(
@@ -100,6 +121,18 @@ fun GeneralSettingsScreen(
 				.verticalScroll(rememberScrollState())
 				.padding(16.dp)
 		) {
+			// Appearance Section
+			SettingsSectionHeader(stringResource(Res.string.settings_section_appearance))
+			Spacer(modifier = Modifier.height(8.dp))
+			ContentCard {
+				ThemeRow(
+					currentMode = themeMode,
+					onClick = { showThemeDialog = true }
+				)
+			}
+
+			Spacer(modifier = Modifier.height(24.dp))
+
 			// Calendar Section
 			SettingsSectionHeader(stringResource(Res.string.settings_section_calendar))
 			Spacer(modifier = Modifier.height(8.dp))
@@ -172,7 +205,7 @@ private fun SettingsTopBar(onNavigateBack: () -> Unit) {
 		TopAppBar(
 			title = {
 				Text(
-					text = stringResource(Res.string.action_general_settings),
+					text = stringResource(Res.string.action_ui_settings),
 					style = MaterialTheme.typography.titleLarge
 				)
 			},
@@ -266,6 +299,104 @@ private fun HighlightCurrentDayRow(enabled: Boolean, onToggle: (Boolean) -> Unit
 				modifier = Modifier.weight(1f)
 			)
 			Switch(checked = enabled, onCheckedChange = onToggle)
+		}
+	}
+}
+
+@Composable
+private fun ThemeRow(currentMode: AppThemeMode, onClick: () -> Unit) {
+	Surface(
+		modifier = Modifier.fillMaxWidth().clickable(onClick = onClick),
+		color = MaterialTheme.colorScheme.surfaceContainerLow
+	) {
+		Row(
+			modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 14.dp),
+			verticalAlignment = Alignment.CenterVertically
+		) {
+			Icon(
+				imageVector = Icons.Outlined.BrightnessMedium,
+				contentDescription = null,
+				tint = MaterialTheme.colorScheme.onSurfaceVariant
+			)
+			Spacer(modifier = Modifier.width(16.dp))
+			Column(modifier = Modifier.weight(1f)) {
+				Text(
+					text = stringResource(Res.string.action_theme),
+					style = MaterialTheme.typography.bodyLarge,
+					color = MaterialTheme.colorScheme.onSurface
+				)
+				Text(
+					text = when (currentMode) {
+						AppThemeMode.SYSTEM -> stringResource(Res.string.theme_system)
+						AppThemeMode.LIGHT -> stringResource(Res.string.theme_light)
+						AppThemeMode.DARK -> stringResource(Res.string.theme_dark)
+					},
+					style = MaterialTheme.typography.bodySmall,
+					color = MaterialTheme.colorScheme.onSurfaceVariant
+				)
+			}
+			Icon(
+				imageVector = Icons.AutoMirrored.Outlined.KeyboardArrowRight,
+				contentDescription = null,
+				tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
+			)
+		}
+	}
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun ThemeSelectionDialog(
+	currentMode: AppThemeMode,
+	onDismissRequest: () -> Unit,
+	onThemeSelected: (AppThemeMode) -> Unit
+) {
+	BasicAlertDialog(onDismissRequest = onDismissRequest) {
+		Surface(
+			shape = MaterialTheme.shapes.large,
+			color = MaterialTheme.colorScheme.surfaceContainerHigh
+		) {
+			Column(modifier = Modifier.padding(24.dp)) {
+				Text(
+					text = stringResource(Res.string.theme_select_title),
+					style = MaterialTheme.typography.headlineSmall,
+					color = MaterialTheme.colorScheme.onSurface
+				)
+				Spacer(modifier = Modifier.height(16.dp))
+
+				AppThemeMode.entries.forEach { mode ->
+					Row(
+						modifier = Modifier
+							.fillMaxWidth()
+							.clickable { onThemeSelected(mode) }
+							.padding(vertical = 8.dp),
+						verticalAlignment = Alignment.CenterVertically
+					) {
+						RadioButton(selected = mode == currentMode, onClick = null)
+						Spacer(modifier = Modifier.width(8.dp))
+						Text(
+							text = when (mode) {
+								AppThemeMode.SYSTEM -> stringResource(Res.string.theme_system)
+								AppThemeMode.LIGHT -> stringResource(Res.string.theme_light)
+								AppThemeMode.DARK -> stringResource(Res.string.theme_dark)
+							},
+							style = MaterialTheme.typography.bodyLarge,
+							color = MaterialTheme.colorScheme.onSurface
+						)
+					}
+				}
+
+				Spacer(modifier = Modifier.height(24.dp))
+
+				Row(
+					modifier = Modifier.fillMaxWidth(),
+					horizontalArrangement = Arrangement.End
+				) {
+					TextButton(onClick = onDismissRequest) {
+						Text(stringResource(Res.string.action_cancel))
+					}
+				}
+			}
 		}
 	}
 }

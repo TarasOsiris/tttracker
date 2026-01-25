@@ -15,7 +15,7 @@
     <string name="action_save">حفظ</string>
     <string name="action_add_session">إضافة تدريب</string>
     <string name="action_search">بحث</string>
-    <string name="action_general_settings">الإعدادات العامة</string>
+	<string name="action_ui_settings">إعدادات الواجهة</string>
     <string name="action_more">المزيد</string>
     <string name="action_back">رجوع</string>
 
@@ -90,6 +90,7 @@
     <string name="action_rate_app">تقييم التطبيق</string>
 
     <!-- General Settings Screen -->
+	<string name="settings_section_appearance">المظهر</string>
     <string name="settings_section_calendar">التقويم</string>
     <string name="settings_section_sessions">الإعدادات الافتراضية للتدريب</string>
     <string name="settings_default_duration">مدة التدريب</string>
