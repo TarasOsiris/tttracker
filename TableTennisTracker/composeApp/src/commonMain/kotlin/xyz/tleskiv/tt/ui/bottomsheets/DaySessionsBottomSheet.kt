@@ -21,7 +21,7 @@ import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.sessions_empty
 import xyz.tleskiv.tt.ui.widgets.SessionListItem
 import xyz.tleskiv.tt.util.ext.formatFullDate
-import xyz.tleskiv.tt.viewmodel.sessions.SessionUiModel
+import xyz.tleskiv.tt.viewmodel.sessions.SessionsScreenViewModel.SessionUiModel
 
 @Composable
 fun DaySessionsBottomSheet(

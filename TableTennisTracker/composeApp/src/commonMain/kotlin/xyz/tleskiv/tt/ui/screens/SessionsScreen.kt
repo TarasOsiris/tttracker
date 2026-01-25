@@ -44,7 +44,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
-import org.koin.compose.viewmodel.koinViewModel
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
@@ -76,6 +75,7 @@ import kotlinx.datetime.plus
 import kotlinx.datetime.yearMonth
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
+import org.koin.compose.viewmodel.koinViewModel
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.action_add_session
 import tabletennistracker.composeapp.generated.resources.ic_add
@@ -88,8 +88,8 @@ import xyz.tleskiv.tt.ui.widgets.SessionListItem
 import xyz.tleskiv.tt.util.ext.displayText
 import xyz.tleskiv.tt.util.ext.formatDateHeader
 import xyz.tleskiv.tt.util.ext.formatMonthYear
-import xyz.tleskiv.tt.viewmodel.sessions.SessionUiModel
 import xyz.tleskiv.tt.viewmodel.sessions.SessionsScreenViewModel
+import xyz.tleskiv.tt.viewmodel.sessions.SessionsScreenViewModel.SessionUiModel
 
 private const val DATE_LIST_RANGE_DAYS = 365
 

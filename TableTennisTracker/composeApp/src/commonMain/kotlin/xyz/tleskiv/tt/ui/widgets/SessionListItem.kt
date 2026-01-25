@@ -29,7 +29,7 @@ import tabletennistracker.composeapp.generated.resources.session_duration_format
 import xyz.tleskiv.tt.util.labelRes
 import xyz.tleskiv.tt.util.ui.getRpeColor
 import xyz.tleskiv.tt.util.ui.toColor
-import xyz.tleskiv.tt.viewmodel.sessions.SessionUiModel
+import xyz.tleskiv.tt.viewmodel.sessions.SessionsScreenViewModel.SessionUiModel
 
 @Composable
 fun SessionListItem(

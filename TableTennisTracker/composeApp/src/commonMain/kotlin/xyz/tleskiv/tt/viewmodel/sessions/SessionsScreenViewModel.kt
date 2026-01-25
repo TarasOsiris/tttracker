@@ -18,20 +18,20 @@ import xyz.tleskiv.tt.data.model.enums.SessionType
 import xyz.tleskiv.tt.viewmodel.ViewModelBase
 import kotlin.uuid.Uuid
 
-data class SessionUiModel(
-	val id: Uuid,
-	val date: LocalDate,
-	val durationMinutes: Int,
-	val sessionType: SessionType?,
-	val rpe: Int,
-	val notes: String?
-)
-
 private const val CALENDAR_RANGE_MONTHS = 12
 private const val DATE_LIST_RANGE_DAYS = 365
 
 abstract class SessionsScreenViewModel : ViewModelBase() {
 	abstract val sessions: StateFlow<Map<LocalDate, List<SessionUiModel>>>
+
+	data class SessionUiModel(
+		val id: Uuid,
+		val date: LocalDate,
+		val durationMinutes: Int,
+		val sessionType: SessionType?,
+		val rpe: Int,
+		val notes: String?
+	)
 	abstract val firstDayOfWeek: StateFlow<DayOfWeek>
 	abstract val highlightCurrentDay: StateFlow<Boolean>
 	abstract val inputData: InputData
