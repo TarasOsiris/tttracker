@@ -5,9 +5,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import xyz.tleskiv.tt.data.model.enums.SessionType
 import xyz.tleskiv.tt.service.TrainingSessionService
 import xyz.tleskiv.tt.util.ext.toLocalDateTime
+import xyz.tleskiv.tt.viewmodel.sessions.MatchUiModel
 import xyz.tleskiv.tt.viewmodel.sessions.SessionDetailsScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.SessionDetailsUiState
 import xyz.tleskiv.tt.viewmodel.sessions.SessionUiModel
@@ -31,15 +31,34 @@ class SessionDetailsScreenViewModelImpl(
 				"Session not found"
 			}
 			val dateTime = session.date.toLocalDateTime()
-			val uiModel = SessionUiModel(
+			val sessionUiModel = SessionUiModel(
 				id = session.id,
 				date = dateTime.date,
-				durationMinutes = session.duration_min.toInt(),
-				sessionType = session.session_type?.let { SessionType.fromDb(it) },
-				rpe = session.rpe.toInt(),
+				durationMinutes = session.durationMinutes,
+				sessionType = session.sessionType,
+				rpe = session.rpe,
 				notes = session.notes
 			)
-			_uiState.value = SessionDetailsUiState(session = uiModel, isLoading = false)
+
+			val matchUiModels = session.matches.map { match ->
+				MatchUiModel(
+					id = match.id,
+					opponentName = match.opponent.name,
+					myGamesWon = match.myGamesWon,
+					opponentGamesWon = match.opponentGamesWon,
+					isDoubles = match.isDoubles,
+					isRanked = match.isRanked,
+					competitionLevel = match.competitionLevel,
+					rpe = match.rpe,
+					notes = match.notes
+				)
+			}
+
+			_uiState.value = SessionDetailsUiState(
+				session = sessionUiModel,
+				matches = matchUiModels,
+				isLoading = false
+			)
 		}
 	}
 

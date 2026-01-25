@@ -4,8 +4,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
+import xyz.tleskiv.tt.data.model.TrainingSession
 import xyz.tleskiv.tt.data.model.enums.SessionType
-import xyz.tleskiv.tt.db.Training_session
 import xyz.tleskiv.tt.repo.TrainingSessionsRepository
 import xyz.tleskiv.tt.service.TrainingSessionService
 import kotlin.uuid.Uuid
@@ -14,7 +14,7 @@ class TrainingSessionServiceImpl(
 	private val repository: TrainingSessionsRepository
 ) : TrainingSessionService {
 
-	override val allSessions: Flow<List<Training_session>> = repository.allSessions
+	override val allSessions: Flow<List<TrainingSession>> = repository.allSessions
 
 	override suspend fun addSession(
 		dateTime: LocalDateTime,
@@ -50,11 +50,11 @@ class TrainingSessionServiceImpl(
 		)
 	}
 
-	override suspend fun getAllSessions(): List<Training_session> {
+	override suspend fun getAllSessions(): List<TrainingSession> {
 		return repository.getAllSessions()
 	}
 
-	override suspend fun getSessionById(id: Uuid): Training_session? {
+	override suspend fun getSessionById(id: Uuid): TrainingSession? {
 		return repository.getSessionById(id)
 	}
 

@@ -29,6 +29,48 @@ CREATE TABLE IF NOT EXISTS training_session (
 CREATE INDEX IF NOT EXISTS idx_training_session_date ON training_session(date DESC) WHERE is_deleted = 0;
 
 -- =========================
+-- OPPONENT
+-- =========================
+CREATE TABLE IF NOT EXISTS opponent (
+    id TEXT AS Uuid PRIMARY KEY,
+    name TEXT NOT NULL,
+    club TEXT,
+    rating REAL,
+    handedness TEXT,
+    style TEXT,
+    notes TEXT,
+    is_deleted INTEGER NOT NULL DEFAULT 0,
+    created_at INTEGER NOT NULL DEFAULT (strftime('%s','now') * 1000),
+    updated_at INTEGER NOT NULL DEFAULT (strftime('%s','now') * 1000)
+);
+
+CREATE INDEX IF NOT EXISTS idx_opponent_name ON opponent(name) WHERE is_deleted = 0;
+
+-- =========================
+-- MATCH
+-- =========================
+CREATE TABLE IF NOT EXISTS match (
+    id TEXT AS Uuid PRIMARY KEY,
+    session_id TEXT AS Uuid NOT NULL,
+    opponent_id TEXT AS Uuid NOT NULL,
+    my_games_won INTEGER NOT NULL,
+    opponent_games_won INTEGER NOT NULL,
+    games TEXT,
+    is_doubles INTEGER NOT NULL DEFAULT 0,
+    is_ranked INTEGER NOT NULL DEFAULT 0,
+    competition_level TEXT,
+    rpe INTEGER,
+    notes TEXT,
+    is_deleted INTEGER NOT NULL DEFAULT 0,
+    created_at INTEGER NOT NULL DEFAULT (strftime('%s','now') * 1000),
+    updated_at INTEGER NOT NULL DEFAULT (strftime('%s','now') * 1000),
+    FOREIGN KEY (session_id) REFERENCES training_session(id),
+    FOREIGN KEY (opponent_id) REFERENCES opponent(id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_match_session ON match(session_id) WHERE is_deleted = 0;
+
+-- =========================
 -- METADATA QUERIES
 -- =========================
 
@@ -75,8 +117,80 @@ DELETE FROM user_preferences;
 selectAllSessions:
 SELECT * FROM training_session WHERE is_deleted = 0 ORDER BY date DESC;
 
+selectAllSessionsWithMatches:
+SELECT
+    s.id AS session_id,
+    s.date AS session_date,
+    s.duration_min AS session_duration_min,
+    s.rpe AS session_rpe,
+    s.session_type AS session_type,
+    s.notes AS session_notes,
+    s.created_at AS session_created_at,
+    s.updated_at AS session_updated_at,
+    m.id AS match_id,
+    m.my_games_won AS match_my_games_won,
+    m.opponent_games_won AS match_opponent_games_won,
+    m.games AS match_games,
+    m.is_doubles AS match_is_doubles,
+    m.is_ranked AS match_is_ranked,
+    m.competition_level AS match_competition_level,
+    m.rpe AS match_rpe,
+    m.notes AS match_notes,
+    m.created_at AS match_created_at,
+    m.updated_at AS match_updated_at,
+    o.id AS opponent_id,
+    o.name AS opponent_name,
+    o.club AS opponent_club,
+    o.rating AS opponent_rating,
+    o.handedness AS opponent_handedness,
+    o.style AS opponent_style,
+    o.notes AS opponent_notes,
+    o.created_at AS opponent_created_at,
+    o.updated_at AS opponent_updated_at
+FROM training_session s
+LEFT JOIN match m ON m.session_id = s.id AND m.is_deleted = 0
+LEFT JOIN opponent o ON o.id = m.opponent_id AND o.is_deleted = 0
+WHERE s.is_deleted = 0
+ORDER BY s.date DESC, m.created_at;
+
 getSessionById:
 SELECT * FROM training_session WHERE id = ? AND is_deleted = 0;
+
+getSessionWithMatchesById:
+SELECT
+    s.id AS session_id,
+    s.date AS session_date,
+    s.duration_min AS session_duration_min,
+    s.rpe AS session_rpe,
+    s.session_type AS session_type,
+    s.notes AS session_notes,
+    s.created_at AS session_created_at,
+    s.updated_at AS session_updated_at,
+    m.id AS match_id,
+    m.my_games_won AS match_my_games_won,
+    m.opponent_games_won AS match_opponent_games_won,
+    m.games AS match_games,
+    m.is_doubles AS match_is_doubles,
+    m.is_ranked AS match_is_ranked,
+    m.competition_level AS match_competition_level,
+    m.rpe AS match_rpe,
+    m.notes AS match_notes,
+    m.created_at AS match_created_at,
+    m.updated_at AS match_updated_at,
+    o.id AS opponent_id,
+    o.name AS opponent_name,
+    o.club AS opponent_club,
+    o.rating AS opponent_rating,
+    o.handedness AS opponent_handedness,
+    o.style AS opponent_style,
+    o.notes AS opponent_notes,
+    o.created_at AS opponent_created_at,
+    o.updated_at AS opponent_updated_at
+FROM training_session s
+LEFT JOIN match m ON m.session_id = s.id AND m.is_deleted = 0
+LEFT JOIN opponent o ON o.id = m.opponent_id AND o.is_deleted = 0
+WHERE s.id = ? AND s.is_deleted = 0
+ORDER BY m.created_at;
 
 getSessionsByDateRange:
 SELECT * FROM training_session
@@ -104,3 +218,62 @@ WHERE id = ?;
 
 deleteAllSessions:
 DELETE FROM training_session;
+
+-- =========================
+-- OPPONENT QUERIES
+-- =========================
+
+selectAllOpponents:
+SELECT * FROM opponent WHERE is_deleted = 0 ORDER BY name;
+
+getOpponentById:
+SELECT * FROM opponent WHERE id = ? AND is_deleted = 0;
+
+insertOpponent:
+INSERT INTO opponent (id, name, club, rating, handedness, style, notes, updated_at)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+
+updateOpponent:
+UPDATE opponent
+SET name = ?, club = ?, rating = ?, handedness = ?, style = ?, notes = ?, updated_at = ?
+WHERE id = ? AND is_deleted = 0;
+
+deleteOpponent:
+UPDATE opponent SET is_deleted = 1, updated_at = ? WHERE id = ?;
+
+deleteAllOpponents:
+DELETE FROM opponent;
+
+-- =========================
+-- MATCH QUERIES
+-- =========================
+
+selectAllMatches:
+SELECT * FROM match WHERE is_deleted = 0 ORDER BY created_at DESC;
+
+getMatchById:
+SELECT * FROM match WHERE id = ? AND is_deleted = 0;
+
+getMatchesBySessionId:
+SELECT * FROM match WHERE session_id = ? AND is_deleted = 0 ORDER BY created_at;
+
+getMatchesByOpponentId:
+SELECT * FROM match WHERE opponent_id = ? AND is_deleted = 0 ORDER BY created_at DESC;
+
+insertMatch:
+INSERT INTO match (id, session_id, opponent_id, my_games_won, opponent_games_won, games, is_doubles, is_ranked, competition_level, rpe, notes, updated_at)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+updateMatch:
+UPDATE match
+SET opponent_id = ?, my_games_won = ?, opponent_games_won = ?, games = ?, is_doubles = ?, is_ranked = ?, competition_level = ?, rpe = ?, notes = ?, updated_at = ?
+WHERE id = ? AND is_deleted = 0;
+
+deleteMatch:
+UPDATE match SET is_deleted = 1, updated_at = ? WHERE id = ?;
+
+deleteMatchesBySessionId:
+UPDATE match SET is_deleted = 1, updated_at = ? WHERE session_id = ?;
+
+deleteAllMatches:
+DELETE FROM match;

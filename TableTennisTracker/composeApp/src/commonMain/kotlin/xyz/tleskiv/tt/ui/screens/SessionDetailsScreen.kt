@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
@@ -70,6 +71,7 @@ import xyz.tleskiv.tt.util.labelRes
 import xyz.tleskiv.tt.util.ui.getRpeColor
 import xyz.tleskiv.tt.util.ui.getRpeLabel
 import xyz.tleskiv.tt.util.ui.toColor
+import xyz.tleskiv.tt.viewmodel.sessions.MatchUiModel
 import xyz.tleskiv.tt.viewmodel.sessions.SessionDetailsScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.SessionUiModel
 
@@ -89,6 +91,7 @@ fun SessionDetailsScreen(
 		uiState.error != null -> ErrorScreen(error = uiState.error!!, onNavigateBack = onNavigateBack)
 		uiState.session != null -> SessionDetailsContent(
 			session = uiState.session!!,
+			matches = uiState.matches,
 			scrollBehavior = scrollBehavior,
 			onNavigateBack = onNavigateBack,
 			onEdit = { onEdit(uiState.session!!.id.toString()) },
@@ -145,6 +148,7 @@ private fun ErrorScreen(error: String, onNavigateBack: () -> Unit) {
 @Composable
 private fun SessionDetailsContent(
 	session: SessionUiModel,
+	matches: List<MatchUiModel>,
 	scrollBehavior: TopAppBarScrollBehavior,
 	onNavigateBack: () -> Unit,
 	onEdit: () -> Unit,
@@ -251,6 +255,13 @@ private fun SessionDetailsContent(
 			item { RpeCard(rpe = session.rpe) }
 			if (!session.notes.isNullOrBlank()) {
 				item { NotesCard(notes = session.notes) }
+			}
+			if (matches.isNotEmpty()) {
+				item { Spacer(modifier = Modifier.height(8.dp)) }
+				item { MatchesSectionHeader(matchCount = matches.size) }
+				items(matches.size) { index ->
+					MatchCard(match = matches[index])
+				}
 			}
 		}
 	}
@@ -399,6 +410,89 @@ private fun NotesCard(notes: String) {
 				color = MaterialTheme.colorScheme.onSurface,
 				modifier = Modifier.padding(start = 48.dp)
 			)
+		}
+	}
+}
+
+@Composable
+private fun MatchesSectionHeader(matchCount: Int) {
+	Row(
+		modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
+		verticalAlignment = Alignment.CenterVertically
+	) {
+		Text(text = "🏆", style = MaterialTheme.typography.titleLarge)
+		Spacer(modifier = Modifier.width(12.dp))
+		Text(
+			text = "Matches ($matchCount)",
+			style = MaterialTheme.typography.titleMedium,
+			fontWeight = FontWeight.SemiBold,
+			color = MaterialTheme.colorScheme.onSurface
+		)
+	}
+}
+
+@Composable
+private fun MatchCard(match: MatchUiModel) {
+	val resultColor = if (match.isWin) {
+		MaterialTheme.colorScheme.primary
+	} else {
+		MaterialTheme.colorScheme.error
+	}
+
+	ContentCard {
+		Row(
+			modifier = Modifier.padding(16.dp).fillMaxWidth(),
+			verticalAlignment = Alignment.CenterVertically
+		) {
+			Box(
+				modifier = Modifier.size(48.dp).clip(CircleShape).background(resultColor.copy(alpha = 0.15f)),
+				contentAlignment = Alignment.Center
+			) {
+				Text(
+					text = if (match.isWin) "W" else "L",
+					style = MaterialTheme.typography.titleMedium,
+					fontWeight = FontWeight.Bold,
+					color = resultColor
+				)
+			}
+			Spacer(modifier = Modifier.width(16.dp))
+			Column(modifier = Modifier.weight(1f)) {
+				Text(
+					text = match.opponentName,
+					style = MaterialTheme.typography.bodyLarge,
+					fontWeight = FontWeight.Medium,
+					color = MaterialTheme.colorScheme.onSurface
+				)
+				Row(verticalAlignment = Alignment.CenterVertically) {
+					if (match.isDoubles) {
+						Text(
+							text = "Doubles",
+							style = MaterialTheme.typography.labelSmall,
+							color = MaterialTheme.colorScheme.onSurfaceVariant
+						)
+						Spacer(modifier = Modifier.width(8.dp))
+					}
+					if (match.isRanked) {
+						Text(
+							text = "Ranked",
+							style = MaterialTheme.typography.labelSmall,
+							color = MaterialTheme.colorScheme.tertiary
+						)
+					}
+				}
+			}
+			Surface(
+				shape = RoundedCornerShape(8.dp),
+				color = resultColor.copy(alpha = 0.1f)
+			) {
+				Text(
+					text = match.scoreDisplay,
+					style = MaterialTheme.typography.titleMedium,
+					fontWeight = FontWeight.Bold,
+					color = resultColor,
+					modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp)
+				)
+			}
 		}
 	}
 }

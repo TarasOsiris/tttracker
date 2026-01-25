@@ -43,10 +43,9 @@ class EditSessionScreenViewModelImpl(
 			val dateTime = session.date.toLocalDateTime()
 			sessionTime = dateTime.time
 			inputData.selectedDate.value = dateTime.date
-			inputData.durationMinutes.intValue = session.duration_min.toInt()
-			inputData.rpeValue.intValue = session.rpe.toInt()
-			inputData.selectedSessionType.value =
-				session.session_type?.let { SessionType.fromDb(it) } ?: SessionType.TECHNIQUE
+			inputData.durationMinutes.intValue = session.durationMinutes
+			inputData.rpeValue.intValue = session.rpe
+			inputData.selectedSessionType.value = session.sessionType ?: SessionType.TECHNIQUE
 			inputData.notes.value = session.notes.orEmpty()
 
 			_uiState.value = EditSessionUiState(isLoading = false)

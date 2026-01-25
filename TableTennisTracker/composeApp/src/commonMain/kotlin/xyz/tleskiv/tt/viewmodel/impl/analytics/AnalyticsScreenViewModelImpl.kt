@@ -7,7 +7,6 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.datetime.DayOfWeek
 import kotlinx.datetime.LocalDate
-import xyz.tleskiv.tt.data.model.enums.SessionType
 import xyz.tleskiv.tt.repo.UserPreferencesRepository
 import xyz.tleskiv.tt.service.TrainingSessionService
 import xyz.tleskiv.tt.util.ext.toLocalDate
@@ -30,9 +29,9 @@ class AnalyticsScreenViewModelImpl(
 						SessionUiModel(
 							id = session.id,
 							date = session.date.toLocalDate(),
-							durationMinutes = session.duration_min.toInt(),
-							sessionType = session.session_type?.let { SessionType.fromDb(it) },
-							rpe = session.rpe.toInt(),
+							durationMinutes = session.durationMinutes,
+							sessionType = session.sessionType,
+							rpe = session.rpe,
 							notes = session.notes
 						)
 					}
