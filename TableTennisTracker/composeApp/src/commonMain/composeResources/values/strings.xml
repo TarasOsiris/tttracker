@@ -210,4 +210,20 @@
     <string name="match_score_format">%1$d - %2$d</string>
     <string name="match_win">W</string>
     <string name="match_loss">L</string>
+
+    <!-- Opponents -->
+    <string name="action_add_opponent">Add Opponent</string>
+    <string name="label_opponent_name">Name</string>
+    <string name="label_opponent_club">Club (optional)</string>
+    <string name="label_opponent_rating">Rating (optional)</string>
+    <string name="label_opponent_handedness">Handedness (optional)</string>
+    <string name="label_opponent_style">Playing style (optional)</string>
+    <string name="label_opponent_notes">Notes (optional)</string>
+    <string name="handedness_right">Right</string>
+    <string name="handedness_left">Left</string>
+    <string name="style_attacker">Attacker</string>
+    <string name="style_defender">Defender</string>
+    <string name="style_all_round">All-round</string>
+    <string name="style_pips">Pips</string>
+    <string name="style_chopper">Chopper</string>
 </resources>

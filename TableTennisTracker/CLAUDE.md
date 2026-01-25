@@ -221,6 +221,9 @@ If it's not possible fallback to `expect`/`actual` pattern:
 - Use docs folder in the root for any additional functional documentation needed
 - Never use `System.currentTimeMillis()` in commonApp module, use `nowMillis` from DateTimeUtils instead.
 - Never nest Scaffolds in composeApp module, use simple Column/Box instead.
+- FABs must use `navigationBarsPadding()` modifier to respect Android system navigation bars.
+- Lists (LazyColumn) with FABs need extra bottom contentPadding calculated as:
+  `WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding() + fabHeight(56.dp) + fabMargin(16.dp) * 2`
 - Never inline full package names, always use imports
 - In Android instrumentation tests, never hardcode UI strings - use Compose resources via `Res.string.*` with `runBlocking { getString(res) }`
 - After modifying Android instrumentation tests, always run them to verify: `./gradlew :androidApp:connectedDebugAndroidTest`

@@ -7,8 +7,12 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -17,7 +21,9 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -28,6 +34,9 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -37,6 +46,7 @@ import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
 import org.koin.compose.viewmodel.koinViewModel
 import tabletennistracker.composeapp.generated.resources.Res
+import tabletennistracker.composeapp.generated.resources.action_add_opponent
 import tabletennistracker.composeapp.generated.resources.action_back
 import tabletennistracker.composeapp.generated.resources.action_delete
 import tabletennistracker.composeapp.generated.resources.action_edit
@@ -45,6 +55,7 @@ import tabletennistracker.composeapp.generated.resources.ic_edit
 import tabletennistracker.composeapp.generated.resources.opponents_empty
 import tabletennistracker.composeapp.generated.resources.title_opponents
 import xyz.tleskiv.tt.db.Opponent
+import xyz.tleskiv.tt.ui.dialogs.AddOpponentDialog
 import xyz.tleskiv.tt.ui.widgets.ContentCard
 import xyz.tleskiv.tt.viewmodel.settings.OpponentsScreenViewModel
 import kotlin.uuid.Uuid
@@ -55,39 +66,69 @@ fun OpponentsScreen(
 	viewModel: OpponentsScreenViewModel = koinViewModel()
 ) {
 	val opponents by viewModel.opponents.collectAsState()
+	var showAddDialog by rememberSaveable { mutableStateOf(false) }
 
-	Column(
+	if (showAddDialog) {
+		AddOpponentDialog(onDismiss = { showAddDialog = false })
+	}
+
+	Box(
 		modifier = Modifier
 			.fillMaxSize()
 			.background(MaterialTheme.colorScheme.surface)
 	) {
-		OpponentsTopBar(onNavigateBack = onNavigateBack)
+		Column(modifier = Modifier.fillMaxSize()) {
+			OpponentsTopBar(onNavigateBack = onNavigateBack)
 
-		if (opponents.isEmpty()) {
-			Box(
-				modifier = Modifier.fillMaxSize(),
-				contentAlignment = Alignment.Center
-			) {
-				Text(
-					text = stringResource(Res.string.opponents_empty),
-					style = MaterialTheme.typography.bodyLarge,
-					color = MaterialTheme.colorScheme.onSurfaceVariant
-				)
-			}
-		} else {
-			LazyColumn(
-				modifier = Modifier.fillMaxSize(),
-				contentPadding = PaddingValues(16.dp),
-				verticalArrangement = Arrangement.spacedBy(12.dp)
-			) {
-				items(opponents, key = { it.id.toString() }) { opponent ->
-					OpponentCard(
-						opponent = opponent,
-						onEdit = { /* TODO: implement */ },
-						onDelete = { /* TODO: implement */ }
+			if (opponents.isEmpty()) {
+				Box(
+					modifier = Modifier.fillMaxSize(),
+					contentAlignment = Alignment.Center
+				) {
+					Text(
+						text = stringResource(Res.string.opponents_empty),
+						style = MaterialTheme.typography.bodyLarge,
+						color = MaterialTheme.colorScheme.onSurfaceVariant
 					)
 				}
+			} else {
+				val navBarPadding = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()
+				val fabHeight = 56.dp
+				val fabMargin = 16.dp
+				LazyColumn(
+					modifier = Modifier.fillMaxSize(),
+					contentPadding = PaddingValues(
+						start = 16.dp,
+						end = 16.dp,
+						top = 16.dp,
+						bottom = navBarPadding + fabHeight + fabMargin * 2
+					),
+					verticalArrangement = Arrangement.spacedBy(12.dp)
+				) {
+					items(opponents, key = { it.id.toString() }) { opponent ->
+						OpponentCard(
+							opponent = opponent,
+							onEdit = { /* TODO: implement */ },
+							onDelete = { /* TODO: implement */ }
+						)
+					}
+				}
 			}
+		}
+
+		FloatingActionButton(
+			onClick = { showAddDialog = true },
+			modifier = Modifier
+				.align(Alignment.BottomEnd)
+				.navigationBarsPadding()
+				.padding(16.dp),
+			containerColor = MaterialTheme.colorScheme.primaryContainer,
+			contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+		) {
+			Icon(
+				imageVector = Icons.Default.Add,
+				contentDescription = stringResource(Res.string.action_add_opponent)
+			)
 		}
 	}
 }

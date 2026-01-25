@@ -9,8 +9,10 @@ import xyz.tleskiv.tt.viewmodel.DebugScreenViewModel
 import xyz.tleskiv.tt.viewmodel.SettingsViewModel
 import xyz.tleskiv.tt.viewmodel.analytics.AnalyticsScreenViewModel
 import xyz.tleskiv.tt.viewmodel.dialogs.AddMatchDialogViewModel
+import xyz.tleskiv.tt.viewmodel.dialogs.AddOpponentDialogViewModel
 import xyz.tleskiv.tt.viewmodel.impl.analytics.AnalyticsScreenViewModelImpl
 import xyz.tleskiv.tt.viewmodel.impl.dialogs.AddMatchDialogViewModelImpl
+import xyz.tleskiv.tt.viewmodel.impl.dialogs.AddOpponentDialogViewModelImpl
 import xyz.tleskiv.tt.viewmodel.impl.sessions.CreateSessionScreenViewModelImpl
 import xyz.tleskiv.tt.viewmodel.impl.sessions.EditSessionScreenViewModelImpl
 import xyz.tleskiv.tt.viewmodel.impl.sessions.SessionDetailsScreenViewModelImpl
@@ -36,6 +38,7 @@ val viewModelModule = module {
 	viewModel<AddMatchDialogViewModel> { params ->
 		AddMatchDialogViewModelImpl(params.getOrNull<PendingMatch>(), get())
 	}
+	viewModelOf(::AddOpponentDialogViewModelImpl) bind AddOpponentDialogViewModel::class
 	viewModelOf(::AppViewModel)
 	viewModelOf(::SettingsViewModel)
 	viewModelOf(::DebugScreenViewModel)
