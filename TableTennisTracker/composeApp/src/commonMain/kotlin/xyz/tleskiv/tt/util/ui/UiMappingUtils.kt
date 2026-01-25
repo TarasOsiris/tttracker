@@ -36,6 +36,7 @@ fun HeatMapLevel.toColor(): Color {
 fun SessionType?.toColor(): Color = when (this) {
 	SessionType.TECHNIQUE -> Color(0xFF4CAF50)
 	SessionType.MATCH_PLAY -> Color(0xFFFF5722)
+	SessionType.TOURNAMENT -> Color(0xFFFFD700)
 	SessionType.SERVE_PRACTICE -> Color(0xFF2196F3)
 	SessionType.PHYSICAL -> Color(0xFFE91E63)
 	SessionType.FREE_PLAY -> Color(0xFF9C27B0)

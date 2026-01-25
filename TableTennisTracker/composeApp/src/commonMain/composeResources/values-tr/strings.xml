@@ -62,6 +62,7 @@
     <!-- Session Types -->
     <string name="session_type_technique">Teknik</string>
     <string name="session_type_match_play">Maç</string>
+    <string name="session_type_tournament">Turnuva</string>
     <string name="session_type_serve_practice">Servis antrenmanı</string>
     <string name="session_type_physical">Fiziksel</string>
     <string name="session_type_free_play">Serbest oyun</string>

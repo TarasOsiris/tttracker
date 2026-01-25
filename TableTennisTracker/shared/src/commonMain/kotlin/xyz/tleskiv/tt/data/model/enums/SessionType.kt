@@ -3,6 +3,7 @@ package xyz.tleskiv.tt.data.model.enums
 enum class SessionType(val dbValue: String) {
 	TECHNIQUE("technique"),
 	MATCH_PLAY("match_play"),
+	TOURNAMENT("tournament"),
 	SERVE_PRACTICE("serve_practice"),
 	PHYSICAL("physical"),
 	FREE_PLAY("free_play"),

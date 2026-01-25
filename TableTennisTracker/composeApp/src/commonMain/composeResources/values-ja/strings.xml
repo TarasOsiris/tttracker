@@ -62,6 +62,7 @@
     <!-- Session Types -->
     <string name="session_type_technique">技術練習</string>
     <string name="session_type_match_play">試合形式</string>
+    <string name="session_type_tournament">トーナメント</string>
     <string name="session_type_serve_practice">サーブ練習</string>
     <string name="session_type_physical">フィジカル</string>
     <string name="session_type_free_play">フリー練習</string>

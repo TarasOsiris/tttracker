@@ -62,6 +62,7 @@
     <!-- Session Types -->
     <string name="session_type_technique">تقنية</string>
     <string name="session_type_match_play">مباراة</string>
+    <string name="session_type_tournament">بطولة</string>
     <string name="session_type_serve_practice">تدريب الإرسال</string>
     <string name="session_type_physical">بدني</string>
     <string name="session_type_free_play">لعب حر</string>
