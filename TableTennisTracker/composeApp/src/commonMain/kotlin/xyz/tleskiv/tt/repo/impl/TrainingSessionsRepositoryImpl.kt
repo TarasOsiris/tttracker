@@ -119,11 +119,17 @@ class TrainingSessionsRepositoryImpl(
 	}
 
 	override suspend fun deleteSession(id: Uuid): Unit = withContext(ioDispatcher) {
-		database.appDatabaseQueries.deleteSession(updated_at = nowInstant, id = id)
+		database.transaction {
+			database.appDatabaseQueries.deleteMatchesBySessionId(updated_at = nowInstant, session_id = id)
+			database.appDatabaseQueries.deleteSession(updated_at = nowInstant, id = id)
+		}
 	}
 
 	override suspend fun deleteAllSessions(): Unit = withContext(ioDispatcher) {
-		database.appDatabaseQueries.deleteAllSessions()
+		database.transaction {
+			database.appDatabaseQueries.deleteAllMatches()
+			database.appDatabaseQueries.deleteAllSessions()
+		}
 	}
 
 	private fun List<SelectAllSessionsWithMatches>.groupBySession(): List<TrainingSession> {

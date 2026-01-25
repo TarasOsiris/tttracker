@@ -73,10 +73,16 @@ class OpponentRepositoryImpl(
     }
 
     override suspend fun deleteOpponent(id: Uuid): Unit = withContext(ioDispatcher) {
-		database.appDatabaseQueries.deleteOpponent(updated_at = nowInstant, id = id)
+		database.transaction {
+			database.appDatabaseQueries.deleteMatchesByOpponentId(updated_at = nowInstant, opponent_id = id)
+			database.appDatabaseQueries.deleteOpponent(updated_at = nowInstant, id = id)
+		}
     }
 
     override suspend fun deleteAllOpponents(): Unit = withContext(ioDispatcher) {
-        database.appDatabaseQueries.deleteAllOpponents()
+		database.transaction {
+			database.appDatabaseQueries.deleteAllMatches()
+			database.appDatabaseQueries.deleteAllOpponents()
+		}
     }
 }

@@ -278,5 +278,8 @@ UPDATE match SET is_deleted = 1, updated_at = ? WHERE id = ?;
 deleteMatchesBySessionId:
 UPDATE match SET is_deleted = 1, updated_at = ? WHERE session_id = ?;
 
+deleteMatchesByOpponentId:
+UPDATE match SET is_deleted = 1, updated_at = ? WHERE opponent_id = ?;
+
 deleteAllMatches:
 DELETE FROM match;

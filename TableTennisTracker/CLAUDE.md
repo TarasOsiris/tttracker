@@ -102,6 +102,8 @@ UI Layer (Screens) → ViewModel Layer → Service Layer → Repository Layer �
 - Data access via SQLDelight queries
 - Uses `withContext(ioDispatcher)` for suspend functions
 - Injected with named dispatcher qualifier
+- **All multi-statement database operations must be transactional** using
+  `database.transaction { ... }`
 
 **Dialogs:**
 
