@@ -66,6 +66,7 @@ class SessionsScreenTest {
 
 		clickText(testNotes)
 
+		// Session details show all the input info
 		assertTextDisplayed(Res.string.label_session_type)
 		assertFirstTextDisplayed(techniqueText)
 		assertTextDisplayed(Res.string.label_duration)
