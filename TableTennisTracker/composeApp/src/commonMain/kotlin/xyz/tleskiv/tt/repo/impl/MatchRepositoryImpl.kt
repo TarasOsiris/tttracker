@@ -9,7 +9,7 @@ import xyz.tleskiv.tt.data.model.enums.CompetitionLevel
 import xyz.tleskiv.tt.db.AppDatabase
 import xyz.tleskiv.tt.db.Match
 import xyz.tleskiv.tt.repo.MatchRepository
-import xyz.tleskiv.tt.util.nowMillis
+import xyz.tleskiv.tt.util.nowInstant
 import kotlin.uuid.Uuid
 
 class MatchRepositoryImpl(
@@ -40,12 +40,12 @@ class MatchRepositoryImpl(
             my_games_won = myGamesWon.toLong(),
             opponent_games_won = opponentGamesWon.toLong(),
             games = games,
-            is_doubles = if (isDoubles) 1L else 0L,
-            is_ranked = if (isRanked) 1L else 0L,
+			is_doubles = isDoubles,
+			is_ranked = isRanked,
             competition_level = competitionLevel?.dbValue,
             rpe = rpe?.toLong(),
             notes = notes,
-            updated_at = nowMillis
+			updated_at = nowInstant
         )
         id
     }
@@ -67,12 +67,12 @@ class MatchRepositoryImpl(
             my_games_won = myGamesWon.toLong(),
             opponent_games_won = opponentGamesWon.toLong(),
             games = games,
-            is_doubles = if (isDoubles) 1L else 0L,
-            is_ranked = if (isRanked) 1L else 0L,
+			is_doubles = isDoubles,
+			is_ranked = isRanked,
             competition_level = competitionLevel?.dbValue,
             rpe = rpe?.toLong(),
             notes = notes,
-            updated_at = nowMillis,
+			updated_at = nowInstant,
             id = id
         )
     }
@@ -94,11 +94,11 @@ class MatchRepositoryImpl(
     }
 
     override suspend fun deleteMatch(id: Uuid): Unit = withContext(ioDispatcher) {
-        database.appDatabaseQueries.deleteMatch(updated_at = nowMillis, id = id)
+		database.appDatabaseQueries.deleteMatch(updated_at = nowInstant, id = id)
     }
 
     override suspend fun deleteMatchesBySessionId(sessionId: Uuid): Unit = withContext(ioDispatcher) {
-        database.appDatabaseQueries.deleteMatchesBySessionId(updated_at = nowMillis, session_id = sessionId)
+		database.appDatabaseQueries.deleteMatchesBySessionId(updated_at = nowInstant, session_id = sessionId)
     }
 
     override suspend fun deleteAllMatches(): Unit = withContext(ioDispatcher) {

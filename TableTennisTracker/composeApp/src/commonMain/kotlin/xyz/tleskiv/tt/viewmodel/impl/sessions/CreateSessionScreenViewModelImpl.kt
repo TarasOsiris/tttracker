@@ -6,8 +6,7 @@ import kotlinx.coroutines.launch
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.LocalTime
-import xyz.tleskiv.tt.service.MatchService
-import xyz.tleskiv.tt.service.OpponentService
+import xyz.tleskiv.tt.service.MatchInput
 import xyz.tleskiv.tt.service.TrainingSessionService
 import xyz.tleskiv.tt.service.UserPreferencesService
 import xyz.tleskiv.tt.viewmodel.sessions.CreateSessionScreenViewModel
@@ -16,9 +15,7 @@ import xyz.tleskiv.tt.viewmodel.sessions.PendingMatch
 class CreateSessionScreenViewModelImpl(
 	date: LocalDate?,
 	private val sessionService: TrainingSessionService,
-	private val preferencesService: UserPreferencesService,
-	private val matchService: MatchService,
-	private val opponentService: OpponentService
+	private val preferencesService: UserPreferencesService
 ) : CreateSessionScreenViewModel() {
 	private val _startDate = date ?: LocalDate.now()
 	override val initialDate: LocalDate = _startDate
@@ -36,27 +33,24 @@ class CreateSessionScreenViewModelImpl(
 
 	override fun saveSession(onSuccess: () -> Unit) {
 		viewModelScope.launch {
-			val sessionId = sessionService.addSession(
+			sessionService.addSession(
 				dateTime = LocalDateTime(inputData.selectedDate.value, LocalTime(12, 0)),
 				durationMinutes = inputData.durationMinutes.intValue,
 				rpe = inputData.rpeValue.intValue,
 				sessionType = inputData.selectedSessionType.value,
-				notes = inputData.notes.value.takeIf { it.isNotBlank() }
+				notes = inputData.notes.value.takeIf { it.isNotBlank() },
+				matches = inputData.pendingMatches.map { pendingMatch ->
+					MatchInput(
+						opponentId = pendingMatch.opponentId,
+						opponentName = pendingMatch.opponentName,
+						myGamesWon = pendingMatch.myGamesWon,
+						opponentGamesWon = pendingMatch.opponentGamesWon,
+						isDoubles = pendingMatch.isDoubles,
+						isRanked = pendingMatch.isRanked,
+						competitionLevel = pendingMatch.competitionLevel
+					)
+				}
 			)
-
-			for (pendingMatch in inputData.pendingMatches) {
-				val opponentId = pendingMatch.opponentId ?: opponentService.addOpponent(pendingMatch.opponentName)
-				matchService.addMatch(
-					sessionId = sessionId,
-					opponentId = opponentId,
-					myGamesWon = pendingMatch.myGamesWon,
-					opponentGamesWon = pendingMatch.opponentGamesWon,
-					isDoubles = pendingMatch.isDoubles,
-					isRanked = pendingMatch.isRanked,
-					competitionLevel = pendingMatch.competitionLevel
-				)
-			}
-
 			onSuccess()
 		}
 	}

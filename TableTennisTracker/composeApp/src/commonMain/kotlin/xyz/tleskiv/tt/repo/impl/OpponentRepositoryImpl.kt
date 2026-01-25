@@ -10,7 +10,7 @@ import xyz.tleskiv.tt.data.model.enums.PlayingStyle
 import xyz.tleskiv.tt.db.AppDatabase
 import xyz.tleskiv.tt.db.Opponent
 import xyz.tleskiv.tt.repo.OpponentRepository
-import xyz.tleskiv.tt.util.nowMillis
+import xyz.tleskiv.tt.util.nowInstant
 import kotlin.uuid.Uuid
 
 class OpponentRepositoryImpl(
@@ -38,7 +38,7 @@ class OpponentRepositoryImpl(
             handedness = handedness?.dbValue,
             style = style?.dbValue,
             notes = notes,
-            updated_at = nowMillis
+			updated_at = nowInstant
         )
         id
     }
@@ -59,7 +59,7 @@ class OpponentRepositoryImpl(
             handedness = handedness?.dbValue,
             style = style?.dbValue,
             notes = notes,
-            updated_at = nowMillis,
+			updated_at = nowInstant,
             id = id
         )
     }
@@ -73,7 +73,7 @@ class OpponentRepositoryImpl(
     }
 
     override suspend fun deleteOpponent(id: Uuid): Unit = withContext(ioDispatcher) {
-        database.appDatabaseQueries.deleteOpponent(updated_at = nowMillis, id = id)
+		database.appDatabaseQueries.deleteOpponent(updated_at = nowInstant, id = id)
     }
 
     override suspend fun deleteAllOpponents(): Unit = withContext(ioDispatcher) {

@@ -28,7 +28,8 @@
       "Bash(mdfind:*)",
       "Bash(open:*)",
       "Bash(git push:*)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(xargs cat:*)"
     ]
   }
 }

@@ -4,14 +4,14 @@ import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToList
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.withContext
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.withContext
 import xyz.tleskiv.tt.db.AppDatabase
 import xyz.tleskiv.tt.db.User_preferences
 import xyz.tleskiv.tt.model.AppThemeMode
 import xyz.tleskiv.tt.model.WeekStartDay
 import xyz.tleskiv.tt.repo.UserPreferencesRepository
-import xyz.tleskiv.tt.util.nowMillis
+import xyz.tleskiv.tt.util.nowInstant
 
 class UserPreferencesRepositoryImpl(
 	private val database: AppDatabase,
@@ -58,7 +58,7 @@ class UserPreferencesRepositoryImpl(
 	}
 
 	override suspend fun setPreference(key: String, value: String): Unit = withContext(ioDispatcher) {
-		val now = nowMillis
+		val now = nowInstant
 		database.appDatabaseQueries.insertOrUpdatePreference(key, value, now, now)
 	}
 
@@ -75,7 +75,7 @@ class UserPreferencesRepositoryImpl(
 	}
 
 	override suspend fun setPreferences(preferences: Map<String, String>): Unit = withContext(ioDispatcher) {
-		val now = nowMillis
+		val now = nowInstant
 		database.transaction {
 			preferences.forEach { (key, value) ->
 				database.appDatabaseQueries.insertOrUpdatePreference(key, value, now, now)

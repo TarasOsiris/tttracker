@@ -3,6 +3,7 @@ package xyz.tleskiv.tt.util.ext
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
+import kotlinx.datetime.atStartOfDayIn
 import kotlinx.datetime.toLocalDateTime
 import kotlin.time.Instant
 
@@ -25,3 +26,8 @@ fun Long.toLocalDate(): LocalDate = this.toLocalDateTime().date
 fun Long.toLocalDateUtc(): LocalDate =
 	Instant.fromEpochMilliseconds(this)
 		.toLocalDateTime(TimeZone.UTC).date
+
+/**
+ * Converts [LocalDate] to epoch milliseconds at start of day in UTC.
+ */
+fun LocalDate.toEpochMillis(): Long = atStartOfDayIn(TimeZone.UTC).toEpochMilliseconds()

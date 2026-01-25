@@ -1,24 +1,27 @@
 package xyz.tleskiv.tt.repo
 
 import kotlinx.coroutines.flow.Flow
+import kotlinx.datetime.LocalDate
 import xyz.tleskiv.tt.data.model.TrainingSession
 import xyz.tleskiv.tt.data.model.enums.SessionType
+import xyz.tleskiv.tt.service.MatchInput
 import kotlin.uuid.Uuid
 
 interface TrainingSessionsRepository {
 	val allSessions: Flow<List<TrainingSession>>
 
 	suspend fun addSession(
-		date: Long,
+		date: LocalDate,
 		durationMinutes: Int,
 		rpe: Int,
 		sessionType: SessionType?,
-		notes: String?
+		notes: String?,
+		matches: List<MatchInput> = emptyList()
 	): Uuid
 
 	suspend fun editSession(
 		id: Uuid,
-		date: Long,
+		date: LocalDate,
 		durationMinutes: Int,
 		rpe: Int,
 		sessionType: SessionType?,

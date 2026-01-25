@@ -2,11 +2,10 @@ package xyz.tleskiv.tt.service.impl
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.datetime.LocalDateTime
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.toInstant
 import xyz.tleskiv.tt.data.model.TrainingSession
 import xyz.tleskiv.tt.data.model.enums.SessionType
 import xyz.tleskiv.tt.repo.TrainingSessionsRepository
+import xyz.tleskiv.tt.service.MatchInput
 import xyz.tleskiv.tt.service.TrainingSessionService
 import kotlin.uuid.Uuid
 
@@ -21,16 +20,16 @@ class TrainingSessionServiceImpl(
 		durationMinutes: Int,
 		rpe: Int,
 		sessionType: SessionType?,
-		notes: String?
-	): Uuid {
-		return repository.addSession(
-			date = dateTime.toInstant(TimeZone.currentSystemDefault()).toEpochMilliseconds(),
-			durationMinutes = durationMinutes,
-			rpe = rpe,
-			sessionType = sessionType,
-			notes = notes
-		)
-	}
+		notes: String?,
+		matches: List<MatchInput>
+	): Uuid = repository.addSession(
+		date = dateTime.date,
+		durationMinutes = durationMinutes,
+		rpe = rpe,
+		sessionType = sessionType,
+		notes = notes,
+		matches = matches
+	)
 
 	override suspend fun editSession(
 		id: Uuid,
@@ -42,7 +41,7 @@ class TrainingSessionServiceImpl(
 	) {
 		repository.editSession(
 			id = id,
-			date = dateTime.toInstant(TimeZone.currentSystemDefault()).toEpochMilliseconds(),
+			date = dateTime.date,
 			durationMinutes = durationMinutes,
 			rpe = rpe,
 			sessionType = sessionType,
