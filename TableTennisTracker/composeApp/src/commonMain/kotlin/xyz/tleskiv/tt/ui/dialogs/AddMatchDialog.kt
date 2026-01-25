@@ -14,7 +14,9 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import kotlin.uuid.Uuid
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
@@ -41,7 +43,9 @@ fun AddMatchDialog(
 	editingMatch: PendingMatch?,
 	onConfirm: (PendingMatch) -> Unit,
 	onDismiss: () -> Unit,
-	viewModel: AddMatchDialogViewModel = koinViewModel(key = editingMatch?.id) { parametersOf(editingMatch) }
+	viewModel: AddMatchDialogViewModel = koinViewModel(
+		key = editingMatch?.id ?: remember { Uuid.random().toString() }
+	) { parametersOf(editingMatch) }
 ) {
 	val inputData = viewModel.inputData
 	val opponents by viewModel.opponents.collectAsState()
