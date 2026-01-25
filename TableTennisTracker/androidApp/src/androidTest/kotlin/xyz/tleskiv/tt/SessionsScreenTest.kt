@@ -11,6 +11,7 @@ import tabletennistracker.composeapp.generated.resources.action_add_session
 import tabletennistracker.composeapp.generated.resources.action_save
 import tabletennistracker.composeapp.generated.resources.duration_minutes_full
 import tabletennistracker.composeapp.generated.resources.label_duration
+import tabletennistracker.composeapp.generated.resources.label_notes
 import tabletennistracker.composeapp.generated.resources.label_opponent
 import tabletennistracker.composeapp.generated.resources.label_score
 import tabletennistracker.composeapp.generated.resources.label_session_type
@@ -24,7 +25,6 @@ import xyz.tleskiv.tt.ui.TestTags
 import xyz.tleskiv.tt.util.assertFirstTextDisplayed
 import xyz.tleskiv.tt.util.assertTextDisplayed
 import xyz.tleskiv.tt.util.clickContentDescription
-import xyz.tleskiv.tt.util.clickFirstText
 import xyz.tleskiv.tt.util.clickTag
 import xyz.tleskiv.tt.util.clickText
 import xyz.tleskiv.tt.util.closeSoftKeyboard
@@ -64,12 +64,14 @@ class SessionsScreenTest {
 		assertTextDisplayed(Res.string.session_duration_format, testDurationMinutes)
 		assertTextDisplayed(testNotes)
 
-		clickFirstText(techniqueText)
+		clickText(testNotes)
 
 		assertTextDisplayed(Res.string.label_session_type)
 		assertFirstTextDisplayed(techniqueText)
 		assertTextDisplayed(Res.string.label_duration)
 		assertTextDisplayed(Res.string.duration_minutes_full, testDurationMinutes)
+		assertTextDisplayed(Res.string.label_notes)
+		assertTextDisplayed(testNotes)
 	}
 
 	@Test
