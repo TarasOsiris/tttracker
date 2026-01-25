@@ -27,7 +27,8 @@
       "Bash(/usr/bin/env -i PATH=/usr/bin:/bin HOME=$HOME ANDROID_HOME=$ANDROID_HOME $ANDROID_HOME/build-tools/35.0.0/apksigner verify:*)",
       "Bash(mdfind:*)",
       "Bash(open:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(cat:*)"
     ]
   }
 }

@@ -194,6 +194,8 @@
     <string name="hint_opponent_name">Enter opponent name</string>
     <string name="label_score">Score</string>
     <string name="label_me">Me</string>
+    <string name="action_increase_my_score">Increase my score</string>
+    <string name="action_increase_opponent_score">Increase opponent score</string>
     <string name="label_competition_level_optional">Competition Level (optional)</string>
     <string name="matches_empty_hint">No matches added yet</string>
     <string name="label_doubles">Doubles</string>

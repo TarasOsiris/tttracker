@@ -16,8 +16,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
+import xyz.tleskiv.tt.ui.TestTags
 import org.jetbrains.compose.resources.stringResource
+import org.koin.compose.viewmodel.koinViewModel
+import org.koin.core.parameter.parametersOf
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.action_cancel
 import tabletennistracker.composeapp.generated.resources.action_save
@@ -34,9 +38,10 @@ import xyz.tleskiv.tt.viewmodel.sessions.PendingMatch
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun AddMatchDialog(
-	viewModel: AddMatchDialogViewModel,
+	editingMatch: PendingMatch?,
 	onConfirm: (PendingMatch) -> Unit,
-	onDismiss: () -> Unit
+	onDismiss: () -> Unit,
+	viewModel: AddMatchDialogViewModel = koinViewModel(key = editingMatch?.id) { parametersOf(editingMatch) }
 ) {
 	val inputData = viewModel.inputData
 	val opponents by viewModel.opponents.collectAsState()
@@ -101,7 +106,8 @@ fun AddMatchDialog(
 		confirmButton = {
 			TextButton(
 				onClick = { onConfirm(viewModel.buildPendingMatch()) },
-				enabled = inputData.isValid
+				enabled = inputData.isValid,
+				modifier = Modifier.testTag(TestTags.ADD_MATCH_DIALOG_SAVE)
 			) {
 				Text(stringResource(Res.string.action_save))
 			}

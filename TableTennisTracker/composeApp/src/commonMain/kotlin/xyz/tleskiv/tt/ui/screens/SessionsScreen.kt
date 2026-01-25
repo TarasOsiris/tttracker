@@ -44,6 +44,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
+import org.koin.compose.viewmodel.koinViewModel
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
@@ -94,10 +95,10 @@ private const val DATE_LIST_RANGE_DAYS = 365
 
 @Composable
 fun SessionsScreen(
-	viewModel: SessionsScreenViewModel,
 	onNavigateToDetails: (String) -> Unit = {},
 	onAddSession: (LocalDate) -> Unit = {},
-	topAppBarState: TopAppBarState? = null
+	topAppBarState: TopAppBarState? = null,
+	viewModel: SessionsScreenViewModel = koinViewModel()
 ) {
 	val inputData = viewModel.inputData
 	val sessionsByDate by viewModel.sessions.collectAsState()

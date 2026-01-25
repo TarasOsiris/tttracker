@@ -6,10 +6,12 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import tabletennistracker.composeapp.generated.resources.Res
+import tabletennistracker.composeapp.generated.resources.action_add_match
 import tabletennistracker.composeapp.generated.resources.action_add_session
 import tabletennistracker.composeapp.generated.resources.action_save
 import tabletennistracker.composeapp.generated.resources.duration_minutes_full
 import tabletennistracker.composeapp.generated.resources.label_duration
+import tabletennistracker.composeapp.generated.resources.label_opponent
 import tabletennistracker.composeapp.generated.resources.label_session_type
 import tabletennistracker.composeapp.generated.resources.session_duration_format
 import tabletennistracker.composeapp.generated.resources.session_type_technique
@@ -20,8 +22,11 @@ import xyz.tleskiv.tt.util.assertFirstTextDisplayed
 import xyz.tleskiv.tt.util.assertTextDisplayed
 import xyz.tleskiv.tt.util.clickContentDescription
 import xyz.tleskiv.tt.util.clickFirstText
+import xyz.tleskiv.tt.util.clickTag
 import xyz.tleskiv.tt.util.clickText
+import xyz.tleskiv.tt.util.closeSoftKeyboard
 import xyz.tleskiv.tt.util.inputText
+import xyz.tleskiv.tt.util.scrollToAndClickText
 import xyz.tleskiv.tt.util.setSliderValue
 import xyz.tleskiv.tt.util.str
 import xyz.tleskiv.tt.util.waitForText
@@ -60,5 +65,28 @@ class SessionsScreenTest {
 		assertFirstTextDisplayed(techniqueText)
 		assertTextDisplayed(Res.string.label_duration)
 		assertTextDisplayed(Res.string.duration_minutes_full, testDurationMinutes)
+	}
+
+	@Test
+	fun addMatchToSession() = with(composeTestRule) {
+		val testDurationMinutes = 45
+		val testOpponentName = "John Doe"
+		val techniqueText = str(Res.string.session_type_technique)
+
+		clickContentDescription(Res.string.action_add_session)
+		assertTextDisplayed(Res.string.title_create_session)
+
+		setSliderValue(TestTags.DURATION_SLIDER, testDurationMinutes.toFloat())
+		clickText(techniqueText)
+
+		scrollToAndClickText(Res.string.action_add_match)
+		waitForText(str(Res.string.label_opponent))
+
+		inputText(TestTags.OPPONENT_FIELD, testOpponentName)
+		closeSoftKeyboard()
+
+		clickTag(TestTags.ADD_MATCH_DIALOG_SAVE)
+
+		waitForText(testOpponentName)
 	}
 }

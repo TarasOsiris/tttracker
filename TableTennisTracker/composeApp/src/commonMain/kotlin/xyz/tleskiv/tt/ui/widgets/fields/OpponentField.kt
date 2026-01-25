@@ -17,7 +17,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
+import xyz.tleskiv.tt.ui.TestTags
 import org.jetbrains.compose.resources.stringResource
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.hint_opponent_name
@@ -57,7 +59,7 @@ fun OpponentField(
 					onOpponentSelected(newName, null)
 					expanded = true
 				},
-				modifier = Modifier.fillMaxWidth().menuAnchor(ExposedDropdownMenuAnchorType.PrimaryEditable),
+				modifier = Modifier.fillMaxWidth().menuAnchor(ExposedDropdownMenuAnchorType.PrimaryEditable).testTag(TestTags.OPPONENT_FIELD),
 				placeholder = { Text(stringResource(Res.string.hint_opponent_name)) },
 				singleLine = true,
 				trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) }

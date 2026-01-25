@@ -15,11 +15,16 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
+import org.jetbrains.compose.resources.StringResource
 import tabletennistracker.composeapp.generated.resources.Res
+import tabletennistracker.composeapp.generated.resources.action_increase_my_score
+import tabletennistracker.composeapp.generated.resources.action_increase_opponent_score
 import tabletennistracker.composeapp.generated.resources.ic_add
 import tabletennistracker.composeapp.generated.resources.ic_remove
 import tabletennistracker.composeapp.generated.resources.label_me
@@ -45,7 +50,8 @@ fun ScoreField(
 			ScoreCounter(
 				label = stringResource(Res.string.label_me),
 				score = myScore,
-				onScoreChange = onMyScoreChange
+				onScoreChange = onMyScoreChange,
+				plusButtonContentDescription = Res.string.action_increase_my_score
 			)
 			Text(
 				text = "-",
@@ -55,7 +61,8 @@ fun ScoreField(
 			ScoreCounter(
 				label = stringResource(Res.string.label_opponent),
 				score = opponentScore,
-				onScoreChange = onOpponentScoreChange
+				onScoreChange = onOpponentScoreChange,
+				plusButtonContentDescription = Res.string.action_increase_opponent_score
 			)
 		}
 	}
@@ -65,7 +72,8 @@ fun ScoreField(
 private fun ScoreCounter(
 	label: String,
 	score: Int,
-	onScoreChange: (Int) -> Unit
+	onScoreChange: (Int) -> Unit,
+	plusButtonContentDescription: StringResource
 ) {
 	Column(horizontalAlignment = Alignment.CenterHorizontally) {
 		Text(
@@ -98,9 +106,10 @@ private fun ScoreCounter(
 				fontWeight = FontWeight.Bold,
 				color = MaterialTheme.colorScheme.onSurface
 			)
+			val plusButtonDesc = stringResource(plusButtonContentDescription)
 			FilledIconButton(
 				onClick = { onScoreChange(score + 1) },
-				modifier = Modifier.size(36.dp),
+				modifier = Modifier.size(36.dp).semantics { contentDescription = plusButtonDesc },
 				colors = IconButtonDefaults.filledIconButtonColors(
 					containerColor = MaterialTheme.colorScheme.surfaceContainerHighest
 				)

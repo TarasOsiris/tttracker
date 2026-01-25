@@ -41,6 +41,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.stringResource
+import org.koin.compose.viewmodel.koinViewModel
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.action_back
 import tabletennistracker.composeapp.generated.resources.action_cancel
@@ -64,8 +65,8 @@ import xyz.tleskiv.tt.viewmodel.settings.GeneralSettingsScreenViewModel
 
 @Composable
 fun GeneralSettingsScreen(
-	viewModel: GeneralSettingsScreenViewModel,
-	onNavigateBack: () -> Unit
+	onNavigateBack: () -> Unit,
+	viewModel: GeneralSettingsScreenViewModel = koinViewModel()
 ) {
 	var defaultDuration by viewModel.inputData.defaultSessionDuration
 	var defaultRpe by viewModel.inputData.defaultRpe

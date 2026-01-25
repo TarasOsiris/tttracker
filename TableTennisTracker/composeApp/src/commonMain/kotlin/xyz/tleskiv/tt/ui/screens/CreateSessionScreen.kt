@@ -8,13 +8,10 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.key
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
-import org.koin.compose.viewmodel.koinViewModel
-import org.koin.core.parameter.parametersOf
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.label_date
 import tabletennistracker.composeapp.generated.resources.label_notes_optional
@@ -29,14 +26,18 @@ import xyz.tleskiv.tt.ui.widgets.fields.MatchesField
 import xyz.tleskiv.tt.ui.widgets.fields.NotesField
 import xyz.tleskiv.tt.ui.widgets.fields.RpeField
 import xyz.tleskiv.tt.ui.widgets.fields.SessionTypeField
+import kotlinx.datetime.LocalDate
+import org.koin.compose.viewmodel.koinViewModel
+import org.koin.core.parameter.parametersOf
 import xyz.tleskiv.tt.util.ui.clearFocusOnTap
-import xyz.tleskiv.tt.viewmodel.dialogs.AddMatchDialogViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.CreateSessionScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.PendingMatch
 
 @Composable
 fun CreateSessionScreen(
-	viewModel: CreateSessionScreenViewModel, onNavigateBack: () -> Unit = {}
+	initialDate: LocalDate?,
+	onNavigateBack: () -> Unit = {},
+	viewModel: CreateSessionScreenViewModel = koinViewModel { parametersOf(initialDate) }
 ) {
 	val inputData = viewModel.inputData
 	val focusManager = LocalFocusManager.current
@@ -127,24 +128,21 @@ fun CreateSessionScreenContent(
 	)
 
 	if (showAddMatchDialog) {
-		key(editingMatch?.id) {
-			val dialogViewModel = koinViewModel<AddMatchDialogViewModel> { parametersOf(editingMatch) }
-			AddMatchDialog(
-				viewModel = dialogViewModel,
-				onConfirm = { match ->
-					if (editingMatch != null) {
-						onUpdatePendingMatch(match)
-					} else {
-						onAddPendingMatch(match)
-					}
-					showAddMatchDialog = false
-					editingMatch = null
-				},
-				onDismiss = {
-					showAddMatchDialog = false
-					editingMatch = null
+		AddMatchDialog(
+			editingMatch = editingMatch,
+			onConfirm = { match ->
+				if (editingMatch != null) {
+					onUpdatePendingMatch(match)
+				} else {
+					onAddPendingMatch(match)
 				}
-			)
-		}
+				showAddMatchDialog = false
+				editingMatch = null
+			},
+			onDismiss = {
+				showAddMatchDialog = false
+				editingMatch = null
+			}
+		)
 	}
 }

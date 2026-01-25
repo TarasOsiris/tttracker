@@ -7,8 +7,6 @@ import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDe
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
-import org.koin.compose.viewmodel.koinViewModel
-import org.koin.core.parameter.parametersOf
 import xyz.tleskiv.tt.ui.nav.TopLevelBackStack
 import xyz.tleskiv.tt.ui.nav.instantTransitionMetadata
 import xyz.tleskiv.tt.ui.nav.lateralEntryTransitionMetadata
@@ -28,10 +26,6 @@ import xyz.tleskiv.tt.ui.screens.DebugScreen
 import xyz.tleskiv.tt.ui.screens.EditSessionScreen
 import xyz.tleskiv.tt.ui.screens.GeneralSettingsScreen
 import xyz.tleskiv.tt.ui.screens.SessionDetailsScreen
-import xyz.tleskiv.tt.viewmodel.sessions.CreateSessionScreenViewModel
-import xyz.tleskiv.tt.viewmodel.sessions.EditSessionScreenViewModel
-import xyz.tleskiv.tt.viewmodel.sessions.SessionDetailsScreenViewModel
-import xyz.tleskiv.tt.viewmodel.settings.GeneralSettingsScreenViewModel
 
 
 @Composable
@@ -54,21 +48,21 @@ fun TopNavDisplay(topLevelBackStack: SnapshotStateList<TopLevelRoute>) {
 
 				is CreateSessionRoute -> NavEntry(key, metadata = modalEntryTransitionMetadata) {
 					CreateSessionScreen(
-						viewModel = koinViewModel<CreateSessionScreenViewModel> { parametersOf(key.initialDate) },
+						initialDate = key.initialDate,
 						onNavigateBack = { topLevelBackStack.removeLastOrNull() }
 					)
 				}
 
 				is EditSessionRoute -> NavEntry(key, metadata = instantTransitionMetadata) {
 					EditSessionScreen(
-						viewModel = koinViewModel<EditSessionScreenViewModel> { parametersOf(key.sessionId) },
+						sessionId = key.sessionId,
 						onClose = { topLevelBackStack.removeLastOrNull() }
 					)
 				}
 
 				is SessionDetailsRoute -> NavEntry(key, metadata = lateralEntryTransitionMetadata) {
 					SessionDetailsScreen(
-						viewModel = koinViewModel<SessionDetailsScreenViewModel> { parametersOf(key.sessionId) },
+						sessionId = key.sessionId,
 						onNavigateBack = { topLevelBackStack.removeLastOrNull() },
 						onEdit = { sessionId ->
 							if (topLevelBackStack.lastOrNull() is SessionDetailsRoute) {
@@ -83,7 +77,6 @@ fun TopNavDisplay(topLevelBackStack: SnapshotStateList<TopLevelRoute>) {
 
 				is GeneralSettingsRoute -> NavEntry(key, metadata = lateralEntryTransitionMetadata) {
 					GeneralSettingsScreen(
-						viewModel = koinViewModel<GeneralSettingsScreenViewModel>(),
 						onNavigateBack = { topLevelBackStack.removeLastOrNull() }
 					)
 				}

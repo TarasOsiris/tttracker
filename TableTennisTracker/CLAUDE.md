@@ -72,7 +72,25 @@ UI Layer (Screens) → ViewModel Layer → Service Layer → Repository Layer �
 - Concrete implementation class (e.g., `SessionScreenViewModel` + `SessionScreenViewModelImpl`)
 - State exposed as immutable `StateFlow`, internal state as `MutableStateFlow`
 - Koin registration: `viewModelOf(::ImplementationClass) bind InterfaceClass::class`
-- Parameters via `koinViewModel { parametersOf(args) }` for route data
+- **ViewModel injection:** Always inject as default parameter value in composables:
+  ```kotlin
+  // Without parameters:
+  fun MyScreen(
+      onNavigateBack: () -> Unit,
+      viewModel: MyViewModel = koinViewModel()
+  )
+
+  // With parameters:
+  fun MyScreen(
+      sessionId: String,
+      onNavigateBack: () -> Unit,
+      viewModel: MyViewModel = koinViewModel { parametersOf(sessionId) }
+  )
+  ```
+- For ViewModels with custom parameter types (not primitives), use lambda registration:
+  ```kotlin
+  viewModel<MyViewModel> { params -> MyViewModelImpl(params.getOrNull<MyType>(), get()) }
+  ```
 
 **Service Layer:**
 - Interface + implementation pattern
@@ -178,11 +196,7 @@ data class SessionDetailsRoute(val sessionId: String)        // Modal route
 - `TopLevelBackStack<T>` - Custom class managing per-tab back stack persistence
 - `NavDisplay` - Renders routes with entry decorators for state/ViewModel preservation
 - Entry decorators: `rememberSaveableStateHolderNavEntryDecorator()`, `rememberViewModelStoreNavEntryDecorator()`
-
-**ViewModel Injection with Route Parameters:**
-```kotlin
-koinViewModel<CreateSessionScreenViewModel> { parametersOf(route.initialDate) }
-```
+- Pass route parameters to screens, not ViewModels (ViewModel is injected as default parameter)
 
 ## Version Catalog
 
@@ -207,3 +221,4 @@ If it's not possible fallback to `expect`/`actual` pattern:
 - Never nest Scaffolds in composeApp module, use simple Column/Box instead.
 - Never inline full package names, always use imports
 - In Android instrumentation tests, never hardcode UI strings - use Compose resources via `Res.string.*` with `runBlocking { getString(res) }`
+- After modifying Android instrumentation tests, always run them to verify: `./gradlew :androidApp:connectedDebugAndroidTest`

@@ -26,7 +26,6 @@ import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
-import org.koin.compose.viewmodel.koinViewModel
 import xyz.tleskiv.tt.ui.nav.TopLevelBackStack
 import xyz.tleskiv.tt.ui.nav.instantTransitionMetadata
 import xyz.tleskiv.tt.ui.nav.routes.AnalyticsRoute
@@ -103,7 +102,6 @@ fun TabsNavDisplay(
 				entryProvider = entryProvider {
 					entry<SessionsRoute>(metadata = instantTransitionMetadata) {
 						SessionsScreen(
-							viewModel = koinViewModel(),
 							onNavigateToDetails = { id ->
 								topLevelBackStack.add(SessionDetailsRoute(id))
 							},

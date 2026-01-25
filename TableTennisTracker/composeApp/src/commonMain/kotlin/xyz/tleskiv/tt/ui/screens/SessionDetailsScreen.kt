@@ -49,6 +49,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
+import org.koin.compose.viewmodel.koinViewModel
+import org.koin.core.parameter.parametersOf
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.action_delete
 import tabletennistracker.composeapp.generated.resources.action_edit
@@ -78,10 +80,11 @@ import xyz.tleskiv.tt.viewmodel.sessions.SessionUiModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SessionDetailsScreen(
-	viewModel: SessionDetailsScreenViewModel,
+	sessionId: String,
 	onNavigateBack: () -> Unit = {},
 	onEdit: (String) -> Unit = {},
-	onDeleted: () -> Unit = {}
+	onDeleted: () -> Unit = {},
+	viewModel: SessionDetailsScreenViewModel = koinViewModel { parametersOf(sessionId) }
 ) {
 	val uiState by viewModel.uiState.collectAsState()
 	val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()

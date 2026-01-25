@@ -32,6 +32,8 @@ import xyz.tleskiv.tt.ui.widgets.fields.DurationField
 import xyz.tleskiv.tt.ui.widgets.fields.NotesField
 import xyz.tleskiv.tt.ui.widgets.fields.RpeField
 import xyz.tleskiv.tt.ui.widgets.fields.SessionTypeField
+import org.koin.compose.viewmodel.koinViewModel
+import org.koin.core.parameter.parametersOf
 import xyz.tleskiv.tt.util.ui.clearFocusOnTap
 import xyz.tleskiv.tt.viewmodel.sessions.CreateSessionScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.EditSessionScreenViewModel
@@ -39,8 +41,9 @@ import xyz.tleskiv.tt.viewmodel.sessions.EditSessionScreenViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EditSessionScreen(
-	viewModel: EditSessionScreenViewModel,
-	onClose: () -> Unit = {}
+	sessionId: String,
+	onClose: () -> Unit = {},
+	viewModel: EditSessionScreenViewModel = koinViewModel { parametersOf(sessionId) }
 ) {
 	val inputData = viewModel.inputData
 	val uiState by viewModel.uiState.collectAsState()
