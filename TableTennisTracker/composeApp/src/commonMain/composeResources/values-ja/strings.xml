@@ -74,6 +74,11 @@
     <string name="analytics_last_created">最後に作成した練習: %1$s</string>
     <string name="analytics_test_notes">分析画面からのテスト練習</string>
     <string name="analytics_placeholder">パフォーマンス分析がここに表示されます</string>
+	<string name="analytics_summary">概要</string>
+	<string name="analytics_total_sessions">練習</string>
+	<string name="analytics_total_time">練習時間</string>
+	<string name="analytics_total_matches">試合</string>
+	<string name="analytics_hours_minutes">%1$d時間%2$d分</string>
 
     <!-- Settings Screen -->
     <string name="profile_guest_user">ゲスト</string>

@@ -9,12 +9,14 @@ import kotlinx.datetime.DayOfWeek
 import kotlinx.datetime.LocalDate
 import xyz.tleskiv.tt.model.mappers.toSessionUiModelUtc
 import xyz.tleskiv.tt.repo.UserPreferencesRepository
+import xyz.tleskiv.tt.service.MatchService
 import xyz.tleskiv.tt.service.TrainingSessionService
 import xyz.tleskiv.tt.util.ext.toLocalDate
 import xyz.tleskiv.tt.viewmodel.analytics.AnalyticsScreenViewModel
 
 class AnalyticsScreenViewModelImpl(
 	sessionService: TrainingSessionService,
+	matchService: MatchService,
 	userPreferencesRepository: UserPreferencesRepository
 ) : AnalyticsScreenViewModel() {
 
@@ -35,5 +37,17 @@ class AnalyticsScreenViewModelImpl(
 	override val totalMinutesByDate: StateFlow<Map<LocalDate, Int>> = sessionsListByDate
 		.map { sessions -> sessions.mapValues { entry -> entry.value.sumOf { it.durationMinutes } } }
 		.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyMap())
+
+	override val totalSessions: StateFlow<Int> = sessionService.totalSessionsCount
+		.map { it.toInt() }
+		.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 0)
+
+	override val totalTrainingMinutes: StateFlow<Int> = sessionService.totalTrainingMinutes
+		.map { it.toInt() }
+		.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 0)
+
+	override val totalMatches: StateFlow<Int> = matchService.totalMatchesCount
+		.map { it.toInt() }
+		.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 0)
 }
 

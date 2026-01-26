@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
@@ -52,7 +53,14 @@ import kotlinx.datetime.LocalDate
 import kotlinx.datetime.YearMonth
 import kotlinx.datetime.minus
 import kotlinx.datetime.yearMonth
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
+import tabletennistracker.composeapp.generated.resources.Res
+import tabletennistracker.composeapp.generated.resources.analytics_hours_minutes
+import tabletennistracker.composeapp.generated.resources.analytics_summary
+import tabletennistracker.composeapp.generated.resources.analytics_total_matches
+import tabletennistracker.composeapp.generated.resources.analytics_total_sessions
+import tabletennistracker.composeapp.generated.resources.analytics_total_time
 import xyz.tleskiv.tt.ui.bottomsheets.DaySessionsBottomSheet
 import xyz.tleskiv.tt.ui.widgets.ContentCard
 import xyz.tleskiv.tt.util.ext.displayText
@@ -69,6 +77,9 @@ fun AnalyticsScreen(
 	val sessionsByDate by viewModel.sessionsByDate.collectAsState()
 	val sessionsListByDate by viewModel.sessionsListByDate.collectAsState()
 	val firstDayOfWeek by viewModel.firstDayOfWeek.collectAsState()
+	val totalSessions by viewModel.totalSessions.collectAsState()
+	val totalTrainingMinutes by viewModel.totalTrainingMinutes.collectAsState()
+	val totalMatches by viewModel.totalMatches.collectAsState()
 	val endDate = remember(sessionsByDate) {
 		sessionsByDate.keys.maxOrNull() ?: LocalDate.now()
 	}
@@ -108,6 +119,19 @@ fun AnalyticsScreen(
 			.background(MaterialTheme.colorScheme.surface)
 			.padding(16.dp)
 	) {
+		Text(
+			text = stringResource(Res.string.analytics_summary),
+			style = MaterialTheme.typography.titleSmall,
+			fontWeight = FontWeight.SemiBold,
+			color = MaterialTheme.colorScheme.primary,
+			modifier = Modifier.padding(start = 4.dp, bottom = 8.dp)
+		)
+		SummaryCard(
+			totalSessions = totalSessions,
+			totalTrainingMinutes = totalTrainingMinutes,
+			totalMatches = totalMatches
+		)
+		Spacer(modifier = Modifier.height(24.dp))
 		// Key on firstDayOfWeek to recreate calendar state when the setting changes
 		val state = key(firstDayOfWeek) {
 			rememberHeatMapCalendarState(
@@ -148,14 +172,6 @@ fun AnalyticsScreen(
 				HeatMapLegend(modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 16.dp))
 			}
 		}
-		Spacer(modifier = Modifier.height(24.dp))
-		Text(
-			text = "More analytics coming soon...",
-			modifier = Modifier.fillMaxWidth(),
-			style = MaterialTheme.typography.bodyMedium,
-			color = MaterialTheme.colorScheme.onSurfaceVariant,
-			textAlign = TextAlign.Center
-		)
 	}
 }
 
@@ -313,6 +329,49 @@ private fun HeatMapLegend(modifier: Modifier = Modifier) {
 		Text(
 			text = "More",
 			style = MaterialTheme.typography.labelSmall,
+			color = MaterialTheme.colorScheme.onSurfaceVariant
+		)
+	}
+}
+
+@Composable
+private fun SummaryCard(totalSessions: Int, totalTrainingMinutes: Int, totalMatches: Int) {
+	val hours = totalTrainingMinutes / 60
+	val minutes = totalTrainingMinutes % 60
+	val timeText = stringResource(Res.string.analytics_hours_minutes, hours, minutes)
+
+	ContentCard {
+		Row(
+			modifier = Modifier.fillMaxWidth().padding(16.dp),
+			horizontalArrangement = Arrangement.SpaceEvenly
+		) {
+			SummaryItem(label = stringResource(Res.string.analytics_total_sessions), value = totalSessions.toString())
+			HorizontalDivider(
+				modifier = Modifier.height(48.dp).width(1.dp),
+				color = MaterialTheme.colorScheme.outlineVariant
+			)
+			SummaryItem(label = stringResource(Res.string.analytics_total_time), value = timeText)
+			HorizontalDivider(
+				modifier = Modifier.height(48.dp).width(1.dp),
+				color = MaterialTheme.colorScheme.outlineVariant
+			)
+			SummaryItem(label = stringResource(Res.string.analytics_total_matches), value = totalMatches.toString())
+		}
+	}
+}
+
+@Composable
+private fun SummaryItem(label: String, value: String) {
+	Column(horizontalAlignment = Alignment.CenterHorizontally) {
+		Text(
+			text = value,
+			style = MaterialTheme.typography.headlineSmall,
+			fontWeight = FontWeight.Bold,
+			color = MaterialTheme.colorScheme.onSurface
+		)
+		Text(
+			text = label,
+			style = MaterialTheme.typography.labelMedium,
 			color = MaterialTheme.colorScheme.onSurfaceVariant
 		)
 	}

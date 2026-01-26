@@ -74,6 +74,11 @@
     <string name="analytics_last_created">最近创建的训练：%1$s</string>
     <string name="analytics_test_notes">来自分析页面的测试训练</string>
     <string name="analytics_placeholder">您的表现分析将显示在此处</string>
+	<string name="analytics_summary">总结</string>
+	<string name="analytics_total_sessions">训练</string>
+	<string name="analytics_total_time">训练时间</string>
+	<string name="analytics_total_matches">比赛</string>
+	<string name="analytics_hours_minutes">%1$d小时%2$d分钟</string>
 
     <!-- Settings Screen -->
     <string name="profile_guest_user">访客</string>

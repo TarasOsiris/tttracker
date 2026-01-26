@@ -242,12 +242,12 @@ The project uses Compose Multiplatform resources for translations.
 
 **Supported locales:** ar, de, es, fr, hi, id, it, ja, ko, pt, tr, uk, zh-rCN
 
-**Updating missing translations:**
+**During development:**
 
-1. Compare locale file with base English file to find missing keys
-2. Add missing `<string name="key">Translation</string>` entries to the locale file
-3. Maintain the same comment sections and ordering as the base file for consistency
+- Only add strings to the base `values/strings.xml` file
+- DO NOT add translations to locale files manually during development
+- Use `/translate` command to add all missing translations at once when ready
 
 **Adding new strings:**
 1. Add the string to the base `values/strings.xml` first
-2. Add translations to all locale files in `values-{locale}/strings.xml`
+2. Run `/translate` to add translations to all locale files

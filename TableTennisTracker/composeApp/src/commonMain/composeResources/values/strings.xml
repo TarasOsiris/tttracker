@@ -77,6 +77,11 @@
     <string name="analytics_last_created">Last created session: %1$s</string>
     <string name="analytics_test_notes">Test session from AnalyticsScreen</string>
     <string name="analytics_placeholder">Your performance analytics will appear here</string>
+	<string name="analytics_summary">Summary</string>
+	<string name="analytics_total_sessions">Sessions</string>
+	<string name="analytics_total_time">Time trained</string>
+	<string name="analytics_total_matches">Matches</string>
+	<string name="analytics_hours_minutes">%1$dh %2$dm</string>
 
     <!-- Settings Screen -->
     <string name="profile_guest_user">Guest</string>

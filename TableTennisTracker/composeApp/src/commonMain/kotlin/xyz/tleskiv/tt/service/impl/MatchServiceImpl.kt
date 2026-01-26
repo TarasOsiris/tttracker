@@ -12,6 +12,7 @@ class MatchServiceImpl(
 ) : MatchService {
 
     override val allMatches: Flow<List<Match>> = repository.allMatches
+	override val totalMatchesCount: Flow<Long> = repository.totalMatchesCount
 
     override suspend fun addMatch(
         sessionId: Uuid,

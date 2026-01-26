@@ -74,6 +74,11 @@
     <string name="analytics_last_created">Ultimo allenamento creato: %1$s</string>
     <string name="analytics_test_notes">Allenamento di test da AnalyticsScreen</string>
     <string name="analytics_placeholder">Le tue analisi delle prestazioni appariranno qui</string>
+	<string name="analytics_summary">Riepilogo</string>
+	<string name="analytics_total_sessions">Allenamenti</string>
+	<string name="analytics_total_time">Tempo allenato</string>
+	<string name="analytics_total_matches">Partite</string>
+	<string name="analytics_hours_minutes">%1$do %2$dmin</string>
 
     <!-- Settings Screen -->
     <string name="profile_guest_user">Ospite</string>

@@ -74,6 +74,11 @@
     <string name="analytics_last_created">마지막으로 생성된 훈련: %1$s</string>
     <string name="analytics_test_notes">분석 화면에서의 테스트 훈련</string>
     <string name="analytics_placeholder">성능 분석이 여기에 표시됩니다</string>
+	<string name="analytics_summary">요약</string>
+	<string name="analytics_total_sessions">훈련</string>
+	<string name="analytics_total_time">훈련 시간</string>
+	<string name="analytics_total_matches">경기</string>
+	<string name="analytics_hours_minutes">%1$d시간 %2$d분</string>
 
     <!-- Settings Screen -->
     <string name="profile_guest_user">손님</string>

@@ -74,6 +74,11 @@
     <string name="analytics_last_created">अंतिम बनाया गया अभ्यास: %1$s</string>
     <string name="analytics_test_notes">विश्लेषण स्क्रीन से टेस्ट अभ्यास</string>
     <string name="analytics_placeholder">आपका प्रदर्शन विश्लेषण यहां दिखाई देगा</string>
+	<string name="analytics_summary">सारांश</string>
+	<string name="analytics_total_sessions">अभ्यास</string>
+	<string name="analytics_total_time">प्रशिक्षण समय</string>
+	<string name="analytics_total_matches">मैच</string>
+	<string name="analytics_hours_minutes">%1$dघं %2$dमि</string>
 
     <!-- Settings Screen -->
     <string name="profile_guest_user">अतिथि</string>

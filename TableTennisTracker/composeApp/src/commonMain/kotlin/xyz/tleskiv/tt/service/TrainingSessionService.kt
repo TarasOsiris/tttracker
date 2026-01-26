@@ -19,6 +19,8 @@ data class MatchInput(
 
 interface TrainingSessionService {
 	val allSessions: Flow<List<TrainingSession>>
+	val totalSessionsCount: Flow<Long>
+	val totalTrainingMinutes: Flow<Long>
 
 	suspend fun addSession(
 		dateTime: LocalDateTime,

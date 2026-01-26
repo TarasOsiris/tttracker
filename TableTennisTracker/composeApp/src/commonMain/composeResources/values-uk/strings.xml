@@ -77,6 +77,11 @@
     <string name="analytics_last_created">Останнє створене тренування: %1$s</string>
     <string name="analytics_test_notes">Тестове тренування з екрану Аналітики</string>
     <string name="analytics_placeholder">Тут з\'явиться аналітика вашої продуктивності</string>
+	<string name="analytics_summary">Підсумок</string>
+	<string name="analytics_total_sessions">Тренування</string>
+	<string name="analytics_total_time">Час тренувань</string>
+	<string name="analytics_total_matches">Матчі</string>
+	<string name="analytics_hours_minutes">%1$dг %2$dхв</string>
 
     <!-- Profile Screen -->
     <string name="profile_guest_user">Гість</string>

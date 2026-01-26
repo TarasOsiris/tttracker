@@ -222,6 +222,12 @@ WHERE id = ?;
 deleteAllSessions:
 DELETE FROM training_session;
 
+countAllSessions:
+SELECT COUNT(*) FROM training_session WHERE is_deleted = 0;
+
+sumAllSessionMinutes:
+SELECT COALESCE(SUM(duration_min), 0) FROM training_session WHERE is_deleted = 0;
+
 -- =========================
 -- OPPONENT QUERIES
 -- =========================
@@ -283,3 +289,6 @@ UPDATE match SET is_deleted = 1, updated_at = ? WHERE opponent_id = ?;
 
 deleteAllMatches:
 DELETE FROM match;
+
+countAllMatches:
+SELECT COUNT(*) FROM match WHERE is_deleted = 0;

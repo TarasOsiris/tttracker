@@ -11,4 +11,7 @@ abstract class AnalyticsScreenViewModel : ViewModelBase() {
 	abstract val totalMinutesByDate: StateFlow<Map<LocalDate, Int>>
 	abstract val sessionsListByDate: StateFlow<Map<LocalDate, List<SessionUiModel>>>
 	abstract val firstDayOfWeek: StateFlow<DayOfWeek>
+	abstract val totalSessions: StateFlow<Int>
+	abstract val totalTrainingMinutes: StateFlow<Int>
+	abstract val totalMatches: StateFlow<Int>
 }

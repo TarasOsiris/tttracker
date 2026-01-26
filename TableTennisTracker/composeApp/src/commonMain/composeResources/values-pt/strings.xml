@@ -74,6 +74,11 @@
     <string name="analytics_last_created">Última sessão criada: %1$s</string>
     <string name="analytics_test_notes">Sessão de teste da AnalyticsScreen</string>
     <string name="analytics_placeholder">Sua análise de desempenho será exibida aqui</string>
+	<string name="analytics_summary">Resumo</string>
+	<string name="analytics_total_sessions">Sessões</string>
+	<string name="analytics_total_time">Tempo treinado</string>
+	<string name="analytics_total_matches">Partidas</string>
+	<string name="analytics_hours_minutes">%1$dh %2$dmin</string>
 
     <!-- Settings Screen -->
     <string name="profile_guest_user">Convidado</string>

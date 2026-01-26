@@ -74,6 +74,11 @@
     <string name="analytics_last_created">Zuletzt erstellte Einheit: %1$s</string>
     <string name="analytics_test_notes">Testeinheit von AnalyticsScreen</string>
     <string name="analytics_placeholder">Ihre Leistungsanalyse wird hier angezeigt</string>
+	<string name="analytics_summary">Zusammenfassung</string>
+	<string name="analytics_total_sessions">Einheiten</string>
+	<string name="analytics_total_time">Trainingszeit</string>
+	<string name="analytics_total_matches">Spiele</string>
+	<string name="analytics_hours_minutes">%1$dStd %2$dMin</string>
 
     <!-- Settings Screen -->
     <string name="profile_guest_user">Gast</string>

@@ -74,6 +74,11 @@
     <string name="analytics_last_created">آخر تدريب تم إنشاؤه: %1$s</string>
     <string name="analytics_test_notes">تدريب اختباري من شاشة التحليلات</string>
     <string name="analytics_placeholder">ستظهر تحليلات أدائك هنا</string>
+	<string name="analytics_summary">ملخص</string>
+	<string name="analytics_total_sessions">التدريبات</string>
+	<string name="analytics_total_time">وقت التدريب</string>
+	<string name="analytics_total_matches">المباريات</string>
+	<string name="analytics_hours_minutes">%1$dس %2$dد</string>
 
     <!-- Settings Screen -->
     <string name="profile_guest_user">ضيف</string>

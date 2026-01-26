@@ -9,6 +9,8 @@ import kotlin.uuid.Uuid
 
 interface TrainingSessionsRepository {
 	val allSessions: Flow<List<TrainingSession>>
+	val totalSessionsCount: Flow<Long>
+	val totalTrainingMinutes: Flow<Long>
 
 	suspend fun addSession(
 		date: LocalDate,

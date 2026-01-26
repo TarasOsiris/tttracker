@@ -48,4 +48,10 @@ class FakeAnalyticsScreenViewModel : AnalyticsScreenViewModel() {
 	override val sessionsListByDate: StateFlow<Map<LocalDate, List<SessionUiModel>>> =
 		MutableStateFlow(createSessionsList())
 	override val firstDayOfWeek: StateFlow<DayOfWeek> = MutableStateFlow(DayOfWeek.MONDAY)
+	override val totalSessions: StateFlow<Int>
+		get() = MutableStateFlow(33)
+	override val totalTrainingMinutes: StateFlow<Int>
+		get() = MutableStateFlow(22)
+	override val totalMatches: StateFlow<Int>
+		get() = MutableStateFlow(55)
 }

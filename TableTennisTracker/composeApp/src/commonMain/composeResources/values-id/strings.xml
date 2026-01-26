@@ -74,6 +74,11 @@
     <string name="analytics_last_created">Latihan terakhir dibuat: %1$s</string>
     <string name="analytics_test_notes">Latihan tes dari AnalyticsScreen</string>
     <string name="analytics_placeholder">Analisis performa Anda akan muncul di sini</string>
+	<string name="analytics_summary">Ringkasan</string>
+	<string name="analytics_total_sessions">Latihan</string>
+	<string name="analytics_total_time">Waktu latihan</string>
+	<string name="analytics_total_matches">Pertandingan</string>
+	<string name="analytics_hours_minutes">%1$dj %2$dm</string>
 
     <!-- Settings Screen -->
     <string name="profile_guest_user">Tamu</string>

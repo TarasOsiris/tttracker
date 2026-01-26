@@ -74,6 +74,11 @@
     <string name="analytics_last_created">Son oluşturulan antrenman: %1$s</string>
     <string name="analytics_test_notes">AnalyticsScreen\'den test antrenmanı</string>
     <string name="analytics_placeholder">Performans analiziniz burada görünecek</string>
+	<string name="analytics_summary">Özet</string>
+	<string name="analytics_total_sessions">Antrenmanlar</string>
+	<string name="analytics_total_time">Antrenman süresi</string>
+	<string name="analytics_total_matches">Maçlar</string>
+	<string name="analytics_hours_minutes">%1$ds %2$ddk</string>
 
     <!-- Settings Screen -->
     <string name="profile_guest_user">Misafir</string>
