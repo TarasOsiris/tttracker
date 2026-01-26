@@ -234,3 +234,23 @@ If it's not possible fallback to `expect`/`actual` pattern:
     - `addSession_withAllFields_displaysSessionDetails`
     - `getSessionById_withNonExistentId_returnsNull`
     - `deleteSession_removesFromDatabase` (condition can be omitted if obvious)
+
+## Localization
+
+The project uses Compose Multiplatform resources for translations.
+
+**File locations:**
+- Base strings (English): `composeApp/src/commonMain/composeResources/values/strings.xml`
+- Localized strings: `composeApp/src/commonMain/composeResources/values-{locale}/strings.xml`
+
+**Supported locales:** ar, de, es, fr, hi, id, it, ja, ko, pt, tr, uk, zh-rCN
+
+**Updating missing translations:**
+
+1. Compare locale file with base English file to find missing keys
+2. Add missing `<string name="key">Translation</string>` entries to the locale file
+3. Maintain the same comment sections and ordering as the base file for consistency
+
+**Adding new strings:**
+1. Add the string to the base `values/strings.xml` first
+2. Add translations to all locale files in `values-{locale}/strings.xml`
