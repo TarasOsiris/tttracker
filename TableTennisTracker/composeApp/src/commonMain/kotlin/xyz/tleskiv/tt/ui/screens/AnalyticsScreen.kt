@@ -54,6 +54,7 @@ import kotlinx.datetime.yearMonth
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import tabletennistracker.composeapp.generated.resources.Res
+import tabletennistracker.composeapp.generated.resources.analytics_heatmap_title
 import tabletennistracker.composeapp.generated.resources.analytics_hours_minutes
 import tabletennistracker.composeapp.generated.resources.analytics_summary
 import tabletennistracker.composeapp.generated.resources.analytics_total_sessions
@@ -136,7 +137,7 @@ fun AnalyticsScreen(
 			)
 		}
 		Text(
-			text = "Training sessions heatmap",
+			text = stringResource(Res.string.analytics_heatmap_title),
 			style = MaterialTheme.typography.titleSmall,
 			fontWeight = FontWeight.SemiBold,
 			color = MaterialTheme.colorScheme.primary,

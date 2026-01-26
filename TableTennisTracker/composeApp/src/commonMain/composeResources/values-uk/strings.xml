@@ -76,23 +76,26 @@
     <string name="analytics_create_test_session">Створити тестове тренування</string>
     <string name="analytics_last_created">Останнє створене тренування: %1$s</string>
     <string name="analytics_test_notes">Тестове тренування з екрану Аналітики</string>
-    <string name="analytics_placeholder">Тут з\'явиться аналітика вашої продуктивності</string>
+    <string name="analytics_placeholder">Тут з'явиться аналітика вашої продуктивності</string>
 	<string name="analytics_summary">Підсумок</string>
 	<string name="analytics_total_sessions">Тренування</string>
 	<string name="analytics_total_time">Час тренувань</string>
 	<string name="analytics_total_matches">Матчі</string>
 	<string name="analytics_hours_minutes">%1$dг %2$dхв</string>
+    <string name="analytics_win_loss">Перемоги / Поразки</string>
+    <string name="analytics_win_loss_format">%1$d - %2$d</string>
+    <string name="analytics_win_rate">Відсоток перемог</string>
+    <string name="analytics_heatmap_title">Теплова карта тренувань</string>
 
     <!-- Profile Screen -->
     <string name="profile_guest_user">Гість</string>
     <string name="profile_sign_in_prompt">Увійдіть для синхронізації даних</string>
-    <string name="profile_placeholder">Тут з\'являться налаштування вашого профілю</string>
     <string name="profile_menu_privacy">Приватність</string>
     <string name="profile_menu_about">Про застосунок</string>
     <string name="profile_menu_support">Підтримка</string>
 
     <!-- Settings Screen -->
-	<string name="settings_placeholder">Тут з\'являться ваші налаштування</string>
+    <string name="settings_placeholder">Тут з'являться ваші налаштування</string>
 	<string name="settings_section_general">Загальні</string>
 	<string name="settings_section_help">Допомога</string>
 	<string name="settings_section_about">Про застосунок</string>
@@ -203,7 +206,7 @@
 	<string name="add_match">Додати матч</string>
 	<string name="edit_match">Редагувати матч</string>
 	<string name="label_opponent">Суперник</string>
-	<string name="hint_opponent_name">Введіть ім\'я суперника</string>
+    <string name="hint_opponent_name">Введіть ім'я суперника</string>
 	<string name="label_score">Рахунок</string>
 	<string name="label_me">Я</string>
 	<string name="action_increase_my_score">Збільшити мій рахунок</string>
@@ -221,6 +224,7 @@
 
 	<!-- Opponents -->
 	<string name="action_add_opponent">Додати суперника</string>
+    <string name="action_edit_opponent">Редагувати суперника</string>
 	<string name="label_opponent_name">Ім\'я</string>
 	<string name="label_opponent_club">Клуб (опціонально)</string>
 	<string name="label_opponent_rating">Рейтинг (опціонально)</string>
@@ -238,4 +242,8 @@
 	<!-- Delete Confirmation -->
 	<string name="delete_opponent_title">Видалити суперника?</string>
 	<string name="delete_opponent_message">Це також видалить усі матчі з цим суперником. Цю дію неможливо скасувати.</string>
+
+    <!-- Opponents Info -->
+    <string name="opponents_info_title">Про суперників</string>
+    <string name="opponents_info_message">Суперники, яких ви додасте тут, будуть доступні для швидкого вибору при записі матчів у ваших тренуваннях.</string>
 </resources>

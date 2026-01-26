@@ -85,6 +85,7 @@
 	<string name="analytics_win_loss">Win / Loss</string>
 	<string name="analytics_win_loss_format">%1$d - %2$d</string>
 	<string name="analytics_win_rate">Win rate</string>
+	<string name="analytics_heatmap_title">Training sessions heatmap</string>
 
     <!-- Settings Screen -->
     <string name="profile_guest_user">Guest</string>
@@ -241,4 +242,8 @@
 	<!-- Delete Confirmation -->
 	<string name="delete_opponent_title">Delete opponent?</string>
 	<string name="delete_opponent_message">This will also delete all matches with this opponent. This action cannot be undone.</string>
+
+	<!-- Opponents Info -->
+	<string name="opponents_info_title">About opponents</string>
+	<string name="opponents_info_message">Opponents you add here will be available for quick selection when recording matches in your training sessions.</string>
 </resources>

@@ -52,14 +52,19 @@ import tabletennistracker.composeapp.generated.resources.action_delete
 import tabletennistracker.composeapp.generated.resources.action_edit
 import tabletennistracker.composeapp.generated.resources.delete_opponent_message
 import tabletennistracker.composeapp.generated.resources.delete_opponent_title
+import tabletennistracker.composeapp.generated.resources.help_icon_content_description
 import tabletennistracker.composeapp.generated.resources.ic_delete
 import tabletennistracker.composeapp.generated.resources.ic_edit
+import tabletennistracker.composeapp.generated.resources.ic_help
 import tabletennistracker.composeapp.generated.resources.opponents_empty
+import tabletennistracker.composeapp.generated.resources.opponents_info_message
+import tabletennistracker.composeapp.generated.resources.opponents_info_title
 import tabletennistracker.composeapp.generated.resources.title_opponents
 import xyz.tleskiv.tt.db.Opponent
 import xyz.tleskiv.tt.ui.dialogs.AddOpponentDialog
 import xyz.tleskiv.tt.ui.dialogs.DeleteConfirmationDialog
 import xyz.tleskiv.tt.ui.dialogs.EditOpponentDialog
+import xyz.tleskiv.tt.ui.dialogs.InfoDialog
 import xyz.tleskiv.tt.ui.widgets.ContentCard
 import xyz.tleskiv.tt.viewmodel.settings.OpponentsScreenViewModel
 import kotlin.uuid.Uuid
@@ -71,8 +76,17 @@ fun OpponentsScreen(
 ) {
 	val opponents by viewModel.opponents.collectAsState()
 	var showAddDialog by rememberSaveable { mutableStateOf(false) }
+	var showInfoDialog by rememberSaveable { mutableStateOf(false) }
 	var editingOpponentId by rememberSaveable { mutableStateOf<String?>(null) }
 	var deletingOpponentId by rememberSaveable { mutableStateOf<String?>(null) }
+
+	if (showInfoDialog) {
+		InfoDialog(
+			title = Res.string.opponents_info_title,
+			message = Res.string.opponents_info_message,
+			onDismiss = { showInfoDialog = false }
+		)
+	}
 
 	if (showAddDialog) {
 		AddOpponentDialog(onDismiss = { showAddDialog = false })
@@ -103,7 +117,7 @@ fun OpponentsScreen(
 			.background(MaterialTheme.colorScheme.surface)
 	) {
 		Column(modifier = Modifier.fillMaxSize()) {
-			OpponentsTopBar(onNavigateBack = onNavigateBack)
+			OpponentsTopBar(onNavigateBack = onNavigateBack, onInfoClick = { showInfoDialog = true })
 
 			if (opponents.isEmpty()) {
 				Box(
@@ -160,7 +174,7 @@ fun OpponentsScreen(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun OpponentsTopBar(onNavigateBack: () -> Unit) {
+private fun OpponentsTopBar(onNavigateBack: () -> Unit, onInfoClick: () -> Unit) {
 	Surface(
 		color = MaterialTheme.colorScheme.surface,
 		tonalElevation = 2.dp
@@ -177,6 +191,14 @@ private fun OpponentsTopBar(onNavigateBack: () -> Unit) {
 					Icon(
 						imageVector = Icons.AutoMirrored.Filled.ArrowBack,
 						contentDescription = stringResource(Res.string.action_back)
+					)
+				}
+			},
+			actions = {
+				IconButton(onClick = onInfoClick) {
+					Icon(
+						imageVector = vectorResource(Res.drawable.ic_help),
+						contentDescription = stringResource(Res.string.help_icon_content_description)
 					)
 				}
 			},
