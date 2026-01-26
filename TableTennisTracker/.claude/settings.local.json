@@ -30,7 +30,10 @@
       "Bash(git push:*)",
       "Bash(cat:*)",
       "Bash(xargs cat:*)",
-      "WebFetch(domain:www.jetbrains.com)"
+      "WebFetch(domain:www.jetbrains.com)",
+      "Bash(for file in androidApp/src/main/kotlin/xyz/tleskiv/tt/previews/screens/*Preview.kt)",
+      "Bash(do sed -i '' 's/^package xyz.tleskiv.tt.previews$/package xyz.tleskiv.tt.previews.screens/' \"$file\")",
+      "Bash(done)"
     ]
   }
 }

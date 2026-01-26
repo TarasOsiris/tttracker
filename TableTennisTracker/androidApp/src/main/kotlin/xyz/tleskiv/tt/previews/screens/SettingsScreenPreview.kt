@@ -1,4 +1,4 @@
-package xyz.tleskiv.tt.previews
+package xyz.tleskiv.tt.previews.screens
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview

@@ -1,0 +1,66 @@
+package xyz.tleskiv.tt.previews.widgets.fields
+
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import xyz.tleskiv.tt.data.model.enums.CompetitionLevel
+import xyz.tleskiv.tt.ui.theme.AppTheme
+import xyz.tleskiv.tt.ui.widgets.fields.MatchesField
+import xyz.tleskiv.tt.viewmodel.sessions.PendingMatch
+import kotlin.uuid.ExperimentalUuidApi
+
+@OptIn(ExperimentalUuidApi::class)
+@Preview(showBackground = true)
+@Composable
+fun MatchesFieldPreview() {
+	val matches = listOf(
+		PendingMatch(
+			id = "1",
+			opponentName = "Zhang Wei",
+			opponentId = null,
+			myGamesWon = 3,
+			opponentGamesWon = 1,
+			isDoubles = false,
+			isRanked = true,
+			competitionLevel = CompetitionLevel.LEAGUE
+		),
+		PendingMatch(
+			id = "2",
+			opponentName = "Maria Schmidt",
+			opponentId = null,
+			myGamesWon = 1,
+			opponentGamesWon = 3,
+			isDoubles = false,
+			isRanked = true,
+			competitionLevel = CompetitionLevel.TOURNAMENT
+		)
+	)
+	AppTheme {
+		Column(modifier = Modifier.padding(16.dp)) {
+			MatchesField(
+				matches = matches,
+				onAddMatch = {},
+				onEditMatch = {},
+				onDeleteMatch = {}
+			)
+		}
+	}
+}
+
+@Preview(showBackground = true)
+@Composable
+fun MatchesFieldEmptyPreview() {
+	AppTheme {
+		Column(modifier = Modifier.padding(16.dp)) {
+			MatchesField(
+				matches = emptyList(),
+				onAddMatch = {},
+				onEditMatch = {},
+				onDeleteMatch = {}
+			)
+		}
+	}
+}

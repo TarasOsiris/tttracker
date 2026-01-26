@@ -82,9 +82,13 @@ android {
 
 dependencies {
 	implementation(projects.composeApp)
+	implementation(projects.shared)
 	implementation(libs.compose.components.resources)
 	implementation(libs.compose.ui.tooling.preview)
+	implementation(libs.compose.foundation)
+	implementation(libs.compose.material3)
 	implementation(libs.androidx.activity.compose)
+	implementation(libs.calendar.compose.multiplatform)
 
 	// Koin DI
 	implementation(platform(libs.koin.bom))
