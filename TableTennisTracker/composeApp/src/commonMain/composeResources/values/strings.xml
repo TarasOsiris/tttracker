@@ -82,6 +82,9 @@
 	<string name="analytics_total_time">Time trained</string>
 	<string name="analytics_total_matches">Matches</string>
 	<string name="analytics_hours_minutes">%1$dh %2$dm</string>
+	<string name="analytics_win_loss">Win / Loss</string>
+	<string name="analytics_win_loss_format">%1$d - %2$d</string>
+	<string name="analytics_win_rate">Win rate</string>
 
     <!-- Settings Screen -->
     <string name="profile_guest_user">Guest</string>

@@ -2,7 +2,6 @@ package xyz.tleskiv.tt.repo.impl
 
 import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToList
-import app.cash.sqldelight.coroutines.mapToOne
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
@@ -20,9 +19,6 @@ class MatchRepositoryImpl(
 
     override val allMatches: Flow<List<Match>> =
         database.appDatabaseQueries.selectAllMatches().asFlow().mapToList(ioDispatcher)
-
-	override val totalMatchesCount: Flow<Long> =
-		database.appDatabaseQueries.countAllMatches().asFlow().mapToOne(ioDispatcher)
 
     override suspend fun addMatch(
         sessionId: Uuid,

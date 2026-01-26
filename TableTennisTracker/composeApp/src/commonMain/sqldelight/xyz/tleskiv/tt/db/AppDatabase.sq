@@ -222,11 +222,13 @@ WHERE id = ?;
 deleteAllSessions:
 DELETE FROM training_session;
 
-countAllSessions:
-SELECT COUNT(*) FROM training_session WHERE is_deleted = 0;
-
-sumAllSessionMinutes:
-SELECT COALESCE(SUM(duration_min), 0) FROM training_session WHERE is_deleted = 0;
+getAnalyticsSummary:
+SELECT
+    (SELECT COUNT(*) FROM training_session WHERE is_deleted = 0) AS total_sessions,
+    (SELECT COALESCE(SUM(duration_min), 0) FROM training_session WHERE is_deleted = 0) AS total_minutes,
+    (SELECT COUNT(*) FROM match WHERE is_deleted = 0) AS total_matches,
+    (SELECT COUNT(*) FROM match WHERE is_deleted = 0 AND my_games_won > opponent_games_won) AS matches_won,
+    (SELECT COUNT(*) FROM match WHERE is_deleted = 0 AND my_games_won < opponent_games_won) AS matches_lost;
 
 -- =========================
 -- OPPONENT QUERIES
@@ -289,6 +291,3 @@ UPDATE match SET is_deleted = 1, updated_at = ? WHERE opponent_id = ?;
 
 deleteAllMatches:
 DELETE FROM match;
-
-countAllMatches:
-SELECT COUNT(*) FROM match WHERE is_deleted = 0;

@@ -14,8 +14,6 @@ class TrainingSessionServiceImpl(
 ) : TrainingSessionService {
 
 	override val allSessions: Flow<List<TrainingSession>> = repository.allSessions
-	override val totalSessionsCount: Flow<Long> = repository.totalSessionsCount
-	override val totalTrainingMinutes: Flow<Long> = repository.totalTrainingMinutes
 
 	override suspend fun addSession(
 		dateTime: LocalDateTime,

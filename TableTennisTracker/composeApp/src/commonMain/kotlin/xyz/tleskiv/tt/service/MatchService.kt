@@ -7,7 +7,6 @@ import kotlin.uuid.Uuid
 
 interface MatchService {
     val allMatches: Flow<List<Match>>
-	val totalMatchesCount: Flow<Long>
 
     suspend fun addMatch(
         sessionId: Uuid,

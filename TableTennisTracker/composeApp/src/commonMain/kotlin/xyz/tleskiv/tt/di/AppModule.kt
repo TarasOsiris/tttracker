@@ -8,11 +8,13 @@ import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
 import org.koin.mp.KoinPlatform.getKoin
 import xyz.tleskiv.tt.di.components.NativeInfoProvider
+import xyz.tleskiv.tt.repo.AnalyticsRepository
 import xyz.tleskiv.tt.repo.MatchRepository
 import xyz.tleskiv.tt.repo.MetadataRepository
 import xyz.tleskiv.tt.repo.OpponentRepository
 import xyz.tleskiv.tt.repo.TrainingSessionsRepository
 import xyz.tleskiv.tt.repo.UserPreferencesRepository
+import xyz.tleskiv.tt.repo.impl.AnalyticsRepositoryImpl
 import xyz.tleskiv.tt.repo.impl.MatchRepositoryImpl
 import xyz.tleskiv.tt.repo.impl.MetadataRepositoryImpl
 import xyz.tleskiv.tt.repo.impl.OpponentRepositoryImpl
@@ -37,6 +39,9 @@ val appModule = module {
 	}
 	single<MatchRepository> {
 		MatchRepositoryImpl(get(), get(named(DispatcherQualifiers.IO)))
+	}
+	single<AnalyticsRepository> {
+		AnalyticsRepositoryImpl(get(), get(named(DispatcherQualifiers.IO)))
 	}
 }
 

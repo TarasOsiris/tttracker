@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
@@ -34,7 +33,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -58,9 +56,10 @@ import org.koin.compose.viewmodel.koinViewModel
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.analytics_hours_minutes
 import tabletennistracker.composeapp.generated.resources.analytics_summary
-import tabletennistracker.composeapp.generated.resources.analytics_total_matches
 import tabletennistracker.composeapp.generated.resources.analytics_total_sessions
 import tabletennistracker.composeapp.generated.resources.analytics_total_time
+import tabletennistracker.composeapp.generated.resources.analytics_win_loss
+import tabletennistracker.composeapp.generated.resources.analytics_win_rate
 import xyz.tleskiv.tt.ui.bottomsheets.DaySessionsBottomSheet
 import xyz.tleskiv.tt.ui.widgets.ContentCard
 import xyz.tleskiv.tt.util.ext.displayText
@@ -68,6 +67,7 @@ import xyz.tleskiv.tt.util.ext.shortDisplayText
 import xyz.tleskiv.tt.util.ui.HeatMapLevel
 import xyz.tleskiv.tt.util.ui.toColor
 import xyz.tleskiv.tt.viewmodel.analytics.AnalyticsScreenViewModel
+import xyz.tleskiv.tt.viewmodel.analytics.SummaryStats
 
 @Composable
 fun AnalyticsScreen(
@@ -77,9 +77,7 @@ fun AnalyticsScreen(
 	val sessionsByDate by viewModel.sessionsByDate.collectAsState()
 	val sessionsListByDate by viewModel.sessionsListByDate.collectAsState()
 	val firstDayOfWeek by viewModel.firstDayOfWeek.collectAsState()
-	val totalSessions by viewModel.totalSessions.collectAsState()
-	val totalTrainingMinutes by viewModel.totalTrainingMinutes.collectAsState()
-	val totalMatches by viewModel.totalMatches.collectAsState()
+	val summaryStats by viewModel.summaryStats.collectAsState()
 	val endDate = remember(sessionsByDate) {
 		sessionsByDate.keys.maxOrNull() ?: LocalDate.now()
 	}
@@ -126,11 +124,7 @@ fun AnalyticsScreen(
 			color = MaterialTheme.colorScheme.primary,
 			modifier = Modifier.padding(start = 4.dp, bottom = 8.dp)
 		)
-		SummaryCard(
-			totalSessions = totalSessions,
-			totalTrainingMinutes = totalTrainingMinutes,
-			totalMatches = totalMatches
-		)
+		SummaryCard(summaryStats)
 		Spacer(modifier = Modifier.height(24.dp))
 		// Key on firstDayOfWeek to recreate calendar state when the setting changes
 		val state = key(firstDayOfWeek) {
@@ -335,43 +329,93 @@ private fun HeatMapLegend(modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun SummaryCard(totalSessions: Int, totalTrainingMinutes: Int, totalMatches: Int) {
-	val hours = totalTrainingMinutes / 60
-	val minutes = totalTrainingMinutes % 60
+private fun SummaryCard(stats: SummaryStats) {
+	val hours = stats.totalTrainingMinutes / 60
+	val minutes = stats.totalTrainingMinutes % 60
 	val timeText = stringResource(Res.string.analytics_hours_minutes, hours, minutes)
+	val totalMatches = stats.matchesWon + stats.matchesLost
+	val winRate = if (totalMatches > 0) (stats.matchesWon * 100) / totalMatches else 0
+	val winRateColor = when {
+		totalMatches == 0 -> MaterialTheme.colorScheme.onSurfaceVariant
+		winRate >= 60 -> Color(0xFF4CAF50)
+		winRate >= 40 -> MaterialTheme.colorScheme.onSurface
+		else -> Color(0xFFE53935)
+	}
 
 	ContentCard {
-		Row(
-			modifier = Modifier.fillMaxWidth().padding(16.dp),
-			horizontalArrangement = Arrangement.SpaceEvenly
-		) {
-			SummaryItem(label = stringResource(Res.string.analytics_total_sessions), value = totalSessions.toString())
-			HorizontalDivider(
-				modifier = Modifier.height(48.dp).width(1.dp),
-				color = MaterialTheme.colorScheme.outlineVariant
-			)
-			SummaryItem(label = stringResource(Res.string.analytics_total_time), value = timeText)
-			HorizontalDivider(
-				modifier = Modifier.height(48.dp).width(1.dp),
-				color = MaterialTheme.colorScheme.outlineVariant
-			)
-			SummaryItem(label = stringResource(Res.string.analytics_total_matches), value = totalMatches.toString())
+		Column(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
+			Row(
+				modifier = Modifier.fillMaxWidth(),
+				horizontalArrangement = Arrangement.SpaceBetween
+			) {
+				StatBox(
+					modifier = Modifier.weight(1f),
+					emoji = "🏓",
+					value = stats.totalSessions.toString(),
+					label = stringResource(Res.string.analytics_total_sessions)
+				)
+				Spacer(modifier = Modifier.width(12.dp))
+				StatBox(
+					modifier = Modifier.weight(1f),
+					emoji = "⏱️",
+					value = timeText,
+					label = stringResource(Res.string.analytics_total_time)
+				)
+			}
+			Spacer(modifier = Modifier.height(12.dp))
+			Row(
+				modifier = Modifier.fillMaxWidth(),
+				horizontalArrangement = Arrangement.SpaceBetween
+			) {
+				StatBox(
+					modifier = Modifier.weight(1f),
+					emoji = "🏆",
+					value = "${stats.matchesWon}W - ${stats.matchesLost}L",
+					label = stringResource(Res.string.analytics_win_loss)
+				)
+				Spacer(modifier = Modifier.width(12.dp))
+				StatBox(
+					modifier = Modifier.weight(1f),
+					emoji = "📈",
+					value = "$winRate%",
+					label = stringResource(Res.string.analytics_win_rate),
+					valueColor = winRateColor
+				)
+			}
 		}
 	}
 }
 
 @Composable
-private fun SummaryItem(label: String, value: String) {
-	Column(horizontalAlignment = Alignment.CenterHorizontally) {
+private fun StatBox(
+	modifier: Modifier = Modifier,
+	emoji: String,
+	value: String,
+	label: String,
+	valueColor: Color = MaterialTheme.colorScheme.onSurface
+) {
+	Column(
+		modifier = modifier
+			.clip(MaterialTheme.shapes.small)
+			.background(MaterialTheme.colorScheme.surfaceContainerHigh)
+			.padding(12.dp),
+		horizontalAlignment = Alignment.CenterHorizontally
+	) {
+		Text(
+			text = emoji,
+			style = MaterialTheme.typography.titleMedium
+		)
+		Spacer(modifier = Modifier.height(4.dp))
 		Text(
 			text = value,
-			style = MaterialTheme.typography.headlineSmall,
+			style = MaterialTheme.typography.titleLarge,
 			fontWeight = FontWeight.Bold,
-			color = MaterialTheme.colorScheme.onSurface
+			color = valueColor
 		)
+		Spacer(modifier = Modifier.height(2.dp))
 		Text(
 			text = label,
-			style = MaterialTheme.typography.labelMedium,
+			style = MaterialTheme.typography.labelSmall,
 			color = MaterialTheme.colorScheme.onSurfaceVariant
 		)
 	}

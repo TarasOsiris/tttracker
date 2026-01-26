@@ -2,7 +2,6 @@ package xyz.tleskiv.tt.repo.impl
 
 import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToList
-import app.cash.sqldelight.coroutines.mapToOne
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -27,12 +26,6 @@ class TrainingSessionsRepositoryImpl(
 		database.appDatabaseQueries.selectAllSessionsWithMatches().asFlow().mapToList(ioDispatcher).map { rows ->
 			rows.toTrainingSessions()
 		}
-
-	override val totalSessionsCount: Flow<Long> =
-		database.appDatabaseQueries.countAllSessions().asFlow().mapToOne(ioDispatcher)
-
-	override val totalTrainingMinutes: Flow<Long> =
-		database.appDatabaseQueries.sumAllSessionMinutes().asFlow().mapToOne(ioDispatcher)
 
 	override suspend fun addSession(
 		date: LocalDate,
