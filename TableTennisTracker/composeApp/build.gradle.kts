@@ -11,13 +11,6 @@ plugins {
 	alias(libs.plugins.sentryKmp)
 }
 
-// Task to copy compose resources with proper package prefix for Android
-val copyComposeResourcesToAndroidResources by tasks.registering(Copy::class) {
-	dependsOn("prepareComposeResourcesTaskForCommonMain")
-	from("build/generated/compose/resourceGenerator/preparedResources/commonMain/composeResources")
-	into("build/generatedComposeResources/composeResources/tabletennistracker.composeapp.generated.resources")
-}
-
 sqldelight {
 	databases {
 		create("AppDatabase") {
@@ -41,6 +34,11 @@ kotlin {
 		namespace = "xyz.tleskiv.tt.compose"
 		compileSdk = libs.versions.android.compileSdk.get().toInt()
 		minSdk = libs.versions.android.minSdk.get().toInt()
+
+		// Enable Android resource processing for Compose resources
+		androidResources {
+			enable = true
+		}
 	}
 
 	iosArm64()
@@ -71,7 +69,6 @@ kotlin {
 
 	sourceSets {
 		androidMain {
-			resources.srcDirs("build/generatedComposeResources")
 			dependencies {
 				implementation(libs.compose.ui.tooling)
 				implementation(libs.androidx.activity.compose)
@@ -148,9 +145,4 @@ composeCompiler {
 compose.resources {
 	publicResClass = true
 	generateResClass = always
-}
-
-// Ensure compose resources are copied before Android resource processing
-tasks.matching { it.name == "processAndroidMainJavaRes" }.configureEach {
-	dependsOn(copyComposeResourcesToAndroidResources)
 }

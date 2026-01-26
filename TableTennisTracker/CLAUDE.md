@@ -56,9 +56,6 @@ Shared Compose UI for Android, iOS, and Desktop. This is a **multiplatform libra
     - iOS: `composeApp/src/iosMain/kotlin/xyz/tleskiv/tt/MainViewController.kt`
     - Android: Via `androidApp` module's MainActivity
 
-**Important:** Android resource handling requires special build task `copyComposeResourcesToAndroidResources` that
-prefixes resources with `tabletennistracker.composeapp.generated.resources`.
-
 #### composeApp Architecture
 
 **Pattern:** MVVM + Clean Architecture with layered separation:
