@@ -174,4 +174,8 @@
     <string name="duration_hours_full">%1$d jam</string>
     <string name="duration_hours_plural_full">%1$d jam</string>
     <string name="duration_hm_short">%1$dj %2$dmnt</string>
+
+	<!-- Delete Confirmation -->
+	<string name="delete_opponent_title">Hapus lawan?</string>
+	<string name="delete_opponent_message">Ini juga akan menghapus semua pertandingan dengan lawan ini. Tindakan ini tidak dapat dibatalkan.</string>
 </resources>

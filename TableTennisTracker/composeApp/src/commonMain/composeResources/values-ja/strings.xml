@@ -174,4 +174,8 @@
     <string name="duration_hours_full">%1$d時間</string>
     <string name="duration_hours_plural_full">%1$d時間</string>
     <string name="duration_hm_short">%1$d時間%2$d分</string>
+
+	<!-- Delete Confirmation -->
+	<string name="delete_opponent_title">対戦相手を削除しますか？</string>
+	<string name="delete_opponent_message">この対戦相手との全ての試合も削除されます。この操作は元に戻せません。</string>
 </resources>

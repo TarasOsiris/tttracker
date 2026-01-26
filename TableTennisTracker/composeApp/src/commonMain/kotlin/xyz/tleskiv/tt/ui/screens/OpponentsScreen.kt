@@ -50,12 +50,15 @@ import tabletennistracker.composeapp.generated.resources.action_add_opponent
 import tabletennistracker.composeapp.generated.resources.action_back
 import tabletennistracker.composeapp.generated.resources.action_delete
 import tabletennistracker.composeapp.generated.resources.action_edit
+import tabletennistracker.composeapp.generated.resources.delete_opponent_message
+import tabletennistracker.composeapp.generated.resources.delete_opponent_title
 import tabletennistracker.composeapp.generated.resources.ic_delete
 import tabletennistracker.composeapp.generated.resources.ic_edit
 import tabletennistracker.composeapp.generated.resources.opponents_empty
 import tabletennistracker.composeapp.generated.resources.title_opponents
 import xyz.tleskiv.tt.db.Opponent
 import xyz.tleskiv.tt.ui.dialogs.AddOpponentDialog
+import xyz.tleskiv.tt.ui.dialogs.DeleteConfirmationDialog
 import xyz.tleskiv.tt.ui.dialogs.EditOpponentDialog
 import xyz.tleskiv.tt.ui.widgets.ContentCard
 import xyz.tleskiv.tt.viewmodel.settings.OpponentsScreenViewModel
@@ -69,6 +72,7 @@ fun OpponentsScreen(
 	val opponents by viewModel.opponents.collectAsState()
 	var showAddDialog by rememberSaveable { mutableStateOf(false) }
 	var editingOpponentId by rememberSaveable { mutableStateOf<String?>(null) }
+	var deletingOpponentId by rememberSaveable { mutableStateOf<String?>(null) }
 
 	if (showAddDialog) {
 		AddOpponentDialog(onDismiss = { showAddDialog = false })
@@ -78,6 +82,18 @@ fun OpponentsScreen(
 		EditOpponentDialog(
 			opponentId = Uuid.parse(idString),
 			onDismiss = { editingOpponentId = null }
+		)
+	}
+
+	deletingOpponentId?.let { idString ->
+		DeleteConfirmationDialog(
+			title = Res.string.delete_opponent_title,
+			message = Res.string.delete_opponent_message,
+			onConfirm = {
+				viewModel.deleteOpponent(Uuid.parse(idString))
+				deletingOpponentId = null
+			},
+			onDismiss = { deletingOpponentId = null }
 		)
 	}
 
@@ -118,7 +134,7 @@ fun OpponentsScreen(
 						OpponentCard(
 							opponent = opponent,
 							onEdit = { editingOpponentId = it.toString() },
-							onDelete = { /* TODO: implement */ }
+							onDelete = { deletingOpponentId = it.toString() }
 						)
 					}
 				}

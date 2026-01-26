@@ -174,4 +174,8 @@
     <string name="duration_hours_full">%1$d시간</string>
     <string name="duration_hours_plural_full">%1$d시간</string>
     <string name="duration_hm_short">%1$d시간 %2$d분</string>
+
+	<!-- Delete Confirmation -->
+	<string name="delete_opponent_title">상대방을 삭제하시겠습니까?</string>
+	<string name="delete_opponent_message">이 상대방과의 모든 경기도 삭제됩니다. 이 작업은 되돌릴 수 없습니다.</string>
 </resources>

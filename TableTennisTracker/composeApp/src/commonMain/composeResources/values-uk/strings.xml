@@ -229,4 +229,8 @@
 	<string name="style_all_round">Універсал</string>
 	<string name="style_pips">Шипи</string>
 	<string name="style_chopper">Чопер</string>
+
+	<!-- Delete Confirmation -->
+	<string name="delete_opponent_title">Видалити суперника?</string>
+	<string name="delete_opponent_message">Це також видалить усі матчі з цим суперником. Цю дію неможливо скасувати.</string>
 </resources>

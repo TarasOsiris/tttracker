@@ -229,4 +229,8 @@
     <string name="style_all_round">All-round</string>
     <string name="style_pips">Pips</string>
     <string name="style_chopper">Chopper</string>
+
+	<!-- Delete Confirmation -->
+	<string name="delete_opponent_title">Delete opponent?</string>
+	<string name="delete_opponent_message">This will also delete all matches with this opponent. This action cannot be undone.</string>
 </resources>

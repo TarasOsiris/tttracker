@@ -174,4 +174,8 @@
     <string name="duration_hours_full">%1$d ساعة</string>
     <string name="duration_hours_plural_full">%1$d ساعات</string>
     <string name="duration_hm_short">%1$dس %2$dد</string>
+
+	<!-- Delete Confirmation -->
+	<string name="delete_opponent_title">حذف الخصم؟</string>
+	<string name="delete_opponent_message">سيؤدي هذا أيضًا إلى حذف جميع المباريات مع هذا الخصم. لا يمكن التراجع عن هذا الإجراء.</string>
 </resources>

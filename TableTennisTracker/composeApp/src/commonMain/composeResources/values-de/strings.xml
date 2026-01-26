@@ -174,4 +174,8 @@
     <string name="duration_hours_full">%1$d Stunde</string>
     <string name="duration_hours_plural_full">%1$d Stunden</string>
     <string name="duration_hm_short">%1$dh %2$dmin</string>
+
+	<!-- Delete Confirmation -->
+	<string name="delete_opponent_title">Gegner löschen?</string>
+	<string name="delete_opponent_message">Dadurch werden auch alle Spiele mit diesem Gegner gelöscht. Diese Aktion kann nicht rückgängig gemacht werden.</string>
 </resources>

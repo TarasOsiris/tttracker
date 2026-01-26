@@ -14,6 +14,8 @@ class FakeOpponentsScreenViewModel(
 ) : OpponentsScreenViewModel() {
 	override val opponents: StateFlow<List<Opponent>> = MutableStateFlow(opponents)
 
+	override fun deleteOpponent(id: Uuid) {}
+
 	companion object {
 		private val now = Instant.fromEpochMilliseconds(1706300000000)
 		private val names = listOf("Zhang Wei", "Maria Schmidt", "Kenji Tanaka", "Alex Johnson", "Li Na")
