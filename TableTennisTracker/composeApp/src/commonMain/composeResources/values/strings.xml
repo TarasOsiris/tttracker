@@ -101,6 +101,8 @@
     <string name="settings_default_duration_description">Initial duration when creating new sessions</string>
     <string name="action_theme">Theme</string>
     <string name="theme_select_title">Select theme</string>
+	<string name="action_language">Language</string>
+	<string name="language_select_title">Select language</string>
     <string name="theme_system">System default</string>
     <string name="theme_light">Light</string>
     <string name="theme_dark">Dark</string>

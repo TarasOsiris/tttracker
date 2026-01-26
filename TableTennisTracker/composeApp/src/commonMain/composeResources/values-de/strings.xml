@@ -97,6 +97,8 @@
     <string name="settings_default_duration_description">Anfängliche Dauer beim Erstellen neuer Einheiten</string>
     <string name="action_theme">Design</string>
     <string name="theme_select_title">Design auswählen</string>
+	<string name="action_language">Sprache</string>
+	<string name="language_select_title">Sprache auswählen</string>
     <string name="theme_system">Systemstandard</string>
     <string name="theme_light">Hell</string>
     <string name="theme_dark">Dunkel</string>

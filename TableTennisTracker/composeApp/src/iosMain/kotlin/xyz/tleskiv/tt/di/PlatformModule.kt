@@ -9,7 +9,9 @@ import xyz.tleskiv.tt.di.components.ClipboardManager
 import xyz.tleskiv.tt.di.components.ExternalAppLauncher
 import xyz.tleskiv.tt.di.components.IosClipboardManager
 import xyz.tleskiv.tt.di.components.IosExternalAppLauncher
+import xyz.tleskiv.tt.di.components.IosLocaleApplier
 import xyz.tleskiv.tt.di.components.IosNativeInfoProvider
+import xyz.tleskiv.tt.di.components.LocaleApplier
 import xyz.tleskiv.tt.di.components.NativeInfoProvider
 
 val platformModule = module {
@@ -19,4 +21,5 @@ val platformModule = module {
 	single<NativeInfoProvider> { IosNativeInfoProvider() }
 	single<ExternalAppLauncher> { IosExternalAppLauncher() }
 	single<ClipboardManager> { IosClipboardManager() }
+	single<LocaleApplier> { IosLocaleApplier() }
 }

@@ -9,8 +9,11 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -18,6 +21,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.outlined.KeyboardArrowRight
 import androidx.compose.material.icons.outlined.BrightnessMedium
 import androidx.compose.material.icons.outlined.CalendarMonth
+import androidx.compose.material.icons.outlined.Language
 import androidx.compose.material3.BasicAlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
@@ -46,10 +50,12 @@ import org.koin.compose.viewmodel.koinViewModel
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.action_back
 import tabletennistracker.composeapp.generated.resources.action_cancel
+import tabletennistracker.composeapp.generated.resources.action_language
 import tabletennistracker.composeapp.generated.resources.action_theme
 import tabletennistracker.composeapp.generated.resources.action_ui_settings
 import tabletennistracker.composeapp.generated.resources.action_week_start
 import tabletennistracker.composeapp.generated.resources.label_default_notes
+import tabletennistracker.composeapp.generated.resources.language_select_title
 import tabletennistracker.composeapp.generated.resources.settings_highlight_current_day
 import tabletennistracker.composeapp.generated.resources.settings_section_appearance
 import tabletennistracker.composeapp.generated.resources.settings_section_calendar
@@ -62,6 +68,7 @@ import tabletennistracker.composeapp.generated.resources.week_start_monday
 import tabletennistracker.composeapp.generated.resources.week_start_saturday
 import tabletennistracker.composeapp.generated.resources.week_start_select_title
 import tabletennistracker.composeapp.generated.resources.week_start_sunday
+import xyz.tleskiv.tt.model.AppLocale
 import xyz.tleskiv.tt.model.AppThemeMode
 import xyz.tleskiv.tt.model.WeekStartDay
 import xyz.tleskiv.tt.ui.widgets.ContentCard
@@ -83,8 +90,10 @@ fun GeneralSettingsScreen(
 	val themeMode by viewModel.themeMode.collectAsState()
 	val weekStartDay by viewModel.weekStartDay.collectAsState()
 	val highlightCurrentDay by viewModel.highlightCurrentDay.collectAsState()
+	val appLocale by viewModel.appLocale.collectAsState()
 	var showThemeDialog by rememberSaveable { mutableStateOf(false) }
 	var showWeekStartDialog by rememberSaveable { mutableStateOf(false) }
+	var showLanguageDialog by rememberSaveable { mutableStateOf(false) }
 
 	if (showThemeDialog) {
 		ThemeSelectionDialog(
@@ -108,6 +117,17 @@ fun GeneralSettingsScreen(
 		)
 	}
 
+	if (showLanguageDialog) {
+		LanguageSelectionDialog(
+			currentLocale = appLocale,
+			onDismissRequest = { showLanguageDialog = false },
+			onLocaleSelected = { locale ->
+				viewModel.setAppLocale(locale)
+				showLanguageDialog = false
+			}
+		)
+	}
+
 	Column(
 		modifier = Modifier
 			.fillMaxSize()
@@ -125,10 +145,17 @@ fun GeneralSettingsScreen(
 			SettingsSectionHeader(stringResource(Res.string.settings_section_appearance))
 			Spacer(modifier = Modifier.height(8.dp))
 			ContentCard {
-				ThemeRow(
-					currentMode = themeMode,
-					onClick = { showThemeDialog = true }
-				)
+				Column {
+					ThemeRow(
+						currentMode = themeMode,
+						onClick = { showThemeDialog = true }
+					)
+					HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
+					LanguageRow(
+						currentLocale = appLocale,
+						onClick = { showLanguageDialog = true }
+					)
+				}
 			}
 
 			Spacer(modifier = Modifier.height(24.dp))
@@ -440,6 +467,98 @@ private fun WeekStartSelectionDialog(
 							style = MaterialTheme.typography.bodyLarge,
 							color = MaterialTheme.colorScheme.onSurface
 						)
+					}
+				}
+
+				Spacer(modifier = Modifier.height(24.dp))
+
+				Row(
+					modifier = Modifier.fillMaxWidth(),
+					horizontalArrangement = Arrangement.End
+				) {
+					TextButton(onClick = onDismissRequest) {
+						Text(stringResource(Res.string.action_cancel))
+					}
+				}
+			}
+		}
+	}
+}
+
+@Composable
+private fun LanguageRow(currentLocale: AppLocale, onClick: () -> Unit) {
+	Surface(
+		modifier = Modifier.fillMaxWidth().clickable(onClick = onClick),
+		color = MaterialTheme.colorScheme.surfaceContainerLow
+	) {
+		Row(
+			modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 14.dp),
+			verticalAlignment = Alignment.CenterVertically
+		) {
+			Icon(
+				imageVector = Icons.Outlined.Language,
+				contentDescription = null,
+				tint = MaterialTheme.colorScheme.onSurfaceVariant
+			)
+			Spacer(modifier = Modifier.width(16.dp))
+			Column(modifier = Modifier.weight(1f)) {
+				Text(
+					text = stringResource(Res.string.action_language),
+					style = MaterialTheme.typography.bodyLarge,
+					color = MaterialTheme.colorScheme.onSurface
+				)
+				Text(
+					text = currentLocale.displayName,
+					style = MaterialTheme.typography.bodySmall,
+					color = MaterialTheme.colorScheme.onSurfaceVariant
+				)
+			}
+			Icon(
+				imageVector = Icons.AutoMirrored.Outlined.KeyboardArrowRight,
+				contentDescription = null,
+				tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
+			)
+		}
+	}
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun LanguageSelectionDialog(
+	currentLocale: AppLocale,
+	onDismissRequest: () -> Unit,
+	onLocaleSelected: (AppLocale) -> Unit
+) {
+	BasicAlertDialog(onDismissRequest = onDismissRequest) {
+		Surface(
+			shape = MaterialTheme.shapes.large,
+			color = MaterialTheme.colorScheme.surfaceContainerHigh
+		) {
+			Column(modifier = Modifier.padding(24.dp)) {
+				Text(
+					text = stringResource(Res.string.language_select_title),
+					style = MaterialTheme.typography.headlineSmall,
+					color = MaterialTheme.colorScheme.onSurface
+				)
+				Spacer(modifier = Modifier.height(16.dp))
+
+				LazyColumn(modifier = Modifier.heightIn(max = 400.dp)) {
+					items(AppLocale.entries) { locale ->
+						Row(
+							modifier = Modifier
+								.fillMaxWidth()
+								.clickable { onLocaleSelected(locale) }
+								.padding(vertical = 8.dp),
+							verticalAlignment = Alignment.CenterVertically
+						) {
+							RadioButton(selected = locale == currentLocale, onClick = null)
+							Spacer(modifier = Modifier.width(8.dp))
+							Text(
+								text = locale.displayName,
+								style = MaterialTheme.typography.bodyLarge,
+								color = MaterialTheme.colorScheme.onSurface
+							)
+						}
 					}
 				}
 

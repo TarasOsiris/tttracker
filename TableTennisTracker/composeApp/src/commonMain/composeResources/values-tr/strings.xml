@@ -97,6 +97,8 @@
     <string name="settings_default_duration_description">Yeni antrenman oluştururken başlangıç süresi</string>
     <string name="action_theme">Tema</string>
     <string name="theme_select_title">Tema seç</string>
+	<string name="action_language">Dil</string>
+	<string name="language_select_title">Dil seç</string>
     <string name="theme_system">Sistem varsayılanı</string>
     <string name="theme_light">Açık</string>
     <string name="theme_dark">Koyu</string>

@@ -97,6 +97,8 @@
     <string name="settings_default_duration_description">Durata iniziale durante la creazione di nuovi allenamenti</string>
     <string name="action_theme">Tema</string>
     <string name="theme_select_title">Seleziona tema</string>
+	<string name="action_language">Lingua</string>
+	<string name="language_select_title">Seleziona lingua</string>
     <string name="theme_system">Predefinito del sistema</string>
     <string name="theme_light">Chiaro</string>
     <string name="theme_dark">Scuro</string>

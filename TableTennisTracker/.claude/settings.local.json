@@ -29,7 +29,8 @@
       "Bash(open:*)",
       "Bash(git push:*)",
       "Bash(cat:*)",
-      "Bash(xargs cat:*)"
+      "Bash(xargs cat:*)",
+      "WebFetch(domain:www.jetbrains.com)"
     ]
   }
 }

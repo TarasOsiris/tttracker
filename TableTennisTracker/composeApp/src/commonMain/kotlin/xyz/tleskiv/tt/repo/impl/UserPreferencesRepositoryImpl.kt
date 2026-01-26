@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import xyz.tleskiv.tt.db.AppDatabase
 import xyz.tleskiv.tt.db.User_preferences
+import xyz.tleskiv.tt.model.AppLocale
 import xyz.tleskiv.tt.model.AppThemeMode
 import xyz.tleskiv.tt.model.WeekStartDay
 import xyz.tleskiv.tt.repo.UserPreferencesRepository
@@ -22,6 +23,7 @@ class UserPreferencesRepositoryImpl(
 	private val KEY_APP_THEME = "app_theme"
 	private val KEY_WEEK_START_DAY = "week_start_day"
 	private val KEY_HIGHLIGHT_CURRENT_DAY = "highlight_current_day"
+	private val KEY_APP_LOCALE = "app_locale"
 
 	override val allPreferences: Flow<List<User_preferences>> =
 		database.appDatabaseQueries.selectAllPreferences().asFlow().mapToList(ioDispatcher)
@@ -49,6 +51,15 @@ class UserPreferencesRepositoryImpl(
 		value?.toBooleanStrictOrNull() ?: true
 	}
 
+	override val appLocale: Flow<AppLocale> = allPreferences.map { prefs ->
+		val localeString = prefs.find { it.key == KEY_APP_LOCALE }?.value_
+		try {
+			if (localeString != null) AppLocale.valueOf(localeString) else AppLocale.SYSTEM
+		} catch (_: Exception) {
+			AppLocale.SYSTEM
+		}
+	}
+
 	override suspend fun getAllPreferences(): Map<String, String> = withContext(ioDispatcher) {
 		database.appDatabaseQueries.selectAllPreferences().executeAsList().associate { it.key to it.value_ }
 	}
@@ -72,6 +83,10 @@ class UserPreferencesRepositoryImpl(
 
 	override suspend fun setHighlightCurrentDay(highlight: Boolean) {
 		setPreference(KEY_HIGHLIGHT_CURRENT_DAY, highlight.toString())
+	}
+
+	override suspend fun setAppLocale(locale: AppLocale) {
+		setPreference(KEY_APP_LOCALE, locale.name)
 	}
 
 	override suspend fun setPreferences(preferences: Map<String, String>): Unit = withContext(ioDispatcher) {

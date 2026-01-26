@@ -97,6 +97,8 @@
     <string name="settings_default_duration_description">新しい練習作成時の初期時間</string>
     <string name="action_theme">テーマ</string>
     <string name="theme_select_title">テーマを選択</string>
+	<string name="action_language">言語</string>
+	<string name="language_select_title">言語を選択</string>
     <string name="theme_system">システム設定</string>
     <string name="theme_light">ライト</string>
     <string name="theme_dark">ダーク</string>

@@ -97,6 +97,8 @@
     <string name="settings_default_duration_description">새 훈련 생성 시 초기 시간</string>
     <string name="action_theme">테마</string>
     <string name="theme_select_title">테마 선택</string>
+	<string name="action_language">언어</string>
+	<string name="language_select_title">언어 선택</string>
     <string name="theme_system">시스템 기본값</string>
     <string name="theme_light">라이트</string>
     <string name="theme_dark">다크</string>

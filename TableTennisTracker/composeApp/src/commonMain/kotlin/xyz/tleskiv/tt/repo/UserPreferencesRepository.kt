@@ -2,6 +2,7 @@ package xyz.tleskiv.tt.repo
 
 import kotlinx.coroutines.flow.Flow
 import xyz.tleskiv.tt.db.User_preferences
+import xyz.tleskiv.tt.model.AppLocale
 import xyz.tleskiv.tt.model.AppThemeMode
 import xyz.tleskiv.tt.model.WeekStartDay
 
@@ -10,6 +11,7 @@ interface UserPreferencesRepository {
 	val themeMode: Flow<AppThemeMode>
 	val weekStartDay: Flow<WeekStartDay>
 	val highlightCurrentDay: Flow<Boolean>
+	val appLocale: Flow<AppLocale>
 
 	suspend fun getAllPreferences(): Map<String, String>
 
@@ -22,6 +24,8 @@ interface UserPreferencesRepository {
 	suspend fun setWeekStartDay(day: WeekStartDay)
 
 	suspend fun setHighlightCurrentDay(highlight: Boolean)
+
+	suspend fun setAppLocale(locale: AppLocale)
 
 	suspend fun setPreferences(preferences: Map<String, String>)
 

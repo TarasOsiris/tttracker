@@ -97,6 +97,8 @@
     <string name="settings_default_duration_description">المدة الأولية عند إنشاء تدريبات جديدة</string>
     <string name="action_theme">المظهر</string>
     <string name="theme_select_title">اختر المظهر</string>
+	<string name="action_language">اللغة</string>
+	<string name="language_select_title">اختر اللغة</string>
     <string name="theme_system">افتراضي النظام</string>
     <string name="theme_light">فاتح</string>
     <string name="theme_dark">داكن</string>

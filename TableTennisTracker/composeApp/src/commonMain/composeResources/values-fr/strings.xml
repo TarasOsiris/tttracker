@@ -97,6 +97,8 @@
     <string name="settings_default_duration_description">Durée initiale lors de la création de nouvelles séances</string>
     <string name="action_theme">Thème</string>
     <string name="theme_select_title">Sélectionner le thème</string>
+	<string name="action_language">Langue</string>
+	<string name="language_select_title">Sélectionner la langue</string>
     <string name="theme_system">Par défaut du système</string>
     <string name="theme_light">Clair</string>
     <string name="theme_dark">Sombre</string>

@@ -97,6 +97,8 @@
     <string name="settings_default_duration_description">创建新训练时的初始时长</string>
     <string name="action_theme">主题</string>
     <string name="theme_select_title">选择主题</string>
+	<string name="action_language">语言</string>
+	<string name="language_select_title">选择语言</string>
     <string name="theme_system">跟随系统</string>
     <string name="theme_light">浅色</string>
     <string name="theme_dark">深色</string>

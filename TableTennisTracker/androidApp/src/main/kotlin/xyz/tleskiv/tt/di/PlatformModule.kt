@@ -7,9 +7,11 @@ import org.koin.dsl.module
 import xyz.tleskiv.tt.db.DatabaseFactory
 import xyz.tleskiv.tt.di.components.AndroidClipboardManager
 import xyz.tleskiv.tt.di.components.AndroidExternalAppLauncher
+import xyz.tleskiv.tt.di.components.AndroidLocaleApplier
 import xyz.tleskiv.tt.di.components.AndroidNativeInfoProvider
 import xyz.tleskiv.tt.di.components.ClipboardManager
 import xyz.tleskiv.tt.di.components.ExternalAppLauncher
+import xyz.tleskiv.tt.di.components.LocaleApplier
 import xyz.tleskiv.tt.di.components.NativeInfoProvider
 
 val platformModule = module {
@@ -19,4 +21,5 @@ val platformModule = module {
 	single<NativeInfoProvider> { AndroidNativeInfoProvider(get()) }
 	single<ExternalAppLauncher> { AndroidExternalAppLauncher(get()) }
 	single<ClipboardManager> { AndroidClipboardManager(get()) }
+	single<LocaleApplier> { AndroidLocaleApplier() }
 }

@@ -15,7 +15,10 @@
     <string name="action_save">Зберегти</string>
     <string name="action_add_session">Додати тренування</string>
     <string name="action_search">Пошук</string>
-    <string name="action_settings">Налаштування</string>
+	<string name="action_ui_settings">Налаштування інтерфейсу</string>
+	<string name="action_opponents">Суперники</string>
+	<string name="opponents_empty">Суперників ще немає</string>
+	<string name="title_opponents">Суперники</string>
     <string name="action_more">Більше</string>
     <string name="action_back">Назад</string>
 
@@ -88,13 +91,15 @@
 	<string name="settings_section_general">Загальні</string>
 	<string name="settings_section_help">Допомога</string>
 	<string name="settings_section_about">Про застосунок</string>
-	<string name="action_ui_settings">Налаштування інтерфейсу</string>
 	<string name="settings_section_appearance">Зовнішній вигляд</string>
 	<string name="action_send_feedback">Надіслати відгук</string>
 	<string name="action_visit_website">Вебсайт</string>
 	<string name="action_rate_app">Оцінити застосунок</string>
+	<string name="action_copy_user_id">Копіювати ID користувача</string>
 	<string name="action_theme">Тема</string>
 	<string name="theme_select_title">Обрати тему</string>
+	<string name="action_language">Мова</string>
+	<string name="language_select_title">Обрати мову</string>
 	<string name="theme_system">Системна</string>
 	<string name="theme_light">Світла</string>
 	<string name="theme_dark">Темна</string>
@@ -186,4 +191,42 @@
 	<string name="help_rpe_level_7_8">7-8: Важко - Складно говорити, значне зусилля</string>
 	<string name="help_rpe_level_9_10">9-10: Максимум - Гранична інтенсивність, неможливо підтримувати</string>
 	<string name="help_rpe_tip">Порада: Більшість тренувань повинні бути в діапазоні 5-7.</string>
+
+	<!-- Match Creation -->
+	<string name="label_matches_optional">Матчі (опціонально)</string>
+	<string name="action_add_match">Додати матч</string>
+	<string name="add_match">Додати матч</string>
+	<string name="edit_match">Редагувати матч</string>
+	<string name="label_opponent">Суперник</string>
+	<string name="hint_opponent_name">Введіть ім\'я суперника</string>
+	<string name="label_score">Рахунок</string>
+	<string name="label_me">Я</string>
+	<string name="action_increase_my_score">Збільшити мій рахунок</string>
+	<string name="action_increase_opponent_score">Збільшити рахунок суперника</string>
+	<string name="label_competition_level_optional">Рівень змагань (опціонально)</string>
+	<string name="matches_empty_hint">Матчів ще не додано</string>
+	<string name="label_doubles">Парна гра</string>
+	<string name="label_ranked">Рейтингова</string>
+	<string name="competition_level_practice">Тренування</string>
+	<string name="competition_level_league">Ліга</string>
+	<string name="competition_level_tournament">Турнір</string>
+	<string name="match_score_format">%1$d - %2$d</string>
+	<string name="match_win">П</string>
+	<string name="match_loss">Пр</string>
+
+	<!-- Opponents -->
+	<string name="action_add_opponent">Додати суперника</string>
+	<string name="label_opponent_name">Ім\'я</string>
+	<string name="label_opponent_club">Клуб (опціонально)</string>
+	<string name="label_opponent_rating">Рейтинг (опціонально)</string>
+	<string name="label_opponent_handedness">Рука (опціонально)</string>
+	<string name="label_opponent_style">Стиль гри (опціонально)</string>
+	<string name="label_opponent_notes">Нотатки (опціонально)</string>
+	<string name="handedness_right">Права</string>
+	<string name="handedness_left">Ліва</string>
+	<string name="style_attacker">Атакуючий</string>
+	<string name="style_defender">Захисник</string>
+	<string name="style_all_round">Універсал</string>
+	<string name="style_pips">Шипи</string>
+	<string name="style_chopper">Чопер</string>
 </resources>

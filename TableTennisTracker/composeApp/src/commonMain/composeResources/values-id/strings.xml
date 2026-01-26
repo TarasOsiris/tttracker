@@ -97,6 +97,8 @@
     <string name="settings_default_duration_description">Durasi awal saat membuat latihan baru</string>
     <string name="action_theme">Tema</string>
     <string name="theme_select_title">Pilih tema</string>
+	<string name="action_language">Bahasa</string>
+	<string name="language_select_title">Pilih bahasa</string>
     <string name="theme_system">Default sistem</string>
     <string name="theme_light">Terang</string>
     <string name="theme_dark">Gelap</string>

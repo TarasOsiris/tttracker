@@ -1,6 +1,5 @@
 package xyz.tleskiv.tt.ui
 
-
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
@@ -8,8 +7,11 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import org.koin.compose.viewmodel.koinViewModel
@@ -27,8 +29,17 @@ import xyz.tleskiv.tt.viewmodel.AppViewModel
 fun App() {
 	val viewModel = koinViewModel<AppViewModel>()
 	val themeMode by viewModel.themeMode.collectAsState()
+	val appLocale by viewModel.appLocale.collectAsState()
 
 	val currentTheme = themeMode ?: return
+	val currentLocale = appLocale ?: return
+
+	// Apply locale synchronously and track version to force recomposition
+	var localeVersion by remember { mutableIntStateOf(0) }
+	remember(currentLocale) {
+		viewModel.applyLocale(currentLocale)
+		localeVersion++
+	}
 
 	val darkTheme = when (currentTheme) {
 		SYSTEM -> isSystemInDarkTheme()
@@ -38,15 +49,15 @@ fun App() {
 
 	SystemAppearanceEffect(isDarkTheme = darkTheme)
 
-	AppTheme(darkTheme = darkTheme) {
-		Surface(
-			modifier = Modifier.fillMaxSize(),
-			color = MaterialTheme.colorScheme.surface
-		) {
-			val topLevelBackStack = remember { mutableStateListOf<TopLevelRoute>(CoreAppRoute) }
-			TopNavDisplay(topLevelBackStack)
+	key(currentLocale, localeVersion) {
+		AppTheme(darkTheme = darkTheme) {
+			Surface(
+				modifier = Modifier.fillMaxSize(),
+				color = MaterialTheme.colorScheme.surface
+			) {
+				val topLevelBackStack = remember { mutableStateListOf<TopLevelRoute>(CoreAppRoute) }
+				TopNavDisplay(topLevelBackStack)
+			}
 		}
 	}
 }
-
-
