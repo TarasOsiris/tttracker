@@ -56,6 +56,7 @@ import tabletennistracker.composeapp.generated.resources.opponents_empty
 import tabletennistracker.composeapp.generated.resources.title_opponents
 import xyz.tleskiv.tt.db.Opponent
 import xyz.tleskiv.tt.ui.dialogs.AddOpponentDialog
+import xyz.tleskiv.tt.ui.dialogs.EditOpponentDialog
 import xyz.tleskiv.tt.ui.widgets.ContentCard
 import xyz.tleskiv.tt.viewmodel.settings.OpponentsScreenViewModel
 import kotlin.uuid.Uuid
@@ -67,9 +68,17 @@ fun OpponentsScreen(
 ) {
 	val opponents by viewModel.opponents.collectAsState()
 	var showAddDialog by rememberSaveable { mutableStateOf(false) }
+	var editingOpponentId by rememberSaveable { mutableStateOf<String?>(null) }
 
 	if (showAddDialog) {
 		AddOpponentDialog(onDismiss = { showAddDialog = false })
+	}
+
+	editingOpponentId?.let { idString ->
+		EditOpponentDialog(
+			opponentId = Uuid.parse(idString),
+			onDismiss = { editingOpponentId = null }
+		)
 	}
 
 	Box(
@@ -108,7 +117,7 @@ fun OpponentsScreen(
 					items(opponents, key = { it.id.toString() }) { opponent ->
 						OpponentCard(
 							opponent = opponent,
-							onEdit = { /* TODO: implement */ },
+							onEdit = { editingOpponentId = it.toString() },
 							onDelete = { /* TODO: implement */ }
 						)
 					}

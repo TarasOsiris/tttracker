@@ -2,18 +2,14 @@ package xyz.tleskiv.tt.ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -22,17 +18,13 @@ import androidx.compose.material.icons.automirrored.outlined.KeyboardArrowRight
 import androidx.compose.material.icons.outlined.BrightnessMedium
 import androidx.compose.material.icons.outlined.CalendarMonth
 import androidx.compose.material.icons.outlined.Language
-import androidx.compose.material3.BasicAlertDialog
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -49,7 +41,6 @@ import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.action_back
-import tabletennistracker.composeapp.generated.resources.action_cancel
 import tabletennistracker.composeapp.generated.resources.action_language
 import tabletennistracker.composeapp.generated.resources.action_theme
 import tabletennistracker.composeapp.generated.resources.action_ui_settings
@@ -71,6 +62,7 @@ import tabletennistracker.composeapp.generated.resources.week_start_sunday
 import xyz.tleskiv.tt.model.AppLocale
 import xyz.tleskiv.tt.model.AppThemeMode
 import xyz.tleskiv.tt.model.WeekStartDay
+import xyz.tleskiv.tt.ui.dialogs.SelectionDialog
 import xyz.tleskiv.tt.ui.widgets.ContentCard
 import xyz.tleskiv.tt.ui.widgets.fields.DurationField
 import xyz.tleskiv.tt.ui.widgets.fields.NotesField
@@ -96,35 +88,56 @@ fun GeneralSettingsScreen(
 	var showLanguageDialog by rememberSaveable { mutableStateOf(false) }
 
 	if (showThemeDialog) {
-		ThemeSelectionDialog(
-			currentMode = themeMode,
+		SelectionDialog(
+			title = stringResource(Res.string.theme_select_title),
+			options = AppThemeMode.entries,
+			currentSelection = themeMode,
 			onDismissRequest = { showThemeDialog = false },
-			onThemeSelected = { mode ->
+			onOptionSelected = { mode ->
 				viewModel.setThemeMode(mode)
 				showThemeDialog = false
+			},
+			optionLabel = { mode ->
+				when (mode) {
+					AppThemeMode.SYSTEM -> stringResource(Res.string.theme_system)
+					AppThemeMode.LIGHT -> stringResource(Res.string.theme_light)
+					AppThemeMode.DARK -> stringResource(Res.string.theme_dark)
+				}
 			}
 		)
 	}
 
 	if (showWeekStartDialog) {
-		WeekStartSelectionDialog(
-			currentDay = weekStartDay,
+		SelectionDialog(
+			title = stringResource(Res.string.week_start_select_title),
+			options = WeekStartDay.entries,
+			currentSelection = weekStartDay,
 			onDismissRequest = { showWeekStartDialog = false },
-			onDaySelected = { day ->
+			onOptionSelected = { day ->
 				viewModel.setWeekStartDay(day)
 				showWeekStartDialog = false
+			},
+			optionLabel = { day ->
+				when (day) {
+					WeekStartDay.MONDAY -> stringResource(Res.string.week_start_monday)
+					WeekStartDay.SUNDAY -> stringResource(Res.string.week_start_sunday)
+					WeekStartDay.SATURDAY -> stringResource(Res.string.week_start_saturday)
+				}
 			}
 		)
 	}
 
 	if (showLanguageDialog) {
-		LanguageSelectionDialog(
-			currentLocale = appLocale,
+		SelectionDialog(
+			title = stringResource(Res.string.language_select_title),
+			options = AppLocale.entries,
+			currentSelection = appLocale,
 			onDismissRequest = { showLanguageDialog = false },
-			onLocaleSelected = { locale ->
+			onOptionSelected = { locale ->
 				viewModel.setAppLocale(locale)
 				showLanguageDialog = false
-			}
+			},
+			optionLabel = { it.displayName }
 		)
 	}
 
@@ -371,120 +384,6 @@ private fun ThemeRow(currentMode: AppThemeMode, onClick: () -> Unit) {
 	}
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun ThemeSelectionDialog(
-	currentMode: AppThemeMode,
-	onDismissRequest: () -> Unit,
-	onThemeSelected: (AppThemeMode) -> Unit
-) {
-	BasicAlertDialog(onDismissRequest = onDismissRequest) {
-		Surface(
-			shape = MaterialTheme.shapes.large,
-			color = MaterialTheme.colorScheme.surfaceContainerHigh
-		) {
-			Column(modifier = Modifier.padding(24.dp)) {
-				Text(
-					text = stringResource(Res.string.theme_select_title),
-					style = MaterialTheme.typography.headlineSmall,
-					color = MaterialTheme.colorScheme.onSurface
-				)
-				Spacer(modifier = Modifier.height(16.dp))
-
-				AppThemeMode.entries.forEach { mode ->
-					Row(
-						modifier = Modifier
-							.fillMaxWidth()
-							.clickable { onThemeSelected(mode) }
-							.padding(vertical = 8.dp),
-						verticalAlignment = Alignment.CenterVertically
-					) {
-						RadioButton(selected = mode == currentMode, onClick = null)
-						Spacer(modifier = Modifier.width(8.dp))
-						Text(
-							text = when (mode) {
-								AppThemeMode.SYSTEM -> stringResource(Res.string.theme_system)
-								AppThemeMode.LIGHT -> stringResource(Res.string.theme_light)
-								AppThemeMode.DARK -> stringResource(Res.string.theme_dark)
-							},
-							style = MaterialTheme.typography.bodyLarge,
-							color = MaterialTheme.colorScheme.onSurface
-						)
-					}
-				}
-
-				Spacer(modifier = Modifier.height(24.dp))
-
-				Row(
-					modifier = Modifier.fillMaxWidth(),
-					horizontalArrangement = Arrangement.End
-				) {
-					TextButton(onClick = onDismissRequest) {
-						Text(stringResource(Res.string.action_cancel))
-					}
-				}
-			}
-		}
-	}
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun WeekStartSelectionDialog(
-	currentDay: WeekStartDay,
-	onDismissRequest: () -> Unit,
-	onDaySelected: (WeekStartDay) -> Unit
-) {
-	BasicAlertDialog(onDismissRequest = onDismissRequest) {
-		Surface(
-			shape = MaterialTheme.shapes.large,
-			color = MaterialTheme.colorScheme.surfaceContainerHigh
-		) {
-			Column(modifier = Modifier.padding(24.dp)) {
-				Text(
-					text = stringResource(Res.string.week_start_select_title),
-					style = MaterialTheme.typography.headlineSmall,
-					color = MaterialTheme.colorScheme.onSurface
-				)
-				Spacer(modifier = Modifier.height(16.dp))
-
-				WeekStartDay.entries.forEach { day ->
-					Row(
-						modifier = Modifier
-							.fillMaxWidth()
-							.clickable { onDaySelected(day) }
-							.padding(vertical = 8.dp),
-						verticalAlignment = Alignment.CenterVertically
-					) {
-						RadioButton(selected = day == currentDay, onClick = null)
-						Spacer(modifier = Modifier.width(8.dp))
-						Text(
-							text = when (day) {
-								WeekStartDay.MONDAY -> stringResource(Res.string.week_start_monday)
-								WeekStartDay.SUNDAY -> stringResource(Res.string.week_start_sunday)
-								WeekStartDay.SATURDAY -> stringResource(Res.string.week_start_saturday)
-							},
-							style = MaterialTheme.typography.bodyLarge,
-							color = MaterialTheme.colorScheme.onSurface
-						)
-					}
-				}
-
-				Spacer(modifier = Modifier.height(24.dp))
-
-				Row(
-					modifier = Modifier.fillMaxWidth(),
-					horizontalArrangement = Arrangement.End
-				) {
-					TextButton(onClick = onDismissRequest) {
-						Text(stringResource(Res.string.action_cancel))
-					}
-				}
-			}
-		}
-	}
-}
-
 @Composable
 private fun LanguageRow(currentLocale: AppLocale, onClick: () -> Unit) {
 	Surface(
@@ -518,61 +417,6 @@ private fun LanguageRow(currentLocale: AppLocale, onClick: () -> Unit) {
 				contentDescription = null,
 				tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
 			)
-		}
-	}
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun LanguageSelectionDialog(
-	currentLocale: AppLocale,
-	onDismissRequest: () -> Unit,
-	onLocaleSelected: (AppLocale) -> Unit
-) {
-	BasicAlertDialog(onDismissRequest = onDismissRequest) {
-		Surface(
-			shape = MaterialTheme.shapes.large,
-			color = MaterialTheme.colorScheme.surfaceContainerHigh
-		) {
-			Column(modifier = Modifier.padding(24.dp)) {
-				Text(
-					text = stringResource(Res.string.language_select_title),
-					style = MaterialTheme.typography.headlineSmall,
-					color = MaterialTheme.colorScheme.onSurface
-				)
-				Spacer(modifier = Modifier.height(16.dp))
-
-				LazyColumn(modifier = Modifier.heightIn(max = 400.dp)) {
-					items(AppLocale.entries) { locale ->
-						Row(
-							modifier = Modifier
-								.fillMaxWidth()
-								.clickable { onLocaleSelected(locale) }
-								.padding(vertical = 8.dp),
-							verticalAlignment = Alignment.CenterVertically
-						) {
-							RadioButton(selected = locale == currentLocale, onClick = null)
-							Spacer(modifier = Modifier.width(8.dp))
-							Text(
-								text = locale.displayName,
-								style = MaterialTheme.typography.bodyLarge,
-								color = MaterialTheme.colorScheme.onSurface
-							)
-						}
-					}
-				}
-
-				Spacer(modifier = Modifier.height(24.dp))
-
-				Row(
-					modifier = Modifier.fillMaxWidth(),
-					horizontalArrangement = Arrangement.End
-				) {
-					TextButton(onClick = onDismissRequest) {
-						Text(stringResource(Res.string.action_cancel))
-					}
-				}
-			}
 		}
 	}
 }

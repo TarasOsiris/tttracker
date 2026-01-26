@@ -215,6 +215,7 @@
 
     <!-- Opponents -->
     <string name="action_add_opponent">Add Opponent</string>
+	<string name="action_edit_opponent">Edit Opponent</string>
     <string name="label_opponent_name">Name</string>
     <string name="label_opponent_club">Club (optional)</string>
     <string name="label_opponent_rating">Rating (optional)</string>

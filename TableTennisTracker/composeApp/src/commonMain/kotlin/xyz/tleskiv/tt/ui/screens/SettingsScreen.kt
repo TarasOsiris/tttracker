@@ -185,13 +185,14 @@ fun SettingsScreen(
 			) {
 				Text(
 					text = stringResource(Res.string.settings_made_with_prefix),
+					modifier = Modifier.alignByBaseline(),
 					style = MaterialTheme.typography.bodySmall,
 					color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
 				)
 				Spacer(modifier = Modifier.width(4.dp))
 				Text(
 					text = stringResource(Res.string.settings_company_name),
-					modifier = Modifier.clickable { uriHandler.openUri("https://ninevastudios.com") },
+					modifier = Modifier.alignByBaseline().clickable { uriHandler.openUri("https://ninevastudios.com") },
 					style = MaterialTheme.typography.bodySmall,
 					color = MaterialTheme.colorScheme.primary.copy(alpha = 0.8f)
 				)
