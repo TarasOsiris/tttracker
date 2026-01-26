@@ -86,6 +86,8 @@
     <string name="analytics_win_loss_format">%1$d - %2$d</string>
     <string name="analytics_win_rate">Відсоток перемог</string>
     <string name="analytics_heatmap_title">Теплова карта тренувань</string>
+	<string name="analytics_heatmap_less">Менше</string>
+	<string name="analytics_heatmap_more">Більше</string>
 
     <!-- Profile Screen -->
     <string name="profile_guest_user">Гість</string>
@@ -222,10 +224,14 @@
 	<string name="match_win">П</string>
 	<string name="match_loss">Пр</string>
 
+	<!-- Session Details -->
+	<string name="session_matches_count">Матчі (%1$d)</string>
+	<string name="opponent_rating_format">Рейтинг: %1$d</string>
+
 	<!-- Opponents -->
 	<string name="action_add_opponent">Додати суперника</string>
     <string name="action_edit_opponent">Редагувати суперника</string>
-	<string name="label_opponent_name">Ім\'я</string>
+	<string name="label_opponent_name">Ім'я</string>
 	<string name="label_opponent_club">Клуб (опціонально)</string>
 	<string name="label_opponent_rating">Рейтинг (опціонально)</string>
 	<string name="label_opponent_handedness">Рука (опціонально)</string>

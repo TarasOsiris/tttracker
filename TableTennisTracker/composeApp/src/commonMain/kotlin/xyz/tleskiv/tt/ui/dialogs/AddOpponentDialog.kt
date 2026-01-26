@@ -28,7 +28,8 @@ fun AddOpponentDialog(
 				club = inputData.club,
 				rating = inputData.rating,
 				handedness = inputData.handedness,
-				playingStyle = inputData.playingStyle
+				playingStyle = inputData.playingStyle,
+				notes = inputData.notes
 			)
 		},
 		confirmButton = {

@@ -56,6 +56,7 @@ import tabletennistracker.composeapp.generated.resources.help_icon_content_descr
 import tabletennistracker.composeapp.generated.resources.ic_delete
 import tabletennistracker.composeapp.generated.resources.ic_edit
 import tabletennistracker.composeapp.generated.resources.ic_help
+import tabletennistracker.composeapp.generated.resources.opponent_rating_format
 import tabletennistracker.composeapp.generated.resources.opponents_empty
 import tabletennistracker.composeapp.generated.resources.opponents_info_message
 import tabletennistracker.composeapp.generated.resources.opponents_info_title
@@ -264,12 +265,20 @@ private fun OpponentCard(
 						}
 						if (opponent.rating != null) {
 							Text(
-								text = "Rating: ${opponent.rating.toInt()}",
+								text = stringResource(Res.string.opponent_rating_format, opponent.rating.toInt()),
 								style = MaterialTheme.typography.bodySmall,
 								color = MaterialTheme.colorScheme.onSurfaceVariant
 							)
 						}
 					}
+				}
+				if (!opponent.notes.isNullOrBlank()) {
+					Text(
+						text = opponent.notes,
+						style = MaterialTheme.typography.bodySmall,
+						color = MaterialTheme.colorScheme.onSurfaceVariant,
+						maxLines = 2
+					)
 				}
 			}
 

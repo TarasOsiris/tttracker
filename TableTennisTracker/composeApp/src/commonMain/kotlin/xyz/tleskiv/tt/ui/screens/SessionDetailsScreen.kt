@@ -55,12 +55,17 @@ import tabletennistracker.composeapp.generated.resources.action_delete
 import tabletennistracker.composeapp.generated.resources.action_edit
 import tabletennistracker.composeapp.generated.resources.ic_delete
 import tabletennistracker.composeapp.generated.resources.ic_edit
+import tabletennistracker.composeapp.generated.resources.label_doubles
 import tabletennistracker.composeapp.generated.resources.label_duration
 import tabletennistracker.composeapp.generated.resources.label_intensity_rpe
 import tabletennistracker.composeapp.generated.resources.label_notes
+import tabletennistracker.composeapp.generated.resources.label_ranked
 import tabletennistracker.composeapp.generated.resources.label_rpe
 import tabletennistracker.composeapp.generated.resources.label_session_type
+import tabletennistracker.composeapp.generated.resources.match_loss
+import tabletennistracker.composeapp.generated.resources.match_win
 import tabletennistracker.composeapp.generated.resources.session_default_title
+import tabletennistracker.composeapp.generated.resources.session_matches_count
 import tabletennistracker.composeapp.generated.resources.suffix_minutes
 import tabletennistracker.composeapp.generated.resources.title_error
 import xyz.tleskiv.tt.ui.dialogs.DeleteSessionDialog
@@ -425,7 +430,7 @@ private fun MatchesSectionHeader(matchCount: Int) {
 		Text(text = "🏆", style = MaterialTheme.typography.titleLarge)
 		Spacer(modifier = Modifier.width(12.dp))
 		Text(
-			text = "Matches ($matchCount)",
+			text = stringResource(Res.string.session_matches_count, matchCount),
 			style = MaterialTheme.typography.titleMedium,
 			fontWeight = FontWeight.SemiBold,
 			color = MaterialTheme.colorScheme.onSurface
@@ -451,7 +456,7 @@ private fun MatchCard(match: MatchUiModel) {
 				contentAlignment = Alignment.Center
 			) {
 				Text(
-					text = if (match.isWin) "W" else "L",
+					text = stringResource(if (match.isWin) Res.string.match_win else Res.string.match_loss),
 					style = MaterialTheme.typography.titleMedium,
 					fontWeight = FontWeight.Bold,
 					color = resultColor
@@ -468,7 +473,7 @@ private fun MatchCard(match: MatchUiModel) {
 				Row(verticalAlignment = Alignment.CenterVertically) {
 					if (match.isDoubles) {
 						Text(
-							text = "Doubles",
+							text = stringResource(Res.string.label_doubles),
 							style = MaterialTheme.typography.labelSmall,
 							color = MaterialTheme.colorScheme.onSurfaceVariant
 						)
@@ -476,7 +481,7 @@ private fun MatchCard(match: MatchUiModel) {
 					}
 					if (match.isRanked) {
 						Text(
-							text = "Ranked",
+							text = stringResource(Res.string.label_ranked),
 							style = MaterialTheme.typography.labelSmall,
 							color = MaterialTheme.colorScheme.tertiary
 						)

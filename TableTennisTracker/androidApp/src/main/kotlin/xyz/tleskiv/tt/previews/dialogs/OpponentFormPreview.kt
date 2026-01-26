@@ -21,6 +21,7 @@ fun OpponentFormPreview() {
 	val rating = remember { mutableStateOf("2150") }
 	val handedness = remember { mutableStateOf<Handedness?>(Handedness.RIGHT) }
 	val playingStyle = remember { mutableStateOf<PlayingStyle?>(PlayingStyle.ATTACKER) }
+	val notes = remember { mutableStateOf("Strong forehand loop, weak backhand") }
 
 	AppTheme {
 		Column(modifier = Modifier.padding(16.dp)) {
@@ -29,7 +30,8 @@ fun OpponentFormPreview() {
 				club = club,
 				rating = rating,
 				handedness = handedness,
-				playingStyle = playingStyle
+				playingStyle = playingStyle,
+				notes = notes
 			)
 		}
 	}
@@ -43,6 +45,7 @@ fun OpponentFormEmptyPreview() {
 	val rating = remember { mutableStateOf("") }
 	val handedness = remember { mutableStateOf<Handedness?>(null) }
 	val playingStyle = remember { mutableStateOf<PlayingStyle?>(null) }
+	val notes = remember { mutableStateOf("") }
 
 	AppTheme {
 		Column(modifier = Modifier.padding(16.dp)) {
@@ -51,7 +54,8 @@ fun OpponentFormEmptyPreview() {
 				club = club,
 				rating = rating,
 				handedness = handedness,
-				playingStyle = playingStyle
+				playingStyle = playingStyle,
+				notes = notes
 			)
 		}
 	}

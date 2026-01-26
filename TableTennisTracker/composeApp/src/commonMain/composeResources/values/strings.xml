@@ -86,6 +86,8 @@
 	<string name="analytics_win_loss_format">%1$d - %2$d</string>
 	<string name="analytics_win_rate">Win rate</string>
 	<string name="analytics_heatmap_title">Training sessions heatmap</string>
+	<string name="analytics_heatmap_less">Less</string>
+	<string name="analytics_heatmap_more">More</string>
 
     <!-- Settings Screen -->
     <string name="profile_guest_user">Guest</string>
@@ -222,7 +224,11 @@
     <string name="match_win">W</string>
     <string name="match_loss">L</string>
 
-    <!-- Opponents -->
+	<!-- Session Details -->
+	<string name="session_matches_count">Matches (%1$d)</string>
+	<string name="opponent_rating_format">Rating: %1$d</string>
+
+	<!-- Opponents -->
     <string name="action_add_opponent">Add Opponent</string>
 	<string name="action_edit_opponent">Edit Opponent</string>
     <string name="label_opponent_name">Name</string>

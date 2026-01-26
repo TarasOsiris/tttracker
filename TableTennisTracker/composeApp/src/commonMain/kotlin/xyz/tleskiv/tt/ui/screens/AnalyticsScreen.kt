@@ -54,6 +54,8 @@ import kotlinx.datetime.yearMonth
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import tabletennistracker.composeapp.generated.resources.Res
+import tabletennistracker.composeapp.generated.resources.analytics_heatmap_less
+import tabletennistracker.composeapp.generated.resources.analytics_heatmap_more
 import tabletennistracker.composeapp.generated.resources.analytics_heatmap_title
 import tabletennistracker.composeapp.generated.resources.analytics_hours_minutes
 import tabletennistracker.composeapp.generated.resources.analytics_summary
@@ -306,7 +308,7 @@ private fun HeatMapLegend(modifier: Modifier = Modifier) {
 		verticalAlignment = Alignment.CenterVertically
 	) {
 		Text(
-			text = "Less",
+			text = stringResource(Res.string.analytics_heatmap_less),
 			style = MaterialTheme.typography.labelSmall,
 			color = MaterialTheme.colorScheme.onSurfaceVariant
 		)
@@ -322,7 +324,7 @@ private fun HeatMapLegend(modifier: Modifier = Modifier) {
 		}
 		Spacer(modifier = Modifier.width(2.dp))
 		Text(
-			text = "More",
+			text = stringResource(Res.string.analytics_heatmap_more),
 			style = MaterialTheme.typography.labelSmall,
 			color = MaterialTheme.colorScheme.onSurfaceVariant
 		)
