@@ -212,6 +212,9 @@ If it's not possible fallback to `expect`/`actual` pattern:
 
 # Other instructions
 
+- All colors must be defined in `composeApp/src/commonMain/kotlin/xyz/tleskiv/tt/ui/theme/Color.kt`.
+  Never use hardcoded `Color(0xFF...)` values directly in UI code.
+- Do not commit or push changes unless explicitly asked to do so.
 - Do not comment on the code unless absolutely necessary.
 - Prefer keeping code a single line if less than 120 characters.
 - for clock use `kotlin.time.Clock`

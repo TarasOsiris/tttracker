@@ -88,6 +88,16 @@
 	<string name="analytics_heatmap_title">Training sessions heatmap</string>
 	<string name="analytics_heatmap_less">Less</string>
 	<string name="analytics_heatmap_more">More</string>
+	<string name="analytics_weekly_training">Weekly training time</string>
+	<string name="analytics_win_loss_chart">Match results</string>
+	<string name="analytics_wins">Wins</string>
+	<string name="analytics_losses">Losses</string>
+	<string name="analytics_no_matches">No matches yet</string>
+	<string name="analytics_no_training">No training data yet</string>
+	<string name="analytics_minutes_short">min</string>
+	<string name="analytics_weekly_avg">Avg</string>
+	<string name="analytics_weekly_total">Total</string>
+	<string name="analytics_this_week">This week</string>
 
     <!-- Settings Screen -->
     <string name="profile_guest_user">Guest</string>

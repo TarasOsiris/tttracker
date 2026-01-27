@@ -105,6 +105,9 @@ kotlin {
 			// Calendar
 			implementation(libs.calendar.compose.multiplatform)
 
+			// Charts
+			implementation(libs.koalaplot.core)
+
 			implementation(projects.shared)
 		}
 		commonTest.dependencies {

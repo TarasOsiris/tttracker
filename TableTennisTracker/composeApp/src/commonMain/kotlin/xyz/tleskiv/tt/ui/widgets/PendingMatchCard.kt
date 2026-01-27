@@ -16,7 +16,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.stringResource
@@ -29,10 +28,9 @@ import tabletennistracker.composeapp.generated.resources.ic_edit
 import tabletennistracker.composeapp.generated.resources.match_loss
 import tabletennistracker.composeapp.generated.resources.match_score_format
 import tabletennistracker.composeapp.generated.resources.match_win
+import xyz.tleskiv.tt.ui.theme.onWinContainerColor
+import xyz.tleskiv.tt.ui.theme.winContainerColor
 import xyz.tleskiv.tt.viewmodel.sessions.PendingMatch
-
-private val WinContainerColor = Color(0xFFC8E6C9)
-private val OnWinContainerColor = Color(0xFF1B5E20)
 
 @Composable
 fun PendingMatchCard(
@@ -52,14 +50,14 @@ fun PendingMatchCard(
 				modifier = Modifier
 					.size(32.dp)
 					.clip(CircleShape)
-					.background(if (isWin) WinContainerColor else MaterialTheme.colorScheme.errorContainer),
+					.background(if (isWin) winContainerColor else MaterialTheme.colorScheme.errorContainer),
 				contentAlignment = Alignment.Center
 			) {
 				Text(
 					text = stringResource(if (isWin) Res.string.match_win else Res.string.match_loss),
 					style = MaterialTheme.typography.labelMedium,
 					fontWeight = FontWeight.Bold,
-					color = if (isWin) OnWinContainerColor else MaterialTheme.colorScheme.onErrorContainer
+					color = if (isWin) onWinContainerColor else MaterialTheme.colorScheme.onErrorContainer
 				)
 			}
 

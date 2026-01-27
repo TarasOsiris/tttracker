@@ -11,6 +11,16 @@ import tabletennistracker.composeapp.generated.resources.rpe_max_effort
 import tabletennistracker.composeapp.generated.resources.rpe_moderate
 import tabletennistracker.composeapp.generated.resources.rpe_very_easy
 import xyz.tleskiv.tt.data.model.enums.SessionType
+import xyz.tleskiv.tt.ui.theme.rpeGreen
+import xyz.tleskiv.tt.ui.theme.rpeRed
+import xyz.tleskiv.tt.ui.theme.rpeYellow
+import xyz.tleskiv.tt.ui.theme.sessionTypeFreePlay
+import xyz.tleskiv.tt.ui.theme.sessionTypeMatchPlay
+import xyz.tleskiv.tt.ui.theme.sessionTypeOther
+import xyz.tleskiv.tt.ui.theme.sessionTypePhysical
+import xyz.tleskiv.tt.ui.theme.sessionTypeServePractice
+import xyz.tleskiv.tt.ui.theme.sessionTypeTechnique
+import xyz.tleskiv.tt.ui.theme.sessionTypeTournament
 
 enum class HeatMapLevel {
 	Zero,
@@ -34,26 +44,22 @@ fun HeatMapLevel.toColor(): Color {
 
 @Composable
 fun SessionType?.toColor(): Color = when (this) {
-	SessionType.TECHNIQUE -> Color(0xFF4CAF50)
-	SessionType.MATCH_PLAY -> Color(0xFFFF5722)
-	SessionType.TOURNAMENT -> Color(0xFFFFD700)
-	SessionType.SERVE_PRACTICE -> Color(0xFF2196F3)
-	SessionType.PHYSICAL -> Color(0xFFE91E63)
-	SessionType.FREE_PLAY -> Color(0xFF9C27B0)
-	SessionType.OTHER, null -> Color(0xFF607D8B)
+	SessionType.TECHNIQUE -> sessionTypeTechnique
+	SessionType.MATCH_PLAY -> sessionTypeMatchPlay
+	SessionType.TOURNAMENT -> sessionTypeTournament
+	SessionType.SERVE_PRACTICE -> sessionTypeServePractice
+	SessionType.PHYSICAL -> sessionTypePhysical
+	SessionType.FREE_PLAY -> sessionTypeFreePlay
+	SessionType.OTHER, null -> sessionTypeOther
 }
-
-private val RpeColorGreen = Color(0xFF4CAF50)
-private val RpeColorYellow = Color(0xFFFFC107)
-private val RpeColorRed = Color(0xFFF44336)
 
 fun getRpeColor(rpe: Int): Color = getRpeColor(rpe.toFloat())
 
 fun getRpeColor(value: Float): Color {
 	val fraction = (value - 1f) / 9f
 	return when {
-		fraction <= 0.5f -> lerp(RpeColorGreen, RpeColorYellow, fraction * 2f)
-		else -> lerp(RpeColorYellow, RpeColorRed, (fraction - 0.5f) * 2f)
+		fraction <= 0.5f -> lerp(rpeGreen, rpeYellow, fraction * 2f)
+		else -> lerp(rpeYellow, rpeRed, (fraction - 0.5f) * 2f)
 	}
 }
 

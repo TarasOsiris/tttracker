@@ -73,3 +73,23 @@ val surfaceContainerLowDark = Color(0xFF191C20)
 val surfaceContainerDark = Color(0xFF1D2024)
 val surfaceContainerHighDark = Color(0xFF282A2F)
 val surfaceContainerHighestDark = Color(0xFF33353A)
+
+// Session Type Colors
+val sessionTypeTechnique = Color(0xFF4CAF50)
+val sessionTypeMatchPlay = Color(0xFFFF5722)
+val sessionTypeTournament = Color(0xFFFFD700)
+val sessionTypeServePractice = Color(0xFF2196F3)
+val sessionTypePhysical = Color(0xFFE91E63)
+val sessionTypeFreePlay = Color(0xFF9C27B0)
+val sessionTypeOther = Color(0xFF607D8B)
+
+// RPE (Rate of Perceived Exertion) Gradient Colors
+val rpeGreen = Color(0xFF4CAF50)
+val rpeYellow = Color(0xFFFFC107)
+val rpeRed = Color(0xFFF44336)
+
+// Win/Loss Colors
+val winColor = Color(0xFF4CAF50)
+val lossColor = Color(0xFFE53935)
+val winContainerColor = Color(0xFFC8E6C9)
+val onWinContainerColor = Color(0xFF1B5E20)
