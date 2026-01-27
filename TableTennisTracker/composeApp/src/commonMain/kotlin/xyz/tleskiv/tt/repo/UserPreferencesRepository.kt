@@ -13,6 +13,11 @@ interface UserPreferencesRepository {
 	val highlightCurrentDay: Flow<Boolean>
 	val appLocale: Flow<AppLocale>
 
+	val showAnalyticsSummary: Flow<Boolean>
+	val showAnalyticsWinLoss: Flow<Boolean>
+	val showAnalyticsWeekly: Flow<Boolean>
+	val showAnalyticsHeatmap: Flow<Boolean>
+
 	suspend fun getAllPreferences(): Map<String, String>
 
 	suspend fun getPreference(key: String): String?
@@ -26,6 +31,14 @@ interface UserPreferencesRepository {
 	suspend fun setHighlightCurrentDay(highlight: Boolean)
 
 	suspend fun setAppLocale(locale: AppLocale)
+
+	suspend fun setShowAnalyticsSummary(show: Boolean)
+
+	suspend fun setShowAnalyticsWinLoss(show: Boolean)
+
+	suspend fun setShowAnalyticsWeekly(show: Boolean)
+
+	suspend fun setShowAnalyticsHeatmap(show: Boolean)
 
 	suspend fun setPreferences(preferences: Map<String, String>)
 

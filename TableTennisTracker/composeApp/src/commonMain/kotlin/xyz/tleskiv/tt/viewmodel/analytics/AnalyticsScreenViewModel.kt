@@ -18,6 +18,13 @@ data class WeeklyTrainingData(
 	val totalMinutes: Int
 )
 
+data class AnalyticsWidgetVisibility(
+	val showSummary: Boolean = true,
+	val showWinLoss: Boolean = true,
+	val showWeekly: Boolean = true,
+	val showHeatmap: Boolean = true
+)
+
 abstract class AnalyticsScreenViewModel : ViewModelBase() {
 	abstract val sessionsByDate: StateFlow<Map<LocalDate, Int>>
 	abstract val totalMinutesByDate: StateFlow<Map<LocalDate, Int>>
@@ -25,4 +32,10 @@ abstract class AnalyticsScreenViewModel : ViewModelBase() {
 	abstract val firstDayOfWeek: StateFlow<DayOfWeek>
 	abstract val summaryStats: StateFlow<SummaryStats>
 	abstract val weeklyTrainingData: StateFlow<List<WeeklyTrainingData>>
+	abstract val widgetVisibility: StateFlow<AnalyticsWidgetVisibility>
+
+	abstract fun setShowSummary(show: Boolean)
+	abstract fun setShowWinLoss(show: Boolean)
+	abstract fun setShowWeekly(show: Boolean)
+	abstract fun setShowHeatmap(show: Boolean)
 }

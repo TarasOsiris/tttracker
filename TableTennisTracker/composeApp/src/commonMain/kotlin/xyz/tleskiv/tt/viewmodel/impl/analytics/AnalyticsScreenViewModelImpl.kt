@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.DayOfWeek
 import kotlinx.datetime.LocalDate
@@ -19,14 +20,29 @@ import xyz.tleskiv.tt.repo.UserPreferencesRepository
 import xyz.tleskiv.tt.service.TrainingSessionService
 import xyz.tleskiv.tt.util.ext.toLocalDate
 import xyz.tleskiv.tt.viewmodel.analytics.AnalyticsScreenViewModel
+import xyz.tleskiv.tt.viewmodel.analytics.AnalyticsWidgetVisibility
 import xyz.tleskiv.tt.viewmodel.analytics.SummaryStats
 import xyz.tleskiv.tt.viewmodel.analytics.WeeklyTrainingData
 
 class AnalyticsScreenViewModelImpl(
 	sessionService: TrainingSessionService,
 	analyticsRepository: AnalyticsRepository,
-	userPreferencesRepository: UserPreferencesRepository
+	private val userPreferencesRepository: UserPreferencesRepository
 ) : AnalyticsScreenViewModel() {
+
+	override val widgetVisibility: StateFlow<AnalyticsWidgetVisibility> = combine(
+		userPreferencesRepository.showAnalyticsSummary,
+		userPreferencesRepository.showAnalyticsWinLoss,
+		userPreferencesRepository.showAnalyticsWeekly,
+		userPreferencesRepository.showAnalyticsHeatmap
+	) { summary, winLoss, weekly, heatmap ->
+		AnalyticsWidgetVisibility(
+			showSummary = summary,
+			showWinLoss = winLoss,
+			showWeekly = weekly,
+			showHeatmap = heatmap
+		)
+	}.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), AnalyticsWidgetVisibility())
 
 	override val firstDayOfWeek: StateFlow<DayOfWeek> = userPreferencesRepository.weekStartDay
 		.map { it.toDayOfWeek() }
@@ -88,5 +104,21 @@ class AnalyticsScreenViewModelImpl(
 	private fun getWeekStart(date: LocalDate, firstDayOfWeek: DayOfWeek): LocalDate {
 		val daysFromStart = (date.dayOfWeek.isoDayNumber - firstDayOfWeek.isoDayNumber + 7) % 7
 		return date.minus(daysFromStart, DateTimeUnit.DAY)
+	}
+
+	override fun setShowSummary(show: Boolean) {
+		viewModelScope.launch { userPreferencesRepository.setShowAnalyticsSummary(show) }
+	}
+
+	override fun setShowWinLoss(show: Boolean) {
+		viewModelScope.launch { userPreferencesRepository.setShowAnalyticsWinLoss(show) }
+	}
+
+	override fun setShowWeekly(show: Boolean) {
+		viewModelScope.launch { userPreferencesRepository.setShowAnalyticsWeekly(show) }
+	}
+
+	override fun setShowHeatmap(show: Boolean) {
+		viewModelScope.launch { userPreferencesRepository.setShowAnalyticsHeatmap(show) }
 	}
 }

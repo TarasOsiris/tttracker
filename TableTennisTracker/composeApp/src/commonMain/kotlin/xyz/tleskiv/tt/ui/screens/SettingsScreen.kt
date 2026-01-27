@@ -72,7 +72,6 @@ fun SettingsScreen(
 			.verticalScroll(rememberScrollState())
 	) {
 		Column(modifier = Modifier.padding(16.dp)) {
-			// General Section
 			SettingsSectionHeader(title = stringResource(Res.string.settings_section_general))
 			Spacer(modifier = Modifier.height(8.dp))
 			ContentCard {
@@ -103,7 +102,6 @@ fun SettingsScreen(
 
 			Spacer(modifier = Modifier.height(24.dp))
 
-			// Help Section
 			SettingsSectionHeader(title = stringResource(Res.string.settings_section_help))
 			Spacer(modifier = Modifier.height(8.dp))
 			ContentCard {
@@ -117,7 +115,6 @@ fun SettingsScreen(
 
 			Spacer(modifier = Modifier.height(24.dp))
 
-			// About Section
 			SettingsSectionHeader(title = stringResource(Res.string.settings_section_about))
 			Spacer(modifier = Modifier.height(8.dp))
 			ContentCard {

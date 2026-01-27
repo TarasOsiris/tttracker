@@ -216,6 +216,8 @@ If it's not possible fallback to `expect`/`actual` pattern:
   Never use hardcoded `Color(0xFF...)` values directly in UI code.
 - Do not commit or push changes unless explicitly asked to do so.
 - Do not comment on the code unless absolutely necessary.
+- In composable screens, extract reusable UI blocks into named composable functions instead of
+  using comments to separate sections. Function names should clearly describe what the block does.
 - Prefer keeping code a single line if less than 120 characters.
 - for clock use `kotlin.time.Clock`
 - Use docs folder in the root for any additional functional documentation needed

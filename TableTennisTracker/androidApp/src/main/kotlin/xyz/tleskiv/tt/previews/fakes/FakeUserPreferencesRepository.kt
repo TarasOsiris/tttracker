@@ -14,6 +14,10 @@ class FakeUserPreferencesRepository : UserPreferencesRepository {
 	override val weekStartDay: Flow<WeekStartDay> = MutableStateFlow(WeekStartDay.MONDAY)
 	override val highlightCurrentDay: Flow<Boolean> = MutableStateFlow(true)
 	override val appLocale: Flow<AppLocale> = MutableStateFlow(AppLocale.SYSTEM)
+	override val showAnalyticsSummary: Flow<Boolean> = MutableStateFlow(true)
+	override val showAnalyticsWinLoss: Flow<Boolean> = MutableStateFlow(true)
+	override val showAnalyticsWeekly: Flow<Boolean> = MutableStateFlow(true)
+	override val showAnalyticsHeatmap: Flow<Boolean> = MutableStateFlow(true)
 
 	override suspend fun getAllPreferences(): Map<String, String> = emptyMap()
 	override suspend fun getPreference(key: String): String? = null
@@ -22,6 +26,10 @@ class FakeUserPreferencesRepository : UserPreferencesRepository {
 	override suspend fun setWeekStartDay(day: WeekStartDay) {}
 	override suspend fun setHighlightCurrentDay(highlight: Boolean) {}
 	override suspend fun setAppLocale(locale: AppLocale) {}
+	override suspend fun setShowAnalyticsSummary(show: Boolean) {}
+	override suspend fun setShowAnalyticsWinLoss(show: Boolean) {}
+	override suspend fun setShowAnalyticsWeekly(show: Boolean) {}
+	override suspend fun setShowAnalyticsHeatmap(show: Boolean) {}
 	override suspend fun setPreferences(preferences: Map<String, String>) {}
 	override suspend fun deletePreference(key: String) {}
 	override suspend fun deleteAllPreferences() {}

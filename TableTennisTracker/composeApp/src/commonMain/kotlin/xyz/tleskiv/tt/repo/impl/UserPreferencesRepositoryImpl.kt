@@ -24,6 +24,10 @@ class UserPreferencesRepositoryImpl(
 	private val KEY_WEEK_START_DAY = "week_start_day"
 	private val KEY_HIGHLIGHT_CURRENT_DAY = "highlight_current_day"
 	private val KEY_APP_LOCALE = "app_locale"
+	private val KEY_SHOW_ANALYTICS_SUMMARY = "show_analytics_summary"
+	private val KEY_SHOW_ANALYTICS_WIN_LOSS = "show_analytics_win_loss"
+	private val KEY_SHOW_ANALYTICS_WEEKLY = "show_analytics_weekly"
+	private val KEY_SHOW_ANALYTICS_HEATMAP = "show_analytics_heatmap"
 
 	override val allPreferences: Flow<List<User_preferences>> =
 		database.appDatabaseQueries.selectAllPreferences().asFlow().mapToList(ioDispatcher)
@@ -60,6 +64,22 @@ class UserPreferencesRepositoryImpl(
 		}
 	}
 
+	override val showAnalyticsSummary: Flow<Boolean> = allPreferences.map { prefs ->
+		prefs.find { it.key == KEY_SHOW_ANALYTICS_SUMMARY }?.value_?.toBooleanStrictOrNull() ?: true
+	}
+
+	override val showAnalyticsWinLoss: Flow<Boolean> = allPreferences.map { prefs ->
+		prefs.find { it.key == KEY_SHOW_ANALYTICS_WIN_LOSS }?.value_?.toBooleanStrictOrNull() ?: true
+	}
+
+	override val showAnalyticsWeekly: Flow<Boolean> = allPreferences.map { prefs ->
+		prefs.find { it.key == KEY_SHOW_ANALYTICS_WEEKLY }?.value_?.toBooleanStrictOrNull() ?: true
+	}
+
+	override val showAnalyticsHeatmap: Flow<Boolean> = allPreferences.map { prefs ->
+		prefs.find { it.key == KEY_SHOW_ANALYTICS_HEATMAP }?.value_?.toBooleanStrictOrNull() ?: true
+	}
+
 	override suspend fun getAllPreferences(): Map<String, String> = withContext(ioDispatcher) {
 		database.appDatabaseQueries.selectAllPreferences().executeAsList().associate { it.key to it.value_ }
 	}
@@ -87,6 +107,22 @@ class UserPreferencesRepositoryImpl(
 
 	override suspend fun setAppLocale(locale: AppLocale) {
 		setPreference(KEY_APP_LOCALE, locale.name)
+	}
+
+	override suspend fun setShowAnalyticsSummary(show: Boolean) {
+		setPreference(KEY_SHOW_ANALYTICS_SUMMARY, show.toString())
+	}
+
+	override suspend fun setShowAnalyticsWinLoss(show: Boolean) {
+		setPreference(KEY_SHOW_ANALYTICS_WIN_LOSS, show.toString())
+	}
+
+	override suspend fun setShowAnalyticsWeekly(show: Boolean) {
+		setPreference(KEY_SHOW_ANALYTICS_WEEKLY, show.toString())
+	}
+
+	override suspend fun setShowAnalyticsHeatmap(show: Boolean) {
+		setPreference(KEY_SHOW_ANALYTICS_HEATMAP, show.toString())
 	}
 
 	override suspend fun setPreferences(preferences: Map<String, String>): Unit = withContext(ioDispatcher) {

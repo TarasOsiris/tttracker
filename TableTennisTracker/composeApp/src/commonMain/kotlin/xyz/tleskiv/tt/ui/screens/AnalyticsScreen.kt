@@ -1,13 +1,22 @@
 package xyz.tleskiv.tt.ui.screens
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
@@ -17,6 +26,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -29,8 +39,12 @@ import kotlinx.datetime.minus
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import tabletennistracker.composeapp.generated.resources.Res
+import tabletennistracker.composeapp.generated.resources.analytics_settings_title
 import tabletennistracker.composeapp.generated.resources.analytics_summary
 import xyz.tleskiv.tt.ui.bottomsheets.DaySessionsBottomSheet
+import xyz.tleskiv.tt.ui.dialogs.AnalyticsSettingsDialog
+import xyz.tleskiv.tt.ui.nav.navdisplay.RegisterTopAppBarCleanup
+import xyz.tleskiv.tt.ui.nav.navdisplay.TopAppBarState
 import xyz.tleskiv.tt.ui.widgets.analytics.HeatmapAnalyticsWidget
 import xyz.tleskiv.tt.ui.widgets.analytics.SummaryAnalyticsWidget
 import xyz.tleskiv.tt.ui.widgets.analytics.WeeklyTrainingAnalyticsWidget
@@ -39,14 +53,16 @@ import xyz.tleskiv.tt.viewmodel.analytics.AnalyticsScreenViewModel
 
 @Composable
 fun AnalyticsScreen(
-	viewModel: AnalyticsScreenViewModel = koinViewModel(),
-	onNavigateToSession: (String) -> Unit = {}
+	onNavigateToSession: (String) -> Unit = {},
+	topAppBarState: TopAppBarState? = null,
+	viewModel: AnalyticsScreenViewModel = koinViewModel()
 ) {
 	val sessionsByDate by viewModel.sessionsByDate.collectAsState()
 	val sessionsListByDate by viewModel.sessionsListByDate.collectAsState()
 	val firstDayOfWeek by viewModel.firstDayOfWeek.collectAsState()
 	val summaryStats by viewModel.summaryStats.collectAsState()
 	val weeklyTrainingData by viewModel.weeklyTrainingData.collectAsState()
+	val widgetVisibility by viewModel.widgetVisibility.collectAsState()
 	val endDate = remember(sessionsByDate) {
 		sessionsByDate.keys.maxOrNull() ?: LocalDate.now()
 	}
@@ -56,8 +72,33 @@ fun AnalyticsScreen(
 		if (minDate != null && minDate < rangeStart) minDate else rangeStart
 	}
 	var selection by remember { mutableStateOf<LocalDate?>(null) }
+	var showSettingsDialog by rememberSaveable { mutableStateOf(false) }
 	val sheetState = rememberModalBottomSheetState()
 	val scope = rememberCoroutineScope()
+
+	topAppBarState?.let { state ->
+		RegisterTopAppBarCleanup(state)
+		state.actions = {
+			IconButton(onClick = { showSettingsDialog = true }) {
+				Icon(
+					imageVector = Icons.Outlined.Settings,
+					contentDescription = stringResource(Res.string.analytics_settings_title),
+					tint = MaterialTheme.colorScheme.onSurfaceVariant
+				)
+			}
+		}
+	}
+
+	if (showSettingsDialog) {
+		AnalyticsSettingsDialog(
+			visibility = widgetVisibility,
+			onShowSummaryChange = viewModel::setShowSummary,
+			onShowWinLossChange = viewModel::setShowWinLoss,
+			onShowWeeklyChange = viewModel::setShowWeekly,
+			onShowHeatmapChange = viewModel::setShowHeatmap,
+			onDismiss = { showSettingsDialog = false }
+		)
+	}
 
 	selection?.let { selectedDate ->
 		DaySessionsBottomSheet(
@@ -74,36 +115,67 @@ fun AnalyticsScreen(
 		)
 	}
 
-	Column(
+	Box(
 		modifier = Modifier
 			.fillMaxSize()
 			.background(MaterialTheme.colorScheme.surface)
-			.verticalScroll(rememberScrollState())
-			.padding(16.dp)
 	) {
-		Text(
-			text = stringResource(Res.string.analytics_summary),
-			style = MaterialTheme.typography.titleSmall,
-			fontWeight = FontWeight.SemiBold,
-			color = MaterialTheme.colorScheme.primary,
-			modifier = Modifier.padding(start = 4.dp, bottom = 8.dp)
-		)
-		SummaryAnalyticsWidget(summaryStats)
+		Column(
+			modifier = Modifier
+				.fillMaxSize()
+				.verticalScroll(rememberScrollState())
+				.padding(16.dp),
+			verticalArrangement = Arrangement.spacedBy(16.dp)
+		) {
+			AnalyticsSectionHeader(title = stringResource(Res.string.analytics_summary))
 
-		Spacer(modifier = Modifier.height(24.dp))
-		WinLossAnalyticsWidget(summaryStats)
+			AnimatedWidget(visible = widgetVisibility.showSummary) {
+				SummaryAnalyticsWidget(summaryStats)
+			}
 
-		Spacer(modifier = Modifier.height(24.dp))
-		WeeklyTrainingAnalyticsWidget(weeklyTrainingData)
+			AnimatedWidget(visible = widgetVisibility.showWinLoss) {
+				WinLossAnalyticsWidget(summaryStats)
+			}
 
-		Spacer(modifier = Modifier.height(24.dp))
-		HeatmapAnalyticsWidget(
-			sessionsByDate = sessionsByDate,
-			startDate = startDate,
-			endDate = endDate,
-			firstDayOfWeek = firstDayOfWeek,
-			selection = selection,
-			onDaySelected = { selection = it }
-		)
+			AnimatedWidget(visible = widgetVisibility.showWeekly) {
+				WeeklyTrainingAnalyticsWidget(weeklyTrainingData)
+			}
+
+			AnimatedWidget(visible = widgetVisibility.showHeatmap) {
+				HeatmapAnalyticsWidget(
+					sessionsByDate = sessionsByDate,
+					startDate = startDate,
+					endDate = endDate,
+					firstDayOfWeek = firstDayOfWeek,
+					selection = selection,
+					onDaySelected = { selection = it }
+				)
+			}
+		}
+	}
+}
+
+@Composable
+private fun AnalyticsSectionHeader(title: String) {
+	Text(
+		text = title,
+		style = MaterialTheme.typography.titleSmall,
+		fontWeight = FontWeight.SemiBold,
+		color = MaterialTheme.colorScheme.primary,
+		modifier = Modifier.padding(start = 4.dp, bottom = 8.dp)
+	)
+}
+
+@Composable
+private fun AnimatedWidget(
+	visible: Boolean,
+	content: @Composable () -> Unit
+) {
+	AnimatedVisibility(
+		visible = visible,
+		enter = fadeIn() + expandVertically(),
+		exit = fadeOut() + shrinkVertically()
+	) {
+		content()
 	}
 }

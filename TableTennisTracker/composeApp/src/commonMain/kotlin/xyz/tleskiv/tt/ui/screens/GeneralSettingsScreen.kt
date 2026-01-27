@@ -154,7 +154,6 @@ fun GeneralSettingsScreen(
 				.verticalScroll(rememberScrollState())
 				.padding(16.dp)
 		) {
-			// Appearance Section
 			SettingsSectionHeader(stringResource(Res.string.settings_section_appearance))
 			Spacer(modifier = Modifier.height(8.dp))
 			ContentCard {
@@ -173,7 +172,6 @@ fun GeneralSettingsScreen(
 
 			Spacer(modifier = Modifier.height(24.dp))
 
-			// Calendar Section
 			SettingsSectionHeader(stringResource(Res.string.settings_section_calendar))
 			Spacer(modifier = Modifier.height(8.dp))
 			ContentCard {
@@ -192,7 +190,6 @@ fun GeneralSettingsScreen(
 
 			Spacer(modifier = Modifier.height(24.dp))
 
-			// Sessions Section
 			SettingsSectionHeader(stringResource(Res.string.settings_section_sessions))
 			Spacer(modifier = Modifier.height(8.dp))
 

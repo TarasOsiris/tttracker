@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -69,125 +70,166 @@ fun WeeklyTrainingAnalyticsWidget(weeklyData: List<WeeklyTrainingData>) {
 
 			Column(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
 				Row(modifier = Modifier.fillMaxWidth()) {
-					// Y-axis labels
-					Column(
-						modifier = Modifier.width(36.dp).height(CHART_HEIGHT.dp),
-						verticalArrangement = Arrangement.SpaceBetween
-					) {
-						Text(
-							text = formatMinutesShort(roundedMax),
-							style = MaterialTheme.typography.labelSmall,
-							color = MaterialTheme.colorScheme.onSurfaceVariant
-						)
-						Text(
-							text = formatMinutesShort(roundedMax / 2),
-							style = MaterialTheme.typography.labelSmall,
-							color = MaterialTheme.colorScheme.onSurfaceVariant
-						)
-						Text(
-							text = "0",
-							style = MaterialTheme.typography.labelSmall,
-							color = MaterialTheme.colorScheme.onSurfaceVariant
-						)
-					}
-
-					// Chart area with grid lines
-					Box(modifier = Modifier.weight(1f).height(CHART_HEIGHT.dp)) {
-						// Grid lines
-						Column(
-							modifier = Modifier.fillMaxWidth().fillMaxHeight(),
-							verticalArrangement = Arrangement.SpaceBetween
-						) {
-							repeat(GRID_LINES) {
-								HorizontalDivider(
-									color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f),
-									thickness = 1.dp
-								)
-							}
-						}
-
-						// Bars
-						Row(
-							modifier = Modifier.fillMaxWidth().fillMaxHeight(),
-							horizontalArrangement = Arrangement.SpaceEvenly,
-							verticalAlignment = Alignment.Bottom
-						) {
-							weeklyData.forEachIndexed { index, data ->
-								val isCurrentWeek = index == weeklyData.lastIndex
-								val heightFraction = if (roundedMax > 0) {
-									data.totalMinutes.toFloat() / roundedMax
-								} else 0f
-
-								Column(
-									horizontalAlignment = Alignment.CenterHorizontally,
-									modifier = Modifier.weight(1f)
-								) {
-									if (data.totalMinutes > 0) {
-										Text(
-											text = formatMinutesShort(data.totalMinutes),
-											style = MaterialTheme.typography.labelSmall,
-											color = MaterialTheme.colorScheme.onSurfaceVariant,
-											fontWeight = if (isCurrentWeek) FontWeight.Bold else FontWeight.Normal
-										)
-										Spacer(modifier = Modifier.height(2.dp))
-									}
-									Box(
-										modifier = Modifier
-											.width(20.dp)
-											.fillMaxHeight(heightFraction.coerceAtLeast(if (data.totalMinutes > 0) 0.02f else 0f))
-											.clip(MaterialTheme.shapes.extraSmall)
-											.background(if (isCurrentWeek) currentWeekColor else barColor)
-									)
-								}
-							}
-						}
-					}
+					YAxisLabels(roundedMax = roundedMax)
+					ChartArea(
+						weeklyData = weeklyData,
+						roundedMax = roundedMax,
+						barColor = barColor,
+						currentWeekColor = currentWeekColor
+					)
 				}
 
 				Spacer(modifier = Modifier.height(6.dp))
-
-				// Week labels
-				Row(
-					modifier = Modifier.fillMaxWidth().padding(start = 36.dp),
-					horizontalArrangement = Arrangement.SpaceEvenly
-				) {
-					weeklyData.forEachIndexed { index, data ->
-						val isCurrentWeek = index == weeklyData.lastIndex
-						Text(
-							text = data.weekLabel,
-							style = MaterialTheme.typography.labelSmall,
-							color = if (isCurrentWeek) {
-								MaterialTheme.colorScheme.tertiary
-							} else {
-								MaterialTheme.colorScheme.onSurfaceVariant
-							},
-							fontWeight = if (isCurrentWeek) FontWeight.SemiBold else FontWeight.Normal,
-							modifier = Modifier.weight(1f),
-							textAlign = TextAlign.Center
-						)
-					}
-				}
+				WeekLabels(weeklyData = weeklyData)
 
 				Spacer(modifier = Modifier.height(12.dp))
 				HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
 				Spacer(modifier = Modifier.height(12.dp))
 
-				// Summary row
-				Row(
-					modifier = Modifier.fillMaxWidth(),
-					horizontalArrangement = Arrangement.SpaceEvenly
-				) {
-					SummaryItem(
-						label = stringResource(Res.string.analytics_weekly_total),
-						value = formatMinutesFull(totalMinutes)
-					)
-					SummaryItem(
-						label = stringResource(Res.string.analytics_weekly_avg),
-						value = formatMinutesFull(avgMinutes)
-					)
-				}
+				TrainingSummaryRow(totalMinutes = totalMinutes, avgMinutes = avgMinutes)
 			}
 		}
+	}
+}
+
+@Composable
+private fun YAxisLabels(roundedMax: Int) {
+	Column(
+		modifier = Modifier.width(36.dp).height(CHART_HEIGHT.dp),
+		verticalArrangement = Arrangement.SpaceBetween
+	) {
+		Text(
+			text = formatMinutesShort(roundedMax),
+			style = MaterialTheme.typography.labelSmall,
+			color = MaterialTheme.colorScheme.onSurfaceVariant
+		)
+		Text(
+			text = formatMinutesShort(roundedMax / 2),
+			style = MaterialTheme.typography.labelSmall,
+			color = MaterialTheme.colorScheme.onSurfaceVariant
+		)
+		Text(
+			text = "0",
+			style = MaterialTheme.typography.labelSmall,
+			color = MaterialTheme.colorScheme.onSurfaceVariant
+		)
+	}
+}
+
+@Composable
+private fun RowScope.ChartArea(
+	weeklyData: List<WeeklyTrainingData>,
+	roundedMax: Int,
+	barColor: androidx.compose.ui.graphics.Color,
+	currentWeekColor: androidx.compose.ui.graphics.Color
+) {
+	Box(modifier = Modifier.weight(1f).height(CHART_HEIGHT.dp)) {
+		ChartGridLines()
+		ChartBars(
+			weeklyData = weeklyData,
+			roundedMax = roundedMax,
+			barColor = barColor,
+			currentWeekColor = currentWeekColor
+		)
+	}
+}
+
+@Composable
+private fun ChartGridLines() {
+	Column(
+		modifier = Modifier.fillMaxWidth().fillMaxHeight(),
+		verticalArrangement = Arrangement.SpaceBetween
+	) {
+		repeat(GRID_LINES) {
+			HorizontalDivider(
+				color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f),
+				thickness = 1.dp
+			)
+		}
+	}
+}
+
+@Composable
+private fun ChartBars(
+	weeklyData: List<WeeklyTrainingData>,
+	roundedMax: Int,
+	barColor: androidx.compose.ui.graphics.Color,
+	currentWeekColor: androidx.compose.ui.graphics.Color
+) {
+	Row(
+		modifier = Modifier.fillMaxWidth().fillMaxHeight(),
+		horizontalArrangement = Arrangement.SpaceEvenly,
+		verticalAlignment = Alignment.Bottom
+	) {
+		weeklyData.forEachIndexed { index, data ->
+			val isCurrentWeek = index == weeklyData.lastIndex
+			val heightFraction = if (roundedMax > 0) {
+				data.totalMinutes.toFloat() / roundedMax
+			} else 0f
+
+			Column(
+				horizontalAlignment = Alignment.CenterHorizontally,
+				modifier = Modifier.weight(1f)
+			) {
+				if (data.totalMinutes > 0) {
+					Text(
+						text = formatMinutesShort(data.totalMinutes),
+						style = MaterialTheme.typography.labelSmall,
+						color = MaterialTheme.colorScheme.onSurfaceVariant,
+						fontWeight = if (isCurrentWeek) FontWeight.Bold else FontWeight.Normal
+					)
+					Spacer(modifier = Modifier.height(2.dp))
+				}
+				Box(
+					modifier = Modifier
+						.width(20.dp)
+						.fillMaxHeight(heightFraction.coerceAtLeast(if (data.totalMinutes > 0) 0.02f else 0f))
+						.clip(MaterialTheme.shapes.extraSmall)
+						.background(if (isCurrentWeek) currentWeekColor else barColor)
+				)
+			}
+		}
+	}
+}
+
+@Composable
+private fun WeekLabels(weeklyData: List<WeeklyTrainingData>) {
+	Row(
+		modifier = Modifier.fillMaxWidth().padding(start = 36.dp),
+		horizontalArrangement = Arrangement.SpaceEvenly
+	) {
+		weeklyData.forEachIndexed { index, data ->
+			val isCurrentWeek = index == weeklyData.lastIndex
+			Text(
+				text = data.weekLabel,
+				style = MaterialTheme.typography.labelSmall,
+				color = if (isCurrentWeek) {
+					MaterialTheme.colorScheme.tertiary
+				} else {
+					MaterialTheme.colorScheme.onSurfaceVariant
+				},
+				fontWeight = if (isCurrentWeek) FontWeight.SemiBold else FontWeight.Normal,
+				modifier = Modifier.weight(1f),
+				textAlign = TextAlign.Center
+			)
+		}
+	}
+}
+
+@Composable
+private fun TrainingSummaryRow(totalMinutes: Int, avgMinutes: Int) {
+	Row(
+		modifier = Modifier.fillMaxWidth(),
+		horizontalArrangement = Arrangement.SpaceEvenly
+	) {
+		SummaryItem(
+			label = stringResource(Res.string.analytics_weekly_total),
+			value = formatMinutesFull(totalMinutes)
+		)
+		SummaryItem(
+			label = stringResource(Res.string.analytics_weekly_avg),
+			value = formatMinutesFull(avgMinutes)
+		)
 	}
 }
 

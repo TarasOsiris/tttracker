@@ -61,73 +61,99 @@ fun DebugScreen(
 				.verticalScroll(rememberScrollState())
 				.padding(16.dp)
 		) {
-			ContentCard {
-				Column(modifier = Modifier.padding(16.dp)) {
-					Text(
-						text = stringResource(Res.string.debug_data_generation_title),
-						style = MaterialTheme.typography.titleMedium,
-						color = MaterialTheme.colorScheme.onSurface
-					)
-					Spacer(modifier = Modifier.height(8.dp))
-					Text(
-						text = stringResource(Res.string.debug_data_generation_description),
-						style = MaterialTheme.typography.bodyMedium,
-						color = MaterialTheme.colorScheme.onSurfaceVariant
-					)
-					Spacer(modifier = Modifier.height(16.dp))
-					Button(
-						onClick = { viewModel.generateRandomSessions(100) },
-						enabled = !isGenerating && !isClearing,
-						modifier = Modifier.fillMaxWidth()
-					) {
-						if (isGenerating) {
-							CircularProgressIndicator(
-								modifier = Modifier.height(20.dp),
-								strokeWidth = 2.dp,
-								color = MaterialTheme.colorScheme.onPrimary
-							)
-						} else {
-							Text(stringResource(Res.string.debug_generate_random_sessions))
-						}
-					}
-				}
-			}
+			DataGenerationSection(
+				isLoading = isGenerating,
+				enabled = !isGenerating && !isClearing,
+				onGenerate = { viewModel.generateRandomSessions(100) }
+			)
 
 			Spacer(modifier = Modifier.height(16.dp))
 
-			ContentCard {
-				Column(modifier = Modifier.padding(16.dp)) {
-					Text(
-						text = stringResource(Res.string.debug_clear_database_title),
-						style = MaterialTheme.typography.titleMedium,
-						color = MaterialTheme.colorScheme.error
+			ClearDatabaseSection(
+				isLoading = isClearing,
+				enabled = !isGenerating && !isClearing,
+				onClear = { viewModel.clearAllSessions() }
+			)
+		}
+	}
+}
+
+@Composable
+private fun DataGenerationSection(
+	isLoading: Boolean,
+	enabled: Boolean,
+	onGenerate: () -> Unit
+) {
+	ContentCard {
+		Column(modifier = Modifier.padding(16.dp)) {
+			Text(
+				text = stringResource(Res.string.debug_data_generation_title),
+				style = MaterialTheme.typography.titleMedium,
+				color = MaterialTheme.colorScheme.onSurface
+			)
+			Spacer(modifier = Modifier.height(8.dp))
+			Text(
+				text = stringResource(Res.string.debug_data_generation_description),
+				style = MaterialTheme.typography.bodyMedium,
+				color = MaterialTheme.colorScheme.onSurfaceVariant
+			)
+			Spacer(modifier = Modifier.height(16.dp))
+			Button(
+				onClick = onGenerate,
+				enabled = enabled,
+				modifier = Modifier.fillMaxWidth()
+			) {
+				if (isLoading) {
+					CircularProgressIndicator(
+						modifier = Modifier.height(20.dp),
+						strokeWidth = 2.dp,
+						color = MaterialTheme.colorScheme.onPrimary
 					)
-					Spacer(modifier = Modifier.height(8.dp))
-					Text(
-						text = stringResource(Res.string.debug_clear_database_description),
-						style = MaterialTheme.typography.bodyMedium,
-						color = MaterialTheme.colorScheme.onSurfaceVariant
+				} else {
+					Text(stringResource(Res.string.debug_generate_random_sessions))
+				}
+			}
+		}
+	}
+}
+
+@Composable
+private fun ClearDatabaseSection(
+	isLoading: Boolean,
+	enabled: Boolean,
+	onClear: () -> Unit
+) {
+	ContentCard {
+		Column(modifier = Modifier.padding(16.dp)) {
+			Text(
+				text = stringResource(Res.string.debug_clear_database_title),
+				style = MaterialTheme.typography.titleMedium,
+				color = MaterialTheme.colorScheme.error
+			)
+			Spacer(modifier = Modifier.height(8.dp))
+			Text(
+				text = stringResource(Res.string.debug_clear_database_description),
+				style = MaterialTheme.typography.bodyMedium,
+				color = MaterialTheme.colorScheme.onSurfaceVariant
+			)
+			Spacer(modifier = Modifier.height(16.dp))
+			Button(
+				onClick = onClear,
+				enabled = enabled,
+				colors = ButtonDefaults.buttonColors(
+					containerColor = MaterialTheme.colorScheme.error,
+					contentColor = MaterialTheme.colorScheme.onError
+				),
+				modifier = Modifier.fillMaxWidth()
+			) {
+				if (isLoading) {
+					CircularProgressIndicator(
+						modifier = Modifier.height(20.dp),
+						strokeWidth = 2.dp,
+						color = MaterialTheme.colorScheme.onError
 					)
-					Spacer(modifier = Modifier.height(16.dp))
-					Button(
-						onClick = { viewModel.clearAllSessions() },
-						enabled = !isGenerating && !isClearing,
-						colors = ButtonDefaults.buttonColors(
-							containerColor = MaterialTheme.colorScheme.error,
-							contentColor = MaterialTheme.colorScheme.onError
-						),
-						modifier = Modifier.fillMaxWidth()
-					) {
-						if (isClearing) {
-							CircularProgressIndicator(
-								modifier = Modifier.height(20.dp),
-								strokeWidth = 2.dp,
-								color = MaterialTheme.colorScheme.onError
-							)
-						} else {
-							Text(stringResource(Res.string.debug_clear_all_sessions))
-						}
-					}
+				} else {
+					Text(stringResource(Res.string.debug_clear_all_sessions))
 				}
 			}
 		}
