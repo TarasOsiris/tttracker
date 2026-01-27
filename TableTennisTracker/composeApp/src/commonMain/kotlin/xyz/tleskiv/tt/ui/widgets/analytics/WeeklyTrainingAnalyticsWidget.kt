@@ -31,7 +31,6 @@ import tabletennistracker.composeapp.generated.resources.analytics_weekly_avg
 import tabletennistracker.composeapp.generated.resources.analytics_weekly_total
 import tabletennistracker.composeapp.generated.resources.analytics_weekly_training
 import tabletennistracker.composeapp.generated.resources.suffix_minutes_value
-import xyz.tleskiv.tt.ui.widgets.ContentCard
 import xyz.tleskiv.tt.viewmodel.analytics.WeeklyTrainingData
 
 private const val CHART_HEIGHT = 140
@@ -42,15 +41,7 @@ fun WeeklyTrainingAnalyticsWidget(weeklyData: List<WeeklyTrainingData>) {
 	val barColor = MaterialTheme.colorScheme.primary
 	val currentWeekColor = MaterialTheme.colorScheme.tertiary
 
-	Text(
-		text = stringResource(Res.string.analytics_weekly_training),
-		style = MaterialTheme.typography.titleSmall,
-		fontWeight = FontWeight.SemiBold,
-		color = MaterialTheme.colorScheme.primary,
-		modifier = Modifier.padding(start = 4.dp, bottom = 8.dp)
-	)
-
-	ContentCard {
+	AnalyticsWidget(title = Res.string.analytics_weekly_training) {
 		if (weeklyData.isEmpty() || weeklyData.all { it.totalMinutes == 0 }) {
 			Box(
 				modifier = Modifier.fillMaxWidth().height(200.dp),

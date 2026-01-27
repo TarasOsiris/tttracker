@@ -18,7 +18,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import io.github.koalaplot.core.pie.DefaultSlice
 import io.github.koalaplot.core.pie.PieChart
@@ -31,7 +30,6 @@ import tabletennistracker.composeapp.generated.resources.analytics_win_loss_char
 import tabletennistracker.composeapp.generated.resources.analytics_wins
 import xyz.tleskiv.tt.ui.theme.lossColor
 import xyz.tleskiv.tt.ui.theme.winColor
-import xyz.tleskiv.tt.ui.widgets.ContentCard
 import xyz.tleskiv.tt.viewmodel.analytics.SummaryStats
 
 @OptIn(ExperimentalKoalaPlotApi::class)
@@ -41,15 +39,7 @@ fun WinLossAnalyticsWidget(stats: SummaryStats) {
 	val winsLabel = stringResource(Res.string.analytics_wins)
 	val lossesLabel = stringResource(Res.string.analytics_losses)
 
-	Text(
-		text = stringResource(Res.string.analytics_win_loss_chart),
-		style = MaterialTheme.typography.titleSmall,
-		fontWeight = FontWeight.SemiBold,
-		color = MaterialTheme.colorScheme.primary,
-		modifier = Modifier.padding(start = 4.dp, bottom = 8.dp)
-	)
-
-	ContentCard {
+	AnalyticsWidget(title = Res.string.analytics_win_loss_chart) {
 		if (totalMatches == 0) {
 			Box(
 				modifier = Modifier.fillMaxWidth().height(200.dp),

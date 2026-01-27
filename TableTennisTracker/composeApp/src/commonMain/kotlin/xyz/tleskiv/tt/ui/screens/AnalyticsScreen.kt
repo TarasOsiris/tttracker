@@ -6,7 +6,6 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -29,7 +28,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.kizitonwose.calendar.core.now
 import kotlinx.coroutines.launch
@@ -40,7 +38,6 @@ import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.analytics_settings_title
-import tabletennistracker.composeapp.generated.resources.analytics_summary
 import xyz.tleskiv.tt.ui.bottomsheets.DaySessionsBottomSheet
 import xyz.tleskiv.tt.ui.dialogs.AnalyticsSettingsDialog
 import xyz.tleskiv.tt.ui.nav.navdisplay.TopAppBarState
@@ -124,11 +121,8 @@ fun AnalyticsScreen(
 			modifier = Modifier
 				.fillMaxSize()
 				.verticalScroll(rememberScrollState())
-				.padding(16.dp),
-			verticalArrangement = Arrangement.spacedBy(16.dp)
+				.padding(16.dp)
 		) {
-			AnalyticsSectionHeader(title = stringResource(Res.string.analytics_summary))
-
 			AnimatedWidget(visible = widgetVisibility.showSummary) {
 				SummaryAnalyticsWidget(summaryStats)
 			}
@@ -153,17 +147,6 @@ fun AnalyticsScreen(
 			}
 		}
 	}
-}
-
-@Composable
-private fun AnalyticsSectionHeader(title: String) {
-	Text(
-		text = title,
-		style = MaterialTheme.typography.titleSmall,
-		fontWeight = FontWeight.SemiBold,
-		color = MaterialTheme.colorScheme.primary,
-		modifier = Modifier.padding(start = 4.dp, bottom = 8.dp)
-	)
 }
 
 @Composable

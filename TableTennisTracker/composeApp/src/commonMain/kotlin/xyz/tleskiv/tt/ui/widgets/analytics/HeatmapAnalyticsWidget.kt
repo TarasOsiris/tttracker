@@ -26,7 +26,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -46,7 +45,6 @@ import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.analytics_heatmap_less
 import tabletennistracker.composeapp.generated.resources.analytics_heatmap_more
 import tabletennistracker.composeapp.generated.resources.analytics_heatmap_title
-import xyz.tleskiv.tt.ui.widgets.ContentCard
 import xyz.tleskiv.tt.util.ext.displayText
 import xyz.tleskiv.tt.util.ext.shortDisplayText
 import xyz.tleskiv.tt.util.ui.HeatMapLevel
@@ -70,15 +68,7 @@ fun HeatmapAnalyticsWidget(
 		sessionsByDate.mapValues { (_, count) -> levelForCount(count, maxCount) }
 	}
 
-	Text(
-		text = stringResource(Res.string.analytics_heatmap_title),
-		style = MaterialTheme.typography.titleSmall,
-		fontWeight = FontWeight.SemiBold,
-		color = MaterialTheme.colorScheme.primary,
-		modifier = Modifier.padding(start = 4.dp, bottom = 8.dp)
-	)
-
-	ContentCard {
+	AnalyticsWidget(title = Res.string.analytics_heatmap_title) {
 		Column {
 			val state = key(firstDayOfWeek) {
 				rememberHeatMapCalendarState(

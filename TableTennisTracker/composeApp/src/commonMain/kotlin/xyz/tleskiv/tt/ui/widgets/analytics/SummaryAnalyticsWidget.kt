@@ -21,13 +21,13 @@ import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.stringResource
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.analytics_hours_minutes
+import tabletennistracker.composeapp.generated.resources.analytics_summary
 import tabletennistracker.composeapp.generated.resources.analytics_total_sessions
 import tabletennistracker.composeapp.generated.resources.analytics_total_time
 import tabletennistracker.composeapp.generated.resources.analytics_win_loss
 import tabletennistracker.composeapp.generated.resources.analytics_win_rate
 import xyz.tleskiv.tt.ui.theme.lossColor
 import xyz.tleskiv.tt.ui.theme.winColor
-import xyz.tleskiv.tt.ui.widgets.ContentCard
 import xyz.tleskiv.tt.viewmodel.analytics.SummaryStats
 
 @Composable
@@ -44,7 +44,7 @@ fun SummaryAnalyticsWidget(stats: SummaryStats) {
 		else -> lossColor
 	}
 
-	ContentCard {
+	AnalyticsWidget(title = Res.string.analytics_summary) {
 		Column(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
 			Row(
 				modifier = Modifier.fillMaxWidth(),
