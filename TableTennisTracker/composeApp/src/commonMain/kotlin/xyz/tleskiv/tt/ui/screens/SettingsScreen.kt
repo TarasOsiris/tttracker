@@ -53,16 +53,23 @@ import tabletennistracker.composeapp.generated.resources.settings_section_develo
 import tabletennistracker.composeapp.generated.resources.settings_section_general
 import tabletennistracker.composeapp.generated.resources.settings_section_help
 import tabletennistracker.composeapp.generated.resources.settings_version_format
+import xyz.tleskiv.tt.ui.nav.navdisplay.TopAppBarState
+import xyz.tleskiv.tt.ui.nav.routes.SettingsRoute
 import xyz.tleskiv.tt.ui.widgets.ContentCard
 import xyz.tleskiv.tt.viewmodel.SettingsViewModel
 
 @Composable
 fun SettingsScreen(
+	topAppBarState: TopAppBarState? = null,
 	onNavigateToGeneralSettings: () -> Unit = {},
 	onNavigateToOpponents: () -> Unit = {},
 	onNavigateToDebug: () -> Unit = {},
 	viewModel: SettingsViewModel = koinViewModel()
 ) {
+	topAppBarState?.let { state ->
+		state.title = { Text(text = stringResource(SettingsRoute.label)) }
+	}
+
 	val uriHandler = LocalUriHandler.current
 
 	Column(

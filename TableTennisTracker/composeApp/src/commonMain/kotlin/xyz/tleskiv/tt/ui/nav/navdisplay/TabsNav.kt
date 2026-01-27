@@ -15,6 +15,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
@@ -50,17 +51,18 @@ fun TabsNavDisplay(
 	navBarScreenBackStack: TopLevelBackStack<NavBarTabLevelRoute> = remember { TopLevelBackStack(SessionsRoute) }
 ) {
 	val currentRoute = navBarScreenBackStack.topLevelKey
-	val topAppBarState = remember { TopAppBarState() }
+
+	// Each tab has its own TopAppBarState that persists across tab switches
+	val topAppBarStates = remember { mutableStateMapOf<NavBarTabLevelRoute, TopAppBarState>() }
+	val currentTopAppBarState = topAppBarStates.getOrPut(currentRoute) { TopAppBarState() }
 
 	Scaffold(
 		topBar = {
 			TopAppBar(
-				title = {
-					topAppBarState.title?.invoke() ?: Text(stringResource(currentRoute.label))
-				},
+				title = { currentTopAppBarState.title() },
 				actions = {
 					Box(modifier = Modifier.padding(end = 8.dp)) {
-						topAppBarState.actions?.invoke()
+						currentTopAppBarState.actions?.invoke()
 					}
 				},
 				colors = TopAppBarDefaults.topAppBarColors(
@@ -109,17 +111,18 @@ fun TabsNavDisplay(
 							onAddSession = { selectedDate ->
 								topLevelBackStack.add(CreateSessionRoute(selectedDate))
 							},
-							topAppBarState = topAppBarState
+							topAppBarState = currentTopAppBarState
 						)
 					}
 					entry<AnalyticsRoute>(metadata = instantTransitionMetadata) {
 						AnalyticsScreen(
 							onNavigateToSession = { id -> topLevelBackStack.add(SessionDetailsRoute(id)) },
-							topAppBarState = topAppBarState
+							topAppBarState = currentTopAppBarState
 						)
 					}
 					entry<SettingsRoute>(metadata = instantTransitionMetadata) {
 						SettingsScreen(
+							topAppBarState = currentTopAppBarState,
 							onNavigateToGeneralSettings = { topLevelBackStack.add(GeneralSettingsRoute) },
 							onNavigateToOpponents = { topLevelBackStack.add(OpponentsRoute) },
 							onNavigateToDebug = { topLevelBackStack.add(DebugRoute) }

@@ -43,8 +43,8 @@ import tabletennistracker.composeapp.generated.resources.analytics_settings_titl
 import tabletennistracker.composeapp.generated.resources.analytics_summary
 import xyz.tleskiv.tt.ui.bottomsheets.DaySessionsBottomSheet
 import xyz.tleskiv.tt.ui.dialogs.AnalyticsSettingsDialog
-import xyz.tleskiv.tt.ui.nav.navdisplay.RegisterTopAppBarCleanup
 import xyz.tleskiv.tt.ui.nav.navdisplay.TopAppBarState
+import xyz.tleskiv.tt.ui.nav.routes.AnalyticsRoute
 import xyz.tleskiv.tt.ui.widgets.analytics.HeatmapAnalyticsWidget
 import xyz.tleskiv.tt.ui.widgets.analytics.SummaryAnalyticsWidget
 import xyz.tleskiv.tt.ui.widgets.analytics.WeeklyTrainingAnalyticsWidget
@@ -77,7 +77,7 @@ fun AnalyticsScreen(
 	val scope = rememberCoroutineScope()
 
 	topAppBarState?.let { state ->
-		RegisterTopAppBarCleanup(state)
+		state.title = { Text(text = stringResource(AnalyticsRoute.label)) }
 		state.actions = {
 			IconButton(onClick = { showSettingsDialog = true }) {
 				Icon(
