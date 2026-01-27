@@ -96,7 +96,7 @@ private const val DATE_LIST_RANGE_DAYS = 365
 fun SessionsScreen(
 	onNavigateToDetails: (String) -> Unit = {},
 	onAddSession: (LocalDate) -> Unit = {},
-	topAppBarState: TopAppBarState? = null,
+	topAppBarState: TopAppBarState,
 	viewModel: SessionsScreenViewModel = koinViewModel()
 ) {
 	val inputData = viewModel.inputData
@@ -134,23 +134,21 @@ fun SessionsScreen(
 	}
 
 	val titleText = visibleYearMonth.formatMonthYear()
-	topAppBarState?.let { state ->
-		state.title = { Text(titleText) }
-		state.actions = {
-			WeekMonthToggle(
-				isWeekMode = inputData.isWeekMode,
-				onToggle = {
-					coroutineScope.launch {
-						if (inputData.isWeekMode) {
-							monthState.scrollToMonth(inputData.selectedDate.yearMonth)
-						} else {
-							weekState.scrollToWeek(inputData.selectedDate)
-						}
-						inputData.isWeekMode = !inputData.isWeekMode
+	topAppBarState.title = { Text(titleText) }
+	topAppBarState.actions = {
+		WeekMonthToggle(
+			isWeekMode = inputData.isWeekMode,
+			onToggle = {
+				coroutineScope.launch {
+					if (inputData.isWeekMode) {
+						monthState.scrollToMonth(inputData.selectedDate.yearMonth)
+					} else {
+						weekState.scrollToWeek(inputData.selectedDate)
 					}
+					inputData.isWeekMode = !inputData.isWeekMode
 				}
-			)
-		}
+			}
+		)
 	}
 
 	// Calendar → List: scroll when user taps a date on the calendar

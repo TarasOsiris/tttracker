@@ -51,7 +51,7 @@ import xyz.tleskiv.tt.viewmodel.analytics.AnalyticsScreenViewModel
 @Composable
 fun AnalyticsScreen(
 	onNavigateToSession: (String) -> Unit = {},
-	topAppBarState: TopAppBarState? = null,
+	topAppBarState: TopAppBarState,
 	viewModel: AnalyticsScreenViewModel = koinViewModel()
 ) {
 	val sessionsByDate by viewModel.sessionsByDate.collectAsState()
@@ -73,16 +73,14 @@ fun AnalyticsScreen(
 	val sheetState = rememberModalBottomSheetState()
 	val scope = rememberCoroutineScope()
 
-	topAppBarState?.let { state ->
-		state.title = { Text(text = stringResource(AnalyticsRoute.label)) }
-		state.actions = {
-			IconButton(onClick = { showSettingsDialog = true }) {
-				Icon(
-					imageVector = Icons.Outlined.Settings,
-					contentDescription = stringResource(Res.string.analytics_settings_title),
-					tint = MaterialTheme.colorScheme.onSurfaceVariant
-				)
-			}
+	topAppBarState.title = { Text(text = stringResource(AnalyticsRoute.label)) }
+	topAppBarState.actions = {
+		IconButton(onClick = { showSettingsDialog = true }) {
+			Icon(
+				imageVector = Icons.Outlined.Settings,
+				contentDescription = stringResource(Res.string.analytics_settings_title),
+				tint = MaterialTheme.colorScheme.onSurfaceVariant
+			)
 		}
 	}
 

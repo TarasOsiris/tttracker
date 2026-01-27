@@ -3,6 +3,7 @@ package xyz.tleskiv.tt.previews.screens
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import xyz.tleskiv.tt.previews.fakes.FakeSessionsScreenViewModel
+import xyz.tleskiv.tt.ui.nav.navdisplay.TopAppBarState
 import xyz.tleskiv.tt.ui.screens.SessionsScreen
 import xyz.tleskiv.tt.ui.theme.AppTheme
 
@@ -10,6 +11,6 @@ import xyz.tleskiv.tt.ui.theme.AppTheme
 @Composable
 fun SessionsScreenPreview() {
 	AppTheme {
-		SessionsScreen(viewModel = FakeSessionsScreenViewModel())
+		SessionsScreen(topAppBarState = TopAppBarState(), viewModel = FakeSessionsScreenViewModel())
 	}
 }

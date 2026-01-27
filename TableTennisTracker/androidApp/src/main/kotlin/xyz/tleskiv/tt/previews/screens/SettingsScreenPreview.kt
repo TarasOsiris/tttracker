@@ -7,6 +7,7 @@ import xyz.tleskiv.tt.previews.fakes.FakeExternalAppLauncher
 import xyz.tleskiv.tt.previews.fakes.FakeNativeInfoProvider
 import xyz.tleskiv.tt.previews.fakes.FakeUserIdService
 import xyz.tleskiv.tt.previews.fakes.FakeUserPreferencesRepository
+import xyz.tleskiv.tt.ui.nav.navdisplay.TopAppBarState
 import xyz.tleskiv.tt.ui.screens.SettingsScreen
 import xyz.tleskiv.tt.ui.theme.AppTheme
 import xyz.tleskiv.tt.viewmodel.SettingsViewModel
@@ -16,6 +17,7 @@ import xyz.tleskiv.tt.viewmodel.SettingsViewModel
 fun SettingsScreenPreview() {
 	AppTheme {
 		SettingsScreen(
+			topAppBarState = TopAppBarState(),
 			viewModel = SettingsViewModel(
 				userPreferencesRepository = FakeUserPreferencesRepository(),
 				nativeInfoProvider = FakeNativeInfoProvider(),
@@ -32,6 +34,7 @@ fun SettingsScreenPreview() {
 fun SettingsScreenPreviewDebug() {
 	AppTheme {
 		SettingsScreen(
+			topAppBarState = TopAppBarState(),
 			viewModel = SettingsViewModel(
 				userPreferencesRepository = FakeUserPreferencesRepository(),
 				nativeInfoProvider = FakeNativeInfoProvider(isDebug = true),

@@ -236,6 +236,8 @@ If it's not possible fallback to `expect`/`actual` pattern:
     - `addSession_withAllFields_displaysSessionDetails`
     - `getSessionById_withNonExistentId_returnsNull`
     - `deleteSession_removesFromDatabase` (condition can be omitted if obvious)
+- After modifying composable screen signatures, always update the corresponding Android previews
+  in `androidApp/src/main/kotlin/xyz/tleskiv/tt/previews/`
 
 ## Localization
 

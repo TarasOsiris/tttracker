@@ -60,15 +60,13 @@ import xyz.tleskiv.tt.viewmodel.SettingsViewModel
 
 @Composable
 fun SettingsScreen(
-	topAppBarState: TopAppBarState? = null,
+	topAppBarState: TopAppBarState,
 	onNavigateToGeneralSettings: () -> Unit = {},
 	onNavigateToOpponents: () -> Unit = {},
 	onNavigateToDebug: () -> Unit = {},
 	viewModel: SettingsViewModel = koinViewModel()
 ) {
-	topAppBarState?.let { state ->
-		state.title = { Text(text = stringResource(SettingsRoute.label)) }
-	}
+	topAppBarState.title = { Text(text = stringResource(SettingsRoute.label)) }
 
 	val uriHandler = LocalUriHandler.current
 
