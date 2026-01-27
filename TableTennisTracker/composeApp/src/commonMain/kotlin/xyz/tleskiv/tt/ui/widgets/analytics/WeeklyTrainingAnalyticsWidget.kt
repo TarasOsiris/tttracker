@@ -20,6 +20,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -111,8 +112,8 @@ private fun YAxisLabels(roundedMax: Int) {
 private fun RowScope.ChartArea(
 	weeklyData: List<WeeklyTrainingData>,
 	roundedMax: Int,
-	barColor: androidx.compose.ui.graphics.Color,
-	currentWeekColor: androidx.compose.ui.graphics.Color
+	barColor: Color,
+	currentWeekColor: Color
 ) {
 	Box(modifier = Modifier.weight(1f).height(CHART_HEIGHT.dp)) {
 		ChartGridLines()
@@ -144,8 +145,8 @@ private fun ChartGridLines() {
 private fun ChartBars(
 	weeklyData: List<WeeklyTrainingData>,
 	roundedMax: Int,
-	barColor: androidx.compose.ui.graphics.Color,
-	currentWeekColor: androidx.compose.ui.graphics.Color
+	barColor: Color,
+	currentWeekColor: Color
 ) {
 	Row(
 		modifier = Modifier.fillMaxWidth().fillMaxHeight(),
