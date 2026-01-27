@@ -16,6 +16,9 @@
     <string name="action_add_session">Antrenman ekle</string>
     <string name="action_search">Ara</string>
 	<string name="action_ui_settings">Arayüz ayarları</string>
+    <string name="action_opponents">Rakipler</string>
+    <string name="opponents_empty">Henüz rakip yok</string>
+    <string name="title_opponents">Rakipler</string>
     <string name="action_more">Daha fazla</string>
     <string name="action_back">Geri</string>
 
@@ -79,6 +82,12 @@
 	<string name="analytics_total_time">Antrenman süresi</string>
 	<string name="analytics_total_matches">Maçlar</string>
 	<string name="analytics_hours_minutes">%1$ds %2$ddk</string>
+    <string name="analytics_win_loss">Galibiyet / Mağlubiyet</string>
+    <string name="analytics_win_loss_format">%1$d - %2$d</string>
+    <string name="analytics_win_rate">Galibiyet oranı</string>
+    <string name="analytics_heatmap_title">Antrenman seansları ısı haritası</string>
+    <string name="analytics_heatmap_less">Daha az</string>
+    <string name="analytics_heatmap_more">Daha fazla</string>
 
     <!-- Settings Screen -->
     <string name="profile_guest_user">Misafir</string>
@@ -93,6 +102,7 @@
     <string name="action_send_feedback">Geri bildirim gönder</string>
     <string name="action_visit_website">Web sitesi</string>
     <string name="action_rate_app">Uygulamayı değerlendir</string>
+    <string name="action_copy_user_id">Kullanıcı kimliğini kopyala</string>
 
     <!-- General Settings Screen -->
 	<string name="settings_section_appearance">Görünüm</string>
@@ -180,7 +190,66 @@
     <string name="duration_hours_plural_full">%1$d saat</string>
     <string name="duration_hm_short">%1$ds %2$ddk</string>
 
+	<!-- Help -->
+	<string name="help_icon_content_description">Yardımı göster</string>
+	<string name="help_rpe_title">RPE nedir?</string>
+	<string name="help_rpe_description">RPE (Algılanan Zorluk Derecesi), egzersiz sırasında vücudunuzun ne kadar zorlandığını hissetmenizi ölçer.</string>
+	<string name="help_rpe_scale_intro">1-10 ölçeği antrenman yoğunluğunu takip etmenize yardımcı olur:</string>
+	<string name="help_rpe_level_1_2">1-2: Çok kolay - Hafif aktivite, rahatça konuşabilirsiniz</string>
+	<string name="help_rpe_level_3_4">3-4: Kolay - Rahat tempo, sohbet mümkün</string>
+	<string name="help_rpe_level_5_6">5-6: Orta - Nefes daha zor, biraz zorluk</string>
+	<string name="help_rpe_level_7_8">7-8: Zor - Konuşmak zor, kendinizi zorluyorsunuz</string>
+	<string name="help_rpe_level_9_10">9-10: Maksimum çaba - Tam yoğunluk, sürdürülemez</string>
+	<string name="help_rpe_tip">İpucu: Antrenman seanslarının çoğu 5-7 aralığında olmalı.</string>
+
+    <!-- Match Creation -->
+    <string name="label_matches_optional">Maçlar (isteğe bağlı)</string>
+    <string name="action_add_match">Maç ekle</string>
+    <string name="add_match">Maç ekle</string>
+    <string name="edit_match">Maçı düzenle</string>
+    <string name="label_opponent">Rakip</string>
+    <string name="hint_opponent_name">Rakip adını girin</string>
+    <string name="label_score">Skor</string>
+    <string name="label_me">Ben</string>
+    <string name="action_increase_my_score">Kendi skorumu artır</string>
+    <string name="action_increase_opponent_score">Rakibin skorunu artır</string>
+    <string name="label_competition_level_optional">Rekabet seviyesi (isteğe bağlı)</string>
+    <string name="matches_empty_hint">Henüz maç eklenmedi</string>
+    <string name="label_doubles">Çiftler</string>
+    <string name="label_ranked">Sıralı</string>
+    <string name="competition_level_practice">Antrenman</string>
+    <string name="competition_level_league">Lig</string>
+    <string name="competition_level_tournament">Turnuva</string>
+    <string name="match_score_format">%1$d - %2$d</string>
+    <string name="match_win">G</string>
+    <string name="match_loss">M</string>
+
+	<!-- Session Details -->
+	<string name="session_matches_count">Maçlar (%1$d)</string>
+	<string name="opponent_rating_format">Rating: %1$d</string>
+
+	<!-- Opponents -->
+    <string name="action_add_opponent">Rakip ekle</string>
+	<string name="action_edit_opponent">Rakibi düzenle</string>
+    <string name="label_opponent_name">Ad</string>
+    <string name="label_opponent_club">Kulüp (isteğe bağlı)</string>
+    <string name="label_opponent_rating">Rating (isteğe bağlı)</string>
+    <string name="label_opponent_handedness">El tercihi (isteğe bağlı)</string>
+    <string name="label_opponent_style">Oyun tarzı (isteğe bağlı)</string>
+    <string name="label_opponent_notes">Notlar (isteğe bağlı)</string>
+    <string name="handedness_right">Sağ</string>
+    <string name="handedness_left">Sol</string>
+    <string name="style_attacker">Hücumcu</string>
+    <string name="style_defender">Defansçı</string>
+    <string name="style_all_round">Çok yönlü</string>
+    <string name="style_pips">Pips</string>
+    <string name="style_chopper">Chopper</string>
+
 	<!-- Delete Confirmation -->
 	<string name="delete_opponent_title">Rakip silinsin mi?</string>
 	<string name="delete_opponent_message">Bu rakiple yapılan tüm maçlar da silinecek. Bu işlem geri alınamaz.</string>
+
+	<!-- Opponents Info -->
+	<string name="opponents_info_title">Rakipler hakkında</string>
+	<string name="opponents_info_message">Buraya eklediğiniz rakipler, antrenman seanslarınızda maç kaydederken hızlı seçim için kullanılabilir.</string>
 </resources>

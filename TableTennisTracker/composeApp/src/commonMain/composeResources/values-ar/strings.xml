@@ -16,6 +16,9 @@
     <string name="action_add_session">إضافة تدريب</string>
     <string name="action_search">بحث</string>
 	<string name="action_ui_settings">إعدادات الواجهة</string>
+    <string name="action_opponents">الخصوم</string>
+    <string name="opponents_empty">لا يوجد خصوم بعد</string>
+    <string name="title_opponents">الخصوم</string>
     <string name="action_more">المزيد</string>
     <string name="action_back">رجوع</string>
 
@@ -79,6 +82,12 @@
 	<string name="analytics_total_time">وقت التدريب</string>
 	<string name="analytics_total_matches">المباريات</string>
 	<string name="analytics_hours_minutes">%1$dس %2$dد</string>
+    <string name="analytics_win_loss">فوز / خسارة</string>
+    <string name="analytics_win_loss_format">%1$d - %2$d</string>
+    <string name="analytics_win_rate">نسبة الفوز</string>
+    <string name="analytics_heatmap_title">خريطة حرارية لجلسات التدريب</string>
+    <string name="analytics_heatmap_less">أقل</string>
+    <string name="analytics_heatmap_more">أكثر</string>
 
     <!-- Settings Screen -->
     <string name="profile_guest_user">ضيف</string>
@@ -93,6 +102,7 @@
     <string name="action_send_feedback">إرسال ملاحظات</string>
     <string name="action_visit_website">الموقع</string>
     <string name="action_rate_app">تقييم التطبيق</string>
+    <string name="action_copy_user_id">نسخ معرّف المستخدم</string>
 
     <!-- General Settings Screen -->
 	<string name="settings_section_appearance">المظهر</string>
@@ -180,7 +190,66 @@
     <string name="duration_hours_plural_full">%1$d ساعات</string>
     <string name="duration_hm_short">%1$dس %2$dد</string>
 
+	<!-- Help -->
+	<string name="help_icon_content_description">إظهار المساعدة</string>
+	<string name="help_rpe_title">ما هو RPE؟</string>
+	<string name="help_rpe_description">RPE (معدل الجهد المدرك) يقيس مدى شعورك بعمل جسمك بجهد أثناء التمرين.</string>
+	<string name="help_rpe_scale_intro">يساعد مقياس 1-10 على تتبع شدة التمرين:</string>
+	<string name="help_rpe_level_1_2">1-2: سهل جدًا - نشاط خفيف، يمكنك التحدث بسهولة</string>
+	<string name="help_rpe_level_3_4">3-4: سهل - وتيرة مريحة، يمكن إجراء محادثة</string>
+	<string name="help_rpe_level_5_6">5-6: متوسط - تنفس أقوى، بعض التحدي</string>
+	<string name="help_rpe_level_7_8">7-8: صعب - صعب التحدث، تدفع نفسك</string>
+	<string name="help_rpe_level_9_10">9-10: أقصى جهد - شدة كاملة، لا يمكن الاستمرار</string>
+	<string name="help_rpe_tip">نصيحة: يجب أن تكون معظم جلسات التدريب في نطاق 5-7.</string>
+
+    <!-- Match Creation -->
+    <string name="label_matches_optional">المباريات (اختياري)</string>
+    <string name="action_add_match">إضافة مباراة</string>
+    <string name="add_match">إضافة مباراة</string>
+    <string name="edit_match">تعديل المباراة</string>
+    <string name="label_opponent">الخصم</string>
+    <string name="hint_opponent_name">أدخل اسم الخصم</string>
+    <string name="label_score">النتيجة</string>
+    <string name="label_me">أنا</string>
+    <string name="action_increase_my_score">زيادة نتيجتي</string>
+    <string name="action_increase_opponent_score">زيادة نتيجة الخصم</string>
+    <string name="label_competition_level_optional">مستوى المنافسة (اختياري)</string>
+    <string name="matches_empty_hint">لم تتم إضافة مباريات بعد</string>
+    <string name="label_doubles">زوجي</string>
+    <string name="label_ranked">مصنّف</string>
+    <string name="competition_level_practice">تدريب</string>
+    <string name="competition_level_league">دوري</string>
+    <string name="competition_level_tournament">بطولة</string>
+    <string name="match_score_format">%1$d - %2$d</string>
+    <string name="match_win">ف</string>
+    <string name="match_loss">خ</string>
+
+	<!-- Session Details -->
+	<string name="session_matches_count">المباريات (%1$d)</string>
+	<string name="opponent_rating_format">التقييم: %1$d</string>
+
+	<!-- Opponents -->
+    <string name="action_add_opponent">إضافة خصم</string>
+	<string name="action_edit_opponent">تعديل الخصم</string>
+    <string name="label_opponent_name">الاسم</string>
+    <string name="label_opponent_club">النادي (اختياري)</string>
+    <string name="label_opponent_rating">التقييم (اختياري)</string>
+    <string name="label_opponent_handedness">اليد المفضلة (اختياري)</string>
+    <string name="label_opponent_style">أسلوب اللعب (اختياري)</string>
+    <string name="label_opponent_notes">ملاحظات (اختياري)</string>
+    <string name="handedness_right">يمين</string>
+    <string name="handedness_left">يسار</string>
+    <string name="style_attacker">هجومي</string>
+    <string name="style_defender">دفاعي</string>
+    <string name="style_all_round">شامل</string>
+    <string name="style_pips">حبيبات</string>
+    <string name="style_chopper">قاطع</string>
+
 	<!-- Delete Confirmation -->
 	<string name="delete_opponent_title">حذف الخصم؟</string>
 	<string name="delete_opponent_message">سيؤدي هذا أيضًا إلى حذف جميع المباريات مع هذا الخصم. لا يمكن التراجع عن هذا الإجراء.</string>
+
+	<!-- Opponents Info -->
+	<string name="opponents_info_title">حول الخصوم</string>
+	<string name="opponents_info_message">الخصوم الذين تضيفهم هنا سيكونون متاحين للاختيار السريع عند تسجيل المباريات في جلسات التدريب.</string>
 </resources>

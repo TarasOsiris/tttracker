@@ -16,6 +16,9 @@
     <string name="action_add_session">Agregar sesión</string>
     <string name="action_search">Buscar</string>
 	<string name="action_ui_settings">Configuración de interfaz</string>
+    <string name="action_opponents">Oponentes</string>
+    <string name="opponents_empty">Aún no hay oponentes</string>
+    <string name="title_opponents">Oponentes</string>
     <string name="action_more">Más</string>
     <string name="action_back">Atrás</string>
 
@@ -79,6 +82,12 @@
 	<string name="analytics_total_time">Tiempo entrenado</string>
 	<string name="analytics_total_matches">Partidos</string>
 	<string name="analytics_hours_minutes">%1$dh %2$dmin</string>
+    <string name="analytics_win_loss">Victorias / Derrotas</string>
+    <string name="analytics_win_loss_format">%1$d - %2$d</string>
+    <string name="analytics_win_rate">Porcentaje de victorias</string>
+    <string name="analytics_heatmap_title">Mapa de calor de sesiones de entrenamiento</string>
+    <string name="analytics_heatmap_less">Menos</string>
+    <string name="analytics_heatmap_more">Más</string>
 
     <!-- Settings Screen -->
     <string name="profile_guest_user">Invitado</string>
@@ -93,6 +102,7 @@
     <string name="action_send_feedback">Enviar comentarios</string>
     <string name="action_visit_website">Sitio web</string>
     <string name="action_rate_app">Calificar la aplicación</string>
+    <string name="action_copy_user_id">Copiar ID de usuario</string>
 
     <!-- General Settings Screen -->
 	<string name="settings_section_appearance">Apariencia</string>
@@ -180,7 +190,66 @@
     <string name="duration_hours_plural_full">%1$d horas</string>
     <string name="duration_hm_short">%1$dh %2$dmin</string>
 
+	<!-- Help -->
+	<string name="help_icon_content_description">Mostrar ayuda</string>
+	<string name="help_rpe_title">¿Qué es el RPE?</string>
+	<string name="help_rpe_description">El RPE (Escala de Esfuerzo Percibido) mide lo duro que sientes que trabaja tu cuerpo durante el ejercicio.</string>
+	<string name="help_rpe_scale_intro">La escala del 1 al 10 te ayuda a seguir la intensidad del entrenamiento:</string>
+	<string name="help_rpe_level_1_2">1-2: Muy fácil - Actividad ligera, puedes hablar con facilidad</string>
+	<string name="help_rpe_level_3_4">3-4: Fácil - Ritmo cómodo, conversación posible</string>
+	<string name="help_rpe_level_5_6">5-6: Moderado - Respiración más intensa, algo de desafío</string>
+	<string name="help_rpe_level_7_8">7-8: Difícil - Cuesta hablar, te esfuerzas</string>
+	<string name="help_rpe_level_9_10">9-10: Esfuerzo máximo - Intensidad total, no se puede sostener</string>
+	<string name="help_rpe_tip">Consejo: La mayoría de las sesiones de entrenamiento deberían estar en el rango 5-7.</string>
+
+    <!-- Match Creation -->
+    <string name="label_matches_optional">Partidos (opcional)</string>
+    <string name="action_add_match">Añadir partido</string>
+    <string name="add_match">Añadir partido</string>
+    <string name="edit_match">Editar partido</string>
+    <string name="label_opponent">Oponente</string>
+    <string name="hint_opponent_name">Introduce el nombre del oponente</string>
+    <string name="label_score">Marcador</string>
+    <string name="label_me">Yo</string>
+    <string name="action_increase_my_score">Aumentar mi marcador</string>
+    <string name="action_increase_opponent_score">Aumentar marcador del oponente</string>
+    <string name="label_competition_level_optional">Nivel de competición (opcional)</string>
+    <string name="matches_empty_hint">Aún no se han añadido partidos</string>
+    <string name="label_doubles">Dobles</string>
+    <string name="label_ranked">Clasificado</string>
+    <string name="competition_level_practice">Entrenamiento</string>
+    <string name="competition_level_league">Liga</string>
+    <string name="competition_level_tournament">Torneo</string>
+    <string name="match_score_format">%1$d - %2$d</string>
+    <string name="match_win">G</string>
+    <string name="match_loss">P</string>
+
+	<!-- Session Details -->
+	<string name="session_matches_count">Partidos (%1$d)</string>
+	<string name="opponent_rating_format">Rating: %1$d</string>
+
+	<!-- Opponents -->
+    <string name="action_add_opponent">Añadir oponente</string>
+	<string name="action_edit_opponent">Editar oponente</string>
+    <string name="label_opponent_name">Nombre</string>
+    <string name="label_opponent_club">Club (opcional)</string>
+    <string name="label_opponent_rating">Rating (opcional)</string>
+    <string name="label_opponent_handedness">Mano dominante (opcional)</string>
+    <string name="label_opponent_style">Estilo de juego (opcional)</string>
+    <string name="label_opponent_notes">Notas (opcional)</string>
+    <string name="handedness_right">Derecha</string>
+    <string name="handedness_left">Izquierda</string>
+    <string name="style_attacker">Atacante</string>
+    <string name="style_defender">Defensor</string>
+    <string name="style_all_round">Todo terreno</string>
+    <string name="style_pips">Picos</string>
+    <string name="style_chopper">Cortador</string>
+
 	<!-- Delete Confirmation -->
 	<string name="delete_opponent_title">¿Eliminar oponente?</string>
 	<string name="delete_opponent_message">Esto también eliminará todos los partidos con este oponente. Esta acción no se puede deshacer.</string>
+
+	<!-- Opponents Info -->
+	<string name="opponents_info_title">Sobre los oponentes</string>
+	<string name="opponents_info_message">Los oponentes que añadas aquí estarán disponibles para selección rápida al registrar partidos en tus sesiones de entrenamiento.</string>
 </resources>

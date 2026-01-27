@@ -16,6 +16,9 @@
     <string name="action_add_session">अभ्यास जोड़ें</string>
     <string name="action_search">खोजें</string>
 	<string name="action_ui_settings">UI सेटिंग्स</string>
+    <string name="action_opponents">प्रतिद्वंद्वी</string>
+    <string name="opponents_empty">अभी कोई प्रतिद्वंद्वी नहीं</string>
+    <string name="title_opponents">प्रतिद्वंद्वी</string>
     <string name="action_more">और देखें</string>
     <string name="action_back">वापस</string>
 
@@ -79,6 +82,12 @@
 	<string name="analytics_total_time">प्रशिक्षण समय</string>
 	<string name="analytics_total_matches">मैच</string>
 	<string name="analytics_hours_minutes">%1$dघं %2$dमि</string>
+    <string name="analytics_win_loss">जीत / हार</string>
+    <string name="analytics_win_loss_format">%1$d - %2$d</string>
+    <string name="analytics_win_rate">जीत दर</string>
+    <string name="analytics_heatmap_title">प्रशिक्षण सत्र हीटमैप</string>
+    <string name="analytics_heatmap_less">कम</string>
+    <string name="analytics_heatmap_more">ज़्यादा</string>
 
     <!-- Settings Screen -->
     <string name="profile_guest_user">अतिथि</string>
@@ -93,6 +102,7 @@
     <string name="action_send_feedback">फीडबैक भेजें</string>
     <string name="action_visit_website">वेबसाइट</string>
     <string name="action_rate_app">ऐप को रेट करें</string>
+    <string name="action_copy_user_id">यूज़र आईडी कॉपी करें</string>
 
     <!-- General Settings Screen -->
 	<string name="settings_section_appearance">दिखावट</string>
@@ -180,7 +190,66 @@
     <string name="duration_hours_plural_full">%1$d घंटे</string>
     <string name="duration_hm_short">%1$dघं %2$dमि</string>
 
+	<!-- Help -->
+	<string name="help_icon_content_description">मदद दिखाएं</string>
+	<string name="help_rpe_title">RPE क्या है?</string>
+	<string name="help_rpe_description">RPE (Rate of Perceived Exertion) बताता है कि व्यायाम के दौरान आपका शरीर कितनी मेहनत महसूस कर रहा है।</string>
+	<string name="help_rpe_scale_intro">1-10 स्केल आपको कसरत की तीव्रता ट्रैक करने में मदद करता है:</string>
+	<string name="help_rpe_level_1_2">1-2: बहुत आसान - हल्की गतिविधि, आसानी से बात कर सकते हैं</string>
+	<string name="help_rpe_level_3_4">3-4: आसान - आरामदायक गति, बातचीत संभव</string>
+	<string name="help_rpe_level_5_6">5-6: मध्यम - सांस तेज़, थोड़ी चुनौती</string>
+	<string name="help_rpe_level_7_8">7-8: कठिन - बात करना मुश्किल, खुद को धक्का दे रहे हैं</string>
+	<string name="help_rpe_level_9_10">9-10: अधिकतम प्रयास - पूरी तीव्रता, लंबे समय तक नहीं कर सकते</string>
+	<string name="help_rpe_tip">सुझाव: अधिकतर प्रशिक्षण सत्र 5-7 रेंज में होने चाहिए।</string>
+
+    <!-- Match Creation -->
+    <string name="label_matches_optional">मैच (वैकल्पिक)</string>
+    <string name="action_add_match">मैच जोड़ें</string>
+    <string name="add_match">मैच जोड़ें</string>
+    <string name="edit_match">मैच संपादित करें</string>
+    <string name="label_opponent">प्रतिद्वंद्वी</string>
+    <string name="hint_opponent_name">प्रतिद्वंद्वी का नाम दर्ज करें</string>
+    <string name="label_score">स्कोर</string>
+    <string name="label_me">मैं</string>
+    <string name="action_increase_my_score">मेरा स्कोर बढ़ाएं</string>
+    <string name="action_increase_opponent_score">प्रतिद्वंद्वी का स्कोर बढ़ाएं</string>
+    <string name="label_competition_level_optional">प्रतियोगिता स्तर (वैकल्पिक)</string>
+    <string name="matches_empty_hint">अभी कोई मैच नहीं जोड़े गए</string>
+    <string name="label_doubles">डबल्स</string>
+    <string name="label_ranked">रैंक्ड</string>
+    <string name="competition_level_practice">अभ्यास</string>
+    <string name="competition_level_league">लीग</string>
+    <string name="competition_level_tournament">टूर्नामेंट</string>
+    <string name="match_score_format">%1$d - %2$d</string>
+    <string name="match_win">W</string>
+    <string name="match_loss">L</string>
+
+	<!-- Session Details -->
+	<string name="session_matches_count">मैच (%1$d)</string>
+	<string name="opponent_rating_format">रेटिंग: %1$d</string>
+
+	<!-- Opponents -->
+    <string name="action_add_opponent">प्रतिद्वंद्वी जोड़ें</string>
+	<string name="action_edit_opponent">प्रतिद्वंद्वी संपादित करें</string>
+    <string name="label_opponent_name">नाम</string>
+    <string name="label_opponent_club">क्लब (वैकल्पिक)</string>
+    <string name="label_opponent_rating">रेटिंग (वैकल्पिक)</string>
+    <string name="label_opponent_handedness">हाथ की पसंद (वैकल्पिक)</string>
+    <string name="label_opponent_style">खेलने की शैली (वैकल्पिक)</string>
+    <string name="label_opponent_notes">नोट्स (वैकल्पिक)</string>
+    <string name="handedness_right">दायां</string>
+    <string name="handedness_left">बायां</string>
+    <string name="style_attacker">आक्रमणकारी</string>
+    <string name="style_defender">रक्षक</string>
+    <string name="style_all_round">ऑल-राउंड</string>
+    <string name="style_pips">पिप्स</string>
+    <string name="style_chopper">चॉपर</string>
+
 	<!-- Delete Confirmation -->
 	<string name="delete_opponent_title">प्रतिद्वंद्वी हटाएं?</string>
 	<string name="delete_opponent_message">इससे इस प्रतिद्वंद्वी के साथ सभी मैच भी हट जाएंगे। यह क्रिया पूर्ववत नहीं की जा सकती।</string>
+
+	<!-- Opponents Info -->
+	<string name="opponents_info_title">प्रतिद्वंद्वियों के बारे में</string>
+	<string name="opponents_info_message">यहाँ जोड़े गए प्रतिद्वंद्वी आपके प्रशिक्षण सत्रों में मैच दर्ज करते समय त्वरित चयन के लिए उपलब्ध होंगे।</string>
 </resources>

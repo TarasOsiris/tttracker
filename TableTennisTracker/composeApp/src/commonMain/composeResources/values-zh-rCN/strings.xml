@@ -16,6 +16,9 @@
     <string name="action_add_session">添加训练</string>
     <string name="action_search">搜索</string>
 	<string name="action_ui_settings">界面设置</string>
+    <string name="action_opponents">对手</string>
+    <string name="opponents_empty">暂无对手</string>
+    <string name="title_opponents">对手</string>
     <string name="action_more">更多</string>
     <string name="action_back">返回</string>
 
@@ -79,6 +82,12 @@
 	<string name="analytics_total_time">训练时间</string>
 	<string name="analytics_total_matches">比赛</string>
 	<string name="analytics_hours_minutes">%1$d小时%2$d分钟</string>
+    <string name="analytics_win_loss">胜 / 负</string>
+    <string name="analytics_win_loss_format">%1$d - %2$d</string>
+    <string name="analytics_win_rate">胜率</string>
+    <string name="analytics_heatmap_title">训练会话热力图</string>
+    <string name="analytics_heatmap_less">少</string>
+    <string name="analytics_heatmap_more">多</string>
 
     <!-- Settings Screen -->
     <string name="profile_guest_user">访客</string>
@@ -93,6 +102,7 @@
     <string name="action_send_feedback">发送反馈</string>
     <string name="action_visit_website">网站</string>
     <string name="action_rate_app">为应用评分</string>
+    <string name="action_copy_user_id">复制用户ID</string>
 
     <!-- General Settings Screen -->
 	<string name="settings_section_appearance">外观</string>
@@ -180,7 +190,66 @@
     <string name="duration_hours_plural_full">%1$d小时</string>
     <string name="duration_hm_short">%1$d时%2$d分</string>
 
+	<!-- Help -->
+	<string name="help_icon_content_description">显示帮助</string>
+	<string name="help_rpe_title">什么是 RPE？</string>
+	<string name="help_rpe_description">RPE（自觉用力程度）衡量你在运动中感到身体用力的程度。</string>
+	<string name="help_rpe_scale_intro">1-10 量表有助于跟踪训练强度：</string>
+	<string name="help_rpe_level_1_2">1-2：非常轻松 - 轻度活动，可以轻松说话</string>
+	<string name="help_rpe_level_3_4">3-4：轻松 - 舒适节奏，可以交谈</string>
+	<string name="help_rpe_level_5_6">5-6：中等 - 呼吸更急促，有些挑战</string>
+	<string name="help_rpe_level_7_8">7-8：困难 - 难以说话，需要逼自己</string>
+	<string name="help_rpe_level_9_10">9-10：最大努力 - 全力强度，无法持续</string>
+	<string name="help_rpe_tip">提示：大多数训练应在 5-7 区间。</string>
+
+    <!-- Match Creation -->
+    <string name="label_matches_optional">比赛（可选）</string>
+    <string name="action_add_match">添加比赛</string>
+    <string name="add_match">添加比赛</string>
+    <string name="edit_match">编辑比赛</string>
+    <string name="label_opponent">对手</string>
+    <string name="hint_opponent_name">输入对手姓名</string>
+    <string name="label_score">比分</string>
+    <string name="label_me">我</string>
+    <string name="action_increase_my_score">增加我的分数</string>
+    <string name="action_increase_opponent_score">增加对手分数</string>
+    <string name="label_competition_level_optional">比赛级别（可选）</string>
+    <string name="matches_empty_hint">尚未添加比赛</string>
+    <string name="label_doubles">双打</string>
+    <string name="label_ranked">排位</string>
+    <string name="competition_level_practice">练习</string>
+    <string name="competition_level_league">联赛</string>
+    <string name="competition_level_tournament">锦标赛</string>
+    <string name="match_score_format">%1$d - %2$d</string>
+    <string name="match_win">胜</string>
+    <string name="match_loss">负</string>
+
+	<!-- Session Details -->
+	<string name="session_matches_count">比赛（%1$d）</string>
+	<string name="opponent_rating_format">等级分：%1$d</string>
+
+	<!-- Opponents -->
+    <string name="action_add_opponent">添加对手</string>
+	<string name="action_edit_opponent">编辑对手</string>
+    <string name="label_opponent_name">姓名</string>
+    <string name="label_opponent_club">俱乐部（可选）</string>
+    <string name="label_opponent_rating">等级分（可选）</string>
+    <string name="label_opponent_handedness">惯用手（可选）</string>
+    <string name="label_opponent_style">打法（可选）</string>
+    <string name="label_opponent_notes">备注（可选）</string>
+    <string name="handedness_right">右手</string>
+    <string name="handedness_left">左手</string>
+    <string name="style_attacker">进攻型</string>
+    <string name="style_defender">防守型</string>
+    <string name="style_all_round">全能型</string>
+    <string name="style_pips">长胶</string>
+    <string name="style_chopper">削球手</string>
+
 	<!-- Delete Confirmation -->
 	<string name="delete_opponent_title">删除对手？</string>
 	<string name="delete_opponent_message">这也将删除与此对手的所有比赛。此操作无法撤销。</string>
+
+	<!-- Opponents Info -->
+	<string name="opponents_info_title">关于对手</string>
+	<string name="opponents_info_message">你在此添加的对手将在记录训练会话中的比赛时可快速选择。</string>
 </resources>

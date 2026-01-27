@@ -16,6 +16,9 @@
     <string name="action_add_session">練習を追加</string>
     <string name="action_search">検索</string>
 	<string name="action_ui_settings">UI設定</string>
+    <string name="action_opponents">対戦相手</string>
+    <string name="opponents_empty">まだ対戦相手がいません</string>
+    <string name="title_opponents">対戦相手</string>
     <string name="action_more">その他</string>
     <string name="action_back">戻る</string>
 
@@ -79,6 +82,12 @@
 	<string name="analytics_total_time">練習時間</string>
 	<string name="analytics_total_matches">試合</string>
 	<string name="analytics_hours_minutes">%1$d時間%2$d分</string>
+    <string name="analytics_win_loss">勝敗</string>
+    <string name="analytics_win_loss_format">%1$d - %2$d</string>
+    <string name="analytics_win_rate">勝率</string>
+    <string name="analytics_heatmap_title">トレーニングセッションのヒートマップ</string>
+    <string name="analytics_heatmap_less">少ない</string>
+    <string name="analytics_heatmap_more">多い</string>
 
     <!-- Settings Screen -->
     <string name="profile_guest_user">ゲスト</string>
@@ -93,6 +102,7 @@
     <string name="action_send_feedback">フィードバックを送信</string>
     <string name="action_visit_website">ウェブサイト</string>
     <string name="action_rate_app">アプリを評価</string>
+    <string name="action_copy_user_id">ユーザーIDをコピー</string>
 
     <!-- General Settings Screen -->
 	<string name="settings_section_appearance">外観</string>
@@ -180,7 +190,66 @@
     <string name="duration_hours_plural_full">%1$d時間</string>
     <string name="duration_hm_short">%1$d時間%2$d分</string>
 
+	<!-- Help -->
+	<string name="help_icon_content_description">ヘルプを表示</string>
+	<string name="help_rpe_title">RPEとは？</string>
+	<string name="help_rpe_description">RPE（自覚的運動強度）は運動中に体がどれだけきついと感じるかを示します。</string>
+	<string name="help_rpe_scale_intro">1～10のスケールでトレーニングの強度を追跡できます：</string>
+	<string name="help_rpe_level_1_2">1-2：とても楽 - 軽い活動、楽に会話できる</string>
+	<string name="help_rpe_level_3_4">3-4：楽 - 快適なペース、会話可能</string>
+	<string name="help_rpe_level_5_6">5-6：中程度 - 呼吸がきつくなり、少し負荷</string>
+	<string name="help_rpe_level_7_8">7-8：きつい - 会話が難しい、追い込んでいる</string>
+	<string name="help_rpe_level_9_10">9-10：最大努力 - 全力の強度、持続できない</string>
+	<string name="help_rpe_tip">ヒント：多くのトレーニングセッションは5～7の範囲が理想です。</string>
+
+    <!-- Match Creation -->
+    <string name="label_matches_optional">試合（任意）</string>
+    <string name="action_add_match">試合を追加</string>
+    <string name="add_match">試合を追加</string>
+    <string name="edit_match">試合を編集</string>
+    <string name="label_opponent">対戦相手</string>
+    <string name="hint_opponent_name">対戦相手名を入力</string>
+    <string name="label_score">スコア</string>
+    <string name="label_me">自分</string>
+    <string name="action_increase_my_score">自分のスコアを増やす</string>
+    <string name="action_increase_opponent_score">相手のスコアを増やす</string>
+    <string name="label_competition_level_optional">競技レベル（任意）</string>
+    <string name="matches_empty_hint">まだ試合が追加されていません</string>
+    <string name="label_doubles">ダブルス</string>
+    <string name="label_ranked">ランキング戦</string>
+    <string name="competition_level_practice">練習</string>
+    <string name="competition_level_league">リーグ</string>
+    <string name="competition_level_tournament">トーナメント</string>
+    <string name="match_score_format">%1$d - %2$d</string>
+    <string name="match_win">勝</string>
+    <string name="match_loss">敗</string>
+
+	<!-- Session Details -->
+	<string name="session_matches_count">試合（%1$d）</string>
+	<string name="opponent_rating_format">レーティング：%1$d</string>
+
+	<!-- Opponents -->
+    <string name="action_add_opponent">対戦相手を追加</string>
+	<string name="action_edit_opponent">対戦相手を編集</string>
+    <string name="label_opponent_name">名前</string>
+    <string name="label_opponent_club">クラブ（任意）</string>
+    <string name="label_opponent_rating">レーティング（任意）</string>
+    <string name="label_opponent_handedness">利き手（任意）</string>
+    <string name="label_opponent_style">プレースタイル（任意）</string>
+    <string name="label_opponent_notes">メモ（任意）</string>
+    <string name="handedness_right">右</string>
+    <string name="handedness_left">左</string>
+    <string name="style_attacker">攻撃型</string>
+    <string name="style_defender">守備型</string>
+    <string name="style_all_round">オールラウンド</string>
+    <string name="style_pips">表ソフト</string>
+    <string name="style_chopper">カットマン</string>
+
 	<!-- Delete Confirmation -->
 	<string name="delete_opponent_title">対戦相手を削除しますか？</string>
 	<string name="delete_opponent_message">この対戦相手との全ての試合も削除されます。この操作は元に戻せません。</string>
+
+	<!-- Opponents Info -->
+	<string name="opponents_info_title">対戦相手について</string>
+	<string name="opponents_info_message">ここで追加した対戦相手は、トレーニングセッションで試合を記録する際に素早く選択できます。</string>
 </resources>

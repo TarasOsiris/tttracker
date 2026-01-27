@@ -16,6 +16,9 @@
     <string name="action_add_session">훈련 추가</string>
     <string name="action_search">검색</string>
 	<string name="action_ui_settings">UI 설정</string>
+    <string name="action_opponents">상대</string>
+    <string name="opponents_empty">아직 상대가 없습니다</string>
+    <string name="title_opponents">상대</string>
     <string name="action_more">더 보기</string>
     <string name="action_back">뒤로</string>
 
@@ -79,6 +82,12 @@
 	<string name="analytics_total_time">훈련 시간</string>
 	<string name="analytics_total_matches">경기</string>
 	<string name="analytics_hours_minutes">%1$d시간 %2$d분</string>
+    <string name="analytics_win_loss">승/패</string>
+    <string name="analytics_win_loss_format">%1$d - %2$d</string>
+    <string name="analytics_win_rate">승률</string>
+    <string name="analytics_heatmap_title">훈련 세션 히트맵</string>
+    <string name="analytics_heatmap_less">적음</string>
+    <string name="analytics_heatmap_more">많음</string>
 
     <!-- Settings Screen -->
     <string name="profile_guest_user">손님</string>
@@ -93,6 +102,7 @@
     <string name="action_send_feedback">피드백 보내기</string>
     <string name="action_visit_website">웹사이트</string>
     <string name="action_rate_app">앱 평가하기</string>
+    <string name="action_copy_user_id">사용자 ID 복사</string>
 
     <!-- General Settings Screen -->
 	<string name="settings_section_appearance">외관</string>
@@ -180,7 +190,66 @@
     <string name="duration_hours_plural_full">%1$d시간</string>
     <string name="duration_hm_short">%1$d시간 %2$d분</string>
 
+	<!-- Help -->
+	<string name="help_icon_content_description">도움말 표시</string>
+	<string name="help_rpe_title">RPE란?</string>
+	<string name="help_rpe_description">RPE(자각적 운동 강도)는 운동 중 몸이 얼마나 힘들게 느끼는지를 나타냅니다.</string>
+	<string name="help_rpe_scale_intro">1-10 척도로 운동 강도를 추적할 수 있습니다:</string>
+	<string name="help_rpe_level_1_2">1-2: 매우 쉬움 - 가벼운 활동, 쉽게 대화 가능</string>
+	<string name="help_rpe_level_3_4">3-4: 쉬움 - 편안한 속도, 대화 가능</string>
+	<string name="help_rpe_level_5_6">5-6: 보통 - 호흡이 거칠어짐, 약간의 도전</string>
+	<string name="help_rpe_level_7_8">7-8: 어려움 - 대화가 어렵고, 스스로 몰아붙임</string>
+	<string name="help_rpe_level_9_10">9-10: 최대 노력 - 전력, 지속하기 어려움</string>
+	<string name="help_rpe_tip">팁: 대부분의 훈련 세션은 5-7 범위가 적절합니다.</string>
+
+    <!-- Match Creation -->
+    <string name="label_matches_optional">경기(선택 사항)</string>
+    <string name="action_add_match">경기 추가</string>
+    <string name="add_match">경기 추가</string>
+    <string name="edit_match">경기 편집</string>
+    <string name="label_opponent">상대</string>
+    <string name="hint_opponent_name">상대 이름 입력</string>
+    <string name="label_score">점수</string>
+    <string name="label_me">나</string>
+    <string name="action_increase_my_score">내 점수 올리기</string>
+    <string name="action_increase_opponent_score">상대 점수 올리기</string>
+    <string name="label_competition_level_optional">대회 수준(선택 사항)</string>
+    <string name="matches_empty_hint">아직 추가된 경기가 없습니다</string>
+    <string name="label_doubles">복식</string>
+    <string name="label_ranked">랭킹전</string>
+    <string name="competition_level_practice">연습</string>
+    <string name="competition_level_league">리그</string>
+    <string name="competition_level_tournament">토너먼트</string>
+    <string name="match_score_format">%1$d - %2$d</string>
+    <string name="match_win">승</string>
+    <string name="match_loss">패</string>
+
+	<!-- Session Details -->
+	<string name="session_matches_count">경기(%1$d)</string>
+	<string name="opponent_rating_format">레이팅: %1$d</string>
+
+	<!-- Opponents -->
+    <string name="action_add_opponent">상대 추가</string>
+	<string name="action_edit_opponent">상대 편집</string>
+    <string name="label_opponent_name">이름</string>
+    <string name="label_opponent_club">클럽(선택 사항)</string>
+    <string name="label_opponent_rating">레이팅(선택 사항)</string>
+    <string name="label_opponent_handedness">주사용 손(선택 사항)</string>
+    <string name="label_opponent_style">플레이 스타일(선택 사항)</string>
+    <string name="label_opponent_notes">메모(선택 사항)</string>
+    <string name="handedness_right">오른손</string>
+    <string name="handedness_left">왼손</string>
+    <string name="style_attacker">공격형</string>
+    <string name="style_defender">수비형</string>
+    <string name="style_all_round">올라운드</string>
+    <string name="style_pips">핍스</string>
+    <string name="style_chopper">커터</string>
+
 	<!-- Delete Confirmation -->
 	<string name="delete_opponent_title">상대방을 삭제하시겠습니까?</string>
 	<string name="delete_opponent_message">이 상대방과의 모든 경기도 삭제됩니다. 이 작업은 되돌릴 수 없습니다.</string>
+
+	<!-- Opponents Info -->
+	<string name="opponents_info_title">상대 정보</string>
+	<string name="opponents_info_message">여기에 추가한 상대는 훈련 세션에서 경기를 기록할 때 빠르게 선택할 수 있습니다.</string>
 </resources>

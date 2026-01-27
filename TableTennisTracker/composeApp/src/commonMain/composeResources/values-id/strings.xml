@@ -16,6 +16,9 @@
     <string name="action_add_session">Tambah Latihan</string>
     <string name="action_search">Cari</string>
 	<string name="action_ui_settings">Pengaturan Antarmuka</string>
+    <string name="action_opponents">Lawan</string>
+    <string name="opponents_empty">Belum ada lawan</string>
+    <string name="title_opponents">Lawan</string>
     <string name="action_more">Lainnya</string>
     <string name="action_back">Kembali</string>
 
@@ -79,6 +82,12 @@
 	<string name="analytics_total_time">Waktu latihan</string>
 	<string name="analytics_total_matches">Pertandingan</string>
 	<string name="analytics_hours_minutes">%1$dj %2$dm</string>
+    <string name="analytics_win_loss">Menang / Kalah</string>
+    <string name="analytics_win_loss_format">%1$d - %2$d</string>
+    <string name="analytics_win_rate">Persentase kemenangan</string>
+    <string name="analytics_heatmap_title">Heatmap sesi latihan</string>
+    <string name="analytics_heatmap_less">Lebih sedikit</string>
+    <string name="analytics_heatmap_more">Lebih banyak</string>
 
     <!-- Settings Screen -->
     <string name="profile_guest_user">Tamu</string>
@@ -93,6 +102,7 @@
     <string name="action_send_feedback">Kirim masukan</string>
     <string name="action_visit_website">Situs web</string>
     <string name="action_rate_app">Beri nilai aplikasi</string>
+    <string name="action_copy_user_id">Salin ID pengguna</string>
 
     <!-- General Settings Screen -->
 	<string name="settings_section_appearance">Tampilan</string>
@@ -180,7 +190,66 @@
     <string name="duration_hours_plural_full">%1$d jam</string>
     <string name="duration_hm_short">%1$dj %2$dmnt</string>
 
+	<!-- Help -->
+	<string name="help_icon_content_description">Tampilkan bantuan</string>
+	<string name="help_rpe_title">Apa itu RPE?</string>
+	<string name="help_rpe_description">RPE (Rate of Perceived Exertion) mengukur seberapa berat tubuh Anda terasa bekerja saat berolahraga.</string>
+	<string name="help_rpe_scale_intro">Skala 1-10 membantu Anda melacak intensitas latihan:</string>
+	<string name="help_rpe_level_1_2">1-2: Sangat mudah - Aktivitas ringan, bisa berbicara dengan mudah</string>
+	<string name="help_rpe_level_3_4">3-4: Mudah - Tempo nyaman, bisa berbincang</string>
+	<string name="help_rpe_level_5_6">5-6: Sedang - Napas lebih berat, ada tantangan</string>
+	<string name="help_rpe_level_7_8">7-8: Sulit - Sulit berbicara, mendorong diri</string>
+	<string name="help_rpe_level_9_10">9-10: Usaha maksimal - Intensitas penuh, tidak bisa bertahan</string>
+	<string name="help_rpe_tip">Tips: Sebagian besar sesi latihan sebaiknya berada di kisaran 5-7.</string>
+
+    <!-- Match Creation -->
+    <string name="label_matches_optional">Pertandingan (opsional)</string>
+    <string name="action_add_match">Tambah pertandingan</string>
+    <string name="add_match">Tambah pertandingan</string>
+    <string name="edit_match">Edit pertandingan</string>
+    <string name="label_opponent">Lawan</string>
+    <string name="hint_opponent_name">Masukkan nama lawan</string>
+    <string name="label_score">Skor</string>
+    <string name="label_me">Saya</string>
+    <string name="action_increase_my_score">Tambah skor saya</string>
+    <string name="action_increase_opponent_score">Tambah skor lawan</string>
+    <string name="label_competition_level_optional">Tingkat kompetisi (opsional)</string>
+    <string name="matches_empty_hint">Belum ada pertandingan ditambahkan</string>
+    <string name="label_doubles">Ganda</string>
+    <string name="label_ranked">Peringkat</string>
+    <string name="competition_level_practice">Latihan</string>
+    <string name="competition_level_league">Liga</string>
+    <string name="competition_level_tournament">Turnamen</string>
+    <string name="match_score_format">%1$d - %2$d</string>
+    <string name="match_win">M</string>
+    <string name="match_loss">K</string>
+
+	<!-- Session Details -->
+	<string name="session_matches_count">Pertandingan (%1$d)</string>
+	<string name="opponent_rating_format">Rating: %1$d</string>
+
+	<!-- Opponents -->
+    <string name="action_add_opponent">Tambah lawan</string>
+	<string name="action_edit_opponent">Edit lawan</string>
+    <string name="label_opponent_name">Nama</string>
+    <string name="label_opponent_club">Klub (opsional)</string>
+    <string name="label_opponent_rating">Rating (opsional)</string>
+    <string name="label_opponent_handedness">Tangan dominan (opsional)</string>
+    <string name="label_opponent_style">Gaya bermain (opsional)</string>
+    <string name="label_opponent_notes">Catatan (opsional)</string>
+    <string name="handedness_right">Kanan</string>
+    <string name="handedness_left">Kiri</string>
+    <string name="style_attacker">Penyerang</string>
+    <string name="style_defender">Bertahan</string>
+    <string name="style_all_round">Serba bisa</string>
+    <string name="style_pips">Pips</string>
+    <string name="style_chopper">Chopper</string>
+
 	<!-- Delete Confirmation -->
 	<string name="delete_opponent_title">Hapus lawan?</string>
 	<string name="delete_opponent_message">Ini juga akan menghapus semua pertandingan dengan lawan ini. Tindakan ini tidak dapat dibatalkan.</string>
+
+	<!-- Opponents Info -->
+	<string name="opponents_info_title">Tentang lawan</string>
+	<string name="opponents_info_message">Lawan yang Anda tambahkan di sini akan tersedia untuk pilihan cepat saat mencatat pertandingan di sesi latihan Anda.</string>
 </resources>
