@@ -23,7 +23,6 @@ ktor = "3.3.3"
 logback = "1.5.25"
 sqldelight = "2.2.1"
 calendar = "2.10.0"
-aay-chart = "1.1.0"
 sentryKmp = "0.23.0"
 sentryAndroid = "6.0.0-rc.1"
 
@@ -69,7 +68,6 @@ sqldelight-driver-android = { module = "app.cash.sqldelight:android-driver", ver
 sqldelight-driver-native = { module = "app.cash.sqldelight:native-driver", version.ref = "sqldelight" }
 
 calendar-compose-multiplatform = { module = "com.kizitonwose.calendar:compose-multiplatform", version.ref = "calendar" }
-aay-chart = { module = "io.github.thechance101:chart", version.ref = "aay-chart" }
 
 compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "composeMultiplatform" }
 compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "composeMultiplatform" }

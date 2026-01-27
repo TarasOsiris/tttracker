@@ -13,16 +13,10 @@ data class SummaryStats(
 	val matchesLost: Int = 0
 )
 
-data class WeeklyTrainingData(
-	val weekLabel: String,
-	val totalMinutes: Int
-)
-
 abstract class AnalyticsScreenViewModel : ViewModelBase() {
 	abstract val sessionsByDate: StateFlow<Map<LocalDate, Int>>
 	abstract val totalMinutesByDate: StateFlow<Map<LocalDate, Int>>
 	abstract val sessionsListByDate: StateFlow<Map<LocalDate, List<SessionUiModel>>>
 	abstract val firstDayOfWeek: StateFlow<DayOfWeek>
 	abstract val summaryStats: StateFlow<SummaryStats>
-	abstract val weeklyTrainingData: StateFlow<List<WeeklyTrainingData>>
 }
