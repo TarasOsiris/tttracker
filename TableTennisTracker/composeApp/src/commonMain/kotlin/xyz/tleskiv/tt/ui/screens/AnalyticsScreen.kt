@@ -15,6 +15,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
@@ -36,6 +38,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.aay.compose.barChart.BarChart
+import com.aay.compose.barChart.model.BarParameters
+import com.aay.compose.donutChart.DonutChart
+import com.aay.compose.donutChart.model.PieChartData
 import com.kizitonwose.calendar.compose.CalendarLayoutInfo
 import com.kizitonwose.calendar.compose.HeatMapCalendar
 import com.kizitonwose.calendar.compose.heatmapcalendar.HeatMapCalendarState
@@ -58,11 +64,16 @@ import tabletennistracker.composeapp.generated.resources.analytics_heatmap_less
 import tabletennistracker.composeapp.generated.resources.analytics_heatmap_more
 import tabletennistracker.composeapp.generated.resources.analytics_heatmap_title
 import tabletennistracker.composeapp.generated.resources.analytics_hours_minutes
+import tabletennistracker.composeapp.generated.resources.analytics_losses
+import tabletennistracker.composeapp.generated.resources.analytics_no_matches
 import tabletennistracker.composeapp.generated.resources.analytics_summary
 import tabletennistracker.composeapp.generated.resources.analytics_total_sessions
 import tabletennistracker.composeapp.generated.resources.analytics_total_time
+import tabletennistracker.composeapp.generated.resources.analytics_weekly_training
 import tabletennistracker.composeapp.generated.resources.analytics_win_loss
+import tabletennistracker.composeapp.generated.resources.analytics_win_loss_chart
 import tabletennistracker.composeapp.generated.resources.analytics_win_rate
+import tabletennistracker.composeapp.generated.resources.analytics_wins
 import xyz.tleskiv.tt.ui.bottomsheets.DaySessionsBottomSheet
 import xyz.tleskiv.tt.ui.widgets.ContentCard
 import xyz.tleskiv.tt.util.ext.displayText
@@ -71,6 +82,7 @@ import xyz.tleskiv.tt.util.ui.HeatMapLevel
 import xyz.tleskiv.tt.util.ui.toColor
 import xyz.tleskiv.tt.viewmodel.analytics.AnalyticsScreenViewModel
 import xyz.tleskiv.tt.viewmodel.analytics.SummaryStats
+import xyz.tleskiv.tt.viewmodel.analytics.WeeklyTrainingData
 
 @Composable
 fun AnalyticsScreen(
@@ -81,6 +93,7 @@ fun AnalyticsScreen(
 	val sessionsListByDate by viewModel.sessionsListByDate.collectAsState()
 	val firstDayOfWeek by viewModel.firstDayOfWeek.collectAsState()
 	val summaryStats by viewModel.summaryStats.collectAsState()
+	val weeklyTrainingData by viewModel.weeklyTrainingData.collectAsState()
 	val endDate = remember(sessionsByDate) {
 		sessionsByDate.keys.maxOrNull() ?: LocalDate.now()
 	}
@@ -118,6 +131,7 @@ fun AnalyticsScreen(
 		modifier = Modifier
 			.fillMaxSize()
 			.background(MaterialTheme.colorScheme.surface)
+			.verticalScroll(rememberScrollState())
 			.padding(16.dp)
 	) {
 		Text(
@@ -128,6 +142,13 @@ fun AnalyticsScreen(
 			modifier = Modifier.padding(start = 4.dp, bottom = 8.dp)
 		)
 		SummaryCard(summaryStats)
+
+		Spacer(modifier = Modifier.height(24.dp))
+		WinLossChart(summaryStats)
+
+		Spacer(modifier = Modifier.height(24.dp))
+		WeeklyTrainingChart(weeklyTrainingData)
+
 		Spacer(modifier = Modifier.height(24.dp))
 		// Key on firstDayOfWeek to recreate calendar state when the setting changes
 		val state = key(firstDayOfWeek) {
@@ -421,5 +442,120 @@ private fun StatBox(
 			style = MaterialTheme.typography.labelSmall,
 			color = MaterialTheme.colorScheme.onSurfaceVariant
 		)
+	}
+}
+
+private val WinColor = Color(0xFF4CAF50)
+private val LossColor = Color(0xFFE53935)
+
+@Composable
+private fun WinLossChart(stats: SummaryStats) {
+	val totalMatches = stats.matchesWon + stats.matchesLost
+	val winsLabel = stringResource(Res.string.analytics_wins)
+	val lossesLabel = stringResource(Res.string.analytics_losses)
+
+	Text(
+		text = stringResource(Res.string.analytics_win_loss_chart),
+		style = MaterialTheme.typography.titleSmall,
+		fontWeight = FontWeight.SemiBold,
+		color = MaterialTheme.colorScheme.primary,
+		modifier = Modifier.padding(start = 4.dp, bottom = 8.dp)
+	)
+
+	ContentCard {
+		if (totalMatches == 0) {
+			Box(
+				modifier = Modifier.fillMaxWidth().height(200.dp),
+				contentAlignment = Alignment.Center
+			) {
+				Text(
+					text = stringResource(Res.string.analytics_no_matches),
+					style = MaterialTheme.typography.bodyMedium,
+					color = MaterialTheme.colorScheme.onSurfaceVariant
+				)
+			}
+		} else {
+			val pieChartData = listOf(
+				PieChartData(
+					partName = winsLabel,
+					data = stats.matchesWon.toDouble(),
+					color = WinColor
+				),
+				PieChartData(
+					partName = lossesLabel,
+					data = stats.matchesLost.toDouble(),
+					color = LossColor
+				)
+			)
+
+			DonutChart(
+				modifier = Modifier.fillMaxWidth().height(200.dp).padding(16.dp),
+				pieChartData = pieChartData,
+				centerTitle = "$totalMatches",
+				centerTitleStyle = MaterialTheme.typography.titleLarge.copy(
+					fontWeight = FontWeight.Bold,
+					color = MaterialTheme.colorScheme.onSurface
+				),
+				outerCircularColor = MaterialTheme.colorScheme.surfaceVariant,
+				innerCircularColor = MaterialTheme.colorScheme.surfaceVariant,
+				ratioLineColor = MaterialTheme.colorScheme.surfaceVariant
+			)
+		}
+	}
+}
+
+@Composable
+private fun WeeklyTrainingChart(weeklyData: List<WeeklyTrainingData>) {
+	val barColor = MaterialTheme.colorScheme.primary
+	val gridColor = MaterialTheme.colorScheme.outlineVariant
+	val axisColor = MaterialTheme.colorScheme.onSurfaceVariant
+
+	Text(
+		text = stringResource(Res.string.analytics_weekly_training),
+		style = MaterialTheme.typography.titleSmall,
+		fontWeight = FontWeight.SemiBold,
+		color = MaterialTheme.colorScheme.primary,
+		modifier = Modifier.padding(start = 4.dp, bottom = 8.dp)
+	)
+
+	ContentCard {
+		if (weeklyData.isEmpty() || weeklyData.all { it.totalMinutes == 0 }) {
+			Box(
+				modifier = Modifier.fillMaxWidth().height(220.dp),
+				contentAlignment = Alignment.Center
+			) {
+				Text(
+					text = stringResource(Res.string.analytics_no_matches),
+					style = MaterialTheme.typography.bodyMedium,
+					color = MaterialTheme.colorScheme.onSurfaceVariant
+				)
+			}
+		} else {
+			val barParameters = listOf(
+				BarParameters(
+					dataName = "Minutes",
+					data = weeklyData.map { it.totalMinutes.toDouble() },
+					barColor = barColor
+				)
+			)
+
+			val maxMinutes = weeklyData.maxOfOrNull { it.totalMinutes } ?: 60
+			val yAxisRange = ((maxMinutes / 60) + 1) * 60
+
+			Box(modifier = Modifier.fillMaxWidth().height(220.dp).padding(16.dp)) {
+				BarChart(
+					chartParameters = barParameters,
+					gridColor = gridColor,
+					xAxisData = weeklyData.map { it.weekLabel },
+					isShowGrid = true,
+					animateChart = true,
+					showGridWithSpacer = true,
+					yAxisStyle = MaterialTheme.typography.labelSmall.copy(color = axisColor),
+					xAxisStyle = MaterialTheme.typography.labelSmall.copy(color = axisColor),
+					yAxisRange = yAxisRange,
+					barWidth = 20.dp
+				)
+			}
+		}
 	}
 }

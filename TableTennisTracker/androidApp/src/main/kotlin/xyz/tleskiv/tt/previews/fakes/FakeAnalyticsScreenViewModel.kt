@@ -10,6 +10,7 @@ import kotlinx.datetime.minus
 import xyz.tleskiv.tt.data.model.enums.SessionType
 import xyz.tleskiv.tt.viewmodel.analytics.AnalyticsScreenViewModel
 import xyz.tleskiv.tt.viewmodel.analytics.SummaryStats
+import xyz.tleskiv.tt.viewmodel.analytics.WeeklyTrainingData
 import xyz.tleskiv.tt.viewmodel.sessions.SessionsScreenViewModel.SessionUiModel
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
@@ -51,5 +52,17 @@ class FakeAnalyticsScreenViewModel : AnalyticsScreenViewModel() {
 	override val firstDayOfWeek: StateFlow<DayOfWeek> = MutableStateFlow(DayOfWeek.MONDAY)
 	override val summaryStats: StateFlow<SummaryStats> = MutableStateFlow(
 		SummaryStats(totalSessions = 33, totalTrainingMinutes = 1250, matchesWon = 42, matchesLost = 13)
+	)
+	override val weeklyTrainingData: StateFlow<List<WeeklyTrainingData>> = MutableStateFlow(
+		listOf(
+			WeeklyTrainingData("23/12", 120),
+			WeeklyTrainingData("30/12", 180),
+			WeeklyTrainingData("6/1", 90),
+			WeeklyTrainingData("13/1", 240),
+			WeeklyTrainingData("20/1", 150),
+			WeeklyTrainingData("27/1", 200),
+			WeeklyTrainingData("3/2", 160),
+			WeeklyTrainingData("10/2", 220)
+		)
 	)
 }

@@ -3,10 +3,16 @@ package xyz.tleskiv.tt.viewmodel.impl.analytics
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.DayOfWeek
 import kotlinx.datetime.LocalDate
+import kotlinx.datetime.isoDayNumber
+import kotlinx.datetime.minus
+import kotlinx.datetime.plus
+import com.kizitonwose.calendar.core.now
 import xyz.tleskiv.tt.model.mappers.toSessionUiModelUtc
 import xyz.tleskiv.tt.repo.AnalyticsRepository
 import xyz.tleskiv.tt.repo.UserPreferencesRepository
@@ -14,6 +20,7 @@ import xyz.tleskiv.tt.service.TrainingSessionService
 import xyz.tleskiv.tt.util.ext.toLocalDate
 import xyz.tleskiv.tt.viewmodel.analytics.AnalyticsScreenViewModel
 import xyz.tleskiv.tt.viewmodel.analytics.SummaryStats
+import xyz.tleskiv.tt.viewmodel.analytics.WeeklyTrainingData
 
 class AnalyticsScreenViewModelImpl(
 	sessionService: TrainingSessionService,
@@ -50,4 +57,36 @@ class AnalyticsScreenViewModelImpl(
 			)
 		}
 		.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), SummaryStats())
+
+	override val weeklyTrainingData: StateFlow<List<WeeklyTrainingData>> =
+		combine(totalMinutesByDate, firstDayOfWeek) { minutesByDate, startDay ->
+			calculateWeeklyData(minutesByDate, startDay)
+		}.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
+
+	private fun calculateWeeklyData(
+		minutesByDate: Map<LocalDate, Int>,
+		firstDayOfWeek: DayOfWeek
+	): List<WeeklyTrainingData> {
+		val today = LocalDate.now()
+		val weeksToShow = 8
+
+		return (0 until weeksToShow).map { weeksAgo ->
+			val weekEnd = today.minus(weeksAgo * 7, DateTimeUnit.DAY)
+			val weekStart = getWeekStart(weekEnd, firstDayOfWeek)
+			val weekEndDate = weekStart.plus(6, DateTimeUnit.DAY)
+
+			val totalMinutes = minutesByDate.entries
+				.filter { (date, _) -> date in weekStart..weekEndDate }
+				.sumOf { it.value }
+
+			@Suppress("DEPRECATION")
+			val label = "${weekStart.dayOfMonth}/${weekStart.monthNumber}"
+			WeeklyTrainingData(weekLabel = label, totalMinutes = totalMinutes)
+		}.reversed()
+	}
+
+	private fun getWeekStart(date: LocalDate, firstDayOfWeek: DayOfWeek): LocalDate {
+		val daysFromStart = (date.dayOfWeek.isoDayNumber - firstDayOfWeek.isoDayNumber + 7) % 7
+		return date.minus(daysFromStart, DateTimeUnit.DAY)
+	}
 }
