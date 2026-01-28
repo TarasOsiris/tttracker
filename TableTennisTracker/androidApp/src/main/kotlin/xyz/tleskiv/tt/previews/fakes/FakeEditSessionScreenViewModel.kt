@@ -35,6 +35,18 @@ class FakeEditSessionScreenViewModel(
 	)
 
 	override fun saveSession(onSuccess: () -> Unit) {}
+	override fun addPendingMatch(match: PendingMatch) {
+		inputData.pendingMatches.add(match)
+	}
+
+	override fun updatePendingMatch(match: PendingMatch) {
+		val index = inputData.pendingMatches.indexOfFirst { it.id == match.id }
+		if (index >= 0) inputData.pendingMatches[index] = match
+	}
+
+	override fun removePendingMatch(matchId: String) {
+		inputData.pendingMatches.removeAll { it.id == matchId }
+	}
 
 	companion object {
 		private val names = listOf("Zhang Wei", "Maria Schmidt")

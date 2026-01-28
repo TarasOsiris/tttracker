@@ -90,17 +90,56 @@ class TrainingSessionsRepositoryImpl(
 		durationMinutes: Int,
 		rpe: Int,
 		sessionType: SessionType?,
-		notes: String?
+		notes: String?,
+		matches: List<MatchInput>?
 	): Unit = withContext(ioDispatcher) {
-		database.appDatabaseQueries.updateSession(
-			date = date,
-			duration_min = durationMinutes.toLong(),
-			rpe = rpe.toLong(),
-			session_type = sessionType?.dbValue,
-			notes = notes,
-			updated_at = nowInstant,
-			id = id
-		)
+		database.transaction {
+			database.appDatabaseQueries.updateSession(
+				date = date,
+				duration_min = durationMinutes.toLong(),
+				rpe = rpe.toLong(),
+				session_type = sessionType?.dbValue,
+				notes = notes,
+				updated_at = nowInstant,
+				id = id
+			)
+
+			if (matches != null) {
+				database.appDatabaseQueries.deleteMatchesBySessionId(updated_at = nowInstant, session_id = id)
+
+				for (matchInput in matches) {
+					val opponentId = matchInput.opponentId ?: run {
+						val newOpponentId = Uuid.random()
+						database.appDatabaseQueries.insertOpponent(
+							id = newOpponentId,
+							name = matchInput.opponentName,
+							club = null,
+							rating = null,
+							handedness = null,
+							style = null,
+							notes = null,
+							updated_at = nowInstant
+						)
+						newOpponentId
+					}
+
+					database.appDatabaseQueries.insertMatch(
+						id = Uuid.random(),
+						session_id = id,
+						opponent_id = opponentId,
+						my_games_won = matchInput.myGamesWon.toLong(),
+						opponent_games_won = matchInput.opponentGamesWon.toLong(),
+						games = null,
+						is_doubles = matchInput.isDoubles,
+						is_ranked = matchInput.isRanked,
+						competition_level = matchInput.competitionLevel?.dbValue,
+						rpe = null,
+						notes = null,
+						updated_at = nowInstant
+					)
+				}
+			}
+		}
 	}
 
 	override suspend fun getAllSessions(): List<TrainingSession> = withContext(ioDispatcher) {

@@ -1,20 +1,23 @@
 package xyz.tleskiv.tt.viewmodel.impl.sessions
 
 import androidx.lifecycle.viewModelScope
+import com.kizitonwose.calendar.core.now
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import com.kizitonwose.calendar.core.now
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.LocalTime
 import xyz.tleskiv.tt.data.model.enums.SessionType
+import xyz.tleskiv.tt.model.mappers.toMatchInput
+import xyz.tleskiv.tt.model.mappers.toPendingMatch
 import xyz.tleskiv.tt.service.TrainingSessionService
 import xyz.tleskiv.tt.util.ext.toLocalDateTime
 import xyz.tleskiv.tt.viewmodel.sessions.CreateSessionScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.EditSessionScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.EditSessionUiState
+import xyz.tleskiv.tt.viewmodel.sessions.PendingMatch
 import kotlin.uuid.Uuid
 
 class EditSessionScreenViewModelImpl(
@@ -48,6 +51,9 @@ class EditSessionScreenViewModelImpl(
 			inputData.selectedSessionType.value = session.sessionType ?: SessionType.TECHNIQUE
 			inputData.notes.value = session.notes.orEmpty()
 
+			inputData.pendingMatches.clear()
+			inputData.pendingMatches.addAll(session.matches.map { it.toPendingMatch() })
+
 			_uiState.value = EditSessionUiState(isLoading = false)
 		}
 	}
@@ -60,9 +66,25 @@ class EditSessionScreenViewModelImpl(
 				durationMinutes = inputData.durationMinutes.intValue,
 				rpe = inputData.rpeValue.intValue,
 				sessionType = inputData.selectedSessionType.value,
-				notes = inputData.notes.value.takeIf { it.isNotBlank() }
+				notes = inputData.notes.value.takeIf { it.isNotBlank() },
+				matches = inputData.pendingMatches.map { it.toMatchInput() }
 			)
 			onSuccess()
 		}
+	}
+
+	override fun addPendingMatch(match: PendingMatch) {
+		inputData.pendingMatches.add(match)
+	}
+
+	override fun updatePendingMatch(match: PendingMatch) {
+		val index = inputData.pendingMatches.indexOfFirst { it.id == match.id }
+		if (index >= 0) {
+			inputData.pendingMatches[index] = match
+		}
+	}
+
+	override fun removePendingMatch(matchId: String) {
+		inputData.pendingMatches.removeAll { it.id == matchId }
 	}
 }

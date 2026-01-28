@@ -37,7 +37,8 @@ class TrainingSessionServiceImpl(
 		durationMinutes: Int,
 		rpe: Int,
 		sessionType: SessionType?,
-		notes: String?
+		notes: String?,
+		matches: List<MatchInput>?
 	) {
 		repository.editSession(
 			id = id,
@@ -45,7 +46,8 @@ class TrainingSessionServiceImpl(
 			durationMinutes = durationMinutes,
 			rpe = rpe,
 			sessionType = sessionType,
-			notes = notes
+			notes = notes,
+			matches = matches
 		)
 	}
 

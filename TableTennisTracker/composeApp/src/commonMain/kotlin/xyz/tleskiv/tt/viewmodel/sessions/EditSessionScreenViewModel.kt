@@ -13,4 +13,7 @@ abstract class EditSessionScreenViewModel : ViewModelBase() {
 	abstract val uiState: StateFlow<EditSessionUiState>
 
 	abstract fun saveSession(onSuccess: () -> Unit)
+	abstract fun addPendingMatch(match: PendingMatch)
+	abstract fun updatePendingMatch(match: PendingMatch)
+	abstract fun removePendingMatch(matchId: String)
 }

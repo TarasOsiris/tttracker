@@ -2,8 +2,10 @@ package xyz.tleskiv.tt.model.mappers
 
 import xyz.tleskiv.tt.data.model.Match
 import xyz.tleskiv.tt.data.model.TrainingSession
+import xyz.tleskiv.tt.service.MatchInput
 import xyz.tleskiv.tt.util.ext.toLocalDate
 import xyz.tleskiv.tt.util.ext.toLocalDateTime
+import xyz.tleskiv.tt.viewmodel.sessions.PendingMatch
 import xyz.tleskiv.tt.viewmodel.sessions.SessionDetailsScreenViewModel.MatchUiModel
 import xyz.tleskiv.tt.viewmodel.sessions.SessionsScreenViewModel.SessionUiModel
 
@@ -35,4 +37,25 @@ fun Match.toMatchUiModel(): MatchUiModel = MatchUiModel(
 	competitionLevel = competitionLevel,
 	rpe = rpe,
 	notes = notes
+)
+
+fun Match.toPendingMatch(): PendingMatch = PendingMatch(
+	id = id.toString(),
+	opponentName = opponent.name,
+	opponentId = opponent.id,
+	myGamesWon = myGamesWon,
+	opponentGamesWon = opponentGamesWon,
+	isDoubles = isDoubles,
+	isRanked = isRanked,
+	competitionLevel = competitionLevel
+)
+
+fun PendingMatch.toMatchInput(): MatchInput = MatchInput(
+	opponentId = opponentId,
+	opponentName = opponentName,
+	myGamesWon = myGamesWon,
+	opponentGamesWon = opponentGamesWon,
+	isDoubles = isDoubles,
+	isRanked = isRanked,
+	competitionLevel = competitionLevel
 )

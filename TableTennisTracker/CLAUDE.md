@@ -109,6 +109,14 @@ UI Layer (Screens) → ViewModel Layer → Service Layer → Repository Layer �
 - Use Material 3 `AlertDialog` for confirmation dialogs
 - Examples: `DatePickerDialog.kt`, `DeleteSessionDialog.kt`
 
+**Model Mapping:**
+
+- All model-to-model mapping code must be placed in `model/mappers/UiModelMappers.kt` as extension
+  functions
+- Never write inline mapping code in ViewModels - always use extension functions
+- Pattern: `fun SourceModel.toTargetModel(): TargetModel = TargetModel(...)`
+- Examples: `Match.toPendingMatch()`, `PendingMatch.toMatchInput()`
+
 ### androidApp
 
 Android application entry point that depends on composeApp.

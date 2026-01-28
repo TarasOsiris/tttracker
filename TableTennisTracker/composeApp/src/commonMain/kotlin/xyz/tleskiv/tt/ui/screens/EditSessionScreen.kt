@@ -20,23 +20,26 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.stringResource
+import org.koin.compose.viewmodel.koinViewModel
+import org.koin.core.parameter.parametersOf
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.action_edit
 import tabletennistracker.composeapp.generated.resources.action_save
 import tabletennistracker.composeapp.generated.resources.label_date
 import tabletennistracker.composeapp.generated.resources.label_notes_optional
+import xyz.tleskiv.tt.ui.dialogs.AddMatchDialog
 import xyz.tleskiv.tt.ui.dialogs.DatePickerDialog
 import xyz.tleskiv.tt.ui.widgets.BackButton
 import xyz.tleskiv.tt.ui.widgets.fields.DatePickerField
 import xyz.tleskiv.tt.ui.widgets.fields.DurationField
+import xyz.tleskiv.tt.ui.widgets.fields.MatchesField
 import xyz.tleskiv.tt.ui.widgets.fields.NotesField
 import xyz.tleskiv.tt.ui.widgets.fields.RpeField
 import xyz.tleskiv.tt.ui.widgets.fields.SessionTypeField
-import org.koin.compose.viewmodel.koinViewModel
-import org.koin.core.parameter.parametersOf
 import xyz.tleskiv.tt.util.ui.clearFocusOnTap
 import xyz.tleskiv.tt.viewmodel.sessions.CreateSessionScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.EditSessionScreenViewModel
+import xyz.tleskiv.tt.viewmodel.sessions.PendingMatch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -81,12 +84,19 @@ fun EditSessionScreen(
 					color = MaterialTheme.colorScheme.error
 				)
 			}
-			EditSessionScreenContent(inputData)
+			EditSessionScreenContent(
+				inputData = inputData,
+				onAddPendingMatch = viewModel::addPendingMatch,
+				onUpdatePendingMatch = viewModel::updatePendingMatch,
+				onRemovePendingMatch = viewModel::removePendingMatch
+			)
 		}
 	}
 
 	var showDatePicker by inputData.showDatePicker
 	var selectedDate by inputData.selectedDate
+	var showAddMatchDialog by inputData.showAddMatchDialog
+	var editingMatch by inputData.editingMatch
 
 	if (showDatePicker) {
 		DatePickerDialog(
@@ -98,16 +108,43 @@ fun EditSessionScreen(
 			onDismiss = { showDatePicker = false }
 		)
 	}
+
+	if (showAddMatchDialog) {
+		AddMatchDialog(
+			editingMatch = editingMatch,
+			onConfirm = { match ->
+				if (editingMatch != null) {
+					viewModel.updatePendingMatch(match)
+				} else {
+					viewModel.addPendingMatch(match)
+				}
+				showAddMatchDialog = false
+				editingMatch = null
+			},
+			onDismiss = {
+				showAddMatchDialog = false
+				editingMatch = null
+			}
+		)
+	}
 }
 
 @Composable
-private fun EditSessionScreenContent(inputData: CreateSessionScreenViewModel.InputData) {
+private fun EditSessionScreenContent(
+	inputData: CreateSessionScreenViewModel.InputData,
+	onAddPendingMatch: (PendingMatch) -> Unit,
+	onUpdatePendingMatch: (PendingMatch) -> Unit,
+	onRemovePendingMatch: (String) -> Unit
+) {
 	var selectedDate by inputData.selectedDate
 	var durationMinutes by inputData.durationMinutes
 	var selectedSessionType by inputData.selectedSessionType
 	var rpeValue by inputData.rpeValue
 	var notes by inputData.notes
 	var showDatePicker by inputData.showDatePicker
+	var showAddMatchDialog by inputData.showAddMatchDialog
+	var editingMatch by inputData.editingMatch
+	val pendingMatches = inputData.pendingMatches
 
 	DatePickerField(
 		label = Res.string.label_date,
@@ -131,5 +168,15 @@ private fun EditSessionScreenContent(inputData: CreateSessionScreenViewModel.Inp
 		labelRes = Res.string.label_notes_optional,
 		notes = notes,
 		onNotesChange = { notes = it }
+	)
+
+	MatchesField(
+		matches = pendingMatches,
+		onAddMatch = { showAddMatchDialog = true },
+		onEditMatch = { match ->
+			editingMatch = match
+			showAddMatchDialog = true
+		},
+		onDeleteMatch = { match -> onRemovePendingMatch(match.id) }
 	)
 }

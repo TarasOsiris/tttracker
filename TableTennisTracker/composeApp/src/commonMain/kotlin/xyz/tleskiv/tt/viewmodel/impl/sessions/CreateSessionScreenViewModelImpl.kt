@@ -6,7 +6,7 @@ import kotlinx.coroutines.launch
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.LocalTime
-import xyz.tleskiv.tt.service.MatchInput
+import xyz.tleskiv.tt.model.mappers.toMatchInput
 import xyz.tleskiv.tt.service.TrainingSessionService
 import xyz.tleskiv.tt.service.UserPreferencesService
 import xyz.tleskiv.tt.viewmodel.sessions.CreateSessionScreenViewModel
@@ -39,17 +39,7 @@ class CreateSessionScreenViewModelImpl(
 				rpe = inputData.rpeValue.intValue,
 				sessionType = inputData.selectedSessionType.value,
 				notes = inputData.notes.value.takeIf { it.isNotBlank() },
-				matches = inputData.pendingMatches.map { pendingMatch ->
-					MatchInput(
-						opponentId = pendingMatch.opponentId,
-						opponentName = pendingMatch.opponentName,
-						myGamesWon = pendingMatch.myGamesWon,
-						opponentGamesWon = pendingMatch.opponentGamesWon,
-						isDoubles = pendingMatch.isDoubles,
-						isRanked = pendingMatch.isRanked,
-						competitionLevel = pendingMatch.competitionLevel
-					)
-				}
+				matches = inputData.pendingMatches.map { it.toMatchInput() }
 			)
 			onSuccess()
 		}

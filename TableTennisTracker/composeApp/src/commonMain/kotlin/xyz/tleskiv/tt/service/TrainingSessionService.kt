@@ -35,7 +35,8 @@ interface TrainingSessionService {
 		durationMinutes: Int,
 		rpe: Int,
 		sessionType: SessionType?,
-		notes: String?
+		notes: String?,
+		matches: List<MatchInput>? = null
 	)
 
 	suspend fun getAllSessions(): List<TrainingSession>
