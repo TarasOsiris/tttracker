@@ -7,6 +7,7 @@ import org.koin.core.qualifier.named
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
 import org.koin.mp.KoinPlatform.getKoin
+import xyz.tleskiv.tt.di.components.AnalyticsService
 import xyz.tleskiv.tt.di.components.NativeInfoProvider
 import xyz.tleskiv.tt.repo.AnalyticsRepository
 import xyz.tleskiv.tt.repo.MatchRepository
@@ -52,6 +53,8 @@ fun initApp(platformModule: Module, configure: KoinAppDeclaration = {}) {
 	}
 	val nativeInfoProvider = getKoin().get<NativeInfoProvider>()
 	val userIdService = getKoin().get<UserIdService>()
+	val analyticsService = getKoin().get<AnalyticsService>()
 	val userId = runBlocking { userIdService.getUserId() }
 	SentryInit.init(nativeInfoProvider.sentryDsn, userId)
+	analyticsService.identify(userId)
 }

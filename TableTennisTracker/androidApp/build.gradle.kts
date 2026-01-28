@@ -50,6 +50,12 @@ android {
 			"SENTRY_DSN",
 			"\"https://ce3694f2e50b4bb0196220b338bd5974@o1145835.ingest.us.sentry.io/4510742786867200\""
 		)
+
+		buildConfigField(
+			"String",
+			"POSTHOG_API_KEY",
+			"\"${System.getenv("POSTHOG_API_KEY") ?: "phc_c48wFADznJ68OBUeAcQLdKAf5K0GUNxMjf4xXhoopde"}\""
+		)
 	}
 
 	buildFeatures {
@@ -94,6 +100,9 @@ dependencies {
 	implementation(platform(libs.koin.bom))
 	implementation(libs.koin.core)
 	implementation(libs.koin.android)
+
+	// PostHog Analytics
+	implementation(libs.posthog.android)
 
 	debugImplementation(libs.compose.ui.tooling)
 	debugImplementation(libs.androidx.compose.ui.test.manifest)

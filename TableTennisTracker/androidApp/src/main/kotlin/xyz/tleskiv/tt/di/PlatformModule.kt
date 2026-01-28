@@ -5,6 +5,8 @@ import kotlinx.coroutines.Dispatchers
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import xyz.tleskiv.tt.db.DatabaseFactory
+import xyz.tleskiv.tt.di.components.AnalyticsService
+import xyz.tleskiv.tt.di.components.AndroidAnalyticsService
 import xyz.tleskiv.tt.di.components.AndroidClipboardManager
 import xyz.tleskiv.tt.di.components.AndroidExternalAppLauncher
 import xyz.tleskiv.tt.di.components.AndroidLocaleApplier
@@ -22,4 +24,5 @@ val platformModule = module {
 	single<ExternalAppLauncher> { AndroidExternalAppLauncher(get()) }
 	single<ClipboardManager> { AndroidClipboardManager(get()) }
 	single<LocaleApplier> { AndroidLocaleApplier() }
+	single<AnalyticsService> { AndroidAnalyticsService(get()) }
 }

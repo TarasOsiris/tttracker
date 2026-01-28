@@ -14,6 +14,9 @@
     "ios": "15.0"
   },
   "dependencies": {
+    "PostHog": [
+      "3.12.6"
+    ],
     "Sentry": [
       "~> 8.57.3"
     ]

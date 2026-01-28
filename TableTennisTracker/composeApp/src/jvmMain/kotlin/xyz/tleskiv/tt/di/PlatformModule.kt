@@ -5,8 +5,10 @@ import kotlinx.coroutines.Dispatchers
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import xyz.tleskiv.tt.db.DatabaseFactory
+import xyz.tleskiv.tt.di.components.AnalyticsService
 import xyz.tleskiv.tt.di.components.ClipboardManager
 import xyz.tleskiv.tt.di.components.ExternalAppLauncher
+import xyz.tleskiv.tt.di.components.JvmAnalyticsService
 import xyz.tleskiv.tt.di.components.JvmClipboardManager
 import xyz.tleskiv.tt.di.components.JvmExternalAppLauncher
 import xyz.tleskiv.tt.di.components.JvmLocaleApplier
@@ -22,4 +24,5 @@ val platformModule = module {
 	single<ExternalAppLauncher> { JvmExternalAppLauncher() }
 	single<ClipboardManager> { JvmClipboardManager() }
 	single<LocaleApplier> { JvmLocaleApplier() }
+	single<AnalyticsService> { JvmAnalyticsService() }
 }

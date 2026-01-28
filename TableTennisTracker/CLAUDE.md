@@ -209,6 +209,35 @@ data class SessionDetailsRoute(val sessionId: String)        // Modal route
 
 All dependencies are managed via `gradle/libs.versions.toml`.
 
+## Analytics with PostHog
+
+The app uses PostHog for analytics tracking across platforms.
+
+**Configuration:**
+
+- Android: Set `POSTHOG_API_KEY` environment variable (added to BuildConfig)
+- iOS: Add `POSTHOG_API_KEY` to Info.plist
+
+**AnalyticsService Interface (`di/components/AnalyticsService.kt`):**
+
+```kotlin
+interface AnalyticsService {
+    fun capture(event: String, properties: Map<String, Any>? = null)
+    fun screen(screenName: String, properties: Map<String, Any>? = null)
+    fun identify(userId: String, properties: Map<String, Any>? = null)
+    fun reset()
+}
+```
+
+**Platform Implementations:**
+
+- Android: `AndroidAnalyticsService` - Full PostHog SDK support
+- iOS: `IosAnalyticsService` + `PostHogWrapper` - Uses PostHog iOS SDK via cinterop (properties not
+  supported in Kotlin bindings)
+- JVM/Desktop: `JvmAnalyticsService` - No-op implementation
+
+**Usage:** Inject `AnalyticsService` into ViewModels and call tracking methods.
+
 ## Platform-Specific Code
 
 Instead of using KMP's `expect`/`actual` pattern prefer creating an interface in `di.components` package in `commonMain` and adding platform specific implementations,

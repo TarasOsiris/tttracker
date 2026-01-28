@@ -55,6 +55,10 @@ kotlin {
 			isStatic = false
 			freeCompilerArgs += listOf("-Xbinary=bundleId=xyz.tleskiv.tt.composeapp")
 		}
+
+		pod("PostHog") {
+			version = "3.12.6"
+		}
 	}
 
 	jvm {

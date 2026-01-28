@@ -5,7 +5,8 @@
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
     <key>SENTRY_DSN</key>
-    <string>https://a4cfb73df75a9e559b75277dab13abea@o1145835.ingest.us.sentry.io/4510742821273600
-    </string>
+    <string>https://a4cfb73df75a9e559b75277dab13abea@o1145835.ingest.us.sentry.io/4510742821273600</string>
+    <key>POSTHOG_API_KEY</key>
+    <string>phc_c48wFADznJ68OBUeAcQLdKAf5K0GUNxMjf4xXhoopde</string>
 </dict>
 </plist>

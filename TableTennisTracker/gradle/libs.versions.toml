@@ -26,6 +26,7 @@ calendar = "2.10.0"
 koalaplot = "0.10.4"
 sentryKmp = "0.23.0"
 sentryAndroid = "6.0.0"
+posthogAndroid = "3.9.1"
 
 androidx-lifecycle = "2.10.0-alpha08"
 androidx-nav3 = "1.0.0-alpha06"
@@ -86,6 +87,8 @@ androidx-lifecycle-runtime = { module = "org.jetbrains.androidx.lifecycle:lifecy
 androidx-lifecycle-viewmodel-nav3 = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "androidx-lifecycle" }
 androidx-material3-adaptive = { module = "org.jetbrains.compose.material3.adaptive:adaptive", version.ref = "androidx-adaptive" }
 androidx-material3-adaptive-nav3 = { module = "org.jetbrains.compose.material3.adaptive:adaptive-navigation3", version.ref = "androidx-adaptive" }
+
+posthog-android = { module = "com.posthog:posthog-android", version.ref = "posthogAndroid" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

@@ -4,4 +4,5 @@ target 'iosApp' do
   use_frameworks!
   platform :ios, '15.0'
   pod 'composeApp', :path => '../composeApp'
+  pod 'PostHog', '~> 3.12'
 end
