@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, BarChart3, Timer, Target, Zap, Smartphone, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Calendar, BarChart3, Timer, Target, Zap, Smartphone, ChevronLeft, ChevronRight, Send } from 'lucide-react';
 import './LandingPage.css';
 import appStoreBadge from './assets/app-store-badge.svg';
 import googlePlayBadge from './assets/google-play-badge.svg';
@@ -29,6 +29,32 @@ const LandingPage = () => {
           🏓 TableTennis<span>Tracker</span>
         </div>
       </nav>
+
+      {/* Telegram Community Banner */}
+      <motion.div
+        className="telegram-banner"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        <div className="telegram-banner-content">
+          <div className="telegram-icon-wrapper">
+            <Send size={24} />
+          </div>
+          <div className="telegram-text">
+            <h3 className="telegram-title">Join Our Community</h3>
+            <p className="telegram-subtitle">Get support, share feedback, and connect with other players</p>
+          </div>
+          <a
+            href="https://t.me/tttrackerapp"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="telegram-cta"
+          >
+            Join @tttrackerapp
+          </a>
+        </div>
+      </motion.div>
 
       {/* Hero Section */}
       <header className="hero-header">
