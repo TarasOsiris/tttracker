@@ -1,6 +1,8 @@
 package xyz.tleskiv.tt.di
 
-import io.ktor.server.config.*
+import io.ktor.server.config.ApplicationConfig
+import org.koin.core.module.dsl.singleOf
+import org.koin.dsl.bind
 import org.koin.dsl.module
 import xyz.tleskiv.tt.config.ConfigLoader
 import xyz.tleskiv.tt.config.ServerConfig
@@ -25,7 +27,5 @@ fun createAppModule(config: ApplicationConfig) = module {
 		JwtService(serverConfig.jwt)
 	}
 
-	single<UserRepository> {
-		UserRepositoryImpl(get())
-	}
+	singleOf(::UserRepositoryImpl) bind UserRepository::class
 }

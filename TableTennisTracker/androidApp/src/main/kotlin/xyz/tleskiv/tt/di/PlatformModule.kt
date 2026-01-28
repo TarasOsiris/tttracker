@@ -2,7 +2,9 @@ package xyz.tleskiv.tt.di
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import org.koin.core.module.dsl.singleOf
 import org.koin.core.qualifier.named
+import org.koin.dsl.bind
 import org.koin.dsl.module
 import xyz.tleskiv.tt.db.DatabaseFactory
 import xyz.tleskiv.tt.di.components.AnalyticsService
@@ -16,13 +18,13 @@ import xyz.tleskiv.tt.di.components.ExternalAppLauncher
 import xyz.tleskiv.tt.di.components.LocaleApplier
 import xyz.tleskiv.tt.di.components.NativeInfoProvider
 
-val platformModule = module {
+val androidPlatformModule = module {
 	single { DatabaseFactory(get()) }
 	single { get<DatabaseFactory>().createDriver() }
 	single<CoroutineDispatcher>(named(DispatcherQualifiers.IO)) { Dispatchers.IO }
-	single<NativeInfoProvider> { AndroidNativeInfoProvider(get()) }
-	single<ExternalAppLauncher> { AndroidExternalAppLauncher(get()) }
-	single<ClipboardManager> { AndroidClipboardManager(get()) }
-	single<LocaleApplier> { AndroidLocaleApplier() }
-	single<AnalyticsService> { AndroidAnalyticsService(get()) }
+	singleOf(::AndroidNativeInfoProvider) bind NativeInfoProvider::class
+	singleOf(::AndroidExternalAppLauncher) bind ExternalAppLauncher::class
+	singleOf(::AndroidClipboardManager) bind ClipboardManager::class
+	singleOf(::AndroidLocaleApplier) bind LocaleApplier::class
+	singleOf(::AndroidAnalyticsService) bind AnalyticsService::class
 }

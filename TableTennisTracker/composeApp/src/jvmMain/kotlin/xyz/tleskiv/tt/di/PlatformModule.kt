@@ -2,7 +2,9 @@ package xyz.tleskiv.tt.di
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import org.koin.core.module.dsl.singleOf
 import org.koin.core.qualifier.named
+import org.koin.dsl.bind
 import org.koin.dsl.module
 import xyz.tleskiv.tt.db.DatabaseFactory
 import xyz.tleskiv.tt.di.components.AnalyticsService
@@ -20,9 +22,9 @@ val platformModule = module {
 	single { DatabaseFactory() }
 	single { get<DatabaseFactory>().createDriver() }
 	single<CoroutineDispatcher>(named(DispatcherQualifiers.IO)) { Dispatchers.IO }
-	single<NativeInfoProvider> { JvmNativeInfoProvider() }
-	single<ExternalAppLauncher> { JvmExternalAppLauncher() }
-	single<ClipboardManager> { JvmClipboardManager() }
-	single<LocaleApplier> { JvmLocaleApplier() }
-	single<AnalyticsService> { JvmAnalyticsService() }
+	singleOf(::JvmNativeInfoProvider) bind NativeInfoProvider::class
+	singleOf(::JvmExternalAppLauncher) bind ExternalAppLauncher::class
+	singleOf(::JvmClipboardManager) bind ClipboardManager::class
+	singleOf(::JvmLocaleApplier) bind LocaleApplier::class
+	singleOf(::JvmAnalyticsService) bind AnalyticsService::class
 }

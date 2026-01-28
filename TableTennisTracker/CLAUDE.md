@@ -92,7 +92,7 @@ UI Layer (Screens) → ViewModel Layer → Service Layer → Repository Layer �
 **Service Layer:**
 - Interface + implementation pattern
 - Business logic and data transformation (e.g., LocalDateTime ↔ epoch milliseconds)
-- Registered as Koin singletons: `single<Interface> { ImplementationClass(get()) }`
+- Registered as Koin singletons: `singleOf(::ImplementationClass) bind Interface::class`
 
 **Repository Layer:**
 - Interface + implementation pattern

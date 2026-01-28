@@ -2,7 +2,9 @@ package xyz.tleskiv.tt.di
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import org.koin.core.module.dsl.singleOf
 import org.koin.core.qualifier.named
+import org.koin.dsl.bind
 import org.koin.dsl.module
 import xyz.tleskiv.tt.db.DatabaseFactory
 import xyz.tleskiv.tt.di.components.AnalyticsService
@@ -15,18 +17,14 @@ import xyz.tleskiv.tt.di.components.IosLocaleApplier
 import xyz.tleskiv.tt.di.components.IosNativeInfoProvider
 import xyz.tleskiv.tt.di.components.LocaleApplier
 import xyz.tleskiv.tt.di.components.NativeInfoProvider
-import xyz.tleskiv.tt.di.components.PostHogWrapper
 
-val platformModule = module {
+val iosPlatformModule = module {
 	single { DatabaseFactory() }
 	single { get<DatabaseFactory>().createDriver() }
 	single<CoroutineDispatcher>(named(DispatcherQualifiers.IO)) { Dispatchers.Default }
-	single<NativeInfoProvider> { IosNativeInfoProvider() }
-	single<ExternalAppLauncher> { IosExternalAppLauncher() }
-	single<ClipboardManager> { IosClipboardManager() }
-	single<LocaleApplier> { IosLocaleApplier() }
-	single<AnalyticsService> {
-		PostHogWrapper.initialize()
-		IosAnalyticsService()
-	}
+	singleOf(::IosNativeInfoProvider) bind NativeInfoProvider::class
+	singleOf(::IosExternalAppLauncher) bind ExternalAppLauncher::class
+	singleOf(::IosClipboardManager) bind ClipboardManager::class
+	singleOf(::IosLocaleApplier) bind LocaleApplier::class
+	singleOf(::IosAnalyticsService) bind AnalyticsService::class
 }

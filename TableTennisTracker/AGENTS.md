@@ -59,7 +59,7 @@ ViewModel pattern:
 Services:
 - Interface + implementation
 - Business logic and data transforms
-- Registered in Koin: `single<Interface> { Impl(get()) }`
+- Registered in Koin: `singleOf(::Impl) bind Interface::class`
 
 Repositories:
 - Interface + implementation
