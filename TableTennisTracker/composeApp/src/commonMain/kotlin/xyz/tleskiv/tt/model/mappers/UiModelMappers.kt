@@ -47,7 +47,8 @@ fun Match.toPendingMatch(): PendingMatch = PendingMatch(
 	opponentGamesWon = opponentGamesWon,
 	isDoubles = isDoubles,
 	isRanked = isRanked,
-	competitionLevel = competitionLevel
+	competitionLevel = competitionLevel,
+	notes = notes
 )
 
 fun PendingMatch.toMatchInput(): MatchInput = MatchInput(
@@ -57,5 +58,6 @@ fun PendingMatch.toMatchInput(): MatchInput = MatchInput(
 	opponentGamesWon = opponentGamesWon,
 	isDoubles = isDoubles,
 	isRanked = isRanked,
-	competitionLevel = competitionLevel
+	competitionLevel = competitionLevel,
+	notes = notes
 )

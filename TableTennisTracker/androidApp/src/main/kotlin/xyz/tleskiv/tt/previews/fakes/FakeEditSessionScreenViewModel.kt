@@ -53,6 +53,7 @@ class FakeEditSessionScreenViewModel(
 		private val myScores = listOf(3, 1)
 		private val oppScores = listOf(2, 3)
 		private val levels = listOf(CompetitionLevel.LEAGUE, CompetitionLevel.TOURNAMENT)
+		private val matchNotes = listOf("Great serves, need to work on backhand", null)
 
 		private val sampleMatches = List(2) { i ->
 			PendingMatch(
@@ -63,7 +64,8 @@ class FakeEditSessionScreenViewModel(
 				opponentGamesWon = oppScores[i],
 				isDoubles = false,
 				isRanked = true,
-				competitionLevel = levels[i]
+				competitionLevel = levels[i],
+				notes = matchNotes[i]
 			)
 		}
 

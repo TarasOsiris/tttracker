@@ -3,6 +3,7 @@ package xyz.tleskiv.tt.ui.widgets
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -17,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
@@ -41,53 +43,66 @@ fun PendingMatchCard(
 	val isWin = match.myGamesWon > match.opponentGamesWon
 
 	ContentCard {
-		Row(
-			modifier = Modifier.fillMaxWidth().padding(12.dp),
-			verticalAlignment = Alignment.CenterVertically,
-			horizontalArrangement = Arrangement.spacedBy(12.dp)
-		) {
-			Box(
-				modifier = Modifier
-					.size(32.dp)
-					.clip(CircleShape)
-					.background(if (isWin) winContainerColor else MaterialTheme.colorScheme.errorContainer),
-				contentAlignment = Alignment.Center
+		Column(modifier = Modifier.fillMaxWidth().padding(12.dp)) {
+			Row(
+				modifier = Modifier.fillMaxWidth(),
+				verticalAlignment = Alignment.CenterVertically,
+				horizontalArrangement = Arrangement.spacedBy(12.dp)
 			) {
+				Box(
+					modifier = Modifier
+						.size(32.dp)
+						.clip(CircleShape)
+						.background(if (isWin) winContainerColor else MaterialTheme.colorScheme.errorContainer),
+					contentAlignment = Alignment.Center
+				) {
+					Text(
+						text = stringResource(if (isWin) Res.string.match_win else Res.string.match_loss),
+						style = MaterialTheme.typography.labelMedium,
+						fontWeight = FontWeight.Bold,
+						color = if (isWin) onWinContainerColor else MaterialTheme.colorScheme.onErrorContainer
+					)
+				}
+
 				Text(
-					text = stringResource(if (isWin) Res.string.match_win else Res.string.match_loss),
-					style = MaterialTheme.typography.labelMedium,
-					fontWeight = FontWeight.Bold,
-					color = if (isWin) onWinContainerColor else MaterialTheme.colorScheme.onErrorContainer
+					text = match.opponentName,
+					style = MaterialTheme.typography.bodyLarge,
+					modifier = Modifier.weight(1f)
 				)
+
+				Text(
+					text = stringResource(Res.string.match_score_format, match.myGamesWon, match.opponentGamesWon),
+					style = MaterialTheme.typography.bodyLarge,
+					fontWeight = FontWeight.SemiBold
+				)
+
+				IconButton(onClick = onEdit, modifier = Modifier.size(32.dp)) {
+					Icon(
+						imageVector = vectorResource(Res.drawable.ic_edit),
+						contentDescription = stringResource(Res.string.action_edit),
+						modifier = Modifier.size(20.dp),
+						tint = MaterialTheme.colorScheme.onSurfaceVariant
+					)
+				}
+
+				IconButton(onClick = onDelete, modifier = Modifier.size(32.dp)) {
+					Icon(
+						imageVector = vectorResource(Res.drawable.ic_delete),
+						contentDescription = stringResource(Res.string.action_delete),
+						modifier = Modifier.size(20.dp),
+						tint = MaterialTheme.colorScheme.error
+					)
+				}
 			}
 
-			Text(
-				text = match.opponentName,
-				style = MaterialTheme.typography.bodyLarge,
-				modifier = Modifier.weight(1f)
-			)
-
-			Text(
-				text = stringResource(Res.string.match_score_format, match.myGamesWon, match.opponentGamesWon),
-				style = MaterialTheme.typography.bodyLarge,
-				fontWeight = FontWeight.SemiBold
-			)
-
-			IconButton(onClick = onEdit, modifier = Modifier.size(32.dp)) {
-				Icon(
-					imageVector = vectorResource(Res.drawable.ic_edit),
-					contentDescription = stringResource(Res.string.action_edit),
-					modifier = Modifier.size(20.dp),
-					tint = MaterialTheme.colorScheme.onSurfaceVariant
-				)
-			}
-
-			IconButton(onClick = onDelete, modifier = Modifier.size(32.dp)) {
-				Icon(
-					imageVector = vectorResource(Res.drawable.ic_delete),
-					contentDescription = stringResource(Res.string.action_delete),
-					modifier = Modifier.size(20.dp),
-					tint = MaterialTheme.colorScheme.error
+			if (!match.notes.isNullOrBlank()) {
+				Text(
+					text = match.notes,
+					style = MaterialTheme.typography.bodySmall,
+					color = MaterialTheme.colorScheme.onSurfaceVariant,
+					maxLines = 2,
+					overflow = TextOverflow.Ellipsis,
+					modifier = Modifier.padding(start = 44.dp, top = 4.dp)
 				)
 			}
 		}

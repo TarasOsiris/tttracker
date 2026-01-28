@@ -75,7 +75,7 @@ class TrainingSessionsRepositoryImpl(
 					is_ranked = matchInput.isRanked,
 					competition_level = matchInput.competitionLevel?.dbValue,
 					rpe = null,
-					notes = null,
+					notes = matchInput.notes,
 					updated_at = nowInstant
 				)
 			}
@@ -134,7 +134,7 @@ class TrainingSessionsRepositoryImpl(
 						is_ranked = matchInput.isRanked,
 						competition_level = matchInput.competitionLevel?.dbValue,
 						rpe = null,
-						notes = null,
+						notes = matchInput.notes,
 						updated_at = nowInstant
 					)
 				}

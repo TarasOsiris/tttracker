@@ -22,7 +22,8 @@ import xyz.tleskiv.tt.ui.widgets.FieldLabel
 fun NotesField(
 	labelRes: StringResource,
 	notes: String,
-	onNotesChange: (String) -> Unit
+	onNotesChange: (String) -> Unit,
+	hintRes: StringResource = Res.string.hint_notes
 ) {
 	Column {
 		FieldLabel(labelRes)
@@ -31,7 +32,7 @@ fun NotesField(
 			value = notes,
 			onValueChange = { if (it.length <= 1000) onNotesChange(it) },
 			modifier = Modifier.fillMaxWidth().height(120.dp).testTag(TestTags.NOTES_FIELD),
-			placeholder = { Text(stringResource(Res.string.hint_notes)) },
+			placeholder = { Text(stringResource(hintRes)) },
 			supportingText = {
 				Text(stringResource(Res.string.counter_notes, notes.length))
 			})

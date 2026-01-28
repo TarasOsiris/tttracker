@@ -29,6 +29,7 @@ abstract class AddMatchDialogViewModel : ViewModelBase() {
 		val isDoubles = mutableStateOf(editingMatch?.isDoubles ?: false)
 		val isRanked = mutableStateOf(editingMatch?.isRanked ?: false)
 		val competitionLevel = mutableStateOf(editingMatch?.competitionLevel)
+		val notes = mutableStateOf(editingMatch?.notes ?: "")
 
 		val isValid by derivedStateOf {
 			opponentName.value.isNotBlank()
@@ -42,7 +43,8 @@ abstract class AddMatchDialogViewModel : ViewModelBase() {
 			opponentGamesWon = opponentScore.intValue,
 			isDoubles = isDoubles.value,
 			isRanked = isRanked.value,
-			competitionLevel = competitionLevel.value
+			competitionLevel = competitionLevel.value,
+			notes = notes.value.takeIf { it.isNotBlank() }
 		)
 	}
 }

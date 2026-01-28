@@ -31,7 +31,10 @@ import tabletennistracker.composeapp.generated.resources.add_match
 import tabletennistracker.composeapp.generated.resources.edit_match
 import tabletennistracker.composeapp.generated.resources.label_doubles
 import tabletennistracker.composeapp.generated.resources.label_ranked
+import tabletennistracker.composeapp.generated.resources.hint_match_notes
+import tabletennistracker.composeapp.generated.resources.label_match_notes_optional
 import xyz.tleskiv.tt.ui.widgets.fields.CompetitionLevelField
+import xyz.tleskiv.tt.ui.widgets.fields.NotesField
 import xyz.tleskiv.tt.ui.widgets.fields.OpponentField
 import xyz.tleskiv.tt.ui.widgets.fields.ScoreField
 import xyz.tleskiv.tt.viewmodel.dialogs.AddMatchDialogViewModel
@@ -57,6 +60,7 @@ fun AddMatchDialog(
 	var isDoubles by inputData.isDoubles
 	var isRanked by inputData.isRanked
 	var competitionLevel by inputData.competitionLevel
+	var notes by inputData.notes
 
 	AlertDialog(
 		onDismissRequest = onDismiss,
@@ -104,6 +108,13 @@ fun AddMatchDialog(
 				CompetitionLevelField(
 					selectedLevel = competitionLevel,
 					onLevelSelected = { competitionLevel = it }
+				)
+
+				NotesField(
+					labelRes = Res.string.label_match_notes_optional,
+					notes = notes,
+					onNotesChange = { notes = it },
+					hintRes = Res.string.hint_match_notes
 				)
 			}
 		},

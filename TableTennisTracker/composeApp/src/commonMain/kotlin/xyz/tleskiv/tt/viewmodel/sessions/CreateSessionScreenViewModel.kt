@@ -15,7 +15,8 @@ data class PendingMatch(
 	val opponentGamesWon: Int,
 	val isDoubles: Boolean = false,
 	val isRanked: Boolean = false,
-	val competitionLevel: CompetitionLevel? = null
+	val competitionLevel: CompetitionLevel? = null,
+	val notes: String? = null
 )
 
 abstract class CreateSessionScreenViewModel : ViewModelBase() {

@@ -223,6 +223,8 @@
     <string name="action_add_match">Add Match</string>
     <string name="add_match">Add Match</string>
     <string name="edit_match">Edit Match</string>
+    <string name="label_match_notes_optional">Notes (optional)</string>
+    <string name="hint_match_notes">Add notes about this match...</string>
     <string name="label_opponent">Opponent</string>
     <string name="hint_opponent_name">Enter opponent name</string>
     <string name="label_score">Score</string>
