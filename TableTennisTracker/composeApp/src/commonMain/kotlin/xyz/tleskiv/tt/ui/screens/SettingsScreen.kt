@@ -67,6 +67,7 @@ fun SettingsScreen(
 	viewModel: SettingsViewModel = koinViewModel()
 ) {
 	topAppBarState.title = { Text(text = stringResource(SettingsRoute.label)) }
+	topAppBarState.actions = null
 
 	val uriHandler = LocalUriHandler.current
 
@@ -125,7 +126,10 @@ fun SettingsScreen(
 			ContentCard {
 				Column(modifier = Modifier.fillMaxWidth()) {
 					val aboutItems = listOf(
-						SettingsMenuItem(Res.string.action_visit_website, Icons.Outlined.Language, { uriHandler.openUri("https://ttapp.tleskiv.xyz") }),
+						SettingsMenuItem(
+							Res.string.action_visit_website,
+							Icons.Outlined.Language,
+							{ uriHandler.openUri("https://ttapp.tleskiv.xyz") }),
 						SettingsMenuItem(
 							Res.string.action_privacy_policy,
 							Icons.Outlined.Lock,
