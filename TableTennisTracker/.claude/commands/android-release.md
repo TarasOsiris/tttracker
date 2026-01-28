@@ -7,5 +7,7 @@ Prepare an Android release for Google Play:
 5. Build the release Android App Bundle with `./gradlew :androidApp:bundleRelease`
 6. Copy the .aab file to Desktop with name format: `tttracker-v{versionName}-{versionCode}.aab` (e.g., `tttracker-v1.1-2.aab`)
 7. Report the file location on Desktop
-8. Print release notes since the last android tag (use `git log android-{last-version}..HEAD`)
+8. Generate release notes by analyzing actual code changes since the last android tag (use
+   `git diff android-{last-version}..HEAD`). Only include functional/user-facing changes - no
+   internal refactoring, code style, or infrastructure changes
 9. Add git tag in format `android-{version-name}` and push all the commit and tag to origin
