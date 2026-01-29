@@ -161,7 +161,6 @@ Int(code)
 }
 }
 
-public
 extension Data{
         /// Whether the receiver is compressed in gzip format.
         var isGzipped: Bool {

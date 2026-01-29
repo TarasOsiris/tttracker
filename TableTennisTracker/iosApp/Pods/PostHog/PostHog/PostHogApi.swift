@@ -28,15 +28,53 @@ class PostHogApi {
         return config
     }
 
-    private func getURL(_ url: URL) -> URLRequest {
+    private func getURLRequest(_ url: URL) -> URLRequest {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.timeoutInterval = defaultTimeout
         return request
     }
 
+    private func getEndpointURL(
+        _ endpoint: String,
+        queryItems: URLQueryItem...,
+        relativeTo baseUrl: URL
+    ) -> URL? {
+        guard var components = URLComponents(
+            url: baseUrl,
+            resolvingAgainstBaseURL: true
+        ) else {
+            return nil
+        }
+        let path = "\(components.path)/\(endpoint)"
+            .replacingOccurrences(of: "/+", with: "/", options: .regularExpression)
+        components.path = path
+        components.queryItems = queryItems
+        return components.url
+    }
+
+    private func getRemoteConfigRequest() -> URLRequest? {
+        guard let baseUrl: URL = switch config.host.absoluteString {
+        case "https://us.i.posthog.com":
+            URL(string: "https://us-assets.i.posthog.com")
+        case "https://eu.i.posthog.com":
+            URL(string: "https://eu-assets.i.posthog.com")
+        default:
+            config.host
+        } else {
+            return nil
+        }
+
+        let url = baseUrl.appendingPathComponent("/array/\(config.apiKey)/config")
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.timeoutInterval = defaultTimeout
+        return request
+    }
+
     func batch(events: [PostHogEvent], completion: @escaping (PostHogBatchUploadInfo) -> Void) {
-        guard let url = URL(string: "batch", relativeTo: config.host) else {
+        guard let url = getEndpointURL("/batch", relativeTo: config.host) else {
             hedgeLog("Malformed batch URL error.")
             return completion(PostHogBatchUploadInfo(statusCode: nil, error: nil))
         }
@@ -47,7 +85,7 @@ class PostHogApi {
         headers["Content-Encoding"] = "gzip"
         config.httpAdditionalHeaders = headers
 
-        let request = getURL(url)
+        let request = getURLRequest(url)
 
         let toSend: [String: Any] = [
             "api_key": self.config.apiKey,
@@ -93,7 +131,7 @@ class PostHogApi {
     }
 
     func snapshot(events: [PostHogEvent], completion: @escaping (PostHogBatchUploadInfo) -> Void) {
-        guard let url = URL(string: config.snapshotEndpoint, relativeTo: config.host) else {
+        guard let url = getEndpointURL(config.snapshotEndpoint, relativeTo: config.host) else {
             hedgeLog("Malformed snapshot URL error.")
             return completion(PostHogBatchUploadInfo(statusCode: nil, error: nil))
         }
@@ -108,7 +146,7 @@ class PostHogApi {
         headers["Content-Encoding"] = "gzip"
         config.httpAdditionalHeaders = headers
 
-        let request = getURL(url)
+        let request = getURLRequest(url)
 
         let toSend = events.map { $0.toJSON() }
 
@@ -154,44 +192,63 @@ class PostHogApi {
         }.resume()
     }
 
-    func decide(
+    func flags(
         distinctId: String,
-        anonymousId: String,
+        anonymousId: String?,
         groups: [String: String],
+        personProperties: [String: Any],
+        groupProperties: [String: [String: Any]]? = nil,
         completion: @escaping ([String: Any]?, _ error: Error?) -> Void
     ) {
-        var urlComps = URLComponents()
-        urlComps.path = "/decide"
-        urlComps.queryItems = [URLQueryItem(name: "v", value: "3")]
+        let url = getEndpointURL(
+            "/flags",
+            queryItems: URLQueryItem(name: "v", value: "2"), URLQueryItem(name: "config", value: "true"),
+            relativeTo: config.host
+        )
 
-        guard let url = urlComps.url(relativeTo: config.host) else {
-            hedgeLog("Malformed decide URL error.")
+        guard let url else {
+            hedgeLog("Malformed flags URL error.")
             return completion(nil, nil)
         }
 
         let config = sessionConfig()
 
-        let request = getURL(url)
+        let request = getURLRequest(url)
 
-        let toSend: [String: Any] = [
+        var toSend: [String: Any] = [
             "api_key": self.config.apiKey,
             "distinct_id": distinctId,
-            "$anon_distinct_id": anonymousId,
-            "$groups": groups,
+            "groups": groups,
         ]
+
+        if let anonymousId {
+            toSend["$anon_distinct_id"] = anonymousId
+        }
+
+        if !personProperties.isEmpty {
+            toSend["person_properties"] = personProperties
+        }
+
+        if let groupProperties, !groupProperties.isEmpty {
+            toSend["group_properties"] = groupProperties
+        }
+
+        if let evaluationContexts = self.config.evaluationContexts, !evaluationContexts.isEmpty {
+            toSend["evaluation_contexts"] = evaluationContexts
+        }
 
         var data: Data?
 
         do {
             data = try JSONSerialization.data(withJSONObject: toSend)
         } catch {
-            hedgeLog("Error parsing the decide body: \(error)")
+            hedgeLog("Error parsing the flags body: \(error)")
             return completion(nil, error)
         }
 
         URLSession(configuration: config).uploadTask(with: request, from: data!) { data, response, error in
             if error != nil {
-                hedgeLog("Error calling the decide API: \(String(describing: error))")
+                hedgeLog("Error calling the flags API: \(String(describing: error))")
                 return completion(nil, error)
             }
 
@@ -199,22 +256,82 @@ class PostHogApi {
 
             if !(200 ... 299 ~= httpResponse.statusCode) {
                 let jsonBody = String(describing: try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: Any])
-                let errorMessage = "Error calling decide API: status: \(httpResponse.statusCode), body: \(jsonBody)."
+                let errorMessage = "Error calling flags API: status: \(httpResponse.statusCode), body: \(jsonBody)."
                 hedgeLog(errorMessage)
 
                 return completion(nil,
                                   InternalPostHogError(description: errorMessage))
             } else {
-                hedgeLog("Decide called successfully.")
+                hedgeLog("Flags called successfully.")
             }
 
             do {
                 let jsonData = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: Any]
                 completion(jsonData, nil)
             } catch {
-                hedgeLog("Error parsing the decide response: \(error)")
+                hedgeLog("Error parsing the flags response: \(error)")
                 completion(nil, error)
             }
         }.resume()
     }
+
+    func remoteConfig(
+        completion: @escaping ([String: Any]?, _ error: Error?) -> Void
+    ) {
+        guard let request = getRemoteConfigRequest() else {
+            hedgeLog("Error calling the remote config API: unable to create request")
+            return
+        }
+
+        let config = sessionConfig()
+
+        let task = URLSession(configuration: config).dataTask(with: request) { data, response, error in
+            if let error {
+                hedgeLog("Error calling the remote config API: \(error.localizedDescription)")
+                return completion(nil, error)
+            }
+
+            let httpResponse = response as! HTTPURLResponse
+
+            if !(200 ... 299 ~= httpResponse.statusCode) {
+                let jsonBody = String(describing: try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: Any])
+                let errorMessage = "Error calling the remote config API: status: \(httpResponse.statusCode), body: \(jsonBody)."
+                hedgeLog(errorMessage)
+
+                return completion(nil,
+                                  InternalPostHogError(description: errorMessage))
+            } else {
+                hedgeLog("Remote config called successfully.")
+            }
+
+            do {
+                let jsonData = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: Any]
+                completion(jsonData, nil)
+            } catch {
+                hedgeLog("Error parsing the remote config response: \(error)")
+                completion(nil, error)
+            }
+        }
+
+        task.resume()
+    }
+}
+
+extension PostHogApi {
+    static var jsonDecoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+
+        decoder.dateDecodingStrategy = .custom { decoder in
+            let container = try decoder.singleValueContainer()
+            let dateString = try container.decode(String.self)
+            guard let date = apiDateFormatter.date(from: dateString) else {
+                throw DecodingError.dataCorruptedError(
+                    in: container, debugDescription: "Invalid date format"
+                )
+            }
+            return date
+        }
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return decoder
+    }()
 }

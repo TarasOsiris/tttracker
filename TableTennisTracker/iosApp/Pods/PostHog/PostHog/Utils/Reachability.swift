@@ -41,7 +41,7 @@ public enum ReachabilityError: Error {
 @available(*, unavailable, renamed: "Notification.Name.reachabilityChanged")
 public let ReachabilityChangedNotification = NSNotification.Name("ReachabilityChangedNotification")
 
-public extension Notification.Name {
+extension Notification.Name {
     static let reachabilityChanged = Notification.Name("reachabilityChanged")
 }
 
@@ -109,14 +109,6 @@ public class Reachability {
         }
     }
 
-    private var isRunningOnDevice: Bool = {
-#if targetEnvironment(simulator)
-            return false
-#else
-            return true
-#endif
-    }()
-
     private(set) var notifierRunning = false
     private let reachabilityRef: SCNetworkReachability
     private let reachabilitySerialQueue: DispatchQueue
@@ -170,7 +162,7 @@ public class Reachability {
     }
 }
 
-public extension Reachability {
+extension Reachability {
     // MARK: - *** Notifier methods ***
 
     func startNotifier() throws {
@@ -313,7 +305,7 @@ extension SCNetworkReachabilityFlags {
     }
 
     var isOnWWANFlagSet: Bool {
-#if os(iOS)
+#if os(iOS) || os(visionOS)
             return contains(.isWWAN)
 #else
             return false
@@ -354,10 +346,6 @@ extension SCNetworkReachabilityFlags {
 
     var isDirectFlagSet: Bool {
         contains(.isDirect)
-    }
-
-    var isConnectionRequiredAndTransientFlagSet: Bool {
-        intersection([.connectionRequired, .transientConnection]) == [.connectionRequired, .transientConnection]
     }
 
     var description: String {

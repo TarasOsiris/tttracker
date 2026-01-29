@@ -7,23 +7,14 @@
 
 import Foundation
 
-public class PostHogEvent {
-    public var event: String
-    public var distinctId: String
-    public var properties: [String: Any]
-    public var timestamp: Date
-    public var uuid: UUID
+@objc(PostHogEvent) public class PostHogEvent: NSObject {
+    @objc public var event: String
+    @objc public var distinctId: String
+    @objc public var properties: [String: Any]
+    @objc public var timestamp: Date
+    @objc public private(set) var uuid: UUID
     // Only used for Replay
-    public var apiKey: String?
-
-    enum Key: String {
-        case event
-        case distinctId
-        case properties
-        case timestamp
-        case uuid
-        case apiKey
-    }
+    var apiKey: String?
 
     init(event: String, distinctId: String, properties: [String: Any]? = nil, timestamp: Date = Date(), uuid: UUID = UUID.v7(), apiKey: String? = nil) {
         self.event = event
@@ -85,10 +76,27 @@ public class PostHogEvent {
             "uuid": uuid.uuidString,
         ]
 
-        if let apiKey = apiKey {
+        if let apiKey {
             json["api_key"] = apiKey
         }
 
         return json
+    }
+}
+
+enum PostHogKnownUnsafeEditableEvent: String {
+    case snapshot = "$snapshot"
+    case screen = "$screen"
+    case set = "$set"
+    case surveyDismissed = "survey dismissed"
+    case surveySent = "survey sent"
+    case surveyShown = "survey shown"
+    case identify = "$identify"
+    case groupidentify = "$groupidentify"
+    case createAlias = "$create_alias"
+    case featureFlagCalled = "$feature_flag_called"
+
+    static func contains(_ name: String) -> Bool {
+        PostHogKnownUnsafeEditableEvent(rawValue: name) != nil
     }
 }

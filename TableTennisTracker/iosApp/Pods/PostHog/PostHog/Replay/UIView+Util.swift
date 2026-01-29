@@ -22,7 +22,9 @@ extension UIView {
         if let identifier = accessibilityIdentifier {
             isNoCapture = checkLabel(identifier)
         }
-        if let label = accessibilityLabel, !isNoCapture {
+        // read accessibilityLabel from the parent's view to skip the RCTRecursiveAccessibilityLabel on RN which is slow and may cause an endless loop
+        // see https://github.com/facebook/react-native/issues/33084
+        if let label = super.accessibilityLabel, !isNoCapture {
             isNoCapture = checkLabel(label)
         }
 
@@ -52,6 +54,8 @@ extension UIView {
         let renderer = UIGraphicsImageRenderer(size: size, format: rendererFormat)
 
         let image = renderer.image { _ in
+            /// Note: Always `false` for `afterScreenUpdates` since this will cause the screen to flicker when a sensitive text field is visible on screen
+            /// This can potentially affect capturing a snapshot during a screen transition but we want the lesser of the two evils here
             drawHierarchy(in: bounds, afterScreenUpdates: false)
         }
 
@@ -59,8 +63,14 @@ extension UIView {
     }
 
     // you need this because of SwiftUI otherwise the coordinates always zeroed for some reason
-    func toAbsoluteRect(_ parent: UIView) -> CGRect {
-        convert(bounds, to: parent)
+    func toAbsoluteRect(_ window: UIWindow?) -> CGRect {
+        convert(bounds, to: window)
+    }
+}
+
+extension CALayer {
+    func toAbsoluteRect(_ window: UIWindow?) -> CGRect {
+        convert(bounds, to: window?.layer)
     }
 }
 #endif

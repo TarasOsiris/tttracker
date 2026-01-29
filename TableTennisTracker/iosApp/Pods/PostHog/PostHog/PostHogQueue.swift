@@ -13,7 +13,7 @@ import Foundation
  The queue uses File persistence. This allows us to
  1. Only send events when we have a network connection
  2. Ensure that we can survive app closing or offline situations
- 3. Not hold too much in mempory
+ 3. Not hold too much in memory
 
  */
 
@@ -25,8 +25,6 @@ class PostHogQueue {
 
 private
     let config: PostHogConfig
-private
-    let storage: PostHogStorage
 private
     let api: PostHogApi
 private
@@ -54,6 +52,7 @@ private
 private
     let dispatchQueue: DispatchQueue
 
+            /// Internal, used for testing
             var
     depth: Int{
             fileQueue.depth
@@ -65,7 +64,6 @@ private
 #if !os(watchOS)
             init(_ config: PostHogConfig, _ storage: PostHogStorage, _ api: PostHogApi, _ endpoint: PostHogApiEndpoint, _ reachability: Reachability?) {
                 self.config = config
-                self.storage = storage
                 self.api = api
                 self.reachability = reachability
                 self.endpoint = endpoint
@@ -87,7 +85,6 @@ private
     endpoint: PostHogApiEndpoint
     ) {
         self.config = config
-        self.storage = storage
         self.api = api
         self.endpoint = endpoint
 
@@ -216,6 +213,7 @@ private
             }
     }
 
+    /// Internal, used for testing
     func clear() {
         fileQueue.clear()
     }

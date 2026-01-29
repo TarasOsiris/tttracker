@@ -8,92 +8,332 @@
 //
 #if os(iOS)
 import Foundation
+import PhotosUI
 import SwiftUI
 import UIKit
 import WebKit
 
-class PostHogReplayIntegration {
-    private let config: PostHogConfig
+class PostHogReplayIntegration: PostHogIntegration {
+    var requiresSwizzling: Bool { true }
 
-    private var timer: Timer?
+    private static var integrationInstalledLock = NSLock()
+    private static var integrationInstalled = false
 
-    private let windowViews = NSMapTable<UIView, ViewTreeSnapshotStatus>.weakToStrongObjects()
-    private let urlInterceptor: URLSessionInterceptor
-    private var sessionSwizzler: URLSessionSwizzler?
+    private var config: PostHogConfig? {
+        postHog?.config
+    }
 
-    // SwiftUI image types
-    // https://stackoverflow.com/questions/57554590/how-to-get-all-the-subviews-of-a-window-or-view-in-latest-swiftui-app
-    // https://stackoverflow.com/questions/58336045/how-to-detect-swiftui-usage-programmatically-in-an-ios-application
-    private let swiftUIImageTypes = ["SwiftUI._UIGraphicsView",
-                                     "SwiftUI.ImageLayer"].compactMap { NSClassFromString($0) }
+    private weak var postHog: PostHogSDK?
 
-    private let swiftUIGenericTypes = ["_TtCOCV7SwiftUI11DisplayList11ViewUpdater8Platform13CGDrawingView",
-                                       "_TtC7SwiftUIP33_A34643117F00277B93DEBAB70EC0697122_UIShapeHitTestingView"].compactMap { NSClassFromString($0) }
+    private var isEnabled: Bool = false
+
+    private let windowViewsLock = NSLock()
+    private let windowViews = NSMapTable<UIWindow, ViewTreeSnapshotStatus>.weakToStrongObjects()
+    private var applicationEventToken: RegistrationToken?
+    private var applicationBackgroundedToken: RegistrationToken?
+    private var applicationForegroundedToken: RegistrationToken?
+    private var viewLayoutToken: RegistrationToken?
+    private var installedPlugins: [PostHogSessionReplayPlugin] = []
+
+    /**
+     ### Mapping of SwiftUI Views to UIKit (up until iOS 18)
+
+     This section summarizes findings on how SwiftUI views map to UIKit components
+
+     #### Image-Based Views
+     - **`AsyncImage` and `Image`**
+       - Both views have a `CALayer` of type `SwiftUI.ImageLayer`.
+       - The associated `UIView` is of type `SwiftUI._UIGraphicsView`.
+
+     #### Graphic-based Views
+     - **`Color`, `Divider`, `Gradient` etc
+     - These are backed by `SwiftUI._UIGraphicsView` but have a different layer type than images
+
+     #### Text-Based Views
+     - **`Text`, `Button`, and `TextEditor`**
+       - These views are backed by a `UIView` of type `SwiftUI.CGDrawingView`, which is a subclass of `SwiftUI._UIGraphicsView`.
+       - CoreGraphics (`CG`) is used for rendering text content directly, making it challenging to access the value programmatically.
+
+     #### UIKit-Mapped Views
+     - **Views Hosted by `UIViewRepresentable`**
+       - Some SwiftUI views map directly to UIKit classes or to a subclass:
+         - **Control Images** (e.g., in `Picker` drop-downs) may map to `UIImageView`.
+         - **Buttons** map to `SwiftUI.UIKitIconPreferringButton` (a subclass of `UIButton`).
+         - **Toggle** maps to `UISwitch` (the toggle itself, excluding its label).
+         - **Picker** with wheel style maps to `UIPickerView`. Other styles use combinations of image-based and text-based views.
+
+     #### Layout and Structure Views
+     - **`Spacer`, `VStack`, `HStack`, `ZStack`, and Lazy Stacks**
+       - These views do not correspond to specific a `UIView`. Instead, they translate directly into layout constraints.
+
+     #### List-Based Views
+     - **`List` and Scrollable Container Views**
+       - Backed by a subclass of `UICollectionView`
+
+     #### Other SwiftUI Views
+       - Most other SwiftUI views are *compositions* of the views described above
+
+     SwiftUI Image Types:
+       - [StackOverflow: Subviews of a Window or View in SwiftUI](https://stackoverflow.com/questions/57554590/how-to-get-all-the-subviews-of-a-window-or-view-in-latest-swiftui-app)
+       - [StackOverflow: Detect SwiftUI Usage Programmatically](https://stackoverflow.com/questions/58336045/how-to-detect-swiftui-usage-programmatically-in-an-ios-application)
+
+     ### Mapping of SwiftUI Views to UIKit (iOS 26)
+
+     Starting on iOS 26 (Xcode 26 SwiftUI rendering engine), some SwiftUI primitives can be drawn
+     without a dedicated backing `UIView` and may instead appear as `CALayer` sublayers of parent
+     views.
+
+     Observed additions/changes with iOS 26:
+     - Text / Button drawing may appear as the sublayer class `_TtC7SwiftUIP33_863CCF9D49B535DAEB1C7D61BEE53B5914CGDrawingLayer`.
+     - Image and AsyncImage appear as sublayer class `SwiftUI.ImageLayer` (instead of a host view).
+     - `TextField` and `SecureTextField` are not affected by this change and still map to `UITextField`
+     - `TextEditor` is not affected by this change and still maps to `UITextView`
+     */
+
+    /// `AsyncImage` and `Image`
+    private let swiftUIImageLayerTypes = [
+        "SwiftUI.ImageLayer",
+    ].compactMap(NSClassFromString)
+
+    /// `Text`, `Button`, `TextEditor` views
+    private let swiftUITextBasedViewTypes = [
+        "_TtC7SwiftUIP33_863CCF9D49B535DAEB1C7D61BEE53B5914CGDrawingLayer", // Text, Button (iOS 26+)
+        "SwiftUI.CGDrawingView", // Text, Button
+        "SwiftUI.TextEditorTextView", // TextEditor
+        "SwiftUI.VerticalTextView", // TextField, vertical axis
+    ].compactMap(NSClassFromString)
+
+    private let swiftUIGenericTypes = [
+        "_TtC7SwiftUIP33_A34643117F00277B93DEBAB70EC0697122_UIShapeHitTestingView",
+    ].compactMap(NSClassFromString)
+
+    private let reactNativeTextView: AnyClass? = NSClassFromString("RCTTextView")
+    private let reactNativeImageView: AnyClass? = NSClassFromString("RCTImageView")
+    // These are usually views that don't belong to the current process and are most likely sensitive
+    private let systemSandboxedView: AnyClass? = NSClassFromString("_UIRemoteView")
+
+    // These layer types should be safe to ignore while masking
+    private let swiftUISafeLayerTypes: [AnyClass] = [
+        "_TtC7SwiftUIP33_E19F490D25D5E0EC8A24903AF958E34115ColorShapeLayer", // Solid-color filled shapes (Circle, Rectangle, SF Symbols etc.)
+        "SwiftUI.GradientLayer", // Views like LinearGradient, RadialGradient, or AngularGradient
+    ].compactMap(NSClassFromString)
 
     static let dispatchQueue = DispatchQueue(label: "com.posthog.PostHogReplayIntegration",
                                              target: .global(qos: .utility))
 
-    init(_ config: PostHogConfig) {
-        self.config = config
-        urlInterceptor = URLSessionInterceptor(self.config)
-        do {
-            try sessionSwizzler = URLSessionSwizzler(interceptor: urlInterceptor)
-        } catch {
-            hedgeLog("Error trying to Swizzle URLSession: \(error)")
+    private func isNotFlutter() -> Bool {
+        // for the Flutter SDK, screen recordings are managed by Flutter SDK itself
+        postHogSdkName != "posthog-flutter"
+    }
+
+    func install(_ postHog: PostHogSDK) throws {
+        try PostHogReplayIntegration.integrationInstalledLock.withLock {
+            if PostHogReplayIntegration.integrationInstalled {
+                throw InternalPostHogError(description: "Replay integration already installed to another PostHogSDK instance.")
+            }
+            PostHogReplayIntegration.integrationInstalled = true
+        }
+
+        self.postHog = postHog
+
+        start()
+    }
+
+    func uninstall(_ postHog: PostHogSDK) {
+        if self.postHog === postHog || self.postHog == nil {
+            stop()
+            self.postHog = nil
+            PostHogReplayIntegration.integrationInstalledLock.withLock {
+                PostHogReplayIntegration.integrationInstalled = false
+            }
         }
     }
 
     func start() {
-        stopTimer()
-        DispatchQueue.main.async {
-            self.timer = Timer.scheduledTimer(withTimeInterval: self.config.sessionReplayConfig.debouncerDelay, repeats: true, block: { _ in
-                self.snapshot()
-            })
+        guard let postHog, !isEnabled else {
+            return
         }
-        ViewLayoutTracker.swizzleLayoutSubviews()
 
-        UIApplicationTracker.swizzleSendEvent()
+        isEnabled = true
+        // reset views when session id changes (or is cleared) so we can re-send new metadata (or full snapshot in the future)
+        postHog.sessionManager.onSessionIdChanged = { [weak self] in
+            self?.resetViews()
+        }
 
-        if config.sessionReplayConfig.captureNetworkTelemetry {
-            sessionSwizzler?.swizzle()
+        // flutter captures snapshots, so we don't need to capture them here
+        if isNotFlutter() {
+            let interval = postHog.config.sessionReplayConfig.throttleDelay
+            viewLayoutToken = DI.main.viewLayoutPublisher.onViewLayout(throttle: interval) { [weak self] in
+                // called on main thread
+                self?.snapshot()
+            }
+        }
+
+        // start listening to `UIApplication.sendEvent`
+        let applicationEventPublisher = DI.main.applicationEventPublisher
+        applicationEventToken = applicationEventPublisher.onApplicationEvent { [weak self] event, date in
+            self?.handleApplicationEvent(event: event, date: date)
+        }
+
+        // Install plugins
+        let plugins = postHog.config.sessionReplayConfig.getPlugins()
+        installedPlugins = []
+        for plugin in plugins {
+            plugin.start(postHog: postHog)
+            installedPlugins.append(plugin)
+        }
+
+        // Start listening to application background events and pause all plugins
+        let applicationLifecyclePublisher = DI.main.appLifecyclePublisher
+        applicationBackgroundedToken = applicationLifecyclePublisher.onDidEnterBackground { [weak self] in
+            self?.pauseAllPlugins()
+        }
+
+        // Start listening to application foreground events and resume all plugins
+        applicationForegroundedToken = applicationLifecyclePublisher.onDidBecomeActive { [weak self] in
+            self?.resumeAllPlugins()
         }
     }
 
     func stop() {
-        stopTimer()
-        ViewLayoutTracker.unSwizzleLayoutSubviews()
-        windowViews.removeAllObjects()
-        UIApplicationTracker.unswizzleSendEvent()
+        guard isEnabled else { return }
+        isEnabled = false
+        resetViews()
+        postHog?.sessionManager.onSessionIdChanged = {}
 
-        sessionSwizzler?.unswizzle()
-        urlInterceptor.stop()
+        // stop listening to `UIApplication.sendEvent`
+        applicationEventToken = nil
+        // stop listening to Application lifecycle events
+        applicationBackgroundedToken = nil
+        applicationForegroundedToken = nil
+        // stop listening to `UIView.layoutSubviews` events
+        viewLayoutToken = nil
+
+        // stop plugins
+        for plugin in installedPlugins {
+            plugin.stop()
+        }
+        installedPlugins = []
     }
 
-    private func stopTimer() {
-        timer?.invalidate()
-        timer = nil
+    func isActive() -> Bool {
+        isEnabled
     }
 
-    func resetViews() {
-        windowViews.removeAllObjects()
+    private func resetViews() {
+        // Ensure thread-safe access to windowViews
+        windowViewsLock.withLock {
+            windowViews.removeAllObjects()
+        }
     }
 
-    private func generateSnapshot(_ view: UIView, _ screenName: String? = nil) {
+    private func pauseAllPlugins() {
+        for plugin in installedPlugins {
+            plugin.pause()
+        }
+    }
+
+    private func resumeAllPlugins() {
+        for plugin in installedPlugins {
+            plugin.resume()
+        }
+    }
+
+    private func handleApplicationEvent(event: UIEvent, date: Date) {
+        guard let postHog, postHog.isSessionReplayActive() else {
+            return
+        }
+
+        guard event.type == .touches else {
+            return
+        }
+
+        guard let window = UIApplication.getCurrentWindow() else {
+            return
+        }
+
+        guard let touches = event.touches(for: window) else {
+            return
+        }
+
+        // capture necessary touch information on the main thread before performing any asynchronous operations
+        // - this ensures that UITouch associated objects like UIView, UIWindow, or [UIGestureRecognizer] are still valid.
+        // - these objects may be released or erased by the system if accessed asynchronously, resulting in invalid/zeroed-out touch coordinates
+        let touchInfo = touches.map {
+            (phase: $0.phase, location: $0.location(in: window))
+        }
+
+        PostHogReplayIntegration.dispatchQueue.async { [touchInfo, weak postHog = postHog] in
+            // always make sure we have a fresh session id as early as possible
+            guard let sessionId = postHog?.sessionManager.getSessionId(at: date) else {
+                return
+            }
+
+            // captured weakly since integration may have uninstalled by now
+            guard let postHog else { return }
+
+            var snapshotsData: [Any] = []
+            for touch in touchInfo {
+                let phase = touch.phase
+
+                let type: Int
+                if phase == .began {
+                    type = 7
+                } else if phase == .ended {
+                    type = 9
+                } else {
+                    continue
+                }
+
+                // we keep a failsafe here just in case, but this will likely never be triggered
+                guard touch.location != .zero else {
+                    continue
+                }
+
+                let posX = touch.location.x.toInt() ?? 0
+                let posY = touch.location.y.toInt() ?? 0
+
+                // if the id is 0, BE transformer will set it to the virtual bodyId
+                let touchData: [String: Any] = ["id": 0, "pointerType": 2, "source": 2, "type": type, "x": posX, "y": posY]
+
+                let data: [String: Any] = ["type": 3, "data": touchData, "timestamp": date.toMillis()]
+                snapshotsData.append(data)
+            }
+            if !snapshotsData.isEmpty {
+                postHog.capture(
+                    "$snapshot",
+                    properties: [
+                        "$snapshot_source": "mobile",
+                        "$snapshot_data": snapshotsData,
+                        "$session_id": sessionId,
+                    ],
+                    timestamp: date
+                )
+            }
+        }
+    }
+
+    private func generateSnapshot(_ window: UIWindow, _ screenName: String? = nil, postHog: PostHogSDK) {
         var hasChanges = false
 
-        let timestamp = Date().toMillis()
-        let snapshotStatus = windowViews.object(forKey: view) ?? ViewTreeSnapshotStatus()
-
-        guard let wireframe = config.sessionReplayConfig.screenshotMode ? toScreenshotWireframe(view) : toWireframe(view) else {
+        guard let wireframe = postHog.config.sessionReplayConfig.screenshotMode ? toScreenshotWireframe(window) : toWireframe(window) else {
             return
+        }
+
+        // capture timestamp after snapshot was taken
+        let timestampDate = Date()
+        let timestamp = timestampDate.toMillis()
+
+        let snapshotStatus = windowViewsLock.withLock {
+            windowViews.object(forKey: window) ?? ViewTreeSnapshotStatus()
         }
 
         var snapshotsData: [Any] = []
 
         if !snapshotStatus.sentMetaEvent {
-            let size = view.bounds.size
-            let width = Int(size.width)
-            let height = Int(size.height)
+            let size = window.bounds.size
+            let width = size.width.toInt() ?? 0
+            let height = size.height.toInt() ?? 0
 
             var data: [String: Any] = ["width": width, "height": height]
 
@@ -108,12 +348,19 @@ class PostHogReplayIntegration {
         }
 
         if hasChanges {
-            windowViews.setObject(snapshotStatus, forKey: view)
+            windowViewsLock.withLock {
+                windowViews.setObject(snapshotStatus, forKey: window)
+            }
         }
 
         // TODO: IncrementalSnapshot, type=2
 
         PostHogReplayIntegration.dispatchQueue.async {
+            // always make sure we have a fresh session id at correct timestamp
+            guard let sessionId = postHog.sessionManager.getSessionId(at: timestampDate) else {
+                return
+            }
+
             var wireframes: [Any] = []
             wireframes.append(wireframe.toDict())
             let initialOffset = ["top": 0, "left": 0]
@@ -121,7 +368,15 @@ class PostHogReplayIntegration {
             let snapshotData: [String: Any] = ["type": 2, "data": data, "timestamp": timestamp]
             snapshotsData.append(snapshotData)
 
-            PostHogSDK.shared.capture("$snapshot", properties: ["$snapshot_source": "mobile", "$snapshot_data": snapshotsData])
+            postHog.capture(
+                "$snapshot",
+                properties: [
+                    "$snapshot_source": "mobile",
+                    "$snapshot_data": snapshotsData,
+                    "$session_id": sessionId,
+                ],
+                timestamp: timestampDate
+            )
         }
     }
 
@@ -137,49 +392,75 @@ class PostHogReplayIntegration {
     }
 
     private func setPadding(_ insets: UIEdgeInsets, _ style: RRStyle) {
-        style.paddingTop = Int(insets.top)
-        style.paddingRight = Int(insets.right)
-        style.paddingBottom = Int(insets.bottom)
-        style.paddingLeft = Int(insets.left)
+        style.paddingTop = insets.top.toInt()
+        style.paddingRight = insets.right.toInt()
+        style.paddingBottom = insets.bottom.toInt()
+        style.paddingLeft = insets.left.toInt()
     }
 
     private func createBasicWireframe(_ view: UIView) -> RRWireframe {
         let wireframe = RRWireframe()
 
+        // since FE will render each node of the wireframe with position: fixed
+        // we need to convert bounds to global screen coordinates
+        // otherwise each view of depth > 1 will likely have an origin of 0,0 (which is the local origin)
+        let frame = view.toAbsoluteRect(view.window)
+
         wireframe.id = view.hash
-        wireframe.posX = Int(view.frame.origin.x)
-        wireframe.posY = Int(view.frame.origin.y)
-        wireframe.width = Int(view.frame.size.width)
-        wireframe.height = Int(view.frame.size.height)
+        wireframe.posX = frame.origin.x.toInt() ?? 0
+        wireframe.posY = frame.origin.y.toInt() ?? 0
+        wireframe.width = frame.size.width.toInt() ?? 0
+        wireframe.height = frame.size.height.toInt() ?? 0
 
         return wireframe
     }
 
-    private func findMaskableWidgets(_ view: UIView, _ parent: UIView, _ maskableWidgets: inout [CGRect]) {
+    private func findMaskableWidgets(_ view: UIView, _ window: UIWindow, _ maskableWidgets: inout [CGRect], _ maskChildren: inout Bool) {
+        // User explicitly marked this view (and its subviews) as non-maskable through `.postHogNoMask()` view modifier
+        if view.postHogNoMask {
+            return
+        }
+
         if let textView = view as? UITextView { // TextEditor, SwiftUI.TextEditorTextView, SwiftUI.UIKitTextView
             if isTextViewSensitive(textView) {
-                maskableWidgets.append(view.toAbsoluteRect(parent))
+                maskableWidgets.append(view.toAbsoluteRect(window))
                 return
             }
         }
 
-        if let textField = view as? UITextField { // TextField
+        /// SwiftUI: `TextField`, `SecureField` will land here
+        if let textField = view as? UITextField {
             if isTextFieldSensitive(textField) {
-                maskableWidgets.append(view.toAbsoluteRect(parent))
+                maskableWidgets.append(view.toAbsoluteRect(window))
                 return
             }
         }
 
-        if let image = view as? UIImageView { // Image, this code might never be reachable in SwiftUI, see swiftUIImageTypes instead
+        if let reactNativeTextView = reactNativeTextView {
+            if view.isKind(of: reactNativeTextView), config?.sessionReplayConfig.maskAllTextInputs == true {
+                maskableWidgets.append(view.toAbsoluteRect(window))
+                return
+            }
+        }
+
+        /// SwiftUI: Some control images like the ones in `Picker` view may land here
+        if let image = view as? UIImageView {
             if isImageViewSensitive(image) {
-                maskableWidgets.append(view.toAbsoluteRect(parent))
+                maskableWidgets.append(view.toAbsoluteRect(window))
+                return
+            }
+        }
+
+        if let reactNativeImageView = reactNativeImageView {
+            if view.isKind(of: reactNativeImageView), config?.sessionReplayConfig.maskAllImages == true {
+                maskableWidgets.append(view.toAbsoluteRect(window))
                 return
             }
         }
 
         if let label = view as? UILabel { // Text, this code might never be reachable in SwiftUI, see swiftUIImageTypes instead
             if isLabelSensitive(label) {
-                maskableWidgets.append(view.toAbsoluteRect(parent))
+                maskableWidgets.append(view.toAbsoluteRect(window))
                 return
             }
         }
@@ -188,47 +469,101 @@ class PostHogReplayIntegration {
             // since we cannot mask the webview content, if masking texts or images are enabled
             // we mask the whole webview as well
             if isAnyInputSensitive(webView) {
-                maskableWidgets.append(view.toAbsoluteRect(parent))
+                maskableWidgets.append(view.toAbsoluteRect(window))
                 return
             }
         }
 
-        if let button = view as? UIButton { // Button, this code might never be reachable in SwiftUI, see swiftUIImageTypes instead
+        /// SwiftUI: `SwiftUI.UIKitIconPreferringButton` and other subclasses will land here
+        if let button = view as? UIButton {
             if isButtonSensitive(button) {
-                maskableWidgets.append(view.toAbsoluteRect(parent))
+                maskableWidgets.append(view.toAbsoluteRect(window))
                 return
             }
         }
 
-        if let theSwitch = view as? UISwitch { // Toggle (no text, items are just rendered to Text (swiftUIImageTypes))
+        /// SwiftUI: `Toggle` (no text, labels are just rendered to Text (swiftUIImageTypes))
+        if let theSwitch = view as? UISwitch {
             if isSwitchSensitive(theSwitch) {
-                maskableWidgets.append(view.toAbsoluteRect(parent))
+                maskableWidgets.append(view.toAbsoluteRect(window))
                 return
             }
+        }
+
+        // detect any views that don't belong to the current process (likely system views)
+        if config?.sessionReplayConfig.maskAllSandboxedViews == true,
+           let systemSandboxedView,
+           view.isKind(of: systemSandboxedView)
+        {
+            maskableWidgets.append(view.toAbsoluteRect(window))
+            return
         }
 
         // if its a generic type and has subviews, subviews have to be checked first
         let hasSubViews = !view.subviews.isEmpty
 
-        if let picker = view as? UIPickerView { // Picker (no source, items are just rendered to Text (swiftUIImageTypes))
+        /// SwiftUI: `Picker` with .pickerStyle(.wheel) will land here
+        if let picker = view as? UIPickerView {
             if isTextInputSensitive(picker), !hasSubViews {
-                maskableWidgets.append(picker.toAbsoluteRect(parent))
+                maskableWidgets.append(picker.toAbsoluteRect(window))
                 return
             }
         }
 
-        if swiftUIImageTypes.contains(where: { view.isKind(of: $0) }) {
-            if isSwiftUIImageSensitive(view), !hasSubViews {
-                maskableWidgets.append(view.toAbsoluteRect(parent))
+        /// SwiftUI: Text based views like `Text`, `Button`, `TextEditor`
+        if swiftUITextBasedViewTypes.contains(where: view.isKind(of:)) {
+            if isTextInputSensitive(view), !hasSubViews {
+                maskableWidgets.append(view.toAbsoluteRect(window))
                 return
             }
+        }
+
+        /// SwiftUI: Image based views like `Image`, `AsyncImage`. (Note: We check the layer type here)
+        if swiftUIImageLayerTypes.contains(where: view.layer.isKind(of:)) {
+            if isSwiftUIImageSensitive(view), !hasSubViews {
+                maskableWidgets.append(view.toAbsoluteRect(window))
+                return
+            }
+        }
+
+        // SwiftUI iOS 26 (new SwiftUI rendering engine in Xcode 26)
+        //
+        // Note: prior to iOS 26, primitive views like Text, Image, Button were drawn
+        // inside a host view (subclass of UIView), however starting iOS 26 this seems
+        // to no longer be the case and all SwiftUI primitives seem to be somehow drawn
+        // without an underlying UIView host view (but as sublayers of other parent views).
+        //
+        // I could not find a consistent pattern to limit this layer search approach,
+        // so for iOS 26 we'll need to iterate over the view's sublayers as well to find maskable elements.
+        if #available(iOS 26.0, *) {
+            findMaskableLayers(view.layer, view, window, &maskableWidgets)
         }
 
         // this can be anything, so better to be conservative
-        if swiftUIGenericTypes.contains(where: { view.isKind(of: $0) }) {
+        if swiftUIGenericTypes.contains(where: { view.isKind(of: $0) }), !isSwiftUILayerSafe(view.layer) {
             if isTextInputSensitive(view), !hasSubViews {
-                maskableWidgets.append(view.toAbsoluteRect(parent))
+                maskableWidgets.append(view.toAbsoluteRect(window))
                 return
+            }
+        }
+
+        // manually masked views through `.postHogMask()` view modifier
+        if view.postHogNoCapture {
+            maskableWidgets.append(view.toAbsoluteRect(window))
+            return
+        }
+
+        // on RN, lots get converted to RCTRootContentView, RCTRootView, RCTView and sometimes its just the whole screen, we dont want to mask
+        // in such cases
+        if view.isNoCapture() || maskChildren {
+            let viewRect = view.toAbsoluteRect(window)
+            let windowRect = window.frame
+
+            // Check if the rectangles do not match
+            if !viewRect.equalTo(windowRect) {
+                maskableWidgets.append(view.toAbsoluteRect(window))
+            } else {
+                maskChildren = true
             }
         }
 
@@ -238,22 +573,65 @@ class PostHogReplayIntegration {
                     continue
                 }
 
-                findMaskableWidgets(child, parent, &maskableWidgets)
+                findMaskableWidgets(child, window, &maskableWidgets, &maskChildren)
+            }
+        }
+        maskChildren = false
+    }
+
+    /// Recursively iterate through layer hierarchy to find maskable layers (iOS 26+)
+    ///
+    /// On iOS 26, SwiftUI primitives (Text, Image, Button) are rendered as CALayer sublayers
+    /// of parent views rather than having their own backing UIView. When `.postHogMask()` is applied,
+    /// the flag is set directly on the CALayers via the PostHogTagViewModifier.
+    @available(iOS 26.0, *)
+    private func findMaskableLayers(_ layer: CALayer, _ view: UIView, _ window: UIWindow, _ maskableWidgets: inout [CGRect]) {
+        for sublayer in layer.sublayers ?? [] {
+            // Skip layers tagged with .postHogNoMask()
+            if sublayer.postHogNoMask {
+                continue
+            }
+
+            // Check if layer is manually tagged with .postHogMask()
+            if sublayer.postHogNoCapture {
+                maskableWidgets.append(sublayer.toAbsoluteRect(window))
+                continue
+            }
+
+            // Text-based layers
+            if swiftUITextBasedViewTypes.contains(where: sublayer.isKind(of:)) {
+                if isTextInputSensitive(view) {
+                    maskableWidgets.append(sublayer.toAbsoluteRect(window))
+                }
+            }
+
+            // Image layers
+            if swiftUIImageLayerTypes.contains(where: sublayer.isKind(of:)) {
+                if isSwiftUIImageSensitive(view) {
+                    maskableWidgets.append(sublayer.toAbsoluteRect(window))
+                }
+            }
+
+            // Recursively check sublayers
+            if let sublayers = sublayer.sublayers, !sublayers.isEmpty {
+                findMaskableLayers(sublayer, view, window, &maskableWidgets)
             }
         }
     }
 
-    private func toScreenshotWireframe(_ view: UIView) -> RRWireframe? {
-        if !view.isVisible() {
+    private func toScreenshotWireframe(_ window: UIWindow) -> RRWireframe? {
+        // this will bail on view controller animations (interactive or not)
+        if !window.isVisible() || isAnimatingTransition(window) {
             return nil
         }
 
         var maskableWidgets: [CGRect] = []
-        findMaskableWidgets(view, view, &maskableWidgets)
+        var maskChildren = false
+        findMaskableWidgets(window, window, &maskableWidgets, &maskChildren)
 
-        let wireframe = createBasicWireframe(view)
+        let wireframe = createBasicWireframe(window)
 
-        if let image = view.toImage() {
+        if let image = window.toImage() {
             if !image.size.hasSize() {
                 return nil
             }
@@ -266,6 +644,31 @@ class PostHogReplayIntegration {
         return wireframe
     }
 
+    /// Check if any view controller in the hierarchy is animating a transition
+    private func isAnimatingTransition(_ window: UIWindow) -> Bool {
+        guard let rootViewController = window.rootViewController else { return false }
+        return isAnimatingTransition(rootViewController)
+    }
+
+    private func isAnimatingTransition(_ viewController: UIViewController) -> Bool {
+        // Check if this view controller is animating
+        if viewController.transitionCoordinator?.isAnimated ?? false {
+            return true
+        }
+
+        // Check if presented view controller is animating
+        if let presented = viewController.presentedViewController, isAnimatingTransition(presented) {
+            return true
+        }
+
+        // Check if any of the child view controllers is animating
+        if viewController.children.first(where: isAnimatingTransition) != nil {
+            return true
+        }
+
+        return false
+    }
+
     private func isAssetsImage(_ image: UIImage) -> Bool {
         // https://github.com/daydreamboy/lldb_scripts#9-pimage
         // do not mask if its an asset image, likely not PII anyway
@@ -273,11 +676,11 @@ class PostHogReplayIntegration {
     }
 
     private func isAnyInputSensitive(_ view: UIView) -> Bool {
-        isTextInputSensitive(view) || config.sessionReplayConfig.maskAllImages
+        isTextInputSensitive(view) || config?.sessionReplayConfig.maskAllImages == true
     }
 
     private func isTextInputSensitive(_ view: UIView) -> Bool {
-        config.sessionReplayConfig.maskAllTextInputs || view.isNoCapture()
+        config?.sessionReplayConfig.maskAllTextInputs == true || view.isNoCapture()
     }
 
     private func isLabelSensitive(_ view: UILabel) -> Bool {
@@ -305,6 +708,10 @@ class PostHogReplayIntegration {
         (isTextInputSensitive(view) || view.isSensitiveText()) && (hasText(view.text) || hasText(view.placeholder))
     }
 
+    private func isSwiftUILayerSafe(_ layer: CALayer) -> Bool {
+        swiftUISafeLayerTypes.contains(where: { layer.isKind(of: $0) })
+    }
+
     private func hasText(_ text: String?) -> Bool {
         if let text = text, !text.isEmpty {
             return true
@@ -315,24 +722,31 @@ class PostHogReplayIntegration {
     }
 
     private func isSwiftUIImageSensitive(_ view: UIView) -> Bool {
-        // the raw type _UIGraphicsView is always something like Color.white or similar
-        // never contains PII and should not be masked
-        // Button will fall in this case case but Button has subviews
-        let type = type(of: view)
-
-        let rawGraphicsView = String(describing: type) == "_UIGraphicsView"
-        return (config.sessionReplayConfig.maskAllImages || view.isNoCapture()) && !rawGraphicsView
+        // No way of checking if this is an asset image or not
+        // No way of checking if there's actual content in the image or not
+        config?.sessionReplayConfig.maskAllImages == true || view.isNoCapture()
     }
 
     private func isImageViewSensitive(_ view: UIImageView) -> Bool {
-        var isAsset = false
-        if let image = view.image {
-            isAsset = isAssetsImage(image)
-        } else {
-            // if there's no image, there's nothing to mask
+        // if there's no image, there's nothing to mask
+        guard let image = view.image else { return false }
+
+        // sensitive, regardless
+        if view.isNoCapture() {
+            return true
+        }
+
+        // asset images are probably not sensitive
+        if isAssetsImage(image) {
             return false
         }
-        return (config.sessionReplayConfig.maskAllImages && !isAsset) || view.isNoCapture()
+
+        // symbols are probably not sensitive
+        if image.isSymbolImage {
+            return false
+        }
+
+        return config?.sessionReplayConfig.maskAllImages == true
     }
 
     private func toWireframe(_ view: UIView) -> RRWireframe? {
@@ -350,8 +764,8 @@ class PostHogReplayIntegration {
             wireframe.disabled = !textView.isEditable
             style.color = textView.textColor?.toRGBString()
             style.fontFamily = textView.font?.familyName
-            if let fontSize = textView.font?.pointSize {
-                style.fontSize = Int(fontSize)
+            if let fontSize = textView.font?.pointSize.toInt() {
+                style.fontSize = fontSize
             }
             setAlignment(textView.textAlignment, style)
             setPadding(textView.textContainerInset, style)
@@ -371,8 +785,8 @@ class PostHogReplayIntegration {
             wireframe.disabled = !textField.isEnabled
             style.color = textField.textColor?.toRGBString()
             style.fontFamily = textField.font?.familyName
-            if let fontSize = textField.font?.pointSize {
-                style.fontSize = Int(fontSize)
+            if let fontSize = textField.font?.pointSize.toInt() {
+                style.fontSize = fontSize
             }
             setAlignment(textField.textAlignment, style)
         }
@@ -409,6 +823,8 @@ class PostHogReplayIntegration {
             wireframe.disabled = !button.isEnabled
 
             if let text = button.titleLabel?.text {
+                // NOTE: this will create a ghosting effect since text will also be captured in child UILabel
+                //       We also may be masking this UIButton but child UILabel may remain unmasked
                 wireframe.value = isButtonSensitive(button) ? text.mask() : text
             }
         }
@@ -421,8 +837,8 @@ class PostHogReplayIntegration {
             wireframe.disabled = !label.isEnabled
             style.color = label.textColor?.toRGBString()
             style.fontFamily = label.font?.familyName
-            if let fontSize = label.font?.pointSize {
-                style.fontSize = Int(fontSize)
+            if let fontSize = label.font?.pointSize.toInt() {
+                style.fontSize = fontSize
             }
             setAlignment(label.textAlignment, style)
         }
@@ -451,8 +867,8 @@ class PostHogReplayIntegration {
 
         style.backgroundColor = view.backgroundColor?.toRGBString()
         let layer = view.layer
-        style.borderWidth = Int(layer.borderWidth)
-        style.borderRadius = Int(layer.cornerRadius)
+        style.borderWidth = layer.borderWidth.toInt()
+        style.borderRadius = layer.cornerRadius.toInt()
         style.borderColor = layer.borderColor?.toRGBString()
 
         wireframe.style = style
@@ -470,65 +886,46 @@ class PostHogReplayIntegration {
         return wireframe
     }
 
-    static func getCurrentWindow() -> UIWindow? {
-        // TODO: support multi windows
-
-        // UIApplication.shared.windows is deprecated
-        for scene in UIApplication.shared.connectedScenes {
-            if scene is UIWindowScene,
-               scene.activationState == .foregroundActive,
-               let windowScene = scene as? UIWindowScene
-            {
-                if #available(iOS 15.0, *) {
-                    if let keyWindow = windowScene.keyWindow {
-                        return keyWindow
-                    }
-                }
-
-                for window in windowScene.windows where window.isKeyWindow {
-                    return window
-                }
-            }
-        }
-
-        return nil
-    }
-
     @objc private func snapshot() {
-        if !PostHogSDK.shared.isSessionReplayActive() {
+        guard let postHog, postHog.isSessionReplayActive() else {
             return
         }
 
-        if !ViewLayoutTracker.hasChanges {
-            return
-        }
-        ViewLayoutTracker.clear()
-
-        guard let window = PostHogReplayIntegration.getCurrentWindow() else {
+        guard let window = UIApplication.getCurrentWindow() else {
             return
         }
 
         var screenName: String?
         if let controller = window.rootViewController {
             // SwiftUI only supported with screenshotMode
-            if controller is AnyObjectUIHostingViewController, !config.sessionReplayConfig.screenshotMode {
+            if controller is AnyObjectUIHostingViewController, !postHog.config.sessionReplayConfig.screenshotMode {
                 hedgeLog("SwiftUI snapshot not supported, enable screenshotMode.")
                 return
                     // screen name only makes sense if we are not using SwiftUI
-            } else if !config.sessionReplayConfig.screenshotMode {
+            } else if !postHog.config.sessionReplayConfig.screenshotMode {
                 screenName = UIViewController.getViewControllerName(controller)
             }
         }
 
         // this cannot run off of the main thread because most properties require to be called within the main thread
         // this method has to be fast and do as little as possible
-        generateSnapshot(window, screenName)
+        generateSnapshot(window, screenName, postHog: postHog)
     }
 }
 
 private protocol AnyObjectUIHostingViewController: AnyObject {}
 
 extension UIHostingController: AnyObjectUIHostingViewController {}
+
+#if TESTING
+    extension PostHogReplayIntegration {
+        static func clearInstalls() {
+            integrationInstalledLock.withLock {
+                integrationInstalled = false
+            }
+        }
+    }
+#endif
 
 #endif
 
