@@ -1,8 +1,11 @@
 package xyz.tleskiv.tt.ui.screens
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -82,6 +85,7 @@ import tabletennistracker.composeapp.generated.resources.ic_add
 import tabletennistracker.composeapp.generated.resources.sessions_empty
 import tabletennistracker.composeapp.generated.resources.sessions_month_mode
 import tabletennistracker.composeapp.generated.resources.sessions_week_mode
+import tabletennistracker.composeapp.generated.resources.time_today
 import xyz.tleskiv.tt.ui.nav.navdisplay.TopAppBarState
 import xyz.tleskiv.tt.ui.widgets.SessionListItem
 import xyz.tleskiv.tt.util.ext.displayText
@@ -133,24 +137,6 @@ fun SessionsScreen(
 		monthState.firstVisibleMonth.yearMonth
 	}
 
-	val titleText = visibleYearMonth.formatMonthYear()
-	topAppBarState.title = { Text(titleText) }
-	topAppBarState.actions = {
-		WeekMonthToggle(
-			isWeekMode = inputData.isWeekMode,
-			onToggle = {
-				coroutineScope.launch {
-					if (inputData.isWeekMode) {
-						monthState.scrollToMonth(inputData.selectedDate.yearMonth)
-					} else {
-						weekState.scrollToWeek(inputData.selectedDate)
-					}
-					inputData.isWeekMode = !inputData.isWeekMode
-				}
-			}
-		)
-	}
-
 	// Calendar → List: scroll when user taps a date on the calendar
 	fun scrollListToDate(date: LocalDate) {
 		val dayOffset = (date.toEpochDays() - inputData.startDate.toEpochDays()).toInt()
@@ -159,6 +145,46 @@ fun SessionsScreen(
 			coroutineScope.launch {
 				listState.scrollToItem(targetIndex)
 			}
+		}
+	}
+
+	val titleText = visibleYearMonth.formatMonthYear()
+	topAppBarState.title = { Text(titleText) }
+	topAppBarState.actions = {
+		Row(verticalAlignment = Alignment.CenterVertically) {
+			AnimatedVisibility(
+				visible = inputData.selectedDate != inputData.currentDate,
+				enter = fadeIn(),
+				exit = fadeOut()
+			) {
+				TodayButton(onClick = {
+					inputData.selectedDate = inputData.currentDate
+					scrollListToDate(inputData.currentDate)
+					coroutineScope.launch {
+						if (inputData.isWeekMode) {
+							weekState.scrollToWeek(inputData.currentDate)
+						} else {
+							monthState.scrollToMonth(inputData.currentDate.yearMonth)
+						}
+					}
+				})
+			}
+
+			Spacer(modifier = Modifier.width(8.dp))
+
+			WeekMonthToggle(
+				isWeekMode = inputData.isWeekMode,
+				onToggle = {
+					coroutineScope.launch {
+						if (inputData.isWeekMode) {
+							monthState.scrollToMonth(inputData.selectedDate.yearMonth)
+						} else {
+							weekState.scrollToWeek(inputData.selectedDate)
+						}
+						inputData.isWeekMode = !inputData.isWeekMode
+					}
+				}
+			)
 		}
 	}
 
@@ -623,6 +649,29 @@ private fun NoSessionsPlaceholder() {
 			text = stringResource(Res.string.sessions_empty),
 			style = MaterialTheme.typography.bodyMedium,
 			color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
+		)
+	}
+}
+
+@Composable
+private fun TodayButton(onClick: () -> Unit) {
+	Box(
+		modifier = Modifier
+			.clip(MaterialTheme.shapes.medium)
+			.background(MaterialTheme.colorScheme.secondaryContainer)
+			.clickable(
+				interactionSource = remember { MutableInteractionSource() },
+				indication = null,
+				onClick = onClick
+			)
+			.padding(horizontal = 12.dp, vertical = 8.dp),
+		contentAlignment = Alignment.Center
+	) {
+		Text(
+			text = stringResource(Res.string.time_today),
+			style = MaterialTheme.typography.labelMedium,
+			fontWeight = FontWeight.SemiBold,
+			color = MaterialTheme.colorScheme.onSecondaryContainer
 		)
 	}
 }
