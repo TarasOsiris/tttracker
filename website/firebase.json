@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "ttserves-f7f45",
+    "site": "ttapp-tleskiv",
     "public": "dist",
     "ignore": [
       "firebase.json",
