@@ -2,6 +2,7 @@ package xyz.tleskiv.tt.previews.screens
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import xyz.tleskiv.tt.previews.fakes.FakeAnalyticsService
 import xyz.tleskiv.tt.previews.fakes.FakeClipboardManager
 import xyz.tleskiv.tt.previews.fakes.FakeExternalAppLauncher
 import xyz.tleskiv.tt.previews.fakes.FakeNativeInfoProvider
@@ -23,7 +24,8 @@ fun SettingsScreenPreview() {
 				nativeInfoProvider = FakeNativeInfoProvider(),
 				externalAppLauncher = FakeExternalAppLauncher(),
 				userIdService = FakeUserIdService(),
-				clipboardManager = FakeClipboardManager()
+				clipboardManager = FakeClipboardManager(),
+				analyticsService = FakeAnalyticsService()
 			)
 		)
 	}
@@ -40,7 +42,8 @@ fun SettingsScreenPreviewDebug() {
 				nativeInfoProvider = FakeNativeInfoProvider(isDebug = true),
 				externalAppLauncher = FakeExternalAppLauncher(),
 				userIdService = FakeUserIdService(),
-				clipboardManager = FakeClipboardManager()
+				clipboardManager = FakeClipboardManager(),
+				analyticsService = FakeAnalyticsService()
 			)
 		)
 	}
