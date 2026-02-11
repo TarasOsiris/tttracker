@@ -10,6 +10,7 @@ import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.LocalTime
 import xyz.tleskiv.tt.data.model.enums.SessionType
+import xyz.tleskiv.tt.di.components.AnalyticsService
 import xyz.tleskiv.tt.model.mappers.toMatchInput
 import xyz.tleskiv.tt.model.mappers.toPendingMatch
 import xyz.tleskiv.tt.service.TrainingSessionService
@@ -22,7 +23,8 @@ import kotlin.uuid.Uuid
 
 class EditSessionScreenViewModelImpl(
 	sessionId: String,
-	private val sessionService: TrainingSessionService
+	private val sessionService: TrainingSessionService,
+	private val analyticsService: AnalyticsService
 ) : EditSessionScreenViewModel() {
 	private val _uiState = MutableStateFlow(EditSessionUiState())
 	override val uiState: StateFlow<EditSessionUiState> = _uiState.asStateFlow()
@@ -68,6 +70,14 @@ class EditSessionScreenViewModelImpl(
 				sessionType = inputData.selectedSessionType.value,
 				notes = inputData.notes.value.takeIf { it.isNotBlank() },
 				matches = inputData.pendingMatches.map { it.toMatchInput() }
+			)
+			analyticsService.capture(
+				"session_edited", mapOf(
+					"session_type" to inputData.selectedSessionType.value.name,
+					"duration_minutes" to inputData.durationMinutes.intValue,
+					"rpe" to inputData.rpeValue.intValue,
+					"match_count" to inputData.pendingMatches.size
+				)
 			)
 			onSuccess()
 		}

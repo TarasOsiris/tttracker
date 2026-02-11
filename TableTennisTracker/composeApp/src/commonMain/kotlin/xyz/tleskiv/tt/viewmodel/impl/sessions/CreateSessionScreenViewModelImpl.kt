@@ -6,6 +6,7 @@ import kotlinx.coroutines.launch
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.LocalTime
+import xyz.tleskiv.tt.di.components.AnalyticsService
 import xyz.tleskiv.tt.model.mappers.toMatchInput
 import xyz.tleskiv.tt.service.TrainingSessionService
 import xyz.tleskiv.tt.service.UserPreferencesService
@@ -15,7 +16,8 @@ import xyz.tleskiv.tt.viewmodel.sessions.PendingMatch
 class CreateSessionScreenViewModelImpl(
 	date: LocalDate?,
 	private val sessionService: TrainingSessionService,
-	private val preferencesService: UserPreferencesService
+	private val preferencesService: UserPreferencesService,
+	private val analyticsService: AnalyticsService
 ) : CreateSessionScreenViewModel() {
 	private val _startDate = date ?: LocalDate.now()
 	override val initialDate: LocalDate = _startDate
@@ -40,6 +42,14 @@ class CreateSessionScreenViewModelImpl(
 				sessionType = inputData.selectedSessionType.value,
 				notes = inputData.notes.value.takeIf { it.isNotBlank() },
 				matches = inputData.pendingMatches.map { it.toMatchInput() }
+			)
+			analyticsService.capture(
+				"session_created", mapOf(
+					"session_type" to inputData.selectedSessionType.value.name,
+					"duration_minutes" to inputData.durationMinutes.intValue,
+					"rpe" to inputData.rpeValue.intValue,
+					"match_count" to inputData.pendingMatches.size
+				)
 			)
 			onSuccess()
 		}

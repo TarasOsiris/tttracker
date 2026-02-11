@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import xyz.tleskiv.tt.di.components.AnalyticsService
 import xyz.tleskiv.tt.model.AppLocale
 import xyz.tleskiv.tt.model.AppThemeMode
 import xyz.tleskiv.tt.model.WeekStartDay
@@ -16,7 +17,8 @@ import xyz.tleskiv.tt.viewmodel.settings.GeneralSettingsScreenViewModel
 
 class GeneralSettingsScreenViewModelImpl(
 	private val userPreferencesService: UserPreferencesService,
-	private val userPreferencesRepository: UserPreferencesRepository
+	private val userPreferencesRepository: UserPreferencesRepository,
+	private val analyticsService: AnalyticsService
 ) : GeneralSettingsScreenViewModel() {
 
 	override val inputData = InputData()
@@ -36,24 +38,28 @@ class GeneralSettingsScreenViewModelImpl(
 	override fun setThemeMode(mode: AppThemeMode) {
 		viewModelScope.launch {
 			userPreferencesRepository.setThemeMode(mode)
+			analyticsService.capture("theme_changed", mapOf("theme" to mode.name))
 		}
 	}
 
 	override fun setWeekStartDay(day: WeekStartDay) {
 		viewModelScope.launch {
 			userPreferencesRepository.setWeekStartDay(day)
+			analyticsService.capture("week_start_day_changed", mapOf("day" to day.name))
 		}
 	}
 
 	override fun setHighlightCurrentDay(highlight: Boolean) {
 		viewModelScope.launch {
 			userPreferencesRepository.setHighlightCurrentDay(highlight)
+			analyticsService.capture("highlight_current_day_toggled", mapOf("enabled" to highlight))
 		}
 	}
 
 	override fun setAppLocale(locale: AppLocale) {
 		viewModelScope.launch {
 			userPreferencesRepository.setAppLocale(locale)
+			analyticsService.capture("locale_changed", mapOf("locale" to locale.name))
 		}
 	}
 

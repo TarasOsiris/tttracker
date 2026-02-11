@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import xyz.tleskiv.tt.di.components.AnalyticsService
 import xyz.tleskiv.tt.di.components.ClipboardManager
 import xyz.tleskiv.tt.di.components.ExternalAppLauncher
 import xyz.tleskiv.tt.di.components.NativeInfoProvider
@@ -20,7 +21,8 @@ class SettingsViewModel(
 	private val nativeInfoProvider: NativeInfoProvider,
 	private val externalAppLauncher: ExternalAppLauncher,
 	private val userIdService: UserIdService,
-	private val clipboardManager: ClipboardManager
+	private val clipboardManager: ClipboardManager,
+	private val analyticsService: AnalyticsService
 ) : ViewModel() {
 
 	val versionName: String get() = nativeInfoProvider.versionName
@@ -57,11 +59,13 @@ class SettingsViewModel(
 				subject = "Table Tennis Tracker Feedback",
 				body = "\n\n---\nApp Version: $versionName ($buildNumber)\nUser ID: $userId"
 			)
+			analyticsService.capture("feedback_sent")
 		}
 	}
 
 	fun rateApp() {
 		externalAppLauncher.openAppStore()
+		analyticsService.capture("app_rated")
 	}
 
 	fun copyUserId() {

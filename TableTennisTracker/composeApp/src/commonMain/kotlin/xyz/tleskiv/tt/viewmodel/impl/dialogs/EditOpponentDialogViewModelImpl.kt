@@ -7,13 +7,15 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import xyz.tleskiv.tt.data.model.enums.Handedness
 import xyz.tleskiv.tt.data.model.enums.PlayingStyle
+import xyz.tleskiv.tt.di.components.AnalyticsService
 import xyz.tleskiv.tt.service.OpponentService
 import xyz.tleskiv.tt.viewmodel.dialogs.EditOpponentDialogViewModel
 import kotlin.uuid.Uuid
 
 class EditOpponentDialogViewModelImpl(
 	private val opponentId: Uuid,
-	private val opponentService: OpponentService
+	private val opponentService: OpponentService,
+	private val analyticsService: AnalyticsService
 ) : EditOpponentDialogViewModel() {
 
 	override val inputData = InputData()
@@ -50,6 +52,7 @@ class EditOpponentDialogViewModelImpl(
 				style = inputData.playingStyle.value,
 				notes = inputData.notes.value.trim().ifBlank { null }
 			)
+			analyticsService.capture("opponent_edited")
 			onSuccess()
 		}
 	}

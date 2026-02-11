@@ -43,7 +43,7 @@ val viewModelModule = module {
 	}
 	viewModelOf(::AddOpponentDialogViewModelImpl) bind AddOpponentDialogViewModel::class
 	viewModel<EditOpponentDialogViewModel> { params ->
-		EditOpponentDialogViewModelImpl(params.get<Uuid>(), get())
+		EditOpponentDialogViewModelImpl(params.get<Uuid>(), get(), get())
 	}
 	viewModelOf(::AppViewModel)
 	viewModelOf(::SettingsViewModel)

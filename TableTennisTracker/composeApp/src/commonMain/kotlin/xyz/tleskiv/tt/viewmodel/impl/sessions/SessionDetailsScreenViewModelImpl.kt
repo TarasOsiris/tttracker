@@ -5,6 +5,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import xyz.tleskiv.tt.di.components.AnalyticsService
 import xyz.tleskiv.tt.model.mappers.toMatchUiModel
 import xyz.tleskiv.tt.model.mappers.toSessionUiModel
 import xyz.tleskiv.tt.service.TrainingSessionService
@@ -13,7 +14,8 @@ import kotlin.uuid.Uuid
 
 class SessionDetailsScreenViewModelImpl(
 	sessionId: String,
-	private val sessionService: TrainingSessionService
+	private val sessionService: TrainingSessionService,
+	private val analyticsService: AnalyticsService
 ) : SessionDetailsScreenViewModel() {
 	private val _uiState = MutableStateFlow(UiState())
 	override val uiState: StateFlow<UiState> = _uiState.asStateFlow()
@@ -38,6 +40,7 @@ class SessionDetailsScreenViewModelImpl(
 		val session = _uiState.value.session ?: return
 		viewModelScope.launch {
 			sessionService.deleteSession(session.id)
+			analyticsService.capture("session_deleted")
 			onDeleted()
 		}
 	}
