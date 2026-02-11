@@ -6,9 +6,9 @@
 //
 
 #if os(iOS) || targetEnvironment(macCatalyst)
-import Foundation
+    import Foundation
 
-protocol AutocaptureEventProcessing: AnyObject {
-    func process(source: PostHogAutocaptureEventTracker.EventSource, event: PostHogAutocaptureEventTracker.EventData)
-}
+    protocol AutocaptureEventProcessing: AnyObject {
+        func process(source: PostHogAutocaptureEventTracker.EventSource, event: PostHogAutocaptureEventTracker.EventData)
+    }
 #endif

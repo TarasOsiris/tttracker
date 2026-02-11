@@ -70,6 +70,7 @@ import com.kizitonwose.calendar.core.DayPosition
 import com.kizitonwose.calendar.core.OutDateStyle
 import com.kizitonwose.calendar.core.WeekDayPosition
 import com.kizitonwose.calendar.core.daysOfWeek
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.datetime.DatePeriod
 import kotlinx.datetime.DayOfWeek
@@ -190,16 +191,20 @@ fun SessionsScreen(
 
 	// List → Calendar: When user scrolls the list, update the selected date
 	LaunchedEffect(listState, weekState, monthState, sessionsByDate) {
+		var animationJob: Job? = null
 		snapshotFlow { listState.firstVisibleItemIndex }
 			.collect { index ->
 				val visibleDate = getDateForIndex(index, inputData.startDate, sessionsByDate)
 				if (visibleDate != inputData.selectedDate) {
 					inputData.selectedDate = visibleDate
 				}
-				if (inputData.isWeekMode) {
-					weekState.animateScrollToWeek(visibleDate)
-				} else {
-					monthState.animateScrollToMonth(visibleDate.yearMonth)
+				animationJob?.cancel()
+				animationJob = launch {
+					if (inputData.isWeekMode) {
+						weekState.animateScrollToWeek(visibleDate)
+					} else {
+						monthState.animateScrollToMonth(visibleDate.yearMonth)
+					}
 				}
 			}
 	}

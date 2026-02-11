@@ -6,18 +6,18 @@
 //
 
 #if os(iOS)
-import SwiftUI
+    import SwiftUI
 
-@available(iOS 15.0, *)
-struct BottomSection: View {
-    let label: String
-    let action: () -> Void
+    @available(iOS 15.0, *)
+    struct BottomSection: View {
+        let label: String
+        let action: () -> Void
 
-    var body: some View {
-        Button(label, action: action)
-            .buttonStyle(SurveyButtonStyle())
-            .padding(.bottom, 16)
+        var body: some View {
+            Button(label, action: action)
+                .buttonStyle(SurveyButtonStyle())
+                .padding(.bottom, 16)
+        }
     }
-}
 
 #endif

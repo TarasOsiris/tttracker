@@ -8,67 +8,64 @@
 import Foundation
 
 #if os(iOS) || os(tvOS) || os(visionOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import AppKit
+    import AppKit
 #elseif os(watchOS)
-import WatchKit
+    import WatchKit
 #endif
 
 class PostHogContext {
     @ReadWriteLock
-private
-    var screenSize: CGSize ?
+    private var screenSize: CGSize?
 
-                    #if !os(watchOS)
-                    private let reachability: Reachability?
-                    #endif
+    #if !os(watchOS)
+        private let reachability: Reachability?
+    #endif
 
-private
-    lazy var
-    theStaticContext: [String :Any] = {
+    private lazy var theStaticContext: [String: Any] = {
         // Properties that do not change over the lifecycle of an application
-            var properties:[String: Any] =[:]
+        var properties: [String: Any] = [:]
 
         let infoDictionary = Bundle.main.infoDictionary
 
-            if let appName = infoDictionary?[kCFBundleNameKey as String] {
+        if let appName = infoDictionary?[kCFBundleNameKey as String] {
             properties["$app_name"] = appName
-            } else if let appName = infoDictionary?["CFBundleDisplayName"] {
+        } else if let appName = infoDictionary?["CFBundleDisplayName"] {
             properties["$app_name"] = appName
         }
-            if let appVersion = infoDictionary?["CFBundleShortVersionString"] {
+        if let appVersion = infoDictionary?["CFBundleShortVersionString"] {
             properties["$app_version"] = appVersion
         }
-            if let appBuild = infoDictionary?["CFBundleVersion"] as? String {
-                if let appBuildInt = Int(appBuild) {
-                        properties["$app_build"] = appBuildInt
-                    }
-                else {
-                    properties["$app_build"] = appBuild
-                }
+        if let appBuild = infoDictionary?["CFBundleVersion"] as? String {
+            if let appBuildInt = Int(appBuild) {
+                properties["$app_build"] = appBuildInt
+            } else {
+                properties["$app_build"] = appBuild
+            }
+        }
+        properties["$is_testflight"] = PostHogContext.isTestFlight
+        properties["$is_sideloaded"] = PostHogContext.isSideloaded
+
+        properties["$app_namespace"] = getBundleIdentifier()
+
+        properties["$device_manufacturer"] = "Apple"
+        let deviceModel = platform()
+        properties["$device_model"] = deviceModel
+
+        if let deviceType = PostHogContext.deviceType {
+            properties["$device_type"] = deviceType
         }
 
-            if Bundle.main.bundleIdentifier != nil {
-                properties["$app_namespace"] = Bundle.main.bundleIdentifier
-            }
-        properties["$device_manufacturer"] = "Apple"
-            let deviceModel = platform()
-            properties["$device_model"] = deviceModel
+        properties["$is_emulator"] = PostHogContext.isSimulator
 
-            if let deviceType = PostHogContext.deviceType {
-                properties["$device_type"] = deviceType
-            }
+        let isIOSAppOnMac = PostHogContext.isIOSAppOnMac
+        let isMacCatalystApp = PostHogContext.isMacCatalystApp
 
-            properties["$is_emulator"] = PostHogContext.isSimulator
+        properties["$is_ios_running_on_mac"] = isIOSAppOnMac
+        properties["$is_mac_catalyst_app"] = isMacCatalystApp
 
-            let isIOSAppOnMac = PostHogContext.isIOSAppOnMac
-            let isMacCatalystApp = PostHogContext.isMacCatalystApp
-
-            properties["$is_ios_running_on_mac"] = isIOSAppOnMac
-            properties["$is_mac_catalyst_app"] = isMacCatalystApp
-
-#if os(iOS) || os(tvOS) || os(visionOS)
+        #if os(iOS) || os(tvOS) || os(visionOS)
             let device = UIDevice.current
             // use https://github.com/devicekit/DeviceKit
             let processInfo = ProcessInfo.processInfo
@@ -106,7 +103,7 @@ private
                 properties["$os_version"] = device.systemVersion
                 properties["$device_name"] = device.model
             }
-#elseif os(macOS)
+        #elseif os(macOS)
             // For native macOS apps, use the hardware model similar to iOS/macCatalyst
             // Get the user-friendly hardware name from the model identifier
             properties["$device_name"] = macModelToFriendlyName(deviceModel)
@@ -114,191 +111,152 @@ private
             properties["$os_name"] = "macOS"
             let osVersion = processInfo.operatingSystemVersion
             properties["$os_version"] = "\(osVersion.majorVersion).\(osVersion.minorVersion).\(osVersion.patchVersion)"
-#endif
+        #endif
 
         return properties
     }()
 
-#if !os(watchOS)
-    init(_ reachability: Reachability?) {
-        self.reachability = reachability
-        registerNotifications()
-    }
-#else
-
-    init() {
-        if #available(watchOS
-        7.0, *) {
+    #if !os(watchOS)
+        init(_ reachability: Reachability?) {
+            self.reachability = reachability
             registerNotifications()
-        } else {
-            onShouldUpdateScreenSize()
         }
-    }
-
-#endif
+    #else
+        init() {
+            if #available(watchOS 7.0, *) {
+                registerNotifications()
+            } else {
+                onShouldUpdateScreenSize()
+            }
+        }
+    #endif
 
     deinit {
-#if !os(watchOS)
-        unregisterNotifications()
-#else
-        if #available(watchOS
-        7.0, *) {
+        #if !os(watchOS)
             unregisterNotifications()
-        }
-#endif
+        #else
+            if #available(watchOS 7.0, *) {
+                unregisterNotifications()
+            }
+        #endif
     }
 
-private
-    lazy var
-    theSdkInfo: [String :Any] = {
-            var sdkInfo:[String: Any] =[:]
+    private lazy var theSdkInfo: [String: Any] = {
+        var sdkInfo: [String: Any] = [:]
         sdkInfo["$lib"] = postHogSdkName
         sdkInfo["$lib_version"] = postHogVersion
         return sdkInfo
     }()
 
-    func staticContext()
-
-    -> [
-    String: Any
-    ] {
+    func staticContext() -> [String: Any] {
         theStaticContext
     }
 
-    func sdkInfo()
-
-    -> [
-    String: Any
-    ] {
+    func sdkInfo() -> [String: Any] {
         theSdkInfo
     }
 
-private
-    lazy var
-    thePersonPropertiesContext: [String :Any] = {
-            let staticCtx = staticContext()
-            let sdkInfo = sdkInfo()
-            var personProperties:[String: Any] =[:]
+    private lazy var thePersonPropertiesContext: [String: Any] = {
+        let staticCtx = staticContext()
+        let sdkInfo = sdkInfo()
+        var personProperties: [String: Any] = [:]
 
-            // App information
-            if let appVersion = staticCtx["$app_version"] {
-                personProperties["$app_version"] = appVersion
-            }
-            if let appBuild = staticCtx["$app_build"] {
-                personProperties["$app_build"] = appBuild
-            }
+        // App information
+        if let appVersion = staticCtx["$app_version"] {
+            personProperties["$app_version"] = appVersion
+        }
+        if let appBuild = staticCtx["$app_build"] {
+            personProperties["$app_build"] = appBuild
+        }
 
-            if let appNamespace = staticCtx["$app_namespace"] {
-                personProperties["$app_namespace"] = appNamespace
-            }
+        if let appNamespace = staticCtx["$app_namespace"] {
+            personProperties["$app_namespace"] = appNamespace
+        }
 
-            // Operating system information
-            if let osName = staticCtx["$os_name"] {
-                personProperties["$os_name"] = osName
-            }
-            if let osVersion = staticCtx["$os_version"] {
-                personProperties["$os_version"] = osVersion
-            }
+        // Operating system information
+        if let osName = staticCtx["$os_name"] {
+            personProperties["$os_name"] = osName
+        }
+        if let osVersion = staticCtx["$os_version"] {
+            personProperties["$os_version"] = osVersion
+        }
 
-            // Device information
-            if let deviceType = staticCtx["$device_type"] {
-                personProperties["$device_type"] = deviceType
-            }
+        // Device information
+        if let deviceType = staticCtx["$device_type"] {
+            personProperties["$device_type"] = deviceType
+        }
 
-            personProperties.merge(sdkInfo) {
-                _, new in
-                new
-            }
+        personProperties.merge(sdkInfo) { _, new in new }
 
-            return personProperties
-    }
-    ()
+        return personProperties
+    }()
 
-private
-
-    func platform()
-
-    -> String {
+    private func platform() -> String {
         var sysctlName = "hw.machine"
 
         // In case of mac catalyst or iOS running on mac:
         // - "hw.machine" returns underlying iPad/iPhone model
         // - "hw.model" returns mac model
-#if targetEnvironment(macCatalyst)
-        sysctlName = "hw.model"
-#elseif os(iOS) || os(visionOS)
-        if #available(iOS 14.0, *) {
-            if ProcessInfo.processInfo.isiOSAppOnMac {
-                sysctlName = "hw.model"
+        #if targetEnvironment(macCatalyst)
+            sysctlName = "hw.model"
+        #elseif os(iOS) || os(visionOS)
+            if #available(iOS 14.0, *) {
+                if ProcessInfo.processInfo.isiOSAppOnMac {
+                    sysctlName = "hw.model"
+                }
             }
-        }
-#endif
+        #endif
 
         var size = 0
         sysctlbyname(sysctlName, nil, &size, nil, 0)
-        var
-        machine = [CChar](repeating: 0, count: size)
+        var machine = [CChar](repeating: 0, count: size)
         sysctlbyname(sysctlName, &machine, &size, nil, 0)
         return String(cString: machine)
     }
 
+    // swiftlint:disable:next orphaned_doc_comment
     /// Converts Mac hardware identifiers to user-friendly names
     /// For example: "MacBookPro18,3" -> "MacBook Pro"
     /// - Parameter model: The hardware model identifier string
     /// - Returns: A user-friendly name for the Mac model
-    // swiftlint:disable:next cyclomatic_complexity orphaned_doc_comment
-private
-
-    func macModelToFriendlyName(_ model
-
-    : String) -> String {
+    // swiftlint:disable:next cyclomatic_complexity
+    private func macModelToFriendlyName(_ model: String) -> String {
         // Handle empty or invalid input
-        guard
-        !model.isEmpty else { return "Mac" }
+        guard !model.isEmpty else { return "Mac" }
 
         // Extract the base model name from identifiers like "MacBookPro18,3"
-        if model.hasPrefix("MacBookAir")
-        {
+        if model.hasPrefix("MacBookAir") {
             return "MacBook Air"
-        } else if model.hasPrefix("MacBookPro")
-        {
+        } else if model.hasPrefix("MacBookPro") {
             return "MacBook Pro"
-        } else if model.hasPrefix("MacBook")
-        {
+        } else if model.hasPrefix("MacBook") {
             return "MacBook"
-        } else if model.hasPrefix("Macmini")
-        {
+        } else if model.hasPrefix("Macmini") {
             return "Mac mini"
-        } else if model.hasPrefix("MacPro")
-        {
+        } else if model.hasPrefix("MacPro") {
             return "Mac Pro"
-        } else if model.hasPrefix("MacStudio") || model.hasPrefix("Mac13")
-        {
+        } else if model.hasPrefix("MacStudio") || model.hasPrefix("Mac13") {
             return "Mac Studio"
-        } else if model.hasPrefix("iMac")
-        {
+        } else if model.hasPrefix("iMac") {
             return "iMac"
-        } else if model.hasPrefix("Mac")
-        {
+        } else if model.hasPrefix("Mac") {
             // Handle newer Mac models with generic "Mac" prefix
             // Mac14,x and Mac15,x are newer MacBook Air and MacBook Pro models
             // Mac13,x is Mac Studio
             // Future models might follow similar patterns
             if model.hasPrefix("Mac14,2") || model.hasPrefix("Mac14,15") ||
-               model.hasPrefix("Mac15,3") || model.hasPrefix("Mac15,6") ||
-               model.hasPrefix("Mac15,7")
+                model.hasPrefix("Mac15,3") || model.hasPrefix("Mac15,6") ||
+                model.hasPrefix("Mac15,7")
             {
                 return "MacBook Air"
-            } else if model.hasPrefix("Mac14") || model.hasPrefix("Mac15")
-            {
+            } else if model.hasPrefix("Mac14") || model.hasPrefix("Mac15") {
                 // Default newer Mac models to MacBook Pro if not Air
                 return "MacBook Pro"
             } else {
                 // Generic Mac for other Mac-prefixed models
                 return "Mac"
             }
-        } else if model.hasPrefix("VirtualMac")
-        {
+        } else if model.hasPrefix("VirtualMac") {
             // Handle virtual machines
             return "Mac (Virtual)"
         } else {
@@ -307,184 +265,154 @@ private
         }
     }
 
-    func dynamicContext()
+    func dynamicContext() -> [String: Any] {
+        var properties: [String: Any] = [:]
 
-    -> [
-    String: Any
-    ] {
-        var
-        properties:
-        [String :Any] = [:]
-
-        if let screenSize{
-                    properties["$screen_width"] = Float(screenSize.width)
-                    properties["$screen_height"] = Float(screenSize.height)
+        if let screenSize {
+            properties["$screen_width"] = Float(screenSize.width)
+            properties["$screen_height"] = Float(screenSize.height)
         }
 
-            if #available(iOS
-        16.0, macOS
-        13.0, tvOS
-        16.0, watchOS
-        9.0, *) {
+        if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
             if let languageCode = Locale.current.language.languageCode {
-                    properties["$locale"] = languageCode.identifier
-                }
+                properties["$locale"] = languageCode.identifier
+            }
         } else {
-            if Locale.current.languageCode != nil{
-                        properties["$locale"] = Locale.current.languageCode
+            if Locale.current.languageCode != nil {
+                properties["$locale"] = Locale.current.languageCode
             }
         }
         properties["$timezone"] = TimeZone.current.identifier
 
-#if !os(watchOS)
-        if reachability != nil {
-            properties["$network_wifi"] = reachability?.connection == .wifi
-            properties["$network_cellular"] = reachability?.connection == .cellular
-        }
-#endif
+        #if !os(watchOS)
+            if reachability != nil {
+                properties["$network_wifi"] = reachability?.connection == .wifi
+                properties["$network_cellular"] = reachability?.connection == .cellular
+            }
+        #endif
 
         return properties
     }
 
     /// Returns person properties context by extracting relevant properties from static context.
     /// This centralizes the logic for determining which properties should be used as person properties.
-    func personPropertiesContext()
-
-    -> [
-    String: Any
-    ] {
+    func personPropertiesContext() -> [String: Any] {
         thePersonPropertiesContext
     }
 
-private
-
-    func registerNotifications() {
-#if os(iOS) || os(tvOS) || os(visionOS)
-#if os(iOS)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(onOrientationDidChange),
-                                               name: UIDevice.orientationDidChangeNotification,
-                                               object: nil)
-#endif
-    NotificationCenter.default.addObserver(self,
-                                           selector: #selector(onShouldUpdateScreenSize),
-                                           name: UIWindow.didBecomeKeyNotification,
-                                           object: nil)
-#elseif os(macOS)
-    NotificationCenter.default.addObserver(self,
-                                           selector: #selector(onShouldUpdateScreenSize),
-                                           name: NSWindow.didBecomeKeyNotification,
-                                           object: nil)
-    NotificationCenter.default.addObserver(self,
-                                           selector: #selector(onShouldUpdateScreenSize),
-                                           name: NSWindow.didChangeScreenNotification,
-                                           object: nil)
-    NotificationCenter.default.addObserver(self,
-                                           selector: #selector(onShouldUpdateScreenSize),
-                                           name: NSApplication.didBecomeActiveNotification,
-                                           object: nil)
-#elseif os(watchOS)
-    if #available(watchOS 7.0, *) {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(onShouldUpdateScreenSize),
-                                               name: WKApplication.didBecomeActiveNotification,
-                                               object: nil)
-    }
-#endif
+    private func registerNotifications() {
+        #if os(iOS) || os(tvOS) || os(visionOS)
+            #if os(iOS)
+                NotificationCenter.default.addObserver(self,
+                                                       selector: #selector(onOrientationDidChange),
+                                                       name: UIDevice.orientationDidChangeNotification,
+                                                       object: nil)
+            #endif
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(onShouldUpdateScreenSize),
+                                                   name: UIWindow.didBecomeKeyNotification,
+                                                   object: nil)
+        #elseif os(macOS)
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(onShouldUpdateScreenSize),
+                                                   name: NSWindow.didBecomeKeyNotification,
+                                                   object: nil)
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(onShouldUpdateScreenSize),
+                                                   name: NSWindow.didChangeScreenNotification,
+                                                   object: nil)
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(onShouldUpdateScreenSize),
+                                                   name: NSApplication.didBecomeActiveNotification,
+                                                   object: nil)
+        #elseif os(watchOS)
+            if #available(watchOS 7.0, *) {
+                NotificationCenter.default.addObserver(self,
+                                                       selector: #selector(onShouldUpdateScreenSize),
+                                                       name: WKApplication.didBecomeActiveNotification,
+                                                       object: nil)
+            }
+        #endif
     }
 
-private
+    private func unregisterNotifications() {
+        #if os(iOS) || os(tvOS) || os(visionOS)
+            #if os(iOS)
+                NotificationCenter.default.removeObserver(self,
+                                                          name: UIDevice.orientationDidChangeNotification,
+                                                          object: nil)
+            #endif
+            NotificationCenter.default.removeObserver(self,
+                                                      name: UIWindow.didBecomeKeyNotification,
+                                                      object: nil)
 
-    func unregisterNotifications() {
-#if os(iOS) || os(tvOS) || os(visionOS)
-#if os(iOS)
-        NotificationCenter.default.removeObserver(self,
-                                                  name: UIDevice.orientationDidChangeNotification,
-                                                  object: nil)
-#endif
-    NotificationCenter.default.removeObserver(self,
-                                              name: UIWindow.didBecomeKeyNotification,
-                                              object: nil)
-
-#elseif os(macOS)
-    NotificationCenter.default.removeObserver(self,
-                                              name: NSWindow.didBecomeKeyNotification,
-                                              object: nil)
-    NotificationCenter.default.removeObserver(self,
-                                              name: NSWindow.didChangeScreenNotification,
-                                              object: nil)
-    NotificationCenter.default.removeObserver(self,
-                                              name: NSApplication.didBecomeActiveNotification,
-                                              object: nil)
-#elseif os(watchOS)
-    if #available(watchOS 7.0, *) {
-        NotificationCenter.default.removeObserver(self,
-                                                  name: WKApplication.didBecomeActiveNotification,
-                                                  object: nil)
-    }
-#endif
+        #elseif os(macOS)
+            NotificationCenter.default.removeObserver(self,
+                                                      name: NSWindow.didBecomeKeyNotification,
+                                                      object: nil)
+            NotificationCenter.default.removeObserver(self,
+                                                      name: NSWindow.didChangeScreenNotification,
+                                                      object: nil)
+            NotificationCenter.default.removeObserver(self,
+                                                      name: NSApplication.didBecomeActiveNotification,
+                                                      object: nil)
+        #elseif os(watchOS)
+            if #available(watchOS 7.0, *) {
+                NotificationCenter.default.removeObserver(self,
+                                                          name: WKApplication.didBecomeActiveNotification,
+                                                          object: nil)
+            }
+        #endif
     }
 
     /// Retrieves the current screen size of the application window based on platform
-private
-
-    func getScreenSize()
-
-    -> CGSize? {
-#if os(iOS) || os(tvOS) || os(visionOS)
-        return UIApplication.getCurrentWindow(filterForegrounded: false)?.bounds.size
-#elseif os(macOS)
-        // NSScreen.frame represents the full screen rectangle and includes any space occupied by menu, dock or camera bezel
-        return NSApplication.shared.windows.first { $0.isKeyWindow }?.screen?.frame.size
-#elseif os(watchOS)
-        return WKInterfaceDevice.current().screenBounds.size
-#else
-        return nil
-#endif
+    private func getScreenSize() -> CGSize? {
+        #if os(iOS) || os(tvOS) || os(visionOS)
+            return UIApplication.getCurrentWindow(filterForegrounded: false)?.bounds.size
+        #elseif os(macOS)
+            // NSScreen.frame represents the full screen rectangle and includes any space occupied by menu, dock or camera bezel
+            return NSApplication.shared.windows.first { $0.isKeyWindow }?.screen?.frame.size
+        #elseif os(watchOS)
+            return WKInterfaceDevice.current().screenBounds.size
+        #else
+            return nil
+        #endif
     }
 
-#if os(iOS)
-    // Special treatment for `orientationDidChangeNotification` since the notification seems to be _sometimes_ called early, before screen bounds are flipped
-    @objc private func onOrientationDidChange() {
-        updateScreenSize {
-            self.getScreenSize().map { size in
-                // manually set width and height based on device orientation. (Needed for fast orientation changes)
-                if UIDevice.current.orientation.isLandscape {
-                    CGSize(width: max(size.width, size.height), height: min(size.height, size.width))
-                } else {
-                    CGSize(width: min(size.width, size.height), height: max(size.height, size.width))
+    #if os(iOS)
+        // Special treatment for `orientationDidChangeNotification` since the notification seems to be _sometimes_ called early, before screen bounds are flipped
+        @objc private func onOrientationDidChange() {
+            updateScreenSize {
+                self.getScreenSize().map { size in
+                    // manually set width and height based on device orientation. (Needed for fast orientation changes)
+                    if UIDevice.current.orientation.isLandscape {
+                        CGSize(width: max(size.width, size.height), height: min(size.height, size.width))
+                    } else {
+                        CGSize(width: min(size.width, size.height), height: max(size.height, size.width))
+                    }
                 }
             }
         }
-    }
-#endif
+    #endif
 
-    @objc
-private
-
-    func onShouldUpdateScreenSize() {
+    @objc private func onShouldUpdateScreenSize() {
         updateScreenSize(getScreenSize)
     }
 
-private
-
-    func updateScreenSize(_ getSize
-
-    : @escaping () -> CGSize?) {
+    private func updateScreenSize(_ getSize: @escaping () -> CGSize?) {
         let block = {
-                self.screenSize = getSize()
+            self.screenSize = getSize()
         }
         // ensure block is executed on `main` since closure accesses non thread-safe UI objects like UIApplication
-        if Thread.isMainThread
-        {
+        if Thread.isMainThread {
             block()
         } else {
             DispatchQueue.main.async(execute: block)
         }
     }
 
-    static let deviceType: String ? = {
-#if os(iOS) || os(tvOS)
+    static let deviceType: String? = {
+        #if os(iOS) || os(tvOS)
             if isMacCatalystApp || isIOSAppOnMac {
                 return "Desktop"
             } else {
@@ -505,39 +433,56 @@ private
                     return nil
                 }
             }
-#elseif os(macOS)
+        #elseif os(macOS)
             return "Desktop"
-#else
+        #else
             return nil
-#endif
-    }
-    ()
+        #endif
+    }()
 
     static let isIOSAppOnMac: Bool = {
-            if
-#
-            available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *) {
-                return ProcessInfo.processInfo.isiOSAppOnMac
-            }
-            return false
-    }
-    ()
+        if #available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *) {
+            return ProcessInfo.processInfo.isiOSAppOnMac
+        }
+        return false
+    }()
 
     static let isMacCatalystApp: Bool = {
-#if targetEnvironment(macCatalyst)
+        #if targetEnvironment(macCatalyst)
             true
-#else
+        #else
             false
-#endif
-    }
-    ()
+        #endif
+    }()
 
     static let isSimulator: Bool = {
-#if targetEnvironment(simulator)
+        #if targetEnvironment(simulator)
             true
-#else
+        #else
             false
-#endif
-    }
-    ()
+        #endif
+    }()
+
+    // MARK: - Install Source Detection
+
+    /// Returns true if the app was installed via TestFlight.
+    /// Detected by checking for sandboxReceipt in the app store receipt URL.
+    static let isTestFlight: Bool = {
+        guard let receiptURL = Bundle.main.appStoreReceiptURL else { return false }
+        return receiptURL.lastPathComponent == "sandboxReceipt"
+    }()
+
+    /// Returns true if the app was sideloaded (ad-hoc, enterprise, or development build).
+    /// Detected by checking for an embedded provisioning profile, which is only present
+    /// in sideloaded builds. App Store and TestFlight builds are re-signed by Apple
+    /// and have no embedded profile.
+    static let isSideloaded: Bool = {
+        if isSimulator { return false }
+        #if targetEnvironment(macCatalyst)
+            let ext = "provisionprofile"
+        #else
+            let ext = "mobileprovision"
+        #endif
+        return Bundle.main.path(forResource: "embedded", ofType: ext) != nil
+    }()
 }

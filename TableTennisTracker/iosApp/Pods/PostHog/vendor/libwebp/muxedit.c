@@ -18,46 +18,46 @@
 //------------------------------------------------------------------------------
 // Life of a mux object.
 
-static void MuxInit(WebPMux *const mux) {
-    ASSERT(mux != NULL);
-    memset(mux, 0, sizeof(*mux));
-    mux->canvas_width_ = 0;     // just to be explicit
-    mux->canvas_height_ = 0;
+static void MuxInit(WebPMux* const mux) {
+  ASSERT(mux != NULL);
+  memset(mux, 0, sizeof(*mux));
+  mux->canvas_width_ = 0;     // just to be explicit
+  mux->canvas_height_ = 0;
 }
 
-WebPMux *WebPNewInternal(int version) {
-    if (WEBP_ABI_IS_INCOMPATIBLE(version, WEBP_MUX_ABI_VERSION)) {
-        return NULL;
-    } else {
-        WebPMux *const mux = (WebPMux *) WebPSafeMalloc(1ULL, sizeof(WebPMux));
-        if (mux != NULL) MuxInit(mux);
-        return mux;
-    }
+WebPMux* WebPNewInternal(int version) {
+  if (WEBP_ABI_IS_INCOMPATIBLE(version, WEBP_MUX_ABI_VERSION)) {
+    return NULL;
+  } else {
+    WebPMux* const mux = (WebPMux*)WebPSafeMalloc(1ULL, sizeof(WebPMux));
+    if (mux != NULL) MuxInit(mux);
+    return mux;
+  }
 }
 
 // Delete all images in 'wpi_list'.
-static void DeleteAllImages(WebPMuxImage **const wpi_list) {
-    while (*wpi_list != NULL) {
-        *wpi_list = MuxImageDelete(*wpi_list);
-    }
+static void DeleteAllImages(WebPMuxImage** const wpi_list) {
+  while (*wpi_list != NULL) {
+    *wpi_list = MuxImageDelete(*wpi_list);
+  }
 }
 
-static void MuxRelease(WebPMux *const mux) {
-    ASSERT(mux != NULL);
-    DeleteAllImages(&mux->images_);
-    ChunkListDelete(&mux->vp8x_);
-    ChunkListDelete(&mux->iccp_);
-    ChunkListDelete(&mux->anim_);
-    ChunkListDelete(&mux->exif_);
-    ChunkListDelete(&mux->xmp_);
-    ChunkListDelete(&mux->unknown_);
+static void MuxRelease(WebPMux* const mux) {
+  ASSERT(mux != NULL);
+  DeleteAllImages(&mux->images_);
+  ChunkListDelete(&mux->vp8x_);
+  ChunkListDelete(&mux->iccp_);
+  ChunkListDelete(&mux->anim_);
+  ChunkListDelete(&mux->exif_);
+  ChunkListDelete(&mux->xmp_);
+  ChunkListDelete(&mux->unknown_);
 }
 
-void WebPMuxDelete(WebPMux *mux) {
-    if (mux != NULL) {
-        MuxRelease(mux);
-        WebPSafeFree(mux);
-    }
+void WebPMuxDelete(WebPMux* mux) {
+  if (mux != NULL) {
+    MuxRelease(mux);
+    WebPSafeFree(mux);
+  }
 }
 
 //------------------------------------------------------------------------------

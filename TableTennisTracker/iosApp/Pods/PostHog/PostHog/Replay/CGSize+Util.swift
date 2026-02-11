@@ -6,14 +6,14 @@
 //
 
 #if os(iOS)
-import Foundation
+    import Foundation
 
-extension CGSize {
-    func hasSize() -> Bool {
-        if width == 0 || height == 0 {
-            return false
+    extension CGSize {
+        func hasSize() -> Bool {
+            if width == 0 || height == 0 {
+                return false
+            }
+            return true
         }
-        return true
     }
-}
 #endif

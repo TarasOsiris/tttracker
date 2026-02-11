@@ -6,94 +6,54 @@
 //
 import Foundation
 
-public
-typealias BeforeSendBlock = (PostHogEvent)->PostHogEvent ?
+public typealias BeforeSendBlock = (PostHogEvent) -> PostHogEvent?
 
-                            @objc
-public final class BoxedBeforeSendBlock : NSObject {
-    @objc
-public
-    let block: BeforeSendBlock
+@objc public final class BoxedBeforeSendBlock: NSObject {
+    @objc public let block: BeforeSendBlock
 
-    @objc(
-    block:
-    )
-public
-    init(block: @escaping
-    BeforeSendBlock) {
+    @objc(block:)
+    public init(block: @escaping BeforeSendBlock) {
         self.block = block
     }
 }
 
-@objc(PostHogConfig) public
-
-class PostHogConfig : NSObject {
+@objc(PostHogConfig) public class PostHogConfig: NSObject {
     enum Defaults {
-#if os(tvOS)
-        static let flushAt: Int = 5
-        static let maxQueueSize: Int = 100
-#else
-        static let
-        flushAt: Int = 20
-        static let
-        maxQueueSize: Int = 1000
-#endif
-        static let
-        maxBatchSize: Int = 50
-        static let
-        flushIntervalSeconds: TimeInterval = 30
+        #if os(tvOS)
+            static let flushAt: Int = 5
+            static let maxQueueSize: Int = 100
+        #else
+            static let flushAt: Int = 20
+            static let maxQueueSize: Int = 1000
+        #endif
+        static let maxBatchSize: Int = 50
+        static let flushIntervalSeconds: TimeInterval = 30
     }
 
-    @objc(PostHogDataMode)
-public enum PostHogDataMode : Int {
+    @objc(PostHogDataMode) public enum PostHogDataMode: Int {
         case wifi
         case cellular
         case any
     }
 
-    @objc
-public
-    let host: URL
-    @objc
-public
-    let apiKey: String
-    @objc
-public
-    var flushAt: Int = Defaults.flushAt
-    @objc
-public
-    var maxQueueSize: Int = Defaults.maxQueueSize
-    @objc
-public
-    var maxBatchSize: Int = Defaults.maxBatchSize
-    @objc
-public
-    var flushIntervalSeconds: TimeInterval = Defaults.flushIntervalSeconds
-    @objc
-public
-    var dataMode: PostHogDataMode
-    = .any
-    @objc
-public
-    var sendFeatureFlagEvent: Bool = true
-    @objc
-public
-    var preloadFeatureFlags: Bool = true
+    @objc public let host: URL
+    @objc public let apiKey: String
+    @objc public var flushAt: Int = Defaults.flushAt
+    @objc public var maxQueueSize: Int = Defaults.maxQueueSize
+    @objc public var maxBatchSize: Int = Defaults.maxBatchSize
+    @objc public var flushIntervalSeconds: TimeInterval = Defaults.flushIntervalSeconds
+    @objc public var dataMode: PostHogDataMode = .any
+    @objc public var sendFeatureFlagEvent: Bool = true
+    @objc public var preloadFeatureFlags: Bool = true
 
     /// Preload PostHog remote config automatically
     /// Default: true
     ///
     /// Note: Surveys rely on remote config. Disabling this will also disable Surveys
-    @objc
-public
-    var remoteConfig: Bool = true
+    @objc public var remoteConfig: Bool = true
 
-    @objc
-public
-    var captureApplicationLifecycleEvents: Bool = true
-    @objc
-public
-    var captureScreenViews: Bool = true
+    @objc public var captureApplicationLifecycleEvents: Bool = true
+    @objc public var captureScreenViews: Bool = true
 
     /// Enable method swizzling for SDK functionality that depends on it
     ///
@@ -103,24 +63,16 @@ public
     /// Session rotation will still work, just with reduced granularity for detecting user activity.
     ///
     /// Default: true
-    @objc
-public
-    var enableSwizzling: Bool = true
+    @objc public var enableSwizzling: Bool = true
 
-#if os(iOS) || targetEnvironment(macCatalyst)
-            /// Enable autocapture for iOS
-            /// Default: false
-            @objc public var captureElementInteractions: Bool = false
-#endif
-    @objc
-public
-    var debug: Bool = false
-    @objc
-public
-    var optOut: Bool = false
-    @objc
-public
-    var getAnonymousId: ((UUID)->UUID) = {uuid in uuid}
+    #if os(iOS) || targetEnvironment(macCatalyst)
+        /// Enable autocapture for iOS
+        /// Default: false
+        @objc public var captureElementInteractions: Bool = false
+    #endif
+    @objc public var debug: Bool = false
+    @objc public var optOut: Bool = false
+    @objc public var getAnonymousId: ((UUID) -> UUID) = { uuid in uuid }
 
     /// Flag to reuse the anonymous Id between `reset()` and next `identify()` calls
     ///
@@ -132,23 +84,14 @@ public
     ///     Events captured *after*  call to *reset()* won't be linked to the identified user
     ///
     /// Defaults to false.
-    @objc
-public
-    var reuseAnonymousId: Bool = false
+    @objc public var reuseAnonymousId: Bool = false
 
     /// Hook that allows to sanitize the event properties
     /// The hook is called before the event is cached or sent over the wire
-    @available(*, deprecated,
-    message: "Use beforeSend instead"
-    )
-    @objc
-public
-    var propertiesSanitizer: PostHogPropertiesSanitizer ?
-                             /// Determines the behavior for processing user profiles.
-                             @objc
-public
-    var personProfiles: PostHogPersonProfiles
-    = .identifiedOnly
+    @available(*, deprecated, message: "Use beforeSend instead")
+    @objc public var propertiesSanitizer: PostHogPropertiesSanitizer?
+    /// Determines the behavior for processing user profiles.
+    @objc public var personProfiles: PostHogPersonProfiles = .identifiedOnly
 
     /// Automatically set common device and app properties as person properties for feature flag evaluation.
     ///
@@ -164,9 +107,7 @@ public
     /// without waiting for server-side processing of identify() calls.
     ///
     /// Default: true
-    @objc
-public
-    var setDefaultPersonProperties: Bool = true
+    @objc public var setDefaultPersonProperties: Bool = true
 
     /// Evaluation contexts for feature flags.
     ///
@@ -183,51 +124,40 @@ public
     /// for your SDK instance.
     ///
     /// Default: nil (all flags are evaluated)
-    @objc
-public
-    var evaluationContexts: [String] ?
+    @objc public var evaluationContexts: [String]?
 
-                            /// Evaluation environments for feature flags.
-                            /// @deprecated Use evaluationContexts instead. This property will be removed in a future version.
-                            @available(*, deprecated, message
-    : "Use evaluationContexts instead. This property will continue to work but will be removed in a future version.")
-    @objc
-public
-    var evaluationEnvironments: [String] ? {
-            get{evaluationContexts}
-            set {
-                if newValue != nil{
-                            hedgeLog(
-                                    "evaluationEnvironments is deprecated. Use evaluationContexts instead.")
-                    }
-                evaluationContexts = newValue
+    /// Evaluation environments for feature flags.
+    /// @deprecated Use evaluationContexts instead. This property will be removed in a future version.
+    @available(*, deprecated, message: "Use evaluationContexts instead. This property will continue to work but will be removed in a future version.")
+    @objc public var evaluationEnvironments: [String]? {
+        get { evaluationContexts }
+        set {
+            if newValue != nil {
+                hedgeLog("evaluationEnvironments is deprecated. Use evaluationContexts instead.")
             }
+            evaluationContexts = newValue
+        }
     }
 
-                                /// The identifier of the App Group that should be used to store shared analytics data.
-                                /// PostHog will try to get the physical location of the App Group’s shared container, otherwise fallback to the default location
-                                /// Default: nil
-                                @objc
-public
-    var appGroupIdentifier: String ?
+    /// The identifier of the App Group that should be used to store shared analytics data.
+    /// PostHog will try to get the physical location of the App Group’s shared container, otherwise fallback to the default location
+    /// Default: nil
+    @objc public var appGroupIdentifier: String?
 
     /// Internal
     /// Do not modify it, this flag is read and updated by the SDK via feature flags
-                            @objc
-public
-    var snapshotEndpoint: String = "/s/"
+    @objc public var snapshotEndpoint: String = "/s/"
 
     /// or EU Host: 'https://eu.i.posthog.com'
-public
-    static let defaultHost: String = "https://us.i.posthog.com"
+    public static let defaultHost: String = "https://us.i.posthog.com"
 
-                                     #if os(iOS)
-                                     /// Enable Recording of Session Replays for iOS
+    #if os(iOS)
+        /// Enable Recording of Session Replays for iOS
         /// Default: false
         @objc public var sessionReplay: Bool = false
         /// Session Replay configuration
         @objc public let sessionReplayConfig: PostHogSessionReplayConfig = .init()
-                                     #endif
+    #endif
 
     /// Enable mobile surveys
     ///
@@ -236,193 +166,129 @@ public
     /// Note: Event triggers will only work with the instance that first enables surveys.
     /// In case of multiple instances, please make sure you are capturing events on the instance that has config.surveys = true
     @available(iOS 15.0, *)
-    @available(watchOS, unavailable,
-    message: "Surveys are only available on iOS 15+"
-    )
-    @available(macOS, unavailable,
-    message: "Surveys are only available on iOS 15+"
-    )
-    @available(tvOS, unavailable,
-    message: "Surveys are only available on iOS 15+"
-    )
-    @available(visionOS, unavailable,
-    message: "Surveys are only available on iOS 15+"
-    )
-    @objc
-public
-    var surveys: Bool{
-            get{_surveys}
-            set { setSurveys(newValue) }
+    @available(watchOS, unavailable, message: "Surveys are only available on iOS 15+")
+    @available(macOS, unavailable, message: "Surveys are only available on iOS 15+")
+    @available(tvOS, unavailable, message: "Surveys are only available on iOS 15+")
+    @available(visionOS, unavailable, message: "Surveys are only available on iOS 15+")
+    @objc public var surveys: Bool {
+        get { _surveys }
+        set { setSurveys(newValue) }
     }
 
     @available(iOS 15.0, *)
-    @available(watchOS, unavailable,
-    message: "Surveys are only available on iOS 15+"
-    )
-    @available(macOS, unavailable,
-    message: "Surveys are only available on iOS 15+"
-    )
-    @available(tvOS, unavailable,
-    message: "Surveys are only available on iOS 15+"
-    )
-    @available(visionOS, unavailable,
-    message: "Surveys are only available on iOS 15+"
-    )
-    @objc
-public
-    var surveysConfig: PostHogSurveysConfig{
-            get{_surveysConfig}
-            set { setSurveysConfig(newValue) }
+    @available(watchOS, unavailable, message: "Surveys are only available on iOS 15+")
+    @available(macOS, unavailable, message: "Surveys are only available on iOS 15+")
+    @available(tvOS, unavailable, message: "Surveys are only available on iOS 15+")
+    @available(visionOS, unavailable, message: "Surveys are only available on iOS 15+")
+    @objc public var surveysConfig: PostHogSurveysConfig {
+        get { _surveysConfig }
+        set { setSurveysConfig(newValue) }
     }
+
+    /// Optional custom URLSessionConfiguration for network requests
+    /// If not set, uses URLSessionConfiguration.default
+    /// Useful for testing, proxying, or custom network configurations
+    @objc public var urlSessionConfiguration: URLSessionConfiguration?
 
     // only internal
     var disableReachabilityForTesting: Bool = false
     var disableQueueTimerForTesting: Bool = false
     // internal
-public
-    var storageManager: PostHogStorageManager ?
+    public var storageManager: PostHogStorageManager?
 
-                        @objc(apiKey
-    :)
-public
-    init(
-            apiKey: String
+    @objc(apiKey:)
+    public init(
+        apiKey: String
     ) {
         self.apiKey = apiKey
         host = URL(string: PostHogConfig.defaultHost)!
     }
 
-    @objc(
-    apiKey: host
-    :)
-public
-    init(
-            apiKey: String,
-            host: String = defaultHost
+    @objc(apiKey:host:)
+    public init(
+        apiKey: String,
+        host: String = defaultHost
     ) {
         self.apiKey = apiKey
         self.host = URL(string: host) ?? URL(string: PostHogConfig.defaultHost)!
     }
 
     /// Returns an array of integrations to be installed based on current configuration
-    func getIntegrations()
+    func getIntegrations() -> [PostHogIntegration] {
+        var integrations: [PostHogIntegration] = []
 
-    -> [PostHogIntegration] {
-        var
-        integrations:
-        [PostHogIntegration] = []
+        if captureScreenViews {
+            integrations.append(PostHogScreenViewIntegration())
+        }
 
-        if captureScreenViews{
-                    integrations.append(PostHogScreenViewIntegration())
+        if captureApplicationLifecycleEvents {
+            integrations.append(PostHogAppLifeCycleIntegration())
+        }
+
+        #if os(iOS)
+            if sessionReplay {
+                integrations.append(PostHogReplayIntegration())
             }
 
-        if captureApplicationLifecycleEvents{
-                    integrations.append(PostHogAppLifeCycleIntegration())
+            if _surveys {
+                integrations.append(PostHogSurveyIntegration())
             }
 
-#if os(iOS)
-        if sessionReplay {
-            integrations.append(PostHogReplayIntegration())
-        }
+        #endif
 
-        if _surveys {
-            integrations.append(PostHogSurveyIntegration())
-        }
-
-#endif
-
-#if os(iOS) || targetEnvironment(macCatalyst)
-        if captureElementInteractions {
-            integrations.append(PostHogAutocaptureIntegration())
-        }
-#endif
+        #if os(iOS) || targetEnvironment(macCatalyst)
+            if captureElementInteractions {
+                integrations.append(PostHogAutocaptureIntegration())
+            }
+        #endif
 
         return integrations
     }
 
     var _surveys: Bool = true // swiftlint:disable:this identifier_name
-private
-
-    func setSurveys(_ value
-
-    : Bool) {
+    private func setSurveys(_ value: Bool) {
         // protection against objc API availability warning instead of error
         // Unlike swift, which enforces stricter safety rules, objc just displays a warning
-        if #available(iOS
-        15.0, *) {
+        if #available(iOS 15.0, *) {
             _surveys = value
         }
     }
 
-    var _surveysConfig: PostHogSurveysConfig
-    = .
-
-    init() // swiftlint:disable:this identifier_name
-private
-
-    func setSurveysConfig(_ value
-
-    : PostHogSurveysConfig) {
+    var _surveysConfig: PostHogSurveysConfig = .init() // swiftlint:disable:this identifier_name
+    private func setSurveysConfig(_ value: PostHogSurveysConfig) {
         // protection against objc API availability warning instead of error
         // Unlike swift, which enforces stricter safety rules, objc just displays a warning
-        if #available(iOS
-        15.0, *) {
+        if #available(iOS 15.0, *) {
             _surveysConfig = value
         }
     }
 
     /// Hook that allows to sanitize the event
     /// The hook is called before the event is cached or sent over the wire
-private
-    var beforeSend: BeforeSendBlock = {$0}
+    private var beforeSend: BeforeSendBlock = { $0 }
 
-private
-
-    static func buildBeforeSendBlock(_ blocks
-
-    : [BeforeSendBlock]) -> BeforeSendBlock {
-        {
-            event in
-            blocks.reduce(event)
-            {
-                event, block
-                in
+    private static func buildBeforeSendBlock(_ blocks: [BeforeSendBlock]) -> BeforeSendBlock {
+        { event in
+            blocks.reduce(event) { event, block in
                 event.flatMap(block)
             }
         }
     }
 
-public
-
-    func setBeforeSend(_ blocks
-
-    : [BeforeSendBlock]) {
+    public func setBeforeSend(_ blocks: [BeforeSendBlock]) {
         beforeSend = Self.buildBeforeSendBlock(blocks)
     }
 
-public
-
-    func setBeforeSend(_ blocks
-
-    : BeforeSendBlock...) {
+    public func setBeforeSend(_ blocks: BeforeSendBlock...) {
         setBeforeSend(blocks)
     }
 
-    @available(*, unavailable,
-    message: "Use setBeforeSend(_ blocks: BeforeSendBlock...) instead"
-    )
-    @objc
-public
-
-    func setBeforeSend(_ blocks
-
-    : [BoxedBeforeSendBlock]) {
+    @available(*, unavailable, message: "Use setBeforeSend(_ blocks: BeforeSendBlock...) instead")
+    @objc public func setBeforeSend(_ blocks: [BoxedBeforeSendBlock]) {
         setBeforeSend(blocks.map(\.block))
     }
 
-    func runBeforeSend(_ event
-
-    : PostHogEvent) -> PostHogEvent? {
+    func runBeforeSend(_ event: PostHogEvent) -> PostHogEvent? {
         beforeSend(event)
     }
 }

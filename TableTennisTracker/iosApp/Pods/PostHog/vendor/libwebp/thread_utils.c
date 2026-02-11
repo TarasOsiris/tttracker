@@ -259,110 +259,110 @@ static void ChangeState(WebPWorker* const worker, WebPWorkerStatus new_status) {
 
 //------------------------------------------------------------------------------
 
-static void Init(WebPWorker *const worker) {
-    memset(worker, 0, sizeof(*worker));
-    worker->status_ = NOT_OK;
+static void Init(WebPWorker* const worker) {
+  memset(worker, 0, sizeof(*worker));
+  worker->status_ = NOT_OK;
 }
 
-static int Sync(WebPWorker *const worker) {
+static int Sync(WebPWorker* const worker) {
 #ifdef WEBP_USE_THREAD
-    ChangeState(worker, OK);
+  ChangeState(worker, OK);
 #endif
-    ASSERT(worker->status_ <= OK);
-    return !worker->had_error;
+  ASSERT(worker->status_ <= OK);
+  return !worker->had_error;
 }
 
-static int Reset(WebPWorker *const worker) {
-    int ok = 1;
-    worker->had_error = 0;
-    if (worker->status_ < OK) {
+static int Reset(WebPWorker* const worker) {
+  int ok = 1;
+  worker->had_error = 0;
+  if (worker->status_ < OK) {
 #ifdef WEBP_USE_THREAD
-        WebPWorkerImpl* const impl =
-            (WebPWorkerImpl*)WebPSafeCalloc(1, sizeof(WebPWorkerImpl));
-        worker->impl_ = (void*)impl;
-        if (worker->impl_ == NULL) {
-          return 0;
-        }
-        if (pthread_mutex_init(&impl->mutex_, NULL)) {
-          goto Error;
-        }
-        if (pthread_cond_init(&impl->condition_, NULL)) {
-          pthread_mutex_destroy(&impl->mutex_);
-          goto Error;
-        }
-        pthread_mutex_lock(&impl->mutex_);
-        ok = !pthread_create(&impl->thread_, NULL, ThreadLoop, worker);
-        if (ok) worker->status_ = OK;
-        pthread_mutex_unlock(&impl->mutex_);
-        if (!ok) {
-          pthread_mutex_destroy(&impl->mutex_);
-          pthread_cond_destroy(&impl->condition_);
-     Error:
-          WebPSafeFree(impl);
-          worker->impl_ = NULL;
-          return 0;
-        }
-#else
-        worker->status_ = OK;
-#endif
-    } else if (worker->status_ > OK) {
-        ok = Sync(worker);
+    WebPWorkerImpl* const impl =
+        (WebPWorkerImpl*)WebPSafeCalloc(1, sizeof(WebPWorkerImpl));
+    worker->impl_ = (void*)impl;
+    if (worker->impl_ == NULL) {
+      return 0;
     }
-    ASSERT(!ok || (worker->status_ == OK));
-    return ok;
-}
-
-static void Execute(WebPWorker *const worker) {
-    if (worker->hook != NULL) {
-        worker->had_error |= !worker->hook(worker->data1, worker->data2);
+    if (pthread_mutex_init(&impl->mutex_, NULL)) {
+      goto Error;
     }
-}
-
-static void Launch(WebPWorker *const worker) {
-#ifdef WEBP_USE_THREAD
-    ChangeState(worker, WORK);
-#else
-    Execute(worker);
-#endif
-}
-
-static void End(WebPWorker *const worker) {
-#ifdef WEBP_USE_THREAD
-    if (worker->impl_ != NULL) {
-      WebPWorkerImpl* const impl = (WebPWorkerImpl*)worker->impl_;
-      ChangeState(worker, NOT_OK);
-      pthread_join(impl->thread_, NULL);
+    if (pthread_cond_init(&impl->condition_, NULL)) {
+      pthread_mutex_destroy(&impl->mutex_);
+      goto Error;
+    }
+    pthread_mutex_lock(&impl->mutex_);
+    ok = !pthread_create(&impl->thread_, NULL, ThreadLoop, worker);
+    if (ok) worker->status_ = OK;
+    pthread_mutex_unlock(&impl->mutex_);
+    if (!ok) {
       pthread_mutex_destroy(&impl->mutex_);
       pthread_cond_destroy(&impl->condition_);
+ Error:
       WebPSafeFree(impl);
       worker->impl_ = NULL;
+      return 0;
     }
 #else
-    worker->status_ = NOT_OK;
-    ASSERT(worker->impl_ == NULL);
+    worker->status_ = OK;
 #endif
-    ASSERT(worker->status_ == NOT_OK);
+  } else if (worker->status_ > OK) {
+    ok = Sync(worker);
+  }
+  ASSERT(!ok || (worker->status_ == OK));
+  return ok;
+}
+
+static void Execute(WebPWorker* const worker) {
+  if (worker->hook != NULL) {
+    worker->had_error |= !worker->hook(worker->data1, worker->data2);
+  }
+}
+
+static void Launch(WebPWorker* const worker) {
+#ifdef WEBP_USE_THREAD
+  ChangeState(worker, WORK);
+#else
+  Execute(worker);
+#endif
+}
+
+static void End(WebPWorker* const worker) {
+#ifdef WEBP_USE_THREAD
+  if (worker->impl_ != NULL) {
+    WebPWorkerImpl* const impl = (WebPWorkerImpl*)worker->impl_;
+    ChangeState(worker, NOT_OK);
+    pthread_join(impl->thread_, NULL);
+    pthread_mutex_destroy(&impl->mutex_);
+    pthread_cond_destroy(&impl->condition_);
+    WebPSafeFree(impl);
+    worker->impl_ = NULL;
+  }
+#else
+  worker->status_ = NOT_OK;
+  ASSERT(worker->impl_ == NULL);
+#endif
+  ASSERT(worker->status_ == NOT_OK);
 }
 
 //------------------------------------------------------------------------------
 
 static WebPWorkerInterface g_worker_interface = {
-        Init, Reset, Sync, Launch, Execute, End
+  Init, Reset, Sync, Launch, Execute, End
 };
 
-int WebPSetWorkerInterface(const WebPWorkerInterface *const winterface) {
-    if (winterface == NULL ||
-        winterface->Init == NULL || winterface->Reset == NULL ||
-        winterface->Sync == NULL || winterface->Launch == NULL ||
-        winterface->Execute == NULL || winterface->End == NULL) {
-        return 0;
-    }
-    g_worker_interface = *winterface;
-    return 1;
+int WebPSetWorkerInterface(const WebPWorkerInterface* const winterface) {
+  if (winterface == NULL ||
+      winterface->Init == NULL || winterface->Reset == NULL ||
+      winterface->Sync == NULL || winterface->Launch == NULL ||
+      winterface->Execute == NULL || winterface->End == NULL) {
+    return 0;
+  }
+  g_worker_interface = *winterface;
+  return 1;
 }
 
-const WebPWorkerInterface *WebPGetWorkerInterface(void) {
-    return &g_worker_interface;
+const WebPWorkerInterface* WebPGetWorkerInterface(void) {
+  return &g_worker_interface;
 }
 
 //------------------------------------------------------------------------------

@@ -16,28 +16,19 @@ import Foundation
  If needed, we can use UserDefaults for lightweight data - according to Apple, you can use UserDefaults to persist up to 500KB of data on tvOS
  see: https://developer.apple.com/forums/thread/16967?answerId=50696022#50696022
  */
-func applicationSupportDirectoryURL()
+func applicationSupportDirectoryURL() -> URL {
+    #if os(tvOS)
+        // tvOS restricts access to Application Support directory on physical devices
+        // Use Library/Caches directory which may have less frequent eviction behavior than temp (which is purged when the app quits)
+        let searchPath: FileManager.SearchPathDirectory = .cachesDirectory
+    #else
+        let searchPath: FileManager.SearchPathDirectory = .applicationSupportDirectory
+    #endif
 
--> URL {
-#if os(tvOS)
-// tvOS restricts access to Application Support directory on physical devices
-// Use Library/Caches directory which may have less frequent eviction behavior than temp (which is purged when the app quits)
-let searchPath: FileManager.SearchPathDirectory = .cachesDirectory
-#else
-let searchPath
-: FileManager.
-SearchPathDirectory =
-.
-applicationSupportDirectory
-#endif
+    let url = FileManager.default.urls(for: searchPath, in: .userDomainMask).first!
+    let bundleIdentifier = getBundleIdentifier()
 
-        let
-url = FileManager.
-default.urls(for: searchPath, in: .userDomainMask).first!
-let bundleIdentifier = getBundleIdentifier()
-
-return url.
-appendingPathComponent(bundleIdentifier)
+    return url.appendingPathComponent(bundleIdentifier)
 }
 
 /**
@@ -53,55 +44,38 @@ appendingPathComponent(bundleIdentifier)
 
   see: https://developer.apple.com/documentation/foundation/filemanager/1412643-containerurl/
   */
-func appGroupContainerUrl(config
-: PostHogConfig) -> URL? {
-guard let
-appGroupIdentifier = config.appGroupIdentifier
-else {
-return nil }
+func appGroupContainerUrl(config: PostHogConfig) -> URL? {
+    guard let appGroupIdentifier = config.appGroupIdentifier else { return nil }
 
-#if os(tvOS)
-// tvOS: Due to stricter sandbox rules, creating "Application Support" directory is not possible on tvOS
-let librarySubPath = "Library/Caches/"
-#else
-let librarySubPath = "Library/Application Support/"
-#endif
+    #if os(tvOS)
+        // tvOS: Due to stricter sandbox rules, creating "Application Support" directory is not possible on tvOS
+        let librarySubPath = "Library/Caches/"
+    #else
+        let librarySubPath = "Library/Application Support/"
+    #endif
 
-let libraryUrl = FileManager.
-default
-.
-containerURL(forSecurityApplicationGroupIdentifier
-: appGroupIdentifier)?
-.
-appendingPathComponent(librarySubPath)
+    let libraryUrl = FileManager.default
+        .containerURL(forSecurityApplicationGroupIdentifier: appGroupIdentifier)?
+        .appendingPathComponent(librarySubPath)
 
-guard let
-url = libraryUrl ?
-.
-appendingPathComponent(appGroupIdentifier)
-else {
-return nil }
+    guard let url = libraryUrl?.appendingPathComponent(appGroupIdentifier) else { return nil }
 
-createDirectoryAtURLIfNeeded(url
-: url)
+    createDirectoryAtURLIfNeeded(url: url)
 
-// Merges a legacy container (using bundleIdentifier) into the new container using appGroupIdentifier
-mergeLegacyContainerIfNeeded(within
-: libraryUrl, to: url)
+    // Merges a legacy container (using bundleIdentifier) into the new container using appGroupIdentifier
+    mergeLegacyContainerIfNeeded(within: libraryUrl, to: url)
 
-return
-directoryExists(url)
-? url : nil
+    return directoryExists(url) ? url : nil
 }
 
-func getBundleIdentifier()
-
--> String {
-#if TESTING // only visible to test targets
-return Bundle.main.bundleIdentifier ?? "com.posthog.test"
-#else
-return Bundle.main.bundleIdentifier!
-#endif
+func getBundleIdentifier() -> String {
+    #if TESTING // only visible to test targets
+        return Bundle.main.bundleIdentifier ?? "com.posthog.test"
+    #else
+        // Can be nil for command-line tools, XCTest hosts, Swift Playgrounds etc
+        // Should theoretically never be nil for a shipping app
+        return Bundle.main.bundleIdentifier ?? "com.posthog.unknown"
+    #endif
 }
 
 /**
@@ -109,10 +83,8 @@ return Bundle.main.bundleIdentifier!
 
  App extensions have bundle paths ending in ".appex"
  */
-func isExtension()
-
--> Bool {
-Bundle.main.bundlePath.hasSuffix(".appex")
+func isExtension() -> Bool {
+    Bundle.main.bundlePath.hasSuffix(".appex")
 }
 
 /**
@@ -132,52 +104,37 @@ Bundle.main.bundlePath.hasSuffix(".appex")
    - libraryUrl: The base library URL where both legacy and new containers might exist
    - destinationUrl: The target app group container URL where files should be migrated
  */
-func mergeLegacyContainerIfNeeded(within
-libraryUrl: URL?,
-to destinationUrl
-: URL) {
-let bundleIdentifier = getBundleIdentifier()
-guard let
-sourceUrl = libraryUrl ?
-.
-appendingPathComponent(bundleIdentifier), directoryExists(sourceUrl)
-else {
-return
-}
+func mergeLegacyContainerIfNeeded(within libraryUrl: URL?, to destinationUrl: URL) {
+    let bundleIdentifier = getBundleIdentifier()
+    guard let sourceUrl = libraryUrl?.appendingPathComponent(bundleIdentifier), directoryExists(sourceUrl) else {
+        return
+    }
 
-let skipKeys
-: [PostHogStorage.StorageKey]
-if
+    let skipKeys: [PostHogStorage.StorageKey]
+    if isExtension() {
+        // Extensions should skip migrating identity-related keys to ensure consistent user identity with main app target
+        skipKeys = [
+            .distinctId,
+            .anonymousId,
+            .isIdentified,
+            .groups,
+            .registerProperties,
+            .personPropertiesForFlags,
+            .groupPropertiesForFlags,
+        ]
+        hedgeLog("Legacy folder found at \(sourceUrl), merging from extension... (skipping \(skipKeys.count) identity keys)")
+    } else {
+        skipKeys = []
+        hedgeLog("Legacy folder found at \(sourceUrl), merging from main app... (migrating all keys)")
+    }
 
-isExtension() {
-    // Extensions should skip migrating identity-related keys to ensure consistent user identity with main app target
-    skipKeys = [
-    .distinctId,
-    .anonymousId,
-    .isIdentified,
-    .groups,
-    .registerProperties,
-    .personPropertiesForFlags,
-    .groupPropertiesForFlags,
-    ]
-    hedgeLog(
-            "Legacy folder found at \(sourceUrl), merging from extension... (skipping \(skipKeys.count) identity keys)")
-}
+    // Migrate contents from the legacy container
+    migrateDirectoryContents(from: sourceUrl, to: destinationUrl, skipKeys: skipKeys)
 
-else {
-skipKeys = []
-hedgeLog("Legacy folder found at \(sourceUrl), merging from main app... (migrating all keys)")
-}
-
-// Migrate contents from the legacy container
-migrateDirectoryContents(from
-: sourceUrl, to: destinationUrl, skipKeys: skipKeys)
-
-// Try to remove the source directory if it's empty
-if
-removeIfEmpty(sourceUrl) {
+    // Try to remove the source directory if it's empty
+    if removeIfEmpty(sourceUrl) {
         hedgeLog("Successfully migrated and removed legacy folder at \(sourceUrl)")
-}
+    }
 }
 
 /**
@@ -187,26 +144,18 @@ removeIfEmpty(sourceUrl) {
    - url: The directory URL to potentially remove
  - Returns: `true` if the directory was removed, `false` otherwise
  */
-@
-discardableResult
-        func
-removeIfEmpty(_
-url: URL) -> Bool {
-let remainingItems =
-try? FileManager.default.
-contentsOfDirectory(at
-: url, includingPropertiesForKeys: nil, options: [])
-if remainingItems?.isEmpty == true {
-do {
-try FileManager.default.
-removeItem(at
-: url)
-return true
-} catch {
-hedgeLog("Failed to remove empty directory at \(url.path): \(error)")
-}
-}
-return false
+@discardableResult
+func removeIfEmpty(_ url: URL) -> Bool {
+    let remainingItems = try? FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: nil, options: [])
+    if remainingItems?.isEmpty == true {
+        do {
+            try FileManager.default.removeItem(at: url)
+            return true
+        } catch {
+            hedgeLog("Failed to remove empty directory at \(url.path): \(error)")
+        }
+    }
+    return false
 }
 
 /**
@@ -222,21 +171,12 @@ return false
    - skipCopy: Wether to skip copying file to desitnation
  - Throws: Any errors that occur during file operations
  */
-func migrateFile(from
-sourceFile: URL,
-to destinationFile
-: URL, skipCopy: Bool) throws {
-if !skipCopy, !FileManager.default.
-fileExists(atPath
-: destinationFile.path) {
-try FileManager.default.
-copyItem(at
-: sourceFile, to: destinationFile)
-}
-// Always delete source file after processing (whether copied or skipped)
-try FileManager.default.
-removeItem(at
-: sourceFile)
+func migrateFile(from sourceFile: URL, to destinationFile: URL, skipCopy: Bool) throws {
+    if !skipCopy, !FileManager.default.fileExists(atPath: destinationFile.path) {
+        try FileManager.default.copyItem(at: sourceFile, to: destinationFile)
+    }
+    // Always delete source file after processing (whether copied or skipped)
+    try FileManager.default.removeItem(at: sourceFile)
 }
 
 /**
@@ -247,64 +187,46 @@ removeItem(at
    - destinationDir: The destination directory URL
    - skipKeys: Array of storage keys that should be skipped during migration
  */
-func migrateDirectoryContents(from
-sourceDir: URL,
-to destinationDir
-: URL, skipKeys: [PostHogStorage.StorageKey] = []) {
-do {
-// Create destination directory if it doesn't exist (we need to call this here again as the function is recursive)
-createDirectoryAtURLIfNeeded(url
-: destinationDir)
+func migrateDirectoryContents(from sourceDir: URL, to destinationDir: URL, skipKeys: [PostHogStorage.StorageKey] = []) {
+    do {
+        // Create destination directory if it doesn't exist (we need to call this here again as the function is recursive)
+        createDirectoryAtURLIfNeeded(url: destinationDir)
 
-// Get all items in source directory
-let items =
-try FileManager.default.
-contentsOfDirectory(at
-: sourceDir, includingPropertiesForKeys: nil, options: [])
+        // Get all items in source directory
+        let items = try FileManager.default.contentsOfDirectory(at: sourceDir, includingPropertiesForKeys: nil, options: [])
 
-for
-item in
-items {
-let destinationItem = destinationDir.appendingPathComponent(item.lastPathComponent)
+        for item in items {
+            let destinationItem = destinationDir.appendingPathComponent(item.lastPathComponent)
 
-// Check if it's a directory
-var isDirectory
-:
-ObjCBool = false
-if FileManager.default.
-fileExists(atPath
-: item.path, isDirectory: &isDirectory) {
-if isDirectory.boolValue {
-// Recursively migrate subdirectory (preserving the folder structure)
-migrateDirectoryContents(from
-: item, to: destinationItem, skipKeys: skipKeys)
-// Remove empty directory after migration
-removeIfEmpty(item)
-} else {
-let fileName = item.lastPathComponent
-let shouldSkip = skipKeys.contains(where
-: {
-$0.rawValue == fileName })
+            // Check if it's a directory
+            var isDirectory: ObjCBool = false
+            if FileManager.default.fileExists(atPath: item.path, isDirectory: &isDirectory) {
+                if isDirectory.boolValue {
+                    // Recursively migrate subdirectory (preserving the folder structure)
+                    migrateDirectoryContents(from: item, to: destinationItem, skipKeys: skipKeys)
+                    // Remove empty directory after migration
+                    removeIfEmpty(item)
+                } else {
+                    let fileName = item.lastPathComponent
+                    let shouldSkip = skipKeys.contains(where: { $0.rawValue == fileName })
 
-// Migrate file
-do {
-try
-migrateFile(from
-: item, to: destinationItem, skipCopy: shouldSkip)
-} catch {
-hedgeLog("Failed to migrate file from \(item.path) to \(destinationItem.path): \(error)")
-}
-}
-}
-}
-} catch {
-hedgeLog("Error reading directory contents at \(sourceDir.path): \(error)")
-}
+                    // Migrate file
+                    do {
+                        try migrateFile(from: item, to: destinationItem, skipCopy: shouldSkip)
+                    } catch {
+                        hedgeLog("Failed to migrate file from \(item.path) to \(destinationItem.path): \(error)")
+                    }
+                }
+            }
+        }
+    } catch {
+        hedgeLog("Error reading directory contents at \(sourceDir.path): \(error)")
+    }
 }
 
 class PostHogStorage {
     // when adding or removing items here, make sure to update the reset method
-    enum StorageKey : String, CaseIterable {
+    enum StorageKey: String, CaseIterable {
         case distinctId = "posthog.distinctId"
         case anonymousId = "posthog.anonymousId"
         case queue = "posthog.queueFolder" // NOTE: This is different to posthog-ios v2
@@ -337,9 +259,7 @@ class PostHogStorage {
         Self.migrateLegacyStorage(from: config, to: appFolderUrl)
     }
 
-    func url(forKey key
-
-    : StorageKey) -> URL {
+    func url(forKey key: StorageKey) -> URL {
         appFolderUrl.appendingPathComponent(key.rawValue)
     }
 
@@ -414,101 +334,62 @@ class PostHogStorage {
      an app extension, Widget or App Clip. If there's a defined `appGroupIdentifier` in configuration,
      we want to use a shared container for storing data so that extensions correctly identify a user (and batch process events)
      */
-private
-
-    static func getBaseAppFolderUrl(from configuration
-
-    : PostHogConfig) -> URL {
+    private static func getBaseAppFolderUrl(from configuration: PostHogConfig) -> URL {
         appGroupContainerUrl(config: configuration) ?? applicationSupportDirectoryURL()
     }
 
-private
-
-    static func migrateItem(at sourceUrl
-
-    : URL,
-    to destinationUrl: URL, fileManager: FileManager
-    ) throws {
-        guard
-        fileManager.fileExists(atPath: sourceUrl.path) else { return }
+    private static func migrateItem(at sourceUrl: URL, to destinationUrl: URL, fileManager: FileManager) throws {
+        guard fileManager.fileExists(atPath: sourceUrl.path) else { return }
         // Copy file or directory over (if it doesn't exist)
         if !fileManager.fileExists(atPath: destinationUrl.path) {
-            try
-            fileManager.copyItem(at: sourceUrl, to: destinationUrl)
+            try fileManager.copyItem(at: sourceUrl, to: destinationUrl)
         }
     }
 
-private
+    private static func migrateLegacyStorage(from configuration: PostHogConfig, to apiDir: URL) {
+        let legacyUrl = getBaseAppFolderUrl(from: configuration)
+        if directoryExists(legacyUrl) {
+            let fileManager = FileManager.default
 
-    static func migrateLegacyStorage(from configuration
-
-    : PostHogConfig,
-    to apiDir: URL
-    ) {
-        let
-        legacyUrl = getBaseAppFolderUrl(from: configuration)
-        if directoryExists(legacyUrl)
-        {
-            let
-            fileManager = FileManager.
-            default
-
-                // Migrate old files that correspond to StorageKey values
-                for
-            storageKey
-            in
-            StorageKey.allCases
-            {
+            // Migrate old files that correspond to StorageKey values
+            for storageKey in StorageKey.allCases {
                 let legacyFileUrl = legacyUrl.appendingPathComponent(storageKey.rawValue)
                 let newFileUrl = apiDir.appendingPathComponent(storageKey.rawValue)
 
                 do {
                     // Migrate the item and its contents if it exists
-                    try
-                    migrateItem(at: legacyFileUrl, to: newFileUrl, fileManager: fileManager)
+                    try migrateItem(at: legacyFileUrl, to: newFileUrl, fileManager: fileManager)
                 } catch {
-                    hedgeLog(
-                            "Error during storage migration for file \(storageKey.rawValue) at path \(legacyFileUrl.path): \(error)")
+                    hedgeLog("Error during storage migration for file \(storageKey.rawValue) at path \(legacyFileUrl.path): \(error)")
                 }
 
                 // Remove the legacy item after successful migration
                 if fileManager.fileExists(atPath: legacyFileUrl.path) {
                     do {
-                        try
-                        fileManager.removeItem(at: legacyFileUrl)
+                        try fileManager.removeItem(at: legacyFileUrl)
                     } catch {
-                        hedgeLog(
-                                "Could not delete file \(storageKey.rawValue) at path \(legacyFileUrl.path): \(error)")
+                        hedgeLog("Could not delete file \(storageKey.rawValue) at path \(legacyFileUrl.path): \(error)")
                     }
                 }
             }
         }
     }
 
-private
-
-    static func getAppFolderUrl(from configuration
-
-    : PostHogConfig) -> URL {
-        let
-        apiDir = getBaseAppFolderUrl(from: configuration)
-        .appendingPathComponent(configuration.apiKey)
+    private static func getAppFolderUrl(from configuration: PostHogConfig) -> URL {
+        let apiDir = getBaseAppFolderUrl(from: configuration)
+            .appendingPathComponent(configuration.apiKey)
 
         createDirectoryAtURLIfNeeded(url: apiDir)
 
         return apiDir
     }
 
-    func reset(keepAnonymousId
-
-    :
-    Bool = false
-    ) {
+    func reset(keepAnonymousId: Bool = false) {
         // sadly the StorageKey.allCases does not work here
         deleteSafely(url(forKey: .distinctId))
-        if !keepAnonymousId{
-                    deleteSafely(url(forKey: .anonymousId))
-            }
+        if !keepAnonymousId {
+            deleteSafely(url(forKey: .anonymousId))
+        }
         // .queue, .replayQeueue not needed since it'll be deleted by the queue.clear()
         deleteSafely(url(forKey: .oldQeueue))
         deleteSafely(url(forKey: .flags))
@@ -527,17 +408,13 @@ private
         deleteSafely(url(forKey: .groupPropertiesForFlags))
     }
 
-    func remove(key
-
-    : StorageKey) {
+    func remove(key: StorageKey) {
         let url = url(forKey: key)
 
         deleteSafely(url)
     }
 
-    func getString(forKey key
-
-    : StorageKey) -> String? {
+    func getString(forKey key: StorageKey) -> String? {
         let value = getJson(forKey: key)
         if let stringValue = value as? String {
             return stringValue
@@ -547,35 +424,19 @@ private
         return nil
     }
 
-    func setString(forKey key
-
-    : StorageKey,
-    contents: String
-    ) {
+    func setString(forKey key: StorageKey, contents: String) {
         setJson(forKey: key, json: contents)
     }
 
-    func getDictionary(forKey key
-
-    : StorageKey) -> [
-    AnyHashable: Any
-    ]? {
+    func getDictionary(forKey key: StorageKey) -> [AnyHashable: Any]? {
         getJson(forKey: key) as? [AnyHashable: Any]
     }
 
-    func setDictionary(forKey key
-
-    : StorageKey,
-    contents:
-    [
-    AnyHashable: Any
-    ]) {
+    func setDictionary(forKey key: StorageKey, contents: [AnyHashable: Any]) {
         setJson(forKey: key, json: contents)
     }
 
-    func getBool(forKey key
-
-    : StorageKey) -> Bool? {
+    func getBool(forKey key: StorageKey) -> Bool? {
         let value = getJson(forKey: key)
         if let boolValue = value as? Bool {
             return boolValue
@@ -585,50 +446,29 @@ private
         return nil
     }
 
-    func setBool(forKey key
-
-    : StorageKey,
-    contents: Bool
-    ) {
+    func setBool(forKey key: StorageKey, contents: Bool) {
         setJson(forKey: key, json: contents)
     }
 
-    func getInt(forKey key
-
-    : StorageKey) -> Int? {
-        let
-        value = getJson(forKey: key)
-        if let
-        intValue = value
-        as ? Int{
+    func getInt(forKey key: StorageKey) -> Int? {
+        let value = getJson(forKey: key)
+        if let intValue = value as? Int {
+            return intValue
+        } else if let numberValue = value as? NSNumber {
+            return numberValue.intValue
+        } else if let dictValue = value as? [String: Any],
+                  let nestedValue = dictValue[key.rawValue]
+        {
+            if let intValue = nestedValue as? Int {
                 return intValue
-        } else if let
-        numberValue = value
-        as ? NSNumber{
+            } else if let numberValue = nestedValue as? NSNumber {
                 return numberValue.intValue
-        } else if let
-        dictValue = value
-        as ? [String:
-        Any],
-        let nestedValue = dictValue[key.rawValue] {
-            if let
-            intValue = nestedValue
-            as ? Int{
-                    return intValue
-            } else if let
-            numberValue = nestedValue
-            as ? NSNumber{
-                    return numberValue.intValue
             }
         }
         return nil
     }
 
-    func setInt(forKey key
-
-    : StorageKey,
-    contents: Int
-    ) {
+    func setInt(forKey key: StorageKey, contents: Int) {
         setJson(forKey: key, json: contents)
     }
 }

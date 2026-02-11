@@ -9,18 +9,18 @@
 //
 
 #if os(iOS) || os(tvOS)
-import Foundation
-import UIKit
+    import Foundation
+    import UIKit
 
-extension UIViewController {
-    static func getViewControllerName(_ viewController: UIViewController) -> String? {
-        var title: String? = String(describing: viewController.classForCoder).replacingOccurrences(of: "ViewController", with: "")
+    extension UIViewController {
+        static func getViewControllerName(_ viewController: UIViewController) -> String? {
+            var title: String? = String(describing: viewController.classForCoder).replacingOccurrences(of: "ViewController", with: "")
 
-        if title?.isEmpty == true {
-            title = viewController.title ?? nil
+            if title?.isEmpty == true {
+                title = viewController.title ?? nil
+            }
+
+            return title
         }
-
-        return title
     }
-}
 #endif

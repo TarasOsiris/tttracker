@@ -1,8 +1,8 @@
 PODS:
   - composeApp (1.0):
-    - PostHog (= 3.38.0)
+    - PostHog (= 3.41.0)
     - Sentry (~> 8.57.3)
-  - PostHog (3.38.0)
+  - PostHog (3.41.0)
   - Sentry (8.57.3):
     - Sentry/Core (= 8.57.3)
   - Sentry/Core (8.57.3)
@@ -21,8 +21,8 @@ EXTERNAL SOURCES:
     :path: "../composeApp"
 
 SPEC CHECKSUMS:
-  composeApp: 2a56cd657b7452ac9b063fa28cbcb037fda772d7
-  PostHog: b42fd6ae60326411582e97bea5786ba748cab8a0
+  composeApp: adfa4da1fd5efea36f23b41e9afc7919115fa917
+  PostHog: ac624b64bc43f36a262f5385ef822da8efe9b471
   Sentry: c643eb180df401dd8c734c5036ddd9dd9218daa6
 
 PODFILE CHECKSUM: c62c9e11da649eabc9d484c154ef375333be45dd

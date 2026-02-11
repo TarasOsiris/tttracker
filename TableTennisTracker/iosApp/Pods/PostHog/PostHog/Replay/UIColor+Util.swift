@@ -6,12 +6,12 @@
 //
 #if os(iOS)
 
-import Foundation
-import UIKit
+    import Foundation
+    import UIKit
 
-extension UIColor {
-    func toRGBString() -> String? {
-        cgColor.toRGBString()
+    extension UIColor {
+        func toRGBString() -> String? {
+            cgColor.toRGBString()
+        }
     }
-}
 #endif

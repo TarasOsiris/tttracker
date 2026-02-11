@@ -242,7 +242,6 @@ static int mipsCPUInfo(CPUFeature feature) {
 WEBP_EXTERN VP8CPUInfo VP8GetCPUInfo;
 VP8CPUInfo VP8GetCPUInfo = mipsCPUInfo;
 #else
-WEBP_EXTERN VP8CPUInfo
-VP8GetCPUInfo;
+WEBP_EXTERN VP8CPUInfo VP8GetCPUInfo;
 VP8CPUInfo VP8GetCPUInfo = NULL;
 #endif

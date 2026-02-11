@@ -7,29 +7,19 @@
 
 import Foundation
 
-final class PostHogScreenViewIntegration : PostHogIntegration {
-    var requiresSwizzling: Bool{true}
+final class PostHogScreenViewIntegration: PostHogIntegration {
+    var requiresSwizzling: Bool { true }
 
-private
-    static var integrationInstalledLock = NSLock()
-private
-    static var integrationInstalled = false
+    private static var integrationInstalledLock = NSLock()
+    private static var integrationInstalled = false
 
-private
-    weak var
-    postHog: PostHogSDK ?
-private
-    var screenViewToken: RegistrationToken ?
+    private weak var postHog: PostHogSDK?
+    private var screenViewToken: RegistrationToken?
 
-                         func install(_ postHog
-    : PostHogSDK) throws {
-        try
-        PostHogScreenViewIntegration.integrationInstalledLock.withLock
-        {
-            if PostHogScreenViewIntegration.integrationInstalled
-            {
-                throw InternalPostHogError(
-                        description: "Autocapture integration already installed to another PostHogSDK instance.")
+    func install(_ postHog: PostHogSDK) throws {
+        try PostHogScreenViewIntegration.integrationInstalledLock.withLock {
+            if PostHogScreenViewIntegration.integrationInstalled {
+                throw InternalPostHogError(description: "Autocapture integration already installed to another PostHogSDK instance.")
             }
             PostHogScreenViewIntegration.integrationInstalled = true
         }
@@ -39,17 +29,15 @@ private
         start()
     }
 
-    func uninstall(_ postHog
-
-    : PostHogSDK) {
+    func uninstall(_ postHog: PostHogSDK) {
         // uninstall only for integration instance
-        if self.postHog == = postHog || self.postHog == nil{
-                    stop()
-                    self.postHog = nil
-                    PostHogScreenViewIntegration.integrationInstalledLock.withLock {
-                        PostHogScreenViewIntegration.integrationInstalled = false
-                    }
+        if self.postHog === postHog || self.postHog == nil {
+            stop()
+            self.postHog = nil
+            PostHogScreenViewIntegration.integrationInstalledLock.withLock {
+                PostHogScreenViewIntegration.integrationInstalled = false
             }
+        }
     }
 
     /**
@@ -57,11 +45,8 @@ private
      */
     func start() {
         let screenViewPublisher = DI.main.screenViewPublisher
-        screenViewToken = screenViewPublisher.onScreenView
-        {
-            [weak
-            self] screen in
-            self ?.captureScreenView(screen: screen)
+        screenViewToken = screenViewPublisher.onScreenView { [weak self] screen in
+            self?.captureScreenView(screen: screen)
         }
     }
 
@@ -72,17 +57,10 @@ private
         screenViewToken = nil
     }
 
-private
+    private func captureScreenView(screen screenName: String) {
+        guard let postHog else { return }
 
-    func captureScreenView(screen screenName
-
-    : String) {
-        guard
-        let
-        postHog else { return }
-
-        if postHog.config.captureScreenViews
-        {
+        if postHog.config.captureScreenViews {
             postHog.screen(screenName)
         } else {
             hedgeLog("Skipping $screen event - captureScreenViews is disabled in configuration")
@@ -91,11 +69,11 @@ private
 }
 
 #if TESTING
-extension PostHogScreenViewIntegration {
-    static func clearInstalls() {
-        integrationInstalledLock.withLock {
-            integrationInstalled = false
+    extension PostHogScreenViewIntegration {
+        static func clearInstalls() {
+            integrationInstalledLock.withLock {
+                integrationInstalled = false
+            }
         }
     }
-}
 #endif

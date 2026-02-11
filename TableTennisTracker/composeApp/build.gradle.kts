@@ -57,7 +57,7 @@ kotlin {
 		}
 
 		pod("PostHog") {
-			version = "3.38.0"
+			version = "3.41.0"
 			extraOpts += listOf("-compiler-option", "-fmodules")
 		}
 	}
