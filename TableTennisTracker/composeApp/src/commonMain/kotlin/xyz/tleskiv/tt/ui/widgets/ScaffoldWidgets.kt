@@ -46,12 +46,13 @@ fun BottomBarButtons(
 	modifier: Modifier = Modifier
 ) {
 	Surface(
-		modifier = modifier.navigationBarsPadding(),
+		modifier = modifier,
 		tonalElevation = 3.dp
 	) {
 		Row(
 			modifier = Modifier
 				.fillMaxWidth()
+				.navigationBarsPadding()
 				.padding(16.dp),
 			horizontalArrangement = Arrangement.spacedBy(12.dp)
 		) {
