@@ -1,5 +1,9 @@
 import SwiftUI
 
+enum SessionsRoute: Hashable {
+    case details(String)
+}
+
 struct SessionsScreen: View {
     @StateModel private var model = SessionsModel()
 
@@ -23,6 +27,11 @@ struct SessionsScreen: View {
         }
         .sheet(isPresented: $isCreating) {
             SessionFormScreen(day: topDay ?? model.today)
+        }
+        .navigationDestination(for: SessionsRoute.self) { route in
+            switch route {
+            case let .details(id): SessionDetailsScreen(sessionId: id)
+            }
         }
         .navigationTitle(L.navSessions)
         .navigationBarTitleDisplayMode(.inline)
@@ -74,9 +83,12 @@ struct SessionsScreen: View {
                 .padding(.vertical, 16)
         } else {
             ForEach(sessions) { session in
-                SessionRow(session: session)
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 8)
+                NavigationLink(value: SessionsRoute.details(session.id)) {
+                    SessionRow(session: session)
+                }
+                .buttonStyle(.plain)
+                .padding(.horizontal, 16)
+                .padding(.vertical, 8)
             }
         }
     }
