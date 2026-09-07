@@ -8,6 +8,7 @@ struct SessionsScreen: View {
     /// function of it, there is no second position that could disagree and no loop to arbitrate.
     @State private var topDay: Date?
     @State private var isCalendarExpanded = false
+    @State private var isCreating = false
 
     @Environment(\.scenePhase) private var scenePhase
 
@@ -20,6 +21,9 @@ struct SessionsScreen: View {
         .onChange(of: scenePhase) { _, phase in
             if phase == .active { model.refreshToday() }
         }
+        .sheet(isPresented: $isCreating) {
+            SessionFormScreen(day: topDay ?? model.today)
+        }
         .navigationTitle(L.navSessions)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -27,6 +31,10 @@ struct SessionsScreen: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(L.timeToday) { self.topDay = model.today }
                 }
+            }
+            ToolbarItem(placement: .topBarTrailing) {
+                Button { isCreating = true } label: { Image(systemName: "plus") }
+                    .accessibilityLabel(L.actionAddSession)
             }
         }
     }
