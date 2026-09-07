@@ -10,6 +10,7 @@
     <!-- General Actions -->
     <string name="action_ok">OK</string>
     <string name="action_cancel">Annuler</string>
+    <string name="action_close">Fermer</string>
     <string name="action_change">Modifier</string>
     <string name="action_edit">Modifier</string>
     <string name="action_save">Enregistrer</string>
@@ -88,6 +89,21 @@
     <string name="analytics_heatmap_title">Carte thermique des séances d\'entraînement</string>
     <string name="analytics_heatmap_less">Moins</string>
     <string name="analytics_heatmap_more">Plus</string>
+    <string name="analytics_weekly_training">Temps d\'entraînement hebdomadaire</string>
+    <string name="analytics_win_loss_chart">Résultats des matchs</string>
+    <string name="analytics_wins">Victoires</string>
+    <string name="analytics_losses">Défaites</string>
+    <string name="analytics_no_matches">Aucun match pour l\'instant</string>
+    <string name="analytics_no_training">Aucune donnée d\'entraînement</string>
+    <string name="analytics_minutes_short">min</string>
+    <string name="analytics_weekly_avg">Moy.</string>
+    <string name="analytics_weekly_total">Total</string>
+    <string name="analytics_this_week">Cette semaine</string>
+    <string name="analytics_settings_title">Widgets d\'analyse</string>
+    <string name="analytics_widget_summary">Résumé</string>
+    <string name="analytics_widget_win_loss">Graphique victoires/défaites</string>
+    <string name="analytics_widget_weekly">Entraînement hebdomadaire</string>
+    <string name="analytics_widget_heatmap">Carte thermique d\'entraînement</string>
 
     <!-- Settings Screen -->
     <string name="profile_guest_user">Invité</string>
@@ -207,6 +223,8 @@
     <string name="action_add_match">Ajouter un match</string>
     <string name="add_match">Ajouter un match</string>
     <string name="edit_match">Modifier le match</string>
+    <string name="label_match_notes_optional">Notes (optionnel)</string>
+    <string name="hint_match_notes">Ajoutez des notes sur ce match...</string>
     <string name="label_opponent">Adversaire</string>
     <string name="hint_opponent_name">Entrez le nom de l\'adversaire</string>
     <string name="label_score">Score</string>

@@ -1,0 +1,1 @@
+tenis mesa,rival,entrenamiento,entrenador,liga,torneo,victorias,raqueta,saque,ejercicios,dobles

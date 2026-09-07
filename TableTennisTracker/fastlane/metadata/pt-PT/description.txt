@@ -1,0 +1,55 @@
+Regista os teus treinos de ténis de mesa como um profissional
+
+Esta aplicação é a companheira de treino para jogadores de todos os níveis. Cria rotinas consistentes, aponta cada jogo que disputas e vê a tua evolução ao longo da época.
+
+APONTA UM TREINO EM SEGUNDOS
+
+Guarda a sessão com tudo o que interessa:
+
+- Duração: de 5 a 300 minutos
+- Tipo de sessão: técnica, jogos, torneio, treino de serviço, físico, jogo livre ou outro
+- RPE (esforço percebido): classifica a intensidade de 1 a 10 e controla a carga
+- Notas: exercícios trabalhados, observações, aspetos a melhorar
+- Data: aponta o treino de hoje ou preenche dias anteriores
+
+JOGOS E ADVERSÁRIOS
+
+Cada sessão pode guardar os jogos que disputaste:
+
+- Marcador set a set, em singulares ou pares
+- Nível de competição: treino, liga ou torneio
+- Assinala os jogos que contaram para o ranking
+- Mantém a lista de adversários com clube, ranking, mão e estilo de jogo: atacante, defensor, completo, pinos ou cortador
+- Notas por jogo, para te lembrares do que resultou mesmo
+
+ESTATÍSTICAS QUE RESPONDEM A PERGUNTAS REAIS
+
+- Percentagem de vitórias e balanço de vitórias e derrotas
+- Gráfico com os resultados dos teus jogos
+- Tempo de treino semanal, com totais e médias
+- Mapa de calor de 12 meses que mostra a tua consistência num instante
+- Escolhe que cartões aparecem no ecrã de estatísticas
+
+CALENDÁRIO INTELIGENTE
+
+- Alterna entre a vista de mês e a de semana
+- Os indicadores mostram o quanto treinaste em cada dia
+- Toca numa data para veres as sessões desse dia
+- Define qual é o primeiro dia da tua semana
+
+FEITA PARA JOGADORES
+
+- Aponta uma sessão em menos de 30 segundos
+- Funciona totalmente offline: os teus dados ficam no dispositivo
+- Sem conta e sem inscrição
+- Tema claro e tema escuro
+- Disponível em 14 idiomas
+
+IDEAL PARA
+
+- Jogadores de competição que controlam volume de treino e resultados
+- Jogadores de clube que querem treinar com constância
+- Treinadores que acompanham a carga dos seus atletas
+- Jogadores recreativos que se querem manter motivados
+
+Começa hoje a registar o teu percurso no ténis de mesa. Cada treino conta.

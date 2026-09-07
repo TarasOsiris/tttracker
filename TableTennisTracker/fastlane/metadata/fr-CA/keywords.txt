@@ -1,0 +1,1 @@
+journal,carnet,tournoi,ligue,fiche,victoires,raquette,service,club,ping-pong,statistiques,classement

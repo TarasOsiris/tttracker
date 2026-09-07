@@ -10,6 +10,7 @@
     <!-- General Actions -->
     <string name="action_ok">Tamam</string>
     <string name="action_cancel">İptal</string>
+    <string name="action_close">Kapat</string>
     <string name="action_change">Değiştir</string>
     <string name="action_edit">Düzenle</string>
     <string name="action_save">Kaydet</string>
@@ -88,6 +89,21 @@
     <string name="analytics_heatmap_title">Antrenman seansları ısı haritası</string>
     <string name="analytics_heatmap_less">Daha az</string>
     <string name="analytics_heatmap_more">Daha fazla</string>
+    <string name="analytics_weekly_training">Haftalık antrenman süresi</string>
+    <string name="analytics_win_loss_chart">Maç sonuçları</string>
+    <string name="analytics_wins">Galibiyet</string>
+    <string name="analytics_losses">Mağlubiyet</string>
+    <string name="analytics_no_matches">Henüz maç yok</string>
+    <string name="analytics_no_training">Henüz antrenman verisi yok</string>
+    <string name="analytics_minutes_short">dk</string>
+    <string name="analytics_weekly_avg">Ort.</string>
+    <string name="analytics_weekly_total">Toplam</string>
+    <string name="analytics_this_week">Bu hafta</string>
+    <string name="analytics_settings_title">Analiz bileşenleri</string>
+    <string name="analytics_widget_summary">Özet</string>
+    <string name="analytics_widget_win_loss">Galibiyet/mağlubiyet grafiği</string>
+    <string name="analytics_widget_weekly">Haftalık antrenman</string>
+    <string name="analytics_widget_heatmap">Antrenman ısı haritası</string>
 
     <!-- Settings Screen -->
     <string name="profile_guest_user">Misafir</string>
@@ -207,6 +223,8 @@
     <string name="action_add_match">Maç ekle</string>
     <string name="add_match">Maç ekle</string>
     <string name="edit_match">Maçı düzenle</string>
+    <string name="label_match_notes_optional">Notlar (isteğe bağlı)</string>
+    <string name="hint_match_notes">Bu maçla ilgili notlar ekleyin...</string>
     <string name="label_opponent">Rakip</string>
     <string name="hint_opponent_name">Rakip adını girin</string>
     <string name="label_score">Skor</string>

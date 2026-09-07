@@ -1,0 +1,55 @@
+Lleva la bitácora de tu entrenamiento de tenis de mesa
+
+Una app pensada para jugadores de todos los niveles: agarra constancia, registra cada partido que juegas y mira cómo avanza tu nivel semana tras semana.
+
+CAPTURA UNA SESIÓN EN SEGUNDOS
+
+Guarda tu entrenamiento con los datos que sí importan:
+
+- Duración: desde 5 hasta 300 minutos
+- Tipo de sesión: técnica, partidos, torneo, práctica de saque, físico, juego libre u otra
+- RPE (esfuerzo percibido): califica la intensidad del 1 al 10 y vigila tu carga
+- Notas: ejercicios trabajados, observaciones, puntos por mejorar
+- Fecha: captura la sesión de hoy o completa días anteriores
+
+PARTIDOS Y OPONENTES
+
+Cada sesión guarda los partidos que jugaste:
+
+- Puntaje set por set, en individual o dobles
+- Nivel de competencia: entrenamiento, liga o torneo
+- Marca los partidos que contaron para el ranking
+- Arma tu lista de oponentes con club, ranking, mano y estilo de juego: ofensivo, defensivo, completo, con pupos o cortador
+- Notas por partido, para recordar qué te funcionó
+
+NÚMEROS QUE RESPONDEN LO QUE DE VERDAD IMPORTA
+
+- Porcentaje de victorias y balance de ganados y perdidos
+- Gráfica con los resultados de tus partidos
+- Tiempo de entrenamiento por semana, con totales y promedios
+- Mapa de calor de 12 meses para ver tu constancia a simple vista
+- Elige qué tarjetas aparecen en tu pantalla de estadísticas
+
+CALENDARIO INTELIGENTE
+
+- Cambia entre la vista mensual y la semanal
+- Los indicadores muestran qué tanto entrenaste cada día
+- Toca cualquier fecha para ver las sesiones de ese día
+- Define con qué día empieza tu semana
+
+DISEÑADA PARA JUGADORES
+
+- Captura una sesión en menos de 30 segundos
+- Funciona sin conexión: tus datos se quedan en tu dispositivo
+- Sin cuenta y sin registrarte
+- Tema claro y tema oscuro
+- Disponible en 14 idiomas
+
+IDEAL PARA
+
+- Jugadores de competencia que miden su volumen de entrenamiento y sus resultados
+- Jugadores de club que buscan constancia
+- Entrenadores que dan seguimiento a la carga de sus atletas
+- Quienes juegan por gusto y quieren mantenerse motivados
+
+Empieza hoy a llevar el registro de tu tenis de mesa. Cada sesión cuenta.

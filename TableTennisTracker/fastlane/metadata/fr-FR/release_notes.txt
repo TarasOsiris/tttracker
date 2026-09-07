@@ -1,0 +1,1 @@
+Graphique des résultats de matchs, temps d'entraînement hebdomadaire et un écran de statistiques repensé, où vous choisissez les modules à afficher.

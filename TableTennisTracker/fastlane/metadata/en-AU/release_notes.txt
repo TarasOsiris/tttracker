@@ -1,0 +1,1 @@
+Match results chart, weekly training time and a redesigned analytics screen where you choose which widgets to show.

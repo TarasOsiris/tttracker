@@ -10,6 +10,7 @@
     <!-- General Actions -->
     <string name="action_ok">OK</string>
     <string name="action_cancel">Batal</string>
+    <string name="action_close">Tutup</string>
     <string name="action_change">Ubah</string>
     <string name="action_edit">Edit</string>
     <string name="action_save">Simpan</string>
@@ -88,6 +89,21 @@
     <string name="analytics_heatmap_title">Heatmap sesi latihan</string>
     <string name="analytics_heatmap_less">Lebih sedikit</string>
     <string name="analytics_heatmap_more">Lebih banyak</string>
+    <string name="analytics_weekly_training">Waktu latihan mingguan</string>
+    <string name="analytics_win_loss_chart">Hasil pertandingan</string>
+    <string name="analytics_wins">Menang</string>
+    <string name="analytics_losses">Kalah</string>
+    <string name="analytics_no_matches">Belum ada pertandingan</string>
+    <string name="analytics_no_training">Belum ada data latihan</string>
+    <string name="analytics_minutes_short">mnt</string>
+    <string name="analytics_weekly_avg">Rata-rata</string>
+    <string name="analytics_weekly_total">Total</string>
+    <string name="analytics_this_week">Minggu ini</string>
+    <string name="analytics_settings_title">Widget analitik</string>
+    <string name="analytics_widget_summary">Ringkasan</string>
+    <string name="analytics_widget_win_loss">Grafik menang/kalah</string>
+    <string name="analytics_widget_weekly">Latihan mingguan</string>
+    <string name="analytics_widget_heatmap">Heatmap latihan</string>
 
     <!-- Settings Screen -->
     <string name="profile_guest_user">Tamu</string>
@@ -207,6 +223,8 @@
     <string name="action_add_match">Tambah pertandingan</string>
     <string name="add_match">Tambah pertandingan</string>
     <string name="edit_match">Edit pertandingan</string>
+    <string name="label_match_notes_optional">Catatan (opsional)</string>
+    <string name="hint_match_notes">Tambahkan catatan tentang pertandingan ini...</string>
     <string name="label_opponent">Lawan</string>
     <string name="hint_opponent_name">Masukkan nama lawan</string>
     <string name="label_score">Skor</string>

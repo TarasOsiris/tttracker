@@ -10,6 +10,7 @@
     <!-- General Actions -->
     <string name="action_ok">موافق</string>
     <string name="action_cancel">إلغاء</string>
+    <string name="action_close">إغلاق</string>
     <string name="action_change">تغيير</string>
     <string name="action_edit">تحرير</string>
     <string name="action_save">حفظ</string>
@@ -88,6 +89,21 @@
     <string name="analytics_heatmap_title">خريطة حرارية لجلسات التدريب</string>
     <string name="analytics_heatmap_less">أقل</string>
     <string name="analytics_heatmap_more">أكثر</string>
+    <string name="analytics_weekly_training">وقت التدريب الأسبوعي</string>
+    <string name="analytics_win_loss_chart">نتائج المباريات</string>
+    <string name="analytics_wins">فوز</string>
+    <string name="analytics_losses">خسارة</string>
+    <string name="analytics_no_matches">لا توجد مباريات بعد</string>
+    <string name="analytics_no_training">لا توجد بيانات تدريب بعد</string>
+    <string name="analytics_minutes_short">د</string>
+    <string name="analytics_weekly_avg">المتوسط</string>
+    <string name="analytics_weekly_total">الإجمالي</string>
+    <string name="analytics_this_week">هذا الأسبوع</string>
+    <string name="analytics_settings_title">عناصر التحليلات</string>
+    <string name="analytics_widget_summary">ملخص</string>
+    <string name="analytics_widget_win_loss">رسم الفوز / الخسارة</string>
+    <string name="analytics_widget_weekly">التدريب الأسبوعي</string>
+    <string name="analytics_widget_heatmap">خريطة التدريب الحرارية</string>
 
     <!-- Settings Screen -->
     <string name="profile_guest_user">ضيف</string>
@@ -207,6 +223,8 @@
     <string name="action_add_match">إضافة مباراة</string>
     <string name="add_match">إضافة مباراة</string>
     <string name="edit_match">تعديل المباراة</string>
+    <string name="label_match_notes_optional">ملاحظات (اختياري)</string>
+    <string name="hint_match_notes">أضف ملاحظات حول هذه المباراة...</string>
     <string name="label_opponent">الخصم</string>
     <string name="hint_opponent_name">أدخل اسم الخصم</string>
     <string name="label_score">النتيجة</string>

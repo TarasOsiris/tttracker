@@ -1,0 +1,55 @@
+Masa tenisi çalışmalarını profesyoneller gibi takip et
+
+Bu uygulama her seviyeden oyuncu için hazırlanmış bir antrenman defteri. Düzenli çalışma alışkanlığı kur, oynadığın her maçı gir ve oyununun zamanla nasıl geliştiğini gör.
+
+SANİYELER İÇİNDE ANTRENMAN EKLE
+
+Çalışmanı önemli olan tüm ayrıntılarıyla sakla:
+
+- Süre: 5 ile 300 dakika arası
+- Antrenman türü: teknik, maç çalışması, turnuva, servis çalışması, kondisyon, serbest oyun veya diğer
+- RPE (algılanan zorluk derecesi): şiddeti 1 ile 10 arasında puanla ve yüklenmeni izle
+- Notlar: çalıştığın alıştırmalar, gözlemler, geliştirilecek yönler
+- Tarih: bugünün antrenmanını gir ya da geçmiş günleri sonradan tamamla
+
+MAÇLAR VE RAKİPLER
+
+Her antrenmana o gün oynadığın maçları ekleyebilirsin:
+
+- Set set skorlar, tekler ya da çiftler
+- Müsabaka düzeyi: antrenman, lig ya da turnuva
+- Puan getiren maçları işaretle
+- Rakip listeni kulüp, puan, el kullanımı ve oyun stiliyle tut: atak, defans, çok yönlü, tırtıklı ya da kesici
+- Maç başına notlar, neyin gerçekten işe yaradığını hatırlaman için
+
+GERÇEK SORULARA CEVAP VEREN İSTATİSTİKLER
+
+- Galibiyet oranı ve galibiyet/mağlubiyet dökümü
+- Maç sonuçlarını gösteren grafik
+- Haftalık antrenman süresi, toplam ve ortalamalarıyla
+- 12 aylık ısı haritasıyla istikrarını tek bakışta gör
+- İstatistik ekranında hangi kartların görüneceğini sen seç
+
+AKILLI TAKVİM
+
+- Ay ve hafta görünümü arasında geçiş yap
+- Görsel işaretler her gün ne kadar çalıştığını gösterir
+- Herhangi bir güne dokun, o günün antrenmanlarını gör
+- Haftanın ilk gününü kendin belirle
+
+OYUNCULAR İÇİN TASARLANDI
+
+- Bir antrenmanı 30 saniyeden kısa sürede kaydet
+- Tamamen çevrimdışı çalışır, verilerin cihazında kalır
+- Hesap açmaya ve üye olmaya gerek yok
+- Açık ve koyu tema
+- 14 dilde kullanılabilir
+
+ŞUNLAR İÇİN İDEAL
+
+- Antrenman hacmini ve maç sonuçlarını izleyen müsabık sporcular
+- Düzenli çalışmak isteyen kulüp oyuncuları
+- Sporcularının yükünü takip eden antrenörler
+- Motivasyonunu korumak isteyen amatör oyuncular
+
+Masa tenisi yolculuğunu bugün kaydetmeye başla. Her antrenman değerli.

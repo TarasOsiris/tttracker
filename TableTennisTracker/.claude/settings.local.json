@@ -40,7 +40,14 @@
       "Bash(adb shell pm list packages:*)",
       "Bash(adb install:*)",
       "Bash(pwd && git -C /Users/taras/repo/experiments/tttracker/TableTennisTracker add composeApp/src/commonMain/kotlin/xyz/tleskiv/tt/ui/widgets/ScaffoldWidgets.kt && git -C /Users/taras/repo/experiments/tttracker/TableTennisTracker commit -m \"$\\(cat <<'EOF'\nFix bottom bar background not extending under navigation bar\n\nMove navigationBarsPadding from Surface to inner Row so the Surface\ncolor fills the system navigation bar area.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\" && git -C /Users/taras/repo/experiments/tttracker/TableTennisTracker push)",
-      "Bash(git tag:*)"
+      "Bash(git tag:*)",
+      "Bash(xcodebuild:*)",
+      "Bash(xcodebuild -exportArchive*)",
+      "Bash(asc:*)",
+      "Bash(sentry-cli:*)",
+      "Bash(python3 .claude/skills/ship/play_upload.py:*)",
+      "Bash(/usr/libexec/PlistBuddy:*)",
+      "Bash(plutil:*)"
     ]
   }
 }

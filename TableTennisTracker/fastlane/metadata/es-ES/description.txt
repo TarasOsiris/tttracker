@@ -1,0 +1,55 @@
+Registra tu entrenamiento de tenis de mesa como un profesional
+
+Esta es la aplicación de cabecera para jugadores de cualquier nivel. Crea hábitos constantes, anota cada partido que juegas y comprueba cómo mejora tu juego con el tiempo.
+
+APUNTA UNA SESIÓN EN SEGUNDOS
+
+Guarda tu entrenamiento con todos los detalles que importan:
+
+- Duración: de 5 a 300 minutos
+- Tipo de sesión: técnica, partidos, torneo, práctica de saque, físico, juego libre u otros
+- RPE (esfuerzo percibido): valora la intensidad del 1 al 10 para controlar la carga
+- Notas: ejercicios realizados, observaciones, aspectos a mejorar
+- Fecha: apunta la sesión de hoy o rellena días de entrenamiento pasados
+
+PARTIDOS Y RIVALES
+
+Cada sesión puede incluir los partidos que has jugado:
+
+- Resultado juego a juego, en individuales o dobles
+- Nivel de competición: entrenamiento, liga o torneo
+- Marca los partidos que puntúan para el ranking
+- Guarda una lista de rivales con club, nivel, mano y estilo de juego: atacante, defensor, completo, picos o cortador
+- Notas por partido, para recordar qué funcionó de verdad
+
+ESTADÍSTICAS QUE RESPONDEN PREGUNTAS REALES
+
+- Porcentaje de victorias y balance de victorias y derrotas
+- Gráfico con los resultados de tus partidos
+- Tiempo de entrenamiento semanal, con totales y medias
+- Mapa de calor de 12 meses que muestra tu constancia de un vistazo
+- Elige qué widgets aparecen en tu pantalla de estadísticas
+
+CALENDARIO INTELIGENTE
+
+- Cambia entre la vista de mes y la de semana
+- Los indicadores visuales muestran cuánto has entrenado cada día
+- Toca cualquier día para ver las sesiones de esa fecha
+- Define con qué día empieza tu semana
+
+HECHA PARA JUGADORES
+
+- Apunta una sesión en menos de 30 segundos
+- Funciona sin conexión: tus datos se quedan en tu dispositivo
+- Sin cuenta y sin registrarte
+- Tema claro y tema oscuro
+- Disponible en 14 idiomas
+
+IDEAL PARA
+
+- Jugadores de competición que controlan su volumen de entrenamiento y sus resultados
+- Jugadores de club que quieren entrenar de forma constante
+- Entrenadores que siguen la carga de trabajo de sus deportistas
+- Jugadores aficionados que quieren mantener la motivación
+
+Empieza hoy a registrar tu camino en el tenis de mesa. Cada sesión cuenta.

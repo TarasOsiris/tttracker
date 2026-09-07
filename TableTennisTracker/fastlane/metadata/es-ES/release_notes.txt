@@ -1,0 +1,1 @@
+Gráfico de resultados de partidos, tiempo de entrenamiento semanal y una pantalla de estadísticas rediseñada en la que eliges qué widgets mostrar.

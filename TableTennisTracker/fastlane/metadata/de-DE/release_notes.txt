@@ -1,0 +1,1 @@
+Diagramm der Spielergebnisse, wöchentliche Trainingszeit und eine neu gestaltete Auswertungsseite, auf der du selbst wählst, welche Widgets erscheinen.

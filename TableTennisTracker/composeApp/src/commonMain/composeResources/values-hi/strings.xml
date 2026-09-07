@@ -10,6 +10,7 @@
     <!-- General Actions -->
     <string name="action_ok">ठीक</string>
     <string name="action_cancel">रद्द करें</string>
+    <string name="action_close">बंद करें</string>
     <string name="action_change">बदलें</string>
     <string name="action_edit">संपादित करें</string>
     <string name="action_save">सहेजें</string>
@@ -88,6 +89,21 @@
     <string name="analytics_heatmap_title">प्रशिक्षण सत्र हीटमैप</string>
     <string name="analytics_heatmap_less">कम</string>
     <string name="analytics_heatmap_more">ज़्यादा</string>
+    <string name="analytics_weekly_training">साप्ताहिक प्रशिक्षण समय</string>
+    <string name="analytics_win_loss_chart">मैच परिणाम</string>
+    <string name="analytics_wins">जीत</string>
+    <string name="analytics_losses">हार</string>
+    <string name="analytics_no_matches">अभी तक कोई मैच नहीं</string>
+    <string name="analytics_no_training">अभी तक कोई प्रशिक्षण डेटा नहीं</string>
+    <string name="analytics_minutes_short">मिनट</string>
+    <string name="analytics_weekly_avg">औसत</string>
+    <string name="analytics_weekly_total">कुल</string>
+    <string name="analytics_this_week">इस सप्ताह</string>
+    <string name="analytics_settings_title">विश्लेषण विजेट</string>
+    <string name="analytics_widget_summary">सारांश</string>
+    <string name="analytics_widget_win_loss">जीत/हार चार्ट</string>
+    <string name="analytics_widget_weekly">साप्ताहिक प्रशिक्षण</string>
+    <string name="analytics_widget_heatmap">प्रशिक्षण हीटमैप</string>
 
     <!-- Settings Screen -->
     <string name="profile_guest_user">अतिथि</string>
@@ -207,6 +223,8 @@
     <string name="action_add_match">मैच जोड़ें</string>
     <string name="add_match">मैच जोड़ें</string>
     <string name="edit_match">मैच संपादित करें</string>
+    <string name="label_match_notes_optional">नोट्स (वैकल्पिक)</string>
+    <string name="hint_match_notes">इस मैच के बारे में नोट्स जोड़ें...</string>
     <string name="label_opponent">प्रतिद्वंद्वी</string>
     <string name="hint_opponent_name">प्रतिद्वंद्वी का नाम दर्ज करें</string>
     <string name="label_score">स्कोर</string>

@@ -10,6 +10,7 @@
     <!-- General Actions -->
     <string name="action_ok">ОК</string>
     <string name="action_cancel">Скасувати</string>
+    <string name="action_close">Закрити</string>
     <string name="action_change">Змінити</string>
     <string name="action_edit">Редагувати</string>
     <string name="action_save">Зберегти</string>
@@ -88,6 +89,21 @@
     <string name="analytics_heatmap_title">Теплова карта тренувань</string>
 	<string name="analytics_heatmap_less">Менше</string>
 	<string name="analytics_heatmap_more">Більше</string>
+	<string name="analytics_weekly_training">Тижневий час тренувань</string>
+	<string name="analytics_win_loss_chart">Результати матчів</string>
+	<string name="analytics_wins">Перемоги</string>
+	<string name="analytics_losses">Поразки</string>
+	<string name="analytics_no_matches">Матчів ще немає</string>
+	<string name="analytics_no_training">Даних про тренування ще немає</string>
+	<string name="analytics_minutes_short">хв</string>
+	<string name="analytics_weekly_avg">Сер.</string>
+	<string name="analytics_weekly_total">Усього</string>
+	<string name="analytics_this_week">Цього тижня</string>
+	<string name="analytics_settings_title">Віджети аналітики</string>
+	<string name="analytics_widget_summary">Підсумок</string>
+	<string name="analytics_widget_win_loss">Графік перемог/поразок</string>
+	<string name="analytics_widget_weekly">Тижневі тренування</string>
+	<string name="analytics_widget_heatmap">Теплова карта тренувань</string>
 
     <!-- Profile Screen -->
     <string name="profile_guest_user">Гість</string>
@@ -207,6 +223,8 @@
 	<string name="action_add_match">Додати матч</string>
 	<string name="add_match">Додати матч</string>
 	<string name="edit_match">Редагувати матч</string>
+	<string name="label_match_notes_optional">Нотатки (опціонально)</string>
+	<string name="hint_match_notes">Додайте нотатки про цей матч...</string>
 	<string name="label_opponent">Суперник</string>
     <string name="hint_opponent_name">Введіть ім'я суперника</string>
 	<string name="label_score">Рахунок</string>

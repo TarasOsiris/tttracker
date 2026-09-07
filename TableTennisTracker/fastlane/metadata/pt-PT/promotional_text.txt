@@ -1,0 +1,1 @@
+Agora com registo de jogos: aponta cada partida contra os adversários guardados e vê a tua percentagem de vitórias crescer ao longo da época.

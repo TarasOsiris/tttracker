@@ -1,0 +1,1 @@
+Gráfico de resultados dos jogos, tempo de treino semanal e um ecrã de estatísticas redesenhado onde escolhes que cartões queres ver.

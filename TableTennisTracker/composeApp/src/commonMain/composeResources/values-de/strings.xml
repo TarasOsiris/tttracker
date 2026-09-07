@@ -10,6 +10,7 @@
     <!-- General Actions -->
     <string name="action_ok">OK</string>
     <string name="action_cancel">Abbrechen</string>
+    <string name="action_close">Schließen</string>
     <string name="action_change">Ändern</string>
     <string name="action_edit">Bearbeiten</string>
     <string name="action_save">Speichern</string>
@@ -88,6 +89,21 @@
     <string name="analytics_heatmap_title">Heatmap der Trainingseinheiten</string>
     <string name="analytics_heatmap_less">Weniger</string>
     <string name="analytics_heatmap_more">Mehr</string>
+    <string name="analytics_weekly_training">Wöchentliche Trainingszeit</string>
+    <string name="analytics_win_loss_chart">Spielergebnisse</string>
+    <string name="analytics_wins">Siege</string>
+    <string name="analytics_losses">Niederlagen</string>
+    <string name="analytics_no_matches">Noch keine Spiele</string>
+    <string name="analytics_no_training">Noch keine Trainingsdaten</string>
+    <string name="analytics_minutes_short">Min.</string>
+    <string name="analytics_weekly_avg">Ø</string>
+    <string name="analytics_weekly_total">Gesamt</string>
+    <string name="analytics_this_week">Diese Woche</string>
+    <string name="analytics_settings_title">Analyse-Widgets</string>
+    <string name="analytics_widget_summary">Zusammenfassung</string>
+    <string name="analytics_widget_win_loss">Sieg/Niederlage-Diagramm</string>
+    <string name="analytics_widget_weekly">Wöchentliches Training</string>
+    <string name="analytics_widget_heatmap">Trainings-Heatmap</string>
 
     <!-- Settings Screen -->
     <string name="profile_guest_user">Gast</string>
@@ -207,6 +223,8 @@
     <string name="action_add_match">Spiel hinzufügen</string>
     <string name="add_match">Spiel hinzufügen</string>
     <string name="edit_match">Spiel bearbeiten</string>
+    <string name="label_match_notes_optional">Notizen (optional)</string>
+    <string name="hint_match_notes">Notizen zu diesem Spiel hinzufügen...</string>
     <string name="label_opponent">Gegner</string>
     <string name="hint_opponent_name">Gegnernamen eingeben</string>
     <string name="label_score">Ergebnis</string>

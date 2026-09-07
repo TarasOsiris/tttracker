@@ -10,6 +10,7 @@
     <!-- General Actions -->
     <string name="action_ok">确定</string>
     <string name="action_cancel">取消</string>
+    <string name="action_close">关闭</string>
     <string name="action_change">更改</string>
     <string name="action_edit">编辑</string>
     <string name="action_save">保存</string>
@@ -88,6 +89,21 @@
     <string name="analytics_heatmap_title">训练会话热力图</string>
     <string name="analytics_heatmap_less">少</string>
     <string name="analytics_heatmap_more">多</string>
+    <string name="analytics_weekly_training">每周训练时间</string>
+    <string name="analytics_win_loss_chart">比赛结果</string>
+    <string name="analytics_wins">胜</string>
+    <string name="analytics_losses">负</string>
+    <string name="analytics_no_matches">暂无比赛记录</string>
+    <string name="analytics_no_training">暂无训练数据</string>
+    <string name="analytics_minutes_short">分钟</string>
+    <string name="analytics_weekly_avg">平均</string>
+    <string name="analytics_weekly_total">总计</string>
+    <string name="analytics_this_week">本周</string>
+    <string name="analytics_settings_title">分析组件</string>
+    <string name="analytics_widget_summary">总结</string>
+    <string name="analytics_widget_win_loss">胜负图表</string>
+    <string name="analytics_widget_weekly">每周训练</string>
+    <string name="analytics_widget_heatmap">训练热力图</string>
 
     <!-- Settings Screen -->
     <string name="profile_guest_user">访客</string>
@@ -207,6 +223,8 @@
     <string name="action_add_match">添加比赛</string>
     <string name="add_match">添加比赛</string>
     <string name="edit_match">编辑比赛</string>
+    <string name="label_match_notes_optional">备注（可选）</string>
+    <string name="hint_match_notes">添加关于这场比赛的备注...</string>
     <string name="label_opponent">对手</string>
     <string name="hint_opponent_name">输入对手姓名</string>
     <string name="label_score">比分</string>

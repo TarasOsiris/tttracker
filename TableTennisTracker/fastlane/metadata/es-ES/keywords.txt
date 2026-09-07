@@ -1,0 +1,1 @@
+rival,cuaderno,ping pong,entrenador,liga,torneo,victorias,ejercicios,saque,pala,raqueta,sesiones

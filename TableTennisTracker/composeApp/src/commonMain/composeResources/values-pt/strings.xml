@@ -10,6 +10,7 @@
     <!-- General Actions -->
     <string name="action_ok">OK</string>
     <string name="action_cancel">Cancelar</string>
+    <string name="action_close">Fechar</string>
     <string name="action_change">Alterar</string>
     <string name="action_edit">Editar</string>
     <string name="action_save">Salvar</string>
@@ -88,6 +89,21 @@
     <string name="analytics_heatmap_title">Mapa de calor das sessões de treino</string>
     <string name="analytics_heatmap_less">Menos</string>
     <string name="analytics_heatmap_more">Mais</string>
+    <string name="analytics_weekly_training">Tempo de treino semanal</string>
+    <string name="analytics_win_loss_chart">Resultados das partidas</string>
+    <string name="analytics_wins">Vitórias</string>
+    <string name="analytics_losses">Derrotas</string>
+    <string name="analytics_no_matches">Ainda não há partidas</string>
+    <string name="analytics_no_training">Ainda não há dados de treino</string>
+    <string name="analytics_minutes_short">min</string>
+    <string name="analytics_weekly_avg">Média</string>
+    <string name="analytics_weekly_total">Total</string>
+    <string name="analytics_this_week">Esta semana</string>
+    <string name="analytics_settings_title">Widgets de análise</string>
+    <string name="analytics_widget_summary">Resumo</string>
+    <string name="analytics_widget_win_loss">Gráfico de vitórias/derrotas</string>
+    <string name="analytics_widget_weekly">Treino semanal</string>
+    <string name="analytics_widget_heatmap">Mapa de calor de treinos</string>
 
     <!-- Settings Screen -->
     <string name="profile_guest_user">Convidado</string>
@@ -207,6 +223,8 @@
     <string name="action_add_match">Adicionar partida</string>
     <string name="add_match">Adicionar partida</string>
     <string name="edit_match">Editar partida</string>
+    <string name="label_match_notes_optional">Notas (opcional)</string>
+    <string name="hint_match_notes">Adicione notas sobre esta partida...</string>
     <string name="label_opponent">Oponente</string>
     <string name="hint_opponent_name">Digite o nome do oponente</string>
     <string name="label_score">Placar</string>

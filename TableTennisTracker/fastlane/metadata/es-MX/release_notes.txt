@@ -1,0 +1,1 @@
+Gráfica de resultados de partidos, tiempo de entrenamiento por semana y una pantalla de estadísticas rediseñada donde eliges qué tarjetas mostrar.

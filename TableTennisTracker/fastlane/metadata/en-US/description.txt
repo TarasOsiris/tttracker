@@ -1,0 +1,55 @@
+Track Your Table Tennis Training Like a Pro
+
+Table Tennis Training Tracker is the training companion for players of all levels. Build consistent habits, record every match you play, and watch your game improve over time.
+
+LOG SESSIONS IN SECONDS
+
+Record your training with all the details that matter:
+
+- Duration - anything from 5 to 300 minutes
+- Session type - Technique, Match Play, Tournament, Serve Practice, Physical, Free Play or Other
+- RPE (Rate of Perceived Exertion) - rate intensity from 1 to 10 to monitor training load
+- Notes - drills practiced, observations, areas to improve
+- Date - log today's session or backfill past training days
+
+RECORD MATCHES AND OPPONENTS
+
+Every session can hold the matches you played:
+
+- Game-by-game scores, singles or doubles
+- Competition level - Practice, League or Tournament
+- Flag the matches that were ranked
+- Keep an opponent list with club, rating, handedness and playing style - Attacker, Defender, All-round, Pips or Chopper
+- Per-match notes, so you remember what actually worked
+
+ANALYTICS THAT ANSWER REAL QUESTIONS
+
+- Win rate and win/loss record across every match you log
+- Match results chart
+- Weekly training time, with totals and averages
+- A 12-month training heatmap that shows your consistency at a glance
+- Choose which widgets appear on your analytics screen
+
+SMART CALENDAR VIEW
+
+- Switch between month and week views
+- Visual indicators show session density at a glance
+- Tap any date to see that day's sessions
+- Set your own first day of the week
+
+BUILT FOR PLAYERS
+
+- Log a session in under 30 seconds
+- Works fully offline - your data stays on your device
+- No account needed, no sign-up
+- Light and dark themes
+- Available in 14 languages
+
+PERFECT FOR
+
+- Competitive players tracking training volume and match results
+- Club players building consistent habits
+- Coaches monitoring athlete workload
+- Recreational players who want to stay motivated
+
+Start tracking your table tennis journey today. Every session counts.
