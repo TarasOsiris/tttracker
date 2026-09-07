@@ -23,7 +23,7 @@ struct RootTabView: View {
         TabView(selection: tabSelection) {
             Tab(L.navSessions, systemImage: "figure.table.tennis", value: AppTab.sessions) {
                 NavigationStack(path: $sessionsPath) {
-                    ComingSoonView(title: L.navSessions)
+                    SessionsScreen()
                 }
             }
             Tab(L.navAnalytics, systemImage: "chart.bar.xaxis", value: AppTab.analytics) {
@@ -66,16 +66,5 @@ struct RootTabView: View {
                 }
             }
         )
-    }
-}
-
-/// Placeholder for the tabs that have not been ported yet. The Compose UI cannot be embedded per
-/// tab — `MainViewController()` renders the whole app including its own tab bar.
-struct ComingSoonView: View {
-    let title: String
-
-    var body: some View {
-        ContentUnavailableView(title, systemImage: "hammer", description: Text(verbatim: "Not ported yet"))
-            .navigationTitle(title)
     }
 }

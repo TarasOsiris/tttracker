@@ -36,6 +36,9 @@ extension Color {
         }
     }
 
+    /// Overload taking the Swift mirror, so views never have to name a `Shared` type.
+    static func sessionKind(_ kind: SessionKind?) -> Color { sessionType(kind?.kotlin) }
+
     static var matchWin: Color { Color(argb: BrandColors.shared.Win) }
     static var matchLoss: Color { Color(argb: BrandColors.shared.Loss) }
 }
