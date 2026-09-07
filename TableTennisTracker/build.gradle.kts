@@ -14,11 +14,3 @@ plugins {
 	alias(libs.plugins.ktor) apply false
 	alias(libs.plugins.kotlinCocoapods) apply false
 }
-
-subprojects {
-	plugins.withId("org.jetbrains.kotlin.multiplatform") {
-		tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask<*>>().configureEach {
-			compilerOptions.freeCompilerArgs.add("-Xexpect-actual-classes")
-		}
-	}
-}
