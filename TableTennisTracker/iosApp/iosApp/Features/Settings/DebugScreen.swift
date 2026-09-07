@@ -8,6 +8,11 @@ final class DebugModel {
     private(set) var isClearing = false
     private(set) var isGenerating = false
 
+    /// Either operation blocks both buttons: clearing partway through a generation run empties what
+    /// has been written so far while the loop keeps inserting, and the reverse re-adds a roster
+    /// mid-clear.
+    var isBusy: Bool { isClearing || isGenerating }
+
     @ObservationIgnored private let sessions: any TrainingSessionService
     @ObservationIgnored private let opponents: any OpponentService
 
@@ -19,10 +24,14 @@ final class DebugModel {
         self.opponents = opponents
     }
 
+    /// Sessions first: that clears their matches in one transaction, so nothing is left pointing at
+    /// an opponent when the roster goes. Opponents have to go too — `generate` inserts fifteen per
+    /// run, and leaving them behind would accumulate duplicate names with no way to remove them.
     func clearAll() async {
         isClearing = true
         defer { isClearing = false }
         try? await sessions.deleteAllSessions()
+        try? await opponents.deleteAllOpponents()
     }
 
     /// Mirrors `DebugScreenViewModel.generateRandomSessions`, which lives in a ViewModel and so
@@ -109,7 +118,7 @@ struct DebugScreen: View {
                         }
                     }
                 }
-                .disabled(model.isGenerating)
+                .disabled(model.isBusy)
             }
             Section(L.debugClearDatabaseTitle) {
                 Text(L.debugClearDatabaseDescription)
@@ -126,7 +135,7 @@ struct DebugScreen: View {
                         }
                     }
                 }
-                .disabled(model.isClearing)
+                .disabled(model.isBusy)
             }
         }
         .navigationTitle(L.actionDebug)
