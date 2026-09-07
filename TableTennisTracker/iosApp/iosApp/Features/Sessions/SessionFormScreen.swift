@@ -4,6 +4,7 @@ struct SessionFormScreen: View {
     @StateModel private var model: SessionFormModel
     @Environment(\.dismiss) private var dismiss
     @State private var showsRpeHelp = false
+    @State private var editingMatch: MatchEditorTarget?
 
     init(sessionId: String? = nil, day: Date) {
         _model = StateModel(wrappedValue: SessionFormModel(sessionId: sessionId, day: day))
@@ -20,6 +21,7 @@ struct SessionFormScreen: View {
                     typeSection
                     rpeSection
                     notesSection
+                    matchesSection
                 }
             }
             .navigationTitle(model.isEditing ? L.actionEdit : L.titleCreateSession)
@@ -41,6 +43,9 @@ struct SessionFormScreen: View {
             }
             .sheet(isPresented: $showsRpeHelp) {
                 RpeHelpSheet().presentationDetents([.medium, .large])
+            }
+            .sheet(item: $editingMatch) { target in
+                MatchEditorSheet(editing: target.match) { model.upsert($0) }
             }
         }
     }
@@ -117,6 +122,24 @@ struct SessionFormScreen: View {
         }
     }
 
+    private var matchesSection: some View {
+        Section(L.labelMatchesOptional) {
+            if model.matches.isEmpty {
+                Text(L.matchesEmptyHint).font(.caption).foregroundStyle(.secondary)
+            }
+            ForEach(model.matches) { match in
+                Button { editingMatch = .existing(match) } label: {
+                    PendingMatchRow(match: match)
+                }
+                .buttonStyle(.plain)
+                .swipeActions {
+                    Button(L.actionDelete, role: .destructive) { model.remove(match) }
+                }
+            }
+            Button(L.actionAddMatch, systemImage: "plus") { editingMatch = .new }
+        }
+    }
+
     private var durationBinding: Binding<Double> {
         Binding(get: { Double(model.durationMinutes) }, set: { model.durationMinutes = Int($0) })
     }
@@ -165,4 +188,18 @@ struct RpeHelpSheet: View {
             }
         }
     }
+}
+
+enum MatchEditorTarget: Identifiable {
+    case new
+    case existing(PendingMatch)
+
+    var match: PendingMatch? {
+        switch self {
+        case .new: nil
+        case let .existing(match): match
+        }
+    }
+
+    var id: String { match?.id ?? "new" }
 }

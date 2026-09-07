@@ -16,6 +16,7 @@ final class SessionFormModel {
     var kind: SessionKind = .technique
     var rpe = 5
     var notes = ""
+    var matches: [PendingMatch] = []
 
     private(set) var isLoading: Bool
     var saveFailed = false
@@ -54,6 +55,7 @@ final class SessionFormModel {
             kind = item.kind ?? .other
             rpe = item.rpe
             notes = item.notes ?? ""
+            matches = item.matches.map(PendingMatch.init)
         }
         isLoading = false
     }
@@ -66,8 +68,8 @@ final class SessionFormModel {
         }
         do {
             if let editing {
-                // `matches: nil` leaves the session's matches alone — passing a list would soft-delete
-                // and reinsert every one of them. This form does not edit matches yet.
+                // Always the full list: `editSession` soft-deletes every match on the session and
+                // reinserts what it is given, so a partial list would drop the rest.
                 try await sessions.editSession(
                     id: editing,
                     dateTime: dateTime,
@@ -75,7 +77,7 @@ final class SessionFormModel {
                     rpe: Int32(rpe),
                     sessionType: kind.kotlin,
                     notes: notes.nilIfBlank,
-                    matches: nil
+                    matches: matches.map(\.input)
                 )
                 analytics.capture(event: "session_edited", properties: eventProperties)
             } else {
@@ -85,7 +87,7 @@ final class SessionFormModel {
                     rpe: Int32(rpe),
                     sessionType: kind.kotlin,
                     notes: notes.nilIfBlank,
-                    matches: []
+                    matches: matches.map(\.input)
                 )
                 analytics.capture(event: "session_created", properties: eventProperties)
             }
@@ -94,6 +96,18 @@ final class SessionFormModel {
             saveFailed = true
             return false
         }
+    }
+
+    func upsert(_ match: PendingMatch) {
+        if let index = matches.firstIndex(where: { $0.id == match.id }) {
+            matches[index] = match
+        } else {
+            matches.append(match)
+        }
+    }
+
+    func remove(_ match: PendingMatch) {
+        matches.removeAll { $0.id == match.id }
     }
 
     private func seedFromDefaults() async {
@@ -111,7 +125,7 @@ final class SessionFormModel {
             "session_type": kind.kotlin.name,
             "duration_minutes": durationMinutes,
             "rpe": rpe,
-            "match_count": 0
+            "match_count": matches.count
         ]
     }
 }

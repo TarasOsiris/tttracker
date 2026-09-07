@@ -19,6 +19,7 @@ struct SessionItem: Identifiable, Hashable {
 /// One match played within a session.
 struct MatchItem: Identifiable, Hashable {
     let id: String
+    let opponentId: String
     let opponentName: String
     let myGamesWon: Int
     let opponentGamesWon: Int
@@ -50,6 +51,7 @@ extension SessionItem {
 extension MatchItem {
     init(_ model: Shared.Match) {
         id = model.id.stringId
+        opponentId = model.opponent.id.stringId
         opponentName = model.opponent.name
         myGamesWon = Int(model.myGamesWon)
         opponentGamesWon = Int(model.opponentGamesWon)
