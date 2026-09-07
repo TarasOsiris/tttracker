@@ -5,8 +5,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import xyz.tleskiv.tt.data.model.enums.Handedness
-import xyz.tleskiv.tt.data.model.enums.PlayingStyle
 import xyz.tleskiv.tt.di.components.AnalyticsService
 import xyz.tleskiv.tt.service.OpponentService
 import xyz.tleskiv.tt.viewmodel.dialogs.EditOpponentDialogViewModel
@@ -34,8 +32,8 @@ class EditOpponentDialogViewModelImpl(
 				inputData.name.value = opponent.name
 				inputData.club.value = opponent.club ?: ""
 				inputData.rating.value = opponent.rating?.toInt()?.toString() ?: ""
-				inputData.handedness.value = opponent.handedness?.let { Handedness.fromDb(it) }
-				inputData.playingStyle.value = opponent.style?.let { PlayingStyle.fromDb(it) }
+				inputData.handedness.value = opponent.handedness
+				inputData.playingStyle.value = opponent.style
 				inputData.notes.value = opponent.notes ?: ""
 			}
 			_isLoading.value = false

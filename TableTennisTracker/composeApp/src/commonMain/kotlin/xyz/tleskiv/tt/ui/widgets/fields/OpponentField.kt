@@ -24,7 +24,7 @@ import org.jetbrains.compose.resources.stringResource
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.hint_opponent_name
 import tabletennistracker.composeapp.generated.resources.label_opponent
-import xyz.tleskiv.tt.db.Opponent
+import xyz.tleskiv.tt.data.model.Opponent
 import xyz.tleskiv.tt.ui.widgets.FieldLabel
 import kotlin.uuid.Uuid
 

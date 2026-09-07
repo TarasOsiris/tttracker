@@ -2,8 +2,9 @@ package xyz.tleskiv.tt.previews.fakes
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.datetime.Instant
-import xyz.tleskiv.tt.db.Opponent
+import xyz.tleskiv.tt.data.model.Opponent
+import xyz.tleskiv.tt.data.model.enums.Handedness
+import xyz.tleskiv.tt.data.model.enums.PlayingStyle
 import xyz.tleskiv.tt.viewmodel.settings.OpponentsScreenViewModel
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
@@ -17,12 +18,15 @@ class FakeOpponentsScreenViewModel(
 	override fun deleteOpponent(id: Uuid) {}
 
 	companion object {
-		private val now = Instant.fromEpochMilliseconds(1706300000000)
+		private const val NOW = 1706300000000L
 		private val names = listOf("Zhang Wei", "Maria Schmidt", "Kenji Tanaka", "Alex Johnson", "Li Na")
 		private val clubs = listOf("Beijing TT Club", "Munich Sports", null, "Local Club", "Tokyo TT")
 		private val ratings = listOf(2150.0, 1890.0, 2050.0, null, 1950.0)
-		private val handednesses = listOf("right", "left", "right", null, "right")
-		private val styles = listOf("attacker", "defender", "chopper", null, "all_round")
+		private val handednesses =
+			listOf(Handedness.RIGHT, Handedness.LEFT, Handedness.RIGHT, null, Handedness.RIGHT)
+		private val styles = listOf(
+			PlayingStyle.ATTACKER, PlayingStyle.DEFENDER, PlayingStyle.CHOPPER, null, PlayingStyle.ALL_ROUND
+		)
 		private val notesList = listOf("Strong forehand", null, "Uses long pips", "Beginner", "Fast footwork")
 
 		private val sampleOpponents = List(5) { i ->
@@ -34,9 +38,8 @@ class FakeOpponentsScreenViewModel(
 				handedness = handednesses[i],
 				style = styles[i],
 				notes = notesList[i],
-				is_deleted = false,
-				created_at = now,
-				updated_at = now
+				createdAt = NOW,
+				updatedAt = NOW
 			)
 		}
 

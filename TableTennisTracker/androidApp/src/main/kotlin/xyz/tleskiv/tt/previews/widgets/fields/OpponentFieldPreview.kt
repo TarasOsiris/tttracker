@@ -10,8 +10,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import kotlinx.datetime.Instant
-import xyz.tleskiv.tt.db.Opponent
+import xyz.tleskiv.tt.data.model.Opponent
+import xyz.tleskiv.tt.data.model.enums.Handedness
+import xyz.tleskiv.tt.data.model.enums.PlayingStyle
 import xyz.tleskiv.tt.ui.theme.AppTheme
 import xyz.tleskiv.tt.ui.widgets.fields.OpponentField
 import kotlin.uuid.ExperimentalUuidApi
@@ -21,19 +22,18 @@ import kotlin.uuid.Uuid
 @Preview(showBackground = true)
 @Composable
 fun OpponentFieldPreview() {
-	val now = Instant.fromEpochMilliseconds(1706300000000)
+	val createdAt = 1706300000000L
 	val opponents = listOf("Zhang Wei", "Maria Schmidt", "Kenji Tanaka").map { name ->
 		Opponent(
 			id = Uuid.random(),
 			name = name,
 			club = "Club",
 			rating = 1800.0,
-			handedness = "right",
-			style = "attacker",
+			handedness = Handedness.RIGHT,
+			style = PlayingStyle.ATTACKER,
 			notes = null,
-			is_deleted = false,
-			created_at = now,
-			updated_at = now
+			createdAt = createdAt,
+			updatedAt = createdAt
 		)
 	}
 	var opponentName by remember { mutableStateOf("") }

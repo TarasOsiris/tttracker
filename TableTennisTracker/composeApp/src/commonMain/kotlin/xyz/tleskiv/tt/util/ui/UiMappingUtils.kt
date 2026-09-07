@@ -2,7 +2,6 @@ package xyz.tleskiv.tt.util.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.lerp
 import org.jetbrains.compose.resources.stringResource
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.rpe_easy
@@ -11,9 +10,7 @@ import tabletennistracker.composeapp.generated.resources.rpe_max_effort
 import tabletennistracker.composeapp.generated.resources.rpe_moderate
 import tabletennistracker.composeapp.generated.resources.rpe_very_easy
 import xyz.tleskiv.tt.data.model.enums.SessionType
-import xyz.tleskiv.tt.ui.theme.rpeGreen
-import xyz.tleskiv.tt.ui.theme.rpeRed
-import xyz.tleskiv.tt.ui.theme.rpeYellow
+import xyz.tleskiv.tt.model.BrandColors
 import xyz.tleskiv.tt.ui.theme.sessionTypeFreePlay
 import xyz.tleskiv.tt.ui.theme.sessionTypeMatchPlay
 import xyz.tleskiv.tt.ui.theme.sessionTypeOther
@@ -53,14 +50,15 @@ fun SessionType?.toColor(): Color = when (this) {
 	SessionType.OTHER, null -> sessionTypeOther
 }
 
-fun getRpeColor(rpe: Int): Color = getRpeColor(rpe.toFloat())
-
-fun getRpeColor(value: Float): Color {
-	val fraction = (value - 1f) / 9f
-	return when {
-		fraction <= 0.5f -> lerp(rpeGreen, rpeYellow, fraction * 2f)
-		else -> lerp(rpeYellow, rpeRed, (fraction - 0.5f) * 2f)
-	}
+/**
+ * RPE 1..10 on the green→yellow→red ramp.
+ *
+ * Reads the pre-resolved ramp in [BrandColors] rather than interpolating, so the native iOS UI can
+ * show the same colours without reimplementing Compose's Oklab interpolation.
+ */
+fun getRpeColor(rpe: Int): Color {
+	val ramp = BrandColors.RpeRamp
+	return Color(ramp[rpe.coerceIn(1, ramp.size) - 1].toULong() shl 32)
 }
 
 @Composable

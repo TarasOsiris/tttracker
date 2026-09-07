@@ -4,11 +4,13 @@ import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToList
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import xyz.tleskiv.tt.data.model.enums.Handedness
 import xyz.tleskiv.tt.data.model.enums.PlayingStyle
 import xyz.tleskiv.tt.db.AppDatabase
-import xyz.tleskiv.tt.db.Opponent
+import xyz.tleskiv.tt.data.model.Opponent
+import xyz.tleskiv.tt.model.mappers.toDomain
 import xyz.tleskiv.tt.repo.OpponentRepository
 import xyz.tleskiv.tt.util.nowInstant
 import kotlin.uuid.Uuid
@@ -20,6 +22,7 @@ class OpponentRepositoryImpl(
 
     override val allOpponents: Flow<List<Opponent>> =
         database.appDatabaseQueries.selectAllOpponents().asFlow().mapToList(ioDispatcher)
+            .map { rows -> rows.map { it.toDomain() } }
 
     override suspend fun addOpponent(
         name: String,
@@ -65,11 +68,11 @@ class OpponentRepositoryImpl(
     }
 
     override suspend fun getAllOpponents(): List<Opponent> = withContext(ioDispatcher) {
-        database.appDatabaseQueries.selectAllOpponents().executeAsList()
+        database.appDatabaseQueries.selectAllOpponents().executeAsList().map { it.toDomain() }
     }
 
     override suspend fun getOpponentById(id: Uuid): Opponent? = withContext(ioDispatcher) {
-        database.appDatabaseQueries.getOpponentById(id).executeAsOneOrNull()
+        database.appDatabaseQueries.getOpponentById(id).executeAsOneOrNull()?.toDomain()
     }
 
     override suspend fun deleteOpponent(id: Uuid): Unit = withContext(ioDispatcher) {

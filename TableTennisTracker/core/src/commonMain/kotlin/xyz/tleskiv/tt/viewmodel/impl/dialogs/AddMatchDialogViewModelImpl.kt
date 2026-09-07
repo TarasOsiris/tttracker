@@ -4,7 +4,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
-import xyz.tleskiv.tt.db.Opponent
+import xyz.tleskiv.tt.data.model.Opponent
 import xyz.tleskiv.tt.service.OpponentService
 import xyz.tleskiv.tt.viewmodel.dialogs.AddMatchDialogViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.PendingMatch

@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import xyz.tleskiv.tt.db.Opponent
+import xyz.tleskiv.tt.data.model.Opponent
 import xyz.tleskiv.tt.di.components.AnalyticsService
 import xyz.tleskiv.tt.service.OpponentService
 import xyz.tleskiv.tt.viewmodel.settings.OpponentsScreenViewModel

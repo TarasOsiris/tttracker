@@ -3,7 +3,7 @@ package xyz.tleskiv.tt.repo
 import kotlinx.coroutines.flow.Flow
 import xyz.tleskiv.tt.data.model.enums.Handedness
 import xyz.tleskiv.tt.data.model.enums.PlayingStyle
-import xyz.tleskiv.tt.db.Opponent
+import xyz.tleskiv.tt.data.model.Opponent
 import kotlin.uuid.Uuid
 
 interface OpponentRepository {

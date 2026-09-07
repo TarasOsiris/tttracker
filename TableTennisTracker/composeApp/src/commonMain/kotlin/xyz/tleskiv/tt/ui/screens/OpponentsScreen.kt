@@ -61,7 +61,7 @@ import tabletennistracker.composeapp.generated.resources.opponents_empty
 import tabletennistracker.composeapp.generated.resources.opponents_info_message
 import tabletennistracker.composeapp.generated.resources.opponents_info_title
 import tabletennistracker.composeapp.generated.resources.title_opponents
-import xyz.tleskiv.tt.db.Opponent
+import xyz.tleskiv.tt.data.model.Opponent
 import xyz.tleskiv.tt.ui.dialogs.AddOpponentDialog
 import xyz.tleskiv.tt.ui.dialogs.DeleteConfirmationDialog
 import xyz.tleskiv.tt.ui.dialogs.EditOpponentDialog

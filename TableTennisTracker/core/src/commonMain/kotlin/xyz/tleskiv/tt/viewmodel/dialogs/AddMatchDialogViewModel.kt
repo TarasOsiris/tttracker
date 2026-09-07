@@ -3,7 +3,7 @@ package xyz.tleskiv.tt.viewmodel.dialogs
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import xyz.tleskiv.tt.db.Opponent
+import xyz.tleskiv.tt.data.model.Opponent
 import xyz.tleskiv.tt.util.mapState
 import xyz.tleskiv.tt.viewmodel.ViewModelBase
 import xyz.tleskiv.tt.viewmodel.sessions.PendingMatch
