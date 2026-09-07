@@ -28,8 +28,8 @@ sentryKmp = "0.23.0"
 sentryAndroid = "6.0.0"
 posthogAndroid = "3.61.1"
 
-androidx-lifecycle = "2.10.0-alpha08"
-androidx-nav3 = "1.0.0-alpha06"
+androidx-lifecycle = "2.11.0"
+androidx-nav3 = "1.1.1"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
