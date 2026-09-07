@@ -4,6 +4,8 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import tabletennistracker.composeapp.generated.resources.Res
@@ -18,6 +20,7 @@ fun AddOpponentDialog(
 	viewModel: AddOpponentDialogViewModel = koinViewModel()
 ) {
 	val inputData = viewModel.inputData
+	val isValid by inputData.isValid.collectAsStateWithLifecycle()
 
 	AlertDialog(
 		onDismissRequest = onDismiss,
@@ -35,7 +38,7 @@ fun AddOpponentDialog(
 		confirmButton = {
 			TextButton(
 				onClick = { viewModel.saveOpponent(onSuccess = onDismiss) },
-				enabled = inputData.isValid
+				enabled = isValid
 			) {
 				Text(stringResource(Res.string.action_save))
 			}

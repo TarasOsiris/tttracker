@@ -1,7 +1,7 @@
 package xyz.tleskiv.tt.viewmodel.impl.sessions
 
 import androidx.lifecycle.viewModelScope
-import com.kizitonwose.calendar.core.now
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
@@ -10,6 +10,7 @@ import xyz.tleskiv.tt.di.components.AnalyticsService
 import xyz.tleskiv.tt.model.mappers.toMatchInput
 import xyz.tleskiv.tt.service.TrainingSessionService
 import xyz.tleskiv.tt.service.UserPreferencesService
+import xyz.tleskiv.tt.util.today
 import xyz.tleskiv.tt.viewmodel.sessions.CreateSessionScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.PendingMatch
 
@@ -19,15 +20,15 @@ class CreateSessionScreenViewModelImpl(
 	private val preferencesService: UserPreferencesService,
 	private val analyticsService: AnalyticsService
 ) : CreateSessionScreenViewModel() {
-	private val _startDate = date ?: LocalDate.now()
+	private val _startDate = date ?: today()
 	override val initialDate: LocalDate = _startDate
-	override val inputData = InputData(_startDate)
+	override val inputData = InputData(viewModelScope, _startDate)
 
 	init {
 		viewModelScope.launch {
 			val prefs = preferencesService.getAllPreferences()
-			inputData.durationMinutes.intValue = prefs.defaultSessionDurationMinutes
-			inputData.rpeValue.intValue = prefs.defaultRpe
+			inputData.durationMinutes.value = prefs.defaultSessionDurationMinutes
+			inputData.rpeValue.value = prefs.defaultRpe
 			inputData.selectedSessionType.value = prefs.defaultSessionType
 			inputData.notes.value = prefs.defaultNotes
 		}
@@ -37,18 +38,18 @@ class CreateSessionScreenViewModelImpl(
 		viewModelScope.launch {
 			sessionService.addSession(
 				dateTime = LocalDateTime(inputData.selectedDate.value, LocalTime(12, 0)),
-				durationMinutes = inputData.durationMinutes.intValue,
-				rpe = inputData.rpeValue.intValue,
+				durationMinutes = inputData.durationMinutes.value,
+				rpe = inputData.rpeValue.value,
 				sessionType = inputData.selectedSessionType.value,
 				notes = inputData.notes.value.takeIf { it.isNotBlank() },
-				matches = inputData.pendingMatches.map { it.toMatchInput() }
+				matches = inputData.pendingMatches.value.map { it.toMatchInput() }
 			)
 			analyticsService.capture(
 				"session_created", mapOf(
 					"session_type" to inputData.selectedSessionType.value.name,
-					"duration_minutes" to inputData.durationMinutes.intValue,
-					"rpe" to inputData.rpeValue.intValue,
-					"match_count" to inputData.pendingMatches.size
+					"duration_minutes" to inputData.durationMinutes.value,
+					"rpe" to inputData.rpeValue.value,
+					"match_count" to inputData.pendingMatches.value.size
 				)
 			)
 			onSuccess()
@@ -56,17 +57,16 @@ class CreateSessionScreenViewModelImpl(
 	}
 
 	override fun addPendingMatch(match: PendingMatch) {
-		inputData.pendingMatches.add(match)
+		inputData.pendingMatches.update { it + match }
 	}
 
 	override fun updatePendingMatch(match: PendingMatch) {
-		val index = inputData.pendingMatches.indexOfFirst { it.id == match.id }
-		if (index >= 0) {
-			inputData.pendingMatches[index] = match
+		inputData.pendingMatches.update { matches ->
+			matches.map { if (it.id == match.id) match else it }
 		}
 	}
 
 	override fun removePendingMatch(matchId: String) {
-		inputData.pendingMatches.removeAll { it.id == matchId }
+		inputData.pendingMatches.update { matches -> matches.filterNot { it.id == matchId } }
 	}
 }

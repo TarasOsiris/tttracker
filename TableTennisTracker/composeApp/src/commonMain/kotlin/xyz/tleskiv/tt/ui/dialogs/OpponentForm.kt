@@ -16,8 +16,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import kotlinx.coroutines.flow.MutableStateFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -46,19 +48,26 @@ private const val NOTES_MAX_LENGTH = 512
 
 @Composable
 fun OpponentForm(
-	name: MutableState<String>,
-	club: MutableState<String>,
-	rating: MutableState<String>,
-	handedness: MutableState<Handedness?>,
-	playingStyle: MutableState<PlayingStyle?>,
-	notes: MutableState<String>
+	name: MutableStateFlow<String>,
+	club: MutableStateFlow<String>,
+	rating: MutableStateFlow<String>,
+	handedness: MutableStateFlow<Handedness?>,
+	playingStyle: MutableStateFlow<PlayingStyle?>,
+	notes: MutableStateFlow<String>
 ) {
+	val nameValue by name.collectAsStateWithLifecycle()
+	val clubValue by club.collectAsStateWithLifecycle()
+	val ratingValue by rating.collectAsStateWithLifecycle()
+	val handednessValue by handedness.collectAsStateWithLifecycle()
+	val playingStyleValue by playingStyle.collectAsStateWithLifecycle()
+	val notesValue by notes.collectAsStateWithLifecycle()
+
 	Column(
 		modifier = Modifier.fillMaxWidth().verticalScroll(rememberScrollState()),
 		verticalArrangement = Arrangement.spacedBy(16.dp)
 	) {
 		OutlinedTextField(
-			value = name.value,
+			value = nameValue,
 			onValueChange = { name.value = it },
 			label = { Text(stringResource(Res.string.label_opponent_name)) },
 			singleLine = true,
@@ -66,7 +75,7 @@ fun OpponentForm(
 		)
 
 		OutlinedTextField(
-			value = club.value,
+			value = clubValue,
 			onValueChange = { club.value = it },
 			label = { Text(stringResource(Res.string.label_opponent_club)) },
 			singleLine = true,
@@ -74,7 +83,7 @@ fun OpponentForm(
 		)
 
 		OutlinedTextField(
-			value = rating.value,
+			value = ratingValue,
 			onValueChange = { rating.value = it },
 			label = { Text(stringResource(Res.string.label_opponent_rating)) },
 			singleLine = true,
@@ -89,7 +98,7 @@ fun OpponentForm(
 				color = MaterialTheme.colorScheme.onSurfaceVariant
 			)
 			HandednessToggle(
-				selected = handedness.value,
+				selected = handednessValue,
 				onSelect = { handedness.value = it }
 			)
 		}
@@ -101,13 +110,13 @@ fun OpponentForm(
 				color = MaterialTheme.colorScheme.onSurfaceVariant
 			)
 			PlayingStyleToggle(
-				selected = playingStyle.value,
+				selected = playingStyleValue,
 				onSelect = { playingStyle.value = it }
 			)
 		}
 
 		OutlinedTextField(
-			value = notes.value,
+			value = notesValue,
 			onValueChange = { if (it.length <= NOTES_MAX_LENGTH) notes.value = it },
 			label = { Text(stringResource(Res.string.label_opponent_notes)) },
 			minLines = 2,

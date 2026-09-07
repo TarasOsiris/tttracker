@@ -8,9 +8,11 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.parameter.parametersOf
@@ -28,12 +30,14 @@ fun EditOpponentDialog(
 	viewModel: EditOpponentDialogViewModel = koinViewModel { parametersOf(opponentId) }
 ) {
 	val inputData = viewModel.inputData
+	val isValid by inputData.isValid.collectAsStateWithLifecycle()
+	val isLoading by viewModel.isLoading.collectAsStateWithLifecycle()
 
 	AlertDialog(
 		onDismissRequest = onDismiss,
 		title = { Text(stringResource(Res.string.action_edit_opponent)) },
 		text = {
-			if (viewModel.isLoading) {
+			if (isLoading) {
 				Box(
 					modifier = Modifier.fillMaxWidth(),
 					contentAlignment = Alignment.Center
@@ -54,7 +58,7 @@ fun EditOpponentDialog(
 		confirmButton = {
 			TextButton(
 				onClick = { viewModel.updateOpponent(onSuccess = onDismiss) },
-				enabled = inputData.isValid && !viewModel.isLoading
+				enabled = isValid && !isLoading
 			) {
 				Text(stringResource(Res.string.action_save))
 			}

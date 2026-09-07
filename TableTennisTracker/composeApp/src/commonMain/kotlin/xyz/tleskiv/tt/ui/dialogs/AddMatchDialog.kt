@@ -12,10 +12,10 @@ import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlin.uuid.Uuid
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
@@ -37,6 +37,7 @@ import xyz.tleskiv.tt.ui.widgets.fields.CompetitionLevelField
 import xyz.tleskiv.tt.ui.widgets.fields.NotesField
 import xyz.tleskiv.tt.ui.widgets.fields.OpponentField
 import xyz.tleskiv.tt.ui.widgets.fields.ScoreField
+import xyz.tleskiv.tt.util.ui.collectAsMutableState
 import xyz.tleskiv.tt.viewmodel.dialogs.AddMatchDialogViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.PendingMatch
 
@@ -51,16 +52,17 @@ fun AddMatchDialog(
 	) { parametersOf(editingMatch) }
 ) {
 	val inputData = viewModel.inputData
-	val opponents by viewModel.opponents.collectAsState()
+	val opponents by viewModel.opponents.collectAsStateWithLifecycle()
+	val isValid by inputData.isValid.collectAsStateWithLifecycle()
 
-	var opponentName by inputData.opponentName
-	var opponentId by inputData.opponentId
-	var myScore by inputData.myScore
-	var opponentScore by inputData.opponentScore
-	var isDoubles by inputData.isDoubles
-	var isRanked by inputData.isRanked
-	var competitionLevel by inputData.competitionLevel
-	var notes by inputData.notes
+	var opponentName by inputData.opponentName.collectAsMutableState()
+	var opponentId by inputData.opponentId.collectAsMutableState()
+	var myScore by inputData.myScore.collectAsMutableState()
+	var opponentScore by inputData.opponentScore.collectAsMutableState()
+	var isDoubles by inputData.isDoubles.collectAsMutableState()
+	var isRanked by inputData.isRanked.collectAsMutableState()
+	var competitionLevel by inputData.competitionLevel.collectAsMutableState()
+	var notes by inputData.notes.collectAsMutableState()
 
 	AlertDialog(
 		onDismissRequest = onDismiss,
@@ -121,7 +123,7 @@ fun AddMatchDialog(
 		confirmButton = {
 			TextButton(
 				onClick = { onConfirm(viewModel.buildPendingMatch()) },
-				enabled = inputData.isValid,
+				enabled = isValid,
 				modifier = Modifier.testTag(TestTags.ADD_MATCH_DIALOG_SAVE)
 			) {
 				Text(stringResource(Res.string.action_save))

@@ -1,20 +1,16 @@
 package xyz.tleskiv.tt.viewmodel.sessions
 
-import androidx.compose.runtime.Stable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
-import com.kizitonwose.calendar.core.minusMonths
-import com.kizitonwose.calendar.core.now
-import com.kizitonwose.calendar.core.plusMonths
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.datetime.DatePeriod
 import kotlinx.datetime.DayOfWeek
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.YearMonth
 import kotlinx.datetime.minus
+import kotlinx.datetime.plus
 import kotlinx.datetime.yearMonth
 import xyz.tleskiv.tt.data.model.enums.SessionType
+import xyz.tleskiv.tt.util.today
 import xyz.tleskiv.tt.viewmodel.ViewModelBase
 import kotlin.uuid.Uuid
 
@@ -36,11 +32,10 @@ abstract class SessionsScreenViewModel : ViewModelBase() {
 	abstract val highlightCurrentDay: StateFlow<Boolean>
 	abstract val inputData: InputData
 
-	@Stable
 	class InputData {
-		val currentDate: LocalDate = LocalDate.now()
-		var selectedDate by mutableStateOf(currentDate)
-		var isWeekMode by mutableStateOf(true)
+		val currentDate: LocalDate = today()
+		val selectedDate = MutableStateFlow(currentDate)
+		val isWeekMode = MutableStateFlow(true)
 
 		val startDate: LocalDate = currentDate.minus(DatePeriod(days = DATE_LIST_RANGE_DAYS))
 
@@ -49,7 +44,7 @@ abstract class SessionsScreenViewModel : ViewModelBase() {
 		val initialListIndex: Int = (currentDate.toEpochDays() - startDate.toEpochDays()).toInt() * 2
 
 		val currentYearMonth: YearMonth = currentDate.yearMonth
-		val startYearMonth: YearMonth = currentYearMonth.minusMonths(CALENDAR_RANGE_MONTHS)
-		val endYearMonth: YearMonth = currentYearMonth.plusMonths(CALENDAR_RANGE_MONTHS)
+		val startYearMonth: YearMonth = currentDate.minus(DatePeriod(months = CALENDAR_RANGE_MONTHS)).yearMonth
+		val endYearMonth: YearMonth = currentDate.plus(DatePeriod(months = CALENDAR_RANGE_MONTHS)).yearMonth
 	}
 }

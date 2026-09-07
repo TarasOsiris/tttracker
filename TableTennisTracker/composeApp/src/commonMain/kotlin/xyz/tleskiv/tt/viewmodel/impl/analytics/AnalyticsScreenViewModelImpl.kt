@@ -1,7 +1,6 @@
 package xyz.tleskiv.tt.viewmodel.impl.analytics
 
 import androidx.lifecycle.viewModelScope
-import com.kizitonwose.calendar.core.now
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
@@ -19,6 +18,7 @@ import xyz.tleskiv.tt.repo.AnalyticsRepository
 import xyz.tleskiv.tt.repo.UserPreferencesRepository
 import xyz.tleskiv.tt.service.TrainingSessionService
 import xyz.tleskiv.tt.util.ext.toLocalDate
+import xyz.tleskiv.tt.util.today
 import xyz.tleskiv.tt.viewmodel.analytics.AnalyticsScreenViewModel
 import xyz.tleskiv.tt.viewmodel.analytics.AnalyticsWidgetVisibility
 import xyz.tleskiv.tt.viewmodel.analytics.SummaryStats
@@ -83,7 +83,7 @@ class AnalyticsScreenViewModelImpl(
 		minutesByDate: Map<LocalDate, Int>,
 		firstDayOfWeek: DayOfWeek
 	): List<WeeklyTrainingData> {
-		val today = LocalDate.now()
+		val today = today()
 		val weeksToShow = 8
 
 		return (0 until weeksToShow).map { weeksAgo ->

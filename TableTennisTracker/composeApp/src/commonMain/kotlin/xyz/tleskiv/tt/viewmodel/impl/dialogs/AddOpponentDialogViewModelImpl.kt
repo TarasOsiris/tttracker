@@ -11,7 +11,7 @@ class AddOpponentDialogViewModelImpl(
 	private val analyticsService: AnalyticsService
 ) : AddOpponentDialogViewModel() {
 
-	override val inputData = InputData()
+	override val inputData = InputData(viewModelScope)
 
 	override fun saveOpponent(onSuccess: () -> Unit) {
 		viewModelScope.launch {

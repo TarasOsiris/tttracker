@@ -1,12 +1,11 @@
 package xyz.tleskiv.tt.viewmodel.impl.sessions
 
 import androidx.lifecycle.viewModelScope
-import com.kizitonwose.calendar.core.now
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.LocalTime
 import xyz.tleskiv.tt.data.model.enums.SessionType
@@ -15,6 +14,7 @@ import xyz.tleskiv.tt.model.mappers.toMatchInput
 import xyz.tleskiv.tt.model.mappers.toPendingMatch
 import xyz.tleskiv.tt.service.TrainingSessionService
 import xyz.tleskiv.tt.util.ext.toLocalDateTime
+import xyz.tleskiv.tt.util.today
 import xyz.tleskiv.tt.viewmodel.sessions.CreateSessionScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.EditSessionScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.EditSessionUiState
@@ -29,7 +29,7 @@ class EditSessionScreenViewModelImpl(
 	private val _uiState = MutableStateFlow(EditSessionUiState())
 	override val uiState: StateFlow<EditSessionUiState> = _uiState.asStateFlow()
 
-	override val inputData = CreateSessionScreenViewModel.InputData(LocalDate.now())
+	override val inputData = CreateSessionScreenViewModel.InputData(viewModelScope, today())
 	private lateinit var sessionUuid: Uuid
 	private var sessionTime: LocalTime = LocalTime(12, 0)
 
@@ -48,13 +48,12 @@ class EditSessionScreenViewModelImpl(
 			val dateTime = session.date.toLocalDateTime()
 			sessionTime = dateTime.time
 			inputData.selectedDate.value = dateTime.date
-			inputData.durationMinutes.intValue = session.durationMinutes
-			inputData.rpeValue.intValue = session.rpe
+			inputData.durationMinutes.value = session.durationMinutes
+			inputData.rpeValue.value = session.rpe
 			inputData.selectedSessionType.value = session.sessionType ?: SessionType.TECHNIQUE
 			inputData.notes.value = session.notes.orEmpty()
 
-			inputData.pendingMatches.clear()
-			inputData.pendingMatches.addAll(session.matches.map { it.toPendingMatch() })
+			inputData.pendingMatches.value = session.matches.map { it.toPendingMatch() }
 
 			_uiState.value = EditSessionUiState(isLoading = false)
 		}
@@ -65,18 +64,18 @@ class EditSessionScreenViewModelImpl(
 			sessionService.editSession(
 				id = sessionUuid,
 				dateTime = LocalDateTime(inputData.selectedDate.value, sessionTime),
-				durationMinutes = inputData.durationMinutes.intValue,
-				rpe = inputData.rpeValue.intValue,
+				durationMinutes = inputData.durationMinutes.value,
+				rpe = inputData.rpeValue.value,
 				sessionType = inputData.selectedSessionType.value,
 				notes = inputData.notes.value.takeIf { it.isNotBlank() },
-				matches = inputData.pendingMatches.map { it.toMatchInput() }
+				matches = inputData.pendingMatches.value.map { it.toMatchInput() }
 			)
 			analyticsService.capture(
 				"session_edited", mapOf(
 					"session_type" to inputData.selectedSessionType.value.name,
-					"duration_minutes" to inputData.durationMinutes.intValue,
-					"rpe" to inputData.rpeValue.intValue,
-					"match_count" to inputData.pendingMatches.size
+					"duration_minutes" to inputData.durationMinutes.value,
+					"rpe" to inputData.rpeValue.value,
+					"match_count" to inputData.pendingMatches.value.size
 				)
 			)
 			onSuccess()
@@ -84,17 +83,16 @@ class EditSessionScreenViewModelImpl(
 	}
 
 	override fun addPendingMatch(match: PendingMatch) {
-		inputData.pendingMatches.add(match)
+		inputData.pendingMatches.update { it + match }
 	}
 
 	override fun updatePendingMatch(match: PendingMatch) {
-		val index = inputData.pendingMatches.indexOfFirst { it.id == match.id }
-		if (index >= 0) {
-			inputData.pendingMatches[index] = match
+		inputData.pendingMatches.update { matches ->
+			matches.map { if (it.id == match.id) match else it }
 		}
 	}
 
 	override fun removePendingMatch(matchId: String) {
-		inputData.pendingMatches.removeAll { it.id == matchId }
+		inputData.pendingMatches.update { matches -> matches.filterNot { it.id == matchId } }
 	}
 }

@@ -12,6 +12,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.label_date
 import tabletennistracker.composeapp.generated.resources.label_notes_optional
@@ -30,6 +31,7 @@ import kotlinx.datetime.LocalDate
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.parameter.parametersOf
 import xyz.tleskiv.tt.util.ui.clearFocusOnTap
+import xyz.tleskiv.tt.util.ui.collectAsMutableState
 import xyz.tleskiv.tt.viewmodel.sessions.CreateSessionScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.PendingMatch
 
@@ -40,6 +42,7 @@ fun CreateSessionScreen(
 	viewModel: CreateSessionScreenViewModel = koinViewModel { parametersOf(initialDate) }
 ) {
 	val inputData = viewModel.inputData
+	val isFormValid by inputData.isFormValid.collectAsStateWithLifecycle()
 	val focusManager = LocalFocusManager.current
 
 	Column(modifier = Modifier.fillMaxSize().clearFocusOnTap(focusManager)) {
@@ -63,12 +66,12 @@ fun CreateSessionScreen(
 		BottomBarButtons(
 			onLeftButtonClick = onNavigateBack,
 			onRightButtonClick = { viewModel.saveSession(onNavigateBack) },
-			rightButtonEnabled = inputData.isFormValid,
+			rightButtonEnabled = isFormValid,
 		)
 	}
 
-	var showDatePicker by inputData.showDatePicker
-	var selectedDate by inputData.selectedDate
+	var showDatePicker by inputData.showDatePicker.collectAsMutableState()
+	var selectedDate by inputData.selectedDate.collectAsMutableState()
 
 	if (showDatePicker) {
 		DatePickerDialog(initialDate = selectedDate, onDateSelected = { date ->
@@ -85,15 +88,15 @@ fun CreateSessionScreenContent(
 	onUpdatePendingMatch: (PendingMatch) -> Unit,
 	onRemovePendingMatch: (String) -> Unit
 ) {
-	var selectedDate by inputData.selectedDate
-	var durationMinutes by inputData.durationMinutes
-	var selectedSessionType by inputData.selectedSessionType
-	var rpeValue by inputData.rpeValue
-	var notes by inputData.notes
-	var showDatePicker by inputData.showDatePicker
-	var showAddMatchDialog by inputData.showAddMatchDialog
-	var editingMatch by inputData.editingMatch
-	val pendingMatches = inputData.pendingMatches
+	var selectedDate by inputData.selectedDate.collectAsMutableState()
+	var durationMinutes by inputData.durationMinutes.collectAsMutableState()
+	var selectedSessionType by inputData.selectedSessionType.collectAsMutableState()
+	var rpeValue by inputData.rpeValue.collectAsMutableState()
+	var notes by inputData.notes.collectAsMutableState()
+	var showDatePicker by inputData.showDatePicker.collectAsMutableState()
+	var showAddMatchDialog by inputData.showAddMatchDialog.collectAsMutableState()
+	var editingMatch by inputData.editingMatch.collectAsMutableState()
+	val pendingMatches by inputData.pendingMatches.collectAsStateWithLifecycle()
 
 	DatePickerField(
 		label = Res.string.label_date,

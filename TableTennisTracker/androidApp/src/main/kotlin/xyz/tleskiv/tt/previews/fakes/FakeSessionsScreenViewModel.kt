@@ -1,6 +1,5 @@
 package xyz.tleskiv.tt.previews.fakes
 
-import com.kizitonwose.calendar.core.now
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.datetime.DateTimeUnit
@@ -8,6 +7,7 @@ import kotlinx.datetime.DayOfWeek
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.minus
 import xyz.tleskiv.tt.data.model.enums.SessionType
+import xyz.tleskiv.tt.util.today
 import xyz.tleskiv.tt.viewmodel.sessions.SessionsScreenViewModel
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
@@ -38,7 +38,7 @@ class FakeSessionsScreenViewModel(
 			listOf("Morning practice", "Club tournament", null, "Footwork drills", null, "Serve practice", null, null)
 
 		private fun createSampleSessions(): Map<LocalDate, List<SessionUiModel>> {
-			val today = LocalDate.now()
+			val today = today()
 			return List(8) { i -> today.minus(i, DateTimeUnit.DAY) }
 				.mapIndexedNotNull { i, date ->
 					val count = sessionCounts[i]

@@ -1,11 +1,13 @@
 package xyz.tleskiv.tt.previews.fakes
 
-import com.kizitonwose.calendar.core.now
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.datetime.LocalDate
 import xyz.tleskiv.tt.data.model.enums.CompetitionLevel
 import xyz.tleskiv.tt.data.model.enums.SessionType
+import xyz.tleskiv.tt.util.today
 import xyz.tleskiv.tt.viewmodel.sessions.CreateSessionScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.EditSessionScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.EditSessionUiState
@@ -14,20 +16,21 @@ import kotlin.uuid.ExperimentalUuidApi
 
 @OptIn(ExperimentalUuidApi::class)
 class FakeEditSessionScreenViewModel(
-	initialDate: LocalDate = LocalDate.now(),
+	initialDate: LocalDate = today(),
 	isLoading: Boolean = false,
 	error: String? = null,
 	withSampleData: Boolean = true
 ) : EditSessionScreenViewModel() {
 	override val inputData: CreateSessionScreenViewModel.InputData = CreateSessionScreenViewModel.InputData(
+		viewModelScope,
 		initialDate,
 		initialDurationMinutes = 90
 	).apply {
 		if (withSampleData) {
 			selectedSessionType.value = SessionType.MATCH_PLAY
-			rpeValue.intValue = 7
+			rpeValue.value = 7
 			notes.value = "Edited practice session"
-			pendingMatches.addAll(sampleMatches)
+			pendingMatches.value = sampleMatches
 		}
 	}
 	override val uiState: StateFlow<EditSessionUiState> = MutableStateFlow(
@@ -36,16 +39,17 @@ class FakeEditSessionScreenViewModel(
 
 	override fun saveSession(onSuccess: () -> Unit) {}
 	override fun addPendingMatch(match: PendingMatch) {
-		inputData.pendingMatches.add(match)
+		inputData.pendingMatches.update { it + match }
 	}
 
 	override fun updatePendingMatch(match: PendingMatch) {
-		val index = inputData.pendingMatches.indexOfFirst { it.id == match.id }
-		if (index >= 0) inputData.pendingMatches[index] = match
+		inputData.pendingMatches.update { matches ->
+			matches.map { if (it.id == match.id) match else it }
+		}
 	}
 
 	override fun removePendingMatch(matchId: String) {
-		inputData.pendingMatches.removeAll { it.id == matchId }
+		inputData.pendingMatches.update { matches -> matches.filterNot { it.id == matchId } }
 	}
 
 	companion object {

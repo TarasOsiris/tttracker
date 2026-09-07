@@ -28,7 +28,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -37,6 +36,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import tabletennistracker.composeapp.generated.resources.Res
@@ -68,6 +68,7 @@ import xyz.tleskiv.tt.ui.widgets.fields.DurationField
 import xyz.tleskiv.tt.ui.widgets.fields.NotesField
 import xyz.tleskiv.tt.ui.widgets.fields.RpeField
 import xyz.tleskiv.tt.ui.widgets.fields.SessionTypeField
+import xyz.tleskiv.tt.util.ui.collectAsMutableState
 import xyz.tleskiv.tt.viewmodel.settings.GeneralSettingsScreenViewModel
 
 @Composable
@@ -75,14 +76,14 @@ fun GeneralSettingsScreen(
 	onNavigateBack: () -> Unit,
 	viewModel: GeneralSettingsScreenViewModel = koinViewModel()
 ) {
-	var defaultDuration by viewModel.inputData.defaultSessionDuration
-	var defaultRpe by viewModel.inputData.defaultRpe
-	var defaultSessionType by viewModel.inputData.defaultSessionType
-	var defaultNotes by viewModel.inputData.defaultNotes
-	val themeMode by viewModel.themeMode.collectAsState()
-	val weekStartDay by viewModel.weekStartDay.collectAsState()
-	val highlightCurrentDay by viewModel.highlightCurrentDay.collectAsState()
-	val appLocale by viewModel.appLocale.collectAsState()
+	var defaultDuration by viewModel.inputData.defaultSessionDuration.collectAsMutableState()
+	var defaultRpe by viewModel.inputData.defaultRpe.collectAsMutableState()
+	var defaultSessionType by viewModel.inputData.defaultSessionType.collectAsMutableState()
+	var defaultNotes by viewModel.inputData.defaultNotes.collectAsMutableState()
+	val themeMode by viewModel.themeMode.collectAsStateWithLifecycle()
+	val weekStartDay by viewModel.weekStartDay.collectAsStateWithLifecycle()
+	val highlightCurrentDay by viewModel.highlightCurrentDay.collectAsStateWithLifecycle()
+	val appLocale by viewModel.appLocale.collectAsStateWithLifecycle()
 	var showThemeDialog by rememberSaveable { mutableStateOf(false) }
 	var showWeekStartDialog by rememberSaveable { mutableStateOf(false) }
 	var showLanguageDialog by rememberSaveable { mutableStateOf(false) }

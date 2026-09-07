@@ -16,7 +16,7 @@ class AddMatchDialogViewModelImpl(
 
 	override val isEditMode: Boolean = editingMatch != null
 
-	override val inputData = InputData(editingMatch)
+	override val inputData = InputData(viewModelScope, editingMatch)
 
 	override val opponents: StateFlow<List<Opponent>> = opponentService.allOpponents
 		.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())

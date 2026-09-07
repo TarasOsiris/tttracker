@@ -13,12 +13,12 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.parameter.parametersOf
@@ -37,6 +37,7 @@ import xyz.tleskiv.tt.ui.widgets.fields.NotesField
 import xyz.tleskiv.tt.ui.widgets.fields.RpeField
 import xyz.tleskiv.tt.ui.widgets.fields.SessionTypeField
 import xyz.tleskiv.tt.util.ui.clearFocusOnTap
+import xyz.tleskiv.tt.util.ui.collectAsMutableState
 import xyz.tleskiv.tt.viewmodel.sessions.CreateSessionScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.EditSessionScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.PendingMatch
@@ -49,7 +50,8 @@ fun EditSessionScreen(
 	viewModel: EditSessionScreenViewModel = koinViewModel { parametersOf(sessionId) }
 ) {
 	val inputData = viewModel.inputData
-	val uiState by viewModel.uiState.collectAsState()
+	val isFormValid by inputData.isFormValid.collectAsStateWithLifecycle()
+	val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 	val focusManager = LocalFocusManager.current
 
 	Scaffold(
@@ -60,7 +62,7 @@ fun EditSessionScreen(
 				actions = {
 					Button(
 						onClick = { viewModel.saveSession(onClose) },
-						enabled = inputData.isFormValid && !uiState.isLoading && uiState.error == null
+						enabled = isFormValid && !uiState.isLoading && uiState.error == null
 					) {
 						Text(stringResource(Res.string.action_save))
 					}
@@ -93,10 +95,10 @@ fun EditSessionScreen(
 		}
 	}
 
-	var showDatePicker by inputData.showDatePicker
-	var selectedDate by inputData.selectedDate
-	var showAddMatchDialog by inputData.showAddMatchDialog
-	var editingMatch by inputData.editingMatch
+	var showDatePicker by inputData.showDatePicker.collectAsMutableState()
+	var selectedDate by inputData.selectedDate.collectAsMutableState()
+	var showAddMatchDialog by inputData.showAddMatchDialog.collectAsMutableState()
+	var editingMatch by inputData.editingMatch.collectAsMutableState()
 
 	if (showDatePicker) {
 		DatePickerDialog(
@@ -136,15 +138,15 @@ private fun EditSessionScreenContent(
 	onUpdatePendingMatch: (PendingMatch) -> Unit,
 	onRemovePendingMatch: (String) -> Unit
 ) {
-	var selectedDate by inputData.selectedDate
-	var durationMinutes by inputData.durationMinutes
-	var selectedSessionType by inputData.selectedSessionType
-	var rpeValue by inputData.rpeValue
-	var notes by inputData.notes
-	var showDatePicker by inputData.showDatePicker
-	var showAddMatchDialog by inputData.showAddMatchDialog
-	var editingMatch by inputData.editingMatch
-	val pendingMatches = inputData.pendingMatches
+	var selectedDate by inputData.selectedDate.collectAsMutableState()
+	var durationMinutes by inputData.durationMinutes.collectAsMutableState()
+	var selectedSessionType by inputData.selectedSessionType.collectAsMutableState()
+	var rpeValue by inputData.rpeValue.collectAsMutableState()
+	var notes by inputData.notes.collectAsMutableState()
+	var showDatePicker by inputData.showDatePicker.collectAsMutableState()
+	var showAddMatchDialog by inputData.showAddMatchDialog.collectAsMutableState()
+	var editingMatch by inputData.editingMatch.collectAsMutableState()
+	val pendingMatches by inputData.pendingMatches.collectAsStateWithLifecycle()
 
 	DatePickerField(
 		label = Res.string.label_date,

@@ -1,24 +1,25 @@
 package xyz.tleskiv.tt.previews.fakes
 
-import com.kizitonwose.calendar.core.now
+import androidx.lifecycle.viewModelScope
 import kotlinx.datetime.LocalDate
 import xyz.tleskiv.tt.data.model.enums.CompetitionLevel
 import xyz.tleskiv.tt.data.model.enums.SessionType
+import xyz.tleskiv.tt.util.today
 import xyz.tleskiv.tt.viewmodel.sessions.CreateSessionScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.PendingMatch
 import kotlin.uuid.ExperimentalUuidApi
 
 @OptIn(ExperimentalUuidApi::class)
 class FakeCreateSessionScreenViewModel(
-	override val initialDate: LocalDate = LocalDate.now(),
+	override val initialDate: LocalDate = today(),
 	withSampleData: Boolean = true
 ) : CreateSessionScreenViewModel() {
-	override val inputData: InputData = InputData(initialDate, initialDurationMinutes = 90).apply {
+	override val inputData: InputData = InputData(viewModelScope, initialDate, initialDurationMinutes = 90).apply {
 		if (withSampleData) {
 			selectedSessionType.value = SessionType.TECHNIQUE
-			rpeValue.intValue = 7
+			rpeValue.value = 7
 			notes.value = "Practice session notes"
-			pendingMatches.addAll(sampleMatches)
+			pendingMatches.value = sampleMatches
 		}
 	}
 

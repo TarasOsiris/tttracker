@@ -1,9 +1,9 @@
 package xyz.tleskiv.tt.viewmodel.impl.dialogs
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import xyz.tleskiv.tt.data.model.enums.Handedness
 import xyz.tleskiv.tt.data.model.enums.PlayingStyle
@@ -18,9 +18,10 @@ class EditOpponentDialogViewModelImpl(
 	private val analyticsService: AnalyticsService
 ) : EditOpponentDialogViewModel() {
 
-	override val inputData = InputData()
-	override var isLoading by mutableStateOf(true)
-		private set
+	override val inputData = InputData(viewModelScope)
+
+	private val _isLoading = MutableStateFlow(true)
+	override val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
 
 	init {
 		loadOpponent()
@@ -37,7 +38,7 @@ class EditOpponentDialogViewModelImpl(
 				inputData.playingStyle.value = opponent.style?.let { PlayingStyle.fromDb(it) }
 				inputData.notes.value = opponent.notes ?: ""
 			}
-			isLoading = false
+			_isLoading.value = false
 		}
 	}
 

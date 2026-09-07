@@ -1,6 +1,11 @@
 package xyz.tleskiv.tt.viewmodel.sessions
 
-import androidx.compose.runtime.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.datetime.LocalDate
 import xyz.tleskiv.tt.data.model.enums.CompetitionLevel
 import xyz.tleskiv.tt.data.model.enums.SessionType
@@ -19,6 +24,8 @@ data class PendingMatch(
 	val notes: String? = null
 )
 
+private val VALID_DURATION_RANGE = 10..300
+
 abstract class CreateSessionScreenViewModel : ViewModelBase() {
 	abstract val initialDate: LocalDate
 
@@ -32,20 +39,23 @@ abstract class CreateSessionScreenViewModel : ViewModelBase() {
 
 	abstract fun removePendingMatch(matchId: String)
 
-	@Stable
-	class InputData(initialDate: LocalDate, initialDurationMinutes: Int = 60) {
-		val selectedDate = mutableStateOf(initialDate)
-		val durationMinutes = mutableIntStateOf(initialDurationMinutes)
-		val selectedSessionType = mutableStateOf<SessionType>(SessionType.TECHNIQUE)
-		val rpeValue = mutableIntStateOf(5)
-		val notes = mutableStateOf("")
-		val showDatePicker = mutableStateOf(false)
-		val pendingMatches = mutableStateListOf<PendingMatch>()
-		val showAddMatchDialog = mutableStateOf(false)
-		val editingMatch = mutableStateOf<PendingMatch?>(null)
+	class InputData(
+		scope: CoroutineScope,
+		initialDate: LocalDate,
+		initialDurationMinutes: Int = 60
+	) {
+		val selectedDate = MutableStateFlow(initialDate)
+		val durationMinutes = MutableStateFlow(initialDurationMinutes)
+		val selectedSessionType = MutableStateFlow(SessionType.TECHNIQUE)
+		val rpeValue = MutableStateFlow(5)
+		val notes = MutableStateFlow("")
+		val showDatePicker = MutableStateFlow(false)
+		val pendingMatches = MutableStateFlow<List<PendingMatch>>(emptyList())
+		val showAddMatchDialog = MutableStateFlow(false)
+		val editingMatch = MutableStateFlow<PendingMatch?>(null)
 
-		val isFormValid by derivedStateOf {
-			durationMinutes.intValue in 10..300
-		}
+		val isFormValid: StateFlow<Boolean> = durationMinutes
+			.map { it in VALID_DURATION_RANGE }
+			.stateIn(scope, SharingStarted.Eagerly, initialDurationMinutes in VALID_DURATION_RANGE)
 	}
 }

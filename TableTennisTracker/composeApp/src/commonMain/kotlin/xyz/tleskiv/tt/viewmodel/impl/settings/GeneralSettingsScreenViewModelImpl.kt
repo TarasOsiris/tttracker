@@ -66,8 +66,8 @@ class GeneralSettingsScreenViewModelImpl(
 	init {
 		viewModelScope.launch {
 			val prefs = userPreferencesService.getAllPreferences()
-			inputData.defaultSessionDuration.intValue = prefs.defaultSessionDurationMinutes
-			inputData.defaultRpe.intValue = prefs.defaultRpe
+			inputData.defaultSessionDuration.value = prefs.defaultSessionDurationMinutes
+			inputData.defaultRpe.value = prefs.defaultRpe
 			inputData.defaultSessionType.value = prefs.defaultSessionType
 			inputData.defaultNotes.value = prefs.defaultNotes
 		}
@@ -83,8 +83,8 @@ class GeneralSettingsScreenViewModelImpl(
 	private suspend fun persistPreferences() {
 		userPreferencesService.setAllPreferences(
 			UserPreferences(
-				defaultSessionDurationMinutes = inputData.defaultSessionDuration.intValue,
-				defaultRpe = inputData.defaultRpe.intValue,
+				defaultSessionDurationMinutes = inputData.defaultSessionDuration.value,
+				defaultRpe = inputData.defaultRpe.value,
 				defaultSessionType = inputData.defaultSessionType.value,
 				defaultNotes = inputData.defaultNotes.value
 			)

@@ -38,7 +38,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
@@ -60,6 +59,7 @@ import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.kizitonwose.calendar.compose.CalendarState
 import com.kizitonwose.calendar.compose.VerticalCalendar
 import com.kizitonwose.calendar.compose.WeekCalendar
@@ -92,6 +92,7 @@ import xyz.tleskiv.tt.ui.widgets.SessionListItem
 import xyz.tleskiv.tt.util.ext.displayText
 import xyz.tleskiv.tt.util.ext.formatDateHeader
 import xyz.tleskiv.tt.util.ext.formatMonthYear
+import xyz.tleskiv.tt.util.ui.collectAsMutableState
 import xyz.tleskiv.tt.viewmodel.sessions.SessionsScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.SessionsScreenViewModel.SessionUiModel
 
@@ -105,9 +106,12 @@ fun SessionsScreen(
 	viewModel: SessionsScreenViewModel = koinViewModel()
 ) {
 	val inputData = viewModel.inputData
-	val sessionsByDate by viewModel.sessions.collectAsState()
-	val firstDayOfWeek by viewModel.firstDayOfWeek.collectAsState()
-	val highlightCurrentDay by viewModel.highlightCurrentDay.collectAsState()
+	val sessionsByDate by viewModel.sessions.collectAsStateWithLifecycle()
+	val firstDayOfWeek by viewModel.firstDayOfWeek.collectAsStateWithLifecycle()
+	val highlightCurrentDay by viewModel.highlightCurrentDay.collectAsStateWithLifecycle()
+
+	var selectedDate by inputData.selectedDate.collectAsMutableState()
+	var isWeekMode by inputData.isWeekMode.collectAsMutableState()
 
 	val listState = rememberLazyListState(initialFirstVisibleItemIndex = inputData.initialListIndex)
 	val coroutineScope = rememberCoroutineScope()
@@ -132,7 +136,7 @@ fun SessionsScreen(
 		)
 	}
 
-	val visibleYearMonth = if (inputData.isWeekMode) {
+	val visibleYearMonth = if (isWeekMode) {
 		weekState.firstVisibleWeek.days.first().date.yearMonth
 	} else {
 		monthState.firstVisibleMonth.yearMonth
@@ -154,15 +158,15 @@ fun SessionsScreen(
 	topAppBarState.actions = {
 		Row(verticalAlignment = Alignment.CenterVertically) {
 			AnimatedVisibility(
-				visible = inputData.selectedDate != inputData.currentDate,
+				visible = selectedDate != inputData.currentDate,
 				enter = fadeIn(),
 				exit = fadeOut()
 			) {
 				TodayButton(onClick = {
-					inputData.selectedDate = inputData.currentDate
+					selectedDate = inputData.currentDate
 					scrollListToDate(inputData.currentDate)
 					coroutineScope.launch {
-						if (inputData.isWeekMode) {
+						if (isWeekMode) {
 							weekState.scrollToWeek(inputData.currentDate)
 						} else {
 							monthState.scrollToMonth(inputData.currentDate.yearMonth)
@@ -174,15 +178,15 @@ fun SessionsScreen(
 			Spacer(modifier = Modifier.width(8.dp))
 
 			WeekMonthToggle(
-				isWeekMode = inputData.isWeekMode,
+				isWeekMode = isWeekMode,
 				onToggle = {
 					coroutineScope.launch {
-						if (inputData.isWeekMode) {
-							monthState.scrollToMonth(inputData.selectedDate.yearMonth)
+						if (isWeekMode) {
+							monthState.scrollToMonth(selectedDate.yearMonth)
 						} else {
-							weekState.scrollToWeek(inputData.selectedDate)
+							weekState.scrollToWeek(selectedDate)
 						}
-						inputData.isWeekMode = !inputData.isWeekMode
+						isWeekMode = !isWeekMode
 					}
 				}
 			)
@@ -195,12 +199,12 @@ fun SessionsScreen(
 		snapshotFlow { listState.firstVisibleItemIndex }
 			.collect { index ->
 				val visibleDate = getDateForIndex(index, inputData.startDate, sessionsByDate)
-				if (visibleDate != inputData.selectedDate) {
-					inputData.selectedDate = visibleDate
+				if (visibleDate != selectedDate) {
+					selectedDate = visibleDate
 				}
 				animationJob?.cancel()
 				animationJob = launch {
-					if (inputData.isWeekMode) {
+					if (isWeekMode) {
 						weekState.animateScrollToWeek(visibleDate)
 					} else {
 						monthState.animateScrollToMonth(visibleDate.yearMonth)
@@ -218,15 +222,15 @@ fun SessionsScreen(
 		) {
 			CalendarSection(
 				currentDate = inputData.currentDate,
-				selectedDate = inputData.selectedDate,
+				selectedDate = selectedDate,
 				sessionsByDate = sessionsByDate,
-				isWeekMode = inputData.isWeekMode,
+				isWeekMode = isWeekMode,
 				monthState = monthState,
 				weekState = weekState,
 				firstDayOfWeek = firstDayOfWeek,
 				highlightCurrentDay = highlightCurrentDay,
 				onDateSelected = {
-					inputData.selectedDate = it
+					selectedDate = it
 					scrollListToDate(it)
 				},
 				isLandscape = isLandscape
@@ -242,7 +246,7 @@ fun SessionsScreen(
 		}
 
 		AddSessionFab(
-			onClick = { onAddSession(inputData.selectedDate) },
+			onClick = { onAddSession(selectedDate) },
 			modifier = Modifier.align(Alignment.BottomEnd)
 		)
 	}
