@@ -1,1 +1,1 @@
-Grafik hasil pertandingan, waktu latihan mingguan, dan layar analitik baru tempat kamu memilih sendiri widget yang ingin ditampilkan.
+Aplikasi kini otomatis mengikuti bahasa iPhone, tanpa perlu mengubahnya manual. Layar analitik juga sudah diterjemahkan sepenuhnya: waktu latihan mingguan, hasil pertandingan, dan nama widget.

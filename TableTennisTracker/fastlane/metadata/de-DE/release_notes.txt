@@ -1,1 +1,1 @@
-Diagramm der Spielergebnisse, wöchentliche Trainingszeit und eine neu gestaltete Auswertungsseite, auf der du selbst wählst, welche Widgets erscheinen.
+Die App übernimmt jetzt automatisch die Sprache des iPhones – kein manuelles Umstellen mehr. Auch der Analyse-Bildschirm ist vollständig übersetzt: wöchentliche Trainingszeit, Spielergebnisse und Widget-Namen.

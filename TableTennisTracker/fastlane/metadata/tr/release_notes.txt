@@ -1,1 +1,1 @@
-Maç sonuçları grafiği, haftalık antrenman süresi ve hangi kartların görüneceğini seçebildiğin yeniden tasarlanmış istatistik ekranı.
+Uygulama artık iPhone'un dilini otomatik olarak kullanıyor; elle ayarlamaya gerek yok. Analiz ekranı da tamamen çevrildi: haftalık antrenman süresi, maç sonuçları ve bileşen adları.

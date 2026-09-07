@@ -1,1 +1,1 @@
-Graphique des résultats de matchs, temps d'entraînement hebdomadaire et un écran de statistiques repensé, où vous choisissez les modules à afficher.
+L'app adopte désormais automatiquement la langue de l'iPhone, sans réglage manuel. L'écran d'analyse est également entièrement traduit : temps d'entraînement hebdomadaire, résultats des matchs et noms des widgets.

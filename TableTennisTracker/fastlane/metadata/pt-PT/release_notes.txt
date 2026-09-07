@@ -1,1 +1,1 @@
-Gráfico de resultados dos jogos, tempo de treino semanal e um ecrã de estatísticas redesenhado onde escolhes que cartões queres ver.
+A app adota agora automaticamente o idioma do iPhone, sem ter de o mudar manualmente. O ecrã de análise está também totalmente traduzido: tempo de treino semanal, resultados dos jogos e nomes dos widgets.

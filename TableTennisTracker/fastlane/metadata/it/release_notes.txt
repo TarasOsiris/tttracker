@@ -1,1 +1,1 @@
-Grafico dei risultati delle partite, tempo di allenamento settimanale e una schermata statistiche ridisegnata in cui scegli quali riquadri mostrare.
+L'app ora adotta automaticamente la lingua dell'iPhone, senza doverla impostare a mano. Anche la schermata delle statistiche è completamente tradotta: tempo di allenamento settimanale, risultati delle partite e nomi dei widget.
