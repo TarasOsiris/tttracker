@@ -15,30 +15,19 @@ enum AppBootstrap {
     }
 }
 
-/// Chooses between the Compose UI and the native shell.
+/// Chooses between the native shell and the Compose UI.
 ///
-/// `SWIFT_ACTIVE_COMPILATION_CONDITIONS` defines `DEBUG` only in the Debug configuration, which
-/// `/ship` never archives, so in a Release build this returns a compile-time `false` and
-/// `ContentView` does not mention `RootTabView` at all. The native UI is therefore **unreachable**
-/// in the App Store binary — there is no flag, defaults key or launch argument that can reach it.
-///
-/// Unreachable, not absent: SwiftUI view bodies are not fully dead-stripped, so some of the native
-/// screens still compile into the Release binary as orphaned code. If that ever matters — for
-/// binary size once every screen is ported, say — the fix is to wrap each native UI file in
-/// `#if DEBUG`, not to change this switch.
+/// The native shell is the default on every configuration, App Store builds included. The Compose
+/// UI is still built and still reachable, because the two are compared side by side while the
+/// remaining tabs are ported — but only through a launch argument or a defaults key, neither of
+/// which a device build can reach on its own.
 enum UIShell {
-    #if DEBUG
-    private static let defaultsKey = "nativeUIEnabled"
-    #endif
+    private static let defaultsKey = "composeUIEnabled"
 
     static var useNative: Bool {
-        #if DEBUG
         let arguments = ProcessInfo.processInfo.arguments
         if arguments.contains("-nativeUI") { return true }
         if arguments.contains("-composeUI") { return false }
-        return UserDefaults.standard.bool(forKey: defaultsKey)
-        #else
-        return false
-        #endif
+        return !UserDefaults.standard.bool(forKey: defaultsKey)
     }
 }
