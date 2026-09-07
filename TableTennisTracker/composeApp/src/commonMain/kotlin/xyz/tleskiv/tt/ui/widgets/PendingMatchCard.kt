@@ -95,9 +95,10 @@ fun PendingMatchCard(
 				}
 			}
 
-			if (!match.notes.isNullOrBlank()) {
+			val matchNotes = match.notes
+			if (!matchNotes.isNullOrBlank()) {
 				Text(
-					text = match.notes,
+					text = matchNotes,
 					style = MaterialTheme.typography.bodySmall,
 					color = MaterialTheme.colorScheme.onSurfaceVariant,
 					maxLines = 2,

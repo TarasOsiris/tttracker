@@ -21,7 +21,20 @@ Table Tennis Tracker is a Kotlin Multiplatform (KMP) application targeting Andro
 
 ### iOS
 
-Open `/iosApp` directory in Xcode and build/run from there, or use the IDE's run configuration.
+Open `iosApp/iosApp.xcodeproj` in Xcode and build/run from there.
+
+The app uses **Swift Package Manager**, not CocoaPods — there is no `.xcworkspace`, and every
+`xcodebuild` invocation targets `-project iosApp/iosApp.xcodeproj`. The Kotlin/Native
+`Shared.framework` is produced by the target's `Compile Kotlin Framework` build phase, which runs
+`./gradlew :composeApp:embedAndSignAppleFrameworkForXcode`. PostHog and Sentry are SwiftPM
+dependencies used only from Swift.
+
+Because the Kotlin framework links no Apple SDKs of its own, it can be checked on its own without
+Xcode:
+
+```bash
+./gradlew :composeApp:linkReleaseFrameworkIosArm64
+```
 
 ### Server
 
@@ -40,23 +53,43 @@ Open `/iosApp` directory in Xcode and build/run from there, or use the IDE's run
 
 ## Module Architecture
 
-The project consists of 4 modules with clear separation of concerns:
+The project consists of 5 modules with clear separation of concerns:
+
+### core
+
+All business logic, with **no dependency on Compose**: database, repositories, services,
+ViewModels, DI wiring, and the platform-abstraction interfaces. A native (SwiftUI) iOS UI is meant
+to be buildable on top of this module alone, so keep it Compose-free.
+
+- **Platform targets:** Android Library, iOS, JVM
+- **Database:** SQLDelight `AppDatabase`, schema at
+  `core/src/commonMain/sqldelight/xyz/tleskiv/tt/db/AppDatabase.sq`, drivers per platform
+- **DI:** Koin (`koin-core`, `koin-core-viewmodel` — the Compose-free ViewModel DSL)
+- **Startup:** `core/src/commonMain/kotlin/xyz/tleskiv/tt/di/AppModule.kt` exposes
+  `initApp(platformModule, configure)`; iOS calls `doInitApp(...)` from
+  `core/src/iosMain/kotlin/xyz/tleskiv/tt/di/IosEntryPoint.kt`
+- **Swift interop:** `core/src/iosMain/kotlin/xyz/tleskiv/tt/util/FlowObserver.kt` — `Flow.observe {}`
+  returning a `Cancellable`, since Swift cannot collect flows directly
 
 ### composeApp
 Shared Compose UI for Android, iOS, and Desktop. This is a **multiplatform library** (not an application module).
+It depends on `:core` and contains only UI.
 
 - **Platform targets:** Android Library, iOS framework, JVM
 - **UI Framework:** Compose Multiplatform with Material3
 - **DI:** Koin for Compose (`koin-compose`, `koin-compose-viewmodel`)
 - **Navigation:** Compose Navigation 3
   Multiplatform: https://kotlinlang.org/docs/multiplatform/compose-navigation-3.html
-- **Database:** SQLDelight with platform-specific drivers (Android, iOS native, JVM)
+- **iOS framework:** produces `Shared.framework`, which re-exports `:core` and `:shared` via
+  `export(...)` in the framework binary. Kotlin/Native only puts the framework module's own
+  declarations in the generated ObjC header, so anything Swift needs must be exported explicitly.
 - **Entry points:**
     - Desktop: `composeApp/src/jvmMain/kotlin/xyz/tleskiv/tt/main.kt`
-    - iOS: `composeApp/src/iosMain/kotlin/xyz/tleskiv/tt/MainViewController.kt`
+    - iOS: `composeApp/src/iosMain/kotlin/xyz/tleskiv/tt/MainViewController.kt` (Koin is started
+      from `iosApp/iosApp/iOSApp.swift`, not from the composition)
     - Android: Via `androidApp` module's MainActivity
 
-#### composeApp Architecture
+#### Architecture (lives in `:core`, consumed by `:composeApp`)
 
 **Pattern:** MVVM + Clean Architecture with layered separation:
 
@@ -119,7 +152,7 @@ UI Layer (Screens) → ViewModel Layer → Service Layer → Repository Layer �
 
 ### androidApp
 
-Android application entry point that depends on composeApp.
+Android application entry point that depends on `:composeApp` and `:core`.
 
 - **Application class:** `TTApplication.kt` - Initializes Koin with Android context
 - **MainActivity:** Simple ComponentActivity that loads the shared Compose app
@@ -173,7 +206,7 @@ Pattern for adding new Koin modules:
 SQLDelight 2.0.2 is configured for both server and client apps:
 
 - **Server:** `ServerDatabase` with schema at `server/src/main/sqldelight/xyz/tleskiv/tt/db/ServerDatabase.sq`
-- **Clients:** Platform-specific drivers (Android, iOS native, JVM)
+- **Clients:** `AppDatabase` in `:core`, schema at `core/src/commonMain/sqldelight/xyz/tleskiv/tt/db/AppDatabase.sq`, with platform-specific drivers (Android, iOS native, JVM)
 - **Queries:** Auto-generated from `.sq` files
 - **Database setup:** See `server/src/main/kotlin/xyz/tleskiv/tt/db/DatabaseFactory.kt` for server configuration
 
@@ -232,16 +265,21 @@ interface AnalyticsService {
 **Platform Implementations:**
 
 - Android: `AndroidAnalyticsService` - Full PostHog SDK support
-- iOS: `IosAnalyticsService` + `PostHogWrapper` - Uses PostHog iOS SDK via cinterop (properties not
-  supported in Kotlin bindings)
+- iOS: `SwiftAnalyticsService` in `iosApp/iosApp/` - implemented in **Swift** against the PostHog
+  SwiftPM package and passed into `doInitApp(...)`, so event properties are supported
 - JVM/Desktop: `JvmAnalyticsService` - No-op implementation
 
 **Usage:** Inject `AnalyticsService` into ViewModels and call tracking methods.
 
 ## Platform-Specific Code
 
-Instead of using KMP's `expect`/`actual` pattern prefer creating an interface in `di.components` package in `commonMain` and adding platform specific implementations,
-also add it to Koin injection. 
+Instead of using KMP's `expect`/`actual` pattern prefer creating an interface in `di.components` package in `:core`'s `commonMain` and adding platform specific implementations,
+also add it to Koin injection.
+
+On iOS an implementation may live in **Swift** rather than Kotlin, and be handed to
+`doInitApp(...)` at startup — that is how `AnalyticsService` (PostHog) and `CrashReporter` (Sentry)
+work. Prefer this whenever the implementation would otherwise need a cinterop binding to an Apple
+SDK: it keeps the Kotlin framework free of Apple dependencies so it links standalone.
 
 If it's not possible fallback to `expect`/`actual` pattern:
 1. Define `expect` declaration in `commonMain`
@@ -252,6 +290,15 @@ If it's not possible fallback to `expect`/`actual` pattern:
 - All colors must be defined in `composeApp/src/commonMain/kotlin/xyz/tleskiv/tt/ui/theme/Color.kt`.
   Never use hardcoded `Color(0xFF...)` values directly in UI code.
 - Do not commit or push changes unless explicitly asked to do so.
+- ViewModel state must be `StateFlow`/`MutableStateFlow`, never Compose `mutableStateOf`. `:core`
+  must not import `androidx.compose`. Compose screens read flows with
+  `collectAsStateWithLifecycle()`, or with `MutableStateFlow.collectAsMutableState()`
+  (`ui/../util/ui/FlowState.kt`) where `by` delegation reads better.
+- Business logic goes in `:core`; only Compose UI goes in `:composeApp`. Anything using
+  `org.jetbrains.compose.resources` (`Res.string.*`, `StringResource`) is UI and stays in
+  `:composeApp`.
+- Kotlin cannot smart-cast a nullable property declared in another module, so `session.notes` and
+  friends need a local `val` before a null check in `:composeApp`.
 - Do not comment on the code unless absolutely necessary.
 - In composable screens, extract reusable UI blocks into named composable functions instead of
   using comments to separate sections. Function names should clearly describe what the block does.

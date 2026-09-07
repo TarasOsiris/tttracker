@@ -70,10 +70,11 @@ fun SessionListItem(
 					style = MaterialTheme.typography.bodySmall,
 					color = MaterialTheme.colorScheme.onSurfaceVariant
 				)
-				if (!session.notes.isNullOrBlank()) {
+				val sessionNotes = session.notes
+				if (!sessionNotes.isNullOrBlank()) {
 					Spacer(modifier = Modifier.height(2.dp))
 					Text(
-						text = session.notes,
+						text = sessionNotes,
 						style = MaterialTheme.typography.labelSmall,
 						color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
 						maxLines = 1,

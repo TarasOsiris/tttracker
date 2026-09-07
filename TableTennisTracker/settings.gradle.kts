@@ -40,6 +40,7 @@ fun includeIfExists(name: String) {
 }
 
 includeIfExists("androidApp")
+includeIfExists("core")
 includeIfExists("composeApp")
 includeIfExists("shared")
 includeIfExists("server")

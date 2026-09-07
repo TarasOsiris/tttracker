@@ -88,6 +88,7 @@ android {
 
 dependencies {
 	implementation(projects.composeApp)
+	implementation(projects.core)
 	implementation(projects.shared)
 	implementation(libs.compose.components.resources)
 	implementation(libs.compose.ui.tooling.preview)
@@ -114,6 +115,7 @@ dependencies {
 	androidTestImplementation(libs.androidx.espresso.core)
 	androidTestImplementation(libs.androidx.compose.ui.test.junit4)
 	androidTestImplementation(libs.compose.components.resources)
+	androidTestImplementation(projects.core)
 	androidTestImplementation(projects.shared)
 	androidTestImplementation(libs.calendar.compose.multiplatform)
 	implementation(libs.sqldelight.driver.android)

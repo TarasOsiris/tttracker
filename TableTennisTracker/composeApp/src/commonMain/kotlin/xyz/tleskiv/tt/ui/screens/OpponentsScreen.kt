@@ -247,34 +247,37 @@ private fun OpponentCard(
 					fontWeight = FontWeight.Medium,
 					color = MaterialTheme.colorScheme.onSurface
 				)
-				if (!opponent.club.isNullOrBlank() || opponent.rating != null) {
+				val club = opponent.club
+				val rating = opponent.rating
+				if (!club.isNullOrBlank() || rating != null) {
 					Row(verticalAlignment = Alignment.CenterVertically) {
-						if (!opponent.club.isNullOrBlank()) {
+						if (!club.isNullOrBlank()) {
 							Text(
-								text = opponent.club,
+								text = club,
 								style = MaterialTheme.typography.bodySmall,
 								color = MaterialTheme.colorScheme.onSurfaceVariant
 							)
 						}
-						if (!opponent.club.isNullOrBlank() && opponent.rating != null) {
+						if (!club.isNullOrBlank() && rating != null) {
 							Text(
 								text = " • ",
 								style = MaterialTheme.typography.bodySmall,
 								color = MaterialTheme.colorScheme.onSurfaceVariant
 							)
 						}
-						if (opponent.rating != null) {
+						if (rating != null) {
 							Text(
-								text = stringResource(Res.string.opponent_rating_format, opponent.rating.toInt()),
+								text = stringResource(Res.string.opponent_rating_format, rating.toInt()),
 								style = MaterialTheme.typography.bodySmall,
 								color = MaterialTheme.colorScheme.onSurfaceVariant
 							)
 						}
 					}
 				}
-				if (!opponent.notes.isNullOrBlank()) {
+				val notes = opponent.notes
+				if (!notes.isNullOrBlank()) {
 					Text(
-						text = opponent.notes,
+						text = notes,
 						style = MaterialTheme.typography.bodySmall,
 						color = MaterialTheme.colorScheme.onSurfaceVariant,
 						maxLines = 2

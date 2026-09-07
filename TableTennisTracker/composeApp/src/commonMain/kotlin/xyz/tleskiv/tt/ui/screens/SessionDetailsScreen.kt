@@ -260,8 +260,9 @@ private fun SessionDetailsContent(
 				}
 			}
 			item { RpeCard(rpe = session.rpe) }
-			if (!session.notes.isNullOrBlank()) {
-				item { NotesCard(notes = session.notes) }
+			val sessionNotes = session.notes
+			if (!sessionNotes.isNullOrBlank()) {
+				item { NotesCard(notes = sessionNotes) }
 			}
 			if (matches.isNotEmpty()) {
 				item { Spacer(modifier = Modifier.height(8.dp)) }

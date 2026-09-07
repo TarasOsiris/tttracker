@@ -6,17 +6,6 @@ plugins {
 	alias(libs.plugins.composeMultiplatform)
 	alias(libs.plugins.composeCompiler)
 	alias(libs.plugins.composeHotReload)
-	alias(libs.plugins.sqldelight)
-}
-
-sqldelight {
-	databases {
-		create("AppDatabase") {
-			packageName.set("xyz.tleskiv.tt.db")
-			schemaOutputDirectory.set(file("src/commonMain/sqldelight/migrations"))
-			verifyMigrations.set(true)
-		}
-	}
 }
 
 kotlin {
@@ -44,6 +33,13 @@ kotlin {
 			baseName = "Shared"
 			isStatic = false
 			freeCompilerArgs += listOf("-Xbinary=bundleId=xyz.tleskiv.tt.shared")
+			// Kotlin/Native only puts this module's own declarations in the ObjC header,
+			// so the business layer has to be exported explicitly for Swift to see it.
+			export(projects.core)
+			export(projects.shared)
+			// SQLDelight's native driver links against system sqlite; the cinterop's linker
+			// option no longer reaches this binary now that the driver is a :core dependency.
+			linkerOpts("-lsqlite3")
 		}
 	}
 
@@ -62,7 +58,6 @@ kotlin {
 			dependencies {
 				implementation(libs.compose.ui.tooling)
 				implementation(libs.androidx.activity.compose)
-				implementation(libs.sqldelight.driver.android)
 			}
 		}
 		commonMain.dependencies {
@@ -74,7 +69,7 @@ kotlin {
 			implementation(libs.compose.components.resources)
 			implementation(libs.compose.ui.tooling.preview)
 
-			implementation(libs.androidx.lifecycle.viewmodel)
+			implementation(libs.androidx.lifecycle.viewmodel.compose)
 			implementation(libs.androidx.lifecycle.viewmodel.nav3)
 			implementation(libs.androidx.lifecycle.runtime)
 			implementation(libs.kotlinx.serialization.json)
@@ -86,17 +81,14 @@ kotlin {
 			implementation(libs.koin.compose)
 			implementation(libs.koin.compose.viewmodel)
 
-			// SQLDelight
-			implementation(libs.sqldelight.runtime)
-			implementation(libs.sqldelight.coroutines)
-
 			// Calendar
 			implementation(libs.calendar.compose.multiplatform)
 
 			// Charts
 			implementation(libs.koalaplot.core)
 
-			implementation(projects.shared)
+			api(projects.core)
+			api(projects.shared)
 		}
 		commonTest.dependencies {
 			implementation(libs.kotest.assertions.core)
@@ -108,11 +100,6 @@ kotlin {
 		jvmMain.dependencies {
 			implementation(compose.desktop.currentOs)
 			implementation(libs.kotlinx.coroutinesSwing)
-			implementation(libs.sqldelight.driver.jvm)
-			implementation(libs.sentry.kmp)
-		}
-		iosMain.dependencies {
-			implementation(libs.sqldelight.driver.native)
 		}
 	}
 }
