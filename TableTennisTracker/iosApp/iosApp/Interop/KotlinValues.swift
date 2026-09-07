@@ -37,3 +37,39 @@ extension Kotlinx_datetimeLocalDate {
 
     var date: Date? { Calendar.gregorian.date(from: dateComponents) }
 }
+
+extension Kotlinx_datetimeLocalDateTime {
+    /// The calendar day, dropping the time. `Date` is an instant, so this is only meaningful read
+    /// back through `Calendar.gregorian`.
+    var date_: Date? { date.date }
+
+    /// Minutes since midnight, which is the only part of the time the app preserves.
+    var minuteOfDay: Int { Int(hour) * 60 + Int(minute) }
+}
+
+extension Date {
+    /// The Gregorian calendar day this instant falls on, as a Kotlin `LocalDate`.
+    var kotlinLocalDate: Kotlinx_datetimeLocalDate? {
+        let parts = Calendar.gregorian.dateComponents([.year, .month, .day], from: self)
+        guard let year = parts.year, let month = parts.month, let day = parts.day else { return nil }
+        return Kotlinx_datetimeLocalDate(year: Int32(year), month: Int32(month), day: Int32(day))
+    }
+
+    /// This instant's Gregorian day at `minuteOfDay`, as a Kotlin `LocalDateTime`.
+    ///
+    /// The services take a `LocalDateTime` but store only the day, so the time carried here matters
+    /// solely for round-tripping an existing session's original time on edit.
+    func kotlinLocalDateTime(minuteOfDay: Int) -> Kotlinx_datetimeLocalDateTime? {
+        let parts = Calendar.gregorian.dateComponents([.year, .month, .day], from: self)
+        guard let year = parts.year, let month = parts.month, let day = parts.day else { return nil }
+        return Kotlinx_datetimeLocalDateTime(
+            year: Int32(year),
+            month: Int32(month),
+            day: Int32(day),
+            hour: Int32(minuteOfDay / 60),
+            minute: Int32(minuteOfDay % 60),
+            second: 0,
+            nanosecond: 0
+        )
+    }
+}

@@ -140,7 +140,39 @@ enum Style: String, CaseIterable, Identifiable {
     }
 }
 
-extension SessionType {
+/// Mirrors `SessionType`. A session's type is optional, so a nil Kotlin value maps to nil here
+/// rather than to a case — `OTHER` is a type the user can pick, not the absence of one.
+///
+/// Never round-trip through `SessionType.companion.fromDb`: alone among these enums it *throws* on
+/// an unrecognised value, and a Kotlin throw out of a non-suspend function kills the process.
+enum SessionKind: String, CaseIterable, Identifiable {
+    case technique = "technique"
+    case matchPlay = "match_play"
+    case tournament = "tournament"
+    case servePractice = "serve_practice"
+    case physical = "physical"
+    case freePlay = "free_play"
+    case other = "other"
+
+    var id: String { rawValue }
+
+    init?(_ kotlin: SessionType?) {
+        guard let kotlin, let mirrored = SessionKind(rawValue: kotlin.dbValue) else { return nil }
+        self = mirrored
+    }
+
+    var kotlin: SessionType {
+        switch self {
+        case .technique: .technique
+        case .matchPlay: .matchPlay
+        case .tournament: .tournament
+        case .servePractice: .servePractice
+        case .physical: .physical
+        case .freePlay: .freePlay
+        case .other: .other
+        }
+    }
+
     var label: String {
         switch self {
         case .technique: L.sessionTypeTechnique
@@ -149,18 +181,37 @@ extension SessionType {
         case .servePractice: L.sessionTypeServePractice
         case .physical: L.sessionTypePhysical
         case .freePlay: L.sessionTypeFreePlay
-        default: L.sessionTypeOther
+        case .other: L.sessionTypeOther
         }
     }
 }
 
-extension CompetitionLevel {
+/// Mirrors `CompetitionLevel`. Optional on a match, so nil means "not recorded".
+enum Competition: String, CaseIterable, Identifiable {
+    case practice = "practice"
+    case league = "league"
+    case tournament = "tournament"
+
+    var id: String { rawValue }
+
+    init?(_ kotlin: CompetitionLevel?) {
+        guard let kotlin, let mirrored = Competition(rawValue: kotlin.dbValue) else { return nil }
+        self = mirrored
+    }
+
+    var kotlin: CompetitionLevel {
+        switch self {
+        case .practice: .practice
+        case .league: .league
+        case .tournament: .tournament
+        }
+    }
+
     var label: String {
         switch self {
         case .practice: L.competitionLevelPractice
         case .league: L.competitionLevelLeague
         case .tournament: L.competitionLevelTournament
-        default: ""
         }
     }
 }
@@ -215,6 +266,14 @@ enum KotlinEnumParity {
             Set(Style.allCases.map(\.rawValue))
                 == Set(PlayingStyle.entries.map(\.dbValue)).subtracting([PlayingStyle.unknown.dbValue]),
             "Style is out of sync with PlayingStyle"
+        )
+        assert(
+            Set(SessionKind.allCases.map(\.rawValue)) == Set(SessionType.entries.map(\.dbValue)),
+            "SessionKind is out of sync with SessionType"
+        )
+        assert(
+            Set(Competition.allCases.map(\.rawValue)) == Set(CompetitionLevel.entries.map(\.dbValue)),
+            "Competition is out of sync with CompetitionLevel"
         )
     }
 }
