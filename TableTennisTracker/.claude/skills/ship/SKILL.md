@@ -20,7 +20,7 @@ Desktop isn't distributed through a store.
 | `/ship android 1.4.0` | Android only, version `1.4.0` |
 
 Only treat an argument as a version if it looks like one (`1.4.0`, `2.0`). `--submit` / `submit`
-skips the iOS review-submission question (Part A, Step 8); a track name (`internal`,
+skips the iOS review-submission question (Part A, Step 7); a track name (`internal`,
 `production`) skips the Android publish question (Part B, Step 4).
 
 When both platforms ship, do **Android first** — it is minutes against a ~20-minute
@@ -58,7 +58,7 @@ the Play Developer API (it shells out to `openssl` to sign the service-account J
 `xyz.tleskiv.tt`; override with `--key` / `--package` or `$GOOGLE_PLAY_KEY_JSON`.
 
 **fastlane is not installed and must not become a dependency.** The `fastlane/metadata/` tree is
-used for its *directory layout* only — Step 9 reads localized release notes out of it.
+used for its *directory layout* only — Step 8 reads localized release notes out of it.
 
 ---
 
@@ -125,25 +125,7 @@ xcodebuild -workspace iosApp/iosApp.xcworkspace -scheme iosApp -configuration Re
   -showBuildSettings 2>/dev/null | grep -E 'MARKETING_VERSION|CURRENT_PROJECT_VERSION'
 ```
 
-## Step 4: Verify the build compiles
-
-```bash
-xcodebuild -workspace iosApp/iosApp.xcworkspace -scheme iosApp \
-  -destination 'generic/platform=iOS' build
-```
-
-This also compiles the Kotlin side — the `Compile Kotlin Framework` build phase runs the Gradle
-CocoaPods task, so a Kotlin error in `:composeApp` surfaces here.
-
-If the build fails, stop and report the error. Do not proceed.
-
-- `module 'ComposeApp' not found` / `Undefined symbols: _kfun:...` — the Pods aren't in play.
-  Check you passed `-workspace`, not `-project`, and that `iosApp/Pods/` exists; if not, run
-  `./gradlew :composeApp:podInstall`.
-- `Check Pods Manifest.lock` failure — `Podfile.lock` and `Pods/` are out of sync; re-run
-  `podInstall`.
-
-## Step 5: Create the archive
+## Step 4: Create the archive
 
 ```bash
 asc xcode archive \
@@ -158,6 +140,22 @@ asc xcode archive \
 
 `build/` is gitignored, so nothing from this step or the next ever lands in a commit.
 
+The archive **is** the compile check — the `Compile Kotlin Framework` build phase runs the Gradle
+CocoaPods task, so a Kotlin error in `:composeApp` surfaces here. There is deliberately **no
+separate "does it compile" build before this, and one should not be added**: an archive compiles
+into its own `Build/Intermediates.noindex/ArchiveIntermediates/` tree and shares not one object
+file with a plain build, so the extra step costs a second full Kotlin/Native compile while
+catching nothing the archive won't. (Learned the hard way: the first run of this skill spent 25
+minutes on that step before it was killed.)
+
+If the archive fails, stop and report the error. Do not proceed.
+
+- `module 'ComposeApp' not found` / `Undefined symbols: _kfun:...` — the Pods aren't in play.
+  Check you passed `--workspace`, not `--project`, and that `iosApp/Pods/` exists; if not, run
+  `./gradlew :composeApp:podInstall`.
+- `Check Pods Manifest.lock` failure — `Podfile.lock` and `Pods/` are out of sync; re-run
+  `podInstall`.
+
 The archive path is reused every ship, so confirm the archive about to be uploaded is the one just
 built — a no-opped archive step would otherwise upload a stale binary:
 
@@ -168,7 +166,7 @@ built — a no-opped archive step would otherwise upload a stale binary:
 
 It must print the version and build number set in Step 3. Anything else — stop.
 
-## Step 6: Upload dSYMs to Sentry
+## Step 5: Upload dSYMs to Sentry
 
 Do this **before** the App Store upload, so a symbol failure stops the ship rather than being
 discovered after a crash lands unsymbolicated.
@@ -193,7 +191,7 @@ ls build/iosApp.xcarchive/dSYMs/
 If the upload fails, **report it as a warning and continue** — the store upload is the critical
 path, and dSYMs can be re-uploaded later from the same archive.
 
-## Step 7: Export the IPA and upload
+## Step 6: Export the IPA and upload
 
 Export first, then upload — two steps, so an export/signing failure is distinguishable from an
 upload failure.
@@ -251,20 +249,20 @@ answering the dialog. To clear an already-uploaded build:
 `asc builds update --build-id <ID> --uses-non-exempt-encryption=false`.
 
 `--wait` polls until App Store Connect finishes processing. Note the resulting **build id** —
-Step 9 needs it.
+Step 8 needs it.
 
 **If App Store Connect rejects the version** (`90186` / `90062`), bump `MARKETING_VERSION` to the
-next free value without prompting, redo Step 3, then re-archive (Step 5) and re-upload — the
-version is embedded in the archive, so re-exporting the existing one is not enough. Re-run Step 6
+next free value without prompting, redo Step 3, then re-archive (Step 4) and re-upload — the
+version is embedded in the archive, so re-exporting the existing one is not enough. Re-run Step 5
 too: a re-archived binary has new dSYM UUIDs. Step 2 should have caught this; if it fires here, say
 so in the report.
 
-## Step 8: Ask whether to submit for review
+## Step 7: Ask whether to submit for review
 
 The build is on App Store Connect at this point. Ask the user, with the AskUserQuestion tool,
 whether to also submit for review:
 
-- **Submit for review** (default) — continue to Step 9.
+- **Submit for review** (default) — continue to Step 8.
 - **Upload only** — stop here; the build is available in App Store Connect and TestFlight.
 
 Skip the question if the invocation already says so (`/ship --submit`).
@@ -272,9 +270,9 @@ Skip the question if the invocation already says so (`/ship --submit`).
 Ask this **up front, alongside any other question**, rather than here — a slow archive should never
 sit waiting on a prompt.
 
-## Step 9: Write release notes, attach the build, submit
+## Step 8: Write release notes, attach the build, submit
 
-Only when Step 8 said to submit.
+Only when Step 7 said to submit.
 
 1. **Reuse the editable version record** found in Step 2. Only create one if none exists:
 
@@ -305,7 +303,7 @@ Only when Step 8 said to submit.
    user-facing behaviour only, no refactors or dependency bumps — write it to
    `fastlane/metadata/en-US/release_notes.txt`, and use it for every locale.
 
-3. **Attach the build** uploaded in Step 7:
+3. **Attach the build** uploaded in Step 6:
 
    ```bash
    asc versions attach-build --version-id <VERSION_ID> --build-id <BUILD_ID>
@@ -334,7 +332,7 @@ Only when Step 8 said to submit.
 plainly that the build is uploaded but **not submitted**, and note that re-running `/ship ios
 --submit` picks up from the existing editable version idempotently.
 
-## Step 10: Commit, tag, and push
+## Step 9: Commit, tag, and push
 
 ```bash
 git add iosApp/Configuration/Config.xcconfig
@@ -457,7 +455,7 @@ git push && git push --tags
 
 Push straight to `master`. If the tag `android-<versionName>` already exists (a versionCode-only
 ship), skip the tag and push only the commit. When both platforms ship in one run, use the single
-combined commit described in Part A, Step 10.
+combined commit described in Part A, Step 9.
 
 ---
 
@@ -466,7 +464,7 @@ combined commit described in Part A, Step 10.
 Print one summary covering everything that ran:
 
 **iOS** — previous → new version and build number; whether the Step 2 train check bumped
-`MARKETING_VERSION` (and if Step 7 had to re-archive, say so); Sentry dSYM status; upload status
+`MARKETING_VERSION` (and if Step 6 had to re-archive, say so); Sentry dSYM status; upload status
 and build id; version record created or reused; how many locales got release notes; validation
 result; review submission id and state — or that the build is uploaded but **not** submitted.
 
