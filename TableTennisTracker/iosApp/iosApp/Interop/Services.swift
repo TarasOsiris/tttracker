@@ -10,6 +10,7 @@ enum Services {
     static var opponents: any OpponentService { IosServices.shared.opponentService }
     static var sessions: any TrainingSessionService { IosServices.shared.trainingSessionService }
     static var matches: any MatchService { IosServices.shared.matchService }
+    static var trainingAnalytics: any TrainingAnalyticsService { IosServices.shared.trainingAnalyticsService }
     static var userId: any UserIdService { IosServices.shared.userIdService }
     static var deviceInfo: any NativeInfoProvider { IosServices.shared.nativeInfoProvider }
     static var launcher: any ExternalAppLauncher { IosServices.shared.externalAppLauncher }

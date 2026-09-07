@@ -8,7 +8,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import xyz.tleskiv.tt.ui.theme.AppTheme
 import xyz.tleskiv.tt.ui.widgets.analytics.SummaryAnalyticsWidget
-import xyz.tleskiv.tt.viewmodel.analytics.SummaryStats
+import xyz.tleskiv.tt.analytics.SummaryStats
 
 @Preview(showBackground = true, name = "Empty Stats")
 @Composable

@@ -28,7 +28,7 @@ struct RootTabView: View {
             }
             Tab(L.navAnalytics, systemImage: "chart.bar.xaxis", value: AppTab.analytics) {
                 NavigationStack(path: $analyticsPath) {
-                    ComingSoonView(title: L.navAnalytics)
+                    AnalyticsScreen()
                 }
             }
             Tab(L.navSettings, systemImage: "gearshape", value: AppTab.settings) {

@@ -10,8 +10,8 @@ import kotlinx.datetime.minus
 import xyz.tleskiv.tt.data.model.enums.SessionType
 import xyz.tleskiv.tt.viewmodel.analytics.AnalyticsScreenViewModel
 import xyz.tleskiv.tt.viewmodel.analytics.AnalyticsWidgetVisibility
-import xyz.tleskiv.tt.viewmodel.analytics.SummaryStats
-import xyz.tleskiv.tt.viewmodel.analytics.WeeklyTrainingData
+import xyz.tleskiv.tt.analytics.SummaryStats
+import xyz.tleskiv.tt.analytics.WeeklyTrainingData
 import xyz.tleskiv.tt.viewmodel.sessions.SessionsScreenViewModel.SessionUiModel
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid

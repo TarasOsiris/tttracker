@@ -8,7 +8,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import xyz.tleskiv.tt.ui.theme.AppTheme
 import xyz.tleskiv.tt.ui.widgets.analytics.WeeklyTrainingAnalyticsWidget
-import xyz.tleskiv.tt.viewmodel.analytics.WeeklyTrainingData
+import xyz.tleskiv.tt.analytics.WeeklyTrainingData
 
 @Preview(showBackground = true, name = "No Training Data")
 @Composable

@@ -3,20 +3,10 @@ package xyz.tleskiv.tt.viewmodel.analytics
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.datetime.DayOfWeek
 import kotlinx.datetime.LocalDate
+import xyz.tleskiv.tt.analytics.SummaryStats
+import xyz.tleskiv.tt.analytics.WeeklyTrainingData
 import xyz.tleskiv.tt.viewmodel.ViewModelBase
 import xyz.tleskiv.tt.viewmodel.sessions.SessionsScreenViewModel.SessionUiModel
-
-data class SummaryStats(
-	val totalSessions: Int = 0,
-	val totalTrainingMinutes: Int = 0,
-	val matchesWon: Int = 0,
-	val matchesLost: Int = 0
-)
-
-data class WeeklyTrainingData(
-	val weekLabel: String,
-	val totalMinutes: Int
-)
 
 data class AnalyticsWidgetVisibility(
 	val showSummary: Boolean = true,

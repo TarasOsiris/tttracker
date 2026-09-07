@@ -28,7 +28,7 @@ import tabletennistracker.composeapp.generated.resources.analytics_win_loss
 import tabletennistracker.composeapp.generated.resources.analytics_win_rate
 import xyz.tleskiv.tt.ui.theme.lossColor
 import xyz.tleskiv.tt.ui.theme.winColor
-import xyz.tleskiv.tt.viewmodel.analytics.SummaryStats
+import xyz.tleskiv.tt.analytics.SummaryStats
 
 @Composable
 fun SummaryAnalyticsWidget(stats: SummaryStats) {

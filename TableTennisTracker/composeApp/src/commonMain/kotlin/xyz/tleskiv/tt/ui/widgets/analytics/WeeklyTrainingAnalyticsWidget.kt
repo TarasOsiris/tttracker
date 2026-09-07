@@ -32,7 +32,7 @@ import tabletennistracker.composeapp.generated.resources.analytics_weekly_avg
 import tabletennistracker.composeapp.generated.resources.analytics_weekly_total
 import tabletennistracker.composeapp.generated.resources.analytics_weekly_training
 import tabletennistracker.composeapp.generated.resources.suffix_minutes_value
-import xyz.tleskiv.tt.viewmodel.analytics.WeeklyTrainingData
+import xyz.tleskiv.tt.analytics.WeeklyTrainingData
 
 private const val CHART_HEIGHT = 140
 private const val GRID_LINES = 3

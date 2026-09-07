@@ -30,7 +30,7 @@ import tabletennistracker.composeapp.generated.resources.analytics_win_loss_char
 import tabletennistracker.composeapp.generated.resources.analytics_wins
 import xyz.tleskiv.tt.ui.theme.lossColor
 import xyz.tleskiv.tt.ui.theme.winColor
-import xyz.tleskiv.tt.viewmodel.analytics.SummaryStats
+import xyz.tleskiv.tt.analytics.SummaryStats
 
 @OptIn(ExperimentalKoalaPlotApi::class)
 @Composable
