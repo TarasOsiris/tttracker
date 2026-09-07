@@ -5,7 +5,7 @@ enum SettingsRoute: Hashable {
 }
 
 struct SettingsScreen: View {
-    @State private var model = SettingsModel()
+    @StateModel private var model = SettingsModel()
 
     var body: some View {
         List {

@@ -66,6 +66,15 @@ enum WeekStart: String, CaseIterable, Identifiable {
         case .saturday: L.weekStartSaturday
         }
     }
+
+    /// `Calendar.firstWeekday` numbering, where 1 is Sunday.
+    var firstWeekday: Int {
+        switch self {
+        case .sunday: 1
+        case .monday: 2
+        case .saturday: 7
+        }
+    }
 }
 
 enum Handed: String, CaseIterable, Identifiable {

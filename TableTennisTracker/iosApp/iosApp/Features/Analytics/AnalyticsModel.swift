@@ -30,6 +30,11 @@ final class AnalyticsModel {
     private(set) var sessionsByDay: [Date: Int] = [:]
     private(set) var busiestDay = 0
 
+    /// The user's first day of week, in `Calendar` numbering. The heatmap aligns its rows to this
+    /// so it agrees with the weekly chart, which the same preference already drives through the
+    /// service.
+    private(set) var firstWeekday = WeekStart.monday.firstWeekday
+
     let showSummary: Preference<Bool>
     let showWinLoss: Preference<Bool>
     let showWeekly: Preference<Bool>
@@ -63,6 +68,11 @@ final class AnalyticsModel {
             commit: { try await preferences.setShowAnalyticsHeatmap(show: $0) }
         )
 
+        subscriptions.insert(
+            KotlinFlow.observe(preferences.weekStartDay, as: Shared.WeekStartDay.self) { [weak self] in
+                self?.firstWeekday = WeekStart($0).firstWeekday
+            }
+        )
         subscriptions.insert(
             KotlinFlow.observe(analytics.summary, as: SummaryStats.self) { [weak self] stats in
                 self?.summary = Summary(

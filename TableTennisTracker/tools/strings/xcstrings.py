@@ -52,6 +52,8 @@ DURATION_KEYS = {
 
 POSITIONAL_STRING = re.compile(r"%(\d+)\$s")
 POSITIONAL_INT = re.compile(r"%(\d+)\$d")
+# Everything that is a legitimate format specifier after conversion.
+CONVERTED = re.compile(r"%(?:\d+\$(?:lld|@)|%)")
 PLACEHOLDER = re.compile(r"%(\d+)\$(lld|@)")
 
 SWIFT_TYPES = {"lld": "Int", "@": "String"}
@@ -78,6 +80,13 @@ def convert(value: str) -> str:
     value = POSITIONAL_STRING.sub(r"%\1$@", value)
     if "\\" in value:
         raise ValueError(f"unhandled escape remains: {value!r}")
+    # Only positional specifiers are rewritten above, so a bare %d/%s or a stray % would reach the
+    # catalog intact and produce garbage — or a crash for %@ — at the call site.
+    if CONVERTED.sub("", value).find("%") != -1:
+        raise ValueError(
+            f"unconverted format specifier in {value!r}: "
+            "only %N$lld, %N$@ and %% are supported"
+        )
     return value
 
 

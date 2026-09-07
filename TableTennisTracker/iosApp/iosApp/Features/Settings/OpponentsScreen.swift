@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct OpponentsScreen: View {
-    @State private var model = OpponentsModel()
+    @StateModel private var model = OpponentsModel()
     @State private var editing: OpponentEditorTarget?
     @State private var pendingDeletion: Opponent?
     @State private var showsInfo = false
@@ -94,14 +94,11 @@ enum OpponentEditorTarget: Identifiable {
 }
 
 struct OpponentEditorSheet: View {
-    let opponentId: String?
-
-    @State private var model: OpponentEditorModel
+    @StateModel private var model: OpponentEditorModel
     @Environment(\.dismiss) private var dismiss
 
     init(opponentId: String?) {
-        self.opponentId = opponentId
-        _model = State(initialValue: OpponentEditorModel(opponentId: opponentId))
+        _model = StateModel(wrappedValue: OpponentEditorModel(opponentId: opponentId))
     }
 
     var body: some View {
@@ -122,14 +119,16 @@ struct OpponentEditorSheet: View {
                 ToolbarItem(placement: .confirmationAction) {
                     Button(L.actionSave) {
                         Task {
-                            await model.save()
-                            dismiss()
+                            if await model.save() { dismiss() }
                         }
                     }
                     .disabled(!model.canSave || model.isLoading)
                 }
             }
             .task { await model.load() }
+            .alert(L.titleError, isPresented: $model.saveFailed) {
+                Button(L.actionOk, role: .cancel) {}
+            }
         }
     }
 

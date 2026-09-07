@@ -58,9 +58,11 @@ struct HeatmapSection: View {
     }
 
     /// Every day in the window, oldest first, ending on a partial current week so each grid column
-    /// is one calendar week.
+    /// is one week — aligned to the user's first day of week, not the system's.
     private var days: [Date] {
-        let calendar = Calendar.gregorian
+        var calendar = Calendar.gregorian
+        calendar.firstWeekday = model.firstWeekday
+
         let today = calendar.startOfDay(for: .now)
         let daysIntoWeek = (calendar.component(.weekday, from: today) - calendar.firstWeekday + 7) % 7
         let total = Self.weeksShown * 7 + daysIntoWeek

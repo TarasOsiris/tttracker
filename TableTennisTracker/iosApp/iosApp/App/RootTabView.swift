@@ -17,7 +17,7 @@ struct RootTabView: View {
     @State private var settingsPath = NavigationPath()
 
     @State private var localization = LocalizationController.shared
-    @State private var appearance = AppearanceModel()
+    @StateModel private var appearance = AppearanceModel()
 
     var body: some View {
         TabView(selection: tabSelection) {

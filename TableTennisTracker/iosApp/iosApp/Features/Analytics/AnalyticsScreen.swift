@@ -2,7 +2,7 @@ import Charts
 import SwiftUI
 
 struct AnalyticsScreen: View {
-    @State private var model = AnalyticsModel()
+    @StateModel private var model = AnalyticsModel()
     @State private var showsSettings = false
 
     var body: some View {

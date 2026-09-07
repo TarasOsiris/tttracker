@@ -17,6 +17,9 @@ final class Preference<Value> {
     @ObservationIgnored private let apply: (@MainActor (Value) -> Void)?
     @ObservationIgnored private let queue: SerialWriteQueue
 
+    /// Identifies the most recent write, so a failure cannot roll back a newer one.
+    @ObservationIgnored private var latestWrite = 0
+
     /// - Parameters:
     ///   - flow: the Kotlin flow carrying the stored value.
     ///   - decode: maps a flow emission to `Value`; the erased cast happens here.
@@ -48,15 +51,24 @@ final class Preference<Value> {
     }
 
     /// Applies `newValue` immediately, then persists it; reverts if the write fails.
+    ///
+    /// Writes are queued, so a failure can surface after the user has already chosen something else.
+    /// Reverting blindly would then discard that newer choice, leaving the UI showing a value the
+    /// store never had — so a superseded failure is dropped instead.
     func set(_ newValue: Value) {
         let previous = value
+        latestWrite += 1
+        let write = latestWrite
+
         value = newValue
         apply?(newValue)
+
         queue.enqueue { [commit] in
             try await commit(newValue)
         } onFailure: { [weak self] _ in
-            self?.value = previous
-            self?.apply?(previous)
+            guard let self, self.latestWrite == write else { return }
+            self.value = previous
+            self.apply?(previous)
         }
     }
 

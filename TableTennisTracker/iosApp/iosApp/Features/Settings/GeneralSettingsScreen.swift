@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct GeneralSettingsScreen: View {
-    @State private var model = GeneralSettingsModel()
+    @StateModel private var model = GeneralSettingsModel()
 
     var body: some View {
         Form {

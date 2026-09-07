@@ -47,11 +47,12 @@ final class OpponentEditorModel {
     var notes = ""
 
     private(set) var isLoading: Bool
+    var saveFailed = false
 
     let isEditing: Bool
     var canSave: Bool { !name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
 
-    @ObservationIgnored private let opponentId: String?
+    @ObservationIgnored private let editing: KotlinUuid?
     @ObservationIgnored private let service: any OpponentService
     @ObservationIgnored private let analytics: any AnalyticsService
 
@@ -60,7 +61,9 @@ final class OpponentEditorModel {
         service: any OpponentService = Services.opponents,
         analytics: any AnalyticsService = Services.analytics
     ) {
-        self.opponentId = opponentId
+        // Resolve the id once. An unparseable id must not silently fall through to the create path
+        // and add a second opponent instead of editing the one that was tapped.
+        self.editing = opponentId?.kotlinUuid
         self.isEditing = opponentId != nil
         self.isLoading = opponentId != nil
         self.service = service
@@ -68,7 +71,7 @@ final class OpponentEditorModel {
     }
 
     func load() async {
-        guard let id = opponentId?.kotlinUuid else {
+        guard let id = editing else {
             isLoading = false
             return
         }
@@ -84,34 +87,49 @@ final class OpponentEditorModel {
         isLoading = false
     }
 
-    func save() async {
+    /// Returns `true` when the opponent was stored, so the sheet only dismisses on success.
+    func save() async -> Bool {
         let trimmedName = name.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmedName.isEmpty else { return }
+        guard !trimmedName.isEmpty else { return false }
 
-        if let id = opponentId?.kotlinUuid {
-            try? await service.updateOpponent(
-                id: id,
-                name: trimmedName,
-                club: club.nilIfBlank,
-                rating: rating.nilIfBlank.flatMap(Double.init).map { KotlinDouble(double: $0) },
-                handedness: handedness?.kotlin,
-                style: style?.kotlin,
-                notes: notes.nilIfBlank
-            )
-            analytics.capture(event: "opponent_edited", properties: nil)
-        } else {
-            _ = try? await service.addOpponent(
-                name: trimmedName,
-                club: club.nilIfBlank,
-                rating: rating.nilIfBlank.flatMap(Double.init).map { KotlinDouble(double: $0) },
-                handedness: handedness?.kotlin,
-                style: style?.kotlin,
-                notes: notes.nilIfBlank
-            )
-            analytics.capture(
-                event: "opponent_added",
-                properties: ["has_club": club.nilIfBlank != nil, "has_rating": rating.nilIfBlank != nil]
-            )
+        // isEditing is set from the id the caller passed, so an unparseable one lands here rather
+        // than quietly creating a duplicate.
+        guard !isEditing || editing != nil else {
+            saveFailed = true
+            return false
+        }
+
+        let rating = rating.nilIfBlank.flatMap(Double.init).map { KotlinDouble(double: $0) }
+        do {
+            if let id = editing {
+                try await service.updateOpponent(
+                    id: id,
+                    name: trimmedName,
+                    club: club.nilIfBlank,
+                    rating: rating,
+                    handedness: handedness?.kotlin,
+                    style: style?.kotlin,
+                    notes: notes.nilIfBlank
+                )
+                analytics.capture(event: "opponent_edited", properties: nil)
+            } else {
+                _ = try await service.addOpponent(
+                    name: trimmedName,
+                    club: club.nilIfBlank,
+                    rating: rating,
+                    handedness: handedness?.kotlin,
+                    style: style?.kotlin,
+                    notes: notes.nilIfBlank
+                )
+                analytics.capture(
+                    event: "opponent_added",
+                    properties: ["has_club": club.nilIfBlank != nil, "has_rating": rating != nil]
+                )
+            }
+            return true
+        } catch {
+            saveFailed = true
+            return false
         }
     }
 }

@@ -21,7 +21,7 @@ final class DebugModel {
 }
 
 struct DebugScreen: View {
-    @State private var model = DebugModel()
+    @StateModel private var model = DebugModel()
 
     var body: some View {
         List {
