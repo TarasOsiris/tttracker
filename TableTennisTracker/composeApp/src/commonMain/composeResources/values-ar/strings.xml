@@ -15,12 +15,10 @@
     <string name="action_edit">تحرير</string>
     <string name="action_save">حفظ</string>
     <string name="action_add_session">إضافة تدريب</string>
-    <string name="action_search">بحث</string>
 	<string name="action_ui_settings">إعدادات الواجهة</string>
     <string name="action_opponents">الخصوم</string>
     <string name="opponents_empty">لا يوجد خصوم بعد</string>
     <string name="title_opponents">الخصوم</string>
-    <string name="action_more">المزيد</string>
     <string name="action_back">رجوع</string>
 
     <!-- Navigation -->
@@ -29,9 +27,7 @@
     <string name="nav_settings">الإعدادات</string>
 
     <!-- Screen Titles -->
-    <string name="title_home">الرئيسية</string>
     <string name="title_create_session">إنشاء تدريب</string>
-    <string name="title_analytics">التحليلات</string>
     <string name="title_settings">الإعدادات</string>
     <string name="title_error">خطأ</string>
 
@@ -44,10 +40,8 @@
     <!-- Create Session Screen -->
     <string name="label_date">التاريخ</string>
     <string name="label_duration">المدة</string>
-    <string name="hint_duration">أدخل المدة</string>
     <string name="suffix_minutes">دقيقة</string>
     <string name="suffix_minutes_value">%1$d دقيقة</string>
-    <string name="rule_duration">5-300 دقيقة</string>
     <string name="label_session_type">نوع التدريب</string>
     <string name="label_intensity_rpe">الشدة (RPE)</string>
     <string name="label_notes_optional">ملاحظات (اختياري)</string>
@@ -73,18 +67,11 @@
     <string name="session_type_other">أخرى</string>
 
     <!-- Analytics Screen -->
-    <string name="analytics_service_injected">الخدمة المُدخلة: %1$d</string>
-    <string name="analytics_create_test_session">إنشاء تدريب اختباري</string>
-    <string name="analytics_last_created">آخر تدريب تم إنشاؤه: %1$s</string>
-    <string name="analytics_test_notes">تدريب اختباري من شاشة التحليلات</string>
-    <string name="analytics_placeholder">ستظهر تحليلات أدائك هنا</string>
 	<string name="analytics_summary">ملخص</string>
 	<string name="analytics_total_sessions">التدريبات</string>
 	<string name="analytics_total_time">وقت التدريب</string>
-	<string name="analytics_total_matches">المباريات</string>
 	<string name="analytics_hours_minutes">%1$dس %2$dد</string>
     <string name="analytics_win_loss">فوز / خسارة</string>
-    <string name="analytics_win_loss_format">%1$d - %2$d</string>
     <string name="analytics_win_rate">نسبة الفوز</string>
     <string name="analytics_heatmap_title">خريطة حرارية لجلسات التدريب</string>
     <string name="analytics_heatmap_less">أقل</string>
@@ -95,10 +82,8 @@
     <string name="analytics_losses">خسارة</string>
     <string name="analytics_no_matches">لا توجد مباريات بعد</string>
     <string name="analytics_no_training">لا توجد بيانات تدريب بعد</string>
-    <string name="analytics_minutes_short">د</string>
     <string name="analytics_weekly_avg">المتوسط</string>
     <string name="analytics_weekly_total">الإجمالي</string>
-    <string name="analytics_this_week">هذا الأسبوع</string>
     <string name="analytics_settings_title">عناصر التحليلات</string>
     <string name="analytics_widget_summary">ملخص</string>
     <string name="analytics_widget_win_loss">رسم الفوز / الخسارة</string>
@@ -106,12 +91,6 @@
     <string name="analytics_widget_heatmap">خريطة التدريب الحرارية</string>
 
     <!-- Settings Screen -->
-    <string name="profile_guest_user">ضيف</string>
-    <string name="profile_sign_in_prompt">سجّل الدخول لمزامنة بياناتك</string>
-    <string name="settings_placeholder">ستظهر إعداداتك هنا</string>
-    <string name="profile_menu_privacy">الخصوصية</string>
-    <string name="profile_menu_about">حول</string>
-    <string name="profile_menu_support">الدعم</string>
     <string name="settings_section_general">عام</string>
     <string name="settings_section_help">المساعدة</string>
     <string name="settings_section_about">حول</string>
@@ -124,8 +103,6 @@
 	<string name="settings_section_appearance">المظهر</string>
     <string name="settings_section_calendar">التقويم</string>
     <string name="settings_section_sessions">الإعدادات الافتراضية للتدريب</string>
-    <string name="settings_default_duration">مدة التدريب</string>
-    <string name="settings_default_duration_description">المدة الأولية عند إنشاء تدريبات جديدة</string>
     <string name="action_theme">المظهر</string>
     <string name="theme_select_title">اختر المظهر</string>
 	<string name="action_language">اللغة</string>
@@ -147,8 +124,6 @@
     <string name="settings_company_name">Nineva Studios</string>
 
     <!-- Home Screen -->
-    <string name="home_view_match">عرض تفاصيل المباراة</string>
-    <string name="home_view_player">عرض تفاصيل اللاعب</string>
 
     <!-- Debug Screen -->
     <string name="debug_data_generation_title">إنشاء البيانات</string>

@@ -362,6 +362,19 @@ When both platforms ship in one run, make this a **single commit** with the Andr
 
 Skip this whole part for `/ship ios`.
 
+## Step 0: Preflight the bundled fonts
+
+```bash
+for f in composeApp/src/commonMain/composeResources/font/*.ttf; do
+  head -c4 "$f" | xxd -p | grep -q '^00010000$' || { echo "not a TTF: $f"; exit 1; }
+done
+```
+
+Cheap, and it catches a failure mode that already happened once: `poppins_regular.ttf` and
+`poppins_medium.ttf` were saved GitHub HTML pages rather than fonts, so every body and label style
+silently rendered in a fallback face on all three platforms for months. A real TrueType file starts
+with the sfnt magic `00 01 00 00`; HTML does not.
+
 ## Step 1: Preflight the signing config
 
 ```bash

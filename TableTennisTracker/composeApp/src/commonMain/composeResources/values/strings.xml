@@ -15,12 +15,10 @@
     <string name="action_edit">Edit</string>
     <string name="action_save">Save</string>
     <string name="action_add_session">Add Session</string>
-    <string name="action_search">Search</string>
     <string name="action_ui_settings">UI Settings</string>
     <string name="action_opponents">Opponents</string>
     <string name="opponents_empty">No opponents yet</string>
     <string name="title_opponents">Opponents</string>
-    <string name="action_more">More</string>
     <string name="action_back">Back</string>
 
     <!-- Navigation -->
@@ -29,9 +27,7 @@
     <string name="nav_settings">Settings</string>
 
     <!-- Screen Titles -->
-    <string name="title_home">Home Screen</string>
     <string name="title_create_session">Create Training Session</string>
-    <string name="title_analytics">Analytics</string>
     <string name="title_settings">Settings</string>
     <string name="title_error">Error</string>
 
@@ -44,10 +40,8 @@
     <!-- Create Session Screen -->
     <string name="label_date">Date</string>
     <string name="label_duration">Duration</string>
-    <string name="hint_duration">Enter duration</string>
     <string name="suffix_minutes">minutes</string>
     <string name="suffix_minutes_value">%1$d min</string>
-    <string name="rule_duration">5-300 minutes</string>
     <string name="label_session_type">Session Type</string>
     <string name="label_intensity_rpe">Intensity (RPE)</string>
     <string name="label_notes_optional">Notes (optional)</string>
@@ -73,18 +67,11 @@
     <string name="session_type_other">Other</string>
 
     <!-- Analytics Screen -->
-    <string name="analytics_service_injected">Service injected: %1$d</string>
-    <string name="analytics_create_test_session">Create Test Session</string>
-    <string name="analytics_last_created">Last created session: %1$s</string>
-    <string name="analytics_test_notes">Test session from AnalyticsScreen</string>
-    <string name="analytics_placeholder">Your performance analytics will appear here</string>
 	<string name="analytics_summary">Summary</string>
 	<string name="analytics_total_sessions">Sessions</string>
 	<string name="analytics_total_time">Time trained</string>
-	<string name="analytics_total_matches">Matches</string>
 	<string name="analytics_hours_minutes">%1$dh %2$dm</string>
 	<string name="analytics_win_loss">Win / Loss</string>
-	<string name="analytics_win_loss_format">%1$d - %2$d</string>
 	<string name="analytics_win_rate">Win rate</string>
 	<string name="analytics_heatmap_title">Training sessions heatmap</string>
 	<string name="analytics_heatmap_less">Less</string>
@@ -95,10 +82,8 @@
 	<string name="analytics_losses">Losses</string>
 	<string name="analytics_no_matches">No matches yet</string>
 	<string name="analytics_no_training">No training data yet</string>
-	<string name="analytics_minutes_short">min</string>
 	<string name="analytics_weekly_avg">Avg</string>
 	<string name="analytics_weekly_total">Total</string>
-	<string name="analytics_this_week">This week</string>
 	<string name="analytics_settings_title">Analytics widgets</string>
 	<string name="analytics_widget_summary">Summary</string>
 	<string name="analytics_widget_win_loss">Win/Loss chart</string>
@@ -106,12 +91,6 @@
 	<string name="analytics_widget_heatmap">Training heatmap</string>
 
     <!-- Settings Screen -->
-    <string name="profile_guest_user">Guest</string>
-    <string name="profile_sign_in_prompt">Sign in to sync your data</string>
-    <string name="settings_placeholder">Your settings will appear here</string>
-    <string name="profile_menu_privacy">Privacy</string>
-    <string name="profile_menu_about">About</string>
-    <string name="profile_menu_support">Support</string>
     <string name="settings_section_general">General</string>
     <string name="settings_section_help">Help</string>
     <string name="settings_section_about">About</string>
@@ -124,8 +103,6 @@
     <string name="settings_section_appearance">Appearance</string>
     <string name="settings_section_calendar">Calendar</string>
     <string name="settings_section_sessions">Training session defaults</string>
-    <string name="settings_default_duration">Session duration</string>
-    <string name="settings_default_duration_description">Initial duration when creating new sessions</string>
     <string name="action_theme">Theme</string>
     <string name="theme_select_title">Select theme</string>
 	<string name="action_language">Language</string>
@@ -147,8 +124,6 @@
     <string name="settings_company_name">Nineva Studios</string>
 
     <!-- Home Screen -->
-    <string name="home_view_match">View Match Details</string>
-    <string name="home_view_player">View Player Details</string>
 
     <!-- Debug Screen -->
     <string name="debug_data_generation_title">Data Generation</string>

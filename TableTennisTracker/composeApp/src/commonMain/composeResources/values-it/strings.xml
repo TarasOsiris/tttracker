@@ -15,12 +15,10 @@
     <string name="action_edit">Modifica</string>
     <string name="action_save">Salva</string>
     <string name="action_add_session">Aggiungi allenamento</string>
-    <string name="action_search">Cerca</string>
 	<string name="action_ui_settings">Impostazioni interfaccia</string>
     <string name="action_opponents">Avversari</string>
     <string name="opponents_empty">Nessun avversario per ora</string>
     <string name="title_opponents">Avversari</string>
-    <string name="action_more">Altro</string>
     <string name="action_back">Indietro</string>
 
     <!-- Navigation -->
@@ -29,9 +27,7 @@
     <string name="nav_settings">Impostazioni</string>
 
     <!-- Screen Titles -->
-    <string name="title_home">Home</string>
     <string name="title_create_session">Crea allenamento</string>
-    <string name="title_analytics">Analisi</string>
     <string name="title_settings">Impostazioni</string>
     <string name="title_error">Errore</string>
 
@@ -44,10 +40,8 @@
     <!-- Create Session Screen -->
     <string name="label_date">Data</string>
     <string name="label_duration">Durata</string>
-    <string name="hint_duration">Inserisci durata</string>
     <string name="suffix_minutes">minuti</string>
     <string name="suffix_minutes_value">%1$d min</string>
-    <string name="rule_duration">5-300 minuti</string>
     <string name="label_session_type">Tipo allenamento</string>
     <string name="label_intensity_rpe">Intensità (RPE)</string>
     <string name="label_notes_optional">Note (facoltativo)</string>
@@ -73,18 +67,11 @@
     <string name="session_type_other">Altro</string>
 
     <!-- Analytics Screen -->
-    <string name="analytics_service_injected">Servizio inserito: %1$d</string>
-    <string name="analytics_create_test_session">Crea allenamento di test</string>
-    <string name="analytics_last_created">Ultimo allenamento creato: %1$s</string>
-    <string name="analytics_test_notes">Allenamento di test da AnalyticsScreen</string>
-    <string name="analytics_placeholder">Le tue analisi delle prestazioni appariranno qui</string>
 	<string name="analytics_summary">Riepilogo</string>
 	<string name="analytics_total_sessions">Allenamenti</string>
 	<string name="analytics_total_time">Tempo allenato</string>
-	<string name="analytics_total_matches">Partite</string>
 	<string name="analytics_hours_minutes">%1$do %2$dmin</string>
     <string name="analytics_win_loss">Vittorie / Sconfitte</string>
-    <string name="analytics_win_loss_format">%1$d - %2$d</string>
     <string name="analytics_win_rate">Percentuale vittorie</string>
     <string name="analytics_heatmap_title">Heatmap delle sessioni di allenamento</string>
     <string name="analytics_heatmap_less">Meno</string>
@@ -95,10 +82,8 @@
     <string name="analytics_losses">Sconfitte</string>
     <string name="analytics_no_matches">Nessuna partita ancora</string>
     <string name="analytics_no_training">Nessun dato di allenamento</string>
-    <string name="analytics_minutes_short">min</string>
     <string name="analytics_weekly_avg">Media</string>
     <string name="analytics_weekly_total">Totale</string>
-    <string name="analytics_this_week">Questa settimana</string>
     <string name="analytics_settings_title">Widget delle statistiche</string>
     <string name="analytics_widget_summary">Riepilogo</string>
     <string name="analytics_widget_win_loss">Grafico vittorie/sconfitte</string>
@@ -106,12 +91,6 @@
     <string name="analytics_widget_heatmap">Heatmap allenamenti</string>
 
     <!-- Settings Screen -->
-    <string name="profile_guest_user">Ospite</string>
-    <string name="profile_sign_in_prompt">Accedi per sincronizzare i tuoi dati</string>
-    <string name="settings_placeholder">Le tue impostazioni appariranno qui</string>
-    <string name="profile_menu_privacy">Privacy</string>
-    <string name="profile_menu_about">Informazioni</string>
-    <string name="profile_menu_support">Supporto</string>
     <string name="settings_section_general">Generale</string>
     <string name="settings_section_help">Aiuto</string>
     <string name="settings_section_about">Informazioni</string>
@@ -124,8 +103,6 @@
 	<string name="settings_section_appearance">Aspetto</string>
     <string name="settings_section_calendar">Calendario</string>
     <string name="settings_section_sessions">Impostazioni predefinite allenamento</string>
-    <string name="settings_default_duration">Durata allenamento</string>
-    <string name="settings_default_duration_description">Durata iniziale durante la creazione di nuovi allenamenti</string>
     <string name="action_theme">Tema</string>
     <string name="theme_select_title">Seleziona tema</string>
 	<string name="action_language">Lingua</string>
@@ -147,8 +124,6 @@
     <string name="settings_company_name">Nineva Studios</string>
 
     <!-- Home Screen -->
-    <string name="home_view_match">Visualizza dettagli partita</string>
-    <string name="home_view_player">Visualizza dettagli giocatore</string>
 
     <!-- Debug Screen -->
     <string name="debug_data_generation_title">Generazione dati</string>

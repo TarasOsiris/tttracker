@@ -15,12 +15,10 @@
     <string name="action_edit">Редагувати</string>
     <string name="action_save">Зберегти</string>
     <string name="action_add_session">Додати тренування</string>
-    <string name="action_search">Пошук</string>
 	<string name="action_ui_settings">Налаштування інтерфейсу</string>
 	<string name="action_opponents">Суперники</string>
 	<string name="opponents_empty">Суперників ще немає</string>
 	<string name="title_opponents">Суперники</string>
-    <string name="action_more">Більше</string>
     <string name="action_back">Назад</string>
 
     <!-- Navigation -->
@@ -29,9 +27,7 @@
 	<string name="nav_settings">Налаштування</string>
 
     <!-- Screen Titles -->
-    <string name="title_home">Головний екран</string>
     <string name="title_create_session">Створити тренування</string>
-    <string name="title_analytics">Аналітика</string>
 	<string name="title_settings">Налаштування</string>
     <string name="title_error">Помилка</string>
 
@@ -44,10 +40,8 @@
     <!-- Create Session Screen -->
     <string name="label_date">Дата</string>
     <string name="label_duration">Тривалість</string>
-    <string name="hint_duration">Введіть тривалість</string>
     <string name="suffix_minutes">хвилин</string>
 	<string name="suffix_minutes_value">%1$d хв</string>
-    <string name="rule_duration">5-300 хвилин</string>
     <string name="label_session_type">Тип тренування</string>
     <string name="label_intensity_rpe">Інтенсивність (RPE)</string>
     <string name="label_notes_optional">Нотатки (опціонально)</string>
@@ -73,18 +67,11 @@
     <string name="session_type_other">Інше</string>
 
     <!-- Analytics Screen -->
-    <string name="analytics_service_injected">Сервіс інжектовано: %1$d</string>
-    <string name="analytics_create_test_session">Створити тестове тренування</string>
-    <string name="analytics_last_created">Останнє створене тренування: %1$s</string>
-    <string name="analytics_test_notes">Тестове тренування з екрану Аналітики</string>
-    <string name="analytics_placeholder">Тут з'явиться аналітика вашої продуктивності</string>
 	<string name="analytics_summary">Підсумок</string>
 	<string name="analytics_total_sessions">Тренування</string>
 	<string name="analytics_total_time">Час тренувань</string>
-	<string name="analytics_total_matches">Матчі</string>
 	<string name="analytics_hours_minutes">%1$dг %2$dхв</string>
     <string name="analytics_win_loss">Перемоги / Поразки</string>
-    <string name="analytics_win_loss_format">%1$d - %2$d</string>
     <string name="analytics_win_rate">Відсоток перемог</string>
     <string name="analytics_heatmap_title">Теплова карта тренувань</string>
 	<string name="analytics_heatmap_less">Менше</string>
@@ -95,10 +82,8 @@
 	<string name="analytics_losses">Поразки</string>
 	<string name="analytics_no_matches">Матчів ще немає</string>
 	<string name="analytics_no_training">Даних про тренування ще немає</string>
-	<string name="analytics_minutes_short">хв</string>
 	<string name="analytics_weekly_avg">Сер.</string>
 	<string name="analytics_weekly_total">Усього</string>
-	<string name="analytics_this_week">Цього тижня</string>
 	<string name="analytics_settings_title">Віджети аналітики</string>
 	<string name="analytics_widget_summary">Підсумок</string>
 	<string name="analytics_widget_win_loss">Графік перемог/поразок</string>
@@ -106,14 +91,8 @@
 	<string name="analytics_widget_heatmap">Теплова карта тренувань</string>
 
     <!-- Profile Screen -->
-    <string name="profile_guest_user">Гість</string>
-    <string name="profile_sign_in_prompt">Увійдіть для синхронізації даних</string>
-    <string name="profile_menu_privacy">Приватність</string>
-    <string name="profile_menu_about">Про застосунок</string>
-    <string name="profile_menu_support">Підтримка</string>
 
     <!-- Settings Screen -->
-    <string name="settings_placeholder">Тут з'являться ваші налаштування</string>
 	<string name="settings_section_general">Загальні</string>
 	<string name="settings_section_help">Допомога</string>
 	<string name="settings_section_about">Про застосунок</string>
@@ -138,8 +117,6 @@
 	<string name="settings_highlight_current_day">Підсвічувати поточний день</string>
 	<string name="settings_section_calendar">Календар</string>
     <string name="settings_section_sessions">Налаштування тренувань</string>
-    <string name="settings_default_duration">Тривалість тренування</string>
-    <string name="settings_default_duration_description">Початкова тривалість при створенні нових тренувань</string>
 	<string name="settings_section_developer">Розробник</string>
 	<string name="action_debug">Налагодження</string>
 	<string name="settings_version_format">Версія %1$s (%2$s)</string>
@@ -147,8 +124,6 @@
 	<string name="settings_company_name">Nineva Studios</string>
 
     <!-- Home Screen -->
-    <string name="home_view_match">Переглянути деталі матчу</string>
-    <string name="home_view_player">Переглянути деталі гравця</string>
 
     <!-- Debug Screen -->
     <string name="debug_data_generation_title">Генерація даних</string>

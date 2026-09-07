@@ -15,12 +15,10 @@
     <string name="action_edit">编辑</string>
     <string name="action_save">保存</string>
     <string name="action_add_session">添加训练</string>
-    <string name="action_search">搜索</string>
 	<string name="action_ui_settings">界面设置</string>
     <string name="action_opponents">对手</string>
     <string name="opponents_empty">暂无对手</string>
     <string name="title_opponents">对手</string>
-    <string name="action_more">更多</string>
     <string name="action_back">返回</string>
 
     <!-- Navigation -->
@@ -29,9 +27,7 @@
     <string name="nav_settings">设置</string>
 
     <!-- Screen Titles -->
-    <string name="title_home">主页</string>
     <string name="title_create_session">创建训练</string>
-    <string name="title_analytics">分析</string>
     <string name="title_settings">设置</string>
     <string name="title_error">错误</string>
 
@@ -44,10 +40,8 @@
     <!-- Create Session Screen -->
     <string name="label_date">日期</string>
     <string name="label_duration">时长</string>
-    <string name="hint_duration">输入时长</string>
     <string name="suffix_minutes">分钟</string>
     <string name="suffix_minutes_value">%1$d分钟</string>
-    <string name="rule_duration">5-300分钟</string>
     <string name="label_session_type">训练类型</string>
     <string name="label_intensity_rpe">强度（RPE）</string>
     <string name="label_notes_optional">备注（可选）</string>
@@ -73,18 +67,11 @@
     <string name="session_type_other">其他</string>
 
     <!-- Analytics Screen -->
-    <string name="analytics_service_injected">服务已注入：%1$d</string>
-    <string name="analytics_create_test_session">创建测试训练</string>
-    <string name="analytics_last_created">最近创建的训练：%1$s</string>
-    <string name="analytics_test_notes">来自分析页面的测试训练</string>
-    <string name="analytics_placeholder">您的表现分析将显示在此处</string>
 	<string name="analytics_summary">总结</string>
 	<string name="analytics_total_sessions">训练</string>
 	<string name="analytics_total_time">训练时间</string>
-	<string name="analytics_total_matches">比赛</string>
 	<string name="analytics_hours_minutes">%1$d小时%2$d分钟</string>
     <string name="analytics_win_loss">胜 / 负</string>
-    <string name="analytics_win_loss_format">%1$d - %2$d</string>
     <string name="analytics_win_rate">胜率</string>
     <string name="analytics_heatmap_title">训练会话热力图</string>
     <string name="analytics_heatmap_less">少</string>
@@ -95,10 +82,8 @@
     <string name="analytics_losses">负</string>
     <string name="analytics_no_matches">暂无比赛记录</string>
     <string name="analytics_no_training">暂无训练数据</string>
-    <string name="analytics_minutes_short">分钟</string>
     <string name="analytics_weekly_avg">平均</string>
     <string name="analytics_weekly_total">总计</string>
-    <string name="analytics_this_week">本周</string>
     <string name="analytics_settings_title">分析组件</string>
     <string name="analytics_widget_summary">总结</string>
     <string name="analytics_widget_win_loss">胜负图表</string>
@@ -106,12 +91,6 @@
     <string name="analytics_widget_heatmap">训练热力图</string>
 
     <!-- Settings Screen -->
-    <string name="profile_guest_user">访客</string>
-    <string name="profile_sign_in_prompt">登录以同步您的数据</string>
-    <string name="settings_placeholder">您的设置将显示在此处</string>
-    <string name="profile_menu_privacy">隐私</string>
-    <string name="profile_menu_about">关于</string>
-    <string name="profile_menu_support">支持</string>
     <string name="settings_section_general">通用</string>
     <string name="settings_section_help">帮助</string>
     <string name="settings_section_about">关于</string>
@@ -124,8 +103,6 @@
 	<string name="settings_section_appearance">外观</string>
     <string name="settings_section_calendar">日历</string>
     <string name="settings_section_sessions">训练默认设置</string>
-    <string name="settings_default_duration">训练时长</string>
-    <string name="settings_default_duration_description">创建新训练时的初始时长</string>
     <string name="action_theme">主题</string>
     <string name="theme_select_title">选择主题</string>
 	<string name="action_language">语言</string>
@@ -147,8 +124,6 @@
     <string name="settings_company_name">Nineva Studios</string>
 
     <!-- Home Screen -->
-    <string name="home_view_match">查看比赛详情</string>
-    <string name="home_view_player">查看选手详情</string>
 
     <!-- Debug Screen -->
     <string name="debug_data_generation_title">数据生成</string>

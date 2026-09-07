@@ -15,12 +15,10 @@
     <string name="action_edit">Düzenle</string>
     <string name="action_save">Kaydet</string>
     <string name="action_add_session">Antrenman ekle</string>
-    <string name="action_search">Ara</string>
 	<string name="action_ui_settings">Arayüz ayarları</string>
     <string name="action_opponents">Rakipler</string>
     <string name="opponents_empty">Henüz rakip yok</string>
     <string name="title_opponents">Rakipler</string>
-    <string name="action_more">Daha fazla</string>
     <string name="action_back">Geri</string>
 
     <!-- Navigation -->
@@ -29,9 +27,7 @@
     <string name="nav_settings">Ayarlar</string>
 
     <!-- Screen Titles -->
-    <string name="title_home">Ana Sayfa</string>
     <string name="title_create_session">Antrenman oluştur</string>
-    <string name="title_analytics">Analiz</string>
     <string name="title_settings">Ayarlar</string>
     <string name="title_error">Hata</string>
 
@@ -44,10 +40,8 @@
     <!-- Create Session Screen -->
     <string name="label_date">Tarih</string>
     <string name="label_duration">Süre</string>
-    <string name="hint_duration">Süreyi girin</string>
     <string name="suffix_minutes">dakika</string>
     <string name="suffix_minutes_value">%1$d dk</string>
-    <string name="rule_duration">5-300 dakika</string>
     <string name="label_session_type">Antrenman türü</string>
     <string name="label_intensity_rpe">Yoğunluk (RPE)</string>
     <string name="label_notes_optional">Notlar (isteğe bağlı)</string>
@@ -73,18 +67,11 @@
     <string name="session_type_other">Diğer</string>
 
     <!-- Analytics Screen -->
-    <string name="analytics_service_injected">Servis enjekte edildi: %1$d</string>
-    <string name="analytics_create_test_session">Test antrenmanı oluştur</string>
-    <string name="analytics_last_created">Son oluşturulan antrenman: %1$s</string>
-    <string name="analytics_test_notes">AnalyticsScreen\'den test antrenmanı</string>
-    <string name="analytics_placeholder">Performans analiziniz burada görünecek</string>
 	<string name="analytics_summary">Özet</string>
 	<string name="analytics_total_sessions">Antrenmanlar</string>
 	<string name="analytics_total_time">Antrenman süresi</string>
-	<string name="analytics_total_matches">Maçlar</string>
 	<string name="analytics_hours_minutes">%1$ds %2$ddk</string>
     <string name="analytics_win_loss">Galibiyet / Mağlubiyet</string>
-    <string name="analytics_win_loss_format">%1$d - %2$d</string>
     <string name="analytics_win_rate">Galibiyet oranı</string>
     <string name="analytics_heatmap_title">Antrenman seansları ısı haritası</string>
     <string name="analytics_heatmap_less">Daha az</string>
@@ -95,10 +82,8 @@
     <string name="analytics_losses">Mağlubiyet</string>
     <string name="analytics_no_matches">Henüz maç yok</string>
     <string name="analytics_no_training">Henüz antrenman verisi yok</string>
-    <string name="analytics_minutes_short">dk</string>
     <string name="analytics_weekly_avg">Ort.</string>
     <string name="analytics_weekly_total">Toplam</string>
-    <string name="analytics_this_week">Bu hafta</string>
     <string name="analytics_settings_title">Analiz bileşenleri</string>
     <string name="analytics_widget_summary">Özet</string>
     <string name="analytics_widget_win_loss">Galibiyet/mağlubiyet grafiği</string>
@@ -106,12 +91,6 @@
     <string name="analytics_widget_heatmap">Antrenman ısı haritası</string>
 
     <!-- Settings Screen -->
-    <string name="profile_guest_user">Misafir</string>
-    <string name="profile_sign_in_prompt">Verilerinizi senkronize etmek için oturum açın</string>
-    <string name="settings_placeholder">Ayarlarınız burada görünecek</string>
-    <string name="profile_menu_privacy">Gizlilik</string>
-    <string name="profile_menu_about">Hakkında</string>
-    <string name="profile_menu_support">Destek</string>
     <string name="settings_section_general">Genel</string>
     <string name="settings_section_help">Yardım</string>
     <string name="settings_section_about">Hakkında</string>
@@ -124,8 +103,6 @@
 	<string name="settings_section_appearance">Görünüm</string>
     <string name="settings_section_calendar">Takvim</string>
     <string name="settings_section_sessions">Antrenman varsayılanları</string>
-    <string name="settings_default_duration">Antrenman süresi</string>
-    <string name="settings_default_duration_description">Yeni antrenman oluştururken başlangıç süresi</string>
     <string name="action_theme">Tema</string>
     <string name="theme_select_title">Tema seç</string>
 	<string name="action_language">Dil</string>
@@ -147,8 +124,6 @@
     <string name="settings_company_name">Nineva Studios</string>
 
     <!-- Home Screen -->
-    <string name="home_view_match">Maç detaylarını görüntüle</string>
-    <string name="home_view_player">Oyuncu detaylarını görüntüle</string>
 
     <!-- Debug Screen -->
     <string name="debug_data_generation_title">Veri oluşturma</string>

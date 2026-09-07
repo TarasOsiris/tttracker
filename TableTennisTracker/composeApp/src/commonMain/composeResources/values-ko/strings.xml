@@ -15,12 +15,10 @@
     <string name="action_edit">편집</string>
     <string name="action_save">저장</string>
     <string name="action_add_session">훈련 추가</string>
-    <string name="action_search">검색</string>
 	<string name="action_ui_settings">UI 설정</string>
     <string name="action_opponents">상대</string>
     <string name="opponents_empty">아직 상대가 없습니다</string>
     <string name="title_opponents">상대</string>
-    <string name="action_more">더 보기</string>
     <string name="action_back">뒤로</string>
 
     <!-- Navigation -->
@@ -29,9 +27,7 @@
     <string name="nav_settings">설정</string>
 
     <!-- Screen Titles -->
-    <string name="title_home">홈</string>
     <string name="title_create_session">훈련 만들기</string>
-    <string name="title_analytics">분석</string>
     <string name="title_settings">설정</string>
     <string name="title_error">오류</string>
 
@@ -44,10 +40,8 @@
     <!-- Create Session Screen -->
     <string name="label_date">날짜</string>
     <string name="label_duration">시간</string>
-    <string name="hint_duration">시간 입력</string>
     <string name="suffix_minutes">분</string>
     <string name="suffix_minutes_value">%1$d분</string>
-    <string name="rule_duration">5-300분</string>
     <string name="label_session_type">훈련 유형</string>
     <string name="label_intensity_rpe">강도 (RPE)</string>
     <string name="label_notes_optional">메모 (선택사항)</string>
@@ -73,18 +67,11 @@
     <string name="session_type_other">기타</string>
 
     <!-- Analytics Screen -->
-    <string name="analytics_service_injected">서비스 주입: %1$d</string>
-    <string name="analytics_create_test_session">테스트 훈련 만들기</string>
-    <string name="analytics_last_created">마지막으로 생성된 훈련: %1$s</string>
-    <string name="analytics_test_notes">분석 화면에서의 테스트 훈련</string>
-    <string name="analytics_placeholder">성능 분석이 여기에 표시됩니다</string>
 	<string name="analytics_summary">요약</string>
 	<string name="analytics_total_sessions">훈련</string>
 	<string name="analytics_total_time">훈련 시간</string>
-	<string name="analytics_total_matches">경기</string>
 	<string name="analytics_hours_minutes">%1$d시간 %2$d분</string>
     <string name="analytics_win_loss">승/패</string>
-    <string name="analytics_win_loss_format">%1$d - %2$d</string>
     <string name="analytics_win_rate">승률</string>
     <string name="analytics_heatmap_title">훈련 세션 히트맵</string>
     <string name="analytics_heatmap_less">적음</string>
@@ -95,10 +82,8 @@
     <string name="analytics_losses">패</string>
     <string name="analytics_no_matches">아직 경기가 없습니다</string>
     <string name="analytics_no_training">아직 훈련 데이터가 없습니다</string>
-    <string name="analytics_minutes_short">분</string>
     <string name="analytics_weekly_avg">평균</string>
     <string name="analytics_weekly_total">합계</string>
-    <string name="analytics_this_week">이번 주</string>
     <string name="analytics_settings_title">분석 위젯</string>
     <string name="analytics_widget_summary">요약</string>
     <string name="analytics_widget_win_loss">승/패 차트</string>
@@ -106,12 +91,6 @@
     <string name="analytics_widget_heatmap">훈련 히트맵</string>
 
     <!-- Settings Screen -->
-    <string name="profile_guest_user">손님</string>
-    <string name="profile_sign_in_prompt">데이터를 동기화하려면 로그인하세요</string>
-    <string name="settings_placeholder">설정이 여기에 표시됩니다</string>
-    <string name="profile_menu_privacy">개인정보</string>
-    <string name="profile_menu_about">정보</string>
-    <string name="profile_menu_support">지원</string>
     <string name="settings_section_general">일반</string>
     <string name="settings_section_help">도움말</string>
     <string name="settings_section_about">정보</string>
@@ -124,8 +103,6 @@
 	<string name="settings_section_appearance">외관</string>
     <string name="settings_section_calendar">캘린더</string>
     <string name="settings_section_sessions">훈련 기본 설정</string>
-    <string name="settings_default_duration">훈련 시간</string>
-    <string name="settings_default_duration_description">새 훈련 생성 시 초기 시간</string>
     <string name="action_theme">테마</string>
     <string name="theme_select_title">테마 선택</string>
 	<string name="action_language">언어</string>
@@ -147,8 +124,6 @@
     <string name="settings_company_name">Nineva Studios</string>
 
     <!-- Home Screen -->
-    <string name="home_view_match">경기 상세 보기</string>
-    <string name="home_view_player">선수 상세 보기</string>
 
     <!-- Debug Screen -->
     <string name="debug_data_generation_title">데이터 생성</string>

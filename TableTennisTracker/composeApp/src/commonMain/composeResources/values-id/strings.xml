@@ -15,12 +15,10 @@
     <string name="action_edit">Edit</string>
     <string name="action_save">Simpan</string>
     <string name="action_add_session">Tambah Latihan</string>
-    <string name="action_search">Cari</string>
 	<string name="action_ui_settings">Pengaturan Antarmuka</string>
     <string name="action_opponents">Lawan</string>
     <string name="opponents_empty">Belum ada lawan</string>
     <string name="title_opponents">Lawan</string>
-    <string name="action_more">Lainnya</string>
     <string name="action_back">Kembali</string>
 
     <!-- Navigation -->
@@ -29,9 +27,7 @@
     <string name="nav_settings">Pengaturan</string>
 
     <!-- Screen Titles -->
-    <string name="title_home">Beranda</string>
     <string name="title_create_session">Buat Latihan</string>
-    <string name="title_analytics">Analisis</string>
     <string name="title_settings">Pengaturan</string>
     <string name="title_error">Error</string>
 
@@ -44,10 +40,8 @@
     <!-- Create Session Screen -->
     <string name="label_date">Tanggal</string>
     <string name="label_duration">Durasi</string>
-    <string name="hint_duration">Masukkan durasi</string>
     <string name="suffix_minutes">menit</string>
     <string name="suffix_minutes_value">%1$d mnt</string>
-    <string name="rule_duration">5-300 menit</string>
     <string name="label_session_type">Jenis Latihan</string>
     <string name="label_intensity_rpe">Intensitas (RPE)</string>
     <string name="label_notes_optional">Catatan (opsional)</string>
@@ -73,18 +67,11 @@
     <string name="session_type_other">Lainnya</string>
 
     <!-- Analytics Screen -->
-    <string name="analytics_service_injected">Layanan disuntikkan: %1$d</string>
-    <string name="analytics_create_test_session">Buat Latihan Tes</string>
-    <string name="analytics_last_created">Latihan terakhir dibuat: %1$s</string>
-    <string name="analytics_test_notes">Latihan tes dari AnalyticsScreen</string>
-    <string name="analytics_placeholder">Analisis performa Anda akan muncul di sini</string>
 	<string name="analytics_summary">Ringkasan</string>
 	<string name="analytics_total_sessions">Latihan</string>
 	<string name="analytics_total_time">Waktu latihan</string>
-	<string name="analytics_total_matches">Pertandingan</string>
 	<string name="analytics_hours_minutes">%1$dj %2$dm</string>
     <string name="analytics_win_loss">Menang / Kalah</string>
-    <string name="analytics_win_loss_format">%1$d - %2$d</string>
     <string name="analytics_win_rate">Persentase kemenangan</string>
     <string name="analytics_heatmap_title">Heatmap sesi latihan</string>
     <string name="analytics_heatmap_less">Lebih sedikit</string>
@@ -95,10 +82,8 @@
     <string name="analytics_losses">Kalah</string>
     <string name="analytics_no_matches">Belum ada pertandingan</string>
     <string name="analytics_no_training">Belum ada data latihan</string>
-    <string name="analytics_minutes_short">mnt</string>
     <string name="analytics_weekly_avg">Rata-rata</string>
     <string name="analytics_weekly_total">Total</string>
-    <string name="analytics_this_week">Minggu ini</string>
     <string name="analytics_settings_title">Widget analitik</string>
     <string name="analytics_widget_summary">Ringkasan</string>
     <string name="analytics_widget_win_loss">Grafik menang/kalah</string>
@@ -106,12 +91,6 @@
     <string name="analytics_widget_heatmap">Heatmap latihan</string>
 
     <!-- Settings Screen -->
-    <string name="profile_guest_user">Tamu</string>
-    <string name="profile_sign_in_prompt">Masuk untuk menyinkronkan data</string>
-    <string name="settings_placeholder">Pengaturan Anda akan muncul di sini</string>
-    <string name="profile_menu_privacy">Privasi</string>
-    <string name="profile_menu_about">Tentang</string>
-    <string name="profile_menu_support">Dukungan</string>
     <string name="settings_section_general">Umum</string>
     <string name="settings_section_help">Bantuan</string>
     <string name="settings_section_about">Tentang</string>
@@ -124,8 +103,6 @@
 	<string name="settings_section_appearance">Tampilan</string>
     <string name="settings_section_calendar">Kalender</string>
     <string name="settings_section_sessions">Pengaturan default latihan</string>
-    <string name="settings_default_duration">Durasi latihan</string>
-    <string name="settings_default_duration_description">Durasi awal saat membuat latihan baru</string>
     <string name="action_theme">Tema</string>
     <string name="theme_select_title">Pilih tema</string>
 	<string name="action_language">Bahasa</string>
@@ -147,8 +124,6 @@
     <string name="settings_company_name">Nineva Studios</string>
 
     <!-- Home Screen -->
-    <string name="home_view_match">Lihat Detail Pertandingan</string>
-    <string name="home_view_player">Lihat Detail Pemain</string>
 
     <!-- Debug Screen -->
     <string name="debug_data_generation_title">Pembuatan Data</string>

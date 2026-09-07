@@ -15,12 +15,10 @@
     <string name="action_edit">Modifier</string>
     <string name="action_save">Enregistrer</string>
     <string name="action_add_session">Ajouter une séance</string>
-    <string name="action_search">Rechercher</string>
 	<string name="action_ui_settings">Paramètres d\'interface</string>
     <string name="action_opponents">Adversaires</string>
     <string name="opponents_empty">Aucun adversaire pour le moment</string>
     <string name="title_opponents">Adversaires</string>
-    <string name="action_more">Plus</string>
     <string name="action_back">Retour</string>
 
     <!-- Navigation -->
@@ -29,9 +27,7 @@
     <string name="nav_settings">Paramètres</string>
 
     <!-- Screen Titles -->
-    <string name="title_home">Écran d\'accueil</string>
     <string name="title_create_session">Créer une séance d\'entraînement</string>
-    <string name="title_analytics">Analyse</string>
     <string name="title_settings">Paramètres</string>
     <string name="title_error">Erreur</string>
 
@@ -44,10 +40,8 @@
     <!-- Create Session Screen -->
     <string name="label_date">Date</string>
     <string name="label_duration">Durée</string>
-    <string name="hint_duration">Entrez la durée</string>
     <string name="suffix_minutes">minutes</string>
     <string name="suffix_minutes_value">%1$d min</string>
-    <string name="rule_duration">5-300 minutes</string>
     <string name="label_session_type">Type de séance</string>
     <string name="label_intensity_rpe">Intensité (RPE)</string>
     <string name="label_notes_optional">Notes (facultatif)</string>
@@ -73,18 +67,11 @@
     <string name="session_type_other">Autre</string>
 
     <!-- Analytics Screen -->
-    <string name="analytics_service_injected">Service injecté : %1$d</string>
-    <string name="analytics_create_test_session">Créer une séance de test</string>
-    <string name="analytics_last_created">Dernière séance créée : %1$s</string>
-    <string name="analytics_test_notes">Séance de test depuis AnalyticsScreen</string>
-    <string name="analytics_placeholder">Vos analyses de performances apparaîtront ici</string>
 	<string name="analytics_summary">Résumé</string>
 	<string name="analytics_total_sessions">Séances</string>
 	<string name="analytics_total_time">Temps d\'entraînement</string>
-	<string name="analytics_total_matches">Matchs</string>
 	<string name="analytics_hours_minutes">%1$dh %2$dmin</string>
     <string name="analytics_win_loss">Victoires / Défaites</string>
-    <string name="analytics_win_loss_format">%1$d - %2$d</string>
     <string name="analytics_win_rate">Taux de victoire</string>
     <string name="analytics_heatmap_title">Carte thermique des séances d\'entraînement</string>
     <string name="analytics_heatmap_less">Moins</string>
@@ -95,10 +82,8 @@
     <string name="analytics_losses">Défaites</string>
     <string name="analytics_no_matches">Aucun match pour l\'instant</string>
     <string name="analytics_no_training">Aucune donnée d\'entraînement</string>
-    <string name="analytics_minutes_short">min</string>
     <string name="analytics_weekly_avg">Moy.</string>
     <string name="analytics_weekly_total">Total</string>
-    <string name="analytics_this_week">Cette semaine</string>
     <string name="analytics_settings_title">Widgets d\'analyse</string>
     <string name="analytics_widget_summary">Résumé</string>
     <string name="analytics_widget_win_loss">Graphique victoires/défaites</string>
@@ -106,12 +91,6 @@
     <string name="analytics_widget_heatmap">Carte thermique d\'entraînement</string>
 
     <!-- Settings Screen -->
-    <string name="profile_guest_user">Invité</string>
-    <string name="profile_sign_in_prompt">Connectez-vous pour synchroniser vos données</string>
-    <string name="settings_placeholder">Vos paramètres apparaîtront ici</string>
-    <string name="profile_menu_privacy">Confidentialité</string>
-    <string name="profile_menu_about">À propos</string>
-    <string name="profile_menu_support">Support</string>
     <string name="settings_section_general">Général</string>
     <string name="settings_section_help">Aide</string>
     <string name="settings_section_about">À propos</string>
@@ -124,8 +103,6 @@
 	<string name="settings_section_appearance">Apparence</string>
     <string name="settings_section_calendar">Calendrier</string>
     <string name="settings_section_sessions">Paramètres par défaut des séances</string>
-    <string name="settings_default_duration">Durée de la séance</string>
-    <string name="settings_default_duration_description">Durée initiale lors de la création de nouvelles séances</string>
     <string name="action_theme">Thème</string>
     <string name="theme_select_title">Sélectionner le thème</string>
 	<string name="action_language">Langue</string>
@@ -147,8 +124,6 @@
     <string name="settings_company_name">Nineva Studios</string>
 
     <!-- Home Screen -->
-    <string name="home_view_match">Afficher les détails du match</string>
-    <string name="home_view_player">Afficher les détails du joueur</string>
 
     <!-- Debug Screen -->
     <string name="debug_data_generation_title">Génération de données</string>

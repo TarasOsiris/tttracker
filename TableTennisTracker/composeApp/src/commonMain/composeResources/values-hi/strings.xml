@@ -15,12 +15,10 @@
     <string name="action_edit">संपादित करें</string>
     <string name="action_save">सहेजें</string>
     <string name="action_add_session">अभ्यास जोड़ें</string>
-    <string name="action_search">खोजें</string>
 	<string name="action_ui_settings">UI सेटिंग्स</string>
     <string name="action_opponents">प्रतिद्वंद्वी</string>
     <string name="opponents_empty">अभी कोई प्रतिद्वंद्वी नहीं</string>
     <string name="title_opponents">प्रतिद्वंद्वी</string>
-    <string name="action_more">और देखें</string>
     <string name="action_back">वापस</string>
 
     <!-- Navigation -->
@@ -29,9 +27,7 @@
     <string name="nav_settings">सेटिंग्स</string>
 
     <!-- Screen Titles -->
-    <string name="title_home">होम</string>
     <string name="title_create_session">अभ्यास बनाएं</string>
-    <string name="title_analytics">विश्लेषण</string>
     <string name="title_settings">सेटिंग्स</string>
     <string name="title_error">त्रुटि</string>
 
@@ -44,10 +40,8 @@
     <!-- Create Session Screen -->
     <string name="label_date">तारीख</string>
     <string name="label_duration">अवधि</string>
-    <string name="hint_duration">अवधि दर्ज करें</string>
     <string name="suffix_minutes">मिनट</string>
     <string name="suffix_minutes_value">%1$d मिनट</string>
-    <string name="rule_duration">5-300 मिनट</string>
     <string name="label_session_type">अभ्यास प्रकार</string>
     <string name="label_intensity_rpe">तीव्रता (RPE)</string>
     <string name="label_notes_optional">नोट्स (वैकल्पिक)</string>
@@ -73,18 +67,11 @@
     <string name="session_type_other">अन्य</string>
 
     <!-- Analytics Screen -->
-    <string name="analytics_service_injected">सेवा इंजेक्ट: %1$d</string>
-    <string name="analytics_create_test_session">टेस्ट अभ्यास बनाएं</string>
-    <string name="analytics_last_created">अंतिम बनाया गया अभ्यास: %1$s</string>
-    <string name="analytics_test_notes">विश्लेषण स्क्रीन से टेस्ट अभ्यास</string>
-    <string name="analytics_placeholder">आपका प्रदर्शन विश्लेषण यहां दिखाई देगा</string>
 	<string name="analytics_summary">सारांश</string>
 	<string name="analytics_total_sessions">अभ्यास</string>
 	<string name="analytics_total_time">प्रशिक्षण समय</string>
-	<string name="analytics_total_matches">मैच</string>
 	<string name="analytics_hours_minutes">%1$dघं %2$dमि</string>
     <string name="analytics_win_loss">जीत / हार</string>
-    <string name="analytics_win_loss_format">%1$d - %2$d</string>
     <string name="analytics_win_rate">जीत दर</string>
     <string name="analytics_heatmap_title">प्रशिक्षण सत्र हीटमैप</string>
     <string name="analytics_heatmap_less">कम</string>
@@ -95,10 +82,8 @@
     <string name="analytics_losses">हार</string>
     <string name="analytics_no_matches">अभी तक कोई मैच नहीं</string>
     <string name="analytics_no_training">अभी तक कोई प्रशिक्षण डेटा नहीं</string>
-    <string name="analytics_minutes_short">मिनट</string>
     <string name="analytics_weekly_avg">औसत</string>
     <string name="analytics_weekly_total">कुल</string>
-    <string name="analytics_this_week">इस सप्ताह</string>
     <string name="analytics_settings_title">विश्लेषण विजेट</string>
     <string name="analytics_widget_summary">सारांश</string>
     <string name="analytics_widget_win_loss">जीत/हार चार्ट</string>
@@ -106,12 +91,6 @@
     <string name="analytics_widget_heatmap">प्रशिक्षण हीटमैप</string>
 
     <!-- Settings Screen -->
-    <string name="profile_guest_user">अतिथि</string>
-    <string name="profile_sign_in_prompt">अपने डेटा को सिंक करने के लिए साइन इन करें</string>
-    <string name="settings_placeholder">आपकी सेटिंग्स यहां दिखाई देंगी</string>
-    <string name="profile_menu_privacy">गोपनीयता</string>
-    <string name="profile_menu_about">जानकारी</string>
-    <string name="profile_menu_support">सहायता</string>
     <string name="settings_section_general">सामान्य</string>
     <string name="settings_section_help">मदद</string>
     <string name="settings_section_about">जानकारी</string>
@@ -124,8 +103,6 @@
 	<string name="settings_section_appearance">दिखावट</string>
     <string name="settings_section_calendar">कैलेंडर</string>
     <string name="settings_section_sessions">अभ्यास की डिफ़ॉल्ट सेटिंग्स</string>
-    <string name="settings_default_duration">अभ्यास की अवधि</string>
-    <string name="settings_default_duration_description">नया अभ्यास बनाते समय आरंभिक अवधि</string>
     <string name="action_theme">थीम</string>
     <string name="theme_select_title">थीम चुनें</string>
 	<string name="action_language">भाषा</string>
@@ -147,8 +124,6 @@
     <string name="settings_company_name">Nineva Studios</string>
 
     <!-- Home Screen -->
-    <string name="home_view_match">मैच विवरण देखें</string>
-    <string name="home_view_player">खिलाड़ी विवरण देखें</string>
 
     <!-- Debug Screen -->
     <string name="debug_data_generation_title">डेटा जनरेशन</string>
