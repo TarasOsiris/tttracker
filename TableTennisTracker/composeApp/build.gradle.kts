@@ -94,8 +94,6 @@ kotlin {
 			implementation(libs.androidx.lifecycle.runtime)
 			implementation(libs.kotlinx.serialization.json)
 			implementation(libs.androidx.nav3.ui)
-			implementation(libs.androidx.material3.adaptive)
-			implementation(libs.androidx.material3.adaptive.nav3)
 
 			// Koin DI
 			implementation(project.dependencies.platform(libs.koin.bom))
