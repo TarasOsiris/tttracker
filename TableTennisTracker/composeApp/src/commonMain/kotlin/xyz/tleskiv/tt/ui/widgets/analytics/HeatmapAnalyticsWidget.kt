@@ -45,6 +45,7 @@ import tabletennistracker.composeapp.generated.resources.Res
 import tabletennistracker.composeapp.generated.resources.analytics_heatmap_less
 import tabletennistracker.composeapp.generated.resources.analytics_heatmap_more
 import tabletennistracker.composeapp.generated.resources.analytics_heatmap_title
+import xyz.tleskiv.tt.analytics.heatmapLevel
 import xyz.tleskiv.tt.util.ext.displayText
 import xyz.tleskiv.tt.util.ext.shortDisplayText
 import xyz.tleskiv.tt.util.ui.HeatMapLevel
@@ -139,16 +140,8 @@ private fun LevelBox(color: Color, isSelected: Boolean = false, onClick: (() -> 
 	)
 }
 
-private fun levelForCount(count: Int, maxCount: Int): HeatMapLevel {
-	if (count <= 0 || maxCount <= 0) return HeatMapLevel.Zero
-	val ratio = count.toFloat() / maxCount.toFloat()
-	return when {
-		ratio <= 0.25f -> HeatMapLevel.One
-		ratio <= 0.5f -> HeatMapLevel.Two
-		ratio <= 0.75f -> HeatMapLevel.Three
-		else -> HeatMapLevel.Four
-	}
-}
+private fun levelForCount(count: Int, maxCount: Int): HeatMapLevel =
+	HeatMapLevel.entries[heatmapLevel(count, maxCount)]
 
 @Composable
 private fun WeekHeader(dayOfWeek: DayOfWeek) {

@@ -14,13 +14,10 @@ import xyz.tleskiv.tt.analytics.WeeklyTrainingData
 import xyz.tleskiv.tt.model.mappers.toSessionUiModelUtc
 import xyz.tleskiv.tt.repo.UserPreferencesRepository
 import xyz.tleskiv.tt.service.TrainingAnalyticsService
-import xyz.tleskiv.tt.service.TrainingSessionService
-import xyz.tleskiv.tt.util.ext.toLocalDate
 import xyz.tleskiv.tt.viewmodel.analytics.AnalyticsScreenViewModel
 import xyz.tleskiv.tt.viewmodel.analytics.AnalyticsWidgetVisibility
 
 class AnalyticsScreenViewModelImpl(
-	sessionService: TrainingSessionService,
 	analyticsService: TrainingAnalyticsService,
 	private val userPreferencesRepository: UserPreferencesRepository
 ) : AnalyticsScreenViewModel() {
@@ -43,19 +40,12 @@ class AnalyticsScreenViewModelImpl(
 		.map { it.toDayOfWeek() }
 		.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), DayOfWeek.MONDAY)
 
-	override val sessionsListByDate = sessionService.allSessions
-		.map { allSessions ->
-			allSessions.groupBy { it.date.toLocalDate() }
-				.mapValues { (_, sessions) -> sessions.map { it.toSessionUiModelUtc() } }
-		}
+	override val sessionsListByDate = analyticsService.sessionsByDay
+		.map { byDay -> byDay.mapValues { (_, sessions) -> sessions.map { it.toSessionUiModelUtc() } } }
 		.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyMap())
 
-	override val sessionsByDate: StateFlow<Map<LocalDate, Int>> = analyticsService.dailyLoad
-		.map { load -> load.associate { it.date to it.sessionCount } }
-		.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyMap())
-
-	override val totalMinutesByDate: StateFlow<Map<LocalDate, Int>> = analyticsService.dailyLoad
-		.map { load -> load.associate { it.date to it.totalMinutes } }
+	override val sessionsByDate: StateFlow<Map<LocalDate, Int>> = analyticsService.sessionsByDay
+		.map { byDay -> byDay.mapValues { (_, sessions) -> sessions.size } }
 		.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyMap())
 
 	override val summaryStats: StateFlow<SummaryStats> = analyticsService.summary

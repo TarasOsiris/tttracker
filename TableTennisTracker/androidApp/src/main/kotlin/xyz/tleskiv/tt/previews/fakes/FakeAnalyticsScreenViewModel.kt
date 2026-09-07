@@ -28,9 +28,6 @@ class FakeAnalyticsScreenViewModel : AnalyticsScreenViewModel() {
 			date to sessionCounts[i]
 		}.toMap()
 
-		private fun createMinutesByDate() = createSampleDates().mapIndexed { i, date ->
-			date to durations[i] * sessionCounts[i]
-		}.toMap()
 
 		private fun createSessionsList() = createSampleDates().mapIndexed { i, date ->
 			date to List(sessionCounts[i]) { j ->
@@ -47,7 +44,6 @@ class FakeAnalyticsScreenViewModel : AnalyticsScreenViewModel() {
 	}
 
 	override val sessionsByDate: StateFlow<Map<LocalDate, Int>> = MutableStateFlow(createSessionsByDate())
-	override val totalMinutesByDate: StateFlow<Map<LocalDate, Int>> = MutableStateFlow(createMinutesByDate())
 	override val sessionsListByDate: StateFlow<Map<LocalDate, List<SessionUiModel>>> =
 		MutableStateFlow(createSessionsList())
 	override val firstDayOfWeek: StateFlow<DayOfWeek> = MutableStateFlow(DayOfWeek.MONDAY)

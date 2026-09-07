@@ -35,9 +35,4 @@ object BrandColors {
 		0xFF4CAF50L, 0xFF7FB549L, 0xFFA7B941L, 0xFFCCBD34L, 0xFFEEC01FL,
 		0xFFFFB517L, 0xFFFE9C26L, 0xFFFC822EL, 0xFFF96533L, 0xFFF44336L
 	)
-
-	/** The ramp endpoints, for anything that needs to draw the gradient itself. */
-	const val RpeGreen = 0xFF4CAF50L
-	const val RpeYellow = 0xFFFFC107L
-	const val RpeRed = 0xFFF44336L
 }

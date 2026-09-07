@@ -17,7 +17,6 @@ data class AnalyticsWidgetVisibility(
 
 abstract class AnalyticsScreenViewModel : ViewModelBase() {
 	abstract val sessionsByDate: StateFlow<Map<LocalDate, Int>>
-	abstract val totalMinutesByDate: StateFlow<Map<LocalDate, Int>>
 	abstract val sessionsListByDate: StateFlow<Map<LocalDate, List<SessionUiModel>>>
 	abstract val firstDayOfWeek: StateFlow<DayOfWeek>
 	abstract val summaryStats: StateFlow<SummaryStats>

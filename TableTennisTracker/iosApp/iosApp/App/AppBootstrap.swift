@@ -41,10 +41,4 @@ enum UIShell {
         return false
         #endif
     }
-
-    #if DEBUG
-    static func setUseNative(_ enabled: Bool) {
-        UserDefaults.standard.set(enabled, forKey: defaultsKey)
-    }
-    #endif
 }

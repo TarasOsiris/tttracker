@@ -83,19 +83,14 @@ enum OpponentEditorTarget: Identifiable {
     case new
     case existing(String)
 
-    var id: String {
-        switch self {
-        case .new: "new"
-        case .existing(let id): id
-        }
-    }
-
     var opponentId: String? {
         switch self {
         case .new: nil
         case .existing(let id): id
         }
     }
+
+    var id: String { opponentId ?? "new" }
 }
 
 struct OpponentEditorSheet: View {

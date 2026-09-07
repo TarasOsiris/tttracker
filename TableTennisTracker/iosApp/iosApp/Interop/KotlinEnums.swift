@@ -169,9 +169,6 @@ struct LocaleOption: Identifiable, Hashable {
 
     static let system = LocaleOption(.system)
     static let all = AppLocale.entries.map(LocaleOption.init)
-
-    static func == (lhs: Self, rhs: Self) -> Bool { lhs.id == rhs.id }
-    func hash(into hasher: inout Hasher) { hasher.combine(id) }
 }
 
 /// RPE 1...10 to its label, matching `getRpeLabel` in the Compose UI.
@@ -198,6 +195,17 @@ enum KotlinEnumParity {
         assert(
             Set(WeekStart.allCases.map(\.rawValue)) == Set(Shared.WeekStartDay.entries.map(\.name)),
             "WeekStart is out of sync with WeekStartDay"
+        )
+        // Handed and Style deliberately omit UNKNOWN, which both render as "not set".
+        assert(
+            Set(Handed.allCases.map(\.rawValue))
+                == Set(Shared.Handedness.entries.map(\.dbValue)).subtracting([Shared.Handedness.unknown.dbValue]),
+            "Handed is out of sync with Handedness"
+        )
+        assert(
+            Set(Style.allCases.map(\.rawValue))
+                == Set(PlayingStyle.entries.map(\.dbValue)).subtracting([PlayingStyle.unknown.dbValue]),
+            "Style is out of sync with PlayingStyle"
         )
     }
 }

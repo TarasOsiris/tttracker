@@ -23,9 +23,4 @@ final class SerialWriteQueue {
             }
         }
     }
-
-    /// Waits for everything queued so far to finish.
-    func drain() async {
-        await tail?.value
-    }
 }

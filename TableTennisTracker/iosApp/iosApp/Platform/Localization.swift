@@ -34,19 +34,13 @@ final class LocalizationController {
         generation += 1
     }
 
-    /// Falls back through `zh-CN` -> `zh` style truncation, since a device may report a fuller tag
-    /// (`zh-Hans-CN`) than the `.lproj` we ship.
+    /// Resolves the closest shipped localization. `preferredLocalizations` handles script subtags
+    /// (`zh-Hans-CN` -> `zh-CN`), which truncating on "-" does not.
     private static func bundle(for tag: String) -> Bundle? {
-        var candidate = tag
-        while !candidate.isEmpty {
-            if let path = Bundle.main.path(forResource: candidate, ofType: "lproj"),
-               let bundle = Bundle(path: path) {
-                return bundle
-            }
-            guard let cut = candidate.lastIndex(of: "-") else { break }
-            candidate = String(candidate[..<cut])
-        }
-        return nil
+        Bundle.preferredLocalizations(from: Bundle.main.localizations, forPreferences: [tag])
+            .first
+            .flatMap { Bundle.main.path(forResource: $0, ofType: "lproj") }
+            .flatMap(Bundle.init(path:))
     }
 }
 

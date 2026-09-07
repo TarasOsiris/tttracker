@@ -7,10 +7,10 @@ struct AnalyticsScreen: View {
 
     var body: some View {
         List {
-            if model.visibility.summary { SummarySection(model: model) }
-            if model.visibility.winLoss { WinLossSection(model: model) }
-            if model.visibility.weekly { WeeklySection(model: model) }
-            if model.visibility.heatmap { HeatmapSection(model: model) }
+            if model.showSummary.value { SummarySection(model: model) }
+            if model.showWinLoss.value { WinLossSection(model: model) }
+            if model.showWeekly.value { WeeklySection(model: model) }
+            if model.showHeatmap.value { HeatmapSection(model: model) }
         }
         .navigationTitle(L.navAnalytics)
         .toolbar {
@@ -30,11 +30,15 @@ private struct SummarySection: View {
     var body: some View {
         Section(L.analyticsSummary) {
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
-                StatTile(emoji: "🏓", value: "\(model.totalSessions)", label: L.analyticsTotalSessions)
-                StatTile(emoji: "⏱️", value: formattedTotal, label: L.analyticsTotalTime)
+                StatTile(emoji: "🏓", value: "\(model.summary.totalSessions)", label: L.analyticsTotalSessions)
+                StatTile(
+                    emoji: "⏱️",
+                    value: model.summary.totalMinutes.formattedTrainingDuration,
+                    label: L.analyticsTotalTime
+                )
                 StatTile(
                     emoji: "🏆",
-                    value: "\(model.matchesWon) - \(model.matchesLost)",
+                    value: "\(model.summary.matchesWon) - \(model.summary.matchesLost)",
                     label: L.analyticsWinLoss
                 )
                 StatTile(emoji: "📈", value: formattedWinRate, label: L.analyticsWinRate, tint: winRateTint)
@@ -43,20 +47,13 @@ private struct SummarySection: View {
         }
     }
 
-    /// Foundation pluralises and orders the units correctly in all 14 locales, which the hand-rolled
-    /// `%1$dh %2$dm` string could not.
-    private var formattedTotal: String {
-        Duration.seconds(model.totalMinutes * 60)
-            .formatted(.units(allowed: [.hours, .minutes], width: .abbreviated))
-    }
-
     private var formattedWinRate: String {
-        guard let rate = model.winRate else { return "—" }
+        guard let rate = model.summary.winRate else { return "—" }
         return rate.formatted(.percent.precision(.fractionLength(0)))
     }
 
     private var winRateTint: Color? {
-        guard let rate = model.winRate else { return nil }
+        guard let rate = model.summary.winRate else { return nil }
         return rate >= 0.5 ? .matchWin : .matchLoss
     }
 }
@@ -84,25 +81,25 @@ private struct WinLossSection: View {
 
     var body: some View {
         Section(L.analyticsWinLossChart) {
-            if model.totalMatches == 0 {
+            if model.summary.totalMatches == 0 {
                 ContentUnavailableView(L.analyticsNoMatches, systemImage: "chart.pie")
             } else {
                 Chart {
                     SectorMark(
-                        angle: .value(L.analyticsWins, model.matchesWon),
+                        angle: .value(L.analyticsWins, model.summary.matchesWon),
                         innerRadius: .ratio(0.6),
                         angularInset: 1.5
                     )
                     .foregroundStyle(Color.matchWin)
-                    .annotation(position: .overlay) { Text("\(model.matchesWon)").font(.caption).bold() }
+                    .annotation(position: .overlay) { Text("\(model.summary.matchesWon)").font(.caption).bold() }
 
                     SectorMark(
-                        angle: .value(L.analyticsLosses, model.matchesLost),
+                        angle: .value(L.analyticsLosses, model.summary.matchesLost),
                         innerRadius: .ratio(0.6),
                         angularInset: 1.5
                     )
                     .foregroundStyle(Color.matchLoss)
-                    .annotation(position: .overlay) { Text("\(model.matchesLost)").font(.caption).bold() }
+                    .annotation(position: .overlay) { Text("\(model.summary.matchesLost)").font(.caption).bold() }
                 }
                 .frame(height: 180)
 
@@ -147,30 +144,23 @@ private struct WeeklySection: View {
                 }
                 .frame(height: 160)
 
+                let total = model.weekly.reduce(0) { $0 + $1.minutes }
+                let average = model.weekly.isEmpty ? 0 : total / model.weekly.count
+
                 HStack {
                     Text(L.analyticsWeeklyTotal).foregroundStyle(.secondary)
                     Spacer()
-                    Text(formatted(model.weekly.reduce(0) { $0 + $1.minutes }))
+                    Text(total.formattedTrainingDuration)
                 }
                 .font(.caption)
                 HStack {
                     Text(L.analyticsWeeklyAvg).foregroundStyle(.secondary)
                     Spacer()
-                    Text(formatted(average))
+                    Text(average.formattedTrainingDuration)
                 }
                 .font(.caption)
             }
         }
-    }
-
-    private var average: Int {
-        guard !model.weekly.isEmpty else { return 0 }
-        return model.weekly.reduce(0) { $0 + $1.minutes } / model.weekly.count
-    }
-
-    private func formatted(_ minutes: Int) -> String {
-        Duration.seconds(minutes * 60)
-            .formatted(.units(allowed: [.hours, .minutes], width: .abbreviated))
     }
 }
 
@@ -181,10 +171,10 @@ private struct AnalyticsSettingsSheet: View {
     var body: some View {
         NavigationStack {
             Form {
-                Toggle(L.analyticsWidgetSummary, isOn: binding(\.summary, model.setSummaryVisible))
-                Toggle(L.analyticsWidgetWinLoss, isOn: binding(\.winLoss, model.setWinLossVisible))
-                Toggle(L.analyticsWidgetWeekly, isOn: binding(\.weekly, model.setWeeklyVisible))
-                Toggle(L.analyticsWidgetHeatmap, isOn: binding(\.heatmap, model.setHeatmapVisible))
+                Toggle(L.analyticsWidgetSummary, isOn: model.showSummary.binding)
+                Toggle(L.analyticsWidgetWinLoss, isOn: model.showWinLoss.binding)
+                Toggle(L.analyticsWidgetWeekly, isOn: model.showWeekly.binding)
+                Toggle(L.analyticsWidgetHeatmap, isOn: model.showHeatmap.binding)
             }
             .navigationTitle(L.analyticsSettingsTitle)
             .navigationBarTitleDisplayMode(.inline)
@@ -195,12 +185,5 @@ private struct AnalyticsSettingsSheet: View {
             }
         }
         .presentationDetents([.medium])
-    }
-
-    private func binding(
-        _ keyPath: KeyPath<WidgetVisibility, Bool>,
-        _ set: @escaping (Bool) -> Void
-    ) -> Binding<Bool> {
-        Binding(get: { model.visibility[keyPath: keyPath] }, set: set)
     }
 }

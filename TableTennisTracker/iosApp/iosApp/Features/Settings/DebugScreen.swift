@@ -5,7 +5,6 @@ import Shared
 @MainActor
 @Observable
 final class DebugModel {
-    private(set) var isGenerating = false
     private(set) var isClearing = false
 
     @ObservationIgnored private let sessions: any TrainingSessionService

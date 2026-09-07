@@ -3,7 +3,7 @@ package xyz.tleskiv.tt.di.components
 import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
-import android.os.Build
+import androidx.core.content.pm.PackageInfoCompat
 import xyz.tleskiv.tt.BuildConfig
 
 class AndroidNativeInfoProvider(context: Context) : NativeInfoProvider {
@@ -12,13 +12,8 @@ class AndroidNativeInfoProvider(context: Context) : NativeInfoProvider {
 
 	override val versionName: String = packageInfo.versionName ?: "1.0.0"
 
-	// longVersionCode is API 28; minSdk is 24, so older devices need the deprecated accessor.
-	override val buildNumber: String = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-		packageInfo.longVersionCode
-	} else {
-		@Suppress("DEPRECATION")
-		packageInfo.versionCode.toLong()
-	}.toString()
+	// longVersionCode is API 28 and minSdk is 24; the compat shim picks the right accessor.
+	override val buildNumber: String = PackageInfoCompat.getLongVersionCode(packageInfo).toString()
 
 	override val isDebugBuild: Boolean =
 		(context.applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE) != 0

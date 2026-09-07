@@ -87,11 +87,6 @@ val sessionTypePhysical = brand(BrandColors.SessionTypePhysical)
 val sessionTypeFreePlay = brand(BrandColors.SessionTypeFreePlay)
 val sessionTypeOther = brand(BrandColors.SessionTypeOther)
 
-// RPE (Rate of Perceived Exertion) Gradient Colors
-val rpeGreen = brand(BrandColors.RpeGreen)
-val rpeYellow = brand(BrandColors.RpeYellow)
-val rpeRed = brand(BrandColors.RpeRed)
-
 // Win/Loss Colors
 val winColor = brand(BrandColors.Win)
 val lossColor = brand(BrandColors.Loss)

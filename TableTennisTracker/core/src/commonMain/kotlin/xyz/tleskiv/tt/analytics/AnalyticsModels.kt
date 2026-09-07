@@ -25,3 +25,20 @@ data class DailyTrainingLoad(
 	val sessionCount: Int,
 	val totalMinutes: Int
 )
+
+/**
+ * Intensity bucket 0..4 for a day in the training heatmap, scaled against the busiest day.
+ *
+ * Shared so both heatmaps shade identically — the thresholds are inclusive upper bounds, matching
+ * the original Compose implementation.
+ */
+fun heatmapLevel(sessionCount: Int, busiestSessionCount: Int): Int {
+	if (sessionCount <= 0 || busiestSessionCount <= 0) return 0
+	val ratio = sessionCount.toFloat() / busiestSessionCount.toFloat()
+	return when {
+		ratio <= 0.25f -> 1
+		ratio <= 0.5f -> 2
+		ratio <= 0.75f -> 3
+		else -> 4
+	}
+}

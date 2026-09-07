@@ -21,11 +21,6 @@ final class FlowSubscriptions {
         subscriptions.append(subscription)
     }
 
-    func cancelAll() {
-        subscriptions.forEach { $0.cancel() }
-        subscriptions.removeAll()
-    }
-
     deinit { subscriptions.forEach { $0.cancel() } }
 }
 
@@ -62,13 +57,5 @@ enum KotlinFlow {
         onEach: @escaping @MainActor (Bool) -> Void
     ) -> FlowSubscription {
         observe(flow, as: KotlinBoolean.self) { onEach($0.boolValue) }
-    }
-
-    @discardableResult
-    static func observeInt(
-        _ flow: AnyKotlinFlow,
-        onEach: @escaping @MainActor (Int) -> Void
-    ) -> FlowSubscription {
-        observe(flow, as: KotlinInt.self) { onEach($0.intValue) }
     }
 }

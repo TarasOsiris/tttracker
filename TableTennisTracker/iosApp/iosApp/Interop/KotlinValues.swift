@@ -23,8 +23,11 @@ extension String {
     }
 }
 
-extension KotlinInstant {
-    var date: Date { Date(timeIntervalSince1970: TimeInterval(toEpochMilliseconds()) / 1000) }
+extension Calendar {
+    /// Kotlin's `LocalDate` is an ISO date. Reading it through `Calendar.current` would interpret
+    /// the year in the user's calendar — on a device set to the Buddhist calendar, year 2026 lands
+    /// centuries away.
+    static let gregorian = Calendar(identifier: .gregorian)
 }
 
 extension Kotlinx_datetimeLocalDate {
@@ -32,5 +35,5 @@ extension Kotlinx_datetimeLocalDate {
         DateComponents(year: Int(year), month: Int(month.ordinal + 1), day: Int(day))
     }
 
-    var date: Date? { Calendar.current.date(from: dateComponents) }
+    var date: Date? { Calendar.gregorian.date(from: dateComponents) }
 }

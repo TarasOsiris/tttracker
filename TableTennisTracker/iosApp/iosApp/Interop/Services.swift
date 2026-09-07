@@ -6,10 +6,8 @@ import Shared
 /// preview can substitute a fake without going near Koin.
 enum Services {
     static var preferences: any UserPreferencesRepository { IosServices.shared.userPreferencesRepository }
-    static var preferenceDefaults: any UserPreferencesService { IosServices.shared.userPreferencesService }
     static var opponents: any OpponentService { IosServices.shared.opponentService }
     static var sessions: any TrainingSessionService { IosServices.shared.trainingSessionService }
-    static var matches: any MatchService { IosServices.shared.matchService }
     static var trainingAnalytics: any TrainingAnalyticsService { IosServices.shared.trainingAnalyticsService }
     static var userId: any UserIdService { IosServices.shared.userIdService }
     static var deviceInfo: any NativeInfoProvider { IosServices.shared.nativeInfoProvider }
