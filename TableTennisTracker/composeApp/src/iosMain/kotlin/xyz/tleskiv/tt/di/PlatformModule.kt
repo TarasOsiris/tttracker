@@ -9,8 +9,8 @@ import org.koin.dsl.module
 import xyz.tleskiv.tt.db.DatabaseFactory
 import xyz.tleskiv.tt.di.components.AnalyticsService
 import xyz.tleskiv.tt.di.components.ClipboardManager
+import xyz.tleskiv.tt.di.components.CrashReporter
 import xyz.tleskiv.tt.di.components.ExternalAppLauncher
-import xyz.tleskiv.tt.di.components.IosAnalyticsService
 import xyz.tleskiv.tt.di.components.IosClipboardManager
 import xyz.tleskiv.tt.di.components.IosExternalAppLauncher
 import xyz.tleskiv.tt.di.components.IosLocaleApplier
@@ -18,7 +18,7 @@ import xyz.tleskiv.tt.di.components.IosNativeInfoProvider
 import xyz.tleskiv.tt.di.components.LocaleApplier
 import xyz.tleskiv.tt.di.components.NativeInfoProvider
 
-val iosPlatformModule = module {
+fun iosPlatformModule(analyticsService: AnalyticsService, crashReporter: CrashReporter) = module {
 	single { DatabaseFactory() }
 	single { get<DatabaseFactory>().createDriver() }
 	single<CoroutineDispatcher>(named(DispatcherQualifiers.IO)) { Dispatchers.Default }
@@ -26,5 +26,6 @@ val iosPlatformModule = module {
 	singleOf(::IosExternalAppLauncher) bind ExternalAppLauncher::class
 	singleOf(::IosClipboardManager) bind ClipboardManager::class
 	singleOf(::IosLocaleApplier) bind LocaleApplier::class
-	singleOf(::IosAnalyticsService) bind AnalyticsService::class
+	single<AnalyticsService> { analyticsService }
+	single<CrashReporter> { crashReporter }
 }

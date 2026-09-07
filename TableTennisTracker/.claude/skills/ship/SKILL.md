@@ -36,16 +36,18 @@ Facts this repo needs:
 | Team | `XW3GM347XY` |
 | iOS version source | `iosApp/Configuration/Config.xcconfig` |
 | Android version source | `androidApp/build.gradle.kts` (`versionCode`, `versionName`) |
-| **iOS build target** | **`iosApp/iosApp.xcworkspace`, scheme `iosApp`** — CocoaPods, see below |
+| **iOS build target** | **`iosApp/iosApp.xcodeproj`, scheme `iosApp`** — Swift Package Manager, see below |
 | IPA name | `TableTennisTracker.ipa` (from `PRODUCT_NAME`, *not* the scheme name) |
 | Sentry | org `nineva-studios`, iOS project `tt-tracker-ios` |
 | Play package | `xyz.tleskiv.tt` |
 | Tag formats | `ios-<MARKETING_VERSION>`, `android-<versionName>` |
 
-**This project uses CocoaPods, so every iOS build must go through the workspace.** `iosApp/Podfile`
-pulls in the `composeApp` pod (the Kotlin/Native `ComposeApp` framework) plus PostHog and Sentry.
-Passing `--project iosApp/iosApp.xcodeproj` builds without the Pods and fails to link. Always
-`--workspace iosApp/iosApp.xcworkspace`.
+**This project uses Swift Package Manager, not CocoaPods.** There is no `.xcworkspace` — build the
+`.xcodeproj` directly. PostHog and Sentry come from SwiftPM (declared in the Xcode project), and the
+Kotlin/Native `Shared.framework` is produced by the `Compile Kotlin Framework` build phase, which
+runs `./gradlew :composeApp:embedAndSignAppleFrameworkForXcode`. The Kotlin framework links no Apple
+SDKs of its own, so `./gradlew :composeApp:linkReleaseFrameworkIosArm64` is a valid standalone check
+before you spend time on an archive.
 
 All App Store Connect calls go through the `asc` CLI, which authenticates on its own from the
 system keychain — no `.p8` path, no API key flags. If any `asc` command fails on auth, run
@@ -121,7 +123,7 @@ redefine them, so there is nothing to change in `project.pbxproj`.
 Confirm they resolved before spending twenty minutes on an archive:
 
 ```bash
-xcodebuild -workspace iosApp/iosApp.xcworkspace -scheme iosApp -configuration Release \
+xcodebuild -project iosApp/iosApp.xcodeproj -scheme iosApp -configuration Release \
   -showBuildSettings 2>/dev/null | grep -E 'MARKETING_VERSION|CURRENT_PROJECT_VERSION'
 ```
 
@@ -129,7 +131,7 @@ xcodebuild -workspace iosApp/iosApp.xcworkspace -scheme iosApp -configuration Re
 
 ```bash
 asc xcode archive \
-  --workspace iosApp/iosApp.xcworkspace \
+  --project iosApp/iosApp.xcodeproj \
   --scheme iosApp \
   --configuration Release \
   --archive-path build/iosApp.xcarchive \
@@ -140,8 +142,9 @@ asc xcode archive \
 
 `build/` is gitignored, so nothing from this step or the next ever lands in a commit.
 
-The archive **is** the compile check — the `Compile Kotlin Framework` build phase runs the Gradle
-CocoaPods task, so a Kotlin error in `:composeApp` surfaces here. There is deliberately **no
+The archive **is** the compile check — the `Compile Kotlin Framework` build phase runs
+`./gradlew :composeApp:embedAndSignAppleFrameworkForXcode`, so a Kotlin error in `:composeApp` (or
+in a module it depends on) surfaces here. There is deliberately **no
 separate "does it compile" build before this, and one should not be added**: an archive compiles
 into its own `Build/Intermediates.noindex/ArchiveIntermediates/` tree and shares not one object
 file with a plain build, so the extra step costs a second full Kotlin/Native compile while
@@ -150,11 +153,13 @@ minutes on that step before it was killed.)
 
 If the archive fails, stop and report the error. Do not proceed.
 
-- `module 'ComposeApp' not found` / `Undefined symbols: _kfun:...` — the Pods aren't in play.
-  Check you passed `--workspace`, not `--project`, and that `iosApp/Pods/` exists; if not, run
-  `./gradlew :composeApp:podInstall`.
-- `Check Pods Manifest.lock` failure — `Podfile.lock` and `Pods/` are out of sync; re-run
-  `podInstall`.
+- `module 'Shared' not found` / `Undefined symbols: _kfun:...` — the `Compile Kotlin Framework`
+  phase did not produce the framework. Run
+  `./gradlew :composeApp:linkReleaseFrameworkIosArm64` on its own to see the real Kotlin error.
+- `Missing package product 'PostHog'` / `'Sentry'` — SwiftPM has not resolved. Run
+  `xcodebuild -resolvePackageDependencies -project iosApp/iosApp.xcodeproj -scheme iosApp`.
+- A Sentry or PostHog symbol missing at link time is a **Swift**-side problem, not a Kotlin one:
+  both SDKs are used only from `iosApp/iosApp/Swift*.swift`, never from Kotlin.
 
 The archive path is reused every ship, so confirm the archive about to be uploaded is the one just
 built — a no-opped archive step would otherwise upload a stale binary:

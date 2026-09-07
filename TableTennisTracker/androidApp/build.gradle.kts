@@ -104,6 +104,9 @@ dependencies {
 	// PostHog Analytics
 	implementation(libs.posthog.android)
 
+	// Sentry crash reporting
+	implementation(libs.sentry.kmp)
+
 	debugImplementation(libs.compose.ui.tooling)
 	debugImplementation(libs.androidx.compose.ui.test.manifest)
 

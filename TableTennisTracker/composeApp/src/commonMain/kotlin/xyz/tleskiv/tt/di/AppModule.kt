@@ -8,6 +8,7 @@ import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
 import org.koin.mp.KoinPlatform.getKoin
 import xyz.tleskiv.tt.di.components.AnalyticsService
+import xyz.tleskiv.tt.di.components.CrashReporter
 import xyz.tleskiv.tt.di.components.NativeInfoProvider
 import xyz.tleskiv.tt.repo.AnalyticsRepository
 import xyz.tleskiv.tt.repo.MatchRepository
@@ -22,7 +23,6 @@ import xyz.tleskiv.tt.repo.impl.OpponentRepositoryImpl
 import xyz.tleskiv.tt.repo.impl.TrainingSessionsRepositoryImpl
 import xyz.tleskiv.tt.repo.impl.UserPreferencesRepositoryImpl
 import xyz.tleskiv.tt.service.UserIdService
-import xyz.tleskiv.tt.util.SentryInit
 
 val appModule = module {
 	includes(viewModelModule, serviceModule, dbModule, dispatchersModule)
@@ -54,7 +54,8 @@ fun initApp(platformModule: Module, configure: KoinAppDeclaration = {}) {
 	val nativeInfoProvider = getKoin().get<NativeInfoProvider>()
 	val userIdService = getKoin().get<UserIdService>()
 	val analyticsService = getKoin().get<AnalyticsService>()
+	val crashReporter = getKoin().get<CrashReporter>()
 	val userId = runBlocking { userIdService.getUserId() }
-	SentryInit.init(nativeInfoProvider.sentryDsn, userId)
+	crashReporter.start(nativeInfoProvider.sentryDsn, userId)
 	analyticsService.identify(userId)
 }

@@ -10,10 +10,12 @@ import xyz.tleskiv.tt.db.DatabaseFactory
 import xyz.tleskiv.tt.di.components.AnalyticsService
 import xyz.tleskiv.tt.di.components.AndroidAnalyticsService
 import xyz.tleskiv.tt.di.components.AndroidClipboardManager
+import xyz.tleskiv.tt.di.components.AndroidCrashReporter
 import xyz.tleskiv.tt.di.components.AndroidExternalAppLauncher
 import xyz.tleskiv.tt.di.components.AndroidLocaleApplier
 import xyz.tleskiv.tt.di.components.AndroidNativeInfoProvider
 import xyz.tleskiv.tt.di.components.ClipboardManager
+import xyz.tleskiv.tt.di.components.CrashReporter
 import xyz.tleskiv.tt.di.components.ExternalAppLauncher
 import xyz.tleskiv.tt.di.components.LocaleApplier
 import xyz.tleskiv.tt.di.components.NativeInfoProvider
@@ -27,4 +29,5 @@ val androidPlatformModule = module {
 	singleOf(::AndroidClipboardManager) bind ClipboardManager::class
 	singleOf(::AndroidLocaleApplier) bind LocaleApplier::class
 	singleOf(::AndroidAnalyticsService) bind AnalyticsService::class
+	singleOf(::AndroidCrashReporter) bind CrashReporter::class
 }

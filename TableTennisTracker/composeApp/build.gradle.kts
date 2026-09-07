@@ -2,13 +2,11 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
 	alias(libs.plugins.kotlinMultiplatform)
-	alias(libs.plugins.kotlinCocoapods)
 	alias(libs.plugins.androidKotlinMultiplatformLibrary)
 	alias(libs.plugins.composeMultiplatform)
 	alias(libs.plugins.composeCompiler)
 	alias(libs.plugins.composeHotReload)
 	alias(libs.plugins.sqldelight)
-	alias(libs.plugins.sentryKmp)
 }
 
 sqldelight {
@@ -41,24 +39,11 @@ kotlin {
 		}
 	}
 
-	iosArm64()
-	iosSimulatorArm64()
-
-	cocoapods {
-		summary = "Some description for the Shared Module"
-		homepage = "https://github.com/example/TableTennisTracker"
-		version = "1.0"
-		ios.deploymentTarget = "15.0"
-		podfile = project.file("../iosApp/Podfile")
-		framework {
-			baseName = "ComposeApp"
+	listOf(iosArm64(), iosSimulatorArm64()).forEach { iosTarget ->
+		iosTarget.binaries.framework {
+			baseName = "Shared"
 			isStatic = false
-			freeCompilerArgs += listOf("-Xbinary=bundleId=xyz.tleskiv.tt.composeapp")
-		}
-
-		pod("PostHog") {
-			version = "3.41.0"
-			extraOpts += listOf("-compiler-option", "-fmodules")
+			freeCompilerArgs += listOf("-Xbinary=bundleId=xyz.tleskiv.tt.shared")
 		}
 	}
 
@@ -124,6 +109,7 @@ kotlin {
 			implementation(compose.desktop.currentOs)
 			implementation(libs.kotlinx.coroutinesSwing)
 			implementation(libs.sqldelight.driver.jvm)
+			implementation(libs.sentry.kmp)
 		}
 		iosMain.dependencies {
 			implementation(libs.sqldelight.driver.native)
