@@ -2,13 +2,12 @@ package xyz.tleskiv.tt.viewmodel.sessions
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 import kotlinx.datetime.LocalDate
 import xyz.tleskiv.tt.data.model.enums.CompetitionLevel
 import xyz.tleskiv.tt.data.model.enums.SessionType
+import xyz.tleskiv.tt.util.mapState
 import xyz.tleskiv.tt.viewmodel.ViewModelBase
 import kotlin.uuid.Uuid
 
@@ -54,8 +53,16 @@ abstract class CreateSessionScreenViewModel : ViewModelBase() {
 		val showAddMatchDialog = MutableStateFlow(false)
 		val editingMatch = MutableStateFlow<PendingMatch?>(null)
 
-		val isFormValid: StateFlow<Boolean> = durationMinutes
-			.map { it in VALID_DURATION_RANGE }
-			.stateIn(scope, SharingStarted.Eagerly, initialDurationMinutes in VALID_DURATION_RANGE)
+		fun addMatch(match: PendingMatch) = pendingMatches.update { it + match }
+
+		fun updateMatch(match: PendingMatch) = pendingMatches.update { matches ->
+			matches.map { if (it.id == match.id) match else it }
+		}
+
+		fun removeMatch(matchId: String) = pendingMatches.update { matches ->
+			matches.filterNot { it.id == matchId }
+		}
+
+		val isFormValid: StateFlow<Boolean> = durationMinutes.mapState(scope) { it in VALID_DURATION_RANGE }
 	}
 }

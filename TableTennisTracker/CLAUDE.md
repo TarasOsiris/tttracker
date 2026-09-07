@@ -292,13 +292,18 @@ If it's not possible fallback to `expect`/`actual` pattern:
 - Do not commit or push changes unless explicitly asked to do so.
 - ViewModel state must be `StateFlow`/`MutableStateFlow`, never Compose `mutableStateOf`. `:core`
   must not import `androidx.compose`. Compose screens read flows with
-  `collectAsStateWithLifecycle()`, or with `MutableStateFlow.collectAsMutableState()`
-  (`ui/../util/ui/FlowState.kt`) where `by` delegation reads better.
+  `collectAsStateWithLifecycle()` for repository-backed flows, or `collectAsState()` for in-memory
+  form state. `MutableStateFlow.collectAsMutableState()` (`util/ui/FlowState.kt`) keeps `by`
+  delegation working over a flow; treat it as a transitional shim from the Compose-state migration —
+  new screens are better served by a single `StateFlow<UiState>` plus intent functions, which is
+  also what a SwiftUI UI can consume.
 - Business logic goes in `:core`; only Compose UI goes in `:composeApp`. Anything using
   `org.jetbrains.compose.resources` (`Res.string.*`, `StringResource`) is UI and stays in
   `:composeApp`.
-- Kotlin cannot smart-cast a nullable property declared in another module, so `session.notes` and
-  friends need a local `val` before a null check in `:composeApp`.
+- Kotlin cannot smart-cast a nullable `val` declared in another module, so a nullable property of a
+  `:core` type (`session.notes`, `opponent.club`) needs a local `val` before a null check when read
+  from `:composeApp`. This is a workaround, not a target state — where the property is on a `:core`
+  UI model the better fix is for the mapper to normalise it (non-null with an empty default).
 - Do not comment on the code unless absolutely necessary.
 - In composable screens, extract reusable UI blocks into named composable functions instead of
   using comments to separate sections. Function names should clearly describe what the block does.

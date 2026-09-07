@@ -39,7 +39,20 @@ kotlin {
 		testRuns["test"].executionTask.configure { useJUnitPlatform() }
 	}
 
+	// Sentry's Kotlin Multiplatform SDK is shared by JVM and Android but must stay off iOS:
+	// linking it there would drag in Sentry's Cocoa framework and stop the Kotlin framework
+	// from building on its own. iOS gets a Swift-implemented CrashReporter instead.
+	applyDefaultHierarchyTemplate()
 	sourceSets {
+		val jvmAndroidMain by creating {
+			dependsOn(commonMain.get())
+			dependencies {
+				implementation(libs.sentry.kmp)
+			}
+		}
+		androidMain.get().dependsOn(jvmAndroidMain)
+		jvmMain.get().dependsOn(jvmAndroidMain)
+
 		commonMain.dependencies {
 			api(projects.shared)
 
@@ -63,7 +76,6 @@ kotlin {
 		}
 		jvmMain.dependencies {
 			implementation(libs.sqldelight.driver.jvm)
-			implementation(libs.sentry.kmp)
 		}
 		iosMain.dependencies {
 			implementation(libs.sqldelight.driver.native)

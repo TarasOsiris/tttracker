@@ -2,11 +2,9 @@ package xyz.tleskiv.tt.viewmodel.dialogs
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.stateIn
 import xyz.tleskiv.tt.db.Opponent
+import xyz.tleskiv.tt.util.mapState
 import xyz.tleskiv.tt.viewmodel.ViewModelBase
 import xyz.tleskiv.tt.viewmodel.sessions.PendingMatch
 import kotlin.uuid.Uuid
@@ -30,9 +28,7 @@ abstract class AddMatchDialogViewModel : ViewModelBase() {
 		val competitionLevel = MutableStateFlow(editingMatch?.competitionLevel)
 		val notes = MutableStateFlow(editingMatch?.notes ?: "")
 
-		val isValid: StateFlow<Boolean> = opponentName
-			.map { it.isNotBlank() }
-			.stateIn(scope, SharingStarted.Eagerly, opponentName.value.isNotBlank())
+		val isValid: StateFlow<Boolean> = opponentName.mapState(scope) { it.isNotBlank() }
 
 		fun toPendingMatch() = PendingMatch(
 			id = matchId,

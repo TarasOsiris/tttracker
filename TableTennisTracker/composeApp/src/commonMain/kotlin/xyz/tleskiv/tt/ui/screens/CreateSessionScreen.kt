@@ -93,7 +93,6 @@ fun CreateSessionScreenContent(
 	var selectedSessionType by inputData.selectedSessionType.collectAsMutableState()
 	var rpeValue by inputData.rpeValue.collectAsMutableState()
 	var notes by inputData.notes.collectAsMutableState()
-	var showDatePicker by inputData.showDatePicker.collectAsMutableState()
 	var showAddMatchDialog by inputData.showAddMatchDialog.collectAsMutableState()
 	var editingMatch by inputData.editingMatch.collectAsMutableState()
 	val pendingMatches by inputData.pendingMatches.collectAsStateWithLifecycle()
@@ -101,7 +100,7 @@ fun CreateSessionScreenContent(
 	DatePickerField(
 		label = Res.string.label_date,
 		selectedDate = selectedDate,
-		onDateClick = { showDatePicker = true }
+		onDateClick = { inputData.showDatePicker.value = true }
 	)
 
 	DurationField(

@@ -4,10 +4,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import kotlinx.coroutines.flow.MutableStateFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.flow.MutableStateFlow
 import xyz.tleskiv.tt.data.model.enums.Handedness
 import xyz.tleskiv.tt.data.model.enums.PlayingStyle
 import xyz.tleskiv.tt.ui.dialogs.OpponentForm

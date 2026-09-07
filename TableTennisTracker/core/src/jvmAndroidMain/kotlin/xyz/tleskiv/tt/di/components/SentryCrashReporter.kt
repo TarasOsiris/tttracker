@@ -3,7 +3,7 @@ package xyz.tleskiv.tt.di.components
 import io.sentry.kotlin.multiplatform.Sentry
 import io.sentry.kotlin.multiplatform.protocol.User
 
-class AndroidCrashReporter : CrashReporter {
+class SentryCrashReporter : CrashReporter {
 	private var initialized = false
 
 	override fun start(dsn: String, userId: String) {

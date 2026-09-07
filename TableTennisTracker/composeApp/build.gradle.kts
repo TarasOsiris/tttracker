@@ -37,8 +37,9 @@ kotlin {
 			// so the business layer has to be exported explicitly for Swift to see it.
 			export(projects.core)
 			export(projects.shared)
-			// SQLDelight's native driver links against system sqlite; the cinterop's linker
-			// option no longer reaches this binary now that the driver is a :core dependency.
+			// SQLDelight's native driver needs the system sqlite3. Its cinterop klib declares
+			// linkerOpts only for linux_x64/macos_x64, not for Apple device targets, so the
+			// framework has to ask for it here.
 			linkerOpts("-lsqlite3")
 		}
 	}

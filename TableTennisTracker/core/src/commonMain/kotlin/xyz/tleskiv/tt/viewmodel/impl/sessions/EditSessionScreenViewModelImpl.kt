@@ -4,7 +4,6 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.LocalTime
@@ -82,17 +81,9 @@ class EditSessionScreenViewModelImpl(
 		}
 	}
 
-	override fun addPendingMatch(match: PendingMatch) {
-		inputData.pendingMatches.update { it + match }
-	}
+	override fun addPendingMatch(match: PendingMatch) = inputData.addMatch(match)
 
-	override fun updatePendingMatch(match: PendingMatch) {
-		inputData.pendingMatches.update { matches ->
-			matches.map { if (it.id == match.id) match else it }
-		}
-	}
+	override fun updatePendingMatch(match: PendingMatch) = inputData.updateMatch(match)
 
-	override fun removePendingMatch(matchId: String) {
-		inputData.pendingMatches.update { matches -> matches.filterNot { it.id == matchId } }
-	}
+	override fun removePendingMatch(matchId: String) = inputData.removeMatch(matchId)
 }

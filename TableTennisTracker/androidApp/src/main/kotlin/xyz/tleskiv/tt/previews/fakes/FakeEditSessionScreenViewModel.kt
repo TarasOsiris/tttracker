@@ -3,7 +3,6 @@ package xyz.tleskiv.tt.previews.fakes
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.update
 import kotlinx.datetime.LocalDate
 import xyz.tleskiv.tt.data.model.enums.CompetitionLevel
 import xyz.tleskiv.tt.data.model.enums.SessionType
@@ -38,19 +37,11 @@ class FakeEditSessionScreenViewModel(
 	)
 
 	override fun saveSession(onSuccess: () -> Unit) {}
-	override fun addPendingMatch(match: PendingMatch) {
-		inputData.pendingMatches.update { it + match }
-	}
+	override fun addPendingMatch(match: PendingMatch) = inputData.addMatch(match)
 
-	override fun updatePendingMatch(match: PendingMatch) {
-		inputData.pendingMatches.update { matches ->
-			matches.map { if (it.id == match.id) match else it }
-		}
-	}
+	override fun updatePendingMatch(match: PendingMatch) = inputData.updateMatch(match)
 
-	override fun removePendingMatch(matchId: String) {
-		inputData.pendingMatches.update { matches -> matches.filterNot { it.id == matchId } }
-	}
+	override fun removePendingMatch(matchId: String) = inputData.removeMatch(matchId)
 
 	companion object {
 		private val names = listOf("Zhang Wei", "Maria Schmidt")

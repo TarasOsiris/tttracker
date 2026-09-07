@@ -143,15 +143,12 @@ private fun EditSessionScreenContent(
 	var selectedSessionType by inputData.selectedSessionType.collectAsMutableState()
 	var rpeValue by inputData.rpeValue.collectAsMutableState()
 	var notes by inputData.notes.collectAsMutableState()
-	var showDatePicker by inputData.showDatePicker.collectAsMutableState()
-	var showAddMatchDialog by inputData.showAddMatchDialog.collectAsMutableState()
-	var editingMatch by inputData.editingMatch.collectAsMutableState()
 	val pendingMatches by inputData.pendingMatches.collectAsStateWithLifecycle()
 
 	DatePickerField(
 		label = Res.string.label_date,
 		selectedDate = selectedDate,
-		onDateClick = { showDatePicker = true }
+		onDateClick = { inputData.showDatePicker.value = true }
 	)
 
 	DurationField(
@@ -174,10 +171,10 @@ private fun EditSessionScreenContent(
 
 	MatchesField(
 		matches = pendingMatches,
-		onAddMatch = { showAddMatchDialog = true },
+		onAddMatch = { inputData.showAddMatchDialog.value = true },
 		onEditMatch = { match ->
-			editingMatch = match
-			showAddMatchDialog = true
+			inputData.editingMatch.value = match
+			inputData.showAddMatchDialog.value = true
 		},
 		onDeleteMatch = { match -> onRemovePendingMatch(match.id) }
 	)
