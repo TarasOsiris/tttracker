@@ -35,6 +35,7 @@
     <string name="sessions_week_mode">Hafta</string>
     <string name="sessions_month_mode">Ay</string>
     <string name="sessions_empty">Antrenman yok</string>
+    <string name="sessions_select_prompt">Bir antrenman seçin</string>
     <string name="session_duration_format">%1$d dk</string>
 
     <!-- Create Session Screen -->

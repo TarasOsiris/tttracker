@@ -35,6 +35,7 @@
     <string name="sessions_week_mode">सप्ताह</string>
     <string name="sessions_month_mode">महीना</string>
     <string name="sessions_empty">कोई अभ्यास नहीं</string>
+    <string name="sessions_select_prompt">एक अभ्यास चुनें</string>
     <string name="session_duration_format">%1$d मिनट</string>
 
     <!-- Create Session Screen -->

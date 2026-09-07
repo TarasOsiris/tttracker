@@ -1,11 +1,11 @@
 import SwiftUI
 
-enum SessionsRoute: Hashable {
-    case details(String)
-}
-
 struct SessionsScreen: View {
-    @StateModel private var model = SessionsModel()
+    let model: SessionsModel
+
+    /// The session the container is showing. What selecting one does — push a screen or fill a
+    /// detail column — is the container's business, not this screen's.
+    @Binding var selectedSession: String?
 
     /// The day at the top of the list. One piece of state drives both directions of the sync:
     /// scrolling writes it, and the calendar writes it to scroll. Because the calendar is a pure
@@ -15,6 +15,12 @@ struct SessionsScreen: View {
     @State private var isCreating = false
 
     @Environment(\.scenePhase) private var scenePhase
+
+    init(model: SessionsModel, selectedSession: Binding<String?>, startsExpanded: Bool = false) {
+        self.model = model
+        _selectedSession = selectedSession
+        _isCalendarExpanded = State(initialValue: startsExpanded)
+    }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -28,22 +34,19 @@ struct SessionsScreen: View {
         .sheet(isPresented: $isCreating) {
             SessionFormScreen(day: topDay ?? model.today)
         }
-        .navigationDestination(for: SessionsRoute.self) { route in
-            switch route {
-            case let .details(id): SessionDetailsScreen(sessionId: id)
-            }
-        }
         .navigationTitle(L.navSessions)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             if let topDay, topDay != model.today {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(L.timeToday) { self.topDay = model.today }
+                        .keyboardShortcut("t", modifiers: .command)
                 }
             }
             ToolbarItem(placement: .topBarTrailing) {
                 Button { isCreating = true } label: { Image(systemName: "plus") }
                     .accessibilityLabel(L.actionAddSession)
+                    .keyboardShortcut("n", modifiers: .command)
             }
         }
     }
@@ -83,8 +86,8 @@ struct SessionsScreen: View {
                 .padding(.vertical, 16)
         } else {
             ForEach(sessions) { session in
-                NavigationLink(value: SessionsRoute.details(session.id)) {
-                    SessionRow(session: session)
+                Button { selectedSession = session.id } label: {
+                    SessionRow(session: session, isSelected: selectedSession == session.id)
                 }
                 .buttonStyle(.plain)
                 .padding(.horizontal, 16)

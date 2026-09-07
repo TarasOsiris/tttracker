@@ -5,11 +5,20 @@ struct AnalyticsScreen: View {
     @StateModel private var model = AnalyticsModel()
     @State private var showsSettings = false
 
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+
+    /// Wide enough to put two charts beside each other instead of one below the other.
+    private var isWide: Bool { horizontalSizeClass.isWide }
+
     var body: some View {
         List {
-            if model.showSummary.value { SummarySection(model: model) }
-            if model.showWinLoss.value { WinLossSection(model: model) }
-            if model.showWeekly.value { WeeklySection(model: model) }
+            if model.showSummary.value { SummarySection(model: model, isWide: isWide) }
+            if isWide && model.showWinLoss.value && model.showWeekly.value {
+                pairedCharts
+            } else {
+                if model.showWinLoss.value { Section(winLoss.title) { winLoss.chart } }
+                if model.showWeekly.value { Section(weekly.title) { weekly.chart } }
+            }
             if model.showHeatmap.value { HeatmapSection(model: model) }
         }
         .navigationTitle(L.navAnalytics)
@@ -22,14 +31,51 @@ struct AnalyticsScreen: View {
         }
         .sheet(isPresented: $showsSettings) { AnalyticsSettingsSheet(model: model) }
     }
+
+    /// Both charts in one row. A `Section` header names a whole row, so each chart carries its own
+    /// title here instead.
+    private var pairedCharts: some View {
+        Section {
+            HStack(alignment: .top, spacing: 32) {
+                ChartPanel(title: winLoss.title) { winLoss.chart }
+                ChartPanel(title: weekly.title) { weekly.chart }
+            }
+            .padding(.vertical, 8)
+        }
+    }
+
+    private var winLoss: (title: String, chart: WinLossChart) {
+        (L.analyticsWinLossChart, WinLossChart(model: model, isWide: isWide))
+    }
+
+    private var weekly: (title: String, chart: WeeklyChart) {
+        (L.analyticsWeeklyTraining, WeeklyChart(model: model, isWide: isWide))
+    }
+}
+
+private struct ChartPanel<Content: View>: View {
+    let title: String
+    @ViewBuilder let content: Content
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text(title)
+                .font(.footnote.weight(.semibold))
+                .foregroundStyle(.secondary)
+                .textCase(.uppercase)
+            content
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
 }
 
 private struct SummarySection: View {
     let model: AnalyticsModel
+    let isWide: Bool
 
     var body: some View {
         Section(L.analyticsSummary) {
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
+            LazyVGrid(columns: columns, spacing: 12) {
                 StatTile(emoji: "🏓", value: "\(model.summary.totalSessions)", label: L.analyticsTotalSessions)
                 StatTile(
                     emoji: "⏱️",
@@ -45,6 +91,12 @@ private struct SummarySection: View {
             }
             .padding(.vertical, 4)
         }
+    }
+
+    /// One row of four where the width allows it: four tiles two-up on an iPad leaves each of them
+    /// wider than the number it holds needs, and pushes everything else down.
+    private var columns: [GridItem] {
+        Array(repeating: GridItem(.flexible(), spacing: 12), count: isWide ? 4 : 2)
     }
 
     private var formattedWinRate: String {
@@ -76,14 +128,15 @@ private struct StatTile: View {
     }
 }
 
-private struct WinLossSection: View {
+private struct WinLossChart: View {
     let model: AnalyticsModel
+    let isWide: Bool
 
     var body: some View {
-        Section(L.analyticsWinLossChart) {
-            if model.summary.totalMatches == 0 {
-                ContentUnavailableView(L.analyticsNoMatches, systemImage: "chart.pie")
-            } else {
+        if model.summary.totalMatches == 0 {
+            ContentUnavailableView(L.analyticsNoMatches, systemImage: "chart.pie")
+        } else {
+            VStack(spacing: 12) {
                 Chart {
                     SectorMark(
                         angle: .value(L.analyticsWins, model.summary.matchesWon),
@@ -101,7 +154,7 @@ private struct WinLossSection: View {
                     .foregroundStyle(Color.matchLoss)
                     .annotation(position: .overlay) { Text("\(model.summary.matchesLost)").font(.caption).bold() }
                 }
-                .frame(height: 180)
+                .frame(height: isWide ? 240 : 180)
 
                 HStack(spacing: 16) {
                     LegendDot(color: .matchWin, label: L.analyticsWins)
@@ -125,14 +178,15 @@ private struct LegendDot: View {
     }
 }
 
-private struct WeeklySection: View {
+private struct WeeklyChart: View {
     let model: AnalyticsModel
+    let isWide: Bool
 
     var body: some View {
-        Section(L.analyticsWeeklyTraining) {
-            if model.weekly.allSatisfy({ $0.minutes == 0 }) {
-                ContentUnavailableView(L.analyticsNoTraining, systemImage: "chart.bar")
-            } else {
+        if model.weekly.allSatisfy({ $0.minutes == 0 }) {
+            ContentUnavailableView(L.analyticsNoTraining, systemImage: "chart.bar")
+        } else {
+            VStack(spacing: 8) {
                 Chart(model.weekly) { week in
                     BarMark(
                         x: .value(L.analyticsWeeklyTraining, week.label),
@@ -142,24 +196,29 @@ private struct WeeklySection: View {
                     .foregroundStyle(week.id == model.weekly.count - 1 ? Color.accentColor : Color.secondary)
                     .cornerRadius(4)
                 }
-                .frame(height: 160)
+                .frame(height: isWide ? 220 : 160)
 
-                let total = model.weekly.reduce(0) { $0 + $1.minutes }
-                let average = model.weekly.isEmpty ? 0 : total / model.weekly.count
-
-                HStack {
-                    Text(L.analyticsWeeklyTotal).foregroundStyle(.secondary)
-                    Spacer()
-                    Text(total.formattedTrainingDuration)
-                }
-                .font(.caption)
-                HStack {
-                    Text(L.analyticsWeeklyAvg).foregroundStyle(.secondary)
-                    Spacer()
-                    Text(average.formattedTrainingDuration)
-                }
-                .font(.caption)
+                totals
             }
+        }
+    }
+
+    private var totals: some View {
+        let total = model.weekly.reduce(0) { $0 + $1.minutes }
+        let average = model.weekly.isEmpty ? 0 : total / model.weekly.count
+
+        return VStack(spacing: 2) {
+            totalRow(L.analyticsWeeklyTotal, value: total)
+            totalRow(L.analyticsWeeklyAvg, value: average)
+        }
+        .font(.caption)
+    }
+
+    private func totalRow(_ label: String, value: Int) -> some View {
+        HStack {
+            Text(label).foregroundStyle(.secondary)
+            Spacer()
+            Text(value.formattedTrainingDuration)
         }
     }
 }

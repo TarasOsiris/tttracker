@@ -35,6 +35,7 @@
     <string name="sessions_week_mode">Semana</string>
     <string name="sessions_month_mode">Mês</string>
     <string name="sessions_empty">Sem sessões</string>
+    <string name="sessions_select_prompt">Selecione uma sessão</string>
     <string name="session_duration_format">%1$d min</string>
 
     <!-- Create Session Screen -->

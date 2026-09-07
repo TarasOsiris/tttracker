@@ -1,15 +1,18 @@
 import SwiftUI
 
 struct SessionDetailsScreen: View {
+    /// Clears the container's selection, which pops the pushed copy and empties the detail column.
+    private let onDelete: () -> Void
+
     @StateModel private var model: SessionDetailsModel
-    @Environment(\.dismiss) private var dismiss
     @Environment(\.locale) private var locale
 
     @State private var isEditing = false
     @State private var confirmsDelete = false
 
-    init(sessionId: String) {
+    init(sessionId: String, onDelete: @escaping () -> Void) {
         _model = StateModel(wrappedValue: SessionDetailsModel(sessionId: sessionId))
+        self.onDelete = onDelete
     }
 
     var body: some View {
@@ -42,7 +45,7 @@ struct SessionDetailsScreen: View {
         }
         .confirmationDialog(L.deleteSessionTitle, isPresented: $confirmsDelete, titleVisibility: .visible) {
             Button(L.actionDelete, role: .destructive) {
-                Task { if await model.delete() { dismiss() } }
+                Task { if await model.delete() { onDelete() } }
             }
             Button(L.actionCancel, role: .cancel) {}
         } message: {

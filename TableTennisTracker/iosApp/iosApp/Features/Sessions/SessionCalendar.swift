@@ -74,15 +74,21 @@ struct SessionCalendar: View {
     private var grid: some View {
         LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 0), count: 7), spacing: 0) {
             ForEach(visibleDays, id: \.self) { day in
-                DayCell(
-                    day: day,
-                    isSelected: day == selection,
-                    isToday: model.highlightsToday && day == model.today,
-                    isOutsideMonth: isExpanded && !calendar.isDate(day, equalTo: selection, toGranularity: .month),
-                    indicators: model.indicators(on: day)
-                )
-                .frame(height: Self.rowHeight)
-                .onTapGesture { selection = day }
+                Button {
+                    selection = day
+                } label: {
+                    DayCell(
+                        day: day,
+                        isSelected: day == selection,
+                        isToday: model.highlightsToday && day == model.today,
+                        isOutsideMonth: isExpanded && !calendar.isDate(day, equalTo: selection, toGranularity: .month),
+                        indicators: model.indicators(on: day)
+                    )
+                    .frame(height: Self.rowHeight)
+                    // A cell is mostly empty space — the wider the calendar, the more of it.
+                    .contentShape(.rect)
+                }
+                .buttonStyle(.plain)
             }
         }
     }
@@ -148,6 +154,8 @@ private struct DayCell: View {
                 .foregroundStyle(numberColor)
                 .frame(width: 30, height: 30)
                 .background(background)
+                .contentShape(.hoverEffect, .circle)
+                .hoverEffect(.highlight)
             dots
         }
         .frame(maxWidth: .infinity)
@@ -165,7 +173,7 @@ private struct DayCell: View {
 
     @ViewBuilder private var background: some View {
         if isSelected {
-            Circle().fill(Color.accentColor.opacity(isToday ? 1 : 0.18))
+            Circle().fill(isToday ? Color.accentColor : .selection)
         } else if isToday {
             Circle().stroke(Color.accentColor, lineWidth: 1.5)
         }

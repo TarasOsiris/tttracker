@@ -39,6 +39,9 @@ extension Color {
     /// Overload taking the Swift mirror, so views never have to name a `Shared` type.
     static func sessionKind(_ kind: SessionKind?) -> Color { sessionType(kind?.kotlin) }
 
+    /// Backs whatever the user has picked — a calendar day, a row in the sessions sidebar.
+    static var selection: Color { Color.accentColor.opacity(0.18) }
+
     static var matchWin: Color { Color(argb: BrandColors.shared.Win) }
     static var matchLoss: Color { Color(argb: BrandColors.shared.Loss) }
 }

@@ -35,6 +35,7 @@
     <string name="sessions_week_mode">Тиждень</string>
     <string name="sessions_month_mode">Місяць</string>
     <string name="sessions_empty">Немає тренувань</string>
+    <string name="sessions_select_prompt">Виберіть тренування</string>
     <string name="session_duration_format">%1$d хв</string>
 
     <!-- Create Session Screen -->

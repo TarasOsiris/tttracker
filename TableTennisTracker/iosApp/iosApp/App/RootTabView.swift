@@ -6,13 +6,14 @@ enum AppTab: Hashable {
 
 /// The native app shell.
 ///
-/// Each tab keeps its own navigation path across tab switches, which matches the Compose behaviour.
+/// Each tab keeps its own place across tab switches — a path, or for Sessions the selected id it
+/// navigates by in either of its layouts — which matches the Compose behaviour.
 /// What is deliberately *not* reproduced is `TopLevelBackStack`'s most-recently-visited tab history:
 /// that exists so Android's global back button has somewhere to go from a tab's root, and iOS has no
 /// equivalent gesture — simulating it would make the edge-swipe jump between tabs.
 struct RootTabView: View {
     @State private var selection: AppTab = .sessions
-    @State private var sessionsPath = NavigationPath()
+    @State private var selectedSession: String?
     @State private var analyticsPath = NavigationPath()
     @State private var settingsPath = NavigationPath()
 
@@ -22,9 +23,7 @@ struct RootTabView: View {
     var body: some View {
         TabView(selection: tabSelection) {
             Tab(L.navSessions, systemImage: "figure.table.tennis", value: AppTab.sessions) {
-                NavigationStack(path: $sessionsPath) {
-                    SessionsScreen()
-                }
+                SessionsTab(selectedSession: $selectedSession)
             }
             Tab(L.navAnalytics, systemImage: "chart.bar.xaxis", value: AppTab.analytics) {
                 NavigationStack(path: $analyticsPath) {
@@ -32,9 +31,7 @@ struct RootTabView: View {
                 }
             }
             Tab(L.navSettings, systemImage: "gearshape", value: AppTab.settings) {
-                NavigationStack(path: $settingsPath) {
-                    SettingsScreen()
-                }
+                SettingsTab(path: $settingsPath)
             }
         }
         .environment(\.locale, localization.locale)
@@ -50,7 +47,9 @@ struct RootTabView: View {
             : .leftToRight
     }
 
-    /// Re-tapping the active tab pops it to root — the iOS idiom that replaces Android's back button.
+    /// Re-tapping the active tab returns it to its root — the iOS idiom that replaces Android's
+    /// back button. Sessions navigates by a selected id rather than a path, so clearing that is
+    /// what "root" means there, in both the stack and the split layout.
     private var tabSelection: Binding<AppTab> {
         Binding(
             get: { selection },
@@ -60,7 +59,7 @@ struct RootTabView: View {
                     return
                 }
                 switch tapped {
-                case .sessions: sessionsPath = NavigationPath()
+                case .sessions: selectedSession = nil
                 case .analytics: analyticsPath = NavigationPath()
                 case .settings: settingsPath = NavigationPath()
                 }

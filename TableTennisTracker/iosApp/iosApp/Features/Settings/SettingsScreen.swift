@@ -4,11 +4,25 @@ enum SettingsRoute: Hashable {
     case general, opponents, debug
 }
 
+/// The one place a route names its screen — both the pushed stack and the split view's detail
+/// column build their page from here.
+@ViewBuilder func settingsPage(_ route: SettingsRoute) -> some View {
+    switch route {
+    case .general: GeneralSettingsScreen()
+    case .opponents: OpponentsScreen()
+    case .debug: DebugScreen()
+    }
+}
+
 struct SettingsScreen: View {
+    /// Set when the screen is a split view's sidebar: a page is then selected into the detail
+    /// column instead of pushed.
+    var selectedPage: Binding<SettingsRoute?>?
+
     @StateModel private var model = SettingsModel()
 
     var body: some View {
-        List {
+        List(selection: selectedPage ?? .constant(nil)) {
             generalSection
             helpSection
             aboutSection
@@ -16,24 +30,22 @@ struct SettingsScreen: View {
             footer
         }
         .navigationTitle(L.titleSettings)
-        .navigationDestination(for: SettingsRoute.self) { route in
-            switch route {
-            case .general: GeneralSettingsScreen()
-            case .opponents: OpponentsScreen()
-            case .debug: DebugScreen()
-            }
-        }
+        .navigationDestination(for: SettingsRoute.self) { settingsPage($0) }
         .task { await model.load() }
     }
 
     private var generalSection: some View {
         Section(L.settingsSectionGeneral) {
-            NavigationLink(value: SettingsRoute.general) {
-                Label(L.actionUiSettings, systemImage: "gearshape")
-            }
-            NavigationLink(value: SettingsRoute.opponents) {
-                Label(L.actionOpponents, systemImage: "person.2")
-            }
+            pageRow(.general, title: L.actionUiSettings, icon: "gearshape")
+            pageRow(.opponents, title: L.actionOpponents, icon: "person.2")
+        }
+    }
+
+    @ViewBuilder private func pageRow(_ page: SettingsRoute, title: String, icon: String) -> some View {
+        if selectedPage != nil {
+            Label(title, systemImage: icon).tag(page)
+        } else {
+            NavigationLink(value: page) { Label(title, systemImage: icon) }
         }
     }
 
@@ -65,9 +77,7 @@ struct SettingsScreen: View {
 
     private var developerSection: some View {
         Section(L.settingsSectionDeveloper) {
-            NavigationLink(value: SettingsRoute.debug) {
-                Label(L.actionDebug, systemImage: "ladybug")
-            }
+            pageRow(.debug, title: L.actionDebug, icon: "ladybug")
         }
     }
 

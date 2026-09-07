@@ -2,6 +2,7 @@ import SwiftUI
 
 struct SessionRow: View {
     let session: SessionItem
+    var isSelected = false
 
     var body: some View {
         HStack(spacing: 12) {
@@ -26,7 +27,12 @@ struct SessionRow: View {
                 .background(Color(.tertiarySystemFill), in: .circle)
         }
         .padding(12)
-        .background(Color(.secondarySystemGroupedBackground), in: .rect(cornerRadius: 12))
+        .background(background, in: .rect(cornerRadius: 12))
+        .contentShape(.rect(cornerRadius: 12))
+    }
+
+    private var background: Color {
+        isSelected ? .selection : Color(.secondarySystemGroupedBackground)
     }
 }
 

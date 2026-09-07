@@ -35,6 +35,7 @@
     <string name="sessions_week_mode">Settimana</string>
     <string name="sessions_month_mode">Mese</string>
     <string name="sessions_empty">Nessun allenamento</string>
+    <string name="sessions_select_prompt">Seleziona un allenamento</string>
     <string name="session_duration_format">%1$d min</string>
 
     <!-- Create Session Screen -->

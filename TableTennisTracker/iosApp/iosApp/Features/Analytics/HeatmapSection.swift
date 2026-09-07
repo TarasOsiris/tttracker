@@ -9,9 +9,12 @@ import SwiftUI
 struct HeatmapSection: View {
     let model: AnalyticsModel
 
-    private static let weeksShown = 26
+    private static let minimumWeeks = 26
+    private static let maximumWeeks = 53
     private static let cell: CGFloat = 14
     private static let spacing: CGFloat = 3
+
+    @State private var weeksShown = minimumWeeks
 
     var body: some View {
         Section(L.analyticsHeatmapTitle) {
@@ -42,6 +45,17 @@ struct HeatmapSection: View {
             .frame(height: Self.cell * 7 + Self.spacing * 6)
         }
         .defaultScrollAnchor(.trailing)
+        // Measured as a column count, not a width: the count settles after a few steps of a resize
+        // drag, and rebuilding a year of days on every frame of one would not.
+        .onGeometryChange(for: Int.self) { Self.weeks(fitting: $0.size.width) } action: { weeksShown = $0 }
+    }
+
+    /// As much history as fits at once, between half a year and a whole one. A phone gets the 26
+    /// weeks it always had and still scrolls for the rest; a wide layout fills the row instead of
+    /// pinning a short grid to one edge of it.
+    private static func weeks(fitting width: CGFloat) -> Int {
+        let fitting = Int((width + spacing) / (cell + spacing))
+        return min(maximumWeeks, max(minimumWeeks, fitting))
     }
 
     private var legend: some View {
@@ -65,7 +79,7 @@ struct HeatmapSection: View {
 
         let today = calendar.startOfDay(for: .now)
         let daysIntoWeek = (calendar.component(.weekday, from: today) - calendar.firstWeekday + 7) % 7
-        let total = Self.weeksShown * 7 + daysIntoWeek
+        let total = weeksShown * 7 + daysIntoWeek
         return (0..<total).reversed().compactMap { calendar.date(byAdding: .day, value: -$0, to: today) }
     }
 

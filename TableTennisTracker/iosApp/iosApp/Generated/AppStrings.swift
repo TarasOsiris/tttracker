@@ -405,6 +405,9 @@ enum L {
 	/// Month
 	static var sessionsMonthMode: String { Localization.string("sessions_month_mode") }
 
+	/// Select a session
+	static var sessionsSelectPrompt: String { Localization.string("sessions_select_prompt") }
+
 	/// Week
 	static var sessionsWeekMode: String { Localization.string("sessions_week_mode") }
 
