@@ -26,6 +26,7 @@ struct GeneralSettingsScreen: View {
                 Toggle(L.settingsHighlightCurrentDay, isOn: model.highlightCurrentDay.binding)
             }
         }
+        .accessibilityIdentifier(SettingsRoute.general.screenIdentifier)
         .navigationTitle(L.actionUiSettings)
         .navigationBarTitleDisplayMode(.inline)
     }

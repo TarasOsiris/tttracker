@@ -41,12 +41,14 @@ struct SessionsScreen: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(L.timeToday) { self.topDay = model.today }
                         .keyboardShortcut("t", modifiers: .command)
+                        .accessibilityIdentifier("sessions.today")
                 }
             }
             ToolbarItem(placement: .topBarTrailing) {
                 Button { isCreating = true } label: { Image(systemName: "plus") }
                     .accessibilityLabel(L.actionAddSession)
                     .keyboardShortcut("n", modifiers: .command)
+                    .accessibilityIdentifier("sessions.add")
             }
         }
     }
@@ -90,6 +92,7 @@ struct SessionsScreen: View {
                     SessionRow(session: session, isSelected: selectedSession == session.id)
                 }
                 .buttonStyle(.plain)
+                .accessibilityIdentifier("session.row")
                 .padding(.horizontal, 16)
                 .padding(.vertical, 8)
             }

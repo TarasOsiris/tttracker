@@ -24,6 +24,7 @@ struct SessionFormScreen: View {
                     matchesSection
                 }
             }
+            .accessibilityIdentifier("screen.sessionForm")
             .navigationTitle(model.isEditing ? L.actionEdit : L.titleCreateSession)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -35,6 +36,7 @@ struct SessionFormScreen: View {
                         Task { if await model.save() { dismiss() } }
                     }
                     .disabled(!model.canSave || model.isLoading)
+                    .accessibilityIdentifier("sessionForm.save")
                 }
             }
             .task { await model.load() }

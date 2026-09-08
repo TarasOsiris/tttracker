@@ -89,6 +89,7 @@ struct SessionCalendar: View {
                     .contentShape(.rect)
                 }
                 .buttonStyle(.plain)
+                .accessibilityIdentifier("calendar.day")
             }
         }
     }

@@ -21,6 +21,7 @@ struct OpponentsScreen: View {
                 ContentUnavailableView(L.opponentsEmpty, systemImage: "person.2")
             }
         }
+        .accessibilityIdentifier(SettingsRoute.opponents.screenIdentifier)
         .navigationTitle(L.titleOpponents)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {

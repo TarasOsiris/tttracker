@@ -1,7 +1,12 @@
 import SwiftUI
 
-enum SettingsRoute: Hashable {
+enum SettingsRoute: String, Hashable {
     case general, opponents, debug
+
+    /// Names the row and the page it opens for the UI tests, which cannot read a localized label
+    /// without pinning itself to one language.
+    var identifier: String { "settings.\(rawValue)" }
+    var screenIdentifier: String { "screen.\(rawValue)" }
 }
 
 /// The one place a route names its screen — both the pushed stack and the split view's detail
@@ -22,16 +27,29 @@ struct SettingsScreen: View {
     @StateModel private var model = SettingsModel()
 
     var body: some View {
-        List(selection: selectedPage ?? .constant(nil)) {
-            generalSection
-            helpSection
-            aboutSection
-            if model.isDebugBuild { developerSection }
-            footer
+        list
+            .navigationTitle(L.titleSettings)
+            .navigationDestination(for: SettingsRoute.self) { settingsPage($0) }
+            .task { await model.load() }
+    }
+
+    /// The selection binding goes on only where the split view needs one. A `List` that has one
+    /// answers a tap by moving its selection, so passing a placeholder binding on the stack path
+    /// swallows the row's link and the tap does nothing.
+    @ViewBuilder private var list: some View {
+        if let selectedPage {
+            List(selection: selectedPage) { sections }
+        } else {
+            List { sections }
         }
-        .navigationTitle(L.titleSettings)
-        .navigationDestination(for: SettingsRoute.self) { settingsPage($0) }
-        .task { await model.load() }
+    }
+
+    @ViewBuilder private var sections: some View {
+        generalSection
+        helpSection
+        aboutSection
+        if model.isDebugBuild { developerSection }
+        footer
     }
 
     private var generalSection: some View {
@@ -43,9 +61,13 @@ struct SettingsScreen: View {
 
     @ViewBuilder private func pageRow(_ page: SettingsRoute, title: String, icon: String) -> some View {
         if selectedPage != nil {
-            Label(title, systemImage: icon).tag(page)
+            Label(title, systemImage: icon)
+                .accessibilityElement(children: .combine)
+                .accessibilityIdentifier(page.identifier)
+                .tag(page)
         } else {
             NavigationLink(value: page) { Label(title, systemImage: icon) }
+                .accessibilityIdentifier(page.identifier)
         }
     }
 

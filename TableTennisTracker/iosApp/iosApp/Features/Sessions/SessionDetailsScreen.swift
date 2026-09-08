@@ -25,6 +25,7 @@ struct SessionDetailsScreen: View {
                 ContentUnavailableView(L.titleError, systemImage: "exclamationmark.triangle")
             }
         }
+        .accessibilityIdentifier("screen.sessionDetails")
         .navigationTitle(model.session?.title ?? "")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
