@@ -41,9 +41,13 @@ android {
 		applicationId = "xyz.tleskiv.tt"
 		minSdk = libs.versions.android.minSdk.get().toInt()
 		targetSdk = libs.versions.android.targetSdk.get().toInt()
-		versionCode = 13
-		versionName = "1.2.9"
+		versionCode = 14
+		versionName = "1.3.0"
 		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+		// Routes instrumentation output through the test-services provider, which writes to
+		// /sdcard/googletest/test_outputfiles — the one place `adb pull` can read on API 30+ without
+		// root, which this Play-image emulator does not offer.
+		testInstrumentationRunnerArguments["useTestStorageService"] = "true"
 
 		buildConfigField(
 			"String",
@@ -117,6 +121,7 @@ dependencies {
 	androidTestImplementation(projects.core)
 	androidTestImplementation(projects.shared)
 	androidTestImplementation(libs.calendar.compose.multiplatform)
+	androidTestUtil(libs.androidx.test.services)
 	implementation(libs.sqldelight.driver.android)
 }
 
