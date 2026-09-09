@@ -39,6 +39,17 @@ extension Color {
     /// Overload taking the Swift mirror, so views never have to name a `Shared` type.
     static func sessionKind(_ kind: SessionKind?) -> Color { sessionType(kind?.kotlin) }
 
+    /// Shading for a heatmap intensity bucket, 0 (none) through 4 (busiest).
+    static func heatmap(level: Int) -> Color {
+        switch level {
+        case 1: Color.accentColor.opacity(0.35)
+        case 2: Color.accentColor.opacity(0.55)
+        case 3: Color.accentColor.opacity(0.75)
+        case 4: Color.accentColor
+        default: Color(.tertiarySystemFill)
+        }
+    }
+
     /// Backs whatever the user has picked — a calendar day, a row in the sessions sidebar.
     static var selection: Color { Color.accentColor.opacity(0.18) }
 

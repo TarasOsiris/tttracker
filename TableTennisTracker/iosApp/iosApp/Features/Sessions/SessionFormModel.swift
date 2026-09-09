@@ -12,14 +12,24 @@ final class SessionFormModel {
     static let notesLimit = 1000
 
     var day: Date
-    var durationMinutes = 60
+
+    /// Stored as `Double` because both are driven by a `Slider`, which only binds to a floating
+    /// point value. Keeping the conversion here rather than in a binding built in the view body
+    /// leaves the form with nothing but layout in it.
+    var duration = 60.0
+    var intensity = 5.0
+
     var kind: SessionKind = .technique
-    var rpe = 5
     var notes = ""
     var matches: [PendingMatch] = []
 
+    var durationMinutes: Int { Int(duration.rounded()) }
+    var rpe: Int { Int(intensity.rounded()) }
+
     private(set) var isLoading: Bool
-    var saveFailed = false
+
+    /// The last action that did not go through, if it has not been dismissed yet.
+    var failure: OperationFailure?
 
     let isEditing: Bool
     var canSave: Bool { Self.durationRange.contains(durationMinutes) }
@@ -51,9 +61,9 @@ final class SessionFormModel {
         guard let editing else { return await seedFromDefaults() }
         if let session = try? await sessions.getSessionById(id: editing), let item = SessionItem(session) {
             day = item.day
-            durationMinutes = item.durationMinutes
+            duration = Double(item.durationMinutes)
             kind = item.kind ?? .other
-            rpe = item.rpe
+            intensity = Double(item.rpe)
             notes = item.notes ?? ""
             matches = item.matches.map(PendingMatch.init)
         }
@@ -63,7 +73,7 @@ final class SessionFormModel {
     /// Returns `true` when the session was stored, so the sheet only dismisses on success.
     func save() async -> Bool {
         guard canSave, let dateTime = day.kotlinLocalDateTimeAtNoon else {
-            saveFailed = true
+            failure = OperationFailure()
             return false
         }
         do {
@@ -93,10 +103,11 @@ final class SessionFormModel {
             }
             return true
         } catch {
-            saveFailed = true
+            failure = OperationFailure(error)
             return false
         }
     }
+
 
     func upsert(_ match: PendingMatch) {
         if let index = matches.firstIndex(where: { $0.id == match.id }) {
@@ -112,8 +123,8 @@ final class SessionFormModel {
 
     private func seedFromDefaults() async {
         guard let preferences = try? await defaults.getAllPreferences() else { return }
-        durationMinutes = Int(preferences.defaultSessionDurationMinutes)
-        rpe = Int(preferences.defaultRpe)
+        duration = Double(preferences.defaultSessionDurationMinutes)
+        intensity = Double(preferences.defaultRpe)
         kind = SessionKind(preferences.defaultSessionType) ?? .technique
         notes = preferences.defaultNotes
     }

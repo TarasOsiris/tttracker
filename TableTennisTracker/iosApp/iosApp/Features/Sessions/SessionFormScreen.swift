@@ -29,21 +29,17 @@ struct SessionFormScreen: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button(L.actionCancel) { dismiss() }
+                    Button(L.actionCancel, action: dismiss.callAsFunction)
                         .accessibilityIdentifier("sessionForm.cancel")
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button(L.actionSave) {
-                        Task { if await model.save() { dismiss() } }
-                    }
-                    .disabled(!model.canSave || model.isLoading)
-                    .accessibilityIdentifier("sessionForm.save")
+                    Button(L.actionSave, action: save)
+                        .disabled(!model.canSave || model.isLoading)
+                        .accessibilityIdentifier("sessionForm.save")
                 }
             }
             .task { await model.load() }
-            .alert(L.titleError, isPresented: $model.saveFailed) {
-                Button(L.actionOk, role: .cancel) {}
-            }
+            .failureAlert($model.failure)
             .sheet(isPresented: $showsRpeHelp) {
                 RpeHelpSheet().presentationDetents([.medium, .large])
             }
@@ -51,6 +47,10 @@ struct SessionFormScreen: View {
                 MatchEditorSheet(editing: target.match) { model.upsert($0) }
             }
         }
+    }
+
+    private func save() {
+        Task { if await model.save() { dismiss() } }
     }
 
     private var dateSection: some View {
@@ -61,17 +61,19 @@ struct SessionFormScreen: View {
 
     private var durationSection: some View {
         Section {
-            HStack {
-                Text(L.labelDuration)
-                Spacer()
-                Text(model.durationMinutes.formattedTrainingDuration).font(.body.weight(.semibold))
+            LabeledContent(L.labelDuration) {
+                Text(model.durationMinutes.trainingDuration, format: .trainingDuration)
+                    .font(.body.weight(.semibold))
             }
             Slider(
-                value: durationBinding,
+                value: $model.duration,
                 in: Double(SessionFormModel.durationRange.lowerBound)...Double(SessionFormModel.durationRange.upperBound),
                 step: 5
             )
-            .accessibilityValue(model.durationMinutes.formattedTrainingDuration)
+            .accessibilityLabel(L.labelDuration)
+            .accessibilityValue(
+                Text(model.durationMinutes.trainingDuration, format: .trainingDuration)
+            )
         }
     }
 
@@ -94,16 +96,20 @@ struct SessionFormScreen: View {
         Section {
             HStack {
                 Text(L.labelIntensityRpe)
-                Button { showsRpeHelp = true } label: { Image(systemName: "questionmark.circle") }
-                    .buttonStyle(.borderless)
-                    .accessibilityLabel(L.helpIconContentDescription)
+                Button(L.helpIconContentDescription, systemImage: "questionmark.circle") {
+                    showsRpeHelp = true
+                }
+                .labelStyle(.iconOnly)
+                .buttonStyle(.borderless)
+                .minimumTapTarget()
                 Spacer()
-                Text(model.rpe.formatted())
+                Text(model.rpe, format: .integer)
                     .font(.body.weight(.semibold))
                     .foregroundStyle(Color.rpe(model.rpe))
             }
-            Slider(value: rpeBinding, in: 1...10, step: 1)
+            Slider(value: $model.intensity, in: 1...10, step: 1)
                 .tint(Color.rpe(model.rpe))
+                .accessibilityLabel(L.labelIntensityRpe)
                 .accessibilityValue(rpeLabel(model.rpe))
             Text(rpeLabel(model.rpe)).font(.caption).foregroundStyle(.secondary)
         }
@@ -119,7 +125,7 @@ struct SessionFormScreen: View {
                     }
                 }
             Text(L.counterNotes(model.notes.count))
-                .font(.caption2)
+                .font(.caption)
                 .foregroundStyle(.secondary)
                 .frame(maxWidth: .infinity, alignment: .trailing)
         }
@@ -143,67 +149,4 @@ struct SessionFormScreen: View {
                 .accessibilityIdentifier("sessionForm.addMatch")
         }
     }
-
-    private var durationBinding: Binding<Double> {
-        Binding(get: { Double(model.durationMinutes) }, set: { model.durationMinutes = Int($0) })
-    }
-
-    private var rpeBinding: Binding<Double> {
-        Binding(get: { Double(model.rpe) }, set: { model.rpe = Int($0) })
-    }
-}
-
-/// The RPE scale, ported from `help/RpeHelpContent.kt`.
-struct RpeHelpSheet: View {
-    @Environment(\.dismiss) private var dismiss
-
-    /// Computed, not a `static let`: the strings resolve through the in-app language override, and
-    /// a stored array would freeze whichever language was current when it was first touched.
-    private var levels: [(Int, String)] {
-        [(1, L.helpRpeLevel12), (3, L.helpRpeLevel34), (5, L.helpRpeLevel56),
-         (7, L.helpRpeLevel78), (9, L.helpRpeLevel910)]
-    }
-
-    var body: some View {
-        NavigationStack {
-            List {
-                Section {
-                    Text(L.helpRpeDescription).font(.subheadline)
-                }
-                Section(L.helpRpeScaleIntro) {
-                    ForEach(levels, id: \.0) { rpe, text in
-                        Label {
-                            Text(text)
-                        } icon: {
-                            Circle().fill(Color.rpe(rpe)).frame(width: 12, height: 12)
-                        }
-                    }
-                }
-                Section {
-                    Text(L.helpRpeTip).font(.footnote).foregroundStyle(.secondary)
-                }
-            }
-            .navigationTitle(L.helpRpeTitle)
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button(L.actionOk) { dismiss() }
-                }
-            }
-        }
-    }
-}
-
-enum MatchEditorTarget: Identifiable {
-    case new
-    case existing(PendingMatch)
-
-    var match: PendingMatch? {
-        switch self {
-        case .new: nil
-        case let .existing(match): match
-        }
-    }
-
-    var id: String { match?.id ?? "new" }
 }

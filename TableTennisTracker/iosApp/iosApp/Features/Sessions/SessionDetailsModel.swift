@@ -7,7 +7,9 @@ import Shared
 final class SessionDetailsModel {
     private(set) var session: SessionItem?
     private(set) var isLoading = true
-    var deleteFailed = false
+
+    /// The last action that did not go through, if it has not been dismissed yet.
+    var failure: OperationFailure?
 
     let sessionId: String
 
@@ -39,7 +41,7 @@ final class SessionDetailsModel {
     /// Returns `true` once the session is gone, so the screen only pops on success.
     func delete() async -> Bool {
         guard let id = sessionId.kotlinUuid else {
-            deleteFailed = true
+            failure = OperationFailure()
             return false
         }
         do {
@@ -47,7 +49,7 @@ final class SessionDetailsModel {
             analytics.capture(event: "session_deleted", properties: nil)
             return true
         } catch {
-            deleteFailed = true
+            failure = OperationFailure(error)
             return false
         }
     }

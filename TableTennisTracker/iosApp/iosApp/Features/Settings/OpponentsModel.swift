@@ -7,6 +7,9 @@ final class OpponentsModel {
     private(set) var opponents: [Opponent] = []
     private(set) var isLoaded = false
 
+    /// The last action that did not go through, if it has not been dismissed yet.
+    var failure: OperationFailure?
+
     @ObservationIgnored private let service: any OpponentService
     @ObservationIgnored private let analytics: any AnalyticsService
     @ObservationIgnored private let subscriptions = FlowSubscriptions()
@@ -27,109 +30,17 @@ final class OpponentsModel {
     }
 
     func delete(_ opponent: Opponent) {
-        guard let id = opponent.id.kotlinUuid else { return }
+        guard let id = opponent.id.kotlinUuid else {
+            failure = OperationFailure()
+            return
+        }
+        // The queue takes a failure handler for exactly this: without one a rejected delete was
+        // silent, and the row simply reappeared with no explanation.
         writes.enqueue {
             try await self.service.deleteOpponent(id: id)
             self.analytics.capture(event: "opponent_deleted", properties: nil)
-        }
-    }
-}
-
-/// Backs both the add and the edit sheet — the fields are identical, only the commit differs.
-@MainActor
-@Observable
-final class OpponentEditorModel {
-    var name = ""
-    var club = ""
-    var rating = ""
-    var handedness: Handed?
-    var style: Style?
-    var notes = ""
-
-    private(set) var isLoading: Bool
-    var saveFailed = false
-
-    let isEditing: Bool
-    var canSave: Bool { !name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
-
-    @ObservationIgnored private let editing: KotlinUuid?
-    @ObservationIgnored private let service: any OpponentService
-    @ObservationIgnored private let analytics: any AnalyticsService
-
-    init(
-        opponentId: String? = nil,
-        service: any OpponentService = Services.opponents,
-        analytics: any AnalyticsService = Services.analytics
-    ) {
-        // Resolve the id once. An unparseable id must not silently fall through to the create path
-        // and add a second opponent instead of editing the one that was tapped.
-        self.editing = opponentId?.kotlinUuid
-        self.isEditing = opponentId != nil
-        self.isLoading = opponentId != nil
-        self.service = service
-        self.analytics = analytics
-    }
-
-    func load() async {
-        guard let id = editing else {
-            isLoading = false
-            return
-        }
-        if let existing = try? await service.getOpponentById(id: id) {
-            let opponent = Opponent(existing)
-            name = opponent.name
-            club = opponent.club ?? ""
-            rating = opponent.rating.map { String(Int($0)) } ?? ""
-            handedness = opponent.handedness
-            style = opponent.style
-            notes = opponent.notes ?? ""
-        }
-        isLoading = false
-    }
-
-    /// Returns `true` when the opponent was stored, so the sheet only dismisses on success.
-    func save() async -> Bool {
-        let trimmedName = name.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmedName.isEmpty else { return false }
-
-        // isEditing is set from the id the caller passed, so an unparseable one lands here rather
-        // than quietly creating a duplicate.
-        guard !isEditing || editing != nil else {
-            saveFailed = true
-            return false
-        }
-
-        let rating = rating.nilIfBlank.flatMap(Double.init).map { KotlinDouble(double: $0) }
-        do {
-            if let id = editing {
-                try await service.updateOpponent(
-                    id: id,
-                    name: trimmedName,
-                    club: club.nilIfBlank,
-                    rating: rating,
-                    handedness: handedness?.kotlin,
-                    style: style?.kotlin,
-                    notes: notes.nilIfBlank
-                )
-                analytics.capture(event: "opponent_edited", properties: nil)
-            } else {
-                _ = try await service.addOpponent(
-                    name: trimmedName,
-                    club: club.nilIfBlank,
-                    rating: rating,
-                    handedness: handedness?.kotlin,
-                    style: style?.kotlin,
-                    notes: notes.nilIfBlank
-                )
-                analytics.capture(
-                    event: "opponent_added",
-                    properties: ["has_club": club.nilIfBlank != nil, "has_rating": rating != nil]
-                )
-            }
-            return true
-        } catch {
-            saveFailed = true
-            return false
+        } onFailure: { [weak self] error in
+            self?.failure = OperationFailure(error)
         }
     }
 }

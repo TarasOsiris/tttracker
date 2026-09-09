@@ -6,6 +6,11 @@
 import Foundation
 
 enum L {
+	/// Sessions: %1$lld
+	static func accessibilitySessionsCount(_ a1: Int) -> String {
+		Localization.format("accessibility_sessions_count", a1)
+	}
+
 	/// Add Match
 	static var actionAddMatch: String { Localization.string("action_add_match") }
 

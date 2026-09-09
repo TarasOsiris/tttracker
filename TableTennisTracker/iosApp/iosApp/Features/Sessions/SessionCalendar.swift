@@ -13,7 +13,13 @@ struct SessionCalendar: View {
 
     @Environment(\.locale) private var locale
 
-    private static let rowHeight: CGFloat = 40
+    /// A row has to clear Apple's 44pt minimum on its own: the whole cell is the tap target, and
+    /// `@ScaledMetric` grows it with the user's text size so the number inside never clips.
+    @ScaledMetric(relativeTo: .callout) private var rowHeight = 44
+
+    /// Scaled here rather than inside `DayCell`, which is built once per day: a dynamic
+    /// property there runs a font-metrics lookup per cell on every pass.
+    @ScaledMetric(relativeTo: .callout) private var numberSize = 30
     private static let expandedRows = 6
 
     var body: some View {
@@ -21,7 +27,7 @@ struct SessionCalendar: View {
             header
             weekdayLabels
             grid
-                .frame(height: Self.rowHeight * CGFloat(isExpanded ? Self.expandedRows : 1))
+                .frame(height: rowHeight * Double(isExpanded ? Self.expandedRows : 1))
                 .clipped()
         }
         .padding(.horizontal, 12)
@@ -45,6 +51,7 @@ struct SessionCalendar: View {
                         .font(.caption.bold())
                         .rotationEffect(.degrees(isExpanded ? 180 : 0))
                 }
+                .minimumTapTarget()
             }
             .buttonStyle(.plain)
             .accessibilityLabel(isExpanded ? L.sessionsWeekMode : L.sessionsMonthMode)
@@ -52,10 +59,15 @@ struct SessionCalendar: View {
 
             Spacer()
 
-            Button { page(by: -1) } label: { Image(systemName: "chevron.left") }
+            // Labelled rather than icon-only, so Voice Control has a word to say.
+            Button("", systemImage: "chevron.left") { page(by: -1) }
+                .labelStyle(.iconOnly)
+                .minimumTapTarget()
                 .accessibilityIdentifier("calendar.previousPeriod")
                 .accessibilityLabel(periodLabel(-1))
-            Button { page(by: 1) } label: { Image(systemName: "chevron.right") }
+            Button("", systemImage: "chevron.right") { page(by: 1) }
+                .labelStyle(.iconOnly)
+                .minimumTapTarget()
                 .accessibilityIdentifier("calendar.nextPeriod")
                 .accessibilityLabel(periodLabel(1))
         }
@@ -67,11 +79,13 @@ struct SessionCalendar: View {
         HStack(spacing: 0) {
             ForEach(weekDays(containing: selection), id: \.self) { day in
                 Text(day, format: Date.FormatStyle(locale: locale).weekday(.short))
-                    .font(.caption2)
+                    .font(.caption)
                     .foregroundStyle(.secondary)
                     .frame(maxWidth: .infinity)
             }
         }
+        // Column headings: each day cell already names its own weekday in full.
+        .accessibilityHidden(true)
     }
 
     private var grid: some View {
@@ -85,19 +99,30 @@ struct SessionCalendar: View {
                         isSelected: day == selection,
                         isToday: model.highlightsToday && day == model.today,
                         isOutsideMonth: isExpanded && !calendar.isDate(day, equalTo: selection, toGranularity: .month),
-                        indicators: model.indicators(on: day)
+                        indicators: model.indicators(on: day),
+                        numberSize: numberSize
                     )
-                    .frame(height: Self.rowHeight)
+                    .frame(height: rowHeight)
                     // A cell is mostly empty space — the wider the calendar, the more of it.
                     .contentShape(.rect)
                 }
                 .buttonStyle(.plain)
                 .accessibilityIdentifier("calendar.day")
+                // Read as its children a day was a bare number and a row of unnamed dots: no
+                // month, no year, and no way to tell a day with sessions from an empty one.
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(dayLabel(day))
+                .accessibilityValue(Text(L.accessibilitySessionsCount(model.sessions(on: day).count)))
+                .accessibilityAddTraits(day == selection ? [.isButton, .isSelected] : .isButton)
             }
         }
     }
 
     private var calendar: Calendar { model.calendar }
+
+    private func dayLabel(_ day: Date) -> Text {
+        Text(day, format: .fullDay(locale))
+    }
 
     /// One week, or the six-row grid that always fully contains the month — the same shape Compose
     /// gets from `OutDateStyle.EndOfGrid`, so the height never jumps between months.
@@ -138,54 +163,5 @@ struct SessionCalendar: View {
                 guard abs(value.translation.width) > abs(value.translation.height) else { return }
                 page(by: value.translation.width < 0 ? 1 : -1)
             }
-    }
-}
-
-private struct DayCell: View {
-    let day: Date
-    let isSelected: Bool
-    let isToday: Bool
-    let isOutsideMonth: Bool
-    let indicators: [SessionKind?]
-
-    @Environment(\.locale) private var locale
-
-    var body: some View {
-        VStack(spacing: 3) {
-            Text(day, format: Date.FormatStyle(locale: locale).day())
-                .font(.callout)
-                .fontWeight(isToday ? .bold : .regular)
-                .foregroundStyle(numberColor)
-                .frame(width: 30, height: 30)
-                .background(background)
-                .contentShape(.hoverEffect, .circle)
-                .hoverEffect(.highlight)
-            dots
-        }
-        .frame(maxWidth: .infinity)
-        .opacity(isOutsideMonth ? 0.35 : 1)
-    }
-
-    private var dots: some View {
-        HStack(spacing: 2) {
-            ForEach(Array(indicators.enumerated()), id: \.offset) { _, kind in
-                Circle().fill(Color.sessionKind(kind)).frame(width: 4, height: 4)
-            }
-        }
-        .frame(height: 4)
-    }
-
-    @ViewBuilder private var background: some View {
-        if isSelected {
-            Circle().fill(isToday ? Color.accentColor : .selection)
-        } else if isToday {
-            Circle().stroke(Color.accentColor, lineWidth: 1.5)
-        }
-    }
-
-    private var numberColor: Color {
-        if isSelected && isToday { .white }
-        else if isToday { .accentColor }
-        else { .primary }
     }
 }

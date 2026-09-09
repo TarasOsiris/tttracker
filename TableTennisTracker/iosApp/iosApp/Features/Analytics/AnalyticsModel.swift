@@ -2,24 +2,6 @@ import Foundation
 import Observation
 import Shared
 
-/// Headline totals for the analytics screen.
-struct Summary {
-    var totalSessions = 0
-    var totalMinutes = 0
-    var matchesWon = 0
-    var matchesLost = 0
-
-    var totalMatches: Int { matchesWon + matchesLost }
-    var winRate: Double? { totalMatches > 0 ? Double(matchesWon) / Double(totalMatches) : nil }
-}
-
-/// One bar in the weekly chart.
-struct WeeklyTraining: Identifiable {
-    let id: Int
-    let label: String
-    let minutes: Int
-}
-
 @MainActor
 @Observable
 final class AnalyticsModel {
@@ -28,7 +10,13 @@ final class AnalyticsModel {
 
     /// Sessions per day, indexed for the heatmap. Built once per emission rather than per cell.
     private(set) var sessionsByDay: [Date: Int] = [:]
-    private(set) var busiestDay = 0
+
+    /// Intensity bucket per day, from the same rule the Compose heatmap uses.
+    ///
+    /// Bucketed here, with `sessionsByDay`, rather than per cell: the grid draws up to a year of
+    /// days and `body` re-runs on every scroll, so asking Kotlin per cell meant hundreds of bridge
+    /// crossings a frame.
+    private(set) var levelsByDay: [Date: Int] = [:]
 
     /// The user's first day of week, in `Calendar` numbering. The heatmap aligns its rows to this
     /// so it agrees with the weekly chart, which the same preference already drives through the
@@ -98,19 +86,26 @@ final class AnalyticsModel {
                     guard let date = day.date.date else { continue }
                     byDay[calendar.startOfDay(for: date)] = Int(day.sessionCount)
                 }
+                let busiest = Int32(byDay.values.max() ?? 0)
                 self?.sessionsByDay = byDay
-                self?.busiestDay = byDay.values.max() ?? 0
+                self?.levelsByDay = byDay.mapValues {
+                    Int(AnalyticsModelsKt.heatmapLevel(
+                        sessionCount: Int32($0),
+                        busiestSessionCount: busiest
+                    ))
+                }
             }
         )
     }
 
-    /// Intensity bucket for a day, from the same rule the Compose heatmap uses.
-    func heatmapLevel(on day: Date) -> Int {
-        Int(AnalyticsModelsKt.heatmapLevel(
-            sessionCount: Int32(sessionsByDay[day] ?? 0),
-            busiestSessionCount: Int32(busiestDay)
-        ))
-    }
+    /// Totals under the weekly chart. `weekly` holds one bar per week shown, so this is a sum
+    /// over single digits — cheap enough not to be worth a second copy kept in step by hand.
+    var weeklyTotalMinutes: Int { weekly.reduce(0) { $0 + $1.minutes } }
+    var weeklyAverageMinutes: Int { weekly.isEmpty ? 0 : weeklyTotalMinutes / weekly.count }
+
+    /// Intensity bucket for a day. Days with no sessions are absent from the index and sit at 0,
+    /// which is the level `heatmapLevel` returns for them anyway.
+    func heatmapLevel(on day: Date) -> Int { levelsByDay[day] ?? 0 }
 
     func sessionCount(on day: Date) -> Int { sessionsByDay[day] ?? 0 }
 }

@@ -24,7 +24,7 @@ struct SessionsScreen: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            SessionCalendar(model: model, selection: selection, isExpanded: $isCalendarExpanded)
+            SessionCalendar(model: model, selection: $topDay ?? model.today, isExpanded: $isCalendarExpanded)
             Divider()
             dayList
         }
@@ -45,8 +45,7 @@ struct SessionsScreen: View {
                 }
             }
             ToolbarItem(placement: .topBarTrailing) {
-                Button { isCreating = true } label: { Image(systemName: "plus") }
-                    .accessibilityLabel(L.actionAddSession)
+                Button(L.actionAddSession, systemImage: "plus") { isCreating = true }
                     .keyboardShortcut("n", modifiers: .command)
                     .accessibilityIdentifier("sessions.add")
             }
@@ -97,9 +96,5 @@ struct SessionsScreen: View {
                 .padding(.vertical, 8)
             }
         }
-    }
-
-    private var selection: Binding<Date> {
-        Binding(get: { topDay ?? model.today }, set: { topDay = $0 })
     }
 }

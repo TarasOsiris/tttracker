@@ -32,8 +32,10 @@ final class MatchEditorModel {
         let query = opponentName.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !query.isEmpty else { return Array(opponents.prefix(Self.suggestionLimit)) }
         guard !opponents.contains(where: { $0.name.caseInsensitiveCompare(query) == .orderedSame }) else { return [] }
+        // `localizedStandardContains` is the Finder-style match: diacritic- and width-insensitive
+        // as well as caseless, so "jan" finds "Ján" across a roster spanning fourteen locales.
         return opponents
-            .filter { $0.name.localizedCaseInsensitiveContains(query) }
+            .filter { $0.name.localizedStandardContains(query) }
             .prefix(Self.suggestionLimit)
             .map { $0 }
     }

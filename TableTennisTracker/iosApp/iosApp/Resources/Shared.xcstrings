@@ -1,6 +1,17 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "accessibility_sessions_count" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sessions: %1$lld"
+          }
+        }
+      }
+    },
     "action_add_match" : {
       "extractionState" : "manual",
       "localizations" : {

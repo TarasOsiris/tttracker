@@ -248,4 +248,7 @@
 	<!-- Opponents Info -->
 	<string name="opponents_info_title">About opponents</string>
 	<string name="opponents_info_message">Opponents you add here will be available for quick selection when recording matches in your training sessions.</string>
+
+	<!-- Accessibility -->
+	<string name="accessibility_sessions_count">Sessions: %1$d</string>
 </resources>

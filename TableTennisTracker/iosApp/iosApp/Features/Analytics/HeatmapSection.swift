@@ -11,10 +11,19 @@ struct HeatmapSection: View {
 
     private static let minimumWeeks = 26
     private static let maximumWeeks = 53
-    private static let cell: CGFloat = 14
-    private static let spacing: CGFloat = 3
+    static let cell = 14.0
+    private static let spacing = 3.0
 
     @State private var weeksShown = minimumWeeks
+
+    /// The day window, rebuilt only when something it depends on changes.
+    ///
+    /// It was a computed property, which meant re-deriving up to a year of `Date`s on every body
+    /// pass — and this section lives in a `List` that re-runs `body` as it scrolls. Both inputs are
+    /// state this view can watch, so there is no source of staleness the `onChange` pair misses.
+    @State private var days: [Date] = []
+
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
         Section(L.analyticsHeatmapTitle) {
@@ -22,28 +31,35 @@ struct HeatmapSection: View {
                 ContentUnavailableView(L.analyticsNoTraining, systemImage: "square.grid.3x3")
             } else {
                 grid
-                legend
+                HeatmapLegend()
             }
+        }
+        .onChange(of: weeksShown, initial: true) { rebuildDays() }
+        .onChange(of: model.firstWeekday) { rebuildDays() }
+        // The window ends on today, so it has to be re-anchored after the app has been left open
+        // overnight — the same reason `SessionsModel.refreshToday` runs on every foreground.
+        .onChange(of: scenePhase) { _, phase in
+            if phase == .active { rebuildDays() }
         }
     }
 
     private var grid: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
+        ScrollView(.horizontal) {
             LazyHGrid(
                 rows: Array(repeating: GridItem(.fixed(Self.cell), spacing: Self.spacing), count: 7),
                 spacing: Self.spacing
             ) {
                 ForEach(days, id: \.self) { day in
-                    RoundedRectangle(cornerRadius: 3)
-                        .fill(color(forLevel: model.heatmapLevel(on: day)))
-                        .frame(width: Self.cell, height: Self.cell)
-                        .accessibilityLabel(
-                            "\(day.formatted(date: .abbreviated, time: .omitted)): \(model.sessionCount(on: day))"
-                        )
+                    HeatmapCell(
+                        day: day,
+                        level: model.heatmapLevel(on: day),
+                        sessions: model.sessionCount(on: day)
+                    )
                 }
             }
             .frame(height: Self.cell * 7 + Self.spacing * 6)
         }
+        .scrollIndicators(.hidden)
         .defaultScrollAnchor(.trailing)
         // Measured as a column count, not a width: the count settles after a few steps of a resize
         // drag, and rebuilding a year of days on every frame of one would not.
@@ -53,43 +69,18 @@ struct HeatmapSection: View {
     /// As much history as fits at once, between half a year and a whole one. A phone gets the 26
     /// weeks it always had and still scrolls for the rest; a wide layout fills the row instead of
     /// pinning a short grid to one edge of it.
-    private static func weeks(fitting width: CGFloat) -> Int {
+    private static func weeks(fitting width: Double) -> Int {
         let fitting = Int((width + spacing) / (cell + spacing))
         return min(maximumWeeks, max(minimumWeeks, fitting))
     }
 
-    private var legend: some View {
-        HStack(spacing: Self.spacing) {
-            Text(L.analyticsHeatmapLess).font(.caption2).foregroundStyle(.secondary)
-            ForEach(0...4, id: \.self) { level in
-                RoundedRectangle(cornerRadius: 3)
-                    .fill(color(forLevel: level))
-                    .frame(width: Self.cell, height: Self.cell)
-            }
-            Text(L.analyticsHeatmapMore).font(.caption2).foregroundStyle(.secondary)
-        }
-        .frame(maxWidth: .infinity, alignment: .trailing)
-    }
-
     /// Every day in the window, oldest first, ending on a partial current week so each grid column
     /// is one week — aligned to the user's first day of week, not the system's.
-    private var days: [Date] {
-        var calendar = Calendar.gregorian
-        calendar.firstWeekday = model.firstWeekday
-
+    private func rebuildDays() {
+        let calendar = Calendar.days(firstWeekday: model.firstWeekday)
         let today = calendar.startOfDay(for: .now)
         let daysIntoWeek = (calendar.component(.weekday, from: today) - calendar.firstWeekday + 7) % 7
         let total = weeksShown * 7 + daysIntoWeek
-        return (0..<total).reversed().compactMap { calendar.date(byAdding: .day, value: -$0, to: today) }
-    }
-
-    private func color(forLevel level: Int) -> Color {
-        switch level {
-        case 1: Color.accentColor.opacity(0.35)
-        case 2: Color.accentColor.opacity(0.55)
-        case 3: Color.accentColor.opacity(0.75)
-        case 4: Color.accentColor
-        default: Color(.tertiarySystemFill)
-        }
+        days = (0..<total).reversed().compactMap { calendar.date(byAdding: .day, value: -$0, to: today) }
     }
 }

@@ -14,4 +14,10 @@ extension View {
     func sidebarColumnWidth() -> some View {
         navigationSplitViewColumnWidth(min: 320, ideal: 380, max: 460)
     }
+
+    /// Grows a control to Apple's 44x44 minimum for anything meant to be tapped. An SF Symbol
+    /// glyph on its own is roughly half that.
+    func minimumTapTarget() -> some View {
+        frame(minWidth: 44, minHeight: 44)
+    }
 }
