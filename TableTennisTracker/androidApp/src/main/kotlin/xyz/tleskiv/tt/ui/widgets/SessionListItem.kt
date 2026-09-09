@@ -1,7 +1,6 @@
 package xyz.tleskiv.tt.ui.widgets
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -14,7 +13,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -35,12 +33,7 @@ fun SessionListItem(
 	onClick: () -> Unit,
 	modifier: Modifier = Modifier
 ) {
-	Surface(
-		modifier = modifier.fillMaxWidth().clickable(onClick = onClick),
-		shape = RoundedCornerShape(12.dp),
-		color = MaterialTheme.colorScheme.surfaceContainerLow,
-		tonalElevation = 1.dp
-	) {
+	ContentCard(modifier = modifier, onClick = onClick) {
 		Row(
 			modifier = Modifier.fillMaxWidth().padding(12.dp),
 			verticalAlignment = Alignment.CenterVertically

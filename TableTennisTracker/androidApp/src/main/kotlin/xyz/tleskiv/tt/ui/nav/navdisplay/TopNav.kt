@@ -9,8 +9,8 @@ import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import xyz.tleskiv.tt.ui.nav.TopLevelBackStack
 import xyz.tleskiv.tt.ui.nav.instantTransitionMetadata
-import xyz.tleskiv.tt.ui.nav.lateralEntryTransitionMetadata
-import xyz.tleskiv.tt.ui.nav.modalEntryTransitionMetadata
+import xyz.tleskiv.tt.ui.nav.rememberLateralEntryTransitionMetadata
+import xyz.tleskiv.tt.ui.nav.rememberModalEntryTransitionMetadata
 import xyz.tleskiv.tt.ui.nav.routes.CoreAppRoute
 import xyz.tleskiv.tt.ui.nav.routes.CreateSessionRoute
 import xyz.tleskiv.tt.ui.nav.routes.DebugRoute
@@ -34,6 +34,9 @@ fun TopNavDisplay(topLevelBackStack: SnapshotStateList<TopLevelRoute>) {
 	val tabsBackStack = rememberSaveable(saver = TopLevelBackStack.saver(NAV_BAR_TAB_ROUTES)) {
 		TopLevelBackStack(SessionsRoute)
 	}
+	val modalEntryMetadata = rememberModalEntryTransitionMetadata()
+	val lateralEntryMetadata = rememberLateralEntryTransitionMetadata()
+
 	NavDisplay(
 		backStack = topLevelBackStack,
 		onBack = { topLevelBackStack.removeLastOrNull() },
@@ -47,7 +50,7 @@ fun TopNavDisplay(topLevelBackStack: SnapshotStateList<TopLevelRoute>) {
 					TabsNavDisplay(topLevelBackStack, tabsBackStack)
 				}
 
-				is CreateSessionRoute -> NavEntry(key, metadata = modalEntryTransitionMetadata) {
+				is CreateSessionRoute -> NavEntry(key, metadata = modalEntryMetadata) {
 					CreateSessionScreen(
 						initialDate = key.initialDate,
 						onNavigateBack = { topLevelBackStack.removeLastOrNull() }
@@ -61,7 +64,7 @@ fun TopNavDisplay(topLevelBackStack: SnapshotStateList<TopLevelRoute>) {
 					)
 				}
 
-				is SessionDetailsRoute -> NavEntry(key, metadata = lateralEntryTransitionMetadata) {
+				is SessionDetailsRoute -> NavEntry(key, metadata = lateralEntryMetadata) {
 					SessionDetailsScreen(
 						sessionId = key.sessionId,
 						onNavigateBack = { topLevelBackStack.removeLastOrNull() },
@@ -76,19 +79,19 @@ fun TopNavDisplay(topLevelBackStack: SnapshotStateList<TopLevelRoute>) {
 					)
 				}
 
-				is GeneralSettingsRoute -> NavEntry(key, metadata = lateralEntryTransitionMetadata) {
+				is GeneralSettingsRoute -> NavEntry(key, metadata = lateralEntryMetadata) {
 					GeneralSettingsScreen(
 						onNavigateBack = { topLevelBackStack.removeLastOrNull() }
 					)
 				}
 
-				is OpponentsRoute -> NavEntry(key, metadata = lateralEntryTransitionMetadata) {
+				is OpponentsRoute -> NavEntry(key, metadata = lateralEntryMetadata) {
 					OpponentsScreen(
 						onNavigateBack = { topLevelBackStack.removeLastOrNull() }
 					)
 				}
 
-				is DebugRoute -> NavEntry(key, metadata = lateralEntryTransitionMetadata) {
+				is DebugRoute -> NavEntry(key, metadata = lateralEntryMetadata) {
 					DebugScreen(onNavigateBack = { topLevelBackStack.removeLastOrNull() })
 				}
 			}

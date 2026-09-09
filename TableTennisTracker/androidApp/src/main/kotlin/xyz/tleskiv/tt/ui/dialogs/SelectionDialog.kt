@@ -16,7 +16,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.BasicAlertDialog
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Surface
@@ -34,7 +33,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import xyz.tleskiv.tt.R
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun <T> SelectionDialog(
 	title: String,
@@ -51,7 +49,7 @@ fun <T> SelectionDialog(
 
 	BasicAlertDialog(onDismissRequest = onDismissRequest) {
 		Surface(
-			shape = MaterialTheme.shapes.large,
+			shape = MaterialTheme.shapes.extraLarge,
 			color = MaterialTheme.colorScheme.surfaceContainerHigh
 		) {
 			Column(modifier = Modifier.padding(24.dp)) {

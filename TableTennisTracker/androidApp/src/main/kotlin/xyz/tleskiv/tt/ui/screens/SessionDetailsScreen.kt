@@ -19,11 +19,10 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.LoadingIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.LargeTopAppBar
+import androidx.compose.material3.LargeFlexibleTopAppBar
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -65,7 +64,6 @@ import xyz.tleskiv.tt.viewmodel.sessions.SessionDetailsScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.SessionDetailsScreenViewModel.MatchUiModel
 import xyz.tleskiv.tt.viewmodel.sessions.SessionsScreenViewModel.SessionUiModel
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SessionDetailsScreen(
 	sessionId: String,
@@ -91,7 +89,6 @@ fun SessionDetailsScreen(
 	}
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun LoadingScreen(onNavigateBack: () -> Unit) {
 	Scaffold(
@@ -103,12 +100,11 @@ private fun LoadingScreen(onNavigateBack: () -> Unit) {
 		}
 	) { padding ->
 		Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
-			CircularProgressIndicator()
+			LoadingIndicator()
 		}
 	}
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun ErrorScreen(error: String, onNavigateBack: () -> Unit) {
 	Scaffold(
@@ -135,7 +131,6 @@ private fun ErrorScreen(error: String, onNavigateBack: () -> Unit) {
 	}
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun SessionDetailsContent(
 	session: SessionUiModel,
@@ -168,23 +163,15 @@ private fun SessionDetailsContent(
 	Scaffold(
 		modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
 		topBar = {
-			LargeTopAppBar(
+			LargeFlexibleTopAppBar(
 				title = {
-					Column {
-						Text(
-							text = session.sessionType?.labelRes()?.let { stringResource(it) }
-								?: stringResource(R.string.session_default_title),
-							fontWeight = FontWeight.Bold
-						)
-						if (collapsedFraction < 0.7f) {
-							Text(
-								text = formatSessionDateFull(session.date),
-								style = MaterialTheme.typography.bodyMedium,
-								color = MaterialTheme.colorScheme.onSurfaceVariant
-							)
-						}
-					}
+					Text(
+						text = session.sessionType?.labelRes()?.let { stringResource(it) }
+							?: stringResource(R.string.session_default_title),
+						fontWeight = FontWeight.Bold
+					)
 				},
+				subtitle = { Text(formatSessionDateFull(session.date)) },
 				navigationIcon = { BackButton(onNavigateBack) },
 				actions = {
 					IconButton(onClick = onEdit) {
@@ -200,7 +187,7 @@ private fun SessionDetailsContent(
 						)
 					}
 				},
-				colors = TopAppBarDefaults.topAppBarColors(
+				colors = TopAppBarDefaults.largeTopAppBarColors(
 					containerColor = containerColor,
 					scrolledContainerColor = MaterialTheme.colorScheme.surface
 				),
@@ -297,7 +284,7 @@ private fun StatCard(
 ) {
 	Surface(
 		modifier = modifier,
-		shape = RoundedCornerShape(16.dp),
+		shape = MaterialTheme.shapes.medium,
 		color = MaterialTheme.colorScheme.surfaceContainerHigh,
 		tonalElevation = 2.dp
 	) {

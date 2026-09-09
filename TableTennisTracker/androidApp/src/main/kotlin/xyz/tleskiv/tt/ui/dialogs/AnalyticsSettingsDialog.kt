@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.BasicAlertDialog
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
@@ -21,7 +20,6 @@ import androidx.compose.ui.unit.dp
 import xyz.tleskiv.tt.R
 import xyz.tleskiv.tt.viewmodel.analytics.AnalyticsWidgetVisibility
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AnalyticsSettingsDialog(
 	visibility: AnalyticsWidgetVisibility,
@@ -33,7 +31,7 @@ fun AnalyticsSettingsDialog(
 ) {
 	BasicAlertDialog(onDismissRequest = onDismiss) {
 		Surface(
-			shape = MaterialTheme.shapes.large,
+			shape = MaterialTheme.shapes.extraLarge,
 			color = MaterialTheme.colorScheme.surfaceContainerHigh
 		) {
 			Column(modifier = Modifier.padding(24.dp)) {

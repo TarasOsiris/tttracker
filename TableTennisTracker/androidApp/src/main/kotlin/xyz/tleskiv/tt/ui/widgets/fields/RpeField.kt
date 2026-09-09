@@ -17,9 +17,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import xyz.tleskiv.tt.R
+import xyz.tleskiv.tt.ui.TestTags
 import xyz.tleskiv.tt.ui.bottomsheets.HelpBottomSheet
 import xyz.tleskiv.tt.ui.help.RpeHelpContent
 import xyz.tleskiv.tt.ui.widgets.FieldLabel
@@ -58,7 +60,7 @@ fun RpeField(rpeValue: Int, onRpeChange: (Int) -> Unit) {
 			onValueChange = { onRpeChange(it.roundToInt()) },
 			valueRange = MinRpeValue.toFloat()..MaxRpeValue.toFloat(),
 			steps = RpeSliderSteps,
-			modifier = Modifier.fillMaxWidth(),
+			modifier = Modifier.fillMaxWidth().testTag(TestTags.RPE_SLIDER),
 			colors = SliderDefaults.colors(
 				thumbColor = rpeColor,
 				activeTrackColor = rpeColor

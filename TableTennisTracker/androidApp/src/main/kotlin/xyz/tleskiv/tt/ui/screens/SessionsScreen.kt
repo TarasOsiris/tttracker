@@ -30,12 +30,12 @@ import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.ButtonGroupDefaults
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.ToggleButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -91,6 +91,8 @@ import org.koin.compose.viewmodel.koinViewModel
 import xyz.tleskiv.tt.R
 import xyz.tleskiv.tt.ui.TestTags
 import xyz.tleskiv.tt.ui.nav.navdisplay.TopAppBarState
+import xyz.tleskiv.tt.ui.widgets.AddFab
+import xyz.tleskiv.tt.ui.widgets.FabListBottomPadding
 import xyz.tleskiv.tt.ui.widgets.SessionListItem
 import xyz.tleskiv.tt.util.ext.displayText
 import xyz.tleskiv.tt.util.ext.formatDateHeader
@@ -248,8 +250,12 @@ fun SessionsScreen(
 			)
 		}
 
-		AddSessionFab(
+		AddFab(
 			onClick = { onAddSession(selectedDate) },
+			icon = ImageVector.vectorResource(R.drawable.ic_add),
+			contentDescription = R.string.action_add_session,
+			containerColor = MaterialTheme.colorScheme.primary,
+			contentColor = MaterialTheme.colorScheme.onPrimary,
 			modifier = Modifier.align(Alignment.BottomEnd).testTag(TestTags.SESSIONS_ADD)
 		)
 	}
@@ -298,63 +304,23 @@ fun WeekMonthToggle(
 	onToggle: () -> Unit,
 	modifier: Modifier = Modifier
 ) {
-	Row(
-		modifier = modifier
-			.clip(MaterialTheme.shapes.medium)
-			.background(MaterialTheme.colorScheme.surfaceVariant)
-	) {
-		SegmentButton(
-			text = stringResource(R.string.sessions_week_mode),
-			isSelected = isWeekMode,
-			onClick = { if (!isWeekMode) onToggle() },
-			tag = TestTags.CALENDAR_WEEK_MODE
-		)
-		SegmentButton(
-			text = stringResource(R.string.sessions_month_mode),
-			isSelected = !isWeekMode,
-			onClick = { if (isWeekMode) onToggle() },
-			tag = TestTags.CALENDAR_MONTH_MODE
-		)
-	}
-}
-
-@Composable
-private fun SegmentButton(
-	text: String,
-	isSelected: Boolean,
-	onClick: () -> Unit,
-	tag: String
-) {
-	val backgroundColor = if (isSelected) {
-		MaterialTheme.colorScheme.primary
-	} else {
-		MaterialTheme.colorScheme.surfaceVariant
-	}
-	val textColor = if (isSelected) {
-		MaterialTheme.colorScheme.onPrimary
-	} else {
-		MaterialTheme.colorScheme.onSurfaceVariant
-	}
-
-	Box(
-		modifier = Modifier
-			.clip(MaterialTheme.shapes.medium)
-			.background(backgroundColor)
-			.clickable(
-				interactionSource = remember { MutableInteractionSource() },
-				indication = null,
-				onClick = onClick
-			)
-			.padding(horizontal = 16.dp, vertical = 8.dp)
-			.testTag(tag),
-		contentAlignment = Alignment.Center
-	) {
-		Text(
-			text = text,
-			style = MaterialTheme.typography.labelMedium,
-			fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Normal,
-			color = textColor
-		)
+	Row(modifier = modifier, horizontalArrangement = Arrangement.spacedBy(2.dp)) {
+		ToggleButton(
+			checked = isWeekMode,
+			onCheckedChange = { if (!isWeekMode) onToggle() },
+			modifier = Modifier.testTag(TestTags.CALENDAR_WEEK_MODE),
+			shapes = ButtonGroupDefaults.connectedLeadingButtonShapes()
+		) {
+			Text(stringResource(R.string.sessions_week_mode))
+		}
+		ToggleButton(
+			checked = !isWeekMode,
+			onCheckedChange = { if (isWeekMode) onToggle() },
+			modifier = Modifier.testTag(TestTags.CALENDAR_MONTH_MODE),
+			shapes = ButtonGroupDefaults.connectedTrailingButtonShapes()
+		) {
+			Text(stringResource(R.string.sessions_month_mode))
+		}
 	}
 }
 
@@ -569,7 +535,7 @@ private fun SessionsListContent(
 	LazyColumn(
 		state = listState,
 		modifier = Modifier.fillMaxSize(),
-		contentPadding = PaddingValues(bottom = 88.dp)
+		contentPadding = PaddingValues(bottom = FabListBottomPadding)
 	) {
 		for (dayOffset in 0 until totalDays) {
 			val date = startDate.plus(DatePeriod(days = dayOffset))
@@ -692,20 +658,6 @@ private fun TodayButton(onClick: () -> Unit, modifier: Modifier = Modifier) {
 			style = MaterialTheme.typography.labelMedium,
 			fontWeight = FontWeight.SemiBold,
 			color = MaterialTheme.colorScheme.onSecondaryContainer
-		)
-	}
-}
-
-@Composable
-private fun AddSessionFab(onClick: () -> Unit, modifier: Modifier = Modifier) {
-	FloatingActionButton(
-		onClick = onClick,
-		modifier = modifier.padding(16.dp),
-		containerColor = MaterialTheme.colorScheme.primary
-	) {
-		Icon(
-			imageVector = ImageVector.vectorResource(R.drawable.ic_add),
-			contentDescription = stringResource(R.string.action_add_session)
 		)
 	}
 }

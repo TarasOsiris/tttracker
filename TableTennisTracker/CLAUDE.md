@@ -302,8 +302,11 @@ If it's not possible fallback to `expect`/`actual` pattern:
 - Never use `System.currentTimeMillis()` in commonApp module, use `nowMillis` from DateTimeUtils instead.
 - Never nest Scaffolds in the UI layer, use simple Column/Box instead.
 - FABs must use `navigationBarsPadding()` modifier to respect Android system navigation bars.
-- Lists (LazyColumn) with FABs need extra bottom contentPadding calculated as:
-  `WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding() + fabHeight(56.dp) + fabMargin(16.dp) * 2`
+- Lists (LazyColumn) with FABs need extra bottom contentPadding of `FabListBottomPadding`
+  (`ui/widgets/Fab.kt`), plus
+  `WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()` when the list is not
+  already inset by the tabs Scaffold. Use the shared `AddFab` rather than a bare
+  `FloatingActionButton`, so the container size and the list clearance stay in sync.
 - Never inline full package names, always use imports
 - In Android instrumentation tests, never hardcode UI strings - use `str(R.string.*)` from
   `androidTest/.../util/ComposeTestUtil.kt`, which resolves in the app's current language

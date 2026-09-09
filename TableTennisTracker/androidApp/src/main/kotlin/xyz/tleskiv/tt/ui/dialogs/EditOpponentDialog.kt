@@ -2,9 +2,8 @@ package xyz.tleskiv.tt.ui.dialogs
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.size
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.LoadingIndicator
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -12,13 +11,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import kotlin.uuid.Uuid
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.parameter.parametersOf
 import xyz.tleskiv.tt.R
 import xyz.tleskiv.tt.viewmodel.dialogs.EditOpponentDialogViewModel
-import kotlin.uuid.Uuid
 
 @Composable
 fun EditOpponentDialog(
@@ -39,7 +37,7 @@ fun EditOpponentDialog(
 					modifier = Modifier.fillMaxWidth(),
 					contentAlignment = Alignment.Center
 				) {
-					CircularProgressIndicator(modifier = Modifier.size(48.dp))
+					LoadingIndicator()
 				}
 			} else {
 				OpponentForm(

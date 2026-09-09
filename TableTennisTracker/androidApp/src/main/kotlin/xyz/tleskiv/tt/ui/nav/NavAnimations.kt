@@ -3,90 +3,70 @@ package xyz.tleskiv.tt.ui.nav
 import androidx.compose.animation.AnimatedContentTransitionScope.SlideDirection
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
-import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.FiniteAnimationSpec
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.unit.IntOffset
 import androidx.navigation3.ui.NavDisplay
 
 private fun animationMetadata(
 	forwardDirection: SlideDirection,
-	forwardSlideInMillis: Int,
-	forwardSlideOutMillis: Int,
-	forwardFadeInMillis: Int,
-	forwardFadeOutMillis: Int,
 	popDirection: SlideDirection,
-	popSlideInMillis: Int,
-	popSlideOutMillis: Int,
-	popFadeInMillis: Int,
-	popFadeOutMillis: Int
+	slideSpec: FiniteAnimationSpec<IntOffset>,
+	fadeSpec: FiniteAnimationSpec<Float>
 ): Map<String, Any> {
 	val forwardSpec = NavDisplay.transitionSpec {
-		val enter = slideIntoContainer(
-			forwardDirection,
-			animationSpec = tween(durationMillis = forwardSlideInMillis)
-		) + fadeIn(animationSpec = tween(durationMillis = forwardFadeInMillis))
-		val exit = slideOutOfContainer(
-			forwardDirection,
-			animationSpec = tween(durationMillis = forwardSlideOutMillis)
-		) + fadeOut(animationSpec = tween(durationMillis = forwardFadeOutMillis))
+		val enter = slideIntoContainer(forwardDirection, animationSpec = slideSpec) + fadeIn(animationSpec = fadeSpec)
+		val exit = slideOutOfContainer(forwardDirection, animationSpec = slideSpec) + fadeOut(animationSpec = fadeSpec)
 		enter togetherWith exit
 	}
 
 	val popSpec = NavDisplay.popTransitionSpec {
-		val enter = slideIntoContainer(
-			popDirection,
-			animationSpec = tween(durationMillis = popSlideInMillis)
-		) + fadeIn(animationSpec = tween(durationMillis = popFadeInMillis))
-		val exit = slideOutOfContainer(
-			popDirection,
-			animationSpec = tween(durationMillis = popSlideOutMillis)
-		) + fadeOut(animationSpec = tween(durationMillis = popFadeOutMillis))
+		val enter = slideIntoContainer(popDirection, animationSpec = slideSpec) + fadeIn(animationSpec = fadeSpec)
+		val exit = slideOutOfContainer(popDirection, animationSpec = slideSpec) + fadeOut(animationSpec = fadeSpec)
 		enter togetherWith exit
 	}
 
 	val predictivePopSpec = NavDisplay.predictivePopTransitionSpec { _ ->
-		val enter = slideIntoContainer(
-			popDirection,
-			animationSpec = tween(durationMillis = popSlideInMillis)
-		) + fadeIn(animationSpec = tween(durationMillis = popFadeInMillis))
-		val exit = slideOutOfContainer(
-			popDirection,
-			animationSpec = tween(durationMillis = popSlideOutMillis)
-		) + fadeOut(animationSpec = tween(durationMillis = popFadeOutMillis))
+		val enter = slideIntoContainer(popDirection, animationSpec = slideSpec) + fadeIn(animationSpec = fadeSpec)
+		val exit = slideOutOfContainer(popDirection, animationSpec = slideSpec) + fadeOut(animationSpec = fadeSpec)
 		enter togetherWith exit
 	}
 
 	return forwardSpec + popSpec + predictivePopSpec
 }
 
-// Generic metadata for modal-style entries that slide up from the bottom and down when popped.
-val modalEntryTransitionMetadata = animationMetadata(
-	forwardDirection = SlideDirection.Up,
-	forwardSlideInMillis = 320,
-	forwardSlideOutMillis = 260,
-	forwardFadeInMillis = 160,
-	forwardFadeOutMillis = 140,
-	popDirection = SlideDirection.Down,
-	popSlideInMillis = 260,
-	popSlideOutMillis = 220,
-	popFadeInMillis = 140,
-	popFadeOutMillis = 120
-)
+// Modal-style entries slide up from the bottom and back down when popped.
+@Composable
+fun rememberModalEntryTransitionMetadata(): Map<String, Any> {
+	val motionScheme = MaterialTheme.motionScheme
+	return remember(motionScheme) {
+		animationMetadata(
+			forwardDirection = SlideDirection.Up,
+			popDirection = SlideDirection.Down,
+			slideSpec = motionScheme.defaultSpatialSpec(),
+			fadeSpec = motionScheme.defaultEffectsSpec()
+		)
+	}
+}
 
-// Generic metadata for lateral entries that slide in from the side (used for details/settings screens).
-val lateralEntryTransitionMetadata = animationMetadata(
-	forwardDirection = SlideDirection.Left,
-	forwardSlideInMillis = 300,
-	forwardSlideOutMillis = 240,
-	forwardFadeInMillis = 140,
-	forwardFadeOutMillis = 120,
-	popDirection = SlideDirection.Right,
-	popSlideInMillis = 240,
-	popSlideOutMillis = 220,
-	popFadeInMillis = 120,
-	popFadeOutMillis = 100
-)
+// Lateral entries slide in from the side, used for details and settings screens.
+@Composable
+fun rememberLateralEntryTransitionMetadata(): Map<String, Any> {
+	val motionScheme = MaterialTheme.motionScheme
+	return remember(motionScheme) {
+		animationMetadata(
+			forwardDirection = SlideDirection.Left,
+			popDirection = SlideDirection.Right,
+			slideSpec = motionScheme.fastSpatialSpec(),
+			fadeSpec = motionScheme.defaultEffectsSpec()
+		)
+	}
+}
 
 val instantTransitionMetadata = run {
 	val emptyTransition = EnterTransition.None togetherWith ExitTransition.None

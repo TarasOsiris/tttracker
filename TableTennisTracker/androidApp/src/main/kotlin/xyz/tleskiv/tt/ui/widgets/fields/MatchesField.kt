@@ -9,7 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -39,7 +39,7 @@ fun MatchesField(
 			verticalAlignment = Alignment.CenterVertically
 		) {
 			FieldLabel(R.string.label_matches_optional)
-			OutlinedButton(onClick = onAddMatch, modifier = Modifier.testTag(TestTags.SESSION_FORM_ADD_MATCH)) {
+			FilledTonalButton(onClick = onAddMatch, modifier = Modifier.testTag(TestTags.SESSION_FORM_ADD_MATCH)) {
 				Icon(
 					imageVector = ImageVector.vectorResource(R.drawable.ic_add),
 					contentDescription = null,

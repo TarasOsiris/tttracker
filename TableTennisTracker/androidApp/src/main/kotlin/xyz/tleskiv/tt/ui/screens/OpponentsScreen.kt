@@ -20,17 +20,11 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -46,6 +40,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import kotlin.uuid.Uuid
 import org.koin.compose.viewmodel.koinViewModel
 import xyz.tleskiv.tt.R
 import xyz.tleskiv.tt.data.model.Opponent
@@ -54,9 +49,11 @@ import xyz.tleskiv.tt.ui.dialogs.AddOpponentDialog
 import xyz.tleskiv.tt.ui.dialogs.DeleteConfirmationDialog
 import xyz.tleskiv.tt.ui.dialogs.EditOpponentDialog
 import xyz.tleskiv.tt.ui.dialogs.InfoDialog
+import xyz.tleskiv.tt.ui.widgets.AddFab
 import xyz.tleskiv.tt.ui.widgets.ContentCard
+import xyz.tleskiv.tt.ui.widgets.FabListBottomPadding
+import xyz.tleskiv.tt.ui.widgets.SimpleTopAppBar
 import xyz.tleskiv.tt.viewmodel.settings.OpponentsScreenViewModel
-import kotlin.uuid.Uuid
 
 @Composable
 fun OpponentsScreen(
@@ -122,15 +119,13 @@ fun OpponentsScreen(
 				}
 			} else {
 				val navBarPadding = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()
-				val fabHeight = 56.dp
-				val fabMargin = 16.dp
 				LazyColumn(
 					modifier = Modifier.fillMaxSize(),
 					contentPadding = PaddingValues(
 						start = 16.dp,
 						end = 16.dp,
 						top = 16.dp,
-						bottom = navBarPadding + fabHeight + fabMargin * 2
+						bottom = navBarPadding + FabListBottomPadding
 					),
 					verticalArrangement = Arrangement.spacedBy(12.dp)
 				) {
@@ -145,58 +140,31 @@ fun OpponentsScreen(
 			}
 		}
 
-		FloatingActionButton(
+		AddFab(
 			onClick = { showAddDialog = true },
-			modifier = Modifier
-				.align(Alignment.BottomEnd)
-				.navigationBarsPadding()
-				.padding(16.dp),
+			icon = Icons.Default.Add,
+			contentDescription = R.string.action_add_opponent,
 			containerColor = MaterialTheme.colorScheme.primaryContainer,
-			contentColor = MaterialTheme.colorScheme.onPrimaryContainer
-		) {
-			Icon(
-				imageVector = Icons.Default.Add,
-				contentDescription = stringResource(R.string.action_add_opponent)
-			)
-		}
+			contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+			modifier = Modifier.align(Alignment.BottomEnd).navigationBarsPadding()
+		)
 	}
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun OpponentsTopBar(onNavigateBack: () -> Unit, onInfoClick: () -> Unit) {
-	Surface(
-		color = MaterialTheme.colorScheme.surface,
-		tonalElevation = 2.dp
-	) {
-		TopAppBar(
-			title = {
-				Text(
-					text = stringResource(R.string.title_opponents),
-					style = MaterialTheme.typography.titleLarge
+	SimpleTopAppBar(
+		title = R.string.title_opponents,
+		actions = {
+			IconButton(onClick = onInfoClick) {
+				Icon(
+					imageVector = ImageVector.vectorResource(R.drawable.ic_help),
+					contentDescription = stringResource(R.string.help_icon_content_description)
 				)
-			},
-			navigationIcon = {
-				IconButton(onClick = onNavigateBack) {
-					Icon(
-						imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-						contentDescription = stringResource(R.string.action_back)
-					)
-				}
-			},
-			actions = {
-				IconButton(onClick = onInfoClick) {
-					Icon(
-						imageVector = ImageVector.vectorResource(R.drawable.ic_help),
-						contentDescription = stringResource(R.string.help_icon_content_description)
-					)
-				}
-			},
-			colors = TopAppBarDefaults.topAppBarColors(
-				containerColor = MaterialTheme.colorScheme.surface
-			)
-		)
-	}
+			}
+		},
+		onNavigateBack = onNavigateBack
+	)
 }
 
 @Composable

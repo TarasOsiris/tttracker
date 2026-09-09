@@ -14,6 +14,7 @@ kotlin {
 			"kotlin.time.ExperimentalTime",
 			"kotlin.uuid.ExperimentalUuidApi",
 			"androidx.compose.material3.ExperimentalMaterial3Api",
+			"androidx.compose.material3.ExperimentalMaterial3ExpressiveApi",
 			"androidx.compose.foundation.layout.ExperimentalLayoutApi",
 			"androidx.compose.animation.ExperimentalSharedTransitionApi",
 		)
@@ -47,7 +48,7 @@ android {
 		applicationId = "xyz.tleskiv.tt"
 		minSdk = libs.versions.android.minSdk.get().toInt()
 		targetSdk = libs.versions.android.targetSdk.get().toInt()
-		versionCode = 14
+		versionCode = 15
 		versionName = "1.3.0"
 		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 		// Routes instrumentation output through the test-services provider, which writes to

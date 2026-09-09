@@ -75,6 +75,20 @@ val surfaceContainerDark = Color(0xFF1D2024)
 val surfaceContainerHighDark = Color(0xFF282A2F)
 val surfaceContainerHighestDark = Color(0xFF33353A)
 
+// Fixed roles hold one value across both schemes, so they carry no Light/Dark suffix.
+val primaryFixed = Color(0xFFD6E3FF)
+val primaryFixedDim = Color(0xFFAAC7FF)
+val onPrimaryFixed = Color(0xFF001B3E)
+val onPrimaryFixedVariant = Color(0xFF284777)
+val secondaryFixed = Color(0xFFDAE2F9)
+val secondaryFixedDim = Color(0xFFBEC6DC)
+val onSecondaryFixed = Color(0xFF131C2B)
+val onSecondaryFixedVariant = Color(0xFF3E4759)
+val tertiaryFixed = Color(0xFFFAD8FD)
+val tertiaryFixedDim = Color(0xFFDDBCE0)
+val onTertiaryFixed = Color(0xFF28132E)
+val onTertiaryFixedVariant = Color(0xFF573E5C)
+
 // Semantic colours are defined once in :core so the native iOS UI reads the same values.
 private fun brand(argb: Long) = Color(argb.toULong() shl 32)
 
