@@ -15,5 +15,7 @@ class TTApplication : Application() {
 			androidLogger()
 			androidContext(this@TTApplication)
 		}
+
+		PurchasesSetup.configure(this)
 	}
 }

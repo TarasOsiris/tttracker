@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B089B92A4EFDBA794B6A161A /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 22FA0F01F1CE22FBE08B0AF0 /* Sentry */; };
 		D0DEDD61BF8A2F8FA7FD6311 /* PostHog in Frameworks */ = {isa = PBXBuildFile; productRef = E718318B8568793E9F9FD91A /* PostHog */; };
+		C4A17E2B90D3415FA6E10B77 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = F31C08D5B7A24E6C93520A14 /* RevenueCat */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 			files = (
 				D0DEDD61BF8A2F8FA7FD6311 /* PostHog in Frameworks */,
 				B089B92A4EFDBA794B6A161A /* Sentry in Frameworks */,
+				C4A17E2B90D3415FA6E10B77 /* RevenueCat in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +121,7 @@
 			packageProductDependencies = (
 				E718318B8568793E9F9FD91A /* PostHog */,
 				22FA0F01F1CE22FBE08B0AF0 /* Sentry */,
+				F31C08D5B7A24E6C93520A14 /* RevenueCat */,
 			);
 			productName = iosApp;
 			productReference = B1E2E9895BE87D7DED7939AD /* TableTennisTracker.app */;
@@ -199,6 +202,7 @@
 			packageReferences = (
 				352C7C0BB90A66C20FC600A2 /* XCRemoteSwiftPackageReference "posthog-ios" */,
 				6019B9C865509F0291F3D2E3 /* XCRemoteSwiftPackageReference "sentry-cocoa" */,
+				7D6B4F1A25E84C0BA9D3F602 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D75355414D47E19118D23E01 /* Products */;
@@ -540,6 +544,14 @@
 				minimumVersion = 8.57.3;
 			};
 		};
+		7D6B4F1A25E84C0BA9D3F602 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.88.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -552,6 +564,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 352C7C0BB90A66C20FC600A2 /* XCRemoteSwiftPackageReference "posthog-ios" */;
 			productName = PostHog;
+		};
+		F31C08D5B7A24E6C93520A14 /* RevenueCat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7D6B4F1A25E84C0BA9D3F602 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			productName = RevenueCat;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -4,6 +4,7 @@ import SwiftUI
 struct iOSApp: App {
     init() {
         AppBootstrap.ensureInitialised()
+        SwiftPurchases.configure()
     }
 
     var body: some Scene {

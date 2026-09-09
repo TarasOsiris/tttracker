@@ -22,8 +22,10 @@ Open `iosApp/iosApp.xcodeproj` in Xcode and build/run from there.
 The app uses **Swift Package Manager**, not CocoaPods — there is no `.xcworkspace`, and every
 `xcodebuild` invocation targets `-project iosApp/iosApp.xcodeproj`. The Kotlin/Native
 `Shared.framework` is produced by the target's `Compile Kotlin Framework` build phase, which runs
-`./gradlew :core:embedAndSignAppleFrameworkForXcode`. PostHog and Sentry are SwiftPM
-dependencies used only from Swift.
+`./gradlew :core:embedAndSignAppleFrameworkForXcode`. PostHog, Sentry and RevenueCat are SwiftPM
+dependencies used only from Swift. RevenueCat is configured at launch in
+`iosApp/iosApp/Platform/SwiftPurchases.swift` for dashboard reporting only — no entitlements,
+offerings or paywalls are wired up.
 
 Because the Kotlin framework links no Apple SDKs of its own, it can be checked on its own without
 Xcode:
@@ -257,6 +259,16 @@ interface AnalyticsService {
   SwiftPM package and passed into `doInitApp(...)`, so event properties are supported
 
 **Usage:** Inject `AnalyticsService` into ViewModels and call tracking methods.
+
+## Purchases with RevenueCat
+
+RevenueCat is initialised on both clients purely so the dashboard reports active users — nothing
+reads entitlements, offerings or paywalls yet, and there is no shared Kotlin abstraction over it.
+
+- Android: `PurchasesSetup.configure(...)` from `TTApplication.onCreate`, key in the
+  `REVENUECAT_API_KEY` BuildConfig field
+- iOS: `SwiftPurchases.configure()` from `iOSApp.init`, key in the `REVENUECAT_API_KEY` Info.plist
+  entry
 
 ## Platform-Specific Code
 

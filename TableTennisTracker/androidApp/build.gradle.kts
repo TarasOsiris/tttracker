@@ -48,7 +48,7 @@ android {
 		applicationId = "xyz.tleskiv.tt"
 		minSdk = libs.versions.android.minSdk.get().toInt()
 		targetSdk = libs.versions.android.targetSdk.get().toInt()
-		versionCode = 15
+		versionCode = 16
 		versionName = "1.3.0"
 		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 		// Routes instrumentation output through the test-services provider, which writes to
@@ -66,6 +66,12 @@ android {
 			"String",
 			"POSTHOG_API_KEY",
 			"\"${System.getenv("POSTHOG_API_KEY") ?: "phc_c48wFADznJ68OBUeAcQLdKAf5K0GUNxMjf4xXhoopde"}\""
+		)
+
+		buildConfigField(
+			"String",
+			"REVENUECAT_API_KEY",
+			"\"goog_kkkmRpyXxLLFUrnkDUYiwMaxOHb\""
 		)
 	}
 
@@ -140,6 +146,9 @@ dependencies {
 
 	// PostHog Analytics
 	implementation(libs.posthog.android)
+
+	// RevenueCat
+	implementation(libs.revenuecat.purchases)
 
 	implementation(libs.sqldelight.driver.android)
 

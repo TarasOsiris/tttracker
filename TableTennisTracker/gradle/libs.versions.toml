@@ -28,6 +28,7 @@ koalaplot = "0.10.4"
 sentryKmp = "0.27.0"
 sentryAndroid = "6.21.0"
 posthogAndroid = "3.61.1"
+revenuecat = "10.20.0"
 
 androidx-lifecycle = "2.11.0"
 androidx-nav3 = "1.1.1"
@@ -95,6 +96,7 @@ androidx-lifecycle-viewmodel-nav3 = { module = "androidx.lifecycle:lifecycle-vie
 kmp-lifecycle-viewmodel = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
 
 posthog-android = { module = "com.posthog:posthog-android", version.ref = "posthogAndroid" }
+revenuecat-purchases = { module = "com.revenuecat.purchases:purchases", version.ref = "revenuecat" }
 sentry-kmp = { module = "io.sentry:sentry-kotlin-multiplatform", version.ref = "sentryKmp" }
 
 [plugins]
