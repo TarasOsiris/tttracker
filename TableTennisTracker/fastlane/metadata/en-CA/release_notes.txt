@@ -1,1 +1,1 @@
-The app now follows your iPhone language automatically - no more setting it by hand. The analytics screen is fully translated as well: weekly training time, match results and widget names.
+The iPhone and iPad app is now fully native, so it starts faster and scrolls more smoothly. iPad gets a proper two-column layout — pick a session on the left, see its details on the right. Also fixed: settings rows that did nothing when tapped, and text that rendered in the wrong font.

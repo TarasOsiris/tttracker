@@ -1,1 +1,1 @@
-Aplikasi kini otomatis mengikuti bahasa iPhone, tanpa perlu mengubahnya manual. Layar analitik juga sudah diterjemahkan sepenuhnya: waktu latihan mingguan, hasil pertandingan, dan nama widget.
+Aplikasi iPhone dan iPad kini sepenuhnya native, jadi terbuka lebih cepat dan menggulir lebih mulus. Di iPad ada tata letak dua kolom sungguhan: pilih sesi di kiri, lihat detailnya di kanan. Juga diperbaiki: baris pengaturan yang tidak merespons sentuhan, dan teks yang tampil dengan font keliru.

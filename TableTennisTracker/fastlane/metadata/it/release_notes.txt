@@ -1,1 +1,1 @@
-L'app ora adotta automaticamente la lingua dell'iPhone, senza doverla impostare a mano. Anche la schermata delle statistiche è completamente tradotta: tempo di allenamento settimanale, risultati delle partite e nomi dei widget.
+L'app per iPhone e iPad è ora completamente nativa: si avvia più in fretta e scorre in modo più fluido. Su iPad arriva un vero layout a due colonne: scegli una sessione a sinistra e vedi i dettagli a destra. Corretti anche: le righe delle impostazioni che non rispondevano al tocco e il testo con il font sbagliato.

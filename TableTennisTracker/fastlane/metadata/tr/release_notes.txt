@@ -1,1 +1,1 @@
-Uygulama artık iPhone'un dilini otomatik olarak kullanıyor; elle ayarlamaya gerek yok. Analiz ekranı da tamamen çevrildi: haftalık antrenman süresi, maç sonuçları ve bileşen adları.
+iPhone ve iPad uygulaması artık tamamen yerel: daha hızlı açılıyor ve daha akıcı kayıyor. iPad'de gerçek bir iki sütunlu düzen var — solda bir antrenman seçin, ayrıntılarını sağda görün. Ayrıca düzeltildi: dokunulduğunda tepki vermeyen ayar satırları ve yanlış yazı tipiyle görünen metin.
