@@ -10,11 +10,13 @@ struct GeneralSettingsScreen: View {
                     ForEach(ThemeMode.allCases) { Text($0.label).tag($0) }
                 }
                 .pickerStyle(.navigationLink)
+                .accessibilityIdentifier("general.theme")
 
                 Picker(L.actionLanguage, selection: model.appLocale.binding) {
                     ForEach(LocaleOption.all) { Text($0.displayName).tag($0) }
                 }
                 .pickerStyle(.navigationLink)
+                .accessibilityIdentifier("general.language")
             }
 
             Section(L.settingsSectionCalendar) {

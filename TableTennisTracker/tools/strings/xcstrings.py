@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Project the Compose string resources onto an iOS String Catalog.
+"""Project the Android string resources onto an iOS String Catalog.
 
-`values*/strings.xml` stays the translation source of truth while the Compose UI ships — the
-`/translate` command keeps adding keys there — so this is a repeated projection, not a one-off
-migration. Run it after translating; `--check` fails if the catalog has drifted.
+`androidApp/src/main/res/values*/strings.xml` is the translation source of truth for both
+platforms — the `/translate` command keeps adding keys there — so this is a repeated projection,
+not a one-off migration. Run it after translating; `--check` fails if the catalog has drifted.
 
 Deliberately stdlib-only, like .claude/skills/ship/play_upload.py.
 """
@@ -16,7 +16,7 @@ import xml.etree.ElementTree as ElementTree
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-RESOURCES = REPO_ROOT / "composeApp/src/commonMain/composeResources"
+RESOURCES = REPO_ROOT / "androidApp/src/main/res"
 CATALOG = REPO_ROOT / "iosApp/iosApp/Resources/Shared.xcstrings"
 ACCESSORS = REPO_ROOT / "iosApp/iosApp/Generated/AppStrings.swift"
 
@@ -26,7 +26,7 @@ SOURCE_LANGUAGE = "en"
 # CFBundleLocalizations already use.
 LANGUAGE_OVERRIDES = {"zh-rCN": "zh-CN"}
 
-# Unreferenced anywhere in Kotlin. Kept in strings.xml (the Compose UI owns that file) but not
+# Unreferenced anywhere in Kotlin. Kept in strings.xml (the Android UI owns that file) but not
 # carried onto iOS.
 DEAD_KEYS = {
     "action_more", "action_search", "analytics_create_test_session", "analytics_last_created",

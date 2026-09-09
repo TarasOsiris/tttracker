@@ -2,21 +2,17 @@
 
 ## Project Overview
 
-Table Tennis Tracker is a Kotlin Multiplatform (KMP) application targeting Android, iOS, Desktop (JVM), and Server. It uses Compose Multiplatform for shared UI across platforms and Ktor for the backend server.
+Table Tennis Tracker is a Kotlin Multiplatform (KMP) application targeting Android, iOS and a Ktor
+server. Each app ships a **native UI** — Jetpack Compose on Android, SwiftUI on iOS — over shared
+Kotlin business logic in `:core`. There is no Compose Multiplatform and no shared UI layer.
 
 ## Build Commands
 
 ### Android
 
 ```bash
-./gradlew :composeApp:assembleDebug          # Build debug APK
+./gradlew :androidApp:assembleDebug          # Build debug APK
 ./gradlew :androidApp:installDebug           # Install on connected device
-```
-
-### Desktop (JVM)
-
-```bash
-./gradlew :composeApp:run                    # Run desktop app
 ```
 
 ### iOS
@@ -26,14 +22,14 @@ Open `iosApp/iosApp.xcodeproj` in Xcode and build/run from there.
 The app uses **Swift Package Manager**, not CocoaPods — there is no `.xcworkspace`, and every
 `xcodebuild` invocation targets `-project iosApp/iosApp.xcodeproj`. The Kotlin/Native
 `Shared.framework` is produced by the target's `Compile Kotlin Framework` build phase, which runs
-`./gradlew :composeApp:embedAndSignAppleFrameworkForXcode`. PostHog and Sentry are SwiftPM
+`./gradlew :core:embedAndSignAppleFrameworkForXcode`. PostHog and Sentry are SwiftPM
 dependencies used only from Swift.
 
 Because the Kotlin framework links no Apple SDKs of its own, it can be checked on its own without
 Xcode:
 
 ```bash
-./gradlew :composeApp:linkReleaseFrameworkIosArm64
+./gradlew :core:linkReleaseFrameworkIosArm64
 ```
 
 ### Server
@@ -48,12 +44,13 @@ Xcode:
 ```bash
 ./gradlew test                               # Run all tests
 ./gradlew :server:test                       # Run server tests only
-./gradlew :composeApp:test                   # Run UI tests only
+./gradlew :androidApp:testDebugUnitTest      # Run Android unit tests only
+./gradlew :androidApp:connectedDebugAndroidTest  # Run instrumentation tests (needs a device)
 ```
 
 ## Module Architecture
 
-The project consists of 5 modules with clear separation of concerns:
+The project consists of 4 modules with clear separation of concerns:
 
 ### core
 
@@ -61,7 +58,10 @@ All business logic, with **no dependency on Compose**: database, repositories, s
 ViewModels, DI wiring, and the platform-abstraction interfaces. A native (SwiftUI) iOS UI is meant
 to be buildable on top of this module alone, so keep it Compose-free.
 
-- **Platform targets:** Android Library, iOS, JVM
+- **Platform targets:** Android Library, iOS
+- **iOS framework:** produces `Shared.framework`, which re-exports `:shared` via `export(...)` in
+  the framework binary. Kotlin/Native only puts the framework module's own declarations in the
+  generated ObjC header, so anything else Swift needs must be exported explicitly.
 - **Database:** SQLDelight `AppDatabase`, schema at
   `core/src/commonMain/sqldelight/xyz/tleskiv/tt/db/AppDatabase.sq`, drivers per platform
 - **DI:** Koin (`koin-core`, `koin-core-viewmodel` — the Compose-free ViewModel DSL)
@@ -71,25 +71,21 @@ to be buildable on top of this module alone, so keep it Compose-free.
 - **Swift interop:** `core/src/iosMain/kotlin/xyz/tleskiv/tt/util/FlowObserver.kt` — `Flow.observe {}`
   returning a `Cancellable`, since Swift cannot collect flows directly
 
-### composeApp
-Shared Compose UI for Android, iOS, and Desktop. This is a **multiplatform library** (not an application module).
-It depends on `:core` and contains only UI.
+### androidApp
 
-- **Platform targets:** Android Library, iOS framework, JVM
-- **UI Framework:** Compose Multiplatform with Material3
+The Android application: native Jetpack Compose UI in `androidApp/src/main/kotlin/xyz/tleskiv/tt/ui`,
+Android resources in `androidApp/src/main/res`, previews, and instrumentation tests. Depends on
+`:core` and `:shared`.
+
+- **UI Framework:** Jetpack Compose with Material3
 - **DI:** Koin for Compose (`koin-compose`, `koin-compose-viewmodel`)
-- **Navigation:** Compose Navigation 3
-  Multiplatform: https://kotlinlang.org/docs/multiplatform/compose-navigation-3.html
-- **iOS framework:** produces `Shared.framework`, which re-exports `:core` and `:shared` via
-  `export(...)` in the framework binary. Kotlin/Native only puts the framework module's own
-  declarations in the generated ObjC header, so anything Swift needs must be exported explicitly.
-- **Entry points:**
-    - Desktop: `composeApp/src/jvmMain/kotlin/xyz/tleskiv/tt/main.kt`
-    - iOS: `composeApp/src/iosMain/kotlin/xyz/tleskiv/tt/MainViewController.kt` (Koin is started
-      from `iosApp/iosApp/iOSApp.swift`, not from the composition)
-    - Android: Via `androidApp` module's MainActivity
+- **Navigation:** Navigation 3 (`androidx.navigation3`)
+- **Application class:** `TTApplication.kt` — initializes Koin with the Android context
+- **MainActivity:** a `ComponentActivity` that calls `setContent { App() }`
+- Min SDK 24, Target SDK 36. Core library desugaring is on, because the calendar library is
+  `java.time`-based.
 
-#### Architecture (lives in `:core`, consumed by `:composeApp`)
+#### Architecture (lives in `:core`, consumed by `:androidApp`)
 
 **Pattern:** MVVM + Clean Architecture with layered separation:
 
@@ -150,14 +146,6 @@ UI Layer (Screens) → ViewModel Layer → Service Layer → Repository Layer �
 - Pattern: `fun SourceModel.toTargetModel(): TargetModel = TargetModel(...)`
 - Examples: `Match.toPendingMatch()`, `PendingMatch.toMatchInput()`
 
-### androidApp
-
-Android application entry point that depends on `:composeApp` and `:core`.
-
-- **Application class:** `TTApplication.kt` - Initializes Koin with Android context
-- **MainActivity:** Simple ComponentActivity that loads the shared Compose app
-- Min SDK 24, Target SDK 36
-
 ### server
 
 Ktor backend server (JVM only).
@@ -176,7 +164,7 @@ Ktor backend server (JVM only).
 
 ### shared
 
-Shared data models across all platforms (Android, iOS, Desktop, Server).
+Shared data models across all platforms (Android, iOS, Server).
 
 - **Pattern:** Kotlinx serialization-compatible data classes
 - **Example:** `User.kt` - `@Serializable data class`
@@ -267,7 +255,6 @@ interface AnalyticsService {
 - Android: `AndroidAnalyticsService` - Full PostHog SDK support
 - iOS: `SwiftAnalyticsService` in `iosApp/iosApp/` - implemented in **Swift** against the PostHog
   SwiftPM package and passed into `doInitApp(...)`, so event properties are supported
-- JVM/Desktop: `JvmAnalyticsService` - No-op implementation
 
 **Usage:** Inject `AnalyticsService` into ViewModels and call tracking methods.
 
@@ -283,11 +270,11 @@ SDK: it keeps the Kotlin framework free of Apple dependencies so it links standa
 
 If it's not possible fallback to `expect`/`actual` pattern:
 1. Define `expect` declaration in `commonMain`
-2. Provide `actual` implementation in platform-specific source sets (`androidMain`, `iosMain`, `jvmMain`)
+2. Provide `actual` implementation in platform-specific source sets (`androidMain`, `iosMain`)
 
 # Other instructions
 
-- All colors must be defined in `composeApp/src/commonMain/kotlin/xyz/tleskiv/tt/ui/theme/Color.kt`.
+- All colors must be defined in `androidApp/src/main/kotlin/xyz/tleskiv/tt/ui/theme/Color.kt`.
   Never use hardcoded `Color(0xFF...)` values directly in UI code.
 - Do not commit or push changes unless explicitly asked to do so.
 - ViewModel state must be `StateFlow`/`MutableStateFlow`, never Compose `mutableStateOf`. `:core`
@@ -297,12 +284,14 @@ If it's not possible fallback to `expect`/`actual` pattern:
   delegation working over a flow; treat it as a transitional shim from the Compose-state migration —
   new screens are better served by a single `StateFlow<UiState>` plus intent functions, which is
   also what a SwiftUI UI can consume.
-- Business logic goes in `:core`; only Compose UI goes in `:composeApp`. Anything using
-  `org.jetbrains.compose.resources` (`Res.string.*`, `StringResource`) is UI and stays in
-  `:composeApp`.
+- Business logic goes in `:core`, which must stay Compose-free so the SwiftUI app can build on it
+  alone; only Compose UI goes in `:androidApp`. Anything using `R.string.*` / `@StringRes` is UI.
+- UI strings come from Android resources: `stringResource(R.string.x)` in composables,
+  `context.getString(...)` elsewhere. A resource id crossing a function boundary is an `Int`
+  annotated `@StringRes` / `@DrawableRes` (`@get:` on an interface property).
 - Kotlin cannot smart-cast a nullable `val` declared in another module, so a nullable property of a
   `:core` type (`session.notes`, `opponent.club`) needs a local `val` before a null check when read
-  from `:composeApp`. This is a workaround, not a target state — where the property is on a `:core`
+  from `:androidApp`. This is a workaround, not a target state — where the property is on a `:core`
   UI model the better fix is for the mapper to normalise it (non-null with an empty default).
 - Do not comment on the code unless absolutely necessary.
 - In composable screens, extract reusable UI blocks into named composable functions instead of
@@ -311,12 +300,13 @@ If it's not possible fallback to `expect`/`actual` pattern:
 - for clock use `kotlin.time.Clock`
 - Use docs folder in the root for any additional functional documentation needed
 - Never use `System.currentTimeMillis()` in commonApp module, use `nowMillis` from DateTimeUtils instead.
-- Never nest Scaffolds in composeApp module, use simple Column/Box instead.
+- Never nest Scaffolds in the UI layer, use simple Column/Box instead.
 - FABs must use `navigationBarsPadding()` modifier to respect Android system navigation bars.
 - Lists (LazyColumn) with FABs need extra bottom contentPadding calculated as:
   `WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding() + fabHeight(56.dp) + fabMargin(16.dp) * 2`
 - Never inline full package names, always use imports
-- In Android instrumentation tests, never hardcode UI strings - use Compose resources via `Res.string.*` with `runBlocking { getString(res) }`
+- In Android instrumentation tests, never hardcode UI strings - use `str(R.string.*)` from
+  `androidTest/.../util/ComposeTestUtil.kt`, which resolves in the app's current language
 - After modifying Android instrumentation tests, always run them to verify: `./gradlew :androidApp:connectedDebugAndroidTest`
 - In tests, never use hardcoded values inline - always extract values into named variables (e.g.,
   `val expectedCount = 1` instead of `assertEquals(1, list.size)`)
@@ -330,11 +320,16 @@ If it's not possible fallback to `expect`/`actual` pattern:
 
 ## Localization
 
-The project uses Compose Multiplatform resources for translations.
+The project uses Android string resources for translations. They are also the source of truth for
+iOS: `tools/strings/xcstrings.py` projects them onto `iosApp/iosApp/Resources/Shared.xcstrings` and
+`iosApp/iosApp/Generated/AppStrings.swift`, and `--check` fails if the two have drifted.
 
 **File locations:**
-- Base strings (English): `composeApp/src/commonMain/composeResources/values/strings.xml`
-- Localized strings: `composeApp/src/commonMain/composeResources/values-{locale}/strings.xml`
+- Base strings (English): `androidApp/src/main/res/values/strings.xml`
+- Localized strings: `androidApp/src/main/res/values-{locale}/strings.xml`
+- The launcher label lives apart, in `values/app.xml`, so it is not projected onto iOS.
+
+Apostrophes must be escaped as `\'` — aapt rejects a bare `'` in a string resource.
 
 **Supported locales:** ar, de, es, fr, hi, id, it, ja, ko, pt, tr, uk, zh-rCN
 

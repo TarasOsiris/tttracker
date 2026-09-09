@@ -8,9 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import tabletennistracker.composeapp.generated.resources.Res
-import tabletennistracker.composeapp.generated.resources.label_duration
-import tabletennistracker.composeapp.generated.resources.label_intensity_rpe
+import xyz.tleskiv.tt.R
 import xyz.tleskiv.tt.ui.theme.AppTheme
 import xyz.tleskiv.tt.ui.widgets.FieldLabel
 
@@ -19,9 +17,9 @@ import xyz.tleskiv.tt.ui.widgets.FieldLabel
 fun FieldLabelPreview() {
 	AppTheme {
 		Column(modifier = Modifier.padding(16.dp)) {
-			FieldLabel(text = Res.string.label_duration)
+			FieldLabel(text = R.string.label_duration)
 			Spacer(modifier = Modifier.height(16.dp))
-			FieldLabel(text = Res.string.label_intensity_rpe, onHelpClick = {})
+			FieldLabel(text = R.string.label_intensity_rpe, onHelpClick = {})
 		}
 	}
 }

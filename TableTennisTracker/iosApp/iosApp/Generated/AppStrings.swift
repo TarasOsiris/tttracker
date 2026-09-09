@@ -184,6 +184,12 @@ enum L {
 	/// Generate 100 Random Sessions
 	static var debugGenerateRandomSessions: String { Localization.string("debug_generate_random_sessions") }
 
+	/// Seed Store Screenshot Data
+	static var debugSeedShowcaseData: String { Localization.string("debug_seed_showcase_data") }
+
+	/// Sessions in database
+	static var debugSessionsInDatabase: String { Localization.string("debug_sessions_in_database") }
+
 	/// This will also delete all matches with this opponent. This action cannot be undone.
 	static var deleteOpponentMessage: String { Localization.string("delete_opponent_message") }
 

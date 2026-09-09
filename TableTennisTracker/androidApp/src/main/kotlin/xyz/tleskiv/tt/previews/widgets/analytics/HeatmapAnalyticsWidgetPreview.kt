@@ -6,19 +6,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.kizitonwose.calendar.core.now
 import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.DayOfWeek
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.minus
 import xyz.tleskiv.tt.ui.theme.AppTheme
 import xyz.tleskiv.tt.ui.widgets.analytics.HeatmapAnalyticsWidget
+import xyz.tleskiv.tt.util.today
 import kotlin.random.Random
 
 @Preview(showBackground = true, name = "Empty Heatmap")
 @Composable
 fun HeatmapAnalyticsWidgetEmptyPreview() {
-	val endDate = LocalDate.now()
+	val endDate = today()
 	val startDate = endDate.minus(90, DateTimeUnit.DAY)
 	AppTheme {
 		Column(modifier = Modifier.padding(16.dp)) {
@@ -37,7 +37,7 @@ fun HeatmapAnalyticsWidgetEmptyPreview() {
 @Preview(showBackground = true, name = "Sparse Sessions")
 @Composable
 fun HeatmapAnalyticsWidgetSparsePreview() {
-	val endDate = LocalDate.now()
+	val endDate = today()
 	val startDate = endDate.minus(90, DateTimeUnit.DAY)
 	val sessionsByDate = mapOf(
 		endDate.minus(5, DateTimeUnit.DAY) to 1,
@@ -64,7 +64,7 @@ fun HeatmapAnalyticsWidgetSparsePreview() {
 @Preview(showBackground = true, name = "Regular Training")
 @Composable
 fun HeatmapAnalyticsWidgetRegularPreview() {
-	val endDate = LocalDate.now()
+	val endDate = today()
 	val startDate = endDate.minus(90, DateTimeUnit.DAY)
 	val random = Random(42)
 	val sessionsByDate = (0..90).mapNotNull { daysAgo ->
@@ -93,7 +93,7 @@ fun HeatmapAnalyticsWidgetRegularPreview() {
 @Preview(showBackground = true, name = "Dense Training")
 @Composable
 fun HeatmapAnalyticsWidgetDensePreview() {
-	val endDate = LocalDate.now()
+	val endDate = today()
 	val startDate = endDate.minus(90, DateTimeUnit.DAY)
 	val random = Random(123)
 	val sessionsByDate = (0..90).mapNotNull { daysAgo ->
@@ -121,7 +121,7 @@ fun HeatmapAnalyticsWidgetDensePreview() {
 @Preview(showBackground = true, name = "With Selection")
 @Composable
 fun HeatmapAnalyticsWidgetWithSelectionPreview() {
-	val endDate = LocalDate.now()
+	val endDate = today()
 	val startDate = endDate.minus(90, DateTimeUnit.DAY)
 	val selectedDate = endDate.minus(7, DateTimeUnit.DAY)
 	val sessionsByDate = mapOf(
@@ -149,7 +149,7 @@ fun HeatmapAnalyticsWidgetWithSelectionPreview() {
 @Preview(showBackground = true, name = "Sunday First Day")
 @Composable
 fun HeatmapAnalyticsWidgetSundayFirstPreview() {
-	val endDate = LocalDate.now()
+	val endDate = today()
 	val startDate = endDate.minus(90, DateTimeUnit.DAY)
 	val random = Random(456)
 	val sessionsByDate = (0..90).mapNotNull { daysAgo ->
@@ -177,7 +177,7 @@ fun HeatmapAnalyticsWidgetSundayFirstPreview() {
 @Preview(showBackground = true, name = "Recent Activity Only")
 @Composable
 fun HeatmapAnalyticsWidgetRecentOnlyPreview() {
-	val endDate = LocalDate.now()
+	val endDate = today()
 	val startDate = endDate.minus(90, DateTimeUnit.DAY)
 	val sessionsByDate = (0..14).map { daysAgo ->
 		endDate.minus(daysAgo, DateTimeUnit.DAY) to (daysAgo % 3) + 1

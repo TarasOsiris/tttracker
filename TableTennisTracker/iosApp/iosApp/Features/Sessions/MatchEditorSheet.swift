@@ -19,11 +19,13 @@ struct MatchEditorSheet: View {
                 formatSection
                 notesSection
             }
+            .accessibilityIdentifier("screen.matchEditor")
             .navigationTitle(model.isEditing ? L.editMatch : L.addMatch)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button(L.actionCancel) { dismiss() }
+                        .accessibilityIdentifier("matchEditor.cancel")
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button(L.actionSave) {

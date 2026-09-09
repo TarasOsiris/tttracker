@@ -1,17 +1,17 @@
 package xyz.tleskiv.tt.previews.fakes
 
-import com.kizitonwose.calendar.core.now
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.DayOfWeek
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.minus
-import xyz.tleskiv.tt.data.model.enums.SessionType
-import xyz.tleskiv.tt.viewmodel.analytics.AnalyticsScreenViewModel
-import xyz.tleskiv.tt.viewmodel.analytics.AnalyticsWidgetVisibility
 import xyz.tleskiv.tt.analytics.SummaryStats
 import xyz.tleskiv.tt.analytics.WeeklyTrainingData
+import xyz.tleskiv.tt.data.model.enums.SessionType
+import xyz.tleskiv.tt.util.today
+import xyz.tleskiv.tt.viewmodel.analytics.AnalyticsScreenViewModel
+import xyz.tleskiv.tt.viewmodel.analytics.AnalyticsWidgetVisibility
 import xyz.tleskiv.tt.viewmodel.sessions.SessionsScreenViewModel.SessionUiModel
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
@@ -22,7 +22,7 @@ class FakeAnalyticsScreenViewModel : AnalyticsScreenViewModel() {
 		private val sessionCounts = listOf(2, 1, 3, 1, 2, 1, 2, 3, 1, 2, 1, 1, 2, 1, 3)
 		private val durations = listOf(90, 60, 120, 45, 75, 60, 90, 105, 60, 80, 55, 70, 95, 65, 110)
 
-		private fun createSampleDates() = List(15) { i -> LocalDate.now().minus(i, DateTimeUnit.DAY) }
+		private fun createSampleDates() = List(15) { i -> today().minus(i, DateTimeUnit.DAY) }
 
 		private fun createSessionsByDate() = createSampleDates().mapIndexed { i, date ->
 			date to sessionCounts[i]

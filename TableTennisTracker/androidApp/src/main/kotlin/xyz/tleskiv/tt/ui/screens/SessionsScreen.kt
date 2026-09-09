@@ -1,0 +1,745 @@
+package xyz.tleskiv.tt.ui.screens
+
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
+import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.DpSize
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.compose.ui.zIndex
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.kizitonwose.calendar.compose.CalendarState
+import com.kizitonwose.calendar.compose.VerticalCalendar
+import com.kizitonwose.calendar.compose.WeekCalendar
+import com.kizitonwose.calendar.compose.rememberCalendarState
+import com.kizitonwose.calendar.compose.weekcalendar.WeekCalendarState
+import com.kizitonwose.calendar.compose.weekcalendar.rememberWeekCalendarState
+import com.kizitonwose.calendar.core.DayPosition
+import com.kizitonwose.calendar.core.OutDateStyle
+import com.kizitonwose.calendar.core.WeekDayPosition
+import com.kizitonwose.calendar.core.daysOfWeek
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.datetime.DatePeriod
+import kotlinx.datetime.DayOfWeek
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.plus
+import kotlinx.datetime.toJavaDayOfWeek
+import kotlinx.datetime.toJavaLocalDate
+import kotlinx.datetime.toJavaYearMonth
+import kotlinx.datetime.toKotlinDayOfWeek
+import kotlinx.datetime.toKotlinLocalDate
+import kotlinx.datetime.toKotlinYearMonth
+import kotlinx.datetime.yearMonth
+import org.koin.compose.viewmodel.koinViewModel
+import xyz.tleskiv.tt.R
+import xyz.tleskiv.tt.ui.TestTags
+import xyz.tleskiv.tt.ui.nav.navdisplay.TopAppBarState
+import xyz.tleskiv.tt.ui.widgets.SessionListItem
+import xyz.tleskiv.tt.util.ext.displayText
+import xyz.tleskiv.tt.util.ext.formatDateHeader
+import xyz.tleskiv.tt.util.ext.formatMonthYear
+import xyz.tleskiv.tt.util.ui.collectAsMutableState
+import xyz.tleskiv.tt.viewmodel.sessions.SessionsScreenViewModel
+import xyz.tleskiv.tt.viewmodel.sessions.SessionsScreenViewModel.SessionUiModel
+
+private const val DATE_LIST_RANGE_DAYS = 365
+
+@Composable
+fun SessionsScreen(
+	onNavigateToDetails: (String) -> Unit = {},
+	onAddSession: (LocalDate) -> Unit = {},
+	topAppBarState: TopAppBarState,
+	viewModel: SessionsScreenViewModel = koinViewModel()
+) {
+	val inputData = viewModel.inputData
+	val sessionsByDate by viewModel.sessions.collectAsStateWithLifecycle()
+	val firstDayOfWeek by viewModel.firstDayOfWeek.collectAsStateWithLifecycle()
+	val highlightCurrentDay by viewModel.highlightCurrentDay.collectAsStateWithLifecycle()
+
+	var selectedDate by inputData.selectedDate.collectAsMutableState()
+	var isWeekMode by inputData.isWeekMode.collectAsMutableState()
+
+	val listState = rememberLazyListState(initialFirstVisibleItemIndex = inputData.initialListIndex)
+	val coroutineScope = rememberCoroutineScope()
+
+	// Key on firstDayOfWeek to recreate calendar states when the setting changes
+	val monthState = key(firstDayOfWeek) {
+		rememberCalendarState(
+			startMonth = inputData.startYearMonth.toJavaYearMonth(),
+			endMonth = inputData.endYearMonth.toJavaYearMonth(),
+			firstVisibleMonth = inputData.currentYearMonth.toJavaYearMonth(),
+			firstDayOfWeek = firstDayOfWeek.toJavaDayOfWeek(),
+			outDateStyle = OutDateStyle.EndOfGrid
+		)
+	}
+
+	val weekState = key(firstDayOfWeek) {
+		rememberWeekCalendarState(
+			startDate = LocalDate(inputData.startYearMonth.year, inputData.startYearMonth.month, 1).toJavaLocalDate(),
+			endDate = LocalDate(inputData.endYearMonth.year, inputData.endYearMonth.month, 28).toJavaLocalDate(),
+			firstVisibleWeekDate = inputData.currentDate.toJavaLocalDate(),
+			firstDayOfWeek = firstDayOfWeek.toJavaDayOfWeek()
+		)
+	}
+
+	val visibleYearMonth = if (isWeekMode) {
+		weekState.firstVisibleWeek.days.first().date.toKotlinLocalDate().yearMonth
+	} else {
+		monthState.firstVisibleMonth.yearMonth.toKotlinYearMonth()
+	}
+
+	// Calendar → List: scroll when user taps a date on the calendar
+	fun scrollListToDate(date: LocalDate) {
+		val dayOffset = (date.toEpochDays() - inputData.startDate.toEpochDays()).toInt()
+		if (dayOffset in 0 until (DATE_LIST_RANGE_DAYS * 2 + 1)) {
+			val targetIndex = getHeaderIndexForDate(date, inputData.startDate, sessionsByDate)
+			coroutineScope.launch {
+				listState.scrollToItem(targetIndex)
+			}
+		}
+	}
+
+	val titleText = visibleYearMonth.formatMonthYear()
+	topAppBarState.title = { Text(titleText) }
+	topAppBarState.actions = {
+		Row(verticalAlignment = Alignment.CenterVertically) {
+			AnimatedVisibility(
+				visible = selectedDate != inputData.currentDate,
+				enter = fadeIn(),
+				exit = fadeOut()
+			) {
+				TodayButton(modifier = Modifier.testTag(TestTags.SESSIONS_TODAY), onClick = {
+					selectedDate = inputData.currentDate
+					scrollListToDate(inputData.currentDate)
+					coroutineScope.launch {
+						if (isWeekMode) {
+							weekState.scrollToWeek(inputData.currentDate.toJavaLocalDate())
+						} else {
+							monthState.scrollToMonth(inputData.currentDate.yearMonth.toJavaYearMonth())
+						}
+					}
+				})
+			}
+
+			Spacer(modifier = Modifier.width(8.dp))
+
+			WeekMonthToggle(
+				isWeekMode = isWeekMode,
+				onToggle = {
+					coroutineScope.launch {
+						if (isWeekMode) {
+							monthState.scrollToMonth(selectedDate.yearMonth.toJavaYearMonth())
+						} else {
+							weekState.scrollToWeek(selectedDate.toJavaLocalDate())
+						}
+						isWeekMode = !isWeekMode
+					}
+				}
+			)
+		}
+	}
+
+	// List → Calendar: When user scrolls the list, update the selected date
+	LaunchedEffect(listState, weekState, monthState, sessionsByDate) {
+		var animationJob: Job? = null
+		snapshotFlow { listState.firstVisibleItemIndex }
+			.collect { index ->
+				val visibleDate = getDateForIndex(index, inputData.startDate, sessionsByDate)
+				if (visibleDate != selectedDate) {
+					selectedDate = visibleDate
+				}
+				animationJob?.cancel()
+				animationJob = launch {
+					if (isWeekMode) {
+						weekState.animateScrollToWeek(visibleDate.toJavaLocalDate())
+					} else {
+						monthState.animateScrollToMonth(visibleDate.yearMonth.toJavaYearMonth())
+					}
+				}
+			}
+	}
+
+	BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
+		val isLandscape = maxWidth > maxHeight
+		Column(
+			modifier = Modifier
+				.fillMaxSize()
+				.background(MaterialTheme.colorScheme.surface)
+		) {
+			CalendarSection(
+				currentDate = inputData.currentDate,
+				selectedDate = selectedDate,
+				sessionsByDate = sessionsByDate,
+				isWeekMode = isWeekMode,
+				monthState = monthState,
+				weekState = weekState,
+				firstDayOfWeek = firstDayOfWeek,
+				highlightCurrentDay = highlightCurrentDay,
+				onDateSelected = {
+					selectedDate = it
+					scrollListToDate(it)
+				},
+				isLandscape = isLandscape
+			)
+
+			SessionsListContent(
+				currentDate = inputData.currentDate,
+				startDate = inputData.startDate,
+				listState = listState,
+				sessionsByDate = sessionsByDate,
+				onNavigateToDetails = onNavigateToDetails
+			)
+		}
+
+		AddSessionFab(
+			onClick = { onAddSession(selectedDate) },
+			modifier = Modifier.align(Alignment.BottomEnd).testTag(TestTags.SESSIONS_ADD)
+		)
+	}
+}
+
+@Composable
+private fun CalendarSection(
+	currentDate: LocalDate,
+	selectedDate: LocalDate,
+	sessionsByDate: Map<LocalDate, List<SessionUiModel>>,
+	isWeekMode: Boolean,
+	monthState: CalendarState,
+	weekState: WeekCalendarState,
+	firstDayOfWeek: DayOfWeek,
+	highlightCurrentDay: Boolean,
+	onDateSelected: (LocalDate) -> Unit,
+	isLandscape: Boolean
+) {
+	Surface(
+		color = MaterialTheme.colorScheme.primaryContainer,
+		tonalElevation = 2.dp
+	) {
+		Column(modifier = Modifier.fillMaxWidth()) {
+			DaysOfWeekHeader(firstDayOfWeek = firstDayOfWeek)
+
+			Spacer(modifier = Modifier.height(8.dp))
+
+			AnimatedCalendarContainer(
+				selectedDate = selectedDate,
+				currentDate = currentDate,
+				isWeekMode = isWeekMode,
+				monthState = monthState,
+				weekState = weekState,
+				sessionsByDate = sessionsByDate,
+				highlightCurrentDay = highlightCurrentDay,
+				onDateSelected = onDateSelected,
+				isLandscape = isLandscape
+			)
+		}
+	}
+}
+
+@Composable
+fun WeekMonthToggle(
+	isWeekMode: Boolean,
+	onToggle: () -> Unit,
+	modifier: Modifier = Modifier
+) {
+	Row(
+		modifier = modifier
+			.clip(MaterialTheme.shapes.medium)
+			.background(MaterialTheme.colorScheme.surfaceVariant)
+	) {
+		SegmentButton(
+			text = stringResource(R.string.sessions_week_mode),
+			isSelected = isWeekMode,
+			onClick = { if (!isWeekMode) onToggle() },
+			tag = TestTags.CALENDAR_WEEK_MODE
+		)
+		SegmentButton(
+			text = stringResource(R.string.sessions_month_mode),
+			isSelected = !isWeekMode,
+			onClick = { if (isWeekMode) onToggle() },
+			tag = TestTags.CALENDAR_MONTH_MODE
+		)
+	}
+}
+
+@Composable
+private fun SegmentButton(
+	text: String,
+	isSelected: Boolean,
+	onClick: () -> Unit,
+	tag: String
+) {
+	val backgroundColor = if (isSelected) {
+		MaterialTheme.colorScheme.primary
+	} else {
+		MaterialTheme.colorScheme.surfaceVariant
+	}
+	val textColor = if (isSelected) {
+		MaterialTheme.colorScheme.onPrimary
+	} else {
+		MaterialTheme.colorScheme.onSurfaceVariant
+	}
+
+	Box(
+		modifier = Modifier
+			.clip(MaterialTheme.shapes.medium)
+			.background(backgroundColor)
+			.clickable(
+				interactionSource = remember { MutableInteractionSource() },
+				indication = null,
+				onClick = onClick
+			)
+			.padding(horizontal = 16.dp, vertical = 8.dp)
+			.testTag(tag),
+		contentAlignment = Alignment.Center
+	) {
+		Text(
+			text = text,
+			style = MaterialTheme.typography.labelMedium,
+			fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Normal,
+			color = textColor
+		)
+	}
+}
+
+@Composable
+private fun DaysOfWeekHeader(firstDayOfWeek: DayOfWeek) {
+	val daysOfWeekList = remember(firstDayOfWeek) {
+		daysOfWeek(firstDayOfWeek = firstDayOfWeek.toJavaDayOfWeek()).map { it.toKotlinDayOfWeek() }
+	}
+
+	Row(modifier = Modifier.fillMaxWidth().padding(top = 8.dp)) {
+		daysOfWeekList.forEach { dayOfWeek ->
+			Text(
+				text = dayOfWeek.displayText(),
+				modifier = Modifier.weight(1f),
+				textAlign = TextAlign.Center,
+				fontSize = 12.sp,
+				fontWeight = FontWeight.Medium,
+				color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f)
+			)
+		}
+	}
+}
+
+@Composable
+private fun AnimatedCalendarContainer(
+	selectedDate: LocalDate,
+	currentDate: LocalDate,
+	isWeekMode: Boolean,
+	monthState: CalendarState,
+	weekState: WeekCalendarState,
+	sessionsByDate: Map<LocalDate, List<SessionUiModel>>,
+	highlightCurrentDay: Boolean,
+	onDateSelected: (LocalDate) -> Unit,
+	isLandscape: Boolean
+) {
+	var weekCalendarSize by remember { mutableStateOf(DpSize.Zero) }
+	val weeksInMonth = 6
+
+	val monthCalendarHeight by animateDpAsState(
+		targetValue = if (isWeekMode) {
+			weekCalendarSize.height
+		} else {
+			weekCalendarSize.height * weeksInMonth
+		},
+		animationSpec = tween(durationMillis = 250)
+	)
+
+	Box(modifier = Modifier.padding(bottom = 12.dp)) {
+		MonthCalendarView(
+			height = monthCalendarHeight,
+			isWeekMode = isWeekMode,
+			state = monthState,
+			selectedDate = selectedDate,
+			currentDate = currentDate,
+			sessionsByDate = sessionsByDate,
+			highlightCurrentDay = highlightCurrentDay,
+			onDateSelected = onDateSelected,
+			isLandscape = isLandscape
+		)
+
+		WeekCalendarView(
+			isWeekMode = isWeekMode,
+			state = weekState,
+			selectedDate = selectedDate,
+			currentDate = currentDate,
+			sessionsByDate = sessionsByDate,
+			highlightCurrentDay = highlightCurrentDay,
+			onDateSelected = onDateSelected,
+			onSizeChanged = { weekCalendarSize = it },
+			isLandscape = isLandscape
+		)
+	}
+}
+
+@Composable
+private fun MonthCalendarView(
+	height: Dp,
+	isWeekMode: Boolean,
+	state: CalendarState,
+	selectedDate: LocalDate,
+	currentDate: LocalDate,
+	sessionsByDate: Map<LocalDate, List<SessionUiModel>>,
+	highlightCurrentDay: Boolean,
+	onDateSelected: (LocalDate) -> Unit,
+	isLandscape: Boolean
+) {
+	val alpha by animateFloatAsState(if (isWeekMode) 0f else 1f)
+
+	VerticalCalendar(
+		modifier = Modifier
+			.height(height)
+			.alpha(alpha)
+			.zIndex(if (isWeekMode) 0f else 1f),
+		state = state,
+		calendarScrollPaged = true,
+		userScrollEnabled = !isWeekMode,
+		dayContent = { day ->
+			val date = day.date.toKotlinLocalDate()
+			DayCell(
+				date = date,
+				isSelected = date == selectedDate,
+				isToday = highlightCurrentDay && date == currentDate,
+				isInCurrentMonth = day.position == DayPosition.MonthDate,
+				sessionCount = sessionsByDate[date]?.size ?: 0,
+				onClick = onDateSelected,
+				isLandscape = isLandscape
+			)
+		}
+	)
+}
+
+@Composable
+private fun WeekCalendarView(
+	isWeekMode: Boolean,
+	state: WeekCalendarState,
+	selectedDate: LocalDate,
+	currentDate: LocalDate,
+	sessionsByDate: Map<LocalDate, List<SessionUiModel>>,
+	highlightCurrentDay: Boolean,
+	onDateSelected: (LocalDate) -> Unit,
+	onSizeChanged: (DpSize) -> Unit,
+	isLandscape: Boolean
+) {
+	val density = LocalDensity.current
+	val alpha by animateFloatAsState(if (isWeekMode) 1f else 0f)
+
+	WeekCalendar(
+		modifier = Modifier
+			.wrapContentHeight()
+			.onSizeChanged { size ->
+				val dpSize = density.run { DpSize(size.width.toDp(), size.height.toDp()) }
+				onSizeChanged(dpSize)
+			}
+			.alpha(alpha)
+			.zIndex(if (isWeekMode) 1f else 0f),
+		state = state,
+		userScrollEnabled = isWeekMode,
+		dayContent = { day ->
+			val date = day.date.toKotlinLocalDate()
+			DayCell(
+				date = date,
+				isSelected = date == selectedDate,
+				isToday = highlightCurrentDay && date == currentDate,
+				isInCurrentMonth = day.position == WeekDayPosition.RangeDate,
+				sessionCount = sessionsByDate[date]?.size ?: 0,
+				onClick = onDateSelected,
+				isLandscape = isLandscape
+			)
+		}
+	)
+}
+
+@Composable
+private fun DayCell(
+	date: LocalDate,
+	isSelected: Boolean,
+	isToday: Boolean,
+	isInCurrentMonth: Boolean,
+	sessionCount: Int,
+	onClick: (LocalDate) -> Unit,
+	isLandscape: Boolean
+) {
+	val backgroundColor = when {
+		isSelected -> MaterialTheme.colorScheme.primary
+		isToday -> MaterialTheme.colorScheme.primary.copy(alpha = 0.25f)
+		else -> Color.Transparent
+	}
+	val textColor = when {
+		isSelected -> MaterialTheme.colorScheme.onPrimary
+		isInCurrentMonth -> MaterialTheme.colorScheme.onPrimaryContainer
+		else -> MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.4f)
+	}
+	val dotColor = if (isSelected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.tertiary
+
+	Box(
+		modifier = Modifier
+			.aspectRatio(if (isLandscape) 2f else 1f)
+			.padding(4.dp)
+			.clip(CircleShape)
+			.background(backgroundColor)
+			.clickable { onClick(date) },
+		contentAlignment = Alignment.Center
+	) {
+		Column(horizontalAlignment = Alignment.CenterHorizontally) {
+			Text(
+				text = date.day.toString(),
+				fontSize = 14.sp,
+				fontWeight = if (isToday || isSelected) FontWeight.Bold else FontWeight.Normal,
+				color = textColor
+			)
+			if (sessionCount > 0) {
+				Row(horizontalArrangement = Arrangement.spacedBy(2.dp)) {
+					repeat(minOf(sessionCount, 4)) {
+						Box(modifier = Modifier.size(4.dp).background(dotColor, CircleShape))
+					}
+				}
+			}
+		}
+	}
+}
+
+@Composable
+private fun SessionsListContent(
+	currentDate: LocalDate,
+	startDate: LocalDate,
+	listState: LazyListState,
+	sessionsByDate: Map<LocalDate, List<SessionUiModel>>,
+	onNavigateToDetails: (String) -> Unit
+) {
+	val totalDays = remember { DATE_LIST_RANGE_DAYS * 2 + 1 }
+
+	LazyColumn(
+		state = listState,
+		modifier = Modifier.fillMaxSize(),
+		contentPadding = PaddingValues(bottom = 88.dp)
+	) {
+		for (dayOffset in 0 until totalDays) {
+			val date = startDate.plus(DatePeriod(days = dayOffset))
+			val sessions = sessionsByDate[date] ?: emptyList()
+			dateSection(
+				date = date,
+				currentDate = currentDate,
+				sessions = sessions,
+				onSessionClick = onNavigateToDetails
+			)
+		}
+	}
+}
+
+private fun LazyListScope.dateSection(
+	date: LocalDate,
+	currentDate: LocalDate,
+	sessions: List<SessionUiModel>,
+	onSessionClick: (String) -> Unit
+) {
+	stickyHeader(key = "header-${date.toEpochDays()}") {
+		DateHeader(date = date, currentDate = currentDate)
+	}
+
+	if (sessions.isEmpty()) {
+		item(key = "empty-${date.toEpochDays()}") {
+			NoSessionsPlaceholder()
+		}
+	} else {
+		items(
+			count = sessions.size,
+			key = { index -> "session-${sessions[index].id}" }
+		) { index ->
+			SessionListItem(
+				session = sessions[index],
+				onClick = { onSessionClick(sessions[index].id.toString()) },
+				modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp).testTag(TestTags.SESSION_ROW)
+			)
+		}
+	}
+}
+
+@Composable
+private fun DateHeader(
+	date: LocalDate,
+	currentDate: LocalDate
+) {
+	val dateText = date.formatDateHeader(currentDate)
+	val isToday = date == currentDate
+
+	Column(modifier = Modifier.fillMaxWidth().background(MaterialTheme.colorScheme.surface)) {
+		HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant, thickness = 0.5.dp)
+		Row(
+			modifier = Modifier
+				.fillMaxWidth()
+				.padding(horizontal = 16.dp, vertical = 8.dp),
+			verticalAlignment = Alignment.CenterVertically
+		) {
+			Box(
+				modifier = Modifier
+					.size(32.dp)
+					.background(
+						color = if (isToday) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceVariant,
+						shape = RoundedCornerShape(6.dp)
+					),
+				contentAlignment = Alignment.Center
+			) {
+				Text(
+					text = date.day.toString(),
+					style = MaterialTheme.typography.bodyLarge,
+					fontWeight = FontWeight.Bold,
+					color = if (isToday) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant
+				)
+			}
+
+			Spacer(modifier = Modifier.width(10.dp))
+
+			Text(
+				text = dateText,
+				style = MaterialTheme.typography.bodyMedium,
+				fontWeight = if (isToday) FontWeight.SemiBold else FontWeight.Normal,
+				color = if (isToday) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
+			)
+		}
+		HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant, thickness = 0.5.dp)
+	}
+}
+
+@Composable
+private fun NoSessionsPlaceholder() {
+	Box(
+		modifier = Modifier
+			.fillMaxWidth()
+			.padding(horizontal = 16.dp, vertical = 16.dp)
+	) {
+		Text(
+			text = stringResource(R.string.sessions_empty),
+			style = MaterialTheme.typography.bodyMedium,
+			color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
+		)
+	}
+}
+
+@Composable
+private fun TodayButton(onClick: () -> Unit, modifier: Modifier = Modifier) {
+	Box(
+		modifier = modifier
+			.clip(MaterialTheme.shapes.medium)
+			.background(MaterialTheme.colorScheme.secondaryContainer)
+			.clickable(
+				interactionSource = remember { MutableInteractionSource() },
+				indication = null,
+				onClick = onClick
+			)
+			.padding(horizontal = 12.dp, vertical = 8.dp),
+		contentAlignment = Alignment.Center
+	) {
+		Text(
+			text = stringResource(R.string.time_today),
+			style = MaterialTheme.typography.labelMedium,
+			fontWeight = FontWeight.SemiBold,
+			color = MaterialTheme.colorScheme.onSecondaryContainer
+		)
+	}
+}
+
+@Composable
+private fun AddSessionFab(onClick: () -> Unit, modifier: Modifier = Modifier) {
+	FloatingActionButton(
+		onClick = onClick,
+		modifier = modifier.padding(16.dp),
+		containerColor = MaterialTheme.colorScheme.primary
+	) {
+		Icon(
+			imageVector = ImageVector.vectorResource(R.drawable.ic_add),
+			contentDescription = stringResource(R.string.action_add_session)
+		)
+	}
+}
+
+private fun getHeaderIndexForDate(
+	date: LocalDate,
+	startDate: LocalDate,
+	sessionsByDate: Map<LocalDate, List<SessionUiModel>>
+): Int {
+	var index = 0
+	val targetDayOffset = (date.toEpochDays() - startDate.toEpochDays()).toInt()
+	for (dayOffset in 0 until targetDayOffset) {
+		val currentDate = startDate.plus(DatePeriod(days = dayOffset))
+		val sessions = sessionsByDate[currentDate] ?: emptyList()
+		index += 1 + if (sessions.isEmpty()) 1 else sessions.size
+	}
+	return index
+}
+
+private fun getDateForIndex(
+	index: Int,
+	startDate: LocalDate,
+	sessionsByDate: Map<LocalDate, List<SessionUiModel>>
+): LocalDate {
+	var currentIndex = 0
+	val totalDays = DATE_LIST_RANGE_DAYS * 2 + 1
+	for (dayOffset in 0 until totalDays) {
+		val currentDate = startDate.plus(DatePeriod(days = dayOffset))
+		val sessions = sessionsByDate[currentDate] ?: emptyList()
+		val itemsForThisDay = 1 + if (sessions.isEmpty()) 1 else sessions.size
+		if (index < currentIndex + itemsForThisDay) {
+			return currentDate
+		}
+		currentIndex += itemsForThisDay
+	}
+	return startDate.plus(DatePeriod(days = totalDays - 1))
+}

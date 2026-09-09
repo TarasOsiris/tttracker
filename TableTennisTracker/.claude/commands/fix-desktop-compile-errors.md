@@ -1,1 +1,0 @@
-Compile the desktop app by running `:composeApp:compileKotlinJvm` gradle task and iterate until it compiles successfully.

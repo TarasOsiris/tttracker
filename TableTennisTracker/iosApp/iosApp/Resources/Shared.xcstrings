@@ -5163,6 +5163,28 @@
         }
       }
     },
+    "debug_seed_showcase_data" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seed Store Screenshot Data"
+          }
+        }
+      }
+    },
+    "debug_sessions_in_database" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sessions in database"
+          }
+        }
+      }
+    },
     "delete_opponent_message" : {
       "extractionState" : "manual",
       "localizations" : {

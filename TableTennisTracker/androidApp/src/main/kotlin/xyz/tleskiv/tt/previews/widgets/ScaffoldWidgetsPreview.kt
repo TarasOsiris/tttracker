@@ -7,8 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import tabletennistracker.composeapp.generated.resources.Res
-import tabletennistracker.composeapp.generated.resources.title_settings
+import xyz.tleskiv.tt.R
 import xyz.tleskiv.tt.ui.theme.AppTheme
 import xyz.tleskiv.tt.ui.widgets.BackButton
 import xyz.tleskiv.tt.ui.widgets.BottomBarButtons
@@ -47,7 +46,7 @@ fun BottomBarButtonsPreview() {
 fun SimpleTopAppBarPreview() {
 	AppTheme {
 		SimpleTopAppBar(
-			title = Res.string.title_settings,
+			title = R.string.title_settings,
 			onNavigateBack = {}
 		)
 	}

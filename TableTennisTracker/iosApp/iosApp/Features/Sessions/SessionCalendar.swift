@@ -48,12 +48,15 @@ struct SessionCalendar: View {
             }
             .buttonStyle(.plain)
             .accessibilityLabel(isExpanded ? L.sessionsWeekMode : L.sessionsMonthMode)
+            .accessibilityIdentifier("calendar.toggleMode")
 
             Spacer()
 
             Button { page(by: -1) } label: { Image(systemName: "chevron.left") }
+                .accessibilityIdentifier("calendar.previousPeriod")
                 .accessibilityLabel(periodLabel(-1))
             Button { page(by: 1) } label: { Image(systemName: "chevron.right") }
+                .accessibilityIdentifier("calendar.nextPeriod")
                 .accessibilityLabel(periodLabel(1))
         }
         .buttonStyle(.borderless)

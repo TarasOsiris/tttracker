@@ -1,10 +1,11 @@
 package xyz.tleskiv.tt.util
 
+import android.content.Context
+import android.content.res.Configuration
+import android.os.LocaleList
+import androidx.annotation.StringRes
 import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
-import androidx.test.espresso.Espresso
-import androidx.test.espresso.action.ViewActions
-import androidx.test.espresso.matcher.ViewMatchers
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.ComposeTestRule
@@ -20,19 +21,33 @@ import androidx.compose.ui.test.performSemanticsAction
 import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.performTouchInput
 import androidx.compose.ui.test.swipeUp
-import kotlinx.coroutines.runBlocking
-import org.jetbrains.compose.resources.StringResource
-import org.jetbrains.compose.resources.getString
+import androidx.test.espresso.Espresso
+import androidx.test.espresso.action.ViewActions
+import androidx.test.espresso.matcher.ViewMatchers
+import androidx.test.platform.app.InstrumentationRegistry
+import java.util.Locale
 
-fun str(res: StringResource): String = runBlocking { getString(res) }
+/// The app renders in the in-app language, which `AndroidLocaleApplier` mirrors into
+/// `Locale.getDefault()`. The target context still carries the device configuration, so resolving
+/// through it directly would compare device-language text against a differently localized UI on any
+/// device whose language is not the one the app is set to.
+private val localizedContext: Context
+	get() {
+		val context = InstrumentationRegistry.getInstrumentation().targetContext
+		val configuration = Configuration(context.resources.configuration)
+		configuration.setLocales(LocaleList(Locale.getDefault()))
+		return context.createConfigurationContext(configuration)
+	}
 
-fun str(res: StringResource, vararg args: Any): String = runBlocking { getString(res, *args) }
+fun str(@StringRes res: Int): String = localizedContext.getString(res)
+
+fun str(@StringRes res: Int, vararg args: Any): String = localizedContext.getString(res, *args)
 
 fun SemanticsNodeInteractionsProvider.assertTextDisplayed(text: String) {
 	onNode(hasText(text)).assertIsDisplayed()
 }
 
-fun SemanticsNodeInteractionsProvider.assertTextDisplayed(res: StringResource, vararg args: Any) {
+fun SemanticsNodeInteractionsProvider.assertTextDisplayed(@StringRes res: Int, vararg args: Any) {
 	assertTextDisplayed(str(res, *args))
 }
 
@@ -40,7 +55,7 @@ fun SemanticsNodeInteractionsProvider.clickText(text: String) {
 	onNodeWithText(text).performClick()
 }
 
-fun SemanticsNodeInteractionsProvider.clickText(res: StringResource) {
+fun SemanticsNodeInteractionsProvider.clickText(@StringRes res: Int) {
 	clickText(str(res))
 }
 
@@ -48,7 +63,7 @@ fun SemanticsNodeInteractionsProvider.scrollToAndClickText(text: String) {
 	onNodeWithText(text).performScrollTo().performClick()
 }
 
-fun SemanticsNodeInteractionsProvider.scrollToAndClickText(res: StringResource) {
+fun SemanticsNodeInteractionsProvider.scrollToAndClickText(@StringRes res: Int) {
 	scrollToAndClickText(str(res))
 }
 
@@ -56,11 +71,11 @@ fun SemanticsNodeInteractionsProvider.scrollToText(text: String) {
 	onNodeWithText(text).performScrollTo()
 }
 
-fun SemanticsNodeInteractionsProvider.scrollToText(res: StringResource) {
+fun SemanticsNodeInteractionsProvider.scrollToText(@StringRes res: Int) {
 	scrollToText(str(res))
 }
 
-fun SemanticsNodeInteractionsProvider.scrollToText(res: StringResource, vararg args: Any) {
+fun SemanticsNodeInteractionsProvider.scrollToText(@StringRes res: Int, vararg args: Any) {
 	scrollToText(str(res, *args))
 }
 
@@ -72,7 +87,7 @@ fun SemanticsNodeInteractionsProvider.assertFirstTextDisplayed(text: String) {
 	onAllNodesWithText(text).onFirst().assertIsDisplayed()
 }
 
-fun SemanticsNodeInteractionsProvider.clickContentDescription(res: StringResource) {
+fun SemanticsNodeInteractionsProvider.clickContentDescription(@StringRes res: Int) {
 	onNodeWithContentDescription(str(res), useUnmergedTree = true).performClick()
 }
 
@@ -117,7 +132,7 @@ fun espressoClickContentDescription(description: String) {
 	Espresso.onView(ViewMatchers.withContentDescription(description)).perform(ViewActions.click())
 }
 
-fun espressoClickContentDescription(res: StringResource) {
+fun espressoClickContentDescription(@StringRes res: Int) {
 	espressoClickContentDescription(str(res))
 }
 

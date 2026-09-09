@@ -32,50 +32,47 @@ kotlin {
 		}
 	}
 
-	iosArm64()
-	iosSimulatorArm64()
-
-	jvm {
-		testRuns["test"].executionTask.configure { useJUnitPlatform() }
+	listOf(iosArm64(), iosSimulatorArm64()).forEach { iosTarget ->
+		iosTarget.binaries.framework {
+			baseName = "Shared"
+			isStatic = false
+			freeCompilerArgs += listOf("-Xbinary=bundleId=xyz.tleskiv.tt.shared")
+			// Kotlin/Native only puts this module's own declarations in the ObjC header,
+			// so the shared models have to be exported explicitly for Swift to see them.
+			export(projects.shared)
+			// SQLDelight's native driver needs the system sqlite3. Its cinterop klib declares
+			// linkerOpts only for linux_x64/macos_x64, not for Apple device targets, so the
+			// framework has to ask for it here.
+			linkerOpts("-lsqlite3")
+		}
 	}
 
-	// Sentry's Kotlin Multiplatform SDK is shared by JVM and Android but must stay off iOS:
-	// linking it there would drag in Sentry's Cocoa framework and stop the Kotlin framework
-	// from building on its own. iOS gets a Swift-implemented CrashReporter instead.
 	applyDefaultHierarchyTemplate()
 	sourceSets {
-		val jvmAndroidMain by creating {
-			dependsOn(commonMain.get())
-			dependencies {
-				implementation(libs.sentry.kmp)
-			}
+		// Sentry's Kotlin Multiplatform SDK must stay off iOS: linking it there would drag in
+		// Sentry's Cocoa framework and stop the Kotlin framework from building on its own. iOS
+		// gets a Swift-implemented CrashReporter instead.
+		androidMain.dependencies {
+			implementation(libs.sentry.kmp)
 		}
-		androidMain.get().dependsOn(jvmAndroidMain)
-		jvmMain.get().dependsOn(jvmAndroidMain)
 
 		commonMain.dependencies {
 			api(projects.shared)
 
 			// public API surface of :core
-			api(libs.androidx.lifecycle.viewmodel)
+			api(libs.kmp.lifecycle.viewmodel)
 			api(libs.kotlinx.coroutines.core)
 			api(libs.kotlinx.datetime)
 			api(libs.sqldelight.runtime)
 			api(libs.koin.core)
 
-			implementation(project.dependencies.platform(libs.koin.bom))
+			api(project.dependencies.platform(libs.koin.bom))
 			implementation(libs.koin.core.viewmodel)
 			implementation(libs.sqldelight.coroutines)
 		}
 		commonTest.dependencies {
 			implementation(libs.kotest.assertions.core)
 			implementation(libs.kotest.framework.engine)
-		}
-		jvmTest.dependencies {
-			implementation(libs.kotest.runner.junit5)
-		}
-		jvmMain.dependencies {
-			implementation(libs.sqldelight.driver.jvm)
 		}
 		iosMain.dependencies {
 			implementation(libs.sqldelight.driver.native)

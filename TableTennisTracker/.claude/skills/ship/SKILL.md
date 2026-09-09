@@ -7,7 +7,6 @@ disable-model-invocation: true
 # Ship
 
 Bump the version, build, and upload — iOS to App Store Connect, Android to Google Play.
-Desktop isn't distributed through a store.
 
 ## Choosing platforms
 
@@ -45,8 +44,8 @@ Facts this repo needs:
 **This project uses Swift Package Manager, not CocoaPods.** There is no `.xcworkspace` — build the
 `.xcodeproj` directly. PostHog and Sentry come from SwiftPM (declared in the Xcode project), and the
 Kotlin/Native `Shared.framework` is produced by the `Compile Kotlin Framework` build phase, which
-runs `./gradlew :composeApp:embedAndSignAppleFrameworkForXcode`. The Kotlin framework links no Apple
-SDKs of its own, so `./gradlew :composeApp:linkReleaseFrameworkIosArm64` is a valid standalone check
+runs `./gradlew :core:embedAndSignAppleFrameworkForXcode`. The Kotlin framework links no Apple
+SDKs of its own, so `./gradlew :core:linkReleaseFrameworkIosArm64` is a valid standalone check
 before you spend time on an archive.
 
 All App Store Connect calls go through the `asc` CLI, which authenticates on its own from the
@@ -143,7 +142,7 @@ asc xcode archive \
 `build/` is gitignored, so nothing from this step or the next ever lands in a commit.
 
 The archive **is** the compile check — the `Compile Kotlin Framework` build phase runs
-`./gradlew :composeApp:embedAndSignAppleFrameworkForXcode`, so a Kotlin error in `:composeApp` (or
+`./gradlew :core:embedAndSignAppleFrameworkForXcode`, so a Kotlin error in `:core` (or
 in a module it depends on) surfaces here. There is deliberately **no
 separate "does it compile" build before this, and one should not be added**: an archive compiles
 into its own `Build/Intermediates.noindex/ArchiveIntermediates/` tree and shares not one object
@@ -155,7 +154,7 @@ If the archive fails, stop and report the error. Do not proceed.
 
 - `module 'Shared' not found` / `Undefined symbols: _kfun:...` — the `Compile Kotlin Framework`
   phase did not produce the framework. Run
-  `./gradlew :composeApp:linkReleaseFrameworkIosArm64` on its own to see the real Kotlin error.
+  `./gradlew :core:linkReleaseFrameworkIosArm64` on its own to see the real Kotlin error.
 - `Missing package product 'PostHog'` / `'Sentry'` — SwiftPM has not resolved. Run
   `xcodebuild -resolvePackageDependencies -project iosApp/iosApp.xcodeproj -scheme iosApp`.
 - A Sentry or PostHog symbol missing at link time is a **Swift**-side problem, not a Kotlin one:
@@ -365,14 +364,14 @@ Skip this whole part for `/ship ios`.
 ## Step 0: Preflight the bundled fonts
 
 ```bash
-for f in composeApp/src/commonMain/composeResources/font/*.ttf; do
+for f in androidApp/src/main/res/font/*.ttf; do
   head -c4 "$f" | xxd -p | grep -q '^00010000$' || { echo "not a TTF: $f"; exit 1; }
 done
 ```
 
 Cheap, and it catches a failure mode that already happened once: `poppins_regular.ttf` and
 `poppins_medium.ttf` were saved GitHub HTML pages rather than fonts, so every body and label style
-silently rendered in a fallback face on all three platforms for months. A real TrueType file starts
+silently rendered in a fallback face for months. A real TrueType file starts
 with the sfnt magic `00 01 00 00`; HTML does not.
 
 ## Step 1: Preflight the signing config

@@ -8,6 +8,15 @@ final class DebugModel {
     private(set) var isClearing = false
     private(set) var isGenerating = false
 
+    /// What is actually in the database. A debug screen should say so, and it is the only signal the
+    /// screenshot UI test can wait on that is not a transient busy flag — those flip and flip back
+    /// between two polls of an XCTest predicate, so a fast write reads as a failure.
+    ///
+    /// `nil` until the first read lands. Rendering a placeholder 0 would be a lie the screenshot
+    /// test believes: it decides whether to clear from this value, and a 0 read before the count
+    /// arrives skips the clear on exactly the runs that carry the previous language's rows.
+    private(set) var sessionCount: Int?
+
     /// Either operation blocks both buttons: clearing partway through a generation run empties what
     /// has been written so far while the loop keeps inserting, and the reverse re-adds a roster
     /// mid-clear.
@@ -32,6 +41,11 @@ final class DebugModel {
         defer { isClearing = false }
         try? await sessions.deleteAllSessions()
         try? await opponents.deleteAllOpponents()
+        await refreshCount()
+    }
+
+    func refreshCount() async {
+        sessionCount = (try? await sessions.getAllSessions().count) ?? 0
     }
 
     /// Mirrors `DebugScreenViewModel.generateRandomSessions`, which lives in a ViewModel and so
@@ -39,6 +53,7 @@ final class DebugModel {
     func generate(count: Int = 100) async {
         isGenerating = true
         defer { isGenerating = false }
+        defer { Task { await refreshCount() } }
 
         var roster: [(KotlinUuid, String)] = []
         for name in Self.opponentNames {
@@ -65,6 +80,17 @@ final class DebugModel {
                 matches: matches(against: roster)
             )
         }
+    }
+
+    /// Delegates to `ShowcaseSeeder` in `:core`, the same writer the Compose debug screen and the
+    /// Android screenshot test use — so the iPhone, iPad and Android rows show one player.
+    func seedShowcase() async {
+        isGenerating = true
+        defer { isGenerating = false }
+        defer { Task { await refreshCount() } }
+
+        try? await ShowcaseSeeder(trainingSessionService: sessions, opponentService: opponents)
+            .seed(languageTag: LocalizationController.shared.languageTag)
     }
 
     private func matches(against roster: [(KotlinUuid, String)]) -> [MatchInput] {
@@ -99,6 +125,10 @@ final class DebugModel {
 }
 
 struct DebugScreen: View {
+    /// Shown while the count is still being read. Locale-independent, so the screenshot UI test can
+    /// wait for it to go away without knowing the language.
+    static let unknownCount = "\u{2014}"
+
     @StateModel private var model = DebugModel()
 
     var body: some View {
@@ -107,6 +137,15 @@ struct DebugScreen: View {
                 Text(L.debugDataGenerationDescription)
                     .font(.footnote)
                     .foregroundStyle(.secondary)
+                HStack {
+                    Text(L.debugSessionsInDatabase)
+                    Spacer()
+                    // Unformatted on purpose: the screenshot UI test waits on this value, and
+                    // `formatted()` would render Arabic-Indic digits under an Arabic locale.
+                    Text(verbatim: model.sessionCount.map(String.init) ?? Self.unknownCount)
+                        .font(.body.weight(.semibold))
+                        .accessibilityIdentifier("debug.sessionCount")
+                }
                 Button {
                     Task { await model.generate() }
                 } label: {
@@ -118,6 +157,14 @@ struct DebugScreen: View {
                         }
                     }
                 }
+                .accessibilityIdentifier("debug.generate")
+                .disabled(model.isBusy)
+                Button {
+                    Task { await model.seedShowcase() }
+                } label: {
+                    Text(L.debugSeedShowcaseData)
+                }
+                .accessibilityIdentifier("debug.seedShowcase")
                 .disabled(model.isBusy)
             }
             Section(L.debugClearDatabaseTitle) {
@@ -135,10 +182,13 @@ struct DebugScreen: View {
                         }
                     }
                 }
+                .accessibilityIdentifier("debug.clearAll")
                 .disabled(model.isBusy)
             }
         }
+        .accessibilityIdentifier(SettingsRoute.debug.screenIdentifier)
         .navigationTitle(L.actionDebug)
         .navigationBarTitleDisplayMode(.inline)
+        .task { await model.refreshCount() }
     }
 }

@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
@@ -12,10 +13,14 @@ import xyz.tleskiv.tt.data.model.enums.CompetitionLevel
 import xyz.tleskiv.tt.data.model.enums.Handedness
 import xyz.tleskiv.tt.data.model.enums.PlayingStyle
 import xyz.tleskiv.tt.data.model.enums.SessionType
+import xyz.tleskiv.tt.di.components.LocaleApplier
+import xyz.tleskiv.tt.model.AppLocale
+import xyz.tleskiv.tt.repo.UserPreferencesRepository
 import xyz.tleskiv.tt.service.MatchInput
 import xyz.tleskiv.tt.service.MatchService
 import xyz.tleskiv.tt.service.OpponentService
 import xyz.tleskiv.tt.service.TrainingSessionService
+import xyz.tleskiv.tt.showcase.ShowcaseSeeder
 import kotlin.random.Random
 import kotlin.time.Clock
 import kotlin.time.Duration.Companion.days
@@ -24,7 +29,9 @@ import kotlin.uuid.Uuid
 class DebugScreenViewModel(
 	private val trainingSessionService: TrainingSessionService,
 	private val opponentService: OpponentService,
-	private val matchService: MatchService
+	private val matchService: MatchService,
+	private val userPreferencesRepository: UserPreferencesRepository,
+	private val localeApplier: LocaleApplier
 ) : ViewModel() {
 
 	private val _isGenerating = MutableStateFlow(false)
@@ -81,6 +88,26 @@ class DebugScreenViewModel(
 				_isGenerating.value = false
 			}
 		}
+	}
+
+	/// Resolves the language here rather than taking it from the screen. The showcase notes are user
+	/// content, so they have to be written in the language the app is actually showing — and for
+	/// [AppLocale.SYSTEM] that is the device's language, not the empty tag the enum carries.
+	fun seedShowcaseData() {
+		viewModelScope.launch {
+			_isGenerating.value = true
+			try {
+				ShowcaseSeeder(trainingSessionService, opponentService).seed(currentLanguageTag())
+			} finally {
+				_isGenerating.value = false
+			}
+		}
+	}
+
+	private suspend fun currentLanguageTag(): String {
+		val selected = userPreferencesRepository.appLocale.first()
+		if (selected != AppLocale.SYSTEM) return selected.languageTag
+		return AppLocale.matching(localeApplier.getSystemLocale()).languageTag
 	}
 
 	private suspend fun generateRandomOpponents(): List<Pair<Uuid, String>> {

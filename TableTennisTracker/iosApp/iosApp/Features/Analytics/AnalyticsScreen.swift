@@ -21,6 +21,7 @@ struct AnalyticsScreen: View {
             }
             if model.showHeatmap.value { HeatmapSection(model: model) }
         }
+        .accessibilityIdentifier("screen.analytics")
         .navigationTitle(L.navAnalytics)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {

@@ -1,11 +1,11 @@
 package xyz.tleskiv.tt.previews.fakes
 
-import com.kizitonwose.calendar.core.now
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.datetime.LocalDate
 import xyz.tleskiv.tt.data.model.enums.CompetitionLevel
 import xyz.tleskiv.tt.data.model.enums.SessionType
+import xyz.tleskiv.tt.util.today
 import xyz.tleskiv.tt.viewmodel.sessions.SessionDetailsScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.SessionsScreenViewModel.SessionUiModel
 import kotlin.uuid.ExperimentalUuidApi
@@ -30,7 +30,7 @@ class FakeSessionDetailsScreenViewModel(
 
 		private fun createSampleSession() = SessionUiModel(
 			id = Uuid.random(),
-			date = LocalDate.now(),
+			date = today(),
 			durationMinutes = 120,
 			sessionType = SessionType.TECHNIQUE,
 			rpe = 7,

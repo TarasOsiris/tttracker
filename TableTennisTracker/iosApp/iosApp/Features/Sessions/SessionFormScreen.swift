@@ -30,6 +30,7 @@ struct SessionFormScreen: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button(L.actionCancel) { dismiss() }
+                        .accessibilityIdentifier("sessionForm.cancel")
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button(L.actionSave) {
@@ -139,6 +140,7 @@ struct SessionFormScreen: View {
                 }
             }
             Button(L.actionAddMatch, systemImage: "plus") { editingMatch = .new }
+                .accessibilityIdentifier("sessionForm.addMatch")
         }
     }
 

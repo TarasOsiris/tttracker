@@ -4,17 +4,17 @@ This file gives concise, project-specific instructions for AI agents working in 
 
 ## Project overview
 
-Table Tennis Tracker is a Kotlin Multiplatform app targeting Android, iOS, Desktop (JVM), and a Ktor server.
-Shared UI is built with Compose Multiplatform; shared domain models live in `shared`.
+Table Tennis Tracker is a Kotlin Multiplatform app targeting Android, iOS and a Ktor server.
+Each app has a native UI — Jetpack Compose on Android, SwiftUI on iOS — over shared Kotlin business
+logic in `core`; shared domain models live in `shared`.
 
 ## Repository map
 
-- `composeApp/` Shared Compose UI (KMP library, not an app)
-  - `composeApp/src/commonMain/kotlin` shared UI + ViewModels
-  - `composeApp/src/jvmMain/kotlin/xyz/tleskiv/tt/main.kt` desktop entry point
-  - `composeApp/src/iosMain/kotlin/xyz/tleskiv/tt/MainViewController.kt` iOS entry point
-- `androidApp/` Android application entry point (`TTApplication.kt`, `MainActivity`)
-- `iosApp/` Xcode project for iOS app
+- `androidApp/` Android application (`TTApplication.kt`, `MainActivity`)
+  - `androidApp/src/main/kotlin/xyz/tleskiv/tt/ui` Jetpack Compose UI
+  - `androidApp/src/main/res` strings (14 locales), drawables, fonts
+- `core/` Business logic, ViewModels and DI (KMP: Android + iOS); produces `Shared.framework`
+- `iosApp/` Xcode project and SwiftUI app
 - `server/` Ktor backend (JVM)
 - `shared/` Shared models (KMP, Kotlinx serialization)
 - `docs/` Additional functional documentation
@@ -22,11 +22,8 @@ Shared UI is built with Compose Multiplatform; shared domain models live in `sha
 ## Build and run
 
 Android:
-- `./gradlew :composeApp:assembleDebug`
+- `./gradlew :androidApp:assembleDebug`
 - `./gradlew :androidApp:installDebug`
-
-Desktop:
-- `./gradlew :composeApp:run`
 
 Server:
 - `./gradlew :server:run` (port 8080)
@@ -38,11 +35,12 @@ iOS:
 Tests:
 - `./gradlew test`
 - `./gradlew :server:test`
-- `./gradlew :composeApp:test`
+- `./gradlew :androidApp:testDebugUnitTest`
+- `./gradlew :androidApp:connectedDebugAndroidTest` (needs a device)
 
 ## Architecture and conventions
 
-### Compose app (MVVM + Clean Architecture)
+### Android app (MVVM + Clean Architecture)
 
 Layering:
 ```
@@ -74,14 +72,14 @@ Repositories:
 
 ### Navigation
 
-Compose Navigation 3 with typed routes in `composeApp/src/commonMain/kotlin/xyz/tleskiv/tt/ui/nav/Routes.kt`.
+Navigation 3 (`androidx.navigation3`) with typed routes in `androidApp/src/main/kotlin/xyz/tleskiv/tt/ui/nav/routes/`.
 Top-level tabs use `TopLevelBackStack`; modal routes for create/details.
 
 ### Database (SQLDelight)
 
 - Server schema: `server/src/main/sqldelight/xyz/tleskiv/tt/db/ServerDatabase.sq`
 - Server setup: `server/src/main/kotlin/xyz/tleskiv/tt/db/DatabaseFactory.kt`
-- Client drivers: Android, iOS native, JVM
+- Client drivers: Android, iOS native
 
 ### Gradle + versions
 
@@ -93,12 +91,12 @@ Dependencies are managed in `gradle/libs.versions.toml`.
 - Prefer a single line for code under 120 characters.
 - For time: use `kotlin.time.Clock`.
 - In `commonMain`, never use `System.currentTimeMillis()`; use `DateTimeUtils.nowMillis`.
-- Android resource handling requires `copyComposeResourcesToAndroidResources` and resource prefix
-  `tabletennistracker.composeapp.generated.resources`.
+- UI strings live in `androidApp/src/main/res/values*/strings.xml` and are also the source of truth
+  for iOS via `tools/strings/xcstrings.py`. Escape apostrophes as `\'`.
 - Use `docs/` for any new functional documentation.
 
 ## Platform-specific guidance
 
 Use `expect`/`actual` in KMP:
 1) `expect` in `commonMain`
-2) `actual` in the platform source set (`androidMain`, `iosMain`, `jvmMain`)
+2) `actual` in the platform source set (`androidMain`, `iosMain`)

@@ -7,11 +7,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.kizitonwose.calendar.core.now
 import kotlinx.datetime.LocalDate
 import xyz.tleskiv.tt.data.model.enums.SessionType
 import xyz.tleskiv.tt.ui.theme.AppTheme
 import xyz.tleskiv.tt.ui.widgets.SessionListItem
+import xyz.tleskiv.tt.util.today
 import xyz.tleskiv.tt.viewmodel.sessions.SessionsScreenViewModel.SessionUiModel
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
@@ -23,7 +23,7 @@ fun SessionListItemPreview() {
 	val sessions = listOf(
 		SessionUiModel(
 			id = Uuid.random(),
-			date = LocalDate.now(),
+			date = today(),
 			durationMinutes = 90,
 			sessionType = SessionType.TECHNIQUE,
 			rpe = 7,
@@ -31,7 +31,7 @@ fun SessionListItemPreview() {
 		),
 		SessionUiModel(
 			id = Uuid.random(),
-			date = LocalDate.now(),
+			date = today(),
 			durationMinutes = 60,
 			sessionType = SessionType.MATCH_PLAY,
 			rpe = 8,
@@ -39,7 +39,7 @@ fun SessionListItemPreview() {
 		),
 		SessionUiModel(
 			id = Uuid.random(),
-			date = LocalDate.now(),
+			date = today(),
 			durationMinutes = 45,
 			sessionType = null,
 			rpe = 5,

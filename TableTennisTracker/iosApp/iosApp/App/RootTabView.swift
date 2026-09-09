@@ -25,14 +25,17 @@ struct RootTabView: View {
             Tab(L.navSessions, systemImage: "figure.table.tennis", value: AppTab.sessions) {
                 SessionsTab(selectedSession: $selectedSession)
             }
+            .accessibilityIdentifier("tab.sessions")
             Tab(L.navAnalytics, systemImage: "chart.bar.xaxis", value: AppTab.analytics) {
                 NavigationStack(path: $analyticsPath) {
                     AnalyticsScreen()
                 }
             }
+            .accessibilityIdentifier("tab.analytics")
             Tab(L.navSettings, systemImage: "gearshape", value: AppTab.settings) {
                 SettingsTab(path: $settingsPath)
             }
+            .accessibilityIdentifier("tab.settings")
         }
         .environment(\.locale, localization.locale)
         .environment(\.layoutDirection, layoutDirection)

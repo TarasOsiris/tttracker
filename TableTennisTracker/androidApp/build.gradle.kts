@@ -3,7 +3,6 @@ import java.util.Properties
 
 plugins {
 	alias(libs.plugins.androidApplication)
-	alias(libs.plugins.composeMultiplatform)
 	alias(libs.plugins.composeCompiler)
 	alias(libs.plugins.sentryAndroid)
 }
@@ -11,6 +10,13 @@ plugins {
 kotlin {
 	compilerOptions {
 		jvmTarget.set(JvmTarget.JVM_11)
+		optIn.addAll(
+			"kotlin.time.ExperimentalTime",
+			"kotlin.uuid.ExperimentalUuidApi",
+			"androidx.compose.material3.ExperimentalMaterial3Api",
+			"androidx.compose.foundation.layout.ExperimentalLayoutApi",
+			"androidx.compose.animation.ExperimentalSharedTransitionApi",
+		)
 	}
 }
 
@@ -64,6 +70,7 @@ android {
 
 	buildFeatures {
 		buildConfig = true
+		compose = true
 	}
 
 	packaging {
@@ -87,42 +94,75 @@ android {
 	compileOptions {
 		sourceCompatibility = JavaVersion.VERSION_11
 		targetCompatibility = JavaVersion.VERSION_11
+		// The calendar library speaks java.time, which the platform only ships from API 26.
+		isCoreLibraryDesugaringEnabled = true
+	}
+
+	testOptions {
+		unitTests.isReturnDefaultValues = true
 	}
 }
 
 dependencies {
-	implementation(projects.composeApp)
+	coreLibraryDesugaring(libs.desugar.jdk.libs)
+
 	implementation(projects.core)
 	implementation(projects.shared)
-	implementation(libs.compose.components.resources)
-	implementation(libs.compose.ui.tooling.preview)
+
+	implementation(libs.compose.runtime)
+	implementation(libs.compose.ui)
 	implementation(libs.compose.foundation)
 	implementation(libs.compose.material3)
+	implementation(libs.compose.material.icons.extended)
+	implementation(libs.compose.ui.tooling.preview)
 	implementation(libs.androidx.activity.compose)
 	implementation(libs.androidx.core.ktx)
-	implementation(libs.calendar.compose.multiplatform)
+
+	implementation(libs.androidx.lifecycle.viewmodel.compose)
+	implementation(libs.androidx.lifecycle.runtime)
+	implementation(libs.androidx.lifecycle.viewmodel.nav3)
+	implementation(libs.androidx.nav3.ui)
+	implementation(libs.kotlinx.serialization.json)
 
 	// Koin DI
 	implementation(platform(libs.koin.bom))
 	implementation(libs.koin.core)
 	implementation(libs.koin.android)
+	implementation(libs.koin.compose)
+	implementation(libs.koin.compose.viewmodel)
+
+	// Calendar
+	implementation(libs.calendar.compose)
+
+	// Charts
+	implementation(libs.koalaplot.core)
 
 	// PostHog Analytics
 	implementation(libs.posthog.android)
 
+	implementation(libs.sqldelight.driver.android)
 
 	debugImplementation(libs.compose.ui.tooling)
 	debugImplementation(libs.androidx.compose.ui.test.manifest)
 
+	testImplementation(libs.kotest.assertions.core)
+	testImplementation(libs.kotest.runner.junit5)
+
 	androidTestImplementation(libs.androidx.testExt.junit)
 	androidTestImplementation(libs.androidx.espresso.core)
 	androidTestImplementation(libs.androidx.compose.ui.test.junit4)
-	androidTestImplementation(libs.compose.components.resources)
 	androidTestImplementation(projects.core)
 	androidTestImplementation(projects.shared)
-	androidTestImplementation(libs.calendar.compose.multiplatform)
 	androidTestUtil(libs.androidx.test.services)
-	implementation(libs.sqldelight.driver.android)
+}
+
+composeCompiler {
+	stabilityConfigurationFiles.add(layout.projectDirectory.file("compose-stability.conf"))
+	reportsDestination = layout.buildDirectory.dir("compose_compiler")
+}
+
+tasks.withType<Test>().configureEach {
+	useJUnitPlatform()
 }
 
 sentry {
