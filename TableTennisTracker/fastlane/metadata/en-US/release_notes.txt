@@ -1,1 +1,7 @@
-The iPhone and iPad app is now fully native, so it starts faster and scrolls more smoothly. iPad gets a proper two-column layout — pick a session on the left, see its details on the right. Also fixed: settings rows that did nothing when tapped, and text that rendered in the wrong font.
+Numbers now follow the language you choose in the app. Training durations, percentages and scores used to stay in your device's language even after you switched — they don't any more.
+
+VoiceOver can read the calendar properly: every day now announces its full date and how many sessions it holds, instead of just a number. The training heatmap reads the same way, and it scrolls more smoothly than before.
+
+Opponent ratings accept decimals again — a rating typed with a comma is no longer dropped when you save.
+
+Buttons that were too small to hit comfortably are now full size, and text no longer clips at larger accessibility text sizes.
