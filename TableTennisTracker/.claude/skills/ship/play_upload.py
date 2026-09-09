@@ -16,6 +16,7 @@ import argparse
 import base64
 import json
 import os
+import pathlib
 import subprocess
 import sys
 import tempfile
@@ -85,6 +86,26 @@ def access_token(key: dict) -> str:
         fail(f"service account auth failed ({error.code}): {error.read().decode(errors='replace')}")
 
 
+# Play caps a phone screenshot slot at eight images.
+MAX_SCREENSHOTS = 8
+
+# Play truncates nothing — it rejects the whole listing, so check before sending.
+LISTING_LIMITS = {"title": 30, "shortDescription": 80, "fullDescription": 4000}
+
+# fastlane/metadata/ uses App Store locale codes; Play has its own. Only the codes that
+# differ need an entry — anything absent is passed through unchanged.
+APP_STORE_TO_PLAY = {
+    "ar-SA": "ar",
+    "es-MX": "es-419",
+    "hi": "hi-IN",
+    "it": "it-IT",
+    "ja": "ja-JP",
+    "ko": "ko-KR",
+    "tr": "tr-TR",
+    "zh-Hans": "zh-CN",
+}
+
+
 class ApiError(Exception):
     def __init__(self, status: int, body: str):
         super().__init__(f"HTTP {status}: {body}")
@@ -146,6 +167,38 @@ class Play:
             "PUT",
             self.edits_url(edit_id, f"/tracks/{track}"),
             body={"track": track, "releases": [release]},
+        )
+
+    def list_listings(self, edit_id: str) -> list:
+        return self._call("GET", self.edits_url(edit_id, "/listings")).get("listings", [])
+
+    def list_images(self, edit_id: str, language: str, image_type: str) -> list:
+        url = self.edits_url(edit_id, f"/listings/{language}/{image_type}")
+        return self._call("GET", url).get("images", [])
+
+    def delete_images(self, edit_id: str, language: str, image_type: str) -> None:
+        """Clears the whole slot. Play appends on upload, so without this a second run stacks."""
+        self._call("DELETE", self.edits_url(edit_id, f"/listings/{language}/{image_type}"))
+
+    def upload_image(self, edit_id: str, language: str, image_type: str, path: str) -> dict:
+        url = (f"{UPLOAD_API}/applications/{self.package}/edits/{edit_id}"
+               f"/listings/{language}/{image_type}?uploadType=media")
+        size = os.path.getsize(path)
+        with open(path, "rb") as handle:
+            return self._call(
+                "POST",
+                url,
+                headers={"Content-Type": "image/png"},
+                stream=handle,
+                length=size,
+            )
+
+    def update_listing(self, edit_id: str, language: str, listing: dict) -> dict:
+        """PUT creates the listing when it does not exist yet, so it doubles as 'add a locale'."""
+        return self._call(
+            "PUT",
+            self.edits_url(edit_id, f"/listings/{language}"),
+            body={"language": language, **listing},
         )
 
     def validate(self, edit_id: str) -> dict:
@@ -257,6 +310,125 @@ def cmd_upload(args) -> int:
             play.delete_edit(edit_id)
 
 
+def cmd_screenshots(args) -> int:
+    """Replace a listing image slot in every language that has images on disk.
+
+    Play appends rather than replaces, so each language is cleared before its set goes up. The whole
+    thing rides one edit: either every language lands or none does.
+    """
+    play = connect(args)
+    root = pathlib.Path(args.dir)
+    if not root.is_dir():
+        fail(f"{root} is not a directory")
+
+    edit_id = play.create_edit()
+    committed = False
+    try:
+        available = {listing["language"] for listing in play.list_listings(edit_id)}
+        planned = []
+        for language_dir in sorted(root.iterdir()):
+            if not language_dir.is_dir():
+                continue
+            language = language_dir.name
+            images = sorted(language_dir.glob("*.png"))
+            if not images:
+                continue
+            if language not in available:
+                print(f"skip {language}: no Play listing in that language")
+                continue
+            if len(images) > MAX_SCREENSHOTS:
+                fail(f"{language} has {len(images)} images; Play allows {MAX_SCREENSHOTS}")
+            planned.append((language, images))
+
+        if not planned:
+            fail("nothing to upload — no language directory matched a Play listing")
+
+        for language, images in planned:
+            play.delete_images(edit_id, language, args.image_type)
+            for image in images:
+                play.upload_image(edit_id, language, args.image_type, str(image))
+            print(f"  {language}: {len(images)} images")
+
+        play.validate(edit_id)
+        if args.dry_run:
+            print(f"dry run — validated {len(planned)} languages, discarding edit")
+            return 0
+
+        play.commit(edit_id)
+        committed = True
+        print(f"committed {args.image_type} for {len(planned)} languages")
+        return 0
+    except ApiError as error:
+        fail(f"screenshot upload failed: {error}")
+    finally:
+        if not committed:
+            play.delete_edit(edit_id)
+
+
+def cmd_listings(args) -> int:
+    """Create store listings from a fastlane-style metadata tree.
+
+    Defaults to creating only the languages Play does not have yet, so a re-run never
+    overwrites copy that was edited in the Play Console.
+    """
+    play = connect(args)
+    root = pathlib.Path(args.dir)
+    if not root.is_dir():
+        fail(f"{root} is not a directory")
+
+    edit_id = play.create_edit()
+    committed = False
+    try:
+        existing = {listing["language"] for listing in play.list_listings(edit_id)}
+        planned = []
+        for locale_dir in sorted(root.iterdir()):
+            if not locale_dir.is_dir():
+                continue
+            language = APP_STORE_TO_PLAY.get(locale_dir.name, locale_dir.name)
+            if language in existing and not args.overwrite:
+                print(f"skip {language}: listing already exists")
+                continue
+
+            listing = {}
+            for field, filename in (("title", "name.txt"),
+                                    ("shortDescription", "subtitle.txt"),
+                                    ("fullDescription", "description.txt")):
+                path = locale_dir / filename
+                if not path.exists():
+                    fail(f"{locale_dir.name} is missing {filename}")
+                text = path.read_text().strip()
+                if not text:
+                    fail(f"{locale_dir.name}/{filename} is empty")
+                if len(text) > LISTING_LIMITS[field]:
+                    fail(f"{locale_dir.name}/{filename} is {len(text)} chars; "
+                         f"Play caps {field} at {LISTING_LIMITS[field]}")
+                listing[field] = text
+            planned.append((language, locale_dir.name, listing))
+
+        if not planned:
+            print("nothing to do — every locale on disk already has a Play listing")
+            return 0
+
+        for language, locale, listing in planned:
+            play.update_listing(edit_id, language, listing)
+            print(f"  {language:<8} from {locale:<8} {listing['title']}")
+
+        play.validate(edit_id)
+        if args.dry_run:
+            print(f"dry run — validated {len(planned)} listings, discarding edit")
+            return 0
+
+        play.commit(edit_id)
+        committed = True
+        print(f"committed {len(planned)} listings")
+        return 0
+    except ApiError as error:
+        fail(f"listing update failed: {error}")
+    finally:
+        if not committed:
+            play.delete_edit(edit_id)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--key", default=os.environ.get("GOOGLE_PLAY_KEY_JSON", DEFAULT_KEY))
@@ -275,6 +447,24 @@ def main() -> int:
     upload.add_argument("--notes-locale", default="en-US")
     upload.add_argument("--dry-run", action="store_true", help="upload and validate, then discard the edit")
     upload.set_defaults(func=cmd_upload)
+
+    shots = subparsers.add_parser("screenshots", help="replace store listing images from a directory")
+    shots.add_argument("--dir", required=True,
+                       help="directory of <play-language>/ subdirectories of .png files, in display order")
+    shots.add_argument("--image-type", default="phoneScreenshots",
+                       choices=["phoneScreenshots", "sevenInchScreenshots", "tenInchScreenshots",
+                                "tvScreenshots", "wearScreenshots"])
+    shots.add_argument("--dry-run", action="store_true", help="upload and validate, then discard the edit")
+    shots.set_defaults(func=cmd_screenshots)
+
+    listings = subparsers.add_parser("listings", help="create store listings from a metadata tree")
+    listings.add_argument("--dir", required=True,
+                          help="directory of <app-store-locale>/ subdirs holding "
+                               "name.txt, subtitle.txt and description.txt")
+    listings.add_argument("--overwrite", action="store_true",
+                          help="also rewrite languages Play already has (default: skip them)")
+    listings.add_argument("--dry-run", action="store_true", help="validate, then discard the edit")
+    listings.set_defaults(func=cmd_listings)
 
     args = parser.parse_args()
     return args.func(args)
