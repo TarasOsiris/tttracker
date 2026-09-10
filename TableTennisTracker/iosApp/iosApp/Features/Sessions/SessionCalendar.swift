@@ -12,6 +12,7 @@ struct SessionCalendar: View {
     @Binding var isExpanded: Bool
 
     @Environment(\.locale) private var locale
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     /// A row has to clear Apple's 44pt minimum on its own: the whole cell is the tap target, and
     /// `@ScaledMetric` grows it with the user's text size so the number inside never clips.
@@ -35,9 +36,13 @@ struct SessionCalendar: View {
         .background(.bar)
         .contentShape(.rect)
         .gesture(pageGesture)
-        .animation(.snappy(duration: 0.25), value: isExpanded)
-        .animation(.snappy(duration: 0.25), value: selection)
+        .animation(motion, value: isExpanded)
+        .animation(motion, value: selection)
     }
+
+    /// Expanding the calendar animates its height and slides the list under it; with Reduce
+    /// Motion on the state swaps instead, which is the only motion in the app to answer for.
+    private var motion: Animation? { reduceMotion ? nil : .snappy(duration: 0.25) }
 
     private var header: some View {
         HStack {
@@ -108,9 +113,10 @@ struct SessionCalendar: View {
                 }
                 .buttonStyle(.plain)
                 .accessibilityIdentifier("calendar.day")
-                // Read as its children a day was a bare number and a row of unnamed dots: no
-                // month, no year, and no way to tell a day with sessions from an empty one.
-                .accessibilityElement(children: .ignore)
+                // Left to itself a day was a bare number and a row of unnamed dots: no month, no
+                // year, and no way to tell a day with sessions from an empty one. The label goes
+                // on the button rather than behind an `accessibilityElement(children: .ignore)`,
+                // which leaves a `Button`'s own element — and so its derived label — in place.
                 .accessibilityLabel(dayLabel(day))
                 .accessibilityValue(Text(L.accessibilitySessionsCount(model.sessions(on: day).count)))
                 .accessibilityAddTraits(day == selection ? [.isButton, .isSelected] : .isButton)

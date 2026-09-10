@@ -47,6 +47,6 @@ struct SummarySection: View {
 
     private var winRateTint: Color? {
         guard let rate = model.summary.winRate else { return nil }
-        return rate >= 0.5 ? .matchWin : .matchLoss
+        return rate >= 0.5 ? .matchWinText : .matchLossText
     }
 }

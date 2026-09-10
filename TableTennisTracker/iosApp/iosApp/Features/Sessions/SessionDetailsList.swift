@@ -23,7 +23,7 @@ struct SessionDetailsList: View {
                 }
                 LabeledContent(L.labelRpe) {
                     HStack(spacing: 6) {
-                        Text(session.rpe, format: .integer).foregroundStyle(Color.rpe(session.rpe))
+                        RpeBadge(rpe: session.rpe, namesItself: false)
                         Text(rpeLabel(session.rpe)).foregroundStyle(.secondary)
                     }
                 }

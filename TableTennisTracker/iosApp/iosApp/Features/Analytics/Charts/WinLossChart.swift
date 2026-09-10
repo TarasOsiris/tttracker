@@ -18,7 +18,9 @@ struct WinLossChart: View {
                     )
                     .foregroundStyle(Color.matchWin)
                     .annotation(position: .overlay) {
-                        Text(model.summary.matchesWon, format: .integer).font(.caption).bold()
+                        Text(model.summary.matchesWon, format: .integer)
+                            .font(.caption).bold()
+                            .foregroundStyle(Color.onMatchWin)
                     }
 
                     SectorMark(
@@ -28,7 +30,9 @@ struct WinLossChart: View {
                     )
                     .foregroundStyle(Color.matchLoss)
                     .annotation(position: .overlay) {
-                        Text(model.summary.matchesLost, format: .integer).font(.caption).bold()
+                        Text(model.summary.matchesLost, format: .integer)
+                            .font(.caption).bold()
+                            .foregroundStyle(Color.onMatchLoss)
                     }
                 }
                 .frame(height: isWide ? 240 : 180)

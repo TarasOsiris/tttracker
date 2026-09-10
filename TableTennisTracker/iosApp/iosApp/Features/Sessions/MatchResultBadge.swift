@@ -8,7 +8,7 @@ struct MatchResultBadge: View {
     var body: some View {
         Text(text)
             .font(.caption.weight(.bold))
-            .foregroundStyle(.white)
+            .foregroundStyle(isWin ? Color.onMatchWin : Color.onMatchLoss)
             .padding(.horizontal, 8)
             .padding(.vertical, 4)
             .background(isWin ? Color.matchWin : Color.matchLoss, in: .capsule)

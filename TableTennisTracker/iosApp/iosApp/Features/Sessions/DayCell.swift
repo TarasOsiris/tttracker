@@ -14,6 +14,7 @@ struct DayCell: View {
     let numberSize: Double
 
     @Environment(\.locale) private var locale
+    @Environment(\.accessibilityDifferentiateWithoutColor) private var differentiateWithoutColor
 
     var body: some View {
         VStack(spacing: 3) {
@@ -37,10 +38,21 @@ struct DayCell: View {
             // `EnumeratedSequence: RandomAccessCollection` conformance that allows the latter is
             // iOS 26, and this app deploys to 18.2.
             ForEach(Array(indicators.enumerated()), id: \.offset) { _, kind in
-                Circle().fill(Color.sessionKind(kind)).frame(width: 4, height: 4)
+                Circle()
+                    .fill(dotColor(kind))
+                    .frame(width: 4, height: 4)
+                    // The pale end of the palette — tournament gold — is about 1.4:1 on the bar.
+                    .overlay(Circle().strokeBorder(Color.primary.opacity(0.2), lineWidth: 0.5))
             }
         }
         .frame(height: 4)
+    }
+
+    /// Session type is a hue here and nothing else — four points across is too little to carry
+    /// a shape instead. With Differentiate Without Color on the dots drop to one tone, so they
+    /// count the day's sessions and claim nothing more; the list below names every type.
+    private func dotColor(_ kind: SessionKind?) -> Color {
+        differentiateWithoutColor ? .secondary : .sessionKind(kind)
     }
 
     @ViewBuilder private var background: some View {

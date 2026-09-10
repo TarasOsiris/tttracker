@@ -24,12 +24,7 @@ struct SessionRow: View {
 
             Spacer(minLength: 8)
 
-            Text(session.rpe, format: .integer)
-                .font(.callout.weight(.semibold))
-                .foregroundStyle(Color.rpe(session.rpe))
-                .frame(minWidth: 32, minHeight: 32)
-                .background(Color(.tertiarySystemFill), in: .circle)
-                .accessibilityLabel(L.labelRpe)
+            RpeBadge(rpe: session.rpe)
         }
         .padding(12)
         .background(background, in: .rect(cornerRadius: 12))

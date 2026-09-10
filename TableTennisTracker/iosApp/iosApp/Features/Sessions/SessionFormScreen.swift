@@ -103,9 +103,7 @@ struct SessionFormScreen: View {
                 .buttonStyle(.borderless)
                 .minimumTapTarget()
                 Spacer()
-                Text(model.rpe, format: .integer)
-                    .font(.body.weight(.semibold))
-                    .foregroundStyle(Color.rpe(model.rpe))
+                RpeBadge(rpe: model.rpe, namesItself: false)
             }
             Slider(value: $model.intensity, in: 1...10, step: 1)
                 .tint(Color.rpe(model.rpe))
