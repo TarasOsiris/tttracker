@@ -130,6 +130,8 @@
     <string name="debug_data_generation_title">데이터 생성</string>
     <string name="debug_data_generation_description">지난 1년간의 무작위 훈련 데이터를 생성하여 앱을 테스트합니다.</string>
     <string name="debug_generate_random_sessions">100개의 무작위 훈련 생성</string>
+    <string name="debug_seed_showcase_data">스토어 스크린샷 데이터 생성</string>
+    <string name="debug_sessions_in_database">데이터베이스의 세션</string>
     <string name="debug_clear_database_title">데이터베이스 삭제</string>
     <string name="debug_clear_database_description">데이터베이스에서 모든 훈련을 영구적으로 삭제합니다. 이 작업은 취소할 수 없습니다.</string>
     <string name="debug_clear_all_sessions">모든 훈련 삭제</string>
@@ -246,4 +248,19 @@
 	<!-- Opponents Info -->
 	<string name="opponents_info_title">상대 정보</string>
 	<string name="opponents_info_message">여기에 추가한 상대는 훈련 세션에서 경기를 기록할 때 빠르게 선택할 수 있습니다.</string>
+
+    <!-- Accessibility -->
+    <string name="accessibility_sessions_count">세션: %1$d</string>
+
+    <!-- Home screen widgets -->
+    <string name="widget_summary_name">훈련 요약</string>
+    <string name="widget_summary_description">세션, 훈련 시간, 경기 전적을 한눈에.</string>
+    <string name="widget_heatmap_name">훈련 활동</string>
+    <string name="widget_heatmap_description">훈련한 날을 그날의 훈련량에 따라 진하게 표시합니다.</string>
+    <string name="widget_last_session_name">마지막 세션</string>
+    <string name="widget_last_session_description">마지막으로 훈련한 날짜와 시간, 그리고 결과.</string>
+    <string name="widget_add_session_name">세션 추가</string>
+    <string name="widget_add_session_description">TT Tracker를 열고 훈련 세션 기록을 시작합니다.</string>
+    <string name="widget_empty">아직 세션이 없습니다</string>
+    <string name="widget_no_matches">경기 없음</string>
 </resources>

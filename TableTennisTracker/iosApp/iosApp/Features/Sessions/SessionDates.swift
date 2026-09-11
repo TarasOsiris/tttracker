@@ -7,14 +7,6 @@ extension Calendar {
         calendar.timeZone = .gmt
         return calendar
     }()
-
-    /// The calendar this feature does its date arithmetic in: Gregorian, the device's zone, and the
-    /// user's first day of week.
-    static func days(firstWeekday: Int) -> Calendar {
-        var calendar = Calendar.gregorian
-        calendar.firstWeekday = firstWeekday
-        return calendar
-    }
 }
 
 extension Int64 {

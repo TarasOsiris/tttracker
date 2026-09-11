@@ -74,13 +74,8 @@ struct HeatmapSection: View {
         return min(maximumWeeks, max(minimumWeeks, fitting))
     }
 
-    /// Every day in the window, oldest first, ending on a partial current week so each grid column
-    /// is one week — aligned to the user's first day of week, not the system's.
     private func rebuildDays() {
-        let calendar = Calendar.days(firstWeekday: model.firstWeekday)
-        let today = calendar.startOfDay(for: .now)
-        let daysIntoWeek = (calendar.component(.weekday, from: today) - calendar.firstWeekday + 7) % 7
-        let total = weeksShown * 7 + daysIntoWeek
-        days = (0..<total).reversed().compactMap { calendar.date(byAdding: .day, value: -$0, to: today) }
+        days = Calendar.days(firstWeekday: model.firstWeekday)
+            .heatmapDays(weeks: weeksShown, endingOn: .now)
     }
 }

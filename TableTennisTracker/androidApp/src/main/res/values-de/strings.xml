@@ -130,6 +130,8 @@
     <string name="debug_data_generation_title">Datengenerierung</string>
     <string name="debug_data_generation_description">Zufällige Trainingseinheiten für das letzte Jahr generieren, um die App mit realistischen Daten zu testen.</string>
     <string name="debug_generate_random_sessions">100 zufällige Einheiten generieren</string>
+    <string name="debug_seed_showcase_data">Store-Screenshot-Daten anlegen</string>
+    <string name="debug_sessions_in_database">Einheiten in der Datenbank</string>
     <string name="debug_clear_database_title">Datenbank löschen</string>
     <string name="debug_clear_database_description">Alle Trainingseinheiten dauerhaft aus der Datenbank löschen. Diese Aktion kann nicht rückgängig gemacht werden.</string>
     <string name="debug_clear_all_sessions">Alle Einheiten löschen</string>
@@ -246,4 +248,19 @@
 	<!-- Opponents Info -->
 	<string name="opponents_info_title">Über Gegner</string>
 	<string name="opponents_info_message">Gegner, die du hier hinzufügst, stehen dir zur schnellen Auswahl zur Verfügung, wenn du Spiele in deinen Trainingseinheiten erfasst.</string>
+
+    <!-- Accessibility -->
+    <string name="accessibility_sessions_count">Einheiten: %1$d</string>
+
+    <!-- Home screen widgets -->
+    <string name="widget_summary_name">Trainingsübersicht</string>
+    <string name="widget_summary_description">Einheiten, Trainingszeit und deine Spielbilanz auf einen Blick.</string>
+    <string name="widget_heatmap_name">Trainingsaktivität</string>
+    <string name="widget_heatmap_description">Deine Trainingstage, eingefärbt nach Auslastung.</string>
+    <string name="widget_last_session_name">Letzte Einheit</string>
+    <string name="widget_last_session_description">Wann du zuletzt trainiert hast, wie lange und wie es lief.</string>
+    <string name="widget_add_session_name">Einheit hinzufügen</string>
+    <string name="widget_add_session_description">TT Tracker öffnen und eine Trainingseinheit erfassen.</string>
+    <string name="widget_empty">Noch keine Einheiten</string>
+    <string name="widget_no_matches">Keine Spiele</string>
 </resources>

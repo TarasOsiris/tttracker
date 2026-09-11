@@ -21,6 +21,19 @@
 		<string>uk</string>
 		<string>zh-CN</string>
 	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>xyz.tleskiv.tt</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>tttracker</string>
+			</array>
+		</dict>
+	</array>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>POSTHOG_API_KEY</key>

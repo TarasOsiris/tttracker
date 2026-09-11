@@ -14,6 +14,7 @@ enum AppTab: Hashable {
 struct RootTabView: View {
     @State private var selection: AppTab = .sessions
     @State private var selectedSession: String?
+    @State private var newSession: NewSessionTarget?
     @State private var analyticsPath = NavigationPath()
     @State private var settingsPath = NavigationPath()
 
@@ -23,7 +24,7 @@ struct RootTabView: View {
     var body: some View {
         TabView(selection: tabSelection) {
             Tab(L.navSessions, systemImage: "figure.table.tennis", value: AppTab.sessions) {
-                SessionsTab(selectedSession: $selectedSession)
+                SessionsTab(selectedSession: $selectedSession, newSession: $newSession)
             }
             .accessibilityIdentifier("tab.sessions")
             Tab(L.navAnalytics, systemImage: "chart.bar.xaxis", value: AppTab.analytics) {
@@ -37,10 +38,35 @@ struct RootTabView: View {
             }
             .accessibilityIdentifier("tab.settings")
         }
+        .onOpenURL(perform: open)
         .environment(\.locale, localization.locale)
         .environment(\.layoutDirection, layoutDirection)
         .preferredColorScheme(appearance.themeMode.colorScheme)
         .id(localization.generation)
+    }
+
+    /// Where a widget tap lands. The scheme is `tttracker://`, and the host names the tab:
+    /// `analytics`, `sessions/<id>` for one session, `sessions/new` to start logging one.
+    private func open(_ url: URL) {
+        guard url.scheme == DeepLink.scheme else { return }
+        let path = url.pathComponents.filter { $0 != "/" }
+        switch (url.host(), path.first) {
+        case ("analytics", _):
+            selection = .analytics
+            analyticsPath = NavigationPath()
+        case ("sessions", "new"):
+            selection = .sessions
+            selectedSession = nil
+            newSession = NewSessionTarget(day: Calendar.gregorian.startOfDay(for: .now))
+        case ("sessions", let id?):
+            selection = .sessions
+            selectedSession = id
+        case ("sessions", nil):
+            selection = .sessions
+            selectedSession = nil
+        default:
+            break
+        }
     }
 
     /// Arabic needs an explicit flip: overriding `\.locale` alone does not change layout direction.

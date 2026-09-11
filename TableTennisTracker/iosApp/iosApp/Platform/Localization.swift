@@ -3,7 +3,7 @@ import Observation
 import SwiftUI
 import Shared
 
-/// Resolves the app's strings, honouring the in-app language override.
+/// Points `Localization` at the app's current language, honouring the in-app override.
 ///
 /// `IosLocaleApplier` writes `AppleLanguages` into `NSUserDefaults`, which the Compose UI relies on
 /// because Compose resources read the preferred-language list at draw time. `Bundle.main` caches its
@@ -14,7 +14,6 @@ import Shared
 final class LocalizationController {
     static let shared = LocalizationController()
 
-    private(set) var bundle: Bundle = .main
     private(set) var locale: Locale = .autoupdatingCurrent
 
     /// The shipped localization actually in use, spelled as `Shared.xcstrings` spells it — which is
@@ -34,41 +33,12 @@ final class LocalizationController {
         Services.locales.applyLocale(languageTag: tag)
 
         let resolved = tag ?? Locale.preferredLanguages.first ?? "en"
-        bundle = Self.bundle(for: resolved) ?? .main
         locale = Locale(identifier: resolved)
-        languageTag = Bundle.preferredLocalizations(from: Bundle.main.localizations,
-                                                    forPreferences: [resolved]).first ?? "en"
+        languageTag = Localization.shippedLocalization(for: resolved) ?? "en"
+        Localization.use(bundle: Localization.bundle(for: resolved) ?? .main, locale: locale)
         generation += 1
-    }
-
-    /// Resolves the closest shipped localization. `preferredLocalizations` handles script subtags
-    /// (`zh-Hans-CN` -> `zh-CN`), which truncating on "-" does not.
-    private static func bundle(for tag: String) -> Bundle? {
-        Bundle.preferredLocalizations(from: Bundle.main.localizations, forPreferences: [tag])
-            .first
-            .flatMap { Bundle.main.path(forResource: $0, ofType: "lproj") }
-            .flatMap(Bundle.init(path:))
-    }
-}
-
-/// Lookup used by the generated `L` accessors.
-enum Localization {
-    static let table = "Shared"
-
-    static func string(_ key: String) -> String {
-        MainActor.assumeIsolated {
-            LocalizationController.shared.bundle.localizedString(forKey: key, value: key, table: table)
-        }
-    }
-
-    static func format(_ key: String, _ arguments: any CVarArg...) -> String {
-        MainActor.assumeIsolated {
-            let controller = LocalizationController.shared
-            return String(
-                format: controller.bundle.localizedString(forKey: key, value: key, table: table),
-                locale: controller.locale,
-                arguments: arguments
-            )
-        }
+        // The widgets' strings are resolved when the snapshot is written, so they only follow the
+        // override if it is rewritten here.
+        WidgetSnapshotWriter.shared.flush()
     }
 }

@@ -130,6 +130,8 @@
     <string name="debug_data_generation_title">Geração de dados</string>
     <string name="debug_data_generation_description">Gerar sessões de treino aleatórias para o último ano para testar o aplicativo com dados realistas.</string>
     <string name="debug_generate_random_sessions">Gerar 100 sessões aleatórias</string>
+    <string name="debug_seed_showcase_data">Gerar dados para capturas</string>
+    <string name="debug_sessions_in_database">Sessões na base de dados</string>
     <string name="debug_clear_database_title">Limpar banco de dados</string>
     <string name="debug_clear_database_description">Exclua permanentemente todas as sessões de treino do banco de dados. Esta ação não pode ser desfeita.</string>
     <string name="debug_clear_all_sessions">Limpar todas as sessões</string>
@@ -246,4 +248,19 @@
 	<!-- Opponents Info -->
 	<string name="opponents_info_title">Sobre oponentes</string>
 	<string name="opponents_info_message">Os oponentes adicionados aqui estarão disponíveis para seleção rápida ao registrar partidas nas suas sessões de treino.</string>
+
+    <!-- Accessibility -->
+    <string name="accessibility_sessions_count">Sessões: %1$d</string>
+
+    <!-- Home screen widgets -->
+    <string name="widget_summary_name">Resumo de treino</string>
+    <string name="widget_summary_description">Sessões, tempo treinado e o teu registo de jogos num relance.</string>
+    <string name="widget_heatmap_name">Atividade de treino</string>
+    <string name="widget_heatmap_description">Os teus dias de treino, sombreados conforme a carga de cada um.</string>
+    <string name="widget_last_session_name">Última sessão</string>
+    <string name="widget_last_session_description">Quando treinaste pela última vez, durante quanto tempo e como correu.</string>
+    <string name="widget_add_session_name">Adicionar sessão</string>
+    <string name="widget_add_session_description">Abre o TT Tracker e começa a registar uma sessão de treino.</string>
+    <string name="widget_empty">Ainda sem sessões</string>
+    <string name="widget_no_matches">Sem jogos</string>
 </resources>

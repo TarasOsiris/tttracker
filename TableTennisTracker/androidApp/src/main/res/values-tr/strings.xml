@@ -130,6 +130,8 @@
     <string name="debug_data_generation_title">Veri oluşturma</string>
     <string name="debug_data_generation_description">Uygulamayı gerçekçi verilerle test etmek için geçen yıl için rastgele antrenmanlar oluşturun.</string>
     <string name="debug_generate_random_sessions">100 rastgele antrenman oluştur</string>
+    <string name="debug_seed_showcase_data">Mağaza Ekran Görüntüsü Verisi Oluştur</string>
+    <string name="debug_sessions_in_database">Veritabanındaki antrenmanlar</string>
     <string name="debug_clear_database_title">Veritabanını temizle</string>
     <string name="debug_clear_database_description">Veritabanından tüm antrenmanları kalıcı olarak silin. Bu işlem geri alınamaz.</string>
     <string name="debug_clear_all_sessions">Tüm antrenmanları temizle</string>
@@ -246,4 +248,19 @@
 	<!-- Opponents Info -->
 	<string name="opponents_info_title">Rakipler hakkında</string>
 	<string name="opponents_info_message">Buraya eklediğiniz rakipler, antrenman seanslarınızda maç kaydederken hızlı seçim için kullanılabilir.</string>
+
+    <!-- Accessibility -->
+    <string name="accessibility_sessions_count">Antrenman: %1$d</string>
+
+    <!-- Home screen widgets -->
+    <string name="widget_summary_name">Antrenman özeti</string>
+    <string name="widget_summary_description">Antrenmanlar, çalışılan süre ve maç bilançon tek bakışta.</string>
+    <string name="widget_heatmap_name">Antrenman etkinliği</string>
+    <string name="widget_heatmap_description">Antrenman günlerin, her birinin yoğunluğuna göre renklendirilmiş.</string>
+    <string name="widget_last_session_name">Son antrenman</string>
+    <string name="widget_last_session_description">En son ne zaman, ne kadar çalıştın ve nasıl geçti.</string>
+    <string name="widget_add_session_name">Antrenman ekle</string>
+    <string name="widget_add_session_description">TT Tracker\'ı aç ve bir antrenman kaydetmeye başla.</string>
+    <string name="widget_empty">Henüz antrenman yok</string>
+    <string name="widget_no_matches">Maç yok</string>
 </resources>

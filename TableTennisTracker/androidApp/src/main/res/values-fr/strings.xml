@@ -130,6 +130,8 @@
     <string name="debug_data_generation_title">Génération de données</string>
     <string name="debug_data_generation_description">Générer des séances d\'entraînement aléatoires pour l\'année dernière pour tester l\'application avec des données réalistes.</string>
     <string name="debug_generate_random_sessions">Générer 100 séances aléatoires</string>
+    <string name="debug_seed_showcase_data">Générer les données de captures</string>
+    <string name="debug_sessions_in_database">Séances dans la base de données</string>
     <string name="debug_clear_database_title">Effacer la base de données</string>
     <string name="debug_clear_database_description">Supprimer définitivement toutes les séances d\'entraînement de la base de données. Cette action ne peut pas être annulée.</string>
     <string name="debug_clear_all_sessions">Effacer toutes les séances</string>
@@ -246,4 +248,19 @@
 	<!-- Opponents Info -->
 	<string name="opponents_info_title">À propos des adversaires</string>
 	<string name="opponents_info_message">Les adversaires ajoutés ici seront disponibles pour une sélection rapide lors de l\'enregistrement des matchs dans vos séances d\'entraînement.</string>
+
+    <!-- Accessibility -->
+    <string name="accessibility_sessions_count">Séances : %1$d</string>
+
+    <!-- Home screen widgets -->
+    <string name="widget_summary_name">Résumé d\'entraînement</string>
+    <string name="widget_summary_description">Séances, temps d\'entraînement et bilan de vos matchs en un coup d\'œil.</string>
+    <string name="widget_heatmap_name">Activité d\'entraînement</string>
+    <string name="widget_heatmap_description">Vos jours d\'entraînement, nuancés selon leur intensité.</string>
+    <string name="widget_last_session_name">Dernière séance</string>
+    <string name="widget_last_session_description">Quand vous vous êtes entraîné pour la dernière fois, combien de temps et comment cela s\'est passé.</string>
+    <string name="widget_add_session_name">Ajouter une séance</string>
+    <string name="widget_add_session_description">Ouvrir TT Tracker et commencer à enregistrer une séance d\'entraînement.</string>
+    <string name="widget_empty">Aucune séance pour l\'instant</string>
+    <string name="widget_no_matches">Aucun match</string>
 </resources>

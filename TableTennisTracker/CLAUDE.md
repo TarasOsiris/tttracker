@@ -27,6 +27,12 @@ dependencies used only from Swift. RevenueCat is configured at launch in
 `iosApp/iosApp/Platform/SwiftPurchases.swift` for dashboard reporting only — no entitlements,
 offerings or paywalls are wired up.
 
+The project has three targets: `iosApp`, the `TTWidgets` widget extension, and `iosAppUITests`.
+`iosApp/Common` is compiled into both the app and the extension — the string catalog and its `L`
+accessors, the brand `Palette`, and the `WidgetSnapshot` the app writes into the
+`group.xyz.tleskiv.tt` App Group for the widgets to read. The extension links neither the Kotlin
+framework nor the database; see `docs/widgets.md`.
+
 Because the Kotlin framework links no Apple SDKs of its own, it can be checked on its own without
 Xcode:
 
@@ -336,8 +342,8 @@ If it's not possible fallback to `expect`/`actual` pattern:
 ## Localization
 
 The project uses Android string resources for translations. They are also the source of truth for
-iOS: `tools/strings/xcstrings.py` projects them onto `iosApp/iosApp/Resources/Shared.xcstrings` and
-`iosApp/iosApp/Generated/AppStrings.swift`, and `--check` fails if the two have drifted.
+iOS: `tools/strings/xcstrings.py` projects them onto `iosApp/Common/Resources/Shared.xcstrings` and
+`iosApp/Common/Generated/AppStrings.swift`, and `--check` fails if the two have drifted.
 
 **File locations:**
 - Base strings (English): `androidApp/src/main/res/values/strings.xml`

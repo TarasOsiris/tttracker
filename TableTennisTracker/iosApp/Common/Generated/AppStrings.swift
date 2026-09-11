@@ -525,4 +525,34 @@ enum L {
 	/// Sunday
 	static var weekStartSunday: String { Localization.string("week_start_sunday") }
 
+	/// Open TT Tracker and start logging a training session.
+	static var widgetAddSessionDescription: String { Localization.string("widget_add_session_description") }
+
+	/// Add session
+	static var widgetAddSessionName: String { Localization.string("widget_add_session_name") }
+
+	/// No sessions yet
+	static var widgetEmpty: String { Localization.string("widget_empty") }
+
+	/// Your training days, shaded by how busy each one was.
+	static var widgetHeatmapDescription: String { Localization.string("widget_heatmap_description") }
+
+	/// Training activity
+	static var widgetHeatmapName: String { Localization.string("widget_heatmap_name") }
+
+	/// When you last trained, for how long and how it went.
+	static var widgetLastSessionDescription: String { Localization.string("widget_last_session_description") }
+
+	/// Last session
+	static var widgetLastSessionName: String { Localization.string("widget_last_session_name") }
+
+	/// No matches
+	static var widgetNoMatches: String { Localization.string("widget_no_matches") }
+
+	/// Sessions, time trained and your match record at a glance.
+	static var widgetSummaryDescription: String { Localization.string("widget_summary_description") }
+
+	/// Training summary
+	static var widgetSummaryName: String { Localization.string("widget_summary_name") }
+
 }

@@ -130,6 +130,8 @@
     <string name="debug_data_generation_title">डेटा जनरेशन</string>
     <string name="debug_data_generation_description">वास्तविक डेटा के साथ ऐप का परीक्षण करने के लिए पिछले वर्ष के लिए यादृच्छिक अभ्यास बनाएं।</string>
     <string name="debug_generate_random_sessions">100 यादृच्छिक अभ्यास उत्पन्न करें</string>
+    <string name="debug_seed_showcase_data">स्टोर स्क्रीनशॉट डेटा भरें</string>
+    <string name="debug_sessions_in_database">डेटाबेस में सत्र</string>
     <string name="debug_clear_database_title">डेटाबेस साफ़ करें</string>
     <string name="debug_clear_database_description">डेटाबेस से सभी अभ्यास स्थायी रूप से हटाएं। यह क्रिया पूर्ववत नहीं की जा सकती।</string>
     <string name="debug_clear_all_sessions">सभी अभ्यास हटाएं</string>
@@ -246,4 +248,19 @@
 	<!-- Opponents Info -->
 	<string name="opponents_info_title">प्रतिद्वंद्वियों के बारे में</string>
 	<string name="opponents_info_message">यहाँ जोड़े गए प्रतिद्वंद्वी आपके प्रशिक्षण सत्रों में मैच दर्ज करते समय त्वरित चयन के लिए उपलब्ध होंगे।</string>
+
+    <!-- Accessibility -->
+    <string name="accessibility_sessions_count">सत्र: %1$d</string>
+
+    <!-- Home screen widgets -->
+    <string name="widget_summary_name">प्रशिक्षण सारांश</string>
+    <string name="widget_summary_description">सत्र, अभ्यास का समय और आपका मैच रिकॉर्ड एक नज़र में।</string>
+    <string name="widget_heatmap_name">प्रशिक्षण गतिविधि</string>
+    <string name="widget_heatmap_description">आपके अभ्यास के दिन, हर दिन की व्यस्तता के अनुसार रंगे हुए।</string>
+    <string name="widget_last_session_name">पिछला सत्र</string>
+    <string name="widget_last_session_description">आपने आखिरी बार कब अभ्यास किया, कितनी देर और कैसा रहा।</string>
+    <string name="widget_add_session_name">सत्र जोड़ें</string>
+    <string name="widget_add_session_description">TT Tracker खोलें और प्रशिक्षण सत्र दर्ज करना शुरू करें।</string>
+    <string name="widget_empty">अभी कोई सत्र नहीं</string>
+    <string name="widget_no_matches">कोई मैच नहीं</string>
 </resources>

@@ -130,6 +130,8 @@
     <string name="debug_data_generation_title">数据生成</string>
     <string name="debug_data_generation_description">生成过去一年的随机训练数据，用于测试应用。</string>
     <string name="debug_generate_random_sessions">生成100条随机训练</string>
+    <string name="debug_seed_showcase_data">生成商店截图数据</string>
+    <string name="debug_sessions_in_database">数据库中的训练</string>
     <string name="debug_clear_database_title">清除数据库</string>
     <string name="debug_clear_database_description">永久删除数据库中的所有训练。此操作无法撤消。</string>
     <string name="debug_clear_all_sessions">清除所有训练</string>
@@ -246,4 +248,19 @@
 	<!-- Opponents Info -->
 	<string name="opponents_info_title">关于对手</string>
 	<string name="opponents_info_message">你在此添加的对手将在记录训练会话中的比赛时可快速选择。</string>
+
+    <!-- Accessibility -->
+    <string name="accessibility_sessions_count">训练：%1$d</string>
+
+    <!-- Home screen widgets -->
+    <string name="widget_summary_name">训练总览</string>
+    <string name="widget_summary_description">一眼看到训练次数、时长和你的比赛战绩。</string>
+    <string name="widget_heatmap_name">训练活跃度</string>
+    <string name="widget_heatmap_description">你的训练日，按当天的训练量深浅着色。</string>
+    <string name="widget_last_session_name">最近一次训练</string>
+    <string name="widget_last_session_description">上次训练的时间、时长和结果。</string>
+    <string name="widget_add_session_name">添加训练</string>
+    <string name="widget_add_session_description">打开 TT Tracker 并开始记录一次训练。</string>
+    <string name="widget_empty">还没有训练</string>
+    <string name="widget_no_matches">没有比赛</string>
 </resources>

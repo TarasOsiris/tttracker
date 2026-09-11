@@ -9,6 +9,10 @@ import SwiftUI
 struct SessionsTab: View {
     @Binding var selectedSession: String?
 
+    /// The open create sheet, if any. Owned above the tab so a widget or a Control Center button
+    /// can raise it, and so it survives the size-class branch below like the selection does.
+    @Binding var newSession: NewSessionTarget?
+
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 
     /// Owned here rather than by the screen: the two layouts are branches of an `if`, so crossing
@@ -19,7 +23,12 @@ struct SessionsTab: View {
     var body: some View {
         if horizontalSizeClass.isWide {
             NavigationSplitView {
-                SessionsScreen(model: model, selectedSession: $selectedSession, startsExpanded: true)
+                SessionsScreen(
+                    model: model,
+                    selectedSession: $selectedSession,
+                    newSession: $newSession,
+                    startsExpanded: true
+                )
                     .sidebarColumnWidth()
             } detail: {
                 detail
@@ -27,7 +36,7 @@ struct SessionsTab: View {
             .navigationSplitViewStyle(.balanced)
         } else {
             NavigationStack {
-                SessionsScreen(model: model, selectedSession: $selectedSession)
+                SessionsScreen(model: model, selectedSession: $selectedSession, newSession: $newSession)
                     .navigationDestination(item: $selectedSession) { details(for: $0) }
             }
         }

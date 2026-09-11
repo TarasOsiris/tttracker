@@ -130,6 +130,8 @@
     <string name="debug_data_generation_title">Generazione dati</string>
     <string name="debug_data_generation_description">Genera allenamenti casuali per l\'ultimo anno per testare l\'app con dati realistici.</string>
     <string name="debug_generate_random_sessions">Genera 100 allenamenti casuali</string>
+    <string name="debug_seed_showcase_data">Genera dati per gli screenshot</string>
+    <string name="debug_sessions_in_database">Sessioni nel database</string>
     <string name="debug_clear_database_title">Cancella database</string>
     <string name="debug_clear_database_description">Elimina definitivamente tutti gli allenamenti dal database. Questa azione non può essere annullata.</string>
     <string name="debug_clear_all_sessions">Cancella tutti gli allenamenti</string>
@@ -246,4 +248,19 @@
 	<!-- Opponents Info -->
 	<string name="opponents_info_title">Informazioni sugli avversari</string>
 	<string name="opponents_info_message">Gli avversari aggiunti qui saranno disponibili per una selezione rapida quando registri le partite nelle tue sessioni di allenamento.</string>
+
+    <!-- Accessibility -->
+    <string name="accessibility_sessions_count">Sessioni: %1$d</string>
+
+    <!-- Home screen widgets -->
+    <string name="widget_summary_name">Riepilogo allenamenti</string>
+    <string name="widget_summary_description">Sessioni, tempo di allenamento e il tuo bilancio partite a colpo d\'occhio.</string>
+    <string name="widget_heatmap_name">Attività di allenamento</string>
+    <string name="widget_heatmap_description">I tuoi giorni di allenamento, sfumati in base all\'intensità di ciascuno.</string>
+    <string name="widget_last_session_name">Ultima sessione</string>
+    <string name="widget_last_session_description">Quando ti sei allenato l\'ultima volta, per quanto e com\'è andata.</string>
+    <string name="widget_add_session_name">Aggiungi sessione</string>
+    <string name="widget_add_session_description">Apri TT Tracker e inizia a registrare una sessione di allenamento.</string>
+    <string name="widget_empty">Ancora nessuna sessione</string>
+    <string name="widget_no_matches">Nessuna partita</string>
 </resources>

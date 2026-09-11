@@ -17,8 +17,10 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 RESOURCES = REPO_ROOT / "androidApp/src/main/res"
-CATALOG = REPO_ROOT / "iosApp/iosApp/Resources/Shared.xcstrings"
-ACCESSORS = REPO_ROOT / "iosApp/iosApp/Generated/AppStrings.swift"
+# Under iosApp/Common rather than iosApp/iosApp: the catalog and its accessors are compiled into
+# both the app and the TTWidgets extension.
+CATALOG = REPO_ROOT / "iosApp/Common/Resources/Shared.xcstrings"
+ACCESSORS = REPO_ROOT / "iosApp/Common/Generated/AppStrings.swift"
 
 SOURCE_LANGUAGE = "en"
 
