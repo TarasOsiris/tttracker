@@ -8,6 +8,20 @@ disable-model-invocation: true
 
 Bump the version, build, and upload — iOS to App Store Connect, Android to Google Play.
 
+## Working directory
+
+**Every command below runs from `TableTennisTracker/`**, the Gradle project root — that is where
+`gradlew`, `iosApp/`, `androidApp/` and `fastlane/` live. This skill lives one level up, in the
+repo root's `.claude/`, so start with:
+
+```bash
+cd TableTennisTracker
+```
+
+Skip it if the session already started there. Every path in this file (`iosApp/...`, `build/...`,
+`fastlane/...`) is relative to that directory; the one exception is `play_upload.py`, which is
+reached as `../.claude/skills/ship/play_upload.py`.
+
 ## Choosing platforms
 
 | Invocation | Ships |
@@ -52,8 +66,9 @@ All App Store Connect calls go through the `asc` CLI, which authenticates on its
 system keychain — no `.p8` path, no API key flags. If any `asc` command fails on auth, run
 `asc doctor`. (The `.p8` is still needed for `xcodebuild` — see Step 6.)
 
-All Google Play calls go through `.claude/skills/ship/play_upload.py`, a stdlib-only client for
-the Play Developer API (it shells out to `openssl` to sign the service-account JWT — no
+All Google Play calls go through `play_upload.py`, which sits next to this file and so is invoked
+as `../.claude/skills/ship/play_upload.py` from the working directory above. It is a stdlib-only
+client for the Play Developer API (it shells out to `openssl` to sign the service-account JWT — no
 `pip install`, no fastlane). It defaults to the service account key at
 `~/Library/Mobile Documents/com~apple~CloudDocs/Files/taras-android-google-play.json` and package
 `xyz.tleskiv.tt`; override with `--key` / `--package` or `$GOOGLE_PLAY_KEY_JSON`.
@@ -238,7 +253,7 @@ asc builds upload --app 6758044383 --ipa build/upload/TableTennisTracker.ipa --w
 ```
 
 Run the `xcodebuild` line **exactly as written** — no `set -o pipefail` prefix, no `| tail`, no
-wrapper. `.claude/settings.local.json` allows it by literal prefix, and any wrapper turns it into
+wrapper. The repo-root `.claude/settings.local.json` allows it by literal prefix, and any wrapper turns it into
 a compound command that matches no rule and gets blocked.
 
 **The IPA is named after `PRODUCT_NAME`, so it is `TableTennisTracker.ipa`, not `iosApp.ipa`** —
@@ -393,7 +408,7 @@ Read `versionCode` and `versionName` from `androidApp/build.gradle.kts`, then as
 already has:
 
 ```bash
-python3 .claude/skills/ship/play_upload.py status
+python3 ../.claude/skills/ship/play_upload.py status
 ```
 
 The new `versionCode` is **one above the highest of the local value and the highest versionCode
@@ -439,7 +454,7 @@ Skip the question when the invocation named a track (`/ship android production`)
 Draft release notes from `git log android-<previous>..HEAD` — functional, user-facing changes only:
 
 ```bash
-python3 .claude/skills/ship/play_upload.py upload \
+python3 ../.claude/skills/ship/play_upload.py upload \
   --aab androidApp/build/outputs/bundle/release/androidApp-release.aab \
   --track <track> [--status <status>] [--rollout <fraction>] \
   --name "<versionName>" \

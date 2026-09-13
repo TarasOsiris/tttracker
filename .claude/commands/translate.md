@@ -1,3 +1,5 @@
+Run from `TableTennisTracker/` — every path below is relative to it.
+
 Find all missing string translations in locale files and add them.
 
 1. Read the base English strings file: `androidApp/src/main/res/values/strings.xml`

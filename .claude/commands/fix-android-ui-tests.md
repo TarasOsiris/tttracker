@@ -1,1 +1,3 @@
+Run from `TableTennisTracker/`.
+
 Run Android UI instrumentation tests with `./gradlew :androidApp:connectedDebugAndroidTest` and iterate until all tests pass. Analyze test failures, fix the underlying issues in the code or tests, and re-run until successful.
