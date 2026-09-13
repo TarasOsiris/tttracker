@@ -1,7 +1,5 @@
-Numbers now follow the language you choose in the app. Training durations, percentages and scores used to stay in your device's language even after you switched — they don't any more.
+Widgets are here. Add your training summary, activity heatmap or last session to the Home Screen, keep a glance at your week on the Lock Screen, and start a new session straight from Control Center.
 
-VoiceOver can read the calendar properly: every day now announces its full date and how many sessions it holds, instead of just a number. The training heatmap reads the same way, and it scrolls more smoothly than before.
+The activity heatmap now lines each week up correctly — today no longer lands a row off its weekday.
 
-Opponent ratings accept decimals again — a rating typed with a comma is no longer dropped when you save.
-
-Buttons that were too small to hit comfortably are now full size, and text no longer clips at larger accessibility text sizes.
+Easier to read: text and badges now keep strong contrast on every colour, session type dots are outlined and stay distinct with Differentiate Without Color, and the calendar respects Reduce Motion.
