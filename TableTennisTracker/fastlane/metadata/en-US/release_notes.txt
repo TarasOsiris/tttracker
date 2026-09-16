@@ -1,5 +1,1 @@
-Widgets are here. Add your training summary, activity heatmap or last session to the Home Screen, keep a glance at your week on the Lock Screen, and start a new session straight from Control Center.
-
-The activity heatmap now lines each week up correctly — today no longer lands a row off its weekday.
-
-Easier to read: text and badges now keep strong contrast on every colour, session type dots are outlined and stay distinct with Differentiate Without Color, and the calendar respects Reduce Motion.
+Stability and performance improvements under the hood, so tracking your sessions stays fast and reliable.
