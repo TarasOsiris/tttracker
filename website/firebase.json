@@ -1,17 +1,13 @@
 {
   "hosting": {
     "site": "ttapp-tleskiv",
-    "public": "dist",
+    "public": "build/client",
+    "cleanUrls": true,
+    "trailingSlash": false,
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
     ]
   }
 }
