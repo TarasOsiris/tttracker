@@ -2,7 +2,9 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "~/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "~/components/ui/dialog";
-import { screenshots } from "~/content/site";
+import { screenshotFiles } from "~/content/site";
+import { format } from "~/i18n/config";
+import { useI18n } from "~/i18n/use-i18n";
 
 const images = import.meta.glob<string>("../../assets/screenshots/*.webp", {
   eager: true,
@@ -11,6 +13,8 @@ const images = import.meta.glob<string>("../../assets/screenshots/*.webp", {
 const src = (file: string) => images[`../../assets/screenshots/${file}.webp`];
 
 export function ScreenshotGallery() {
+  const { t } = useI18n();
+  const screenshots = screenshotFiles.map((file, i) => ({ file, alt: t.screenshots.alts[i] }));
   const track = useRef<HTMLDivElement>(null);
   const [edges, setEdges] = useState({ start: true, end: false });
   // Index outlives `open` so the image stays visible during the close animation.
@@ -50,7 +54,7 @@ export function ScreenshotGallery() {
           className="rounded-full"
           onClick={() => scroll(-1)}
           disabled={edges.start}
-          aria-label="Previous screenshots"
+          aria-label={t.screenshots.previous}
         >
           <ChevronLeft className="size-5" />
         </Button>
@@ -60,7 +64,7 @@ export function ScreenshotGallery() {
           className="rounded-full"
           onClick={() => scroll(1)}
           disabled={edges.end}
-          aria-label="Next screenshots"
+          aria-label={t.screenshots.next}
         >
           <ChevronRight className="size-5" />
         </Button>
@@ -79,7 +83,7 @@ export function ScreenshotGallery() {
               setOpen(true);
             }}
             className="w-[220px] shrink-0 cursor-zoom-in snap-start rounded-3xl transition-transform hover:-translate-y-1 focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none sm:w-[250px]"
-            aria-label={`Enlarge screenshot: ${s.alt}`}
+            aria-label={format(t.screenshots.enlarge, { alt: s.alt })}
           >
             <img
               src={src(s.file)}
@@ -106,7 +110,7 @@ export function ScreenshotGallery() {
           <DialogTitle className="sr-only">Screenshot {index + 1}</DialogTitle>
           <DialogDescription className="sr-only">{current.alt}</DialogDescription>
           <div className="flex items-center gap-3">
-            <Button variant="secondary" size="icon-lg" className="hidden rounded-full sm:inline-flex" onClick={() => step(-1)} aria-label="Previous screenshot">
+            <Button variant="secondary" size="icon-lg" className="hidden rounded-full sm:inline-flex" onClick={() => step(-1)} aria-label={t.screenshots.previousOne}>
               <ChevronLeft className="size-5" />
             </Button>
             <img
@@ -117,7 +121,7 @@ export function ScreenshotGallery() {
               onClick={() => step(1)}
               className="max-h-[85vh] w-auto cursor-pointer rounded-3xl shadow-2xl"
             />
-            <Button variant="secondary" size="icon-lg" className="hidden rounded-full sm:inline-flex" onClick={() => step(1)} aria-label="Next screenshot">
+            <Button variant="secondary" size="icon-lg" className="hidden rounded-full sm:inline-flex" onClick={() => step(1)} aria-label={t.screenshots.nextOne}>
               <ChevronRight className="size-5" />
             </Button>
           </div>

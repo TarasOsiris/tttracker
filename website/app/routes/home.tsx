@@ -19,19 +19,25 @@ import { Heatmap, PhoneMockup } from "~/components/site/phone-mockup";
 import { ScreenshotGallery } from "~/components/site/screenshot-gallery";
 import { SectionHeading } from "~/components/site/section-heading";
 import { StoreButtons } from "~/components/site/store-buttons";
-import { drills } from "~/content/drills";
-import { APP_FULL_NAME, type Feature, faqs, features, links, SITE_URL, steps, trustPoints } from "~/content/site";
+import { APP_FULL_NAME, links, SITE_URL } from "~/content/site";
+import { localeFromPath, localizePath } from "~/i18n/config";
+import { drillSummaries } from "~/i18n/messages.server";
+import type { DrillSummary, FeatureIcon } from "~/i18n/types";
+import { useI18n } from "~/i18n/use-i18n";
+import { rootT } from "~/lib/root-data";
 import { seo } from "~/lib/seo";
 
-export const meta: Route.MetaFunction = () =>
-  seo({
-    title: "TT Tracker: Ping Pong & Table Tennis Training Log",
-    description:
-      "Free table tennis training journal for iPhone and Android. Log sessions in seconds, record matches and opponents, and see your progress with heatmaps and win-rate stats.",
-    path: "/",
-  });
+export function loader({ request }: Route.LoaderArgs) {
+  return { drills: drillSummaries(localeFromPath(new URL(request.url).pathname)) };
+}
 
-const featureIcons: Record<Feature["icon"], typeof Timer> = {
+export const meta: Route.MetaFunction = ({ matches, location }) => {
+  const t = rootT(matches);
+  const locale = localeFromPath(location.pathname);
+  return seo({ title: t.meta.homeTitle, description: t.meta.homeDescription, path: "/", locale });
+};
+
+const featureIcons: Record<FeatureIcon, typeof Timer> = {
   sessions: Timer,
   matches: Swords,
   analytics: BarChart3,
@@ -40,54 +46,54 @@ const featureIcons: Record<Feature["icon"], typeof Timer> = {
   simple: WifiOff,
 };
 
-const appJsonLd = {
+const appJsonLd = (url: string, description: string) => ({
   "@context": "https://schema.org",
   "@type": "MobileApplication",
   name: APP_FULL_NAME,
+  description,
   operatingSystem: "iOS, Android",
   applicationCategory: "SportsApplication",
   offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-  url: SITE_URL,
+  url,
   downloadUrl: [links.appStore, links.googlePlay],
-};
+});
 
-export default function Home() {
+export default function Home({ loaderData }: Route.ComponentProps) {
+  const { t, locale } = useI18n();
   return (
     <>
-      <JsonLd data={appJsonLd} />
-      <JsonLd data={faqJsonLd(faqs)} />
+      <JsonLd data={appJsonLd(`${SITE_URL}${localizePath(locale, "/")}`, t.meta.homeDescription)} />
+      <JsonLd data={faqJsonLd(t.faq.items)} />
       <Hero />
       <Features />
       <HowItWorks />
       <section className="py-20 sm:py-24">
         <SectionHeading
-          eyebrow="Screenshots"
-          title="Take a look inside"
-          subtitle="A clean, Material-style app that feels at home on your phone, in light or dark."
+          eyebrow={t.screenshots.eyebrow}
+          title={t.screenshots.title}
+          subtitle={t.screenshots.subtitle}
           className="px-4"
         />
         <div className="mt-10">
           <ScreenshotGallery />
         </div>
       </section>
-      <DrillsTeaser />
+      <DrillsTeaser drills={loaderData.drills} />
       <section id="faq" className="px-4 py-20 sm:px-6 sm:py-24">
         <div className="mx-auto max-w-3xl">
-          <SectionHeading eyebrow="FAQ" title="Questions, answered" />
+          <SectionHeading eyebrow={t.faq.eyebrow} title={t.faq.title} />
           <div className="mt-12">
-            <Faq items={faqs} />
+            <Faq items={t.faq.items} />
           </div>
         </div>
       </section>
-      <CtaSection
-        title="Stop guessing how much you train."
-        subtitle="Free on iPhone, iPad and Android. No account, no setup, just open it and log your first session."
-      />
+      <CtaSection title={t.cta.homeTitle} subtitle={t.cta.homeSubtitle} />
     </>
   );
 }
 
 function Hero() {
+  const { t } = useI18n();
   return (
     <section className="relative overflow-hidden px-4 pt-28 pb-20 sm:px-6 sm:pt-36">
       <div className="dot-grid absolute inset-0" />
@@ -96,27 +102,28 @@ function Hero() {
         <div className="min-w-0 text-center lg:text-left">
           <span className="inline-flex animate-fade-up items-center gap-1.5 rounded-full border bg-card/60 px-3 py-1 text-xs font-semibold text-muted-foreground backdrop-blur">
             <Sparkles className="size-3.5 text-primary" />
-            Now with match tracking &amp; opponents
+            {t.hero.badge}
           </span>
           <h1 className="mt-6 animate-fade-up text-[2.6rem] leading-[1.05] font-extrabold tracking-[-0.03em] text-balance sm:text-6xl lg:text-[3.3rem] xl:text-[3.7rem]">
-            Log every session.{" "}
+            {t.hero.titleLead}{" "}
             <span className="relative text-primary sm:whitespace-nowrap">
-              Watch your game grow.
+              {t.hero.titleHighlight}
               <Squiggle className="absolute -bottom-2 left-0 h-3 w-full text-technique" />
             </span>
           </h1>
           <p className="mx-auto mt-7 max-w-xl animate-fade-up text-lg leading-relaxed text-muted-foreground sm:text-xl lg:mx-0">
-            The <span className="font-medium text-foreground">ping pong &amp; table tennis training journal</span>. Log
-            practice in under 30 seconds, record matches against saved opponents, and see a year of progress at a glance.
+            {t.hero.subtitleBefore}
+            <span className="font-medium text-foreground">{t.hero.subtitleStrong}</span>
+            {t.hero.subtitleAfter}
           </p>
           <div className="mt-9 animate-fade-up">
             <StoreButtons className="mx-auto justify-center sm:mx-0 lg:justify-start" />
           </div>
           <ul className="mt-8 flex animate-fade-up flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-muted-foreground lg:justify-start">
-            {trustPoints.map((t) => (
-              <li key={t} className="flex items-center gap-1.5">
+            {t.hero.trustPoints.map((p) => (
+              <li key={p} className="flex items-center gap-1.5">
                 <Check className="size-4 text-primary" />
-                {t}
+                {p}
               </li>
             ))}
           </ul>
@@ -130,16 +137,13 @@ function Hero() {
 }
 
 function Features() {
+  const { t } = useI18n();
   return (
     <section id="features" className="bg-surface-low px-4 py-20 sm:px-6 sm:py-28">
       <div className="mx-auto max-w-6xl">
-        <SectionHeading
-          eyebrow="Features"
-          title="Everything your training log needs"
-          subtitle="Practice, matches and progress, from your first rally to league night. Built by a player, for players."
-        />
+        <SectionHeading eyebrow={t.features.eyebrow} title={t.features.title} subtitle={t.features.subtitle} />
         <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {features.map((f) => {
+          {t.features.items.map((f) => {
             const Icon = featureIcons[f.icon];
             return (
               <article
@@ -171,24 +175,25 @@ function Features() {
 }
 
 const sessionTypes = [
-  ["Technique", "bg-technique"],
-  ["Match Play", "bg-match"],
-  ["Tournament", "bg-tournament"],
-  ["Serve Practice", "bg-serve"],
-  ["Physical", "bg-physical"],
-  ["Free Play", "bg-freeplay"],
-  ["Other", "bg-other"],
+  ["technique", "bg-technique"],
+  ["match", "bg-match"],
+  ["tournament", "bg-tournament"],
+  ["serve", "bg-serve"],
+  ["physical", "bg-physical"],
+  ["freeplay", "bg-freeplay"],
+  ["other", "bg-other"],
 ] as const;
 
 function SessionTypes() {
+  const { t } = useI18n();
   return (
     <div className="mt-10 flex flex-col items-center gap-4 rounded-3xl border bg-card px-6 py-6 sm:flex-row sm:justify-between">
-      <p className="font-display font-semibold">7 session types, color-coded everywhere</p>
+      <p className="font-display font-semibold">{t.features.sessionTypesTitle}</p>
       <ul className="flex flex-wrap justify-center gap-2">
-        {sessionTypes.map(([label, color]) => (
-          <li key={label} className="flex items-center gap-2 rounded-full bg-secondary px-3 py-1.5 text-sm font-medium">
+        {sessionTypes.map(([key, color]) => (
+          <li key={key} className="flex items-center gap-2 rounded-full bg-secondary px-3 py-1.5 text-sm font-medium">
             <span className={`size-2.5 rounded-full ${color}`} />
-            {label}
+            {t.sessionTypes[key]}
           </li>
         ))}
       </ul>
@@ -197,12 +202,13 @@ function SessionTypes() {
 }
 
 function HowItWorks() {
+  const { t } = useI18n();
   return (
     <section id="how-it-works" className="px-4 py-20 sm:px-6 sm:py-28">
       <div className="mx-auto max-w-6xl">
-        <SectionHeading eyebrow="How it works" title="Three steps. Then it's a habit." />
+        <SectionHeading eyebrow={t.steps.eyebrow} title={t.steps.title} />
         <ol className="mt-14 grid gap-5 md:grid-cols-3">
-          {steps.map((s, i) => (
+          {t.steps.items.map((s, i) => (
             <li key={s.title} className="relative rounded-3xl border bg-card p-7">
               <span className="font-display text-5xl font-extrabold text-primary/25">
                 {String(i + 1).padStart(2, "0")}
@@ -217,15 +223,12 @@ function HowItWorks() {
   );
 }
 
-function DrillsTeaser() {
+function DrillsTeaser({ drills }: { drills: DrillSummary[] }) {
+  const { t, href } = useI18n();
   return (
     <section className="bg-surface-low px-4 py-20 sm:px-6 sm:py-28">
       <div className="mx-auto max-w-6xl">
-        <SectionHeading
-          eyebrow="Free training plans"
-          title="Not sure what to practise?"
-          subtitle="Ready-made table tennis sessions with timings, tips and FAQs. Print one, take it to the club, then log it in the app."
-        />
+        <SectionHeading eyebrow={t.drillsTeaser.eyebrow} title={t.drillsTeaser.title} subtitle={t.drillsTeaser.subtitle} />
         <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {drills.map((d) => (
             <DrillCard key={d.slug} drill={d} />
@@ -233,10 +236,10 @@ function DrillsTeaser() {
         </div>
         <div className="mt-10 text-center">
           <Link
-            to="/drills"
+            to={href("/drills")}
             className="inline-flex items-center gap-2 rounded-full border bg-card px-5 py-2.5 text-sm font-semibold transition-colors hover:border-primary/40"
           >
-            Browse all training plans <ArrowRight className="size-4" />
+            {t.drillsTeaser.browseAll} <ArrowRight className="size-4" />
           </Link>
         </div>
       </div>

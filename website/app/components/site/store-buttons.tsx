@@ -1,6 +1,7 @@
 import { useSyncExternalStore } from "react";
 import { cn } from "~/lib/utils";
 import { links } from "~/content/site";
+import { useI18n } from "~/i18n/use-i18n";
 import { AppleIcon, GooglePlayIcon } from "./icons";
 
 const base =
@@ -25,6 +26,7 @@ function useIsAndroid() {
 }
 
 export function StoreButtons({ className, inverted = false }: { className?: string; inverted?: boolean }) {
+  const { t } = useI18n();
   const android = useIsAndroid();
   const style = (primary: boolean) =>
     inverted ? (primary ? styles.primaryInverted : styles.secondaryInverted) : primary ? styles.primary : styles.secondary;
@@ -33,7 +35,7 @@ export function StoreButtons({ className, inverted = false }: { className?: stri
     <div className={cn("flex w-full max-w-xs flex-col gap-3 sm:max-w-none sm:flex-row", className)}>
       <a href={links.appStore} className={cn(base, style(!android), android && "order-2")}>
         <AppleIcon className="-mt-0.5 size-[18px]" />
-        Download on the App Store
+        {t.store.appStore}
       </a>
       <a
         href={links.googlePlay}
@@ -42,7 +44,7 @@ export function StoreButtons({ className, inverted = false }: { className?: stri
         className={cn(base, style(android), android && "order-1")}
       >
         <GooglePlayIcon className="size-4" />
-        Get it on Google Play
+        {t.store.googlePlay}
       </a>
     </div>
   );

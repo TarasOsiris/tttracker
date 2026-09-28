@@ -2,9 +2,11 @@ import { Check, RotateCcw } from "lucide-react";
 import { useMemo, useSyncExternalStore } from "react";
 import { Button } from "~/components/ui/button";
 import { type Drill, drillCount, totalMinutes } from "~/content/drills";
+import { format } from "~/i18n/config";
+import { useI18n } from "~/i18n/use-i18n";
 import { cn } from "~/lib/utils";
 
-const storageKey = (slug: string) => `drill-progress:${slug}`;
+const storageKey = (key: string) => `drill-progress:${key}`;
 // Keyed by content, not position, so edits to a plan never tick the wrong step.
 const itemId = (block: string, item: string) => `${block}/${item}`;
 const listeners = new Set<() => void>();
@@ -18,17 +20,17 @@ function subscribe(listener: () => void) {
   };
 }
 
-function read(slug: string) {
+function read(key: string) {
   try {
-    return localStorage.getItem(storageKey(slug)) ?? "[]";
+    return localStorage.getItem(storageKey(key)) ?? "[]";
   } catch {
     return "[]";
   }
 }
 
-function write(slug: string, ids: Set<string>) {
+function write(key: string, ids: Set<string>) {
   try {
-    localStorage.setItem(storageKey(slug), JSON.stringify([...ids]));
+    localStorage.setItem(storageKey(key), JSON.stringify([...ids]));
   } catch {
     // storage unavailable — progress just won't survive a reload
   }
@@ -36,8 +38,10 @@ function write(slug: string, ids: Set<string>) {
 }
 
 export function DrillChecklist({ drill }: { drill: Drill }) {
+  const { t, locale } = useI18n();
+  const key = `${locale}:${drill.slug}`;
   // Server snapshot is empty, so prerendered HTML and hydration agree.
-  const raw = useSyncExternalStore(subscribe, () => read(drill.slug), () => "[]");
+  const raw = useSyncExternalStore(subscribe, () => read(key), () => "[]");
   const done = useMemo(() => {
     const valid = new Set(drill.blocks.flatMap((b) => b.items.map((it) => itemId(b.title, it.name))));
     try {
@@ -46,7 +50,7 @@ export function DrillChecklist({ drill }: { drill: Drill }) {
       return new Set<string>();
     }
   }, [raw, drill]);
-  const update = (next: Set<string>) => write(drill.slug, next);
+  const update = (next: Set<string>) => write(key, next);
 
   const toggle = (id: string) => {
     const next = new Set(done);
@@ -70,13 +74,11 @@ export function DrillChecklist({ drill }: { drill: Drill }) {
         <div className="flex items-center justify-between gap-4 text-sm">
           <p className="font-medium" aria-live="polite">
             {complete ? (
-              <span className="text-primary">Session complete. Nice work! 🏓</span>
+              <span className="text-primary">{t.drillsPage.complete}</span>
             ) : (
               <>
-                <span className="font-display font-bold tabular-nums">
-                  {done.size}/{total}
-                </span>{" "}
-                done · <span className="tabular-nums">{minutesLeft}</span> min left
+                <span className="tabular-nums">{format(t.drillsPage.progressDone, { done: done.size, total })}</span> ·{" "}
+                <span className="tabular-nums">{format(t.drillsPage.progressLeft, { n: minutesLeft })}</span>
               </>
             )}
           </p>
@@ -87,7 +89,7 @@ export function DrillChecklist({ drill }: { drill: Drill }) {
             onClick={() => update(new Set())}
             disabled={done.size === 0}
           >
-            <RotateCcw /> Reset
+            <RotateCcw /> {t.drillsPage.reset}
           </Button>
         </div>
         <div className="mt-3 h-2 overflow-hidden rounded-full bg-secondary">

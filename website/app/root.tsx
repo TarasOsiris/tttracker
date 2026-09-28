@@ -1,8 +1,19 @@
-import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
+import {
+  isRouteErrorResponse,
+  Links,
+  Meta,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+  useLocation,
+  useRouteLoaderData,
+} from "react-router";
 import type { Route } from "./+types/root";
 import { SiteFooter } from "~/components/site/footer";
 import { SiteHeader } from "~/components/site/header";
 import { buttonVariants } from "~/components/ui/button";
+import { localeFromPath, localizePath } from "~/i18n/config";
+import { uiMessages } from "~/i18n/messages.server";
 import "./app.css";
 
 const GA_ID = "G-XPDY4TC15W";
@@ -26,9 +37,17 @@ export const links: Route.LinksFunction = () => [
   { rel: "manifest", href: "/site.webmanifest" },
 ];
 
+// Runs at build time for every prerendered path; only that locale's UI strings reach the page.
+export function loader({ request }: Route.LoaderArgs) {
+  const locale = localeFromPath(new URL(request.url).pathname);
+  return { locale, t: uiMessages(locale) };
+}
+
 export function Layout({ children }: { children: React.ReactNode }) {
+  const locale = localeFromPath(useLocation().pathname);
+  const data = useRouteLoaderData<typeof loader>("root");
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -45,11 +64,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:rounded-md focus:bg-card focus:px-3 focus:py-2"
         >
-          Skip to content
+          {data?.t.nav.skipToContent ?? "Skip to content"}
         </a>
-        <SiteHeader />
+        {data && <SiteHeader />}
         <main id="main">{children}</main>
-        <SiteFooter />
+        {data && <SiteFooter />}
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -66,18 +85,20 @@ export function HydrateFallback() {
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
+  const locale = localeFromPath(useLocation().pathname);
+  const t = useRouteLoaderData<typeof loader>("root")?.t.errors;
   const notFound = isRouteErrorResponse(error) && error.status === 404;
   return (
     <section className="mx-auto flex min-h-[70vh] max-w-xl flex-col items-center justify-center px-4 pt-24 text-center">
       <p className="text-6xl">🏓</p>
       <h1 className="mt-6 text-3xl font-extrabold tracking-tight">
-        {notFound ? "That ball went off the table" : "Something went wrong"}
+        {notFound ? (t?.notFoundTitle ?? "That ball went off the table") : (t?.errorTitle ?? "Something went wrong")}
       </h1>
       <p className="mt-3 text-muted-foreground">
-        {notFound ? "We couldn't find that page." : "Please try again in a moment."}
+        {notFound ? (t?.notFoundBody ?? "We couldn't find that page.") : (t?.errorBody ?? "Please try again in a moment.")}
       </p>
-      <a href="/" className={buttonVariants({ className: "mt-8 rounded-full" })}>
-        Back to home
+      <a href={localizePath(locale, "/")} className={buttonVariants({ className: "mt-8 rounded-full" })}>
+        {t?.backHome ?? "Back to home"}
       </a>
     </section>
   );

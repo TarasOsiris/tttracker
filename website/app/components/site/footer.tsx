@@ -1,7 +1,9 @@
 import { useSyncExternalStore } from "react";
 import { Link } from "react-router";
 import { links, navLinks } from "~/content/site";
-import { Logo } from "./header";
+import { localeInfo } from "~/i18n/config";
+import { useI18n } from "~/i18n/use-i18n";
+import { Logo, useLanguageLinks } from "./header";
 
 const BUILD_YEAR = new Date().getFullYear();
 const noopSubscribe = () => () => {};
@@ -28,41 +30,57 @@ function External({ href, children }: { href: string; children: React.ReactNode 
 }
 
 export function SiteFooter() {
+  const { t, href, locale } = useI18n();
+  const languages = useLanguageLinks();
   const year = useSyncExternalStore(noopSubscribe, () => new Date().getFullYear(), () => BUILD_YEAR);
   return (
     <footer className="border-t bg-surface-low">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-[1.4fr_repeat(4,1fr)]">
+      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-[1.4fr_repeat(5,1fr)]">
         <div className="max-w-xs">
           <Logo />
           <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-            The training journal for ping pong and table tennis players. Log sessions, record matches, see your progress.
+            {t.footer.tagline}
           </p>
         </div>
-        <Column title="Product">
+        <Column title={t.footer.product}>
           {navLinks.map((l) => (
             <li key={l.href}>
-              <Link to={l.href} className={linkClass}>
-                {l.label}
+              <Link to={href(l.href)} className={linkClass}>
+                {t.nav[l.key]}
               </Link>
             </li>
           ))}
         </Column>
-        <Column title="Download">
+        <Column title={t.footer.download}>
           <External href={links.appStore}>App Store</External>
           <External href={links.googlePlay}>Google Play</External>
         </Column>
-        <Column title="Company">
+        <Column title={t.footer.company}>
           <li>
             <a href={`mailto:${links.email}`} className={linkClass}>
-              Contact us
+              {t.footer.contact}
             </a>
           </li>
-          <External href={links.support}>Support</External>
-          <External href={links.privacy}>Privacy Policy</External>
-          <External href={links.telegram}>Telegram community</External>
+          <External href={links.support}>{t.footer.support}</External>
+          <External href={links.privacy}>{t.footer.privacy}</External>
+          <External href={links.telegram}>{t.footer.telegram}</External>
         </Column>
-        <Column title="More from us">
-          <External href={links.ttServes}>TT Serves: serve encyclopedia</External>
+        <Column title={t.footer.moreFromUs}>
+          <External href={links.ttServes}>{t.footer.ttServes}</External>
+        </Column>
+        <Column title={t.footer.language}>
+          {languages.map((l) => (
+            <li key={l.locale}>
+              <Link
+                to={l.to}
+                hrefLang={localeInfo[l.locale].hreflang}
+                lang={l.locale}
+                className={l.locale === locale ? "font-semibold text-foreground" : linkClass}
+              >
+                {l.label}
+              </Link>
+            </li>
+          ))}
         </Column>
       </div>
       <div className="border-t">
@@ -71,7 +89,7 @@ export function SiteFooter() {
           <a href={links.studio} target="_blank" rel="noopener noreferrer" className="underline-offset-2 hover:underline">
             Nineva Studios
           </a>
-          . App Store is a service mark of Apple Inc. Google Play is a trademark of Google LLC.
+          . {t.footer.legal}
         </p>
       </div>
     </footer>
