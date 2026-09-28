@@ -37,6 +37,12 @@ AKILLI TAKVİM
 - Herhangi bir güne dokun, o günün antrenmanlarını gör
 - Haftanın ilk gününü kendin belirle
 
+ANA EKRAN VE KİLİTLİ EKRANDA WİDGET'LAR
+
+- Ana Ekran widget'ları: antrenman özetin, 12 aylık ısı haritan ve son antrenmanın
+- Kilitli ekran widget'ları: haftalık rakamlarını hep göz önünde tutar
+- Denetim Merkezi'nden, kilitli ekrandan ya da Eylem düğmesinden yeni antrenman ekle
+
 OYUNCULAR İÇİN TASARLANDI
 
 - Bir antrenmanı 30 saniyeden kısa sürede kaydet

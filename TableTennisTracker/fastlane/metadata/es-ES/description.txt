@@ -37,6 +37,12 @@ CALENDARIO INTELIGENTE
 - Toca cualquier día para ver las sesiones de esa fecha
 - Define con qué día empieza tu semana
 
+WIDGETS EN LA PANTALLA DE INICIO Y DE BLOQUEO
+
+- Widgets de pantalla de inicio con tu resumen de entrenamiento, tu mapa de calor de 12 meses y tu última sesión
+- Widgets de pantalla de bloqueo que mantienen tus cifras semanales siempre a la vista
+- Registra una sesión nueva directamente desde el Centro de control, la pantalla de bloqueo o el botón de acción
+
 HECHA PARA JUGADORES
 
 - Apunta una sesión en menos de 30 segundos

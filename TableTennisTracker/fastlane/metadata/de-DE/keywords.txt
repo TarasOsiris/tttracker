@@ -1,1 +1,1 @@
-turnier,liga,verein,trainer,siegquote,aufschlag,punktezähler,doppel,ping pong,übungen,bilanz,noppen
+turnier,liga,verein,trainer,siegquote,aufschlag,doppel,übungen,bilanz,noppen,gegner,ergebnisse,ttr

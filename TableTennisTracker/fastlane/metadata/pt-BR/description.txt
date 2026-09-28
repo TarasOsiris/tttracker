@@ -37,6 +37,12 @@ CALENDÁRIO INTELIGENTE
 - Toque em qualquer data para ver as sessões daquele dia
 - Defina qual é o primeiro dia da sua semana
 
+WIDGETS NA TELA DE INÍCIO E NA TELA BLOQUEADA
+
+- Widgets da tela de início com o resumo dos seus treinos, seu mapa de calor de 12 meses e sua última sessão
+- Widgets da tela bloqueada que mantêm seus números semanais sempre à vista
+- Registre uma nova sessão direto da Central de Controle, da tela bloqueada ou do botão de ação
+
 FEITO PARA JOGADORES
 
 - Registre uma sessão em menos de 30 segundos

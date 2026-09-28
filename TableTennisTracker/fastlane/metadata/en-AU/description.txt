@@ -37,6 +37,12 @@ SMART CALENDAR VIEW
 - Tap any date to see that day's sessions
 - Set your own first day of the week
 
+WIDGETS ON YOUR HOME AND LOCK SCREEN
+
+- Home Screen widgets for your training summary, your 12-month heatmap and your last session
+- Lock Screen widgets that keep your weekly numbers in sight
+- Log a new session straight from Control Center, the Lock Screen or the Action button
+
 BUILT FOR PLAYERS
 
 - Log a session in under 30 seconds

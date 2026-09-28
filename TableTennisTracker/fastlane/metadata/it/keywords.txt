@@ -1,1 +1,1 @@
-avversario,segnapunti,statistiche,campionato,torneo,vittorie,racchetta,servizio,ping pong,esercizi
+avversario,statistiche,campionato,torneo,vittorie,racchetta,servizio,esercizi,tennistavolo,punteggi

@@ -37,6 +37,12 @@ UN CALENDRIER CLAIR
 - Touchez une date pour voir les séances de la journée
 - Définissez vous-même le premier jour de la semaine
 
+DES WIDGETS SUR VOTRE ÉCRAN D'ACCUEIL ET VOTRE ÉCRAN VERROUILLÉ
+
+- Widgets d'écran d'accueil pour votre résumé d'entraînement, votre carte de chaleur sur 12 mois et votre dernière séance
+- Widgets d'écran verrouillé qui gardent vos chiffres hebdomadaires à portée de vue
+- Enregistrez une nouvelle séance directement depuis le centre de contrôle, l'écran verrouillé ou le bouton Action
+
 CONÇU POUR LES JOUEURS
 
 - Une séance enregistrée en moins de 30 secondes

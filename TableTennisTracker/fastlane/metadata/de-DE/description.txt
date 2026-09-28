@@ -37,6 +37,12 @@ AUSWERTUNGEN, DIE ANTWORTEN GEBEN
 - Auf ein Datum tippen und die Einheiten des Tages sehen
 - Den ersten Wochentag selbst festlegen
 
+WIDGETS AUF DEINEM HOME-BILDSCHIRM UND SPERRBILDSCHIRM
+
+- Home-Bildschirm-Widgets für deine Trainingsübersicht, deine Heatmap über 12 Monate und deine letzte Einheit
+- Sperrbildschirm-Widgets, die deine Wochenzahlen im Blick behalten
+- Neue Einheit direkt aus dem Kontrollzentrum, vom Sperrbildschirm oder über die Aktionstaste erfassen
+
 FÜR SPIELER GEMACHT
 
 - Eine Einheit in unter 30 Sekunden eintragen

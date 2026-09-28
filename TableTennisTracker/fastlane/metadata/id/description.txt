@@ -37,6 +37,12 @@ KALENDER YANG PRAKTIS
 - Ketuk tanggal mana pun untuk melihat sesi hari itu
 - Tentukan sendiri hari pertama dalam seminggu
 
+WIDGET DI LAYAR UTAMA DAN LAYAR TERKUNCI
+
+- Widget Layar Utama untuk ringkasan latihanmu, heatmap 12 bulan, dan sesi terakhirmu
+- Widget Layar Terkunci yang selalu menampilkan angka mingguanmu
+- Catat sesi baru langsung dari Pusat Kontrol, Layar Terkunci, atau Tombol Tindakan
+
 DIBUAT UNTUK PEMAIN
 
 - Catat satu sesi dalam kurang dari 30 detik

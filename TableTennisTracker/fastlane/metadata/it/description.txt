@@ -37,6 +37,12 @@ CALENDARIO CHIARO
 - Tocca una data per vedere le sessioni di quel giorno
 - Imposta tu il primo giorno della settimana
 
+WIDGET SU SCHERMATA HOME E SCHERMATA DI BLOCCO
+
+- Widget per la schermata Home con il riepilogo degli allenamenti, la mappa di calore di 12 mesi e l'ultima sessione
+- Widget per la schermata di blocco che tengono sempre sott'occhio i tuoi numeri settimanali
+- Registra una nuova sessione direttamente dal Centro di Controllo, dalla schermata di blocco o con il tasto Azione
+
 PENSATO PER CHI GIOCA
 
 - Registri una sessione in meno di 30 secondi
