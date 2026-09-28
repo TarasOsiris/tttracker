@@ -22,13 +22,15 @@ import { StoreButtons } from "~/components/site/store-buttons";
 import { APP_FULL_NAME, links, SITE_URL } from "~/content/site";
 import { localeFromPath, localizePath } from "~/i18n/config";
 import { drillSummaries } from "~/i18n/messages.server";
+import { featuredServes } from "~/serves/store.server";
 import type { DrillSummary, FeatureIcon } from "~/i18n/types";
 import { useI18n } from "~/i18n/use-i18n";
 import { rootT } from "~/lib/root-data";
 import { seo } from "~/lib/seo";
 
 export function loader({ request }: Route.LoaderArgs) {
-  return { drills: drillSummaries(localeFromPath(new URL(request.url).pathname)) };
+  const locale = localeFromPath(new URL(request.url).pathname);
+  return { drills: drillSummaries(locale), serves: featuredServes(locale) };
 }
 
 export const meta: Route.MetaFunction = ({ matches, location }) => {
@@ -79,6 +81,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
         </div>
       </section>
       <DrillsTeaser drills={loaderData.drills} />
+      <ServesTeaser serves={loaderData.serves} />
       <section id="faq" className="px-4 py-20 sm:px-6 sm:py-24">
         <div className="mx-auto max-w-3xl">
           <SectionHeading eyebrow={t.faq.eyebrow} title={t.faq.title} />
@@ -240,6 +243,46 @@ function DrillsTeaser({ drills }: { drills: DrillSummary[] }) {
             className="inline-flex items-center gap-2 rounded-full border bg-card px-5 py-2.5 text-sm font-semibold transition-colors hover:border-primary/40"
           >
             {t.drillsTeaser.browseAll} <ArrowRight className="size-4" />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ServesTeaser({ serves }: { serves: Route.ComponentProps["loaderData"]["serves"] }) {
+  const { t, href } = useI18n();
+  return (
+    <section className="px-4 py-20 sm:px-6 sm:py-28">
+      <div className="mx-auto max-w-6xl">
+        <SectionHeading eyebrow={t.servesTeaser.eyebrow} title={t.servesTeaser.title} subtitle={t.servesTeaser.subtitle} />
+        <div className="mt-14 grid gap-5 md:grid-cols-3">
+          {serves.map((s) => (
+            <Link
+              key={s.id}
+              to={href(`/serves/${s.id}`)}
+              className="group flex flex-col rounded-3xl border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5"
+            >
+              <div className="flex items-center justify-between">
+                <span className="flex size-12 items-center justify-center rounded-2xl bg-accent text-2xl">🏓</span>
+                <span className="flex gap-1" aria-hidden="true">
+                  {Array.from({ length: 5 }, (_, i) => (
+                    <span key={i} className={`size-2 rounded-full ${i < s.difficulty ? "bg-primary" : "bg-heat-0"}`} />
+                  ))}
+                </span>
+              </div>
+              <h3 className="mt-5 text-lg font-bold tracking-tight">{s.name}</h3>
+              <p className="mt-1.5 line-clamp-3 flex-1 text-sm leading-relaxed text-muted-foreground">{s.description}</p>
+              <ArrowRight className="mt-5 size-4 text-primary transition-transform group-hover:translate-x-1" />
+            </Link>
+          ))}
+        </div>
+        <div className="mt-10 text-center">
+          <Link
+            to={href("/serves")}
+            className="inline-flex h-11 items-center gap-2 rounded-full bg-primary px-6 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all hover:-translate-y-0.5 hover:bg-primary/90"
+          >
+            {t.servesTeaser.cta} <ArrowRight className="size-4" />
           </Link>
         </div>
       </div>

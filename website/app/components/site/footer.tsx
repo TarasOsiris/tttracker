@@ -65,8 +65,23 @@ export function SiteFooter() {
           <External href={links.privacy}>{t.footer.privacy}</External>
           <External href={links.telegram}>{t.footer.telegram}</External>
         </Column>
-        <Column title={t.footer.moreFromUs}>
-          <External href={links.ttServes}>{t.footer.ttServes}</External>
+        <Column title={t.footer.encyclopedia}>
+          {(
+            [
+              ["/serves", t.footer.allServes],
+              ["/motions", t.footer.motions],
+              ["/spins", t.footer.spins],
+              ["/rules", t.footer.rules],
+              ["/quiz", t.footer.quiz],
+              ["/about", t.footer.about],
+            ] as const
+          ).map(([path, label]) => (
+            <li key={path}>
+              <Link to={href(path)} className={linkClass}>
+                {label}
+              </Link>
+            </li>
+          ))}
         </Column>
         <Column title={t.footer.language}>
           {languages.map((l) => (

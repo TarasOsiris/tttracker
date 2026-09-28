@@ -30,6 +30,16 @@
   --surface-low: #f3f3fa;
   --heat-0: #e2e2e9;
   --brand-navy: #16325c;
+  /* Serve diagrams (bounce + placement) */
+  --diagram-leg: #74777f;
+  --diagram-net: #44474e;
+  --diagram-label: #44474e;
+  --diagram-table: #415f91;
+  --placement-fill: #2c4a78;
+  --placement-stroke: #415f91;
+  --placement-center-line: #ffffff;
+  --placement-dot: #5d7aa8;
+  --placement-dot-label: #d6e3ff;
 }
 
 .dark {
@@ -57,6 +67,15 @@
   --surface-low: #191c20;
   --heat-0: #282a2f;
   --brand-navy: #0c1d38;
+  --diagram-leg: #8e9099;
+  --diagram-net: #c4c6d0;
+  --diagram-label: #c4c6d0;
+  --diagram-table: #aac7ff;
+  --placement-fill: #1f3558;
+  --placement-stroke: #aac7ff;
+  --placement-center-line: #d6e3ff;
+  --placement-dot: #4d6a98;
+  --placement-dot-label: #aac7ff;
 }
 
 @theme inline {

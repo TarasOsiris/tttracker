@@ -1,0 +1,92 @@
+import type { Motion } from "../models";
+
+export const motions: Motion[] = [
+  {
+    id: "pendulum",
+    name: "Pendulum",
+    hand: "forehand",
+    description: "The most common serve in table tennis. The racket swings like a pendulum from right to left (for right-handers), generating sidespin combined with backspin or topspin. Highly versatile with many spin variations possible from the same motion.",
+    spinCapabilities: ["backspin", "topspin", "left-sidespin", "no-spin"],
+    difficulty: 2,
+    references: [
+      { type: "youtube", videoId: "twNlkfRRafw", title: "Pendulum serve tutorial" },
+      { type: "youtube", videoId: "q2sywlqk1p0", title: "Pendulum serve video" },
+      { type: "youtube", videoId: "Ei_jeXXC1b0", title: "Table Tennis Pro Explains the Pendulum Serve" },
+    ],
+  },
+  {
+    id: "reverse-pendulum",
+    name: "Reverse Pendulum",
+    hand: "forehand",
+    description: "The racket swings from left to right (for right-handers), producing sidespin in the opposite direction to the standard pendulum. Less common, making it harder for opponents to read.",
+    spinCapabilities: ["backspin", "topspin", "right-sidespin", "no-spin"],
+    difficulty: 3,
+    references: [
+      { type: "youtube", videoId: "_SaOI2gyJaY", title: "Reverse Pendulum Serve Tutorial" },
+    ],
+  },
+  {
+    id: "tomahawk",
+    name: "Tomahawk",
+    hand: "forehand",
+    description: "A serve where the racket swings outward in a throwing motion, like a tomahawk. Generates strong sidespin and can be combined with topspin for a kicking effect. Popular in the Asian playing style. Note: hand classification varies — Chinese coaching typically considers this a forehand serve (contact is on the forehand rubber), while some Western coaches classify it as backhand based on the stance.",
+    spinCapabilities: ["topspin", "right-sidespin", "backspin"],
+    difficulty: 3,
+    references: [
+      { type: "youtube", videoId: "hvRE0pkND8U", title: "Tomahawk serve tutorial" },
+      { type: "youtube", videoId: "S64hzk1NmSQ", title: "Tomahawk serve breakdown" },
+      { type: "youtube", videoId: "hHqUS1xCpqU", title: "4 Steps with Dimitrij Ovtcharov to Learn the Tomahawk Serve" },
+    ],
+  },
+  {
+    id: "reverse-tomahawk",
+    name: "Reverse Tomahawk",
+    hand: "forehand",
+    description: "Starts with the same outward throwing motion as a regular tomahawk but switches to contact the ball with the backhand side of the racket at the last instant, producing left sidespin instead of right. The identical initial motion makes it extremely deceptive. Popularized by Ding Ning and also used by Kenta Matsudaira.",
+    spinCapabilities: ["topspin", "left-sidespin", "backspin"],
+    difficulty: 4,
+    references: [
+      { type: "youtube", videoId: "AeGtGSYPknE", title: "Ding Ning Reverse Tomahawk Serve Analysis" },
+    ],
+  },
+  {
+    id: "backhand",
+    name: "Backhand Serve",
+    hand: "backhand",
+    description: "A compact serve performed from the backhand side. Allows quick transition to the next ball and is naturally deceptive due to the wrist position. Used effectively by many European players.",
+    spinCapabilities: ["backspin", "sidespin", "no-spin", "topspin"],
+    difficulty: 2,
+  },
+  {
+    id: "hook-shovel",
+    name: "Hook / Shovel",
+    hand: "backhand",
+    description: "An unconventional serve where the racket scoops under the ball with a hooking motion. Produces heavy sidespin with backspin. The unusual contact point makes it very hard to read.",
+    spinCapabilities: ["left-sidespin", "right-sidespin", "backspin", "topspin", "no-spin"],
+    difficulty: 4,
+  },
+  {
+    id: "chop",
+    name: "Forehand Chop",
+    hand: "forehand",
+    description: "A simple downward slicing motion with an open racket face that produces pure backspin with no sidespin. The most fundamental serve in table tennis — easy to learn, easy to keep short, and effective at preventing aggressive returns. Often the first serve taught to beginners.",
+    spinCapabilities: ["backspin", "no-spin"],
+    difficulty: 1,
+  },
+  {
+    id: "windshield-wiper",
+    name: "Windshield Wiper",
+    hand: "forehand",
+    description: "The racket sweeps horizontally in an arc like a windshield wiper, brushing across the back of the ball. Depending on where in the arc the ball is contacted, the same motion can produce sidespin, topspin, or backspin. The identical appearance regardless of spin makes it highly deceptive. Requires a wide low stance for proper execution.",
+    spinCapabilities: ["backspin", "topspin", "left-sidespin", "no-spin"],
+    difficulty: 4,
+  },
+  {
+    id: "high-toss",
+    name: "High Toss Pendulum",
+    hand: "forehand",
+    description: "A pendulum serve with a high ball toss (typically 2-5 meters). The additional drop height adds gravitational energy, increasing spin potential. Requires excellent timing but produces exceptionally heavy spin.",
+    spinCapabilities: ["backspin", "topspin", "left-sidespin", "heavy-backspin"],
+    difficulty: 5,
+  },
+];

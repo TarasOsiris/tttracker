@@ -8,6 +8,7 @@ export type Messages = {
   nav: {
     features: string;
     howItWorks: string;
+    serves: string;
     drills: string;
     faq: string;
     getApp: string;
@@ -63,6 +64,7 @@ export type Messages = {
     alts: string[];
   };
   drillsTeaser: { eyebrow: string; title: string; subtitle: string; browseAll: string };
+  servesTeaser: { eyebrow: string; title: string; subtitle: string; cta: string };
   faq: { eyebrow: string; title: string; items: QA[] };
   cta: {
     homeTitle: string;
@@ -82,8 +84,13 @@ export type Messages = {
     support: string;
     privacy: string;
     telegram: string;
-    moreFromUs: string;
-    ttServes: string;
+    encyclopedia: string;
+    allServes: string;
+    motions: string;
+    spins: string;
+    rules: string;
+    quiz: string;
+    about: string;
     language: string;
     legal: string;
   };

@@ -1,4 +1,4 @@
-export const locales = ["en", "es", "de", "fr", "pt", "ja", "zh", "ko", "it"] as const;
+export const locales = ["en", "es", "de", "fr", "pt", "ja", "zh", "ko", "it", "uk"] as const;
 export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = "en";
 
@@ -12,6 +12,7 @@ export const localeInfo: Record<Locale, { label: string; hreflang: string; og: s
   zh: { label: "简体中文", hreflang: "zh-Hans", og: "zh_CN" },
   ko: { label: "한국어", hreflang: "ko", og: "ko_KR" },
   it: { label: "Italiano", hreflang: "it", og: "it_IT" },
+  uk: { label: "Українська", hreflang: "uk", og: "uk_UA" },
 };
 
 const isLocale = (s: string | undefined): s is Locale => !!s && (locales as readonly string[]).includes(s);

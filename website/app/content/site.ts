@@ -10,12 +10,12 @@ export const links = {
   email: "info@ninevastudios.com",
   privacy: "https://ninevastudios.com/privacy-policy",
   studio: "https://ninevastudios.com",
-  ttServes: "https://ttserves.tleskiv.xyz",
 };
 
 export const navLinks = [
   { href: "/#features", key: "features" },
   { href: "/#how-it-works", key: "howItWorks" },
+  { href: "/serves", key: "serves" },
   { href: "/drills", key: "drills" },
   { href: "/#faq", key: "faq" },
 ] as const;

@@ -1,0 +1,58 @@
+import type { Placement } from "../models";
+
+export const placements: Placement[] = [
+  {
+    id: "fh-short",
+    label: "Forehand Short",
+    side: "forehand",
+    depth: "short",
+    dangerZone: false,
+    x: 80,
+    y: 30,
+  },
+  {
+    id: "bh-short",
+    label: "Backhand Short",
+    side: "backhand",
+    depth: "short",
+    dangerZone: false,
+    x: 20,
+    y: 30,
+  },
+  {
+    id: "fh-long",
+    label: "Forehand Long",
+    side: "forehand",
+    depth: "long",
+    dangerZone: false,
+    x: 85,
+    y: 80,
+  },
+  {
+    id: "bh-long",
+    label: "Backhand Long",
+    side: "backhand",
+    depth: "long",
+    dangerZone: false,
+    x: 15,
+    y: 80,
+  },
+  {
+    id: "middle-short",
+    label: "Middle Short (Elbow)",
+    side: "middle",
+    depth: "short",
+    dangerZone: true,
+    x: 50,
+    y: 30,
+  },
+  {
+    id: "middle-long",
+    label: "Middle Long (Elbow)",
+    side: "middle",
+    depth: "long",
+    dangerZone: true,
+    x: 50,
+    y: 80,
+  },
+];

@@ -4,8 +4,21 @@ import type { Config } from "@react-router/dev/config";
 import { drillSlugs } from "./app/content/drills";
 import { SITE_URL } from "./app/content/site";
 import { localeInfo, locales, localizePath } from "./app/i18n/config";
+import { motions, serves } from "./app/serves/data";
 
-const neutralPaths = ["/", "/drills", ...drillSlugs.map((s) => `/drills/${s}`)];
+const neutralPaths = [
+  "/",
+  "/drills",
+  ...drillSlugs.map((s) => `/drills/${s}`),
+  "/serves",
+  ...serves.map((s) => `/serves/${s.id}`),
+  "/motions",
+  ...motions.map((m) => `/motions/${m.id}`),
+  "/spins",
+  "/rules",
+  "/quiz",
+  "/about",
+];
 const paths = locales.flatMap((l) => neutralPaths.map((p) => localizePath(l, p)));
 
 function sitemap() {

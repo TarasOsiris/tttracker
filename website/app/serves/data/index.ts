@@ -1,0 +1,10 @@
+export { motions } from "./motions";
+export { spins } from "./spins";
+export { bounces } from "./bounces";
+export { placements } from "./placements";
+export { speeds } from "./speeds";
+export { trajectories } from "./trajectories";
+export { tosses } from "./tosses";
+export { deceptions } from "./deceptions";
+export { tacticalPurposes } from "./tacticalPurposes";
+export { serves } from "./serves";

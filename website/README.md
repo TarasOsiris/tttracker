@@ -11,4 +11,8 @@ Copy lives in `app/content/` (`site.ts`, `drills.ts`). Adding a drill there adds
 
 ## Localization
 
-English is served at `/`, other languages at `/{code}` (`es`, `de`, `fr`, `pt`, `ja`, `zh`, `ko`, `it`). All copy lives in `app/i18n/locales/{code}.ts`, typed by `app/i18n/types.ts`. Translations are loaded only in build-time loaders (`messages.server.ts`), so each page ships just its own language. The build fails if a locale's drills drift from the English structure.
+English is served at `/`, other languages at `/{code}` (`es`, `de`, `fr`, `pt`, `ja`, `zh`, `ko`, `it`, `uk`). All copy lives in `app/i18n/locales/{code}.ts`, typed by `app/i18n/types.ts`. Translations are loaded only in build-time loaders (`messages.server.ts`), so each page ships just its own language. The build fails if a locale's drills drift from the English structure.
+
+## Serve encyclopedia
+
+`/serves`, `/motions`, `/spins`, `/rules`, `/quiz` and `/about` are the table tennis serve encyclopedia migrated from the former TT Serves site (same paths, so the old domain 301-redirects 1:1). Code lives in `app/serves/`: normalized data in `data/`, UI dictionaries and per-language data overlays in `i18n/`. `store.server.ts` applies a locale's overlay at build time and `routes/serves-layout.tsx` hands it to the pages through `ServesProvider`. The build fails if a serves dictionary is missing a key.

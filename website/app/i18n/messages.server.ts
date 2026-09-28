@@ -11,8 +11,9 @@ import { ko } from "./locales/ko";
 import { pt } from "./locales/pt";
 import { zh } from "./locales/zh";
 import type { DrillSummary, Messages } from "./types";
+import { uk } from "./locales/uk";
 
-const all: Record<Locale, Messages> = { en, es, de, fr, pt, ja, zh, ko, it };
+const all: Record<Locale, Messages> = { en, es, de, fr, pt, ja, zh, ko, it, uk };
 
 // Fail the build if a translation drifts from the English structure the routes and checklists rely on.
 const shape = (m: Messages) =>
