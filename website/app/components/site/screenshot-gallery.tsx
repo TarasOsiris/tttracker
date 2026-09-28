@@ -13,12 +13,16 @@ const src = (file: string) => images[`../../assets/screenshots/${file}.webp`];
 export function ScreenshotGallery() {
   const track = useRef<HTMLDivElement>(null);
   const [edges, setEdges] = useState({ start: true, end: false });
-  const [open, setOpen] = useState<number | null>(null);
+  // Index outlives `open` so the image stays visible during the close animation.
+  const [index, setIndex] = useState(0);
+  const [open, setOpen] = useState(false);
 
   const updateEdges = useCallback(() => {
     const el = track.current;
     if (!el) return;
-    setEdges({ start: el.scrollLeft < 8, end: el.scrollLeft + el.clientWidth >= el.scrollWidth - 8 });
+    const start = el.scrollLeft < 8;
+    const end = el.scrollLeft + el.clientWidth >= el.scrollWidth - 8;
+    setEdges((prev) => (prev.start === start && prev.end === end ? prev : { start, end }));
   }, []);
 
   useEffect(() => {
@@ -33,10 +37,9 @@ export function ScreenshotGallery() {
     el.scrollBy({ left: dir * el.clientWidth * 0.8, behavior: "smooth" });
   };
 
-  const step = (dir: 1 | -1) =>
-    setOpen((i) => (i === null ? i : (i + dir + screenshots.length) % screenshots.length));
+  const step = (dir: 1 | -1) => setIndex((i) => (i + dir + screenshots.length) % screenshots.length);
 
-  const current = open === null ? null : screenshots[open];
+  const current = screenshots[index];
 
   return (
     <div className="relative">
@@ -71,7 +74,10 @@ export function ScreenshotGallery() {
           <button
             key={s.file}
             type="button"
-            onClick={() => setOpen(i)}
+            onClick={() => {
+              setIndex(i);
+              setOpen(true);
+            }}
             className="w-[220px] shrink-0 cursor-zoom-in snap-start rounded-3xl transition-transform hover:-translate-y-1 focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none sm:w-[250px]"
             aria-label={`Enlarge screenshot: ${s.alt}`}
           >
@@ -88,7 +94,7 @@ export function ScreenshotGallery() {
         ))}
       </div>
 
-      <Dialog open={open !== null} onOpenChange={(o) => !o && setOpen(null)}>
+      <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent
           showCloseButton={false}
           className="w-auto max-w-[calc(100%-2rem)] border-0 bg-transparent p-0 shadow-none sm:max-w-none"
@@ -97,28 +103,26 @@ export function ScreenshotGallery() {
             if (e.key === "ArrowLeft") step(-1);
           }}
         >
-          <DialogTitle className="sr-only">Screenshot {open === null ? "" : open + 1}</DialogTitle>
-          <DialogDescription className="sr-only">{current?.alt}</DialogDescription>
-          {current && (
-            <div className="flex items-center gap-3">
-              <Button variant="secondary" size="icon-lg" className="hidden rounded-full sm:inline-flex" onClick={() => step(-1)} aria-label="Previous screenshot">
-                <ChevronLeft className="size-5" />
-              </Button>
-              <img
-                src={src(current.file)}
-                alt={current.alt}
-                width={720}
-                height={1280}
-                onClick={() => step(1)}
-                className="max-h-[85vh] w-auto cursor-pointer rounded-3xl shadow-2xl"
-              />
-              <Button variant="secondary" size="icon-lg" className="hidden rounded-full sm:inline-flex" onClick={() => step(1)} aria-label="Next screenshot">
-                <ChevronRight className="size-5" />
-              </Button>
-            </div>
-          )}
+          <DialogTitle className="sr-only">Screenshot {index + 1}</DialogTitle>
+          <DialogDescription className="sr-only">{current.alt}</DialogDescription>
+          <div className="flex items-center gap-3">
+            <Button variant="secondary" size="icon-lg" className="hidden rounded-full sm:inline-flex" onClick={() => step(-1)} aria-label="Previous screenshot">
+              <ChevronLeft className="size-5" />
+            </Button>
+            <img
+              src={src(current.file)}
+              alt={current.alt}
+              width={720}
+              height={1280}
+              onClick={() => step(1)}
+              className="max-h-[85vh] w-auto cursor-pointer rounded-3xl shadow-2xl"
+            />
+            <Button variant="secondary" size="icon-lg" className="hidden rounded-full sm:inline-flex" onClick={() => step(1)} aria-label="Next screenshot">
+              <ChevronRight className="size-5" />
+            </Button>
+          </div>
           <p className="text-center text-sm text-white/80 tabular-nums">
-            {open === null ? "" : `${open + 1} / ${screenshots.length}`}
+            {index + 1} / {screenshots.length}
           </p>
         </DialogContent>
       </Dialog>

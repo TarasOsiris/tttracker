@@ -85,7 +85,7 @@ export function SiteHeader() {
         </nav>
         <div className="flex items-center gap-1">
           <ThemeToggle />
-          <Button asChild size="sm" className="rounded-full px-3.5 font-semibold shadow-sm hover:-translate-y-0.5 sm:px-4">
+          <Button asChild size="sm" className="hidden rounded-full px-3.5 font-semibold shadow-sm hover:-translate-y-0.5 min-[380px]:inline-flex sm:px-4">
             <Link to="/#download">Get the app</Link>
           </Button>
           <Sheet>

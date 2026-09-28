@@ -1,6 +1,10 @@
+import { useSyncExternalStore } from "react";
 import { Link } from "react-router";
 import { links, navLinks } from "~/content/site";
 import { Logo } from "./header";
+
+const BUILD_YEAR = new Date().getFullYear();
+const noopSubscribe = () => () => {};
 
 const linkClass = "text-muted-foreground transition-colors hover:text-foreground";
 
@@ -24,6 +28,7 @@ function External({ href, children }: { href: string; children: React.ReactNode 
 }
 
 export function SiteFooter() {
+  const year = useSyncExternalStore(noopSubscribe, () => new Date().getFullYear(), () => BUILD_YEAR);
   return (
     <footer className="border-t bg-surface-low">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-[1.4fr_repeat(4,1fr)]">
@@ -47,6 +52,11 @@ export function SiteFooter() {
           <External href={links.googlePlay}>Google Play</External>
         </Column>
         <Column title="Company">
+          <li>
+            <a href={`mailto:${links.email}`} className={linkClass}>
+              Contact us
+            </a>
+          </li>
           <External href={links.support}>Support</External>
           <External href={links.privacy}>Privacy Policy</External>
           <External href={links.telegram}>Telegram community</External>
@@ -57,7 +67,7 @@ export function SiteFooter() {
       </div>
       <div className="border-t">
         <p className="mx-auto max-w-6xl px-4 py-6 text-xs text-muted-foreground sm:px-6">
-          © {new Date().getFullYear()}{" "}
+          © {year}{" "}
           <a href={links.studio} target="_blank" rel="noopener noreferrer" className="underline-offset-2 hover:underline">
             Nineva Studios
           </a>

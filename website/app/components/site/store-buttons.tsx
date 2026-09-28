@@ -9,7 +9,7 @@ const base =
 const styles = {
   primary: "bg-primary text-primary-foreground shadow-lg shadow-primary/25 hover:bg-primary/90",
   secondary: "border border-foreground/15 bg-card/70 text-foreground backdrop-blur hover:border-foreground/30 hover:bg-card",
-  primaryInverted: "bg-white text-[#16325c] shadow-lg shadow-black/20 hover:bg-white/90",
+  primaryInverted: "bg-white text-brand-navy shadow-lg shadow-black/20 hover:bg-white/90",
   secondaryInverted: "border border-white/30 bg-white/10 text-white backdrop-blur hover:border-white/50 hover:bg-white/15",
 };
 

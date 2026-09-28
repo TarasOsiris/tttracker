@@ -6,7 +6,7 @@ export function Faq({ items }: { items: { q: string; a: string }[] }) {
       {items.map((f, i) => (
         <AccordionItem key={f.q} value={`q${i}`}>
           <AccordionTrigger className="py-5 font-display text-base font-semibold hover:no-underline">{f.q}</AccordionTrigger>
-          <AccordionContent className="pb-5 text-[15px] leading-relaxed text-muted-foreground">{f.a}</AccordionContent>
+          <AccordionContent forceMount className="pb-5 text-[15px] leading-relaxed text-muted-foreground">{f.a}</AccordionContent>
         </AccordionItem>
       ))}
     </Accordion>

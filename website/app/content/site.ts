@@ -7,6 +7,7 @@ export const links = {
   googlePlay: "https://play.google.com/store/apps/details?id=xyz.tleskiv.tt",
   telegram: "https://t.me/tttrackerapp",
   support: "https://ninevastudios.com/about-us",
+  email: "info@ninevastudios.com",
   privacy: "https://ninevastudios.com/privacy-policy",
   studio: "https://ninevastudios.com",
   ttServes: "https://ttserves.tleskiv.xyz",

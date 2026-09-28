@@ -7,4 +7,4 @@ Landing page and free training-plan pages for the TT Tracker app. React Router 7
 - `npm run typecheck` / `npm run lint`
 - `npm run preview` — serve the static build
 
-Copy lives in `app/content/` (`site.ts`, `drills.ts`). Adding a drill there adds its page to the prerender list automatically; add it to `public/sitemap.xml` too.
+Copy lives in `app/content/` (`site.ts`, `drills.ts`). Adding a drill there adds its page to the prerender list and `sitemap.xml` automatically.

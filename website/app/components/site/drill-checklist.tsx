@@ -5,6 +5,8 @@ import { type Drill, drillCount, totalMinutes } from "~/content/drills";
 import { cn } from "~/lib/utils";
 
 const storageKey = (slug: string) => `drill-progress:${slug}`;
+// Keyed by content, not position, so edits to a plan never tick the wrong step.
+const itemId = (block: string, item: string) => `${block}/${item}`;
 const listeners = new Set<() => void>();
 
 function subscribe(listener: () => void) {
@@ -37,12 +39,13 @@ export function DrillChecklist({ drill }: { drill: Drill }) {
   // Server snapshot is empty, so prerendered HTML and hydration agree.
   const raw = useSyncExternalStore(subscribe, () => read(drill.slug), () => "[]");
   const done = useMemo(() => {
+    const valid = new Set(drill.blocks.flatMap((b) => b.items.map((it) => itemId(b.title, it.name))));
     try {
-      return new Set(JSON.parse(raw) as string[]);
+      return new Set((JSON.parse(raw) as string[]).filter((id) => valid.has(id)));
     } catch {
       return new Set<string>();
     }
-  }, [raw]);
+  }, [raw, drill]);
   const update = (next: Set<string>) => write(drill.slug, next);
 
   const toggle = (id: string) => {
@@ -56,7 +59,7 @@ export function DrillChecklist({ drill }: { drill: Drill }) {
   const minutesLeft =
     totalMinutes(drill) -
     drill.blocks.reduce(
-      (sum, b, bi) => sum + b.items.reduce((s, it, ii) => s + (done.has(`${bi}-${ii}`) ? it.minutes : 0), 0),
+      (sum, b) => sum + b.items.reduce((s, it) => s + (done.has(itemId(b.title, it.name)) ? it.minutes : 0), 0),
       0,
     );
   const complete = done.size === total;
@@ -96,15 +99,15 @@ export function DrillChecklist({ drill }: { drill: Drill }) {
       </div>
 
       <div className="mt-8 space-y-10">
-        {drill.blocks.map((b, bi) => (
+        {drill.blocks.map((b) => (
           <section key={b.title}>
             <div className="flex items-baseline justify-between">
               <h2 className="text-xl font-bold tracking-tight">{b.title}</h2>
               <span className="text-sm text-muted-foreground">{b.items.reduce((s, i) => s + i.minutes, 0)} min</span>
             </div>
             <ul className="mt-3 divide-y overflow-hidden rounded-3xl border bg-card">
-              {b.items.map((it, ii) => {
-                const id = `${bi}-${ii}`;
+              {b.items.map((it) => {
+                const id = itemId(b.title, it.name);
                 const checked = done.has(id);
                 return (
                   <li key={it.name}>
