@@ -3,6 +3,7 @@ import { data, Link } from "react-router";
 import type { Route } from "./+types/drill";
 import { CtaSection } from "~/components/site/cta-section";
 import { DrillCard } from "~/components/site/drill-card";
+import { DrillChecklist } from "~/components/site/drill-checklist";
 import { Faq, faqJsonLd, JsonLd } from "~/components/site/faq";
 import { Button } from "~/components/ui/button";
 import { drillCount, drills, getDrill, sessionTypeLabel, totalMinutes } from "~/content/drills";
@@ -68,32 +69,7 @@ export default function DrillPage({ loaderData: drill }: Route.ComponentProps) {
             </Button>
           </div>
 
-          <div className="mt-12 space-y-10">
-            {drill.blocks.map((b) => (
-              <section key={b.title}>
-                <div className="flex items-baseline justify-between">
-                  <h2 className="text-xl font-bold tracking-tight">{b.title}</h2>
-                  <span className="text-sm text-muted-foreground">
-                    {b.items.reduce((s, i) => s + i.minutes, 0)} min
-                  </span>
-                </div>
-                <ul className="mt-3 divide-y rounded-3xl border bg-card">
-                  {b.items.map((it) => (
-                    <li key={it.name} className="flex items-start gap-4 px-5 py-4">
-                      <span className="mt-0.5 size-5 shrink-0 rounded-md border-2 border-input" aria-hidden="true" />
-                      <div className="flex-1">
-                        <p className="font-medium">{it.name}</p>
-                        {it.note && <p className="mt-0.5 text-sm text-muted-foreground">{it.note}</p>}
-                      </div>
-                      <span className="shrink-0 rounded-full bg-accent px-2.5 py-0.5 text-sm font-semibold text-accent-foreground tabular-nums">
-                        {it.minutes}′
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            ))}
-          </div>
+          <DrillChecklist drill={drill} />
 
           <section className="mt-16">
             <h2 className="text-2xl font-bold tracking-tight">Tips to get more out of it</h2>
