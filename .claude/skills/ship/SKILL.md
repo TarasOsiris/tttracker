@@ -188,25 +188,6 @@ fails on the widget extension's App Group (`doesn't include the App Groups capab
 CloudKit, Push) itself. `xcodebuild` also needs `DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer`
 on this machine, whose `xcode-select` points at the Command Line Tools.
 
-**Pro and iCloud sync are TestFlight-only, and the archive decides it.** App Review installs carry a
-sandbox receipt just like TestFlight, so the app cannot tell them apart at runtime; the
-`SANDBOX_FEATURES` build setting (default `YES` in `Config.xcconfig`) does. When the answer to
-Step 7 (asked up front) is **Submit for review**, add
-
-```
---xcodebuild-flag=SANDBOX_FEATURES=NO
-```
-
-to the archive command above, so the reviewer sees no Pro pill, paywall or iCloud section. **Upload
-only** keeps the default, so TestFlight testers get Pro and iCloud sync. Confirm the archive says
-what was intended:
-
-```bash
-/usr/libexec/PlistBuddy -c "Print :SANDBOX_FEATURES" build/iosApp.xcarchive/Products/Applications/TableTennisTracker.app/Info.plist
-```
-
-`NO` for a build going to review, `YES` for a TestFlight-only one. Anything else — stop.
-
 The archive **is** the compile check — the `Compile Kotlin Framework` build phase runs
 `./gradlew :core:embedAndSignAppleFrameworkForXcode`, so a Kotlin error in `:core` (or
 in a module it depends on) surfaces here. There is deliberately **no
@@ -333,11 +314,7 @@ The build is on App Store Connect at this point. Ask the user, with the AskUserQ
 whether to also submit for review:
 
 - **Submit for review** (default) — continue to Step 8.
-- **Upload only** — stop here; the build is available in App Store Connect and TestFlight, with
-  Pro and iCloud sync switched on for testers (see Step 4).
-
-A build archived with `SANDBOX_FEATURES=YES` must **never** be submitted for review later by hand:
-the reviewer would find a Pro purchase that is not part of the submission. To release, ship again.
+- **Upload only** — stop here; the build is available in App Store Connect and TestFlight.
 
 Skip the question if the invocation already says so (`/ship --submit`).
 
@@ -383,7 +360,22 @@ Only when Step 7 said to submit.
    asc versions attach-build --version-id <VERSION_ID> --build-id <BUILD_ID>
    ```
 
-4. **Gate on validation**, then submit:
+4. **Gate on validation**, then submit. **If the `Pro Lifetime` in-app purchase has never been
+   approved** (`asc iap list --app 6758044383` shows it `READY_TO_SUBMIT` rather than `APPROVED`),
+   it must go to review in the same submission as the version — Apple rejects a binary that sells a
+   product it has not reviewed, and `asc review submit` adds only the version. Build the submission
+   by hand instead:
+
+   ```bash
+   asc versions attach-build --version-id <VERSION_ID> --build-id <BUILD_ID>
+   asc review submissions-create --app 6758044383 --platform IOS --output json   # note the id
+   asc review items-add --submission <SUBMISSION_ID> --item-type appStoreVersions --item-id <VERSION_ID>
+   asc iap versions list --iap-id 6818121876 --output table                       # the IAP version id
+   asc review items-add --submission <SUBMISSION_ID> --item-type inAppPurchaseVersions --item-id <IAP_VERSION_ID>
+   asc review submissions-submit --id <SUBMISSION_ID> --confirm
+   ```
+
+   Once the purchase is approved, later releases use the plain flow below:
 
    ```bash
    asc validate --app 6758044383 --version-id <VERSION_ID> --platform IOS --output table

@@ -1,14 +1,13 @@
 import SwiftUI
 
 /// Locked until the user owns Pro: the same title and hint, with the toggle swapped for the way in.
-/// Absent entirely outside Debug and TestFlight.
 struct CloudSyncSection: View {
     let onUnlock: () -> Void
 
     @Environment(CloudSyncModel.self) private var model: CloudSyncModel?
 
     var body: some View {
-        if let model, model.isAvailable, model.isLoaded {
+        if let model, model.isLoaded {
             Section {
                 if model.isUnlocked {
                     Toggle(isOn: Binding(get: { model.isEnabled }, set: { model.setEnabled($0) })) { syncLabel }

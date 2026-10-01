@@ -5,19 +5,12 @@ database, with `CKSyncEngine`. iOS only; Android neither syncs nor installs the 
 
 ## Who gets it
 
-- **Debug and TestFlight builds only.** `SandboxDistribution.isActive` reads the receipt (a
-  TestFlight build is the binary later promoted to the App Store, so no compile-time flag can tell
-  them apart). An App Store install shows no Pro UI and never touches CloudKit.
-- **Never in a build sent to App Review.** A reviewer's install has a sandbox receipt too, so a
-  Release build also needs the `SANDBOX_FEATURES` build setting (`YES` in `Config.xcconfig`).
-  `/ship` archives a build headed for review with `SANDBOX_FEATURES=NO`; an upload-only build keeps
-  it for TestFlight testers and must not be submitted later.
-- **Pro owners only.** `ProModel` is the one reader of RevenueCat; `CloudSyncModel` runs the engine
-  only while `isPro`. Losing Pro pauses the engine but keeps the switch on, because `false` is also
-  what RevenueCat reports before it answers.
+**Pro owners**, in every iOS build. `ProModel` is the one reader of RevenueCat; `CloudSyncModel` runs
+the engine only while `isPro`. Losing Pro pauses the engine but keeps the switch on, because `false`
+is also what RevenueCat reports before it answers.
 
-The App Store screenshot run passes `-hidesSandboxFeatures` so its Debug build looks like the App
-Store one.
+The App Store screenshot run passes `-hidesProUpsell` (honoured in Debug only) so the listing shows
+the app rather than the PRO pill and Settings banner.
 
 ## Where things live
 

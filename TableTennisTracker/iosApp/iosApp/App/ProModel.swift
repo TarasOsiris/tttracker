@@ -1,9 +1,9 @@
+import Foundation
 import Observation
 import RevenueCat
 
-/// Whether to sell Pro, and whether the user already owns it, for every Pro affordance and for
-/// iCloud sync. The one place "is Pro" is read from RevenueCat, so the toolbar, Settings and sync
-/// cannot disagree.
+/// Whether the user owns Pro, for every Pro affordance and for iCloud sync. The one place "is Pro"
+/// is read from RevenueCat, so the toolbar, Settings and sync cannot disagree.
 @MainActor
 @Observable
 final class ProModel {
@@ -22,20 +22,26 @@ final class ProModel {
         }
     }
 
-    /// Pro is sold only where its features exist. iCloud sync is the only one, and it ships to Debug
-    /// and TestFlight alone, so an App Store install is offered nothing.
-    let isOffered = SandboxDistribution.isActive
-
     private(set) var isPro = false
     private(set) var isRestoring = false
     var restoreResult: RestoreResult?
 
-    var showsUpsell: Bool { isOffered && !isPro }
+    var showsUpsell: Bool { !isPro && !Self.hidesUpsell }
+
+    /// The App Store screenshot run passes `-hidesProUpsell`, so the listing shows the app rather than
+    /// the PRO pill and Settings banner. Debug only: no shipped build can be asked to hide them.
+    private static let hidesUpsell: Bool = {
+        #if DEBUG
+        return ProcessInfo.processInfo.arguments.contains("-hidesProUpsell")
+        #else
+        return false
+        #endif
+    }()
 
     @ObservationIgnored private var observation: Task<Void, Never>?
 
     func start() {
-        guard isOffered, observation == nil, Purchases.isConfigured else { return }
+        guard observation == nil, Purchases.isConfigured else { return }
         // Seeded from RevenueCat's on-disk cache, so a returning buyer does not see the free tier for
         // the frames before the first network call lands.
         apply(Purchases.shared.cachedCustomerInfo)

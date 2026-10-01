@@ -3,9 +3,8 @@ import Observation
 import Shared
 import UIKit
 
-/// iCloud sync's switch and status, and the owner of the `CloudSyncEngine`. Nothing here touches
-/// CloudKit unless `isAvailable` (Debug and TestFlight), and the engine runs only while `isUnlocked`
-/// (Pro) as well.
+/// iCloud sync's switch and status, and the owner of the `CloudSyncEngine`. The engine runs only
+/// while `isUnlocked` (Pro).
 ///
 /// Losing Pro stops the engine but keeps the stored switch, because `false` is also what RevenueCat
 /// reports before it has answered; turning sync off there would cost a full re-upload the moment the
@@ -22,8 +21,6 @@ final class CloudSyncModel {
         case turnedOffRemotely
         case accountChanged
     }
-
-    let isAvailable = SandboxDistribution.isActive
 
     private(set) var isLoaded = false
     private(set) var isEnabled = false
@@ -52,7 +49,7 @@ final class CloudSyncModel {
     }
 
     func start(isUnlocked: Bool) {
-        guard !isStarted, isAvailable else { return }
+        guard !isStarted else { return }
         isStarted = true
         self.isUnlocked = isUnlocked
 

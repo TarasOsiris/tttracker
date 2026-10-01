@@ -278,9 +278,7 @@ users.
   without store products; release builds use the store keys (`appl_…` / `goog_…`). Never ship the
   Test Store key — the SDK rejects it in release builds.
 
-**iOS sells Pro**, and only in Debug and TestFlight builds (`SandboxDistribution`, which reads the
-receipt and, in Release, the `SANDBOX_FEATURES` build setting that `/ship` turns off for builds
-going to App Review). `ProModel` (`iosApp/iosApp/App/ProModel.swift`) is the single reader of the entitlement
+**iOS sells Pro** — the `Pro Lifetime` non-consumable (`xyz.tleskiv.tt.pro.lifetime`). `ProModel` (`iosApp/iosApp/App/ProModel.swift`) is the single reader of the entitlement
 (`ProEntitlement.id`, which must match the RevenueCat dashboard) and every Pro surface checks
 `showsUpsell`: the PRO pill on each tab's toolbar (`.proToolbarButton()`), the banner and the
 Restore purchases row at the top of Settings, and the locked iCloud section. The paywall is
