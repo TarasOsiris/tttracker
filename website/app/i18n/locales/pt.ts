@@ -203,6 +203,7 @@ export const pt: Messages = {
     contact: "Fale conosco",
     support: "Suporte",
     privacy: "Política de Privacidade",
+    terms: "Termos de uso",
     telegram: "Comunidade no Telegram",
     encyclopedia: "Enciclopédia de saques",
     allServes: "Todos os saques",

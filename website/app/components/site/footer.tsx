@@ -62,7 +62,16 @@ export function SiteFooter() {
             </a>
           </li>
           <External href={links.support}>{t.footer.support}</External>
-          <External href={links.privacy}>{t.footer.privacy}</External>
+          <li>
+            <Link to="/privacy" className={linkClass}>
+              {t.footer.privacy}
+            </Link>
+          </li>
+          <li>
+            <Link to="/terms" className={linkClass}>
+              {t.footer.terms}
+            </Link>
+          </li>
           <External href={links.telegram}>{t.footer.telegram}</External>
         </Column>
         <Column title={t.footer.encyclopedia}>

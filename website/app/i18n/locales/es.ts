@@ -204,6 +204,7 @@ export const es: Messages = {
     contact: "Contáctanos",
     support: "Soporte",
     privacy: "Política de privacidad",
+    terms: "Términos de uso",
     telegram: "Comunidad de Telegram",
     encyclopedia: "Enciclopedia de saques",
     allServes: "Todos los saques",

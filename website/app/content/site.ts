@@ -8,7 +8,6 @@ export const links = {
   telegram: "https://t.me/tttrackerapp",
   support: "https://ninevastudios.com/about-us",
   email: "info@ninevastudios.com",
-  privacy: "https://ninevastudios.com/privacy-policy",
   studio: "https://ninevastudios.com",
 };
 

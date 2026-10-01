@@ -19,7 +19,9 @@ const neutralPaths = [
   "/quiz",
   "/about",
 ];
-const paths = locales.flatMap((l) => neutralPaths.map((p) => localizePath(l, p)));
+// English only, so one URL each and no hreflang alternates.
+const legalPaths = ["/privacy", "/terms"];
+const paths = [...locales.flatMap((l) => neutralPaths.map((p) => localizePath(l, p))), ...legalPaths];
 
 function sitemap() {
   const entries = locales.flatMap((l) =>
@@ -30,7 +32,8 @@ function sitemap() {
       return `  <url>\n    <loc>${SITE_URL}${localizePath(l, p)}</loc>\n${alternates}\n  </url>`;
     }),
   );
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${entries.join("\n")}\n</urlset>\n`;
+  const legal = legalPaths.map((p) => `  <url>\n    <loc>${SITE_URL}${p}</loc>\n  </url>`);
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${[...entries, ...legal].join("\n")}\n</urlset>\n`;
 }
 
 export default {

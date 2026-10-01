@@ -30,4 +30,9 @@ function localeRoutes(l: Locale) {
   ];
 }
 
-export default locales.flatMap(localeRoutes) satisfies RouteConfig;
+export default [
+  ...locales.flatMap(localeRoutes),
+  // English only (see content/legal.ts), so each exists once, at the root, for every language's footer.
+  route("privacy", "routes/privacy.tsx"),
+  route("terms", "routes/terms.tsx"),
+] satisfies RouteConfig;

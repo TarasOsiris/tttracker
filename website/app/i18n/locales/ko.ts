@@ -202,6 +202,7 @@ export const ko: Messages = {
     contact: "문의하기",
     support: "지원",
     privacy: "개인정보 처리방침",
+    terms: "이용 약관",
     telegram: "Telegram 커뮤니티",
     encyclopedia: "서브 백과",
     allServes: "모든 서브",

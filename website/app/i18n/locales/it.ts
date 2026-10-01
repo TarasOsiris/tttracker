@@ -203,6 +203,7 @@ export const it: Messages = {
     contact: "Contattaci",
     support: "Supporto",
     privacy: "Informativa sulla privacy",
+    terms: "Termini di utilizzo",
     telegram: "Community su Telegram",
     encyclopedia: "Enciclopedia dei servizi",
     allServes: "Tutti i servizi",

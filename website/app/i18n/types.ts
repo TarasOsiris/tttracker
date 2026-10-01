@@ -83,6 +83,7 @@ export type Messages = {
     contact: string;
     support: string;
     privacy: string;
+    terms: string;
     telegram: string;
     encyclopedia: string;
     allServes: string;

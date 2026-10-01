@@ -202,6 +202,7 @@ export const de: Messages = {
     contact: "Kontakt",
     support: "Support",
     privacy: "Datenschutz",
+    terms: "Nutzungsbedingungen",
     telegram: "Telegram-Community",
     encyclopedia: "Aufschlag-Lexikon",
     allServes: "Alle Aufschläge",

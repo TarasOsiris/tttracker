@@ -202,6 +202,7 @@ export const zh: Messages = {
     contact: "联系我们",
     support: "支持",
     privacy: "隐私政策",
+    terms: "使用条款",
     telegram: "Telegram 社区",
     encyclopedia: "发球百科",
     allServes: "全部发球",

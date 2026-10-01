@@ -202,6 +202,7 @@ export const ja: Messages = {
     contact: "お問い合わせ",
     support: "サポート",
     privacy: "プライバシーポリシー",
+    terms: "利用規約",
     telegram: "Telegramコミュニティ",
     encyclopedia: "サーブ図鑑",
     allServes: "サーブ一覧",

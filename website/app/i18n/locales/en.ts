@@ -202,6 +202,7 @@ export const en: Messages = {
     contact: "Contact us",
     support: "Support",
     privacy: "Privacy Policy",
+    terms: "Terms of Use",
     telegram: "Telegram community",
     encyclopedia: "Serve encyclopedia",
     allServes: "All serves",

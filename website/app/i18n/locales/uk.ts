@@ -202,6 +202,7 @@ export const uk: Messages = {
     contact: "Зв’язатися з нами",
     support: "Підтримка",
     privacy: "Політика конфіденційності",
+    terms: "Умови використання",
     telegram: "Спільнота в Telegram",
     encyclopedia: "Енциклопедія подач",
     allServes: "Усі подачі",
