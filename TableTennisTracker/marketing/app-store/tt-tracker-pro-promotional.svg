@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <radialGradient id="background" cx="52%" cy="42%" r="74%">
+      <stop offset="0" stop-color="#2EA4FF"/>
+      <stop offset="0.55" stop-color="#1978F0"/>
+      <stop offset="1" stop-color="#0F429C"/>
+    </radialGradient>
+    <radialGradient id="blade" cx="40%" cy="35%" r="70%">
+      <stop offset="0" stop-color="#FF555B"/>
+      <stop offset="1" stop-color="#E52730"/>
+    </radialGradient>
+    <linearGradient id="handle" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F7D69A"/>
+      <stop offset="1" stop-color="#D9984A"/>
+    </linearGradient>
+    <linearGradient id="crown" x1="0.1" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#FFF09A"/>
+      <stop offset="0.42" stop-color="#FFD648"/>
+      <stop offset="1" stop-color="#ECA61D"/>
+    </linearGradient>
+    <linearGradient id="crownBase" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#E9A11A"/>
+      <stop offset="0.5" stop-color="#FFE36A"/>
+      <stop offset="1" stop-color="#DB8B12"/>
+    </linearGradient>
+    <radialGradient id="ball" cx="38%" cy="32%" r="68%">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#D8E4F0"/>
+    </radialGradient>
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="24" stdDeviation="22" flood-color="#06265F" flood-opacity="0.38"/>
+    </filter>
+    <filter id="smallShadow" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#06265F" flood-opacity="0.32"/>
+    </filter>
+  </defs>
+
+  <rect width="1024" height="1024" fill="url(#background)"/>
+
+  <g opacity="0.52" stroke="#FFFFFF" stroke-width="24" stroke-linecap="round" fill="none">
+    <path d="M706 214 L657 165"/>
+    <path d="M765 166 L728 129"/>
+  </g>
+
+  <g transform="rotate(-24 676 548)" filter="url(#softShadow)">
+    <path d="M610 659 C636 693 649 728 651 772 L746 772 C748 728 761 693 787 659 Z" fill="#D9984A"/>
+    <rect x="651" y="700" width="95" height="232" rx="44" fill="url(#handle)"/>
+    <ellipse cx="698" cy="492" rx="190" ry="208" fill="url(#blade)"/>
+    <ellipse cx="650" cy="432" rx="94" ry="116" fill="#FFFFFF" opacity="0.1"/>
+  </g>
+
+  <circle cx="818" cy="244" r="67" fill="url(#ball)" filter="url(#smallShadow)"/>
+  <circle cx="796" cy="222" r="17" fill="#FFFFFF" opacity="0.78"/>
+
+  <g filter="url(#softShadow)">
+    <path d="M278 369 L392 512 L512 311 L635 512 L749 369 L700 662 L326 662 Z" fill="url(#crown)"/>
+    <path d="M327 608 Q512 650 699 608 L686 693 Q512 731 340 693 Z" fill="url(#crownBase)"/>
+    <path d="M356 596 L326 442 L405 542 L512 365 L620 542 L698 444 L672 596 Q512 627 356 596 Z" fill="#FFF6B3" opacity="0.25"/>
+    <circle cx="278" cy="369" r="37" fill="url(#crown)"/>
+    <circle cx="512" cy="311" r="39" fill="url(#crown)"/>
+    <circle cx="749" cy="369" r="37" fill="url(#crown)"/>
+    <path d="M367 648 Q512 674 659 648" fill="none" stroke="#FFF2A2" stroke-width="15" stroke-linecap="round" opacity="0.76"/>
+  </g>
+</svg>
