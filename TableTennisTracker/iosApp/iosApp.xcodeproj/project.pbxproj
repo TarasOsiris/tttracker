@@ -7,17 +7,48 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B089B92A4EFDBA794B6A161A /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 22FA0F01F1CE22FBE08B0AF0 /* Sentry */; };
-		D0DEDD61BF8A2F8FA7FD6311 /* PostHog in Frameworks */ = {isa = PBXBuildFile; productRef = E718318B8568793E9F9FD91A /* PostHog */; };
-		C4A17E2B90D3415FA6E10B77 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = F31C08D5B7A24E6C93520A14 /* RevenueCat */; };
-		A83E5C1F27D94B60B1E4F702 /* RevenueCatUI in Frameworks */ = {isa = PBXBuildFile; productRef = D91B47E2A03C5F681E7A2B05 /* RevenueCatUI */; };
 		A1B2C3D40000000000000018 /* TTWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A1B2C3D40000000000000011 /* TTWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A83E5C1F27D94B60B1E4F702 /* RevenueCatUI in Frameworks */ = {isa = PBXBuildFile; productRef = D91B47E2A03C5F681E7A2B05 /* RevenueCatUI */; };
+		B089B92A4EFDBA794B6A161A /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 22FA0F01F1CE22FBE08B0AF0 /* Sentry */; };
+		C4A17E2B90D3415FA6E10B77 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = F31C08D5B7A24E6C93520A14 /* RevenueCat */; };
+		D0DEDD61BF8A2F8FA7FD6311 /* PostHog in Frameworks */ = {isa = PBXBuildFile; productRef = E718318B8568793E9F9FD91A /* PostHog */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		A1B2C3D40000000000000008 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BBE8689E30FE7E5B42BA281E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E0AA54731F8BAB34AA0088CB;
+			remoteInfo = iosApp;
+		};
+		A1B2C3D4000000000000001A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BBE8689E30FE7E5B42BA281E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1B2C3D40000000000000010;
+			remoteInfo = TTWidgets;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A1B2C3D40000000000000017 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				A1B2C3D40000000000000018 /* TTWidgets.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		B1E2E9895BE87D7DED7939AD /* TableTennisTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TableTennisTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1B2C3D40000000000000002 /* iosAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iosAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1B2C3D40000000000000011 /* TTWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TTWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1E2E9895BE87D7DED7939AD /* TableTennisTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TableTennisTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -25,7 +56,6 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
-				iosApp.entitlements,
 			);
 			target = E0AA54731F8BAB34AA0088CB /* iosApp */;
 		};
@@ -33,7 +63,6 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
-				TTWidgets.entitlements,
 			);
 			target = A1B2C3D40000000000000010 /* TTWidgets */;
 		};
@@ -68,14 +97,23 @@
 		};
 		CACD1DCD1153FE66896BF515 /* Configuration */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = Configuration;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		37BA7D335708447F2756B4FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0DEDD61BF8A2F8FA7FD6311 /* PostHog in Frameworks */,
+				B089B92A4EFDBA794B6A161A /* Sentry in Frameworks */,
+				C4A17E2B90D3415FA6E10B77 /* RevenueCat in Frameworks */,
+				A83E5C1F27D94B60B1E4F702 /* RevenueCatUI in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A1B2C3D40000000000000005 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -87,17 +125,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		37BA7D335708447F2756B4FB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D0DEDD61BF8A2F8FA7FD6311 /* PostHog in Frameworks */,
-				B089B92A4EFDBA794B6A161A /* Sentry in Frameworks */,
-				C4A17E2B90D3415FA6E10B77 /* RevenueCat in Frameworks */,
-				A83E5C1F27D94B60B1E4F702 /* RevenueCatUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,6 +164,48 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		A1B2C3D40000000000000003 /* iosAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1B2C3D40000000000000009 /* Build configuration list for PBXNativeTarget "iosAppUITests" */;
+			buildPhases = (
+				A1B2C3D40000000000000004 /* Sources */,
+				A1B2C3D40000000000000005 /* Frameworks */,
+				A1B2C3D40000000000000006 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A1B2C3D40000000000000007 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A1B2C3D40000000000000001 /* iosAppUITests */,
+			);
+			name = iosAppUITests;
+			productName = iosAppUITests;
+			productReference = A1B2C3D40000000000000002 /* iosAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		A1B2C3D40000000000000010 /* TTWidgets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1B2C3D4000000000000001B /* Build configuration list for PBXNativeTarget "TTWidgets" */;
+			buildPhases = (
+				A1B2C3D40000000000000014 /* Sources */,
+				A1B2C3D40000000000000015 /* Frameworks */,
+				A1B2C3D40000000000000016 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				A1B2C3D40000000000000012 /* TTWidgets */,
+				A1B2C3D40000000000000013 /* Common */,
+			);
+			name = TTWidgets;
+			productName = TTWidgets;
+			productReference = A1B2C3D40000000000000011 /* TTWidgets.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		E0AA54731F8BAB34AA0088CB /* iosApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D67AE20995B9FDCF3E096F3 /* Build configuration list for PBXNativeTarget "iosApp" */;
@@ -167,66 +236,7 @@
 			productReference = B1E2E9895BE87D7DED7939AD /* TableTennisTracker.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A1B2C3D40000000000000010 /* TTWidgets */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A1B2C3D4000000000000001B /* Build configuration list for PBXNativeTarget "TTWidgets" */;
-			buildPhases = (
-				A1B2C3D40000000000000014 /* Sources */,
-				A1B2C3D40000000000000015 /* Frameworks */,
-				A1B2C3D40000000000000016 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				A1B2C3D40000000000000012 /* TTWidgets */,
-				A1B2C3D40000000000000013 /* Common */,
-			);
-			name = TTWidgets;
-			productName = TTWidgets;
-			productReference = A1B2C3D40000000000000011 /* TTWidgets.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
-		A1B2C3D40000000000000003 /* iosAppUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A1B2C3D40000000000000009 /* Build configuration list for PBXNativeTarget "iosAppUITests" */;
-			buildPhases = (
-				A1B2C3D40000000000000004 /* Sources */,
-				A1B2C3D40000000000000005 /* Frameworks */,
-				A1B2C3D40000000000000006 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A1B2C3D40000000000000007 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				A1B2C3D40000000000000001 /* iosAppUITests */,
-			);
-			name = iosAppUITests;
-			productName = iosAppUITests;
-			productReference = A1B2C3D40000000000000002 /* iosAppUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
-
-/* Begin PBXContainerItemProxy section */
-		A1B2C3D40000000000000008 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BBE8689E30FE7E5B42BA281E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E0AA54731F8BAB34AA0088CB;
-			remoteInfo = iosApp;
-		};
-		A1B2C3D4000000000000001A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BBE8689E30FE7E5B42BA281E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A1B2C3D40000000000000010;
-			remoteInfo = TTWidgets;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXProject section */
 		BBE8689E30FE7E5B42BA281E /* Project object */ = {
@@ -236,15 +246,15 @@
 				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1620;
 				TargetAttributes = {
-					E0AA54731F8BAB34AA0088CB = {
-						CreatedOnToolsVersion = 16.2;
-					};
 					A1B2C3D40000000000000003 = {
 						CreatedOnToolsVersion = 26.6;
 						TestTargetID = E0AA54731F8BAB34AA0088CB;
 					};
 					A1B2C3D40000000000000010 = {
 						CreatedOnToolsVersion = 26.6;
+					};
+					E0AA54731F8BAB34AA0088CB = {
+						CreatedOnToolsVersion = 16.2;
 					};
 				};
 			};
@@ -311,20 +321,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		A1B2C3D40000000000000017 /* Embed Foundation Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				A1B2C3D40000000000000018 /* TTWidgets.appex in Embed Foundation Extensions */,
-			);
-			name = "Embed Foundation Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXShellScriptBuildPhase section */
 		41F3E80BA9E90594BEA4E715 /* Compile Kotlin Framework */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -348,6 +344,13 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		6DD62D3F71ADE3F83F9974DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A1B2C3D40000000000000004 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -356,13 +359,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A1B2C3D40000000000000014 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6DD62D3F71ADE3F83F9974DC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -400,6 +396,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iosApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "TT Tracker";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -433,6 +430,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iosApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "TT Tracker";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -445,6 +443,86 @@
 				);
 				OTHER_LDFLAGS = "-lsqlite3";
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.tleskiv.tt;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A1B2C3D4000000000000000A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XW3GM347XY;
+				GENERATE_INFOPLIST_FILE = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.tleskiv.tt.uitests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = iosApp;
+			};
+			name = Debug;
+		};
+		A1B2C3D4000000000000000B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XW3GM347XY;
+				GENERATE_INFOPLIST_FILE = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.tleskiv.tt.uitests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = iosApp;
+			};
+			name = Release;
+		};
+		A1B2C3D4000000000000001C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = TTWidgets/TTWidgets.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XW3GM347XY;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TTWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "TT Tracker";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.tleskiv.tt.widgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A1B2C3D4000000000000001D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = TTWidgets/TTWidgets.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XW3GM347XY;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TTWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "TT Tracker";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.tleskiv.tt.widgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -574,86 +652,6 @@
 			};
 			name = Release;
 		};
-		A1B2C3D4000000000000000A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XW3GM347XY;
-				GENERATE_INFOPLIST_FILE = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = xyz.tleskiv.tt.uitests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = iosApp;
-			};
-			name = Debug;
-		};
-		A1B2C3D4000000000000000B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XW3GM347XY;
-				GENERATE_INFOPLIST_FILE = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = xyz.tleskiv.tt.uitests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = iosApp;
-			};
-			name = Release;
-		};
-		A1B2C3D4000000000000001C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = TTWidgets/TTWidgets.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XW3GM347XY;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "TT Tracker";
-				INFOPLIST_FILE = TTWidgets/Info.plist;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = xyz.tleskiv.tt.widgets;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		A1B2C3D4000000000000001D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = TTWidgets/TTWidgets.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XW3GM347XY;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "TT Tracker";
-				INFOPLIST_FILE = TTWidgets/Info.plist;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = xyz.tleskiv.tt.widgets;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -675,20 +673,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A1B2C3D4000000000000001B /* Build configuration list for PBXNativeTarget "TTWidgets" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A1B2C3D4000000000000001C /* Debug */,
-				A1B2C3D4000000000000001D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		A1B2C3D40000000000000009 /* Build configuration list for PBXNativeTarget "iosAppUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A1B2C3D4000000000000000A /* Debug */,
 				A1B2C3D4000000000000000B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A1B2C3D4000000000000001B /* Build configuration list for PBXNativeTarget "TTWidgets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1B2C3D4000000000000001C /* Debug */,
+				A1B2C3D4000000000000001D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -728,6 +726,11 @@
 			package = 6019B9C865509F0291F3D2E3 /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
 			productName = Sentry;
 		};
+		D91B47E2A03C5F681E7A2B05 /* RevenueCatUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7D6B4F1A25E84C0BA9D3F602 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			productName = RevenueCatUI;
+		};
 		E718318B8568793E9F9FD91A /* PostHog */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 352C7C0BB90A66C20FC600A2 /* XCRemoteSwiftPackageReference "posthog-ios" */;
@@ -737,11 +740,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7D6B4F1A25E84C0BA9D3F602 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
 			productName = RevenueCat;
-		};
-		D91B47E2A03C5F681E7A2B05 /* RevenueCatUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7D6B4F1A25E84C0BA9D3F602 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
-			productName = RevenueCatUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
