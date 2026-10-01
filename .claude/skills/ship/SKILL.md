@@ -172,10 +172,21 @@ asc xcode archive \
   --archive-path build/iosApp.xcarchive \
   --overwrite \
   --xcodebuild-flag=-destination --xcodebuild-flag=generic/platform=iOS \
+  --xcodebuild-flag=-allowProvisioningUpdates \
+  --xcodebuild-flag=-authenticationKeyPath --xcodebuild-flag=<absolute .p8 path, see Step 6> \
+  --xcodebuild-flag=-authenticationKeyID --xcodebuild-flag=4KK2B86XC6 \
+  --xcodebuild-flag=-authenticationKeyIssuerID --xcodebuild-flag=69a6de84-a676-47e3-e053-5b8c7c11a4d1 \
   --output table
 ```
 
 `build/` is gitignored, so nothing from this step or the next ever lands in a commit.
+
+**Archive with the API key, like the export in Step 6.** Without it the archive signs through the
+machine's broken Xcode account, falls back to the wildcard `iOS Team Provisioning Profile: *`, and
+fails on the widget extension's App Group (`doesn't include the App Groups capability`). With it,
+`xcodebuild` creates the profiles and registers the App ID's capabilities (App Groups, iCloud /
+CloudKit, Push) itself. `xcodebuild` also needs `DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer`
+on this machine, whose `xcode-select` points at the Command Line Tools.
 
 **Pro and iCloud sync are TestFlight-only, and the archive decides it.** App Review installs carry a
 sandbox receipt just like TestFlight, so the app cannot tell them apart at runtime; the
