@@ -67,12 +67,6 @@ android {
 			"POSTHOG_API_KEY",
 			"\"${System.getenv("POSTHOG_API_KEY") ?: "phc_c48wFADznJ68OBUeAcQLdKAf5K0GUNxMjf4xXhoopde"}\""
 		)
-
-		buildConfigField(
-			"String",
-			"REVENUECAT_API_KEY",
-			"\"goog_kkkmRpyXxLLFUrnkDUYiwMaxOHb\""
-		)
 	}
 
 	buildFeatures {
@@ -89,12 +83,15 @@ android {
 	buildTypes {
 		getByName("debug") {
 			applicationIdSuffix = ".debug"
+			// RevenueCat's Test Store, so the paywall works without Play Console products.
+			buildConfigField("String", "REVENUECAT_API_KEY", "\"test_uoxEDxKykcfuEhpvTvGThKXUgRE\"")
 		}
 		getByName("release") {
 			isMinifyEnabled = true
 			isShrinkResources = true
 			proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
 			signingConfig = signingConfigs.getByName("release")
+			buildConfigField("String", "REVENUECAT_API_KEY", "\"goog_kkkmRpyXxLLFUrnkDUYiwMaxOHb\"")
 		}
 	}
 

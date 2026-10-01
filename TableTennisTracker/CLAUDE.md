@@ -271,9 +271,12 @@ RevenueCat is initialised on both clients. Android uses it only so the dashboard
 users.
 
 - Android: `PurchasesSetup.configure(...)` from `TTApplication.onCreate`, key in the
-  `REVENUECAT_API_KEY` BuildConfig field
+  `REVENUECAT_API_KEY` BuildConfig field, set per build type in `androidApp/build.gradle.kts`
 - iOS: `SwiftPurchases.configure()` from `iOSApp.init`, key in the `REVENUECAT_API_KEY` Info.plist
-  entry
+  entry, which reads the `REVENUECAT_API_KEY` build setting from `iosApp/Configuration/Config.xcconfig`
+- Debug builds on both platforms use RevenueCat's Test Store key (`test_…`), so the paywall works
+  without store products; release builds use the store keys (`appl_…` / `goog_…`). Never ship the
+  Test Store key — the SDK rejects it in release builds.
 
 **iOS sells Pro**, and only in Debug and TestFlight builds (`SandboxDistribution`, which reads the
 receipt and, in Release, the `SANDBOX_FEATURES` build setting that `/ship` turns off for builds
