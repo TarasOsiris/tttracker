@@ -18,8 +18,8 @@ import "./app.css";
 
 const GA_ID = "G-XPDY4TC15W";
 
-// Runs before paint so the saved/system theme never flashes.
-const themeScript = `(function(){try{var t=localStorage.getItem("theme");var d=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches;document.documentElement.classList.toggle("dark",d)}catch(e){}})()`;
+// Runs before paint so a saved dark theme never flashes. Light is the default.
+const themeScript = `(function(){try{document.documentElement.classList.toggle("dark",localStorage.getItem("theme")==="dark")}catch(e){}})()`;
 
 const gaScript = `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${GA_ID}');`;
 
