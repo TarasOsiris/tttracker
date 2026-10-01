@@ -1,1 +1,1 @@
-Aplikasi iPhone dan iPad kini sepenuhnya native, jadi terbuka lebih cepat dan menggulir lebih mulus. Di iPad ada tata letak dua kolom sungguhan: pilih sesi di kiri, lihat detailnya di kanan. Juga diperbaiki: baris pengaturan yang tidak merespons sentuhan, dan teks yang tampil dengan font keliru.
+Baru: TT Tracker Pro, pembelian sekali bayar yang menyinkronkan latihan, pertandingan, dan lawan Anda di iPhone dan iPad lewat iCloud, sekaligus mendukung developer indie. Aplikasi ini juga punya ikon baru, dan kini mengedit latihan tidak lagi mengubah pertandingannya.

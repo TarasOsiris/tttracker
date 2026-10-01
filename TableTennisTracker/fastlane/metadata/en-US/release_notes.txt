@@ -1,1 +1,1 @@
-Stability and performance improvements under the hood, so tracking your sessions stays fast and reliable.
+New: TT Tracker Pro, a one-time purchase that keeps your sessions, matches and opponents in sync across your iPhone and iPad through iCloud, and supports an independent developer. The app also has a fresh new icon, and editing a session now keeps its matches exactly as they were.
