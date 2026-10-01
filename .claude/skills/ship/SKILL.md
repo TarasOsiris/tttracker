@@ -375,6 +375,15 @@ Only when Step 7 said to submit.
    asc review submissions-submit --id <SUBMISSION_ID> --confirm
    ```
 
+   If adding the IAP fails with "Only versions in 'Prepare for Submission' or 'Developer Rejected'
+   state can be submitted", the IAP version (state `READY_FOR_REVIEW`) is already sitting in an
+   unsent draft submission — App Store Connect creates one when the purchase is submitted from its
+   own page. Find it with `asc review submissions-list --app 6758044383` (a `READY_FOR_REVIEW`
+   submission with one item; decode the item id from base64 to see `…|17|<IAP_VERSION_ID>`), add
+   the app version to *that* submission instead, and submit it. A version can sit in only one
+   submission, so remove it from the new one first (`asc review items-remove --id <ITEM_ID>
+   --confirm`). An empty draft left behind cannot be cancelled and does no harm.
+
    Once the purchase is approved, later releases use the plain flow below:
 
    ```bash
