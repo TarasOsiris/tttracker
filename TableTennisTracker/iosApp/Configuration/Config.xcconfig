@@ -3,8 +3,8 @@ TEAM_ID=
 PRODUCT_NAME=TableTennisTracker
 PRODUCT_BUNDLE_IDENTIFIER=xyz.tleskiv.tt.TableTennisTracker$(TEAM_ID)
 
-CURRENT_PROJECT_VERSION=18
-MARKETING_VERSION=1.3.8
+CURRENT_PROJECT_VERSION=19
+MARKETING_VERSION=1.3.9
 
 // Pro and iCloud sync in a sandbox-receipt (TestFlight) install. App Review installs carry a sandbox
 // receipt too, so /ship archives a build headed for review with SANDBOX_FEATURES=NO.

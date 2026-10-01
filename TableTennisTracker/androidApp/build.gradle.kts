@@ -48,7 +48,7 @@ android {
 		applicationId = "xyz.tleskiv.tt"
 		minSdk = libs.versions.android.minSdk.get().toInt()
 		targetSdk = libs.versions.android.targetSdk.get().toInt()
-		versionCode = 20
+		versionCode = 21
 		versionName = "1.3.0"
 		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 		// Routes instrumentation output through the test-services provider, which writes to
