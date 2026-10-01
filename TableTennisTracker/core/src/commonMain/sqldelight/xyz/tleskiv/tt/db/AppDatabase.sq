@@ -209,15 +209,21 @@ insertSession:
 INSERT INTO training_session (id, date, duration_min, rpe, session_type, notes, updated_at)
 VALUES (?, ?, ?, ?, ?, ?, ?);
 
+-- The writes below skip a row they would not change, and never move updated_at backwards. iCloud
+-- sync resolves conflicts per record by updated_at, so restamping an unchanged row would outrank a
+-- real edit made on another device, and an edit stamped earlier than the version it was made on (a
+-- clock behind another device's) would lose to that version.
 updateSession:
 UPDATE training_session
-SET date = ?, duration_min = ?, rpe = ?, session_type = ?, notes = ?, updated_at = ?
-WHERE id = ? AND is_deleted = 0;
+SET date = :date, duration_min = :duration_min, rpe = :rpe, session_type = :session_type, notes = :notes,
+    updated_at = CASE WHEN :updated_at > updated_at THEN :updated_at ELSE updated_at + 1 END
+WHERE id = :id AND is_deleted = 0 AND (date IS NOT :date OR duration_min IS NOT :duration_min OR rpe IS NOT :rpe
+    OR session_type IS NOT :session_type OR notes IS NOT :notes);
 
 deleteSession:
 UPDATE training_session
-SET is_deleted = 1, updated_at = ?
-WHERE id = ?;
+SET is_deleted = 1, updated_at = CASE WHEN :updated_at > updated_at THEN :updated_at ELSE updated_at + 1 END
+WHERE id = :id AND is_deleted = 0;
 
 deleteAllSessions:
 DELETE FROM training_session;
@@ -246,11 +252,14 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?);
 
 updateOpponent:
 UPDATE opponent
-SET name = ?, club = ?, rating = ?, handedness = ?, style = ?, notes = ?, updated_at = ?
-WHERE id = ? AND is_deleted = 0;
+SET name = :name, club = :club, rating = :rating, handedness = :handedness, style = :style, notes = :notes,
+    updated_at = CASE WHEN :updated_at > updated_at THEN :updated_at ELSE updated_at + 1 END
+WHERE id = :id AND is_deleted = 0 AND (name IS NOT :name OR club IS NOT :club OR rating IS NOT :rating
+    OR handedness IS NOT :handedness OR style IS NOT :style OR notes IS NOT :notes);
 
 deleteOpponent:
-UPDATE opponent SET is_deleted = 1, updated_at = ? WHERE id = ?;
+UPDATE opponent SET is_deleted = 1, updated_at = CASE WHEN :updated_at > updated_at THEN :updated_at ELSE updated_at + 1 END
+WHERE id = :id AND is_deleted = 0;
 
 deleteAllOpponents:
 DELETE FROM opponent;
@@ -277,17 +286,180 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
 
 updateMatch:
 UPDATE match
-SET opponent_id = ?, my_games_won = ?, opponent_games_won = ?, games = ?, is_doubles = ?, is_ranked = ?, competition_level = ?, rpe = ?, notes = ?, updated_at = ?
-WHERE id = ? AND is_deleted = 0;
+SET opponent_id = :opponent_id, my_games_won = :my_games_won, opponent_games_won = :opponent_games_won, games = :games,
+    is_doubles = :is_doubles, is_ranked = :is_ranked, competition_level = :competition_level, rpe = :rpe, notes = :notes,
+    updated_at = CASE WHEN :updated_at > updated_at THEN :updated_at ELSE updated_at + 1 END
+WHERE id = :id AND is_deleted = 0 AND (opponent_id IS NOT :opponent_id OR my_games_won IS NOT :my_games_won
+    OR opponent_games_won IS NOT :opponent_games_won OR games IS NOT :games OR is_doubles IS NOT :is_doubles
+    OR is_ranked IS NOT :is_ranked OR competition_level IS NOT :competition_level OR rpe IS NOT :rpe OR notes IS NOT :notes);
 
 deleteMatch:
-UPDATE match SET is_deleted = 1, updated_at = ? WHERE id = ?;
+UPDATE match SET is_deleted = 1, updated_at = CASE WHEN :updated_at > updated_at THEN :updated_at ELSE updated_at + 1 END
+WHERE id = :id AND is_deleted = 0;
 
 deleteMatchesBySessionId:
-UPDATE match SET is_deleted = 1, updated_at = ? WHERE session_id = ?;
+UPDATE match SET is_deleted = 1, updated_at = CASE WHEN :updated_at > updated_at THEN :updated_at ELSE updated_at + 1 END
+WHERE session_id = :session_id AND is_deleted = 0;
 
 deleteMatchesByOpponentId:
-UPDATE match SET is_deleted = 1, updated_at = ? WHERE opponent_id = ?;
+UPDATE match SET is_deleted = 1, updated_at = CASE WHEN :updated_at > updated_at THEN :updated_at ELSE updated_at + 1 END
+WHERE opponent_id = :opponent_id AND is_deleted = 0;
+
+selectLiveMatchIdsBySessionId:
+SELECT id FROM match WHERE session_id = ? AND is_deleted = 0;
 
 deleteAllMatches:
 DELETE FROM match;
+
+-- =========================
+-- CLOUD SYNC: change tracking behind the iOS iCloud sync
+-- =========================
+
+-- A row here means sync has been on at some point, is_enabled that it is on now. The change-tracking
+-- triggers, created by installCloudSyncTracking() on iOS only, queue writes only while it is on, but
+-- hard deletes for as long as the row exists. A device that never syncs has no row and records nothing.
+CREATE TABLE IF NOT EXISTS cloud_sync_state (
+    id INTEGER PRIMARY KEY NOT NULL CHECK (id = 0),
+    outbox_seq INTEGER NOT NULL DEFAULT 0,
+    is_enabled INTEGER NOT NULL DEFAULT 1
+);
+
+-- Records iCloud has not acknowledged yet, one row per record, filled by the triggers. changed_at is
+-- the row's updated_at when it was queued. is_purged marks a row hard-deleted from its table, which
+-- has nothing left to read and goes out as a bare tombstone. seq comes from
+-- cloud_sync_state.outbox_seq and only grows, so a reader can ask for what is new.
+CREATE TABLE IF NOT EXISTS cloud_sync_outbox (
+    record_id TEXT PRIMARY KEY NOT NULL,
+    table_name TEXT NOT NULL,
+    is_purged INTEGER NOT NULL DEFAULT 0,
+    changed_at INTEGER NOT NULL,
+    seq INTEGER NOT NULL DEFAULT 0
+);
+
+CREATE INDEX IF NOT EXISTS cloud_sync_outbox_seq ON cloud_sync_outbox(seq);
+
+-- Each record's CloudKit system fields (its change tag), archived by Swift. Sending a save without
+-- them makes CloudKit treat the record as new and reject it as a conflict.
+CREATE TABLE IF NOT EXISTS cloud_sync_record (
+    record_id TEXT PRIMARY KEY NOT NULL,
+    system_fields TEXT NOT NULL
+);
+
+isCloudSyncEnabled:
+SELECT EXISTS (SELECT 1 FROM cloud_sync_state WHERE is_enabled = 1);
+
+enableCloudSync {
+    INSERT OR IGNORE INTO cloud_sync_state (id) VALUES (0);
+    UPDATE cloud_sync_state SET is_enabled = 1;
+}
+
+-- Keeps the queued hard deletes, which go out as tombstones when sync is turned on again. Soft
+-- deletes need no keeping: the row still says is_deleted, and enabling queues every row.
+disableCloudSync {
+    UPDATE cloud_sync_state SET is_enabled = 0;
+    DELETE FROM cloud_sync_outbox WHERE is_purged = 0;
+    DELETE FROM cloud_sync_record;
+}
+
+resetCloudSyncMetadata:
+DELETE FROM cloud_sync_record;
+
+-- Every row's enqueue takes the same seq; CloudSyncRepositoryImpl.enqueueAll() runs the inserts.
+bumpCloudSyncOutboxSeq:
+UPDATE cloud_sync_state SET outbox_seq = outbox_seq + 1;
+
+-- For a row whose local version beat the one iCloud holds but is no longer queued.
+enqueueForCloudSync {
+    UPDATE cloud_sync_state SET outbox_seq = outbox_seq + 1;
+    INSERT OR REPLACE INTO cloud_sync_outbox (record_id, table_name, is_purged, changed_at, seq)
+    VALUES (:record_id, :table_name, 0, :changed_at, (SELECT outbox_seq FROM cloud_sync_state));
+}
+
+selectCloudSyncOutbox:
+SELECT record_id FROM cloud_sync_outbox ORDER BY seq ASC;
+
+selectCloudSyncOutboxSince:
+SELECT record_id, seq FROM cloud_sync_outbox WHERE seq > ? ORDER BY seq ASC;
+
+selectCloudSyncOutboxEntry:
+SELECT * FROM cloud_sync_outbox WHERE record_id = ?;
+
+-- After a relaunch, when the seq read for upload is gone: the version iCloud acknowledged is the
+-- queued one only if the row has not been written again since.
+deleteCloudSyncOutboxEntryIfUnchanged:
+DELETE FROM cloud_sync_outbox WHERE record_id = ? AND changed_at = ?;
+
+deleteCloudSyncOutboxEntryIfSeq:
+DELETE FROM cloud_sync_outbox WHERE record_id = ? AND seq = ?;
+
+deleteCloudSyncOutboxEntry:
+DELETE FROM cloud_sync_outbox WHERE record_id = ?;
+
+selectCloudSyncSystemFields:
+SELECT system_fields FROM cloud_sync_record WHERE record_id = ?;
+
+upsertCloudSyncSystemFields:
+INSERT OR REPLACE INTO cloud_sync_record (record_id, system_fields) VALUES (?, ?);
+
+deleteCloudSyncSystemFields:
+DELETE FROM cloud_sync_record WHERE record_id = ?;
+
+-- Soft-deleted rows included: sync compares and uploads them as tombstones.
+selectSessionRowById:
+SELECT * FROM training_session WHERE id = ?;
+
+selectOpponentRowById:
+SELECT * FROM opponent WHERE id = ?;
+
+selectMatchRowById:
+SELECT * FROM match WHERE id = ?;
+
+-- Upserts for records arriving from iCloud, which carry their own updated_at. UPDATE then INSERT OR
+-- IGNORE rather than INSERT OR REPLACE, which would delete the old row first and queue a hard delete.
+syncUpsertSession {
+    UPDATE training_session SET date = :date, duration_min = :duration_min, rpe = :rpe, session_type = :session_type,
+        notes = :notes, is_deleted = 0, created_at = :created_at, updated_at = :updated_at
+    WHERE id = :id;
+    INSERT OR IGNORE INTO training_session (id, date, duration_min, rpe, session_type, notes, is_deleted, created_at, updated_at)
+    VALUES (:id, :date, :duration_min, :rpe, :session_type, :notes, 0, :created_at, :updated_at);
+}
+
+syncUpsertOpponent {
+    UPDATE opponent SET name = :name, club = :club, rating = :rating, handedness = :handedness, style = :style,
+        notes = :notes, is_deleted = 0, created_at = :created_at, updated_at = :updated_at
+    WHERE id = :id;
+    INSERT OR IGNORE INTO opponent (id, name, club, rating, handedness, style, notes, is_deleted, created_at, updated_at)
+    VALUES (:id, :name, :club, :rating, :handedness, :style, :notes, 0, :created_at, :updated_at);
+}
+
+syncUpsertMatch {
+    UPDATE match SET session_id = :session_id, opponent_id = :opponent_id, my_games_won = :my_games_won,
+        opponent_games_won = :opponent_games_won, games = :games, is_doubles = :is_doubles, is_ranked = :is_ranked,
+        competition_level = :competition_level, rpe = :rpe, notes = :notes, is_deleted = 0, created_at = :created_at,
+        updated_at = :updated_at
+    WHERE id = :id;
+    INSERT OR IGNORE INTO match (id, session_id, opponent_id, my_games_won, opponent_games_won, games, is_doubles, is_ranked,
+        competition_level, rpe, notes, is_deleted, created_at, updated_at)
+    VALUES (:id, :session_id, :opponent_id, :my_games_won, :opponent_games_won, :games, :is_doubles, :is_ranked,
+        :competition_level, :rpe, :notes, 0, :created_at, :updated_at);
+}
+
+-- A tombstone from iCloud. The row keeps its content: nothing shows a deleted row, and iCloud gets none.
+syncMarkSessionDeleted:
+UPDATE training_session SET is_deleted = 1, updated_at = :updated_at WHERE id = :id;
+
+syncMarkOpponentDeleted:
+UPDATE opponent SET is_deleted = 1, updated_at = :updated_at WHERE id = :id;
+
+syncMarkMatchDeleted:
+UPDATE match SET is_deleted = 1, updated_at = :updated_at WHERE id = :id;
+
+-- The cascade deleteSession and deleteOpponent apply locally, re-applied after a sync: a match added
+-- on one device while another deleted its session or opponent arrives live under a deleted parent.
+-- A local edit like any other, so every device deletes it and the tombstones converge.
+deleteMatchesOfDeletedParents:
+UPDATE match SET is_deleted = 1, updated_at = CASE WHEN :updated_at > updated_at THEN :updated_at ELSE updated_at + 1 END
+WHERE is_deleted = 0 AND (
+    EXISTS (SELECT 1 FROM training_session s WHERE s.id = match.session_id AND s.is_deleted = 1)
+    OR EXISTS (SELECT 1 FROM opponent o WHERE o.id = match.opponent_id AND o.is_deleted = 1)
+);

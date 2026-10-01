@@ -8,6 +8,6 @@ class DatabaseFactory {
 		return NativeSqliteDriver(
 			schema = AppDatabase.Schema,
 			name = "app.db"
-		)
+		).also { it.installCloudSyncTracking() }
 	}
 }

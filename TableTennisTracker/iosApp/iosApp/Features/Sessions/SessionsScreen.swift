@@ -62,6 +62,7 @@ struct SessionsScreen: View {
         }
         .navigationTitle(L.navSessions)
         .navigationBarTitleDisplayMode(.inline)
+        .proToolbarButton()
         .toolbar {
             if let topDay, topDay != model.today {
                 ToolbarItem(placement: .topBarTrailing) {

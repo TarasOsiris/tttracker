@@ -68,6 +68,9 @@ enum L {
 	/// Rate the app
 	static var actionRateApp: String { Localization.string("action_rate_app") }
 
+	/// Restore purchases
+	static var actionRestorePurchases: String { Localization.string("action_restore_purchases") }
+
 	/// Save
 	static var actionSave: String { Localization.string("action_save") }
 
@@ -361,6 +364,42 @@ enum L {
 	/// About opponents
 	static var opponentsInfoTitle: String { Localization.string("opponents_info_title") }
 
+	/// Get Pro
+	static var proBannerCta: String { Localization.string("pro_banner_cta") }
+
+	/// Your training on every device, through iCloud
+	static var proBannerSubtitle: String { Localization.string("pro_banner_subtitle") }
+
+	/// TT Tracker Pro
+	static var proBannerTitle: String { Localization.string("pro_banner_title") }
+
+	/// Keep sessions, matches and opponents the same on all your devices
+	static var proBenefitIcloudDetail: String { Localization.string("pro_benefit_icloud_detail") }
+
+	/// Sync with iCloud
+	static var proBenefitIcloudTitle: String { Localization.string("pro_benefit_icloud_title") }
+
+	/// Help keep TT Tracker growing
+	static var proBenefitSupportDetail: String { Localization.string("pro_benefit_support_detail") }
+
+	/// Support an indie developer
+	static var proBenefitSupportTitle: String { Localization.string("pro_benefit_support_title") }
+
+	/// Couldn't restore purchases. Please try again.
+	static var proRestoreFailed: String { Localization.string("pro_restore_failed") }
+
+	/// No purchases to restore
+	static var proRestoreNothing: String { Localization.string("pro_restore_nothing") }
+
+	/// Purchases restored
+	static var proRestoreSuccess: String { Localization.string("pro_restore_success") }
+
+	/// PRO
+	static var proToolbarButton: String { Localization.string("pro_toolbar_button") }
+
+	/// Opens the Pro upgrade options
+	static var proUpgradeHint: String { Localization.string("pro_upgrade_hint") }
+
 	/// Easy
 	static var rpeEasy: String { Localization.string("rpe_easy") }
 
@@ -427,6 +466,47 @@ enum L {
 
 	/// Highlight current day
 	static var settingsHighlightCurrentDay: String { Localization.string("settings_highlight_current_day") }
+
+	/// Your iCloud account changed, so sync was turned off. Turn it on again to sync with this account.
+	static var settingsIcloudAccountChanged: String { Localization.string("settings_icloud_account_changed") }
+
+	/// Some changes could not be synced. They will be retried.
+	static var settingsIcloudFailed: String { Localization.string("settings_icloud_failed") }
+
+	/// Last synced %1$@
+	static func settingsIcloudLastSynced(_ a1: String) -> String {
+		Localization.format("settings_icloud_last_synced", a1)
+	}
+
+	/// Sign in to iCloud in the Settings app to sync.
+	static var settingsIcloudNoAccount: String { Localization.string("settings_icloud_no_account") }
+
+	/// Your iCloud storage is full, so some changes are not synced.
+	static var settingsIcloudQuotaExceeded: String { Localization.string("settings_icloud_quota_exceeded") }
+
+	/// iCloud
+	static var settingsIcloudSection: String { Localization.string("settings_icloud_section") }
+
+	/// Sync with iCloud
+	static var settingsIcloudSync: String { Localization.string("settings_icloud_sync") }
+
+	/// Keep your sessions, matches and opponents the same on all your devices.
+	static var settingsIcloudSyncHint: String { Localization.string("settings_icloud_sync_hint") }
+
+	/// Sync now
+	static var settingsIcloudSyncNow: String { Localization.string("settings_icloud_sync_now") }
+
+	/// Syncing…
+	static var settingsIcloudSyncing: String { Localization.string("settings_icloud_syncing") }
+
+	/// This app's iCloud data was deleted, so sync was turned off. Nothing on this device was removed.
+	static var settingsIcloudTurnedOff: String { Localization.string("settings_icloud_turned_off") }
+
+	/// Unlock with Pro
+	static var settingsIcloudUnlockPro: String { Localization.string("settings_icloud_unlock_pro") }
+
+	/// Waiting to sync
+	static var settingsIcloudWaiting: String { Localization.string("settings_icloud_waiting") }
 
 	/// Made with ❤️ at
 	static var settingsMadeWithPrefix: String { Localization.string("settings_made_with_prefix") }

@@ -10,6 +10,7 @@
 		B089B92A4EFDBA794B6A161A /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 22FA0F01F1CE22FBE08B0AF0 /* Sentry */; };
 		D0DEDD61BF8A2F8FA7FD6311 /* PostHog in Frameworks */ = {isa = PBXBuildFile; productRef = E718318B8568793E9F9FD91A /* PostHog */; };
 		C4A17E2B90D3415FA6E10B77 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = F31C08D5B7A24E6C93520A14 /* RevenueCat */; };
+		A83E5C1F27D94B60B1E4F702 /* RevenueCatUI in Frameworks */ = {isa = PBXBuildFile; productRef = D91B47E2A03C5F681E7A2B05 /* RevenueCatUI */; };
 		A1B2C3D40000000000000018 /* TTWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A1B2C3D40000000000000011 /* TTWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -96,6 +97,7 @@
 				D0DEDD61BF8A2F8FA7FD6311 /* PostHog in Frameworks */,
 				B089B92A4EFDBA794B6A161A /* Sentry in Frameworks */,
 				C4A17E2B90D3415FA6E10B77 /* RevenueCat in Frameworks */,
+				A83E5C1F27D94B60B1E4F702 /* RevenueCatUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,6 +161,7 @@
 				E718318B8568793E9F9FD91A /* PostHog */,
 				22FA0F01F1CE22FBE08B0AF0 /* Sentry */,
 				F31C08D5B7A24E6C93520A14 /* RevenueCat */,
+				D91B47E2A03C5F681E7A2B05 /* RevenueCatUI */,
 			);
 			productName = iosApp;
 			productReference = B1E2E9895BE87D7DED7939AD /* TableTennisTracker.app */;
@@ -734,6 +737,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7D6B4F1A25E84C0BA9D3F602 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
 			productName = RevenueCat;
+		};
+		D91B47E2A03C5F681E7A2B05 /* RevenueCatUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7D6B4F1A25E84C0BA9D3F602 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			productName = RevenueCatUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

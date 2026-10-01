@@ -16,4 +16,5 @@ enum Services {
     static var clipboard: any ClipboardManager { IosServices.shared.clipboardManager }
     static var locales: any LocaleApplier { IosServices.shared.localeApplier }
     static var analytics: any AnalyticsService { IosServices.shared.analyticsService }
+    static var cloudSync: CloudSync { IosServices.shared.cloudSync }
 }

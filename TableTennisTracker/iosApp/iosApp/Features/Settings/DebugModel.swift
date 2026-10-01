@@ -107,7 +107,8 @@ final class DebugModel {
                 isDoubles: Int.random(in: 0..<100) < 20,
                 isRanked: Bool.random(),
                 competitionLevel: Bool.random() ? Competition.allCases.randomElement()?.kotlin : nil,
-                notes: nil
+                notes: nil,
+                id: nil
             )
         }
     }

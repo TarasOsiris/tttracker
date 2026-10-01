@@ -8,6 +8,7 @@ import xyz.tleskiv.tt.util.ext.toLocalDateTime
 import xyz.tleskiv.tt.viewmodel.sessions.PendingMatch
 import xyz.tleskiv.tt.viewmodel.sessions.SessionDetailsScreenViewModel.MatchUiModel
 import xyz.tleskiv.tt.viewmodel.sessions.SessionsScreenViewModel.SessionUiModel
+import kotlin.uuid.Uuid
 
 fun TrainingSession.toSessionUiModel(): SessionUiModel = SessionUiModel(
 	id = id,
@@ -59,5 +60,6 @@ fun PendingMatch.toMatchInput(): MatchInput = MatchInput(
 	isDoubles = isDoubles,
 	isRanked = isRanked,
 	competitionLevel = competitionLevel,
-	notes = notes
+	notes = notes,
+	id = runCatching { Uuid.parse(id) }.getOrNull()
 )

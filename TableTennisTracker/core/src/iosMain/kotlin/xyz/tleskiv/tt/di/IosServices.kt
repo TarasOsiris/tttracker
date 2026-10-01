@@ -14,6 +14,7 @@ import xyz.tleskiv.tt.service.TrainingAnalyticsService
 import xyz.tleskiv.tt.service.TrainingSessionService
 import xyz.tleskiv.tt.service.UserIdService
 import xyz.tleskiv.tt.service.UserPreferencesService
+import xyz.tleskiv.tt.sync.CloudSync
 
 /**
  * Service locator for the native iOS UI.
@@ -41,4 +42,5 @@ object IosServices : KoinComponent {
 	val clipboardManager: ClipboardManager get() = get()
 	val localeApplier: LocaleApplier get() = get()
 	val analyticsService: AnalyticsService get() = get()
+	val cloudSync: CloudSync get() = get()
 }

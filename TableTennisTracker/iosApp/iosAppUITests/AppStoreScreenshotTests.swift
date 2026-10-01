@@ -265,9 +265,11 @@ final class AppStoreScreenshotTests: XCTestCase {
 
     private func launch(locale: String) {
         app = XCUIApplication()
+        // Pro and iCloud sync exist only in Debug and TestFlight; the listing shows the App Store build.
         app.launchArguments = [
             "-AppleLanguages", "(\(locale))",
-            "-AppleLocale", Self.localeRegions[locale] ?? locale
+            "-AppleLocale", Self.localeRegions[locale] ?? locale,
+            "-hidesSandboxFeatures"
         ]
         app.launch()
     }

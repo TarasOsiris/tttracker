@@ -26,6 +26,7 @@ struct AnalyticsScreen: View {
         }
         .accessibilityIdentifier("screen.analytics")
         .navigationTitle(L.navAnalytics)
+        .proToolbarButton()
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button(L.analyticsSettingsTitle, systemImage: "gearshape") { showsSettings = true }

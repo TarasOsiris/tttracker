@@ -23,9 +23,8 @@ The app uses **Swift Package Manager**, not CocoaPods — there is no `.xcworksp
 `xcodebuild` invocation targets `-project iosApp/iosApp.xcodeproj`. The Kotlin/Native
 `Shared.framework` is produced by the target's `Compile Kotlin Framework` build phase, which runs
 `./gradlew :core:embedAndSignAppleFrameworkForXcode`. PostHog, Sentry and RevenueCat are SwiftPM
-dependencies used only from Swift. RevenueCat is configured at launch in
-`iosApp/iosApp/Platform/SwiftPurchases.swift` for dashboard reporting only — no entitlements,
-offerings or paywalls are wired up.
+dependencies used only from Swift; RevenueCat also brings RevenueCatUI for the Pro paywall (see
+Purchases below).
 
 The project has three targets: `iosApp`, the `TTWidgets` widget extension, and `iosAppUITests`.
 `iosApp/Common` is compiled into both the app and the extension — the string catalog and its `L`
@@ -268,13 +267,32 @@ interface AnalyticsService {
 
 ## Purchases with RevenueCat
 
-RevenueCat is initialised on both clients purely so the dashboard reports active users — nothing
-reads entitlements, offerings or paywalls yet, and there is no shared Kotlin abstraction over it.
+RevenueCat is initialised on both clients. Android uses it only so the dashboard reports active
+users.
 
 - Android: `PurchasesSetup.configure(...)` from `TTApplication.onCreate`, key in the
   `REVENUECAT_API_KEY` BuildConfig field
 - iOS: `SwiftPurchases.configure()` from `iOSApp.init`, key in the `REVENUECAT_API_KEY` Info.plist
   entry
+
+**iOS sells Pro**, and only in Debug and TestFlight builds (`SandboxDistribution`, which reads the
+receipt and, in Release, the `SANDBOX_FEATURES` build setting that `/ship` turns off for builds
+going to App Review). `ProModel` (`iosApp/iosApp/App/ProModel.swift`) is the single reader of the entitlement
+(`ProEntitlement.id`, which must match the RevenueCat dashboard) and every Pro surface checks
+`showsUpsell`: the PRO pill on each tab's toolbar (`.proToolbarButton()`), the banner and the
+Restore purchases row at the top of Settings, and the locked iCloud section. The paywall is
+RevenueCatUI's `PaywallView`, designed in the dashboard. Kotlin knows nothing about Pro.
+
+Pro's only feature so far is **iCloud sync** — see `docs/icloud-sync.md` for the design and the
+conflict rules. Rules that affect everyday code:
+
+- Update queries on synced tables (`training_session`, `opponent`, `match`) must skip rows they would
+  not change and must never move `updated_at` backwards — copy the `CASE WHEN :updated_at >
+  updated_at ...` pattern in `AppDatabase.sq`.
+- Never replace a row by delete-and-reinsert under a new id; update it in place.
+- A new synced column goes into `CloudSyncRepositoryImpl` **and** `iosApp/CloudKit/Schema.ckdb`, and
+  the schema must be deployed to CloudKit Production before a TestFlight build can sync it.
+- Sync tests run on the simulator: `./gradlew :core:iosSimulatorArm64Test` (needs `DEVELOPER_DIR`).
 
 ## Platform-Specific Code
 

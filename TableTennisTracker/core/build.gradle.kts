@@ -77,5 +77,10 @@ kotlin {
 		iosMain.dependencies {
 			implementation(libs.sqldelight.driver.native)
 		}
+		// kotlin.test rather than a Kotest spec: Kotlin/Native has no Kotest runner configured, so a
+		// spec would compile and silently never run.
+		iosTest.dependencies {
+			implementation(libs.kotlin.test)
+		}
 	}
 }

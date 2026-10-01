@@ -141,6 +141,27 @@ xcodebuild -project iosApp/iosApp.xcodeproj -scheme iosApp -configuration Releas
   -showBuildSettings 2>/dev/null | grep -E 'MARKETING_VERSION|CURRENT_PROJECT_VERSION'
 ```
 
+## Step 3b: Verify the CloudKit Production schema
+
+TestFlight and the App Store use the Production CloudKit environment, which never creates schema on
+its own: a build whose record types or fields are missing there archives, uploads and installs fine,
+and then iCloud sync uploads nothing. Check before archiving:
+
+```bash
+python3 tools/check_cloudkit_schema.py
+```
+
+If it lists anything missing, **stop and tell the user**; do not work around it. Production cannot be
+written from the command line, so the fix needs them:
+
+1. Import the repo schema into Development (safe, Development can be reset):
+   `xcrun cktool import-schema --team-id XW3GM347XY --container-id iCloud.xyz.tleskiv.tt --environment development --file iosApp/CloudKit/Schema.ckdb`
+2. CloudKit Console → `iCloud.xyz.tleskiv.tt` → **Deploy Schema Changes…** to Production. Irreversible:
+   a deployed field can never be removed, so the user reviews and clicks it.
+
+Then re-run the check. If `cktool` reports no management token, the user saves one once with
+`xcrun cktool save-token --type management` (CloudKit Console → Settings → Tokens & Keys).
+
 ## Step 4: Create the archive
 
 ```bash
@@ -155,6 +176,25 @@ asc xcode archive \
 ```
 
 `build/` is gitignored, so nothing from this step or the next ever lands in a commit.
+
+**Pro and iCloud sync are TestFlight-only, and the archive decides it.** App Review installs carry a
+sandbox receipt just like TestFlight, so the app cannot tell them apart at runtime; the
+`SANDBOX_FEATURES` build setting (default `YES` in `Config.xcconfig`) does. When the answer to
+Step 7 (asked up front) is **Submit for review**, add
+
+```
+--xcodebuild-flag=SANDBOX_FEATURES=NO
+```
+
+to the archive command above, so the reviewer sees no Pro pill, paywall or iCloud section. **Upload
+only** keeps the default, so TestFlight testers get Pro and iCloud sync. Confirm the archive says
+what was intended:
+
+```bash
+/usr/libexec/PlistBuddy -c "Print :SANDBOX_FEATURES" build/iosApp.xcarchive/Products/Applications/TableTennisTracker.app/Info.plist
+```
+
+`NO` for a build going to review, `YES` for a TestFlight-only one. Anything else — stop.
 
 The archive **is** the compile check — the `Compile Kotlin Framework` build phase runs
 `./gradlew :core:embedAndSignAppleFrameworkForXcode`, so a Kotlin error in `:core` (or
@@ -282,7 +322,11 @@ The build is on App Store Connect at this point. Ask the user, with the AskUserQ
 whether to also submit for review:
 
 - **Submit for review** (default) — continue to Step 8.
-- **Upload only** — stop here; the build is available in App Store Connect and TestFlight.
+- **Upload only** — stop here; the build is available in App Store Connect and TestFlight, with
+  Pro and iCloud sync switched on for testers (see Step 4).
+
+A build archived with `SANDBOX_FEATURES=YES` must **never** be submitted for review later by hand:
+the reviewer would find a Pro purchase that is not part of the submission. To release, ship again.
 
 Skip the question if the invocation already says so (`/ship --submit`).
 

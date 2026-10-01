@@ -78,8 +78,8 @@ final class SessionFormModel {
         }
         do {
             if let editing {
-                // Always the full list: `editSession` soft-deletes every match on the session and
-                // reinserts what it is given, so a partial list would drop the rest.
+                // Always the full list: `editSession` updates the matches it is given by id, adds the
+                // new ones and deletes the rest, so a partial list would drop matches.
                 try await sessions.editSession(
                     id: editing,
                     dateTime: dateTime,

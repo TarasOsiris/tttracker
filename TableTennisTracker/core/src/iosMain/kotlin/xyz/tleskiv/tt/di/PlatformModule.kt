@@ -17,6 +17,9 @@ import xyz.tleskiv.tt.di.components.IosLocaleApplier
 import xyz.tleskiv.tt.di.components.IosNativeInfoProvider
 import xyz.tleskiv.tt.di.components.LocaleApplier
 import xyz.tleskiv.tt.di.components.NativeInfoProvider
+import xyz.tleskiv.tt.repo.CloudSyncRepository
+import xyz.tleskiv.tt.repo.impl.CloudSyncRepositoryImpl
+import xyz.tleskiv.tt.sync.CloudSync
 
 fun iosPlatformModule(analyticsService: AnalyticsService, crashReporter: CrashReporter) = module {
 	single { DatabaseFactory() }
@@ -28,4 +31,6 @@ fun iosPlatformModule(analyticsService: AnalyticsService, crashReporter: CrashRe
 	singleOf(::IosLocaleApplier) bind LocaleApplier::class
 	single<AnalyticsService> { analyticsService }
 	single<CrashReporter> { crashReporter }
+	single<CloudSyncRepository> { CloudSyncRepositoryImpl(get(), get(), get(named(DispatcherQualifiers.IO))) }
+	single { CloudSync(get()) }
 }

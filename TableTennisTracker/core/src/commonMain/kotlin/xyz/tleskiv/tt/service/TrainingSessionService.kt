@@ -15,7 +15,9 @@ data class MatchInput(
 	val isDoubles: Boolean = false,
 	val isRanked: Boolean = false,
 	val competitionLevel: CompetitionLevel? = null,
-	val notes: String? = null
+	val notes: String? = null,
+	/** The match being edited, or null for a new one; a new match may also bring a fresh id of its own. */
+	val id: Uuid? = null
 )
 
 interface TrainingSessionService {

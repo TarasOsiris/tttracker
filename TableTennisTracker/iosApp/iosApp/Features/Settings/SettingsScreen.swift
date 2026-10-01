@@ -6,6 +6,8 @@ struct SettingsScreen: View {
     var selectedPage: Binding<SettingsRoute?>?
 
     @StateModel private var model = SettingsModel()
+    @State private var paywallSource: PaywallSource?
+    @Environment(ProModel.self) private var pro: ProModel?
 
     private static let website = URL(string: "https://ninevastudios.com")
     private static let privacyPolicy = URL(string: "https://ninevastudios.com/privacy")
@@ -14,7 +16,13 @@ struct SettingsScreen: View {
         list
             .navigationTitle(L.titleSettings)
             .navigationDestination(for: SettingsRoute.self) { settingsPage($0) }
+            .proToolbarButton()
             .task { await model.load() }
+            .sheet(item: $paywallSource) { ProPaywallSheet(source: $0) }
+            .alert(
+                pro?.restoreResult?.title ?? "",
+                isPresented: Binding(get: { pro?.restoreResult != nil }, set: { if !$0 { pro?.restoreResult = nil } })
+            ) {}
     }
 
     /// The selection binding goes on only where the split view needs one. A `List` that has one
@@ -29,7 +37,9 @@ struct SettingsScreen: View {
     }
 
     @ViewBuilder private var sections: some View {
+        if let pro, pro.showsUpsell { proSections(pro) }
         generalSection
+        CloudSyncSection { paywallSource = .iCloudSync }
         helpSection
         aboutSection
         if model.isDebugBuild { developerSection }
@@ -52,6 +62,22 @@ struct SettingsScreen: View {
         } else {
             NavigationLink(value: page) { Label(page.title, systemImage: page.icon) }
                 .accessibilityIdentifier(page.identifier)
+        }
+    }
+
+    @ViewBuilder private func proSections(_ pro: ProModel) -> some View {
+        Section {
+            SettingsProBanner { paywallSource = .settingsBanner }
+                .listRowInsets(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
+                .listRowBackground(Color.clear)
+        }
+
+        // Apple requires a way to restore a non-consumable outside the purchase flow itself.
+        Section {
+            Button { Task { await pro.restore() } } label: {
+                Label(L.actionRestorePurchases, systemImage: "arrow.clockwise")
+            }
+            .disabled(pro.isRestoring)
         }
     }
 

@@ -1,0 +1,79 @@
+DEFINE SCHEMA
+
+    RECORD TYPE Match (
+        "___createTime" TIMESTAMP,
+        "___createdBy"  REFERENCE,
+        "___etag"       STRING,
+        "___modTime"    TIMESTAMP,
+        "___modifiedBy" REFERENCE,
+        "___recordID"   REFERENCE QUERYABLE,
+        competitionLevel STRING,
+        createdAt        INT64,
+        games            STRING,
+        isDeleted        INT64,
+        isDoubles        INT64,
+        isRanked         INT64,
+        modifiedAt       INT64,
+        myGamesWon       INT64,
+        notes            STRING,
+        opponentGamesWon INT64,
+        opponentId       STRING,
+        rpe              INT64,
+        sessionId        STRING,
+        GRANT WRITE TO "_creator",
+        GRANT CREATE TO "_icloud",
+        GRANT READ TO "_world"
+    );
+
+    RECORD TYPE Opponent (
+        "___createTime" TIMESTAMP,
+        "___createdBy"  REFERENCE,
+        "___etag"       STRING,
+        "___modTime"    TIMESTAMP,
+        "___modifiedBy" REFERENCE,
+        "___recordID"   REFERENCE QUERYABLE,
+        club       STRING,
+        createdAt  INT64,
+        handedness STRING,
+        isDeleted  INT64,
+        modifiedAt INT64,
+        name       STRING,
+        notes      STRING,
+        rating     DOUBLE,
+        style      STRING,
+        GRANT WRITE TO "_creator",
+        GRANT CREATE TO "_icloud",
+        GRANT READ TO "_world"
+    );
+
+    RECORD TYPE TrainingSession (
+        "___createTime" TIMESTAMP,
+        "___createdBy"  REFERENCE,
+        "___etag"       STRING,
+        "___modTime"    TIMESTAMP,
+        "___modifiedBy" REFERENCE,
+        "___recordID"   REFERENCE QUERYABLE,
+        createdAt   INT64,
+        date        INT64,
+        durationMin INT64,
+        isDeleted   INT64,
+        modifiedAt  INT64,
+        notes       STRING,
+        rpe         INT64,
+        sessionType STRING,
+        GRANT WRITE TO "_creator",
+        GRANT CREATE TO "_icloud",
+        GRANT READ TO "_world"
+    );
+
+    RECORD TYPE Users (
+        "___createTime" TIMESTAMP,
+        "___createdBy"  REFERENCE,
+        "___etag"       STRING,
+        "___modTime"    TIMESTAMP,
+        "___modifiedBy" REFERENCE,
+        "___recordID"   REFERENCE,
+        roles           LIST<INT64>,
+        GRANT WRITE TO "_creator",
+        GRANT READ TO "_world"
+    );

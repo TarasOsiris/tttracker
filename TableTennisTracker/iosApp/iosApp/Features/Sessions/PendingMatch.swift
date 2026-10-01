@@ -46,9 +46,9 @@ struct PendingMatch: Identifiable, Hashable {
 extension PendingMatch {
     /// An existing session's match, reopened for editing.
     ///
-    /// Carrying `opponentId` matters: saving an edit reinserts every match, and a nil id makes the
-    /// repository create a *new* opponent row from the name with no dedupe, so the roster would grow
-    /// by one per opponent on every save.
+    /// Carrying both ids matters. `id` is how saving an edit updates the match in place rather than
+    /// inserting a copy, and a nil `opponentId` makes the repository create a *new* opponent row from
+    /// the name with no dedupe, so the roster would grow by one per opponent on every save.
     init(_ match: MatchItem) {
         self.init(
             id: match.id,
@@ -74,7 +74,8 @@ extension PendingMatch {
             isDoubles: isDoubles,
             isRanked: isRanked,
             competitionLevel: competition?.kotlin,
-            notes: notes?.nilIfBlank
+            notes: notes?.nilIfBlank,
+            id: id.kotlinUuid
         )
     }
 }
