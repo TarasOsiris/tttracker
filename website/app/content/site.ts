@@ -1,6 +1,25 @@
 export const SITE_URL = "https://ttapp.smashyapps.com";
-export const APP_NAME = "TT Tracker";
-export const APP_FULL_NAME = "Ping Pong & Table Tennis Log";
+import type { Locale } from "~/i18n/config";
+
+/**
+ * The app as each store listing names it (TableTennisTracker/fastlane/metadata/<lang>/name.txt), for
+ * page titles, the header and share cards. `brand` is the part that fits a header; the full name in
+ * some languages carries keywords after it. "TT Tracker" is only the label under the home-screen icon.
+ */
+export const appNames: Record<Locale, { name: string; brand: string }> = {
+  en: { name: "Ping Pong & Table Tennis Log", brand: "Ping Pong & Table Tennis Log" },
+  es: { name: "Ping Pong y Tenis de Mesa", brand: "Ping Pong y Tenis de Mesa" },
+  de: { name: "Tischtennis Trainingstagebuch", brand: "Tischtennis Trainingstagebuch" },
+  fr: { name: "Tennis de table & Ping Pong", brand: "Tennis de table & Ping Pong" },
+  pt: { name: "Ping Pong e Tênis de Mesa", brand: "Ping Pong e Tênis de Mesa" },
+  ja: { name: "卓球ノート 練習記録・試合記録・勝率分析", brand: "卓球ノート" },
+  zh: { name: "乒乓球笔记 训练记录·比赛记录·胜率", brand: "乒乓球笔记" },
+  ko: { name: "탁구 훈련일지 - 경기·연습 기록 노트", brand: "탁구 훈련일지" },
+  it: { name: "Ping Pong & Tennis Tavolo", brand: "Ping Pong & Tennis Tavolo" },
+  uk: { name: "Настільний теніс: щоденник", brand: "Настільний теніс" },
+};
+
+export const APP_NAME = appNames.en.name;
 
 export const links = {
   appStore: "https://apps.apple.com/us/app/tt-training-tracker/id6758044383",

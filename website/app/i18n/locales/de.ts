@@ -2,10 +2,10 @@ import type { Messages } from "../types";
 
 export const de: Messages = {
   meta: {
-    homeTitle: "TT Tracker: Tischtennis-Trainingstagebuch",
+    homeTitle: "Tischtennis Trainingstagebuch – Ping Pong: Spiele & Statistik",
     homeDescription:
       "Kostenloses Tischtennis-Trainingstagebuch für iPhone und Android. Einheiten in Sekunden loggen, Spiele und Gegner erfassen, Fortschritt per Heatmap verfolgen.",
-    drillsTitle: "Kostenlose Tischtennis-Trainingspläne | TT Tracker",
+    drillsTitle: "Kostenlose Tischtennis-Trainingspläne | Tischtennis Trainingstagebuch",
     drillsDescription:
       "Ausdruckbare Trainingspläne: Grundlagen, Beinarbeit, Aufschlag & Return, Balleimertraining, Konstanz, Wettkampfvorbereitung – mit Zeitplan, Tipps und FAQ.",
   },

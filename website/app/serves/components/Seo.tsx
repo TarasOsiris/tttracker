@@ -1,4 +1,4 @@
-import { SITE_URL } from "~/content/site";
+import { appNames, SITE_URL } from "~/content/site";
 import { localeInfo, locales, localizePath } from "~/i18n/config";
 import { useLanguage } from "../context";
 
@@ -47,7 +47,7 @@ export function Seo({ title, description: raw, path = "/", jsonLd, noIndex }: Se
         ))}
       {!noIndex && <link rel="alternate" hrefLang="x-default" href={`${SITE_URL}${path}`} />}
       <meta property="og:type" content="website" />
-      <meta property="og:site_name" content="TT Tracker" />
+      <meta property="og:site_name" content={appNames[language].name} />
       <meta property="og:locale" content={localeInfo[language].og} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />

@@ -2,10 +2,10 @@ import type { Messages } from "../types";
 
 export const en: Messages = {
   meta: {
-    homeTitle: "TT Tracker: Ping Pong & Table Tennis Training Log",
+    homeTitle: "Ping Pong & Table Tennis Log – Training journal & match stats",
     homeDescription:
       "Free table tennis training journal for iPhone and Android. Log sessions in seconds, record matches and opponents, and see your progress with heatmaps and win-rate stats.",
-    drillsTitle: "Free Table Tennis Training Plans & Drills | TT Tracker",
+    drillsTitle: "Free Table Tennis Training Plans & Drills | Ping Pong & Table Tennis Log",
     drillsDescription:
       "Printable table tennis practice sessions: beginner fundamentals, footwork, serve & receive, multiball, consistency and match preparation. Each with timings, tips and FAQs.",
   },

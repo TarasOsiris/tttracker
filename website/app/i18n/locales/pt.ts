@@ -2,10 +2,10 @@ import type { Messages } from "../types";
 
 export const pt: Messages = {
   meta: {
-    homeTitle: "TT Tracker: Diário de Treino de Pingue-Pongue e Tênis de Mesa",
+    homeTitle: "Ping Pong e Tênis de Mesa – Diário de treino e partidas",
     homeDescription:
       "Diário de treino de tênis de mesa grátis para iPhone e Android. Registre sessões, partidas e adversários e veja a evolução em mapas de calor e taxa de vitórias.",
-    drillsTitle: "Planos e Treinos de Tênis de Mesa Grátis | TT Tracker",
+    drillsTitle: "Planos e Treinos de Tênis de Mesa Grátis | Ping Pong e Tênis de Mesa",
     drillsDescription:
       "Sessões de tênis de mesa para imprimir: fundamentos, movimentação, saque e recepção, multibola, consistência e preparação de partidas. Com tempos, dicas e FAQ.",
   },

@@ -2,10 +2,10 @@ import type { Messages } from "../types";
 
 export const ja: Messages = {
   meta: {
-    homeTitle: "TT Tracker：卓球の練習記録アプリ",
+    homeTitle: "卓球ノート 練習記録・試合記録・勝率分析",
     homeDescription:
       "iPhone・Android対応の無料卓球練習日記アプリ。数秒で練習を記録し、試合や対戦相手も管理。ヒートマップと勝率で成長が一目でわかります。",
-    drillsTitle: "無料の卓球練習メニュー集 | TT Tracker",
+    drillsTitle: "無料の卓球練習メニュー集 | 卓球ノート",
     drillsDescription:
       "印刷できる卓球練習メニュー：基礎、フットワーク、サーブ・レシーブ、多球練習、安定性、試合準備。時間配分・コツ・FAQ付き。",
   },

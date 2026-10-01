@@ -1,4 +1,5 @@
 import { Check, Globe, Menu } from "lucide-react";
+import appIcon from "~/assets/icon/app-icon-512.png";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router";
 import { Button } from "~/components/ui/button";
@@ -9,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
 import { Sheet, SheetClose, SheetContent, SheetTitle, SheetTrigger } from "~/components/ui/sheet";
-import { APP_NAME, navLinks } from "~/content/site";
+import { appNames, navLinks } from "~/content/site";
 import { localeInfo, locales, localizePath, stripLocale } from "~/i18n/config";
 import { useI18n } from "~/i18n/use-i18n";
 import { cn } from "~/lib/utils";
@@ -17,11 +18,11 @@ import { StoreButtons } from "./store-buttons";
 import { ThemeToggle } from "./theme-toggle";
 
 export function Logo() {
-  const { href } = useI18n();
+  const { href, locale } = useI18n();
   return (
-    <Link to={href("/")} className="flex shrink-0 items-center gap-2.5 font-display text-[17px] font-bold tracking-tight">
-      <img src="/app-icon-512.png" alt="" width={32} height={32} className="size-8 rounded-[9px] shadow-sm" />
-      <span>{APP_NAME}</span>
+    <Link to={href("/")} className="flex min-w-0 items-center gap-2.5 font-display text-[17px] font-bold tracking-tight">
+      <img src={appIcon} alt="" width={32} height={32} className="size-8 shrink-0" />
+      <span className="line-clamp-2 text-[15px] leading-tight sm:line-clamp-1 sm:text-[17px]">{appNames[locale].brand}</span>
     </Link>
   );
 }
@@ -91,7 +92,9 @@ function useActiveHref() {
 }
 
 export function SiteHeader() {
-  const { t, href } = useI18n();
+  const { t, href, locale } = useI18n();
+  // A long store name needs the room on small phones; the menu still has the store buttons.
+  const longBrand = appNames[locale].brand.length > 16;
   const [scrolled, setScrolled] = useState(false);
   const active = useActiveHref();
 
@@ -126,7 +129,7 @@ export function SiteHeader() {
             </Link>
           ))}
         </nav>
-        <div className="flex items-center gap-1">
+        <div className="flex shrink-0 items-center gap-1">
           <div className="hidden sm:block">
             <LanguageMenu />
           </div>
@@ -134,7 +137,10 @@ export function SiteHeader() {
           <Button
             asChild
             size="sm"
-            className="hidden rounded-full px-3.5 font-semibold shadow-sm hover:-translate-y-0.5 min-[380px]:inline-flex sm:px-4"
+            className={cn(
+              "hidden rounded-full px-3.5 font-semibold shadow-sm hover:-translate-y-0.5 sm:px-4",
+              longBrand ? "min-[440px]:inline-flex" : "min-[380px]:inline-flex",
+            )}
           >
             <Link to={href("/#download")}>{t.nav.getApp}</Link>
           </Button>

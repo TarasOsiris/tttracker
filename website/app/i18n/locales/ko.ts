@@ -2,10 +2,10 @@ import type { Messages } from "../types";
 
 export const ko: Messages = {
   meta: {
-    homeTitle: "TT Tracker: 탁구 훈련 일지 앱",
+    homeTitle: "탁구 훈련일지 - 경기·연습 기록 노트",
     homeDescription:
       "아이폰과 안드로이드용 무료 탁구 훈련 일지 앱. 세션을 몇 초 만에 기록하고 경기와 상대를 남기며, 히트맵과 승률로 성장을 확인해요.",
-    drillsTitle: "무료 탁구 훈련 계획 & 드릴 | TT Tracker",
+    drillsTitle: "무료 탁구 훈련 계획 & 드릴 | 탁구 훈련일지",
     drillsDescription:
       "출력용 탁구 연습 세션: 기초, 풋워크, 서브·리시브, 다구 훈련, 랠리 지속력, 경기 준비. 시간표와 팁, FAQ 포함.",
   },

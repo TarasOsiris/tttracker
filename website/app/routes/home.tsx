@@ -19,7 +19,7 @@ import { Heatmap, PhoneMockup } from "~/components/site/phone-mockup";
 import { ScreenshotGallery } from "~/components/site/screenshot-gallery";
 import { SectionHeading } from "~/components/site/section-heading";
 import { StoreButtons } from "~/components/site/store-buttons";
-import { APP_FULL_NAME, links, SITE_URL } from "~/content/site";
+import { APP_NAME, links, SITE_URL } from "~/content/site";
 import { localeFromPath, localizePath } from "~/i18n/config";
 import { drillSummaries } from "~/i18n/messages.server";
 import { featuredServes } from "~/serves/store.server";
@@ -51,7 +51,7 @@ const featureIcons: Record<FeatureIcon, typeof Timer> = {
 const appJsonLd = (url: string, description: string) => ({
   "@context": "https://schema.org",
   "@type": "MobileApplication",
-  name: APP_FULL_NAME,
+  name: APP_NAME,
   description,
   operatingSystem: "iOS, Android",
   applicationCategory: "SportsApplication",

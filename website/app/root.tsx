@@ -9,6 +9,9 @@ import {
   useRouteLoaderData,
 } from "react-router";
 import type { Route } from "./+types/root";
+import appleTouchIcon from "~/assets/icon/apple-touch-icon.png";
+import favicon16 from "~/assets/icon/favicon-16x16.png?no-inline";
+import favicon32 from "~/assets/icon/favicon-32x32.png?no-inline";
 import { SiteFooter } from "~/components/site/footer";
 import { SiteHeader } from "~/components/site/header";
 import { buttonVariants } from "~/components/ui/button";
@@ -21,6 +24,8 @@ const GA_ID = "G-XPDY4TC15W";
 // Runs before paint so a saved dark theme never flashes. Light is the default.
 const themeScript = `(function(){try{document.documentElement.classList.toggle("dark",localStorage.getItem("theme")==="dark")}catch(e){}})()`;
 
+const ICON_VERSION = 2;
+
 const gaScript = `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${GA_ID}');`;
 
 export const links: Route.LinksFunction = () => [
@@ -30,11 +35,13 @@ export const links: Route.LinksFunction = () => [
     rel: "stylesheet",
     href: "https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Poppins:wght@400;500;600&display=swap",
   },
-  { rel: "icon", href: "/favicon.ico", sizes: "any" },
-  { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon-32x32.png" },
-  { rel: "icon", type: "image/png", sizes: "16x16", href: "/favicon-16x16.png" },
-  { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
-  { rel: "manifest", href: "/site.webmanifest" },
+  // The PNGs are imported so their URLs carry a content hash; files that must keep a fixed path take
+  // ICON_VERSION instead. Bump it whenever public/favicon.ico or the manifest icons change.
+  { rel: "icon", href: `/favicon.ico?v=${ICON_VERSION}`, sizes: "any" },
+  { rel: "icon", type: "image/png", sizes: "32x32", href: favicon32 },
+  { rel: "icon", type: "image/png", sizes: "16x16", href: favicon16 },
+  { rel: "apple-touch-icon", sizes: "180x180", href: appleTouchIcon },
+  { rel: "manifest", href: `/site.webmanifest?v=${ICON_VERSION}` },
 ];
 
 // Runs at build time for every prerendered path; only that locale's UI strings reach the page.

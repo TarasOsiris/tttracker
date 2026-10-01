@@ -1,5 +1,5 @@
 import type { MetaDescriptor } from "react-router";
-import { APP_NAME, SITE_URL } from "~/content/site";
+import { appNames, SITE_URL } from "~/content/site";
 import { type Locale, localeInfo, locales, localizePath } from "~/i18n/config";
 
 /**
@@ -38,7 +38,7 @@ export function seo({
     { tagName: "link", rel: "canonical", href: url },
     ...alternates,
     { property: "og:type", content: "website" },
-    { property: "og:site_name", content: APP_NAME },
+    { property: "og:site_name", content: appNames[locale].name },
     { property: "og:locale", content: localeInfo[locale].og },
     { property: "og:title", content: title },
     { property: "og:description", content: description },

@@ -2,10 +2,10 @@ import type { Messages } from "../types";
 
 export const it: Messages = {
   meta: {
-    homeTitle: "TT Tracker: diario di allenamento ping pong",
+    homeTitle: "Ping Pong & Tennis Tavolo – Diario allenamenti e partite",
     homeDescription:
       "Diario di allenamento gratis per tennis tavolo su iPhone e Android. Registra sessioni, partite e avversari e monitora i progressi con heatmap e statistiche.",
-    drillsTitle: "Esercizi e Piani di Allenamento Tennis Tavolo Gratis | TT Tracker",
+    drillsTitle: "Esercizi e Piani di Allenamento Tennis Tavolo Gratis | Ping Pong & Tennis Tavolo",
     drillsDescription:
       "Sessioni di tennis tavolo da stampare: fondamentali, gioco di gambe, servizio e risposta, multiball, costanza e preparazione alla partita, con consigli e FAQ.",
   },

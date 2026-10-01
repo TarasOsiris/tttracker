@@ -2,10 +2,10 @@ import type { Messages } from "../types";
 
 export const zh: Messages = {
   meta: {
-    homeTitle: "TT Tracker：乒乓球训练日志与记录",
+    homeTitle: "乒乓球笔记 训练记录·比赛记录·胜率",
     homeDescription:
       "iPhone 和 Android 端免费乒乓球训练日志。几秒记录训练，记录比赛与对手，用热力图和胜率统计追踪你的进步。",
-    drillsTitle: "免费乒乓球训练计划与练习 | TT Tracker",
+    drillsTitle: "免费乒乓球训练计划与练习 | 乒乓球笔记",
     drillsDescription:
       "可打印乒乓球训练课程：新手基础、步法、发球接发球、多球训练、稳定性与赛前准备，附时间安排、技巧和常见问题。",
   },

@@ -2,10 +2,10 @@ import type { Messages } from "../types";
 
 export const fr: Messages = {
   meta: {
-    homeTitle: "TT Tracker : carnet d'entraînement tennis de table",
+    homeTitle: "Tennis de table & Ping Pong – Carnet d'entraînement, matchs",
     homeDescription:
       "Carnet d'entraînement gratuit pour le tennis de table sur iPhone et Android. Note tes séances, suis tes matchs et ta progression : heatmap, taux de victoire.",
-    drillsTitle: "Plans d'entraînement et exercices gratuits | TT Tracker",
+    drillsTitle: "Plans d'entraînement et exercices gratuits | Tennis de table & Ping Pong",
     drillsDescription:
       "Séances de tennis de table à imprimer : bases débutant, jeu de jambes, service-remise, multiballe, régularité et préparation aux matchs, avec minutage.",
   },
