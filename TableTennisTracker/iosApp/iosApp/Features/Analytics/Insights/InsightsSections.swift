@@ -1,41 +1,59 @@
 import Charts
 import SwiftUI
 
-/// The Pro half of the analytics screen. Without Pro, a single blurred preview of the streak and
-/// load stands in for all of it, so the free screen carries one lock rather than four.
-struct InsightsSections: View {
+/// The Pro insights, one section per card so each can be hidden and moved on its own.
+struct StreakSection: View {
     let model: InsightsModel
     let isWide: Bool
 
-    @Environment(ProModel.self) private var pro: ProModel?
+    var body: some View {
+        Section {
+            StreakTiles(model: model, isWide: isWide)
+        } header: {
+            Text(L.analyticsWidgetStreak)
+        } footer: {
+            Text(L.analyticsStreakHint)
+        }
+    }
+}
+
+struct TrainingLoadSection: View {
+    let model: InsightsModel
+    let isWide: Bool
 
     var body: some View {
-        if pro?.hasProFeatures == true {
-            Section {
+        Section {
+            TrainingLoadChart(model: model, isWide: isWide)
+        } header: {
+            Text(L.analyticsTrainingLoad)
+        } footer: {
+            Text(L.analyticsTrainingLoadHint)
+        }
+    }
+}
+
+struct SessionTypesSection: View {
+    let model: InsightsModel
+
+    var body: some View {
+        Section(L.analyticsSessionTypes) { SessionTypeBreakdown(model: model) }
+    }
+}
+
+/// Without Pro, a single blurred preview of the streak and load stands in for every insight card,
+/// so the free screen carries one lock rather than four.
+struct LockedInsightsSection: View {
+    let model: InsightsModel
+    let isWide: Bool
+
+    var body: some View {
+        Section(L.analyticsInsights) {
+            VStack(spacing: 16) {
                 StreakTiles(model: model, isWide: isWide)
-            } header: {
-                Text(L.analyticsInsights)
-            } footer: {
-                Text(L.analyticsStreakHint)
-            }
-            Section {
                 TrainingLoadChart(model: model, isWide: isWide)
-            } header: {
-                Text(L.analyticsTrainingLoad)
-            } footer: {
-                Text(L.analyticsTrainingLoadHint)
             }
-            Section(L.analyticsSessionTypes) { SessionTypeBreakdown(model: model) }
-            HeadToHeadSection(model: model)
-        } else {
-            Section(L.analyticsInsights) {
-                VStack(spacing: 16) {
-                    StreakTiles(model: model, isWide: isWide)
-                    TrainingLoadChart(model: model, isWide: isWide)
-                }
-                .padding(.vertical, 4)
-                .proLocked(.analyticsInsights, caption: L.proBenefitInsightsDetail)
-            }
+            .padding(.vertical, 4)
+            .proLocked(.analyticsInsights, caption: L.proBenefitInsightsDetail)
         }
     }
 }

@@ -90,6 +90,10 @@
 	<string name="analytics_widget_win_loss">Win/Loss chart</string>
 	<string name="analytics_widget_weekly">Weekly training</string>
 	<string name="analytics_widget_heatmap">Training heatmap</string>
+	<string name="analytics_widget_streak">Training streak</string>
+	<string name="analytics_widgets_reorder_hint">Drag to reorder</string>
+	<string name="action_move_up">Move up</string>
+	<string name="action_move_down">Move down</string>
 
     <!-- Settings Screen -->
     <string name="settings_section_general">General</string>

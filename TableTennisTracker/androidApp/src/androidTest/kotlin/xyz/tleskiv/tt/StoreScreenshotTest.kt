@@ -87,17 +87,16 @@ class StoreScreenshotTest {
 		waitForTag(TestTags.SCREEN_ANALYTICS)
 		capture(locale, "03-analytics")
 
-		clickTag(TestTags.TAB_SETTINGS)
+		clickTag(TestTags.TOOLBAR_SETTINGS)
 		scrollToAndClickTag(TestTags.SETTINGS_OPPONENTS)
 		waitForTag(TestTags.SCREEN_OPPONENTS)
 		capture(locale, "06-opponents")
 		goBack()
 
-		clickTag(TestTags.TAB_SETTINGS)
 		scrollToAndClickTag(TestTags.SETTINGS_GENERAL)
 		waitForTag(TestTags.SCREEN_GENERAL)
 		capture(locale, "08-settings")
-		goBack()
+		goBack(times = 2)
 
 		setTheme(AppThemeMode.DARK)
 		clickTag(TestTags.TAB_SESSIONS)

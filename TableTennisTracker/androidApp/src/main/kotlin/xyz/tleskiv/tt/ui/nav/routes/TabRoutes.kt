@@ -7,7 +7,7 @@ import xyz.tleskiv.tt.ui.TestTags
 
 
 val NAV_BAR_TAB_ROUTES: List<NavBarTabLevelRoute> =
-	listOf(SessionsRoute, AnalyticsRoute, SettingsRoute)
+	listOf(SessionsRoute, AnalyticsRoute)
 
 sealed interface NavBarTabLevelRoute {
 	@get:DrawableRes val icon: Int
@@ -28,10 +28,4 @@ data object AnalyticsRoute : NavBarTabLevelRoute {
 	override val icon = R.drawable.ic_analytics
 	override val label = R.string.nav_analytics
 	override val tag = TestTags.TAB_ANALYTICS
-}
-
-data object SettingsRoute : NavBarTabLevelRoute {
-	override val icon = R.drawable.ic_settings
-	override val label = R.string.nav_settings
-	override val tag = TestTags.TAB_SETTINGS
 }

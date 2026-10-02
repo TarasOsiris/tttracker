@@ -9,9 +9,11 @@ import kotlinx.datetime.minus
 import xyz.tleskiv.tt.analytics.SummaryStats
 import xyz.tleskiv.tt.analytics.WeeklyTrainingData
 import xyz.tleskiv.tt.data.model.enums.SessionType
+import xyz.tleskiv.tt.model.AnalyticsWidget
+import xyz.tleskiv.tt.model.AnalyticsWidgetSetting
+import xyz.tleskiv.tt.model.defaultAnalyticsWidgets
 import xyz.tleskiv.tt.util.today
 import xyz.tleskiv.tt.viewmodel.analytics.AnalyticsScreenViewModel
-import xyz.tleskiv.tt.viewmodel.analytics.AnalyticsWidgetVisibility
 import xyz.tleskiv.tt.viewmodel.sessions.SessionsScreenViewModel.SessionUiModel
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
@@ -62,10 +64,8 @@ class FakeAnalyticsScreenViewModel : AnalyticsScreenViewModel() {
 			WeeklyTrainingData("27/1", 220)
 		)
 	)
-	override val widgetVisibility: StateFlow<AnalyticsWidgetVisibility> = MutableStateFlow(AnalyticsWidgetVisibility())
+	override val widgets: StateFlow<List<AnalyticsWidgetSetting>> = MutableStateFlow(defaultAnalyticsWidgets())
 
-	override fun setShowSummary(show: Boolean) {}
-	override fun setShowWinLoss(show: Boolean) {}
-	override fun setShowWeekly(show: Boolean) {}
-	override fun setShowHeatmap(show: Boolean) {}
+	override fun setWidgetVisible(widget: AnalyticsWidget, visible: Boolean) {}
+	override fun moveWidget(widget: AnalyticsWidget, offset: Int) {}
 }

@@ -90,6 +90,10 @@
     <string name="analytics_widget_win_loss">Galibiyet/mağlubiyet grafiği</string>
     <string name="analytics_widget_weekly">Haftalık antrenman</string>
     <string name="analytics_widget_heatmap">Antrenman ısı haritası</string>
+    <string name="analytics_widget_streak">Antrenman serisi</string>
+    <string name="analytics_widgets_reorder_hint">Yeniden sıralamak için sürükleyin</string>
+    <string name="action_move_up">Yukarı taşı</string>
+    <string name="action_move_down">Aşağı taşı</string>
 
     <!-- Settings Screen -->
     <string name="settings_section_general">Genel</string>

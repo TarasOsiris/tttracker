@@ -53,6 +53,9 @@ struct SessionsScreen: View {
             SessionCalendar(model: model, selection: selection, isExpanded: $isCalendarExpanded)
             Divider()
             dayList
+                .overlay(alignment: .bottomTrailing) {
+                    AddSessionButton { create(on: topDay ?? model.today) }
+                }
         }
         .onChange(of: scenePhase) { _, phase in
             if phase == .active { model.refreshToday() }
@@ -63,6 +66,7 @@ struct SessionsScreen: View {
         .navigationTitle(L.navSessions)
         .navigationBarTitleDisplayMode(.inline)
         .proToolbarButton()
+        .settingsToolbarButton()
         .toolbar {
             if let topDay, topDay != model.today {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -70,11 +74,6 @@ struct SessionsScreen: View {
                         .keyboardShortcut("t", modifiers: .command)
                         .accessibilityIdentifier("sessions.today")
                 }
-            }
-            ToolbarItem(placement: .topBarTrailing) {
-                Button(L.actionAddSession, systemImage: "plus") { create(on: topDay ?? model.today) }
-                    .keyboardShortcut("n", modifiers: .command)
-                    .accessibilityIdentifier("sessions.add")
             }
         }
     }
@@ -107,6 +106,8 @@ struct SessionsScreen: View {
                 }
                 .scrollTargetLayout()
             }
+            // So the last day can scroll clear of the add button floating over it.
+            .contentMargins(.bottom, AddSessionButton.clearance, for: .scrollContent)
             // Reporting only, so that scrolling never feeds back into scrolling. The default
             // threshold is deliberate: asking for every sliver of a section instead (`threshold: 0`)
             // disturbs how the list measures itself, and the opening scroll then lands a screen off.

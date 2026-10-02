@@ -90,6 +90,10 @@
 	<string name="analytics_widget_win_loss">Графік перемог/поразок</string>
 	<string name="analytics_widget_weekly">Тижневі тренування</string>
 	<string name="analytics_widget_heatmap">Теплова карта тренувань</string>
+	<string name="analytics_widget_streak">Серія тренувань</string>
+	<string name="analytics_widgets_reorder_hint">Перетягніть, щоб змінити порядок</string>
+	<string name="action_move_up">Перемістити вгору</string>
+	<string name="action_move_down">Перемістити вниз</string>
 
     <!-- Profile Screen -->
 

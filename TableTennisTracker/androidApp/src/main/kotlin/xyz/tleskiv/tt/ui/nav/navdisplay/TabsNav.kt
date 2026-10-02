@@ -1,8 +1,13 @@
 package xyz.tleskiv.tt.ui.nav.navdisplay
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.ShortNavigationBar
@@ -24,22 +29,21 @@ import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDe
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
+import xyz.tleskiv.tt.R
+import xyz.tleskiv.tt.ui.TestTags
 import xyz.tleskiv.tt.ui.nav.TopLevelBackStack
 import xyz.tleskiv.tt.ui.nav.instantTransitionMetadata
 import xyz.tleskiv.tt.ui.nav.routes.AnalyticsRoute
+import xyz.tleskiv.tt.ui.nav.routes.CoreAppRoute
 import xyz.tleskiv.tt.ui.nav.routes.CreateSessionRoute
-import xyz.tleskiv.tt.ui.nav.routes.DebugRoute
-import xyz.tleskiv.tt.ui.nav.routes.GeneralSettingsRoute
 import xyz.tleskiv.tt.ui.nav.routes.NAV_BAR_TAB_ROUTES
 import xyz.tleskiv.tt.ui.nav.routes.NavBarTabLevelRoute
-import xyz.tleskiv.tt.ui.nav.routes.OpponentsRoute
 import xyz.tleskiv.tt.ui.nav.routes.SessionDetailsRoute
 import xyz.tleskiv.tt.ui.nav.routes.SessionsRoute
 import xyz.tleskiv.tt.ui.nav.routes.SettingsRoute
 import xyz.tleskiv.tt.ui.nav.routes.TopLevelRoute
 import xyz.tleskiv.tt.ui.screens.AnalyticsScreen
 import xyz.tleskiv.tt.ui.screens.SessionsScreen
-import xyz.tleskiv.tt.ui.screens.SettingsScreen
 
 @Composable
 fun TabsNavDisplay(
@@ -57,9 +61,14 @@ fun TabsNavDisplay(
 			TopAppBar(
 				title = { currentTopAppBarState.title() },
 				actions = {
-					Box(modifier = Modifier.padding(end = 8.dp)) {
-						currentTopAppBarState.actions?.invoke()
+					currentTopAppBarState.actions?.invoke()
+					IconButton(
+						modifier = Modifier.testTag(TestTags.TOOLBAR_SETTINGS),
+						onClick = { if (topLevelBackStack.lastOrNull() == CoreAppRoute) topLevelBackStack.add(SettingsRoute) }
+					) {
+						Icon(imageVector = Icons.Outlined.Settings, contentDescription = stringResource(R.string.nav_settings))
 					}
+					Spacer(modifier = Modifier.width(8.dp))
 				},
 				colors = TopAppBarDefaults.topAppBarColors(
 					containerColor = MaterialTheme.colorScheme.surface
@@ -109,14 +118,6 @@ fun TabsNavDisplay(
 						AnalyticsScreen(
 							onNavigateToSession = { id -> topLevelBackStack.add(SessionDetailsRoute(id)) },
 							topAppBarState = currentTopAppBarState
-						)
-					}
-					entry<SettingsRoute>(metadata = instantTransitionMetadata) {
-						SettingsScreen(
-							topAppBarState = currentTopAppBarState,
-							onNavigateToGeneralSettings = { topLevelBackStack.add(GeneralSettingsRoute) },
-							onNavigateToOpponents = { topLevelBackStack.add(OpponentsRoute) },
-							onNavigateToDebug = { topLevelBackStack.add(DebugRoute) }
 						)
 					}
 				}

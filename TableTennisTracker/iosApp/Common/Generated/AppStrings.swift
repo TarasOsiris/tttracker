@@ -80,6 +80,12 @@ enum L {
 	/// Language
 	static var actionLanguage: String { Localization.string("action_language") }
 
+	/// Move down
+	static var actionMoveDown: String { Localization.string("action_move_down") }
+
+	/// Move up
+	static var actionMoveUp: String { Localization.string("action_move_up") }
+
 	/// OK
 	static var actionOk: String { Localization.string("action_ok") }
 
@@ -213,6 +219,9 @@ enum L {
 	/// Training heatmap
 	static var analyticsWidgetHeatmap: String { Localization.string("analytics_widget_heatmap") }
 
+	/// Training streak
+	static var analyticsWidgetStreak: String { Localization.string("analytics_widget_streak") }
+
 	/// Summary
 	static var analyticsWidgetSummary: String { Localization.string("analytics_widget_summary") }
 
@@ -221,6 +230,9 @@ enum L {
 
 	/// Win/Loss chart
 	static var analyticsWidgetWinLoss: String { Localization.string("analytics_widget_win_loss") }
+
+	/// Drag to reorder
+	static var analyticsWidgetsReorderHint: String { Localization.string("analytics_widgets_reorder_hint") }
 
 	/// Win / Loss
 	static var analyticsWinLoss: String { Localization.string("analytics_win_loss") }

@@ -13,7 +13,7 @@ object TestTags {
 
 	const val TAB_SESSIONS = "tab_sessions"
 	const val TAB_ANALYTICS = "tab_analytics"
-	const val TAB_SETTINGS = "tab_settings"
+	const val TOOLBAR_SETTINGS = "toolbar_settings"
 
 	const val SESSIONS_ADD = "sessions_add"
 	const val SESSIONS_TODAY = "sessions_today"

@@ -90,6 +90,10 @@
     <string name="analytics_widget_win_loss">Grafik menang/kalah</string>
     <string name="analytics_widget_weekly">Latihan mingguan</string>
     <string name="analytics_widget_heatmap">Heatmap latihan</string>
+    <string name="analytics_widget_streak">Beruntun latihan</string>
+    <string name="analytics_widgets_reorder_hint">Seret untuk mengubah urutan</string>
+    <string name="action_move_up">Naikkan</string>
+    <string name="action_move_down">Turunkan</string>
 
     <!-- Settings Screen -->
     <string name="settings_section_general">Umum</string>

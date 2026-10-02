@@ -24,13 +24,3 @@ enum SettingsRoute: String, Hashable {
         }
     }
 }
-
-/// The one place a route names its screen — both the pushed stack and the split view's detail
-/// column build their page from here.
-@ViewBuilder func settingsPage(_ route: SettingsRoute) -> some View {
-    switch route {
-    case .general: GeneralSettingsScreen()
-    case .opponents: OpponentsScreen()
-    case .debug: DebugScreen()
-    }
-}

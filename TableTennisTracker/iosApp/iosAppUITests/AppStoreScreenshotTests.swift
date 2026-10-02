@@ -129,7 +129,7 @@ final class AppStoreScreenshotTests: XCTestCase {
         capture(locale, "03-analytics")
 
         if !isPad {
-            openTab(.settings)
+            openSettings()
             scrollTo("settings.opponents")
             tap("settings.opponents")
             waitFor("screen.opponents")
@@ -141,6 +141,7 @@ final class AppStoreScreenshotTests: XCTestCase {
             waitFor("screen.general")
             capture(locale, "08-settings")
             navigateBack()
+            closeSettings()
         }
 
         // Relaunch rather than capture straight after the switch: changing the theme rebuilds the
@@ -170,7 +171,7 @@ final class AppStoreScreenshotTests: XCTestCase {
     /// from the screen's own `.task`, and reading a not-yet-loaded count as 0 would skip the clear
     /// on precisely the languages that still hold the previous one's rows.
     private func seedShowcaseData() {
-        openTab(.settings)
+        openSettings()
         scrollTo("settings.debug")
         tap("settings.debug")
         waitFor("screen.debug", orIdentifier: "debug.seedShowcase")
@@ -214,9 +215,18 @@ final class AppStoreScreenshotTests: XCTestCase {
     }
 
     private enum AppTab: Int, CaseIterable {
-        case sessions = 0, analytics = 1, settings = 2
+        case sessions = 0, analytics = 1
 
         var identifier: String { "tab.\(self)" }
+    }
+
+    /// Settings is a sheet behind the gear at the top right of every tab.
+    private func openSettings() {
+        tap("settings.toolbar")
+    }
+
+    private func closeSettings() {
+        tap("settings.close")
     }
 
     /// iPhone draws the tabs as a bottom tab bar; iPad draws the same `TabView` as a pill at the top,
@@ -245,7 +255,7 @@ final class AppStoreScreenshotTests: XCTestCase {
     /// `ThemeMode.allCases` is `system, light, dark`, and `.navigationLink` renders it as a pushed
     /// list in that order — so the row index is stable while every label is not.
     private func setTheme(_ theme: ThemeChoice) {
-        openTab(.settings)
+        openSettings()
         scrollTo("settings.general")
         tap("settings.general")
         waitFor("screen.general")
@@ -257,6 +267,7 @@ final class AppStoreScreenshotTests: XCTestCase {
         // Settings into General is left to undo.
         option.tap()
         navigateBack()
+        closeSettings()
     }
 
     private enum ThemeChoice: Int { case system = 0, light = 1, dark = 2 }

@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
@@ -40,31 +41,34 @@ import androidx.compose.ui.unit.dp
 import org.koin.compose.viewmodel.koinViewModel
 import xyz.tleskiv.tt.R
 import xyz.tleskiv.tt.ui.TestTags
-import xyz.tleskiv.tt.ui.nav.navdisplay.TopAppBarState
-import xyz.tleskiv.tt.ui.nav.routes.SettingsRoute
 import xyz.tleskiv.tt.ui.widgets.ContentCard
+import xyz.tleskiv.tt.ui.widgets.SimpleTopAppBar
 import xyz.tleskiv.tt.viewmodel.SettingsViewModel
 
 @Composable
 fun SettingsScreen(
-	topAppBarState: TopAppBarState,
+	onNavigateBack: () -> Unit,
 	onNavigateToGeneralSettings: () -> Unit = {},
 	onNavigateToOpponents: () -> Unit = {},
 	onNavigateToDebug: () -> Unit = {},
 	viewModel: SettingsViewModel = koinViewModel()
 ) {
-	topAppBarState.title = { Text(text = stringResource(SettingsRoute.label)) }
-	topAppBarState.actions = null
-
 	val uriHandler = LocalUriHandler.current
 
 	Column(
 		modifier = Modifier
 			.fillMaxSize()
 			.background(MaterialTheme.colorScheme.surface)
-			.verticalScroll(rememberScrollState())
 	) {
-		Column(modifier = Modifier.padding(16.dp)) {
+		SimpleTopAppBar(title = R.string.title_settings, onNavigateBack = onNavigateBack)
+
+		Column(
+			modifier = Modifier
+				.fillMaxSize()
+				.verticalScroll(rememberScrollState())
+				.navigationBarsPadding()
+				.padding(16.dp)
+		) {
 			SettingsSectionHeader(title = stringResource(R.string.settings_section_general))
 			Spacer(modifier = Modifier.height(8.dp))
 			ContentCard {

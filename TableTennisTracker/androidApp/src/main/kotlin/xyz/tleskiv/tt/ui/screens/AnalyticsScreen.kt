@@ -13,7 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.material.icons.outlined.Tune
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -22,6 +22,7 @@ import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -37,6 +38,7 @@ import kotlinx.datetime.LocalDate
 import kotlinx.datetime.minus
 import org.koin.compose.viewmodel.koinViewModel
 import xyz.tleskiv.tt.R
+import xyz.tleskiv.tt.model.AnalyticsWidget
 import xyz.tleskiv.tt.ui.TestTags
 import xyz.tleskiv.tt.ui.bottomsheets.DaySessionsBottomSheet
 import xyz.tleskiv.tt.ui.dialogs.AnalyticsSettingsDialog
@@ -60,7 +62,7 @@ fun AnalyticsScreen(
 	val firstDayOfWeek by viewModel.firstDayOfWeek.collectAsState()
 	val summaryStats by viewModel.summaryStats.collectAsState()
 	val weeklyTrainingData by viewModel.weeklyTrainingData.collectAsState()
-	val widgetVisibility by viewModel.widgetVisibility.collectAsState()
+	val widgets by viewModel.widgets.collectAsState()
 	val endDate = remember(sessionsByDate) {
 		sessionsByDate.keys.maxOrNull() ?: today()
 	}
@@ -78,7 +80,7 @@ fun AnalyticsScreen(
 	topAppBarState.actions = {
 		IconButton(onClick = { showSettingsDialog = true }) {
 			Icon(
-				imageVector = Icons.Outlined.Settings,
+				imageVector = Icons.Outlined.Tune,
 				contentDescription = stringResource(R.string.analytics_settings_title),
 				tint = MaterialTheme.colorScheme.onSurfaceVariant
 			)
@@ -87,11 +89,9 @@ fun AnalyticsScreen(
 
 	if (showSettingsDialog) {
 		AnalyticsSettingsDialog(
-			visibility = widgetVisibility,
-			onShowSummaryChange = viewModel::setShowSummary,
-			onShowWinLossChange = viewModel::setShowWinLoss,
-			onShowWeeklyChange = viewModel::setShowWeekly,
-			onShowHeatmapChange = viewModel::setShowHeatmap,
+			widgets = widgets,
+			onVisibleChange = viewModel::setWidgetVisible,
+			onMove = viewModel::moveWidget,
 			onDismiss = { showSettingsDialog = false }
 		)
 	}
@@ -123,27 +123,28 @@ fun AnalyticsScreen(
 				.verticalScroll(rememberScrollState())
 				.padding(16.dp)
 		) {
-			AnimatedWidget(visible = widgetVisibility.showSummary) {
-				SummaryAnalyticsWidget(summaryStats)
-			}
-
-			AnimatedWidget(visible = widgetVisibility.showWinLoss) {
-				WinLossAnalyticsWidget(summaryStats)
-			}
-
-			AnimatedWidget(visible = widgetVisibility.showWeekly) {
-				WeeklyTrainingAnalyticsWidget(weeklyTrainingData)
-			}
-
-			AnimatedWidget(visible = widgetVisibility.showHeatmap) {
-				HeatmapAnalyticsWidget(
-					sessionsByDate = sessionsByDate,
-					startDate = startDate,
-					endDate = endDate,
-					firstDayOfWeek = firstDayOfWeek,
-					selection = selection,
-					onDaySelected = { selection = it }
-				)
+			widgets.forEach { setting ->
+				key(setting.widget) {
+					AnimatedWidget(visible = setting.visible) {
+						when (setting.widget) {
+							AnalyticsWidget.SUMMARY -> SummaryAnalyticsWidget(summaryStats)
+							AnalyticsWidget.WIN_LOSS -> WinLossAnalyticsWidget(summaryStats)
+							AnalyticsWidget.WEEKLY -> WeeklyTrainingAnalyticsWidget(weeklyTrainingData)
+							AnalyticsWidget.HEATMAP -> HeatmapAnalyticsWidget(
+								sessionsByDate = sessionsByDate,
+								startDate = startDate,
+								endDate = endDate,
+								firstDayOfWeek = firstDayOfWeek,
+								selection = selection,
+								onDaySelected = { selection = it }
+							)
+							AnalyticsWidget.STREAK,
+							AnalyticsWidget.TRAINING_LOAD,
+							AnalyticsWidget.SESSION_TYPES,
+							AnalyticsWidget.HEAD_TO_HEAD -> Unit
+						}
+					}
+				}
 			}
 		}
 	}

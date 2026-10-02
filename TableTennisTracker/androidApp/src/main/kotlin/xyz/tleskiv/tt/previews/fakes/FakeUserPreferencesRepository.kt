@@ -3,10 +3,12 @@ package xyz.tleskiv.tt.previews.fakes
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import xyz.tleskiv.tt.db.User_preferences
+import xyz.tleskiv.tt.model.AnalyticsWidgetSetting
 import xyz.tleskiv.tt.model.AppLocale
 import xyz.tleskiv.tt.model.AppAccent
 import xyz.tleskiv.tt.model.AppThemeMode
 import xyz.tleskiv.tt.model.WeekStartDay
+import xyz.tleskiv.tt.model.defaultAnalyticsWidgets
 import xyz.tleskiv.tt.repo.UserPreferencesRepository
 
 class FakeUserPreferencesRepository : UserPreferencesRepository {
@@ -16,10 +18,7 @@ class FakeUserPreferencesRepository : UserPreferencesRepository {
 	override val weekStartDay: Flow<WeekStartDay> = MutableStateFlow(WeekStartDay.MONDAY)
 	override val highlightCurrentDay: Flow<Boolean> = MutableStateFlow(true)
 	override val appLocale: Flow<AppLocale> = MutableStateFlow(AppLocale.SYSTEM)
-	override val showAnalyticsSummary: Flow<Boolean> = MutableStateFlow(true)
-	override val showAnalyticsWinLoss: Flow<Boolean> = MutableStateFlow(true)
-	override val showAnalyticsWeekly: Flow<Boolean> = MutableStateFlow(true)
-	override val showAnalyticsHeatmap: Flow<Boolean> = MutableStateFlow(true)
+	override val analyticsWidgets: Flow<List<AnalyticsWidgetSetting>> = MutableStateFlow(defaultAnalyticsWidgets())
 
 	override suspend fun getAllPreferences(): Map<String, String> = emptyMap()
 	override suspend fun getPreference(key: String): String? = null
@@ -29,10 +28,7 @@ class FakeUserPreferencesRepository : UserPreferencesRepository {
 	override suspend fun setWeekStartDay(day: WeekStartDay) {}
 	override suspend fun setHighlightCurrentDay(highlight: Boolean) {}
 	override suspend fun setAppLocale(locale: AppLocale) {}
-	override suspend fun setShowAnalyticsSummary(show: Boolean) {}
-	override suspend fun setShowAnalyticsWinLoss(show: Boolean) {}
-	override suspend fun setShowAnalyticsWeekly(show: Boolean) {}
-	override suspend fun setShowAnalyticsHeatmap(show: Boolean) {}
+	override suspend fun setAnalyticsWidgets(widgets: List<AnalyticsWidgetSetting>) {}
 	override suspend fun setPreferences(preferences: Map<String, String>) {}
 	override suspend fun deletePreference(key: String) {}
 	override suspend fun deleteAllPreferences() {}

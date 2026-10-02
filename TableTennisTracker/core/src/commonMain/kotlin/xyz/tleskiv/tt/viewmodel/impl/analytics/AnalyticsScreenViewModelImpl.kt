@@ -2,39 +2,35 @@ package xyz.tleskiv.tt.viewmodel.impl.analytics
 
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlinx.datetime.DayOfWeek
 import kotlinx.datetime.LocalDate
 import xyz.tleskiv.tt.analytics.SummaryStats
 import xyz.tleskiv.tt.analytics.WeeklyTrainingData
+import xyz.tleskiv.tt.model.AnalyticsWidget
+import xyz.tleskiv.tt.model.AnalyticsWidgetSetting
+import xyz.tleskiv.tt.model.defaultAnalyticsWidgets
 import xyz.tleskiv.tt.model.mappers.toSessionUiModelUtc
 import xyz.tleskiv.tt.repo.UserPreferencesRepository
 import xyz.tleskiv.tt.service.TrainingAnalyticsService
 import xyz.tleskiv.tt.viewmodel.analytics.AnalyticsScreenViewModel
-import xyz.tleskiv.tt.viewmodel.analytics.AnalyticsWidgetVisibility
 
 class AnalyticsScreenViewModelImpl(
 	analyticsService: TrainingAnalyticsService,
 	private val userPreferencesRepository: UserPreferencesRepository
 ) : AnalyticsScreenViewModel() {
 
-	override val widgetVisibility: StateFlow<AnalyticsWidgetVisibility> = combine(
-		userPreferencesRepository.showAnalyticsSummary,
-		userPreferencesRepository.showAnalyticsWinLoss,
-		userPreferencesRepository.showAnalyticsWeekly,
-		userPreferencesRepository.showAnalyticsHeatmap
-	) { summary, winLoss, weekly, heatmap ->
-		AnalyticsWidgetVisibility(
-			showSummary = summary,
-			showWinLoss = winLoss,
-			showWeekly = weekly,
-			showHeatmap = heatmap
-		)
-	}.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), AnalyticsWidgetVisibility())
+	private val widgetWrites = Mutex()
+
+	override val widgets: StateFlow<List<AnalyticsWidgetSetting>> = userPreferencesRepository.analyticsWidgets
+		.map { it.withoutInsights() }
+		.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), defaultAnalyticsWidgets().withoutInsights())
 
 	override val firstDayOfWeek: StateFlow<DayOfWeek> = userPreferencesRepository.weekStartDay
 		.map { it.toDayOfWeek() }
@@ -54,19 +50,42 @@ class AnalyticsScreenViewModelImpl(
 	override val weeklyTrainingData: StateFlow<List<WeeklyTrainingData>> = analyticsService.weeklyTraining
 		.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
-	override fun setShowSummary(show: Boolean) {
-		viewModelScope.launch { userPreferencesRepository.setShowAnalyticsSummary(show) }
+	override fun setWidgetVisible(widget: AnalyticsWidget, visible: Boolean) = updateWidgets { all ->
+		all.map { if (it.widget == widget) it.copy(visible = visible) else it }
 	}
 
-	override fun setShowWinLoss(show: Boolean) {
-		viewModelScope.launch { userPreferencesRepository.setShowAnalyticsWinLoss(show) }
+	override fun moveWidget(widget: AnalyticsWidget, offset: Int) = updateWidgets { all ->
+		all.movingAmongShown(widget, offset)
 	}
 
-	override fun setShowWeekly(show: Boolean) {
-		viewModelScope.launch { userPreferencesRepository.setShowAnalyticsWeekly(show) }
+	private fun updateWidgets(change: (List<AnalyticsWidgetSetting>) -> List<AnalyticsWidgetSetting>) {
+		viewModelScope.launch {
+			widgetWrites.withLock {
+				val stored = userPreferencesRepository.analyticsWidgets.first()
+				userPreferencesRepository.setAnalyticsWidgets(change(stored))
+			}
+		}
 	}
+}
 
-	override fun setShowHeatmap(show: Boolean) {
-		viewModelScope.launch { userPreferencesRepository.setShowAnalyticsHeatmap(show) }
+private fun List<AnalyticsWidgetSetting>.withoutInsights() = filterNot { it.widget.isInsight }
+
+private fun List<AnalyticsWidgetSetting>.movingAmongShown(
+	widget: AnalyticsWidget,
+	offset: Int
+): List<AnalyticsWidgetSetting> {
+	val slots = indices.filterNot { this[it].widget.isInsight }
+	val from = slots.indexOfFirst { this[it].widget == widget }
+	if (from < 0) return this
+	val to = (from + offset).coerceIn(slots.indices)
+	val step = if (to > from) 1 else -1
+	val moved = toMutableList()
+	var at = from
+	while (at != to) {
+		val here = slots[at]
+		val there = slots[at + step]
+		moved[here] = moved[there].also { moved[there] = moved[here] }
+		at += step
 	}
+	return moved
 }

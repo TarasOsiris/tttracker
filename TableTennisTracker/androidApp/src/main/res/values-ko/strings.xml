@@ -90,6 +90,10 @@
     <string name="analytics_widget_win_loss">승/패 차트</string>
     <string name="analytics_widget_weekly">주간 훈련</string>
     <string name="analytics_widget_heatmap">훈련 히트맵</string>
+    <string name="analytics_widget_streak">훈련 연속 기록</string>
+    <string name="analytics_widgets_reorder_hint">드래그하여 순서 변경</string>
+    <string name="action_move_up">위로 이동</string>
+    <string name="action_move_down">아래로 이동</string>
 
     <!-- Settings Screen -->
     <string name="settings_section_general">일반</string>

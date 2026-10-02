@@ -1,5 +1,5 @@
-import Foundation
 import Observation
+import SwiftUI
 import Shared
 
 @MainActor
@@ -29,10 +29,8 @@ final class AnalyticsModel {
     /// service.
     private(set) var firstWeekday = WeekStart.monday.firstWeekday
 
-    let showSummary: Preference<Bool>
-    let showWinLoss: Preference<Bool>
-    let showWeekly: Preference<Bool>
-    let showHeatmap: Preference<Bool>
+    /// Every card in the user's order, each with whether it is on screen.
+    let cards: Preference<[AnalyticsCardSetting]>
 
     @ObservationIgnored private let subscriptions = FlowSubscriptions()
     @ObservationIgnored private let queue = SerialWriteQueue()
@@ -45,25 +43,12 @@ final class AnalyticsModel {
         preferences: any UserPreferencesRepository = Services.preferences
     ) {
         self.insights = insights
-        showSummary = Preference(
-            initial: true, flow: preferences.showAnalyticsSummary,
+        cards = Preference(
+            initial: AnalyticsCard.allCases.map { AnalyticsCardSetting(card: $0, isVisible: true) },
+            flow: preferences.analyticsWidgets,
             subscriptions: subscriptions, queue: queue,
-            commit: { try await preferences.setShowAnalyticsSummary(show: $0) }
-        )
-        showWinLoss = Preference(
-            initial: true, flow: preferences.showAnalyticsWinLoss,
-            subscriptions: subscriptions, queue: queue,
-            commit: { try await preferences.setShowAnalyticsWinLoss(show: $0) }
-        )
-        showWeekly = Preference(
-            initial: true, flow: preferences.showAnalyticsWeekly,
-            subscriptions: subscriptions, queue: queue,
-            commit: { try await preferences.setShowAnalyticsWeekly(show: $0) }
-        )
-        showHeatmap = Preference(
-            initial: true, flow: preferences.showAnalyticsHeatmap,
-            subscriptions: subscriptions, queue: queue,
-            commit: { try await preferences.setShowAnalyticsHeatmap(show: $0) }
+            decode: { ($0 as? [AnalyticsWidgetSetting])?.compactMap(AnalyticsCardSetting.init) },
+            commit: { try await preferences.setAnalyticsWidgets(widgets: $0.map(\.kotlin)) }
         )
 
         subscriptions.insert(
@@ -119,6 +104,29 @@ final class AnalyticsModel {
     /// step by hand.
     var weeklyTotalMinutes: Int { weekly.reduce(0) { $0 + $1.minutes } }
     var weeklyAverageMinutes: Int { weekly.isEmpty ? 0 : weeklyTotalMinutes / weekly.count }
+
+    /// The cards on screen, in order. Without Pro the insights cannot be hidden: they are the one
+    /// locked preview, which stays wherever the user has put them.
+    func shownCards(hasPro: Bool) -> [AnalyticsCard] {
+        cards.value.filter { $0.isVisible || ($0.card.isInsight && !hasPro) }.map(\.card)
+    }
+
+    func isVisible(_ card: AnalyticsCard) -> Binding<Bool> {
+        Binding(
+            get: { self.cards.value.first { $0.card == card }?.isVisible ?? true },
+            set: { visible in
+                self.cards.set(self.cards.value.map {
+                    $0.card == card ? AnalyticsCardSetting(card: card, isVisible: visible) : $0
+                })
+            }
+        )
+    }
+
+    func moveCards(fromOffsets source: IndexSet, toOffset destination: Int) {
+        var reordered = cards.value
+        reordered.move(fromOffsets: source, toOffset: destination)
+        cards.set(reordered)
+    }
 
     /// Intensity bucket for a day. Days with no sessions are absent from the index and sit at 0,
     /// which is the level `heatmapLevel` returns for them anyway.

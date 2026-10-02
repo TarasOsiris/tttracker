@@ -90,6 +90,10 @@
     <string name="analytics_widget_win_loss">胜负图表</string>
     <string name="analytics_widget_weekly">每周训练</string>
     <string name="analytics_widget_heatmap">训练热力图</string>
+    <string name="analytics_widget_streak">训练连续纪录</string>
+    <string name="analytics_widgets_reorder_hint">拖动以重新排序</string>
+    <string name="action_move_up">上移</string>
+    <string name="action_move_down">下移</string>
 
     <!-- Settings Screen -->
     <string name="settings_section_general">通用</string>

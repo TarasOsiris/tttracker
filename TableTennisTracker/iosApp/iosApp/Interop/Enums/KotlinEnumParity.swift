@@ -43,6 +43,10 @@ enum KotlinEnumParity {
             Set(Competition.allCases.map(\.rawValue)) == Set(CompetitionLevel.entries.map(\.dbValue)),
             "Competition is out of sync with CompetitionLevel"
         )
+        assert(
+            Set(AnalyticsCard.allCases.map(\.rawValue)) == Set(AnalyticsWidget.entries.map(\.name)),
+            "AnalyticsCard is out of sync with AnalyticsWidget"
+        )
     }
 }
 #endif

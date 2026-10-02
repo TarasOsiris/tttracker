@@ -21,6 +21,17 @@ final class WidgetDeepLinkUITests: XCTestCase {
         assertVisible("screen.sessionForm")
     }
 
+    /// Settings is a sheet over the tabs, so a link has to close it before it can raise its own.
+    func testAddSessionLink_withSettingsOpen_opensTheSessionForm() {
+        let settings = app.descendants(matching: .any).matching(identifier: "settings.toolbar").firstMatch
+        XCTAssertTrue(settings.waitForExistence(timeout: timeout), "no settings button")
+        settings.tap()
+        assertVisible("settings.close")
+
+        open("tttracker://sessions/new")
+        assertVisible("screen.sessionForm")
+    }
+
     func testAnalyticsLink_opensTheAnalyticsTab() {
         open("tttracker://analytics")
         assertVisible("screen.analytics")

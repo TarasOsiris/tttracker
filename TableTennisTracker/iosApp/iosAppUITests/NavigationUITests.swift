@@ -97,13 +97,8 @@ final class NavigationUITests: XCTestCase {
 
     // MARK: Helpers
 
-    /// The tab bar is the one thing addressed positionally — its items are built by `TabView` from
-    /// the same localized strings the navigation titles use, and there is no view of ours to hang an
-    /// identifier on. Sessions, Analytics, Settings, in that order.
     private func openSettings() {
-        let settings = app.tabBars.buttons.element(boundBy: 2)
-        XCTAssertTrue(settings.waitForExistence(timeout: timeout), "no Settings tab")
-        settings.tap()
+        tap("settings.toolbar")
     }
 
     private func tap(_ identifier: String, file: StaticString = #filePath, line: UInt = #line) {

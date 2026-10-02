@@ -1,7 +1,7 @@
 import SwiftUI
 
 enum AppTab: Hashable {
-    case sessions, analytics, settings
+    case sessions, analytics
 }
 
 /// The native app shell.
@@ -16,8 +16,10 @@ struct RootTabView: View {
     @State private var selectedSession: String?
     @State private var newSession: NewSessionTarget?
     @State private var analyticsPath = NavigationPath()
-    @State private var settingsPath = NavigationPath()
     @State private var showsPaywall = false
+    @State private var showsSettings = false
+    @State private var settingsPath = NavigationPath()
+    @State private var pendingLink: URL?
 
     @Environment(ProModel.self) private var pro: ProModel?
 
@@ -40,18 +42,45 @@ struct RootTabView: View {
                 }
             }
             .accessibilityIdentifier("tab.analytics")
-            Tab(L.navSettings, systemImage: "gearshape", value: AppTab.settings) {
-                SettingsTab(path: $settingsPath)
-            }
-            .accessibilityIdentifier("tab.settings")
         }
-        .onOpenURL(perform: open)
+        .onOpenURL(perform: handle)
         .sheet(isPresented: $showsPaywall) { ProPaywallSheet(source: .widget) }
-        .environment(\.locale, localization.locale)
-        .environment(\.layoutDirection, layoutDirection)
-        .preferredColorScheme(appearance.themeMode.colorScheme)
-        .tint(accent)
-        .id(localization.generation)
+        .environment(\.showsSettings, $showsSettings)
+        .modifier(appEnvironment)
+        // Outside the `.id` below: a language picked in General rebuilds the tabs, and a sheet
+        // hosted inside them would close under the user's finger. The sheet rebuilds itself instead,
+        // and keeps its place because the path lives up here.
+        .sheet(isPresented: $showsSettings, onDismiss: settingsDidDismiss) {
+            SettingsSheet(path: $settingsPath).modifier(appEnvironment)
+        }
+    }
+
+    /// A widget tapped while Settings is up: the sheet would cover whatever the link changes and
+    /// block any sheet it presents, so it closes first and the link follows once it has gone.
+    private func handle(_ url: URL) {
+        guard showsSettings else { return open(url) }
+        pendingLink = url
+        showsSettings = false
+    }
+
+    private func settingsDidDismiss() {
+        settingsPath = NavigationPath()
+        if let pendingLink {
+            self.pendingLink = nil
+            open(pendingLink)
+        }
+    }
+
+    /// What every screen draws with — and the `.id` that rebuilds them when the language changes,
+    /// since cached strings would not follow a new locale otherwise.
+    private var appEnvironment: AppEnvironment {
+        AppEnvironment(
+            locale: localization.locale,
+            layoutDirection: layoutDirection,
+            colorScheme: appearance.themeMode.colorScheme,
+            accent: accent,
+            generation: localization.generation
+        )
     }
 
     /// Where a widget tap lands. The scheme is `tttracker://`, and the host names the tab:
@@ -102,9 +131,25 @@ struct RootTabView: View {
                 switch tapped {
                 case .sessions: selectedSession = nil
                 case .analytics: analyticsPath = NavigationPath()
-                case .settings: settingsPath = NavigationPath()
                 }
             }
         )
+    }
+}
+
+private struct AppEnvironment: ViewModifier {
+    let locale: Locale
+    let layoutDirection: LayoutDirection
+    let colorScheme: ColorScheme?
+    let accent: Color?
+    let generation: Int
+
+    func body(content: Content) -> some View {
+        content
+            .environment(\.locale, locale)
+            .environment(\.layoutDirection, layoutDirection)
+            .preferredColorScheme(colorScheme)
+            .tint(accent)
+            .id(generation)
     }
 }

@@ -90,6 +90,10 @@
     <string name="analytics_widget_win_loss">Grafico vittorie/sconfitte</string>
     <string name="analytics_widget_weekly">Allenamento settimanale</string>
     <string name="analytics_widget_heatmap">Heatmap allenamenti</string>
+    <string name="analytics_widget_streak">Serie di allenamenti</string>
+    <string name="analytics_widgets_reorder_hint">Trascina per riordinare</string>
+    <string name="action_move_up">Sposta su</string>
+    <string name="action_move_down">Sposta giù</string>
 
     <!-- Settings Screen -->
     <string name="settings_section_general">Generale</string>

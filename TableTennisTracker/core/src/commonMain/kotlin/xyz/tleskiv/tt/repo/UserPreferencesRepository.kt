@@ -2,6 +2,7 @@ package xyz.tleskiv.tt.repo
 
 import kotlinx.coroutines.flow.Flow
 import xyz.tleskiv.tt.db.User_preferences
+import xyz.tleskiv.tt.model.AnalyticsWidgetSetting
 import xyz.tleskiv.tt.model.AppAccent
 import xyz.tleskiv.tt.model.AppLocale
 import xyz.tleskiv.tt.model.AppThemeMode
@@ -15,10 +16,7 @@ interface UserPreferencesRepository {
 	val highlightCurrentDay: Flow<Boolean>
 	val appLocale: Flow<AppLocale>
 
-	val showAnalyticsSummary: Flow<Boolean>
-	val showAnalyticsWinLoss: Flow<Boolean>
-	val showAnalyticsWeekly: Flow<Boolean>
-	val showAnalyticsHeatmap: Flow<Boolean>
+	val analyticsWidgets: Flow<List<AnalyticsWidgetSetting>>
 
 	suspend fun getAllPreferences(): Map<String, String>
 
@@ -36,13 +34,7 @@ interface UserPreferencesRepository {
 
 	suspend fun setAppLocale(locale: AppLocale)
 
-	suspend fun setShowAnalyticsSummary(show: Boolean)
-
-	suspend fun setShowAnalyticsWinLoss(show: Boolean)
-
-	suspend fun setShowAnalyticsWeekly(show: Boolean)
-
-	suspend fun setShowAnalyticsHeatmap(show: Boolean)
+	suspend fun setAnalyticsWidgets(widgets: List<AnalyticsWidgetSetting>)
 
 	suspend fun setPreferences(preferences: Map<String, String>)
 

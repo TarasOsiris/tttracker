@@ -90,6 +90,10 @@
     <string name="analytics_widget_win_loss">رسم الفوز / الخسارة</string>
     <string name="analytics_widget_weekly">التدريب الأسبوعي</string>
     <string name="analytics_widget_heatmap">خريطة التدريب الحرارية</string>
+    <string name="analytics_widget_streak">سلسلة التدريب</string>
+    <string name="analytics_widgets_reorder_hint">اسحب لإعادة الترتيب</string>
+    <string name="action_move_up">نقل لأعلى</string>
+    <string name="action_move_down">نقل لأسفل</string>
 
     <!-- Settings Screen -->
     <string name="settings_section_general">عام</string>
