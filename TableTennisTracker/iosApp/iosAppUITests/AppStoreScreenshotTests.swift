@@ -6,7 +6,7 @@ import XCTest
 /// in the app's SQLite container, which survives relaunch, so every language — and the Android run,
 /// which seeds the same dataset — shows the same player with the same history.
 ///
-/// Nothing here is addressed by label. Fourteen languages go past, and a label lookup would work in
+/// Nothing here is addressed by label. Fifteen languages go past, and a label lookup would work in
 /// exactly one of them; the tab bar, which `TabView` builds from localized strings with no view of
 /// ours to hang an identifier on, is addressed positionally instead.
 final class AppStoreScreenshotTests: XCTestCase {
@@ -24,11 +24,11 @@ final class AppStoreScreenshotTests: XCTestCase {
     /// Every language the app ships, as `Shared.xcstrings` spells them. `AppLocale` in `:core` is the
     /// source of this list; it is repeated because a UI test bundle does not link the app.
     private static let allLocales = [
-        "en", "ar", "de", "es", "fr", "hi", "id", "it", "ja", "ko", "pt", "tr", "uk", "zh-CN"
+        "en", "ar", "de", "es", "fr", "hi", "id", "it", "ja", "ko", "pt", "tr", "uk", "zh-CN", "zh-TW"
     ]
 
     /// `TEST_RUNNER_SCREENSHOT_LOCALES=de,ja` narrows the run to those languages — a smoke test
-    /// before committing to all fourteen, and the way to re-capture one language on its own.
+    /// before committing to all fifteen, and the way to re-capture one language on its own.
     private static var locales: [String] {
         guard let override = ProcessInfo.processInfo.environment["SCREENSHOT_LOCALES"], !override.isEmpty else {
             return allLocales
@@ -39,7 +39,7 @@ final class AppStoreScreenshotTests: XCTestCase {
     private static let localeRegions = [
         "en": "en_US", "ar": "ar_SA", "de": "de_DE", "es": "es_ES", "fr": "fr_FR", "hi": "hi_IN",
         "id": "id_ID", "it": "it_IT", "ja": "ja_JP", "ko": "ko_KR", "pt": "pt_BR", "tr": "tr_TR",
-        "uk": "uk_UA", "zh-CN": "zh_CN"
+        "uk": "uk_UA", "zh-CN": "zh_CN", "zh-TW": "zh_TW"
     ]
 
     private var isPad: Bool { UIDevice.current.userInterfaceIdiom == .pad }

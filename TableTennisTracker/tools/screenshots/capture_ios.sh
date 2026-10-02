@@ -13,23 +13,30 @@ DEVICE="${1:-iphone}"
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 cd "$REPO_ROOT"
 
+# Candidates in order of preference. Each renders at the size the test asserts (1320x2868 for
+# iPhone, 2064x2752 for iPad), so whichever an Xcode update left installed will do.
 case "$DEVICE" in
-	iphone) SIM_NAME="iPhone 17 Pro Max"; RUNTIME_HINT="26-5" ;;
-	ipad)   SIM_NAME="iPad Pro 13-inch (M5)"; RUNTIME_HINT="26-5" ;;
+	iphone) SIM_NAMES="iPhone 17 Pro Max|iPhone 18 Pro Max" ;;
+	ipad)   SIM_NAMES="iPad Pro 13-inch (M5)" ;;
 	*) echo "usage: $0 iphone|ipad" >&2; exit 2 ;;
 esac
 
 # Address the simulator by UDID, never by name: several runtimes ship a device with the same name,
 # and the status-bar override below applies to one specific booted device.
-UDID="$(xcrun simctl list devices available --json | python3 -c "
-import json, sys
+read -r UDID SIM_NAME <<<"$(xcrun simctl list devices available --json | python3 -c "
+import json, re, sys
 devices = json.load(sys.stdin)['devices']
-name, hint = sys.argv[1], sys.argv[2]
-matches = [d['udid'] for runtime, ds in devices.items() if hint in runtime for d in ds if d['name'] == name]
-if not matches:
-    sys.exit(f'no simulator named {name!r} on a {hint} runtime')
-print(matches[0])
-" "$SIM_NAME" "$RUNTIME_HINT")"
+names = sys.argv[1].split('|')
+def version(runtime):
+    return [int(n) for n in re.findall(r'\\d+', runtime.rsplit('.', 1)[-1])]
+for name in names:
+    for runtime in sorted((r for r in devices if 'iOS' in r), key=version, reverse=True):
+        for d in devices[runtime]:
+            if d['name'] == name:
+                print(d['udid'], name)
+                sys.exit()
+sys.exit(f'no simulator named any of {names}')
+" "$SIM_NAMES")"
 
 echo "==> $SIM_NAME ($UDID)"
 

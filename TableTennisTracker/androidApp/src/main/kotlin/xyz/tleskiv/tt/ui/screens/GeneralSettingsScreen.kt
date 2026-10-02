@@ -121,7 +121,7 @@ fun GeneralSettingsScreen(
 				viewModel.setAppLocale(locale)
 				showLanguageDialog = false
 			},
-			optionLabel = { it.displayName }
+			optionLabel = { it.label() }
 		)
 	}
 
@@ -389,7 +389,7 @@ private fun LanguageRow(currentLocale: AppLocale, onClick: () -> Unit) {
 					color = MaterialTheme.colorScheme.onSurface
 				)
 				Text(
-					text = currentLocale.displayName,
+					text = currentLocale.label(),
 					style = MaterialTheme.typography.bodySmall,
 					color = MaterialTheme.colorScheme.onSurfaceVariant
 				)
@@ -402,3 +402,7 @@ private fun LanguageRow(currentLocale: AppLocale, onClick: () -> Unit) {
 		}
 	}
 }
+
+@Composable
+private fun AppLocale.label(): String =
+	if (this == AppLocale.SYSTEM) stringResource(R.string.theme_system) else displayName

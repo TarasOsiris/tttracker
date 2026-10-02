@@ -6,7 +6,8 @@ struct LocaleOption: Identifiable, Hashable {
     let kotlin: AppLocale
 
     var id: String { kotlin.name }
-    var displayName: String { kotlin.displayName }
+    /// Language names stay in their own language; "System default" is UI copy, so it follows the app's.
+    var displayName: String { kotlin == .system ? L.themeSystem : kotlin.displayName }
     var languageTag: String { kotlin.languageTag }
 
     init(_ kotlin: AppLocale) { self.kotlin = kotlin }

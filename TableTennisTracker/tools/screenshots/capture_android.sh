@@ -8,6 +8,7 @@
 # 420dpi — a 411x823dp viewport, close to what users actually see — cut to 1080x2160 (ratio 2.0).
 #
 # Usage: tools/screenshots/capture_android.sh
+# Narrow a run to some languages with: SCREENSHOT_LOCALES=de,zh-TW tools/screenshots/capture_android.sh
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
@@ -20,7 +21,10 @@ ADB="$ANDROID_HOME/platform-tools/adb"
 EMULATOR="$ANDROID_HOME/emulator/emulator"
 AVD_DIR="$ANDROID_HOME/.android/avd/$AVD_NAME.avd"
 
-if ! "$EMULATOR" -list-avds | grep -qx "$AVD_NAME"; then
+# Check the AVD's directory rather than `-list-avds`: that lists the `.ini` pointer, which outlives a
+# deleted `.avd` directory and would leave an AVD that is listed but cannot boot.
+if [ ! -f "$AVD_DIR/config.ini" ]; then
+	rm -f "$ANDROID_HOME/.android/avd/$AVD_NAME.ini"
 	echo "==> creating $AVD_NAME"
 	"$ANDROID_HOME/cmdline-tools/latest/bin/avdmanager" create avd \
 		-n "$AVD_NAME" -k "$SYSTEM_IMAGE" -d pixel_9 --abi arm64-v8a -c 512M -f
@@ -72,8 +76,13 @@ demo -e command status -e volume hide -e bluetooth hide -e location hide -e alar
 "$ADB" shell rm -rf /sdcard/googletest/test_outputfiles || true
 
 set +e
+LOCALE_ARGS=()
+if [ -n "${SCREENSHOT_LOCALES:-}" ]; then
+	LOCALE_ARGS=("-Pandroid.testInstrumentationRunnerArguments.locales=$SCREENSHOT_LOCALES")
+fi
 ./gradlew :androidApp:connectedDebugAndroidTest \
-	-Pandroid.testInstrumentationRunnerArguments.class=xyz.tleskiv.tt.StoreScreenshotTest
+	-Pandroid.testInstrumentationRunnerArguments.class=xyz.tleskiv.tt.StoreScreenshotTest \
+	${LOCALE_ARGS[@]+"${LOCALE_ARGS[@]}"}
 STATUS=$?
 set -e
 
@@ -86,7 +95,14 @@ if ! "$ADB" shell ls /sdcard/googletest/test_outputfiles/android >/dev/null 2>&1
 	exit 1
 fi
 
-rm -rf build/screenshots/android
-"$ADB" pull /sdcard/googletest/test_outputfiles/android build/screenshots/android >/dev/null
+# A narrowed run keeps the languages it did not capture, as the iOS script does.
+if [ -z "${SCREENSHOT_LOCALES:-}" ]; then
+	rm -rf build/screenshots/android
+fi
+mkdir -p build/screenshots/android
+for LOCALE_DIR in $("$ADB" shell ls /sdcard/googletest/test_outputfiles/android | tr -d '\r'); do
+	rm -rf "build/screenshots/android/$LOCALE_DIR"
+	"$ADB" pull "/sdcard/googletest/test_outputfiles/android/$LOCALE_DIR" "build/screenshots/android/" >/dev/null
+done
 echo "==> $(find build/screenshots/android -name '*.png' | wc -l | tr -d ' ') PNGs in build/screenshots/android"
 exit "$STATUS"

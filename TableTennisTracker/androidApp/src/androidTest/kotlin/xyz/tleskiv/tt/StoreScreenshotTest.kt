@@ -33,7 +33,7 @@ import xyz.tleskiv.tt.util.scrollToAndClickTag
 /// or the language picker through the UI. The dataset is [ShowcaseData], the same rows the iPhone
 /// and iPad runs write.
 ///
-/// Nothing is addressed by text: fourteen languages go past and a string lookup would work in one.
+/// Nothing is addressed by text: fifteen languages go past and a string lookup would work in one.
 @RunWith(AndroidJUnit4::class)
 class StoreScreenshotTest {
 
@@ -123,7 +123,7 @@ class StoreScreenshotTest {
 	}
 
 	/// The whole tree is re-keyed on `currentLocale` in `App.kt`, so writing the preference is all it
-	/// takes — driving the picker would only add fourteen chances to tap the wrong localized row.
+	/// takes — driving the picker would only add fifteen chances to tap the wrong localized row.
 	private fun setLocale(locale: AppLocale) {
 		runBlocking { preferences.setAppLocale(locale) }
 		composeTestRule.idle()
@@ -169,6 +169,16 @@ class StoreScreenshotTest {
 	private companion object {
 		/// Every language the app ships. `SYSTEM` is skipped: it resolves to whatever the emulator is
 		/// set to, which is not a language the store lists.
-		val locales: List<AppLocale> = AppLocale.entries.filter { it != AppLocale.SYSTEM }
+		///
+		/// `-Pandroid.testInstrumentationRunnerArguments.locales=de,zh-TW` narrows the run to those
+		/// language tags — the way to re-capture one language without waiting for all of them.
+		val locales: List<AppLocale>
+			get() {
+				val shipped = AppLocale.entries.filter { it != AppLocale.SYSTEM }
+				val requested = InstrumentationRegistry.getArguments().getString("locales")
+					?.split(',')?.map { it.trim() }?.filter { it.isNotEmpty() }
+					?: return shipped
+				return shipped.filter { it.languageTag in requested }
+			}
 	}
 }
