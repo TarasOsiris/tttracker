@@ -201,6 +201,9 @@ class Play:
             body={"language": language, **listing},
         )
 
+    def default_language(self, edit_id: str) -> str:
+        return self._call("GET", self.edits_url(edit_id, "/details"))["defaultLanguage"]
+
     def validate(self, edit_id: str) -> dict:
         return self._call("POST", self.edits_url(edit_id, ":validate"))
 
@@ -365,6 +368,46 @@ def cmd_screenshots(args) -> int:
             play.delete_edit(edit_id)
 
 
+def cmd_icon(args) -> int:
+    """Replace the store listing icon.
+
+    The icon lives on each listing: the default language always has one, and a translated listing
+    either inherits it or carries its own. Every language holding a copy is replaced, so no
+    listing keeps showing the old icon.
+    """
+    play = connect(args)
+    if not os.path.isfile(args.png):
+        fail(f"{args.png} is not a file")
+
+    edit_id = play.create_edit()
+    committed = False
+    try:
+        default = play.default_language(edit_id)
+        languages = [listing["language"] for listing in play.list_listings(edit_id)]
+        planned = [language for language in languages
+                   if language == default or play.list_images(edit_id, language, "icon")]
+
+        for language in planned:
+            play.delete_images(edit_id, language, "icon")
+            play.upload_image(edit_id, language, "icon", args.png)
+            print(f"  {language}{' (default)' if language == default else ''}")
+
+        play.validate(edit_id)
+        if args.dry_run:
+            print(f"dry run — validated the icon for {len(planned)} languages, discarding edit")
+            return 0
+
+        play.commit(edit_id)
+        committed = True
+        print(f"committed the icon for {len(planned)} languages")
+        return 0
+    except ApiError as error:
+        fail(f"icon upload failed: {error}")
+    finally:
+        if not committed:
+            play.delete_edit(edit_id)
+
+
 def cmd_listings(args) -> int:
     """Create store listings from a fastlane-style metadata tree.
 
@@ -456,6 +499,11 @@ def main() -> int:
                                 "tvScreenshots", "wearScreenshots"])
     shots.add_argument("--dry-run", action="store_true", help="upload and validate, then discard the edit")
     shots.set_defaults(func=cmd_screenshots)
+
+    icon = subparsers.add_parser("icon", help="replace the store listing icon (512x512 32-bit PNG)")
+    icon.add_argument("--png", required=True)
+    icon.add_argument("--dry-run", action="store_true", help="upload and validate, then discard the edit")
+    icon.set_defaults(func=cmd_icon)
 
     listings = subparsers.add_parser("listings", help="create store listings from a metadata tree")
     listings.add_argument("--dir", required=True,
