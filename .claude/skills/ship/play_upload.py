@@ -368,12 +368,12 @@ def cmd_screenshots(args) -> int:
             play.delete_edit(edit_id)
 
 
-def cmd_icon(args) -> int:
-    """Replace the store listing icon.
+def cmd_listing_image(args) -> int:
+    """Replace a single-image listing slot: the icon or the feature graphic.
 
-    The icon lives on each listing: the default language always has one, and a translated listing
+    The image lives on each listing: the default language always has one, and a translated listing
     either inherits it or carries its own. Every language holding a copy is replaced, so no
-    listing keeps showing the old icon.
+    listing keeps showing the old one.
     """
     play = connect(args)
     if not os.path.isfile(args.png):
@@ -385,24 +385,24 @@ def cmd_icon(args) -> int:
         default = play.default_language(edit_id)
         languages = [listing["language"] for listing in play.list_listings(edit_id)]
         planned = [language for language in languages
-                   if language == default or play.list_images(edit_id, language, "icon")]
+                   if language == default or play.list_images(edit_id, language, args.image_type)]
 
         for language in planned:
-            play.delete_images(edit_id, language, "icon")
-            play.upload_image(edit_id, language, "icon", args.png)
+            play.delete_images(edit_id, language, args.image_type)
+            play.upload_image(edit_id, language, args.image_type, args.png)
             print(f"  {language}{' (default)' if language == default else ''}")
 
         play.validate(edit_id)
         if args.dry_run:
-            print(f"dry run — validated the icon for {len(planned)} languages, discarding edit")
+            print(f"dry run — validated the {args.image_type} for {len(planned)} languages, discarding edit")
             return 0
 
         play.commit(edit_id)
         committed = True
-        print(f"committed the icon for {len(planned)} languages")
+        print(f"committed the {args.image_type} for {len(planned)} languages")
         return 0
     except ApiError as error:
-        fail(f"icon upload failed: {error}")
+        fail(f"{args.image_type} upload failed: {error}")
     finally:
         if not committed:
             play.delete_edit(edit_id)
@@ -500,10 +500,14 @@ def main() -> int:
     shots.add_argument("--dry-run", action="store_true", help="upload and validate, then discard the edit")
     shots.set_defaults(func=cmd_screenshots)
 
-    icon = subparsers.add_parser("icon", help="replace the store listing icon (512x512 32-bit PNG)")
-    icon.add_argument("--png", required=True)
-    icon.add_argument("--dry-run", action="store_true", help="upload and validate, then discard the edit")
-    icon.set_defaults(func=cmd_icon)
+    for name, image_type, help_text in (
+        ("icon", "icon", "replace the store listing icon (512x512 PNG)"),
+        ("feature-graphic", "featureGraphic", "replace the store listing banner (1024x500 PNG)"),
+    ):
+        single = subparsers.add_parser(name, help=help_text)
+        single.add_argument("--png", required=True)
+        single.add_argument("--dry-run", action="store_true", help="upload and validate, then discard the edit")
+        single.set_defaults(func=cmd_listing_image, image_type=image_type)
 
     listings = subparsers.add_parser("listings", help="create store listings from a metadata tree")
     listings.add_argument("--dir", required=True,
