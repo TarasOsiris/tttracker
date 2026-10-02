@@ -8,6 +8,7 @@ import xyz.tleskiv.tt.di.components.ExternalAppLauncher
 import xyz.tleskiv.tt.di.components.LocaleApplier
 import xyz.tleskiv.tt.di.components.NativeInfoProvider
 import xyz.tleskiv.tt.repo.UserPreferencesRepository
+import xyz.tleskiv.tt.service.InsightsService
 import xyz.tleskiv.tt.service.MatchService
 import xyz.tleskiv.tt.service.OpponentService
 import xyz.tleskiv.tt.service.TrainingAnalyticsService
@@ -35,6 +36,7 @@ object IosServices : KoinComponent {
 	val opponentService: OpponentService get() = get()
 	val trainingSessionService: TrainingSessionService get() = get()
 	val trainingAnalyticsService: TrainingAnalyticsService get() = get()
+	val insightsService: InsightsService get() = get()
 	val matchService: MatchService get() = get()
 	val userIdService: UserIdService get() = get()
 	val nativeInfoProvider: NativeInfoProvider get() = get()

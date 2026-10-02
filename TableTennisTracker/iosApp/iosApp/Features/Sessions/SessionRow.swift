@@ -33,7 +33,7 @@ struct SessionRow: View {
         .accessibilityElement(children: .combine)
     }
 
-    private var background: Color {
-        isSelected ? .selection : Color(.secondarySystemGroupedBackground)
+    private var background: AnyShapeStyle {
+        isSelected ? .selection : AnyShapeStyle(Color(.secondarySystemGroupedBackground))
     }
 }

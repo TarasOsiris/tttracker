@@ -6,6 +6,8 @@ struct SettingsScreen: View {
     var selectedPage: Binding<SettingsRoute?>?
 
     @StateModel private var model = SettingsModel()
+    @StateModel private var dataExport = DataExportModel()
+    @StateModel private var tipJar = TipJarModel()
     @State private var paywallSource: PaywallSource?
     @Environment(ProModel.self) private var pro: ProModel?
 
@@ -18,7 +20,12 @@ struct SettingsScreen: View {
             .navigationDestination(for: SettingsRoute.self) { settingsPage($0) }
             .proToolbarButton()
             .task { await model.load() }
+            .task { await tipJar.load() }
+            .failureAlert($tipJar.failure)
+            .alert(L.tipThanks, isPresented: $tipJar.showsThanks) {}
             .sheet(item: $paywallSource) { ProPaywallSheet(source: $0) }
+            .sheet(item: $dataExport.exported) { ShareSheet(items: $0.urls).ignoresSafeArea() }
+            .failureAlert($dataExport.failure)
             .alert(
                 pro?.restoreResult?.title ?? "",
                 isPresented: Binding(get: { pro?.restoreResult != nil }, set: { if !$0 { pro?.restoreResult = nil } })
@@ -39,7 +46,9 @@ struct SettingsScreen: View {
     @ViewBuilder private var sections: some View {
         if let pro, pro.showsUpsell { proSections(pro) }
         generalSection
-        CloudSyncSection { paywallSource = .iCloudSync }
+        CloudSyncSection()
+        dataSection
+        if !tipJar.tips.isEmpty { tipSection }
         helpSection
         aboutSection
         if model.isDebugBuild { developerSection }
@@ -78,6 +87,58 @@ struct SettingsScreen: View {
                 Label(L.actionRestorePurchases, systemImage: "arrow.clockwise")
             }
             .disabled(pro.isRestoring)
+        }
+    }
+
+    private var dataSection: some View {
+        Section(L.settingsSectionData) {
+            Button {
+                if pro?.hasProFeatures == true {
+                    Task { await dataExport.export() }
+                } else {
+                    paywallSource = .settingsExport
+                }
+            } label: {
+                HStack {
+                    Label {
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(L.settingsExport)
+                            Text(L.settingsExportHint)
+                                .font(.footnote)
+                                .foregroundStyle(.secondary)
+                        }
+                    } icon: {
+                        Image(systemName: "square.and.arrow.up")
+                    }
+                    Spacer()
+                    if dataExport.isExporting {
+                        ProgressView()
+                    } else if pro?.hasProFeatures != true {
+                        ProBadge()
+                    }
+                }
+            }
+            .disabled(dataExport.isExporting)
+            .accessibilityIdentifier("settings.export")
+        }
+    }
+
+    private var tipSection: some View {
+        Section {
+            ForEach(tipJar.tips) { tip in
+                Button { Task { await tipJar.buy(tip) } } label: {
+                    LabeledContent {
+                        Text(tip.price)
+                    } label: {
+                        Label(tip.title, systemImage: "heart")
+                    }
+                }
+                .disabled(tipJar.isPurchasing)
+            }
+        } header: {
+            Text(L.settingsSectionSupport)
+        } footer: {
+            Text(L.settingsTipHint)
         }
     }
 

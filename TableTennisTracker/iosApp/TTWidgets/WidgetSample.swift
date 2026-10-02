@@ -30,7 +30,14 @@ extension WidgetSnapshot {
             ),
             palette: .neutral,
             languageTag: Bundle.main.preferredLocalizations.first ?? "en",
-            firstWeekday: Calendar.gregorian.firstWeekday
+            firstWeekday: Calendar.gregorian.firstWeekday,
+            isPro: true,
+            streak: Streak(currentWeeks: 6, longestWeeks: 11),
+            weeks: (0..<8).compactMap { index -> WeekLoad? in
+                guard let start = calendar.date(byAdding: .weekOfYear, value: index - 7, to: today) else { return nil }
+                let minutes = [150, 210, 90, 240, 180, 270, 200, 120][index]
+                return WeekLoad(start: start, sessions: minutes / 60, minutes: minutes, load: minutes * 6)
+            }
         )
     }
 }

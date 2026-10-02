@@ -1,33 +1,23 @@
 import SwiftUI
 
-/// Locked until the user owns Pro: the same title and hint, with the toggle swapped for the way in.
 struct CloudSyncSection: View {
-    let onUnlock: () -> Void
-
     @Environment(CloudSyncModel.self) private var model: CloudSyncModel?
 
     var body: some View {
         if let model, model.isLoaded {
             Section {
-                if model.isUnlocked {
-                    Toggle(isOn: Binding(get: { model.isEnabled }, set: { model.setEnabled($0) })) { syncLabel }
-                        .accessibilityIdentifier("settings.icloudSync")
-                    if model.isEnabled {
-                        Button(L.settingsIcloudSyncNow) { model.syncNow() }
-                            .disabled(model.status == .syncing)
-                    }
-                } else {
-                    syncLabel
-                    Button(action: onUnlock) {
-                        Label(L.settingsIcloudUnlockPro, systemImage: "crown.fill")
-                    }
+                Toggle(isOn: Binding(get: { model.isEnabled }, set: { model.setEnabled($0) })) { syncLabel }
+                    .accessibilityIdentifier("settings.icloudSync")
+                if model.isEnabled {
+                    Button(L.settingsIcloudSyncNow) { model.syncNow() }
+                        .disabled(model.status == .syncing)
                 }
             } header: {
                 Text(L.settingsIcloudSection)
             } footer: {
                 // Minute ticks keep "Last synced 2 minutes ago" honest while the screen stays open.
                 TimelineView(.everyMinute) { _ in
-                    if model.isUnlocked, let text = statusText(model) {
+                    if let text = statusText(model) {
                         Text(text)
                     }
                 }

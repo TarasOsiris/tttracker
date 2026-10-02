@@ -3,12 +3,7 @@ import Observation
 import Shared
 import UIKit
 
-/// iCloud sync's switch and status, and the owner of the `CloudSyncEngine`. The engine runs only
-/// while `isUnlocked` (Pro).
-///
-/// Losing Pro stops the engine but keeps the stored switch, because `false` is also what RevenueCat
-/// reports before it has answered; turning sync off there would cost a full re-upload the moment the
-/// answer lands.
+/// iCloud sync's switch and status, and the owner of the `CloudSyncEngine`.
 @MainActor
 @Observable
 final class CloudSyncModel {
@@ -24,7 +19,6 @@ final class CloudSyncModel {
 
     private(set) var isLoaded = false
     private(set) var isEnabled = false
-    private(set) var isUnlocked = false
     private(set) var status: Status = .idle
 
     private static let lastSyncedKey = "cloudSyncLastSyncedAt"
@@ -48,10 +42,9 @@ final class CloudSyncModel {
         }
     }
 
-    func start(isUnlocked: Bool) {
+    func start() {
         guard !isStarted else { return }
         isStarted = true
-        self.isUnlocked = isUnlocked
 
         NotificationCenter.default.addObserver(
             forName: UIApplication.willEnterForegroundNotification, object: nil, queue: .main
@@ -72,19 +65,8 @@ final class CloudSyncModel {
         resumeIfAllowed()
     }
 
-    func setUnlocked(_ unlocked: Bool) {
-        guard isStarted, unlocked != isUnlocked else { return }
-        isUnlocked = unlocked
-        if unlocked {
-            resumeIfAllowed()
-        } else if engine != nil {
-            stopEngine(forgettingState: false)
-            status = .idle
-        }
-    }
-
     private func resumeIfAllowed() {
-        guard isLoaded, isEnabled, isUnlocked, engine == nil else { return }
+        guard isLoaded, isEnabled, engine == nil else { return }
         if let date = UserDefaults.standard.object(forKey: Self.lastSyncedKey) as? Date {
             status = .synced(date)
         }
@@ -94,7 +76,7 @@ final class CloudSyncModel {
     /// The user's switch. Sync turning itself off goes through `turnOff(showing:)` alone, so it is
     /// not counted as the user opting out.
     func setEnabled(_ enabled: Bool) {
-        guard isLoaded, enabled != isEnabled, isUnlocked || !enabled else { return }
+        guard isLoaded, enabled != isEnabled else { return }
         if enabled {
             isEnabled = true
             UserDefaults.standard.removeObject(forKey: Self.lastSyncedKey)
@@ -151,7 +133,7 @@ final class CloudSyncModel {
     }
 
     private func apply(_ update: CloudSyncEngine.Update) {
-        guard isEnabled, isUnlocked else { return }
+        guard isEnabled else { return }
         switch update {
         case .syncing:
             status = .syncing

@@ -1,8 +1,8 @@
 import Foundation
 import RevenueCat
 
-/// Configures RevenueCat at launch. Nothing else reads the SDK yet — it is here so the dashboard
-/// reports active users; entitlements, offerings and paywalls are not wired up.
+/// Configures RevenueCat at launch. `ProModel` reads the Pro entitlement, `ProPaywallSheet` shows the
+/// paywall, and `TipJarModel` sells tips from their own offering.
 enum SwiftPurchases {
     static func configure() {
         guard !Purchases.isConfigured else { return }

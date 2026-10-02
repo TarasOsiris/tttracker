@@ -24,6 +24,19 @@ final class FlowSubscriptions {
     deinit { subscriptions.forEach { $0.cancel() } }
 }
 
+/// A single subscription that can be swapped for another, such as one keyed on a choice the user can
+/// change. Cancelled with its owner, like `FlowSubscriptions`.
+final class FlowSubscriptionSlot {
+    private var subscription: FlowSubscription?
+
+    func replace(with subscription: FlowSubscription) {
+        self.subscription?.cancel()
+        self.subscription = subscription
+    }
+
+    deinit { subscription?.cancel() }
+}
+
 enum KotlinFlow {
     /// The one place the erased `Any` coming out of a Kotlin flow is cast.
     ///

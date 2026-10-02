@@ -6,7 +6,11 @@ import SwiftUI
 enum PaywallSource: String, Identifiable {
     case toolbar
     case settingsBanner = "settings_banner"
-    case iCloudSync = "icloud_sync"
+    case analyticsInsights = "analytics_insights"
+    case analyticsRange = "analytics_range"
+    case settingsExport = "settings_export"
+    case accentColor = "accent_color"
+    case widget
 
     var id: String { rawValue }
 }

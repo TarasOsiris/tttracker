@@ -17,8 +17,8 @@ struct SettingsProBanner: View {
             }
             .padding(16)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Color.accentColor.opacity(0.12), in: Self.shape)
-            .overlay { Self.shape.strokeBorder(Color.accentColor.opacity(0.22), lineWidth: 1) }
+            .background(.tint.opacity(0.12), in: Self.shape)
+            .overlay { Self.shape.strokeBorder(.tint.opacity(0.22), lineWidth: 1) }
             .contentShape(Self.shape)
         }
         .buttonStyle(.plain)
@@ -35,13 +35,13 @@ struct SettingsProBanner: View {
                 .font(.subheadline.bold())
                 .foregroundStyle(.white)
                 .frame(width: 34, height: 34)
-                .background(Color.accentColor, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+                .background(.tint, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
 
             VStack(alignment: .leading, spacing: 2) {
                 Text(L.proBannerTitle)
                     .font(.headline)
                     .foregroundStyle(.primary)
-                Text(L.proBannerSubtitle)
+                Text(L.proBannerTagline)
                     .font(.footnote)
                     .foregroundStyle(.secondary)
             }
@@ -66,7 +66,7 @@ struct SettingsProBanner: View {
         .foregroundStyle(.white)
         .padding(.vertical, 12)
         .frame(maxWidth: .infinity)
-        .background(Color.accentColor, in: Capsule())
+        .background(.tint, in: Capsule())
     }
 }
 
@@ -80,7 +80,12 @@ struct ProBenefit: Identifiable {
 
     static var all: [ProBenefit] {
         [
-            ProBenefit(title: L.proBenefitIcloudTitle, detail: L.proBenefitIcloudDetail),
+            ProBenefit(title: L.proBenefitInsightsTitle, detail: L.proBenefitInsightsDetail),
+            ProBenefit(title: L.proBenefitHeadToHeadTitle, detail: L.proBenefitHeadToHeadDetail),
+            ProBenefit(title: L.proBenefitHistoryTitle, detail: L.proBenefitHistoryDetail),
+            ProBenefit(title: L.proBenefitWidgetsTitle, detail: L.proBenefitWidgetsDetail),
+            ProBenefit(title: L.proBenefitExportTitle, detail: L.proBenefitExportDetail),
+            ProBenefit(title: L.proBenefitAccentTitle, detail: L.proBenefitAccentDetail),
             ProBenefit(title: L.proBenefitSupportTitle, detail: L.proBenefitSupportDetail),
         ]
     }
@@ -93,7 +98,7 @@ private struct ProBenefitRow: View {
         HStack(alignment: .top, spacing: 12) {
             Image(systemName: "checkmark")
                 .font(.footnote.bold())
-                .foregroundStyle(Color.accentColor)
+                .foregroundStyle(.tint)
                 .frame(width: 18)
                 .padding(.top, 2)
             VStack(alignment: .leading, spacing: 2) {

@@ -1,16 +1,13 @@
-# iCloud sync (iOS, Pro)
+# iCloud sync (iOS)
 
 Sessions, matches and opponents sync between a user's devices through their **private** CloudKit
 database, with `CKSyncEngine`. iOS only; Android neither syncs nor installs the change tracking.
 
 ## Who gets it
 
-**Pro owners**, in every iOS build. `ProModel` is the one reader of RevenueCat; `CloudSyncModel` runs
-the engine only while `isPro`. Losing Pro pauses the engine but keeps the switch on, because `false`
-is also what RevenueCat reports before it answers.
-
-The App Store screenshot run passes `-hidesProUpsell` (honoured in Debug only) so the listing shows
-the app rather than the PRO pill and Settings banner.
+**Everyone**, in every iOS build, free. It was Pro once, but App Review does not accept a purchase
+whose only benefit is an iCloud capability, so sync is not tied to `ProModel` in any way —
+`CloudSyncModel` runs the engine whenever the user's switch is on.
 
 ## Where things live
 

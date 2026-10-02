@@ -19,9 +19,11 @@ struct iOSApp: App {
                 .environment(cloudSync)
                 .task {
                     pro.start()
-                    cloudSync.start(isUnlocked: pro.isPro)
+                    cloudSync.start()
                 }
-                .onChange(of: pro.isPro) { _, isPro in cloudSync.setUnlocked(isPro) }
+                .onChange(of: pro.hasProFeatures, initial: true) { _, hasPro in
+                    WidgetSnapshotWriter.shared.setPro(hasPro)
+                }
         }
         // The writer debounces, so a session edited and immediately backgrounded could otherwise
         // leave the widgets a beat behind.

@@ -11,11 +11,11 @@ import kotlinx.coroutines.flow.shareIn
 import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.DayOfWeek
 import kotlinx.datetime.LocalDate
-import kotlinx.datetime.isoDayNumber
 import kotlinx.datetime.minus
 import xyz.tleskiv.tt.analytics.DailyTrainingLoad
 import xyz.tleskiv.tt.analytics.SummaryStats
 import xyz.tleskiv.tt.analytics.WeeklyTrainingData
+import xyz.tleskiv.tt.analytics.weekStart
 import xyz.tleskiv.tt.data.model.TrainingSession
 import xyz.tleskiv.tt.repo.AnalyticsRepository
 import xyz.tleskiv.tt.repo.UserPreferencesRepository
@@ -85,11 +85,6 @@ class TrainingAnalyticsServiceImpl(
 				totalMinutes = minutesByWeek[start] ?: 0
 			)
 		}
-	}
-
-	private fun weekStart(date: LocalDate, firstDayOfWeek: DayOfWeek): LocalDate {
-		val daysIn = (date.dayOfWeek.isoDayNumber - firstDayOfWeek.isoDayNumber + 7) % 7
-		return date.minus(daysIn, DateTimeUnit.DAY)
 	}
 
 	private companion object {

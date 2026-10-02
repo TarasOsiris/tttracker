@@ -43,6 +43,7 @@ extension View {
     /// system's widget background, and where a tap goes.
     func widgetEntry(_ snapshot: WidgetSnapshot, opens url: URL) -> some View {
         environment(\.locale, snapshot.locale)
+            .tint(snapshot.accent?.color)
             .widgetURL(snapshot.isEmpty ? DeepLink.newSession : url)
             .containerBackground(.fill.tertiary, for: .widget)
     }

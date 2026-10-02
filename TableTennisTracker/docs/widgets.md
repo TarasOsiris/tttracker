@@ -1,14 +1,20 @@
 # iOS widgets
 
-The iOS app ships a widget extension, `TTWidgets`, with three Home Screen widgets, two Lock Screen
-accessories and one Control Center control. Android has no widgets yet.
+The iOS app ships a widget extension, `TTWidgets`, with five Home Screen widgets (two of them Pro),
+Lock Screen accessories and one Control Center control. Android has no widgets yet.
 
 | Kind | Families | Tapping it opens |
 | --- | --- | --- |
 | `…widget.summary` | small, medium, large, accessoryRectangular, accessoryCircular | `tttracker://analytics` |
 | `…widget.heatmap` | medium, large | `tttracker://analytics` |
 | `…widget.lastSession` | small, medium, accessoryRectangular | `tttracker://sessions/<id>` |
+| `…widget.streak` (Pro) | small, accessoryRectangular, accessoryCircular | `tttracker://analytics` |
+| `…widget.trainingLoad` (Pro) | small, medium | `tttracker://analytics` |
 | `…control.addSession` | Control Center / Lock Screen / Action button | `tttracker://sessions/new` |
+
+A Pro widget placed without Pro shows `ProWidgetLock`, and a tap opens `tttracker://pro`, the
+paywall. The snapshot's `isPro` decides, and the widget gallery (`context.isPreview`) always shows
+the real thing. The snapshot's `accent` tints every widget, and is nil unless the user has Pro.
 
 ## How the widgets get their data
 

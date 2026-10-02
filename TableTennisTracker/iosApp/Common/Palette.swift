@@ -63,6 +63,25 @@ struct Palette: Codable, Equatable, Sendable {
     }
 }
 
+extension ShapeStyle where Self == AnyShapeStyle {
+    /// Shading for a heatmap intensity bucket, 0 (none) through 4 (busiest).
+    ///
+    /// One hue at rising opacity rather than a hue ramp, so the buckets stay apart for a viewer
+    /// who cannot separate the hues. The hue is the tint, so it follows the chosen accent.
+    static func heatmap(level: Int) -> AnyShapeStyle {
+        switch level {
+        case 1: AnyShapeStyle(.tint.opacity(0.35))
+        case 2: AnyShapeStyle(.tint.opacity(0.55))
+        case 3: AnyShapeStyle(.tint.opacity(0.75))
+        case 4: AnyShapeStyle(.tint)
+        default: AnyShapeStyle(Color(.tertiarySystemFill))
+        }
+    }
+
+    /// Backs whatever the user has picked — a calendar day, a row in the sessions sidebar.
+    static var selection: AnyShapeStyle { AnyShapeStyle(.tint.opacity(0.18)) }
+}
+
 extension Color {
     /// Opaque ARGB, matching the `0xAARRGGBB` literals in `BrandColors`.
     init(argb: Int64) {
@@ -74,23 +93,6 @@ extension Color {
             opacity: Double((argb >> 24) & 0xFF) / 255
         )
     }
-
-    /// Shading for a heatmap intensity bucket, 0 (none) through 4 (busiest).
-    ///
-    /// One hue at rising opacity rather than a hue ramp, so the buckets stay apart for a viewer
-    /// who cannot separate the hues.
-    static func heatmap(level: Int) -> Color {
-        switch level {
-        case 1: Color.accentColor.opacity(0.35)
-        case 2: Color.accentColor.opacity(0.55)
-        case 3: Color.accentColor.opacity(0.75)
-        case 4: Color.accentColor
-        default: Color(.tertiarySystemFill)
-        }
-    }
-
-    /// Backs whatever the user has picked — a calendar day, a row in the sessions sidebar.
-    static var selection: Color { Color.accentColor.opacity(0.18) }
 
     static func adaptive(light: Int64, dark: Int64) -> Color {
         Color(UIColor { traits in

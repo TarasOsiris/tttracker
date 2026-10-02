@@ -57,15 +57,15 @@ struct DayCell: View {
 
     @ViewBuilder private var background: some View {
         if isSelected {
-            Circle().fill(isToday ? Color.accentColor : .selection)
+            Circle().fill(isToday ? AnyShapeStyle(.tint) : .selection)
         } else if isToday {
-            Circle().stroke(Color.accentColor, lineWidth: 1.5)
+            Circle().stroke(.tint, lineWidth: 1.5)
         }
     }
 
-    private var numberColor: Color {
-        if isSelected && isToday { .white }
-        else if isToday { .accentColor }
-        else { .primary }
+    private var numberColor: AnyShapeStyle {
+        if isSelected && isToday { AnyShapeStyle(.white) }
+        else if isToday { AnyShapeStyle(.tint) }
+        else { AnyShapeStyle(.primary) }
     }
 }

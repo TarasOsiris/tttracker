@@ -17,6 +17,10 @@ enum KotlinEnumParity {
             "ThemeMode is out of sync with AppThemeMode"
         )
         assert(
+            Set(AccentChoice.allCases.map(\.rawValue)) == Set(AppAccent.entries.map(\.name)),
+            "AccentChoice is out of sync with AppAccent"
+        )
+        assert(
             Set(WeekStart.allCases.map(\.rawValue)) == Set(Shared.WeekStartDay.entries.map(\.name)),
             "WeekStart is out of sync with WeekStartDay"
         )

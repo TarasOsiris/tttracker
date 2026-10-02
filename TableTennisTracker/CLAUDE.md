@@ -280,12 +280,32 @@ users.
 
 **iOS sells Pro** — the `Pro Lifetime` non-consumable (`xyz.tleskiv.tt.pro.lifetime`). `ProModel` (`iosApp/iosApp/App/ProModel.swift`) is the single reader of the entitlement
 (`ProEntitlement.id`, which must match the RevenueCat dashboard) and every Pro surface checks
-`showsUpsell`: the PRO pill on each tab's toolbar (`.proToolbarButton()`), the banner and the
-Restore purchases row at the top of Settings, and the locked iCloud section. The paywall is
-RevenueCatUI's `PaywallView`, designed in the dashboard. Kotlin knows nothing about Pro.
+`showsUpsell` (the PRO pill on each tab's toolbar, `.proToolbarButton()`, and the banner and
+Restore purchases row at the top of Settings) or `hasProFeatures` (the features themselves). The
+paywall is RevenueCatUI's `PaywallView`, designed in the dashboard; every opening passes a
+`PaywallSource` for the PostHog funnel. Kotlin knows nothing about Pro: it computes everything, and
+Swift decides what to show.
 
-Pro's only feature so far is **iCloud sync** — see `docs/icloud-sync.md` for the design and the
-conflict rules. Rules that affect everyday code:
+What Pro unlocks — keep `ProBenefit.all` and the RevenueCat paywall in step with this list:
+
+- **Insights** on the analytics screen: weekly streaks, weekly training load, session types and
+  head-to-head records (`InsightsService` in `:core`). Free users see one blurred preview behind
+  `.proLocked(_:)`. Records also show on the opponents list.
+- **Longer weekly-chart ranges** (6M / 1Y / All); 8 weeks stays free.
+- **Pro widgets**: Training streak and Training load. The snapshot carries `isPro`, and a locked
+  widget opens the paywall through `tttracker://pro`. The original widgets stay free.
+- **CSV export** in Settings (`CsvExport.kt` in `:core`).
+- **Accent colors** (`AppAccent` preference); the UI draws its accent with the `.tint` style, never
+  `Color.accentColor`, so the choice reaches every screen and widget.
+
+Never take a free feature away to make it Pro, and do not gate iCloud sync: App Review rejected a
+purchase whose only benefit was sync, and sync is now free for everyone.
+
+Tips are consumables in a separate RevenueCat offering, `tips` (`TipJarModel`). They unlock nothing,
+and the Settings section hides itself until that offering has packages.
+
+**iCloud sync** — see `docs/icloud-sync.md` for the design and the conflict rules. Rules that affect
+everyday code:
 
 - Update queries on synced tables (`training_session`, `opponent`, `match`) must skip rows they would
   not change and must never move `updated_at` backwards — copy the `CASE WHEN :updated_at >

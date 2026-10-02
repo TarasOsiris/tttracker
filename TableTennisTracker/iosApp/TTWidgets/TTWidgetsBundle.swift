@@ -13,6 +13,8 @@ struct TTWidgetsBundle: WidgetBundle {
         SummaryWidget()
         HeatmapWidget()
         LastSessionWidget()
+        StreakWidget()
+        TrainingLoadWidget()
         AddSessionControl()
     }
 }
@@ -22,5 +24,7 @@ enum WidgetKind {
     static let summary = "xyz.tleskiv.tt.widget.summary"
     static let heatmap = "xyz.tleskiv.tt.widget.heatmap"
     static let lastSession = "xyz.tleskiv.tt.widget.lastSession"
+    static let streak = "xyz.tleskiv.tt.widget.streak"
+    static let trainingLoad = "xyz.tleskiv.tt.widget.trainingLoad"
     static let addSession = "xyz.tleskiv.tt.control.addSession"
 }

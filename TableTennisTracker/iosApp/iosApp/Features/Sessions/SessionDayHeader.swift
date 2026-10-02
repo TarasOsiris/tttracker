@@ -18,14 +18,14 @@ struct SessionDayHeader: View {
                 .foregroundStyle(highlighted ? Color.white : .secondary)
                 .frame(minWidth: 32, minHeight: 32)
                 .background(
-                    highlighted ? Color.accentColor : Color(.tertiarySystemFill),
+                    highlighted ? AnyShapeStyle(.tint) : AnyShapeStyle(Color(.tertiarySystemFill)),
                     in: .rect(cornerRadius: 6)
                 )
 
             caption
                 .font(.subheadline)
                 .fontWeight(highlighted ? .semibold : .regular)
-                .foregroundStyle(highlighted ? Color.accentColor : .secondary)
+                .foregroundStyle(highlighted ? AnyShapeStyle(.tint) : AnyShapeStyle(Color.secondary))
 
             Spacer()
         }

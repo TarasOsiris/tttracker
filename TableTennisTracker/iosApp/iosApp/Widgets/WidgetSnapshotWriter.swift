@@ -21,6 +21,13 @@ final class WidgetSnapshotWriter {
     private var days: [WidgetSnapshot.DayLoad] = []
     private var lastSession: WidgetSnapshot.LastSession?
     private var firstWeekday = WeekStart.monday.firstWeekday
+    private var streak: WidgetSnapshot.Streak?
+    private var weeks: [WidgetSnapshot.WeekLoad] = []
+
+    /// Seeded from the last snapshot so a Pro user's widgets do not flash their lock in the moment
+    /// before RevenueCat has answered; `setPro` takes over from there.
+    private var isPro = WidgetStore.read()?.isPro
+    private var accent: AccentChoice = .default
 
     private var written: Data?
     private var pending: Task<Void, Never>?
@@ -31,9 +38,13 @@ final class WidgetSnapshotWriter {
     /// enough days for any family without carrying the whole log.
     private static let historyDays = 53 * 7
 
+    /// Weeks of load the Pro widgets chart.
+    private static let loadWeeks: Int32 = 8
+
     private init(
         sessions: any TrainingSessionService = Services.sessions,
         analytics: any TrainingAnalyticsService = Services.trainingAnalytics,
+        insights: any InsightsService = Services.insights,
         preferences: any UserPreferencesRepository = Services.preferences
     ) {
         subscriptions.insert(
@@ -60,6 +71,35 @@ final class WidgetSnapshotWriter {
             }
         )
         subscriptions.insert(
+            KotlinFlow.observe(insights.insights, as: TrainingInsights.self) { [weak self] insights in
+                self?.streak = WidgetSnapshot.Streak(
+                    currentWeeks: Int(insights.streak.currentWeeks),
+                    longestWeeks: Int(insights.streak.longestWeeks)
+                )
+                self?.schedule()
+            }
+        )
+        subscriptions.insert(
+            KotlinFlow.observe(insights.trainingWeeks(weeks: Self.loadWeeks), as: [TrainingWeek].self) { [weak self] weeks in
+                self?.weeks = weeks.compactMap { week in
+                    guard let start = week.start.date else { return nil }
+                    return WidgetSnapshot.WeekLoad(
+                        start: start,
+                        sessions: Int(week.sessionCount),
+                        minutes: Int(week.totalMinutes),
+                        load: Int(week.load)
+                    )
+                }
+                self?.schedule()
+            }
+        )
+        subscriptions.insert(
+            KotlinFlow.observe(preferences.accent, as: AppAccent.self) { [weak self] in
+                self?.accent = AccentChoice($0)
+                self?.schedule()
+            }
+        )
+        subscriptions.insert(
             KotlinFlow.observe(preferences.weekStartDay, as: Shared.WeekStartDay.self) { [weak self] in
                 self?.firstWeekday = WeekStart($0).firstWeekday
                 self?.schedule()
@@ -69,6 +109,12 @@ final class WidgetSnapshotWriter {
 
     /// Builds the writer if it does not exist yet. Its flows do the rest.
     static func start() { _ = shared }
+
+    func setPro(_ isPro: Bool) {
+        guard isPro != self.isPro else { return }
+        self.isPro = isPro
+        schedule()
+    }
 
     /// Writes immediately, for the moments a debounce would miss — the app going to the background,
     /// or the language changing while no data did.
@@ -94,7 +140,11 @@ final class WidgetSnapshotWriter {
             lastSession: lastSession,
             palette: .brand,
             languageTag: LocalizationController.shared.languageTag,
-            firstWeekday: firstWeekday
+            firstWeekday: firstWeekday,
+            isPro: isPro,
+            streak: streak,
+            weeks: weeks,
+            accent: isPro == true ? accent : nil
         )
         guard let data = WidgetStore.write(snapshot), data != written else { return }
         written = data

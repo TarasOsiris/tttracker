@@ -2,6 +2,7 @@ import SwiftUI
 
 struct OpponentsScreen: View {
     @StateModel private var model = OpponentsModel()
+    @Environment(ProModel.self) private var pro: ProModel?
     @State private var editing: OpponentEditorTarget?
     @State private var pendingDeletion: Opponent?
     @State private var showsInfo = false
@@ -10,7 +11,7 @@ struct OpponentsScreen: View {
         List {
             ForEach(model.opponents) { opponent in
                 Button { editing = .existing(opponent.id) } label: {
-                    OpponentRow(opponent: opponent)
+                    OpponentRow(opponent: opponent, record: pro?.hasProFeatures == true ? model.records[opponent.id] : nil)
                 }
                 .buttonStyle(.plain)
                 .swipeActions(edge: .trailing) {

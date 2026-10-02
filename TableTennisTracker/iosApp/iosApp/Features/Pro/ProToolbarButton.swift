@@ -33,7 +33,6 @@ private struct ProToolbarButton: View {
         if #available(iOS 26.0, *) {
             Button(action: action) { label }
                 .buttonStyle(.glassProminent)
-                .tint(.accentColor)
                 .foregroundStyle(.white)
                 .accessibilityHint(L.proUpgradeHint)
         } else {
@@ -42,7 +41,7 @@ private struct ProToolbarButton: View {
                     .padding(.horizontal, 10)
                     .padding(.vertical, 5)
                     .foregroundStyle(.white)
-                    .background(Color.accentColor, in: Capsule())
+                    .background(.tint, in: Capsule())
             }
             .buttonStyle(.plain)
             .accessibilityHint(L.proUpgradeHint)

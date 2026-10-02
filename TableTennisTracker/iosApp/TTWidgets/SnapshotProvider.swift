@@ -4,6 +4,8 @@ import WidgetKit
 struct SnapshotEntry: TimelineEntry {
     let date: Date
     let snapshot: WidgetSnapshot
+    /// The widget gallery, where a Pro widget shows what it does rather than its lock.
+    var isPreview = false
 }
 
 /// Reads the App Group snapshot the app writes. There is nothing to schedule ahead: the data only
@@ -17,7 +19,9 @@ struct SnapshotProvider: TimelineProvider {
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SnapshotEntry) -> Void) {
-        completion(current())
+        var entry = current()
+        entry.isPreview = context.isPreview
+        completion(entry)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<SnapshotEntry>) -> Void) {

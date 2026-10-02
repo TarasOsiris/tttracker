@@ -3,6 +3,8 @@ import SwiftUI
 /// One opponent in the roster.
 struct OpponentRow: View {
     let opponent: Opponent
+    /// The user's record against them, when there is one to show.
+    var record: HeadToHead?
 
     /// The initial's badge grows with the user's text size rather than clipping the letter inside
     /// a fixed 40pt circle.
@@ -14,7 +16,7 @@ struct OpponentRow: View {
                 .font(.headline)
                 .foregroundStyle(.white)
                 .frame(minWidth: badgeSize, minHeight: badgeSize)
-                .background(Color.accentColor, in: .circle)
+                .background(.tint, in: .circle)
                 // It is the first letter of the name below it, not a fact of its own.
                 .accessibilityHidden(true)
 
@@ -26,6 +28,11 @@ struct OpponentRow: View {
                 if let notes = opponent.notes {
                     Text(notes).font(.footnote).foregroundStyle(.secondary).lineLimit(2)
                 }
+            }
+
+            if let record, record.wins + record.losses > 0 {
+                Spacer(minLength: 8)
+                RecordBadge(wins: record.wins, losses: record.losses)
             }
         }
         .accessibilityElement(children: .combine)

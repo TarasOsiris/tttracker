@@ -17,9 +17,16 @@ struct RootTabView: View {
     @State private var newSession: NewSessionTarget?
     @State private var analyticsPath = NavigationPath()
     @State private var settingsPath = NavigationPath()
+    @State private var showsPaywall = false
+
+    @Environment(ProModel.self) private var pro: ProModel?
 
     @State private var localization = LocalizationController.shared
     @StateModel private var appearance = AppearanceModel()
+
+    /// The accent is Pro. Losing Pro puts the default back on screen without forgetting the choice,
+    /// so a restored purchase brings it back.
+    private var accent: Color? { pro?.hasProFeatures == true ? appearance.accent.color : nil }
 
     var body: some View {
         TabView(selection: tabSelection) {
@@ -39,14 +46,17 @@ struct RootTabView: View {
             .accessibilityIdentifier("tab.settings")
         }
         .onOpenURL(perform: open)
+        .sheet(isPresented: $showsPaywall) { ProPaywallSheet(source: .widget) }
         .environment(\.locale, localization.locale)
         .environment(\.layoutDirection, layoutDirection)
         .preferredColorScheme(appearance.themeMode.colorScheme)
+        .tint(accent)
         .id(localization.generation)
     }
 
     /// Where a widget tap lands. The scheme is `tttracker://`, and the host names the tab:
-    /// `analytics`, `sessions/<id>` for one session, `sessions/new` to start logging one.
+    /// `analytics`, `sessions/<id>` for one session, `sessions/new` to start logging one, `pro` for the
+    /// paywall.
     private func open(_ url: URL) {
         guard url.scheme == DeepLink.scheme else { return }
         let path = url.pathComponents.filter { $0 != "/" }
@@ -64,6 +74,8 @@ struct RootTabView: View {
         case ("sessions", nil):
             selection = .sessions
             selectedSession = nil
+        case ("pro", _):
+            if pro?.hasProFeatures != true { showsPaywall = true }
         default:
             break
         }

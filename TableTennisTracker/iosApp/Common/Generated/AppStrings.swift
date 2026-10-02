@@ -6,6 +6,30 @@
 import Foundation
 
 enum L {
+	/// Default
+	static var accentDefault: String { Localization.string("accent_default") }
+
+	/// Green
+	static var accentGreen: String { Localization.string("accent_green") }
+
+	/// Indigo
+	static var accentIndigo: String { Localization.string("accent_indigo") }
+
+	/// Orange
+	static var accentOrange: String { Localization.string("accent_orange") }
+
+	/// Pink
+	static var accentPink: String { Localization.string("accent_pink") }
+
+	/// Purple
+	static var accentPurple: String { Localization.string("accent_purple") }
+
+	/// Red
+	static var accentRed: String { Localization.string("accent_red") }
+
+	/// Teal
+	static var accentTeal: String { Localization.string("accent_teal") }
+
 	/// Sessions: %1$lld
 	static func accessibilitySessionsCount(_ a1: Int) -> String {
 		Localization.format("accessibility_sessions_count", a1)
@@ -92,6 +116,17 @@ enum L {
 	/// Add Match
 	static var addMatch: String { Localization.string("add_match") }
 
+	/// Games %1$lld–%2$lld
+	static func analyticsGamesFormat(_ a1: Int, _ a2: Int) -> String {
+		Localization.format("analytics_games_format", a1, a2)
+	}
+
+	/// Head-to-head
+	static var analyticsHeadToHead: String { Localization.string("analytics_head_to_head") }
+
+	/// All opponents
+	static var analyticsHeadToHeadAll: String { Localization.string("analytics_head_to_head_all") }
+
 	/// Less
 	static var analyticsHeatmapLess: String { Localization.string("analytics_heatmap_less") }
 
@@ -106,6 +141,9 @@ enum L {
 		Localization.format("analytics_hours_minutes", a1, a2)
 	}
 
+	/// Insights
+	static var analyticsInsights: String { Localization.string("analytics_insights") }
+
 	/// Losses
 	static var analyticsLosses: String { Localization.string("analytics_losses") }
 
@@ -115,8 +153,38 @@ enum L {
 	/// No training data yet
 	static var analyticsNoTraining: String { Localization.string("analytics_no_training") }
 
+	/// Range
+	static var analyticsRange: String { Localization.string("analytics_range") }
+
+	/// 1Y
+	static var analyticsRange1y: String { Localization.string("analytics_range_1y") }
+
+	/// 6M
+	static var analyticsRange6m: String { Localization.string("analytics_range_6m") }
+
+	/// 8W
+	static var analyticsRange8w: String { Localization.string("analytics_range_8w") }
+
+	/// All
+	static var analyticsRangeAll: String { Localization.string("analytics_range_all") }
+
+	/// No type
+	static var analyticsSessionTypeNone: String { Localization.string("analytics_session_type_none") }
+
+	/// Session types
+	static var analyticsSessionTypes: String { Localization.string("analytics_session_types") }
+
 	/// Analytics widgets
 	static var analyticsSettingsTitle: String { Localization.string("analytics_settings_title") }
+
+	/// Current streak
+	static var analyticsStreakCurrent: String { Localization.string("analytics_streak_current") }
+
+	/// Weeks in a row with at least one session
+	static var analyticsStreakHint: String { Localization.string("analytics_streak_hint") }
+
+	/// Longest streak
+	static var analyticsStreakLongest: String { Localization.string("analytics_streak_longest") }
 
 	/// Summary
 	static var analyticsSummary: String { Localization.string("analytics_summary") }
@@ -126,6 +194,12 @@ enum L {
 
 	/// Time trained
 	static var analyticsTotalTime: String { Localization.string("analytics_total_time") }
+
+	/// Training load
+	static var analyticsTrainingLoad: String { Localization.string("analytics_training_load") }
+
+	/// Minutes × intensity (RPE), per week
+	static var analyticsTrainingLoadHint: String { Localization.string("analytics_training_load_hint") }
 
 	/// Avg
 	static var analyticsWeeklyAvg: String { Localization.string("analytics_weekly_avg") }
@@ -367,23 +441,53 @@ enum L {
 	/// Get Pro
 	static var proBannerCta: String { Localization.string("pro_banner_cta") }
 
-	/// Your training on every device, through iCloud
-	static var proBannerSubtitle: String { Localization.string("pro_banner_subtitle") }
+	/// Understand your training and make the app yours
+	static var proBannerTagline: String { Localization.string("pro_banner_tagline") }
 
 	/// TT Tracker Pro
 	static var proBannerTitle: String { Localization.string("pro_banner_title") }
 
-	/// Keep sessions, matches and opponents the same on all your devices
-	static var proBenefitIcloudDetail: String { Localization.string("pro_benefit_icloud_detail") }
+	/// Give the app and its widgets the color you like
+	static var proBenefitAccentDetail: String { Localization.string("pro_benefit_accent_detail") }
 
-	/// Sync with iCloud
-	static var proBenefitIcloudTitle: String { Localization.string("pro_benefit_icloud_title") }
+	/// Accent colors
+	static var proBenefitAccentTitle: String { Localization.string("pro_benefit_accent_title") }
+
+	/// Take your sessions and matches into a spreadsheet
+	static var proBenefitExportDetail: String { Localization.string("pro_benefit_export_detail") }
+
+	/// Export to CSV
+	static var proBenefitExportTitle: String { Localization.string("pro_benefit_export_title") }
+
+	/// Your record and recent form against every opponent
+	static var proBenefitHeadToHeadDetail: String { Localization.string("pro_benefit_head_to_head_detail") }
+
+	/// Head-to-head records
+	static var proBenefitHeadToHeadTitle: String { Localization.string("pro_benefit_head_to_head_title") }
+
+	/// Weekly training over 6 months, a year or all time
+	static var proBenefitHistoryDetail: String { Localization.string("pro_benefit_history_detail") }
+
+	/// Your whole history
+	static var proBenefitHistoryTitle: String { Localization.string("pro_benefit_history_title") }
+
+	/// Streaks, weekly training load and your mix of session types
+	static var proBenefitInsightsDetail: String { Localization.string("pro_benefit_insights_detail") }
+
+	/// Training insights
+	static var proBenefitInsightsTitle: String { Localization.string("pro_benefit_insights_title") }
 
 	/// Help keep TT Tracker growing
 	static var proBenefitSupportDetail: String { Localization.string("pro_benefit_support_detail") }
 
 	/// Support an indie developer
 	static var proBenefitSupportTitle: String { Localization.string("pro_benefit_support_title") }
+
+	/// Your streak and training load on the Home Screen
+	static var proBenefitWidgetsDetail: String { Localization.string("pro_benefit_widgets_detail") }
+
+	/// More widgets
+	static var proBenefitWidgetsTitle: String { Localization.string("pro_benefit_widgets_title") }
 
 	/// Couldn't restore purchases. Please try again.
 	static var proRestoreFailed: String { Localization.string("pro_restore_failed") }
@@ -396,6 +500,9 @@ enum L {
 
 	/// PRO
 	static var proToolbarButton: String { Localization.string("pro_toolbar_button") }
+
+	/// Unlock with Pro
+	static var proUnlock: String { Localization.string("pro_unlock") }
 
 	/// Opens the Pro upgrade options
 	static var proUpgradeHint: String { Localization.string("pro_upgrade_hint") }
@@ -461,8 +568,17 @@ enum L {
 	/// Week
 	static var sessionsWeekMode: String { Localization.string("sessions_week_mode") }
 
+	/// Accent color
+	static var settingsAccentColor: String { Localization.string("settings_accent_color") }
+
 	/// Nineva Studios
 	static var settingsCompanyName: String { Localization.string("settings_company_name") }
+
+	/// Export to CSV
+	static var settingsExport: String { Localization.string("settings_export") }
+
+	/// Your sessions and matches, as two files for a spreadsheet
+	static var settingsExportHint: String { Localization.string("settings_export_hint") }
 
 	/// Highlight current day
 	static var settingsHighlightCurrentDay: String { Localization.string("settings_highlight_current_day") }
@@ -502,9 +618,6 @@ enum L {
 	/// This app's iCloud data was deleted, so sync was turned off. Nothing on this device was removed.
 	static var settingsIcloudTurnedOff: String { Localization.string("settings_icloud_turned_off") }
 
-	/// Unlock with Pro
-	static var settingsIcloudUnlockPro: String { Localization.string("settings_icloud_unlock_pro") }
-
 	/// Waiting to sync
 	static var settingsIcloudWaiting: String { Localization.string("settings_icloud_waiting") }
 
@@ -520,6 +633,9 @@ enum L {
 	/// Calendar
 	static var settingsSectionCalendar: String { Localization.string("settings_section_calendar") }
 
+	/// Data
+	static var settingsSectionData: String { Localization.string("settings_section_data") }
+
 	/// Developer
 	static var settingsSectionDeveloper: String { Localization.string("settings_section_developer") }
 
@@ -531,6 +647,12 @@ enum L {
 
 	/// Training session defaults
 	static var settingsSectionSessions: String { Localization.string("settings_section_sessions") }
+
+	/// Support development
+	static var settingsSectionSupport: String { Localization.string("settings_section_support") }
+
+	/// A tip helps keep TT Tracker growing. It does not unlock anything.
+	static var settingsTipHint: String { Localization.string("settings_tip_hint") }
 
 	/// Version %1$@ (%2$@)
 	static func settingsVersionFormat(_ a1: String, _ a2: String) -> String {
@@ -581,6 +703,9 @@ enum L {
 	/// Yesterday
 	static var timeYesterday: String { Localization.string("time_yesterday") }
 
+	/// Thank you for your support!
+	static var tipThanks: String { Localization.string("tip_thanks") }
+
 	/// Create Training Session
 	static var titleCreateSession: String { Localization.string("title_create_session") }
 
@@ -626,13 +751,34 @@ enum L {
 	/// Last session
 	static var widgetLastSessionName: String { Localization.string("widget_last_session_name") }
 
+	/// Last week
+	static var widgetLastWeek: String { Localization.string("widget_last_week") }
+
+	/// This week's training load next to the weeks before it.
+	static var widgetLoadDescription: String { Localization.string("widget_load_description") }
+
+	/// Training load
+	static var widgetLoadName: String { Localization.string("widget_load_name") }
+
 	/// No matches
 	static var widgetNoMatches: String { Localization.string("widget_no_matches") }
+
+	/// Unlock with Pro in the app
+	static var widgetProLocked: String { Localization.string("widget_pro_locked") }
+
+	/// How many weeks in a row you have trained, and your best run.
+	static var widgetStreakDescription: String { Localization.string("widget_streak_description") }
+
+	/// Training streak
+	static var widgetStreakName: String { Localization.string("widget_streak_name") }
 
 	/// Sessions, time trained and your match record at a glance.
 	static var widgetSummaryDescription: String { Localization.string("widget_summary_description") }
 
 	/// Training summary
 	static var widgetSummaryName: String { Localization.string("widget_summary_name") }
+
+	/// This week
+	static var widgetThisWeek: String { Localization.string("widget_this_week") }
 
 }

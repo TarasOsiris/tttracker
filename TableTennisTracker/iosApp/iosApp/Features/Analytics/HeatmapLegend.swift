@@ -7,7 +7,7 @@ struct HeatmapLegend: View {
             Text(L.analyticsHeatmapLess).font(.caption).foregroundStyle(.secondary)
             ForEach(0...4, id: \.self) { level in
                 RoundedRectangle(cornerRadius: 3)
-                    .fill(Color.heatmap(level: level))
+                    .fill(.heatmap(level: level))
                     .frame(width: HeatmapSection.cell, height: HeatmapSection.cell)
             }
             Text(L.analyticsHeatmapMore).font(.caption).foregroundStyle(.secondary)

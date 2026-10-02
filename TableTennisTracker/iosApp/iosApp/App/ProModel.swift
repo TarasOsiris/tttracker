@@ -2,8 +2,8 @@ import Foundation
 import Observation
 import RevenueCat
 
-/// Whether the user owns Pro, for every Pro affordance and for iCloud sync. The one place "is Pro"
-/// is read from RevenueCat, so the toolbar, Settings and sync cannot disagree.
+/// Whether the user owns Pro, for every Pro feature and upsell. The one place "is Pro" is read from
+/// RevenueCat, so no two screens can disagree about it.
 @MainActor
 @Observable
 final class ProModel {
@@ -28,8 +28,12 @@ final class ProModel {
 
     var showsUpsell: Bool { !isPro && !Self.hidesUpsell }
 
+    /// Whether Pro features show unlocked. The screenshot run counts as Pro, so the listing shows the
+    /// features themselves rather than their locks.
+    var hasProFeatures: Bool { isPro || Self.hidesUpsell }
+
     /// The App Store screenshot run passes `-hidesProUpsell`, so the listing shows the app rather than
-    /// the PRO pill and Settings banner. Debug only: no shipped build can be asked to hide them.
+    /// the PRO pill, Settings banner and locks. Debug only: no shipped build can be asked to hide them.
     private static let hidesUpsell: Bool = {
         #if DEBUG
         return ProcessInfo.processInfo.arguments.contains("-hidesProUpsell")

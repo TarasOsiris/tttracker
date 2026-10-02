@@ -20,6 +20,17 @@ struct WidgetSnapshot: Codable, Equatable, Sendable {
     /// `Calendar.firstWeekday` numbering, from the week-start preference.
     var firstWeekday: Int
 
+    // Optional so a snapshot written by an older build still decodes: a missing key is nil, where a
+    // non-optional with a default would fail the whole file.
+
+    /// Whether the Pro widgets show their content or the way to unlock it.
+    var isPro: Bool?
+    var streak: Streak?
+    /// The last few weeks, oldest first, the current one last.
+    var weeks: [WeekLoad]?
+    /// The app's accent, already nil when it is not Pro's to show.
+    var accent: AccentChoice?
+
     var isEmpty: Bool { summary.totalSessions == 0 }
 
     /// What the widgets show before the app has run, or if the App Group is unreachable.
@@ -46,6 +57,23 @@ struct WidgetSnapshot: Codable, Equatable, Sendable {
         var level: Int
 
         var id: Date { date }
+    }
+
+    var hasPro: Bool { isPro == true }
+
+    struct Streak: Codable, Equatable, Sendable {
+        var currentWeeks: Int
+        var longestWeeks: Int
+    }
+
+    struct WeekLoad: Codable, Equatable, Sendable, Identifiable {
+        var start: Date
+        var sessions: Int
+        var minutes: Int
+        /// RPE × minutes, summed over the week.
+        var load: Int
+
+        var id: Date { start }
     }
 
     struct LastSession: Codable, Equatable, Sendable {

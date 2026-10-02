@@ -2,7 +2,10 @@ import SwiftUI
 
 struct AnalyticsScreen: View {
     @StateModel private var model = AnalyticsModel()
+    @StateModel private var insights = InsightsModel()
     @State private var showsSettings = false
+
+    @Environment(ProModel.self) private var pro: ProModel?
 
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 
@@ -23,6 +26,7 @@ struct AnalyticsScreen: View {
                 }
             }
             if model.showHeatmap.value { HeatmapSection(model: model) }
+            InsightsSections(model: insights, isWide: isWide)
         }
         .accessibilityIdentifier("screen.analytics")
         .navigationTitle(L.navAnalytics)
@@ -33,5 +37,9 @@ struct AnalyticsScreen: View {
             }
         }
         .sheet(isPresented: $showsSettings) { AnalyticsSettingsSheet(model: model) }
+        // A refund or an expired sandbox purchase takes the longer ranges with it.
+        .onChange(of: pro?.hasProFeatures) { _, hasPro in
+            if hasPro != true && model.weeklyRange.needsPro { model.weeklyRange = .eightWeeks }
+        }
     }
 }

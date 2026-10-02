@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import xyz.tleskiv.tt.db.AppDatabase
 import xyz.tleskiv.tt.db.User_preferences
+import xyz.tleskiv.tt.model.AppAccent
 import xyz.tleskiv.tt.model.AppLocale
 import xyz.tleskiv.tt.model.AppThemeMode
 import xyz.tleskiv.tt.model.WeekStartDay
@@ -21,6 +22,7 @@ class UserPreferencesRepositoryImpl(
 
 	private val KEY_AVATAR_URI = "avatar_uri"
 	private val KEY_APP_THEME = "app_theme"
+	private val KEY_APP_ACCENT = "app_accent"
 	private val KEY_WEEK_START_DAY = "week_start_day"
 	private val KEY_HIGHLIGHT_CURRENT_DAY = "highlight_current_day"
 	private val KEY_APP_LOCALE = "app_locale"
@@ -39,6 +41,11 @@ class UserPreferencesRepositoryImpl(
 		} catch (_: Exception) {
 			AppThemeMode.SYSTEM
 		}
+	}
+
+	override val accent: Flow<AppAccent> = allPreferences.map { prefs ->
+		val accentString = prefs.find { it.key == KEY_APP_ACCENT }?.value_
+		AppAccent.entries.firstOrNull { it.name == accentString } ?: AppAccent.DEFAULT
 	}
 
 	override val weekStartDay: Flow<WeekStartDay> = allPreferences.map { prefs ->
@@ -95,6 +102,10 @@ class UserPreferencesRepositoryImpl(
 
 	override suspend fun setThemeMode(mode: AppThemeMode) {
 		setPreference(KEY_APP_THEME, mode.name)
+	}
+
+	override suspend fun setAccent(accent: AppAccent) {
+		setPreference(KEY_APP_ACCENT, accent.name)
 	}
 
 	override suspend fun setWeekStartDay(day: WeekStartDay) {

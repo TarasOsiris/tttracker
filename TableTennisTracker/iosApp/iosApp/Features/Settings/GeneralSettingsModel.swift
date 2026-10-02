@@ -5,6 +5,7 @@ import Shared
 @Observable
 final class GeneralSettingsModel {
     let themeMode: Preference<ThemeMode>
+    let accent: Preference<AccentChoice>
     let weekStart: Preference<WeekStart>
     let highlightCurrentDay: Preference<Bool>
     let appLocale: Preference<LocaleOption>
@@ -27,6 +28,17 @@ final class GeneralSettingsModel {
             commit: { mode in
                 try await preferences.setThemeMode(mode: mode.kotlin)
                 analytics.capture(event: "theme_changed", properties: ["theme": mode.rawValue])
+            }
+        )
+        accent = Preference(
+            initial: .default,
+            flow: preferences.accent,
+            subscriptions: subscriptions,
+            queue: queue,
+            decode: { ($0 as? AppAccent).map(AccentChoice.init) },
+            commit: { accent in
+                try await preferences.setAccent(accent: accent.kotlin)
+                analytics.capture(event: "accent_changed", properties: ["accent": accent.rawValue])
             }
         )
         weekStart = Preference(

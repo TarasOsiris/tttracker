@@ -77,7 +77,7 @@ struct HeatmapWidgetView: View {
             ForEach(days, id: \.self) { day in
                 let load = byDay[day]
                 RoundedRectangle(cornerRadius: cell / 4)
-                    .fill(Color.heatmap(level: load?.level ?? 0))
+                    .fill(.heatmap(level: load?.level ?? 0))
                     .frame(width: cell, height: cell)
                     .accessibilityLabel(Text(day, format: .fullDay(locale)))
                     .accessibilityValue(Text(L.accessibilitySessionsCount(load?.sessions ?? 0)))
@@ -90,7 +90,7 @@ struct HeatmapWidgetView: View {
         HStack(spacing: 4) {
             Text(L.analyticsHeatmapLess).font(.caption2).foregroundStyle(.secondary)
             ForEach(0...4, id: \.self) { level in
-                RoundedRectangle(cornerRadius: 2).fill(Color.heatmap(level: level))
+                RoundedRectangle(cornerRadius: 2).fill(.heatmap(level: level))
                     .frame(width: 8, height: 8)
             }
             Text(L.analyticsHeatmapMore).font(.caption2).foregroundStyle(.secondary)
