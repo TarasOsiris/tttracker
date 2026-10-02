@@ -20,6 +20,7 @@
 		<string>tr</string>
 		<string>uk</string>
 		<string>zh-CN</string>
+		<string>zh-TW</string>
 	</array>
 	<key>CFBundleURLTypes</key>
 	<array>

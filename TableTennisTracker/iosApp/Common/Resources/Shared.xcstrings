@@ -87,6 +87,12 @@
             "state" : "translated",
             "value" : "默认"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "預設"
+          }
         }
       }
     },
@@ -175,6 +181,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "绿色"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "綠色"
           }
         }
       }
@@ -265,6 +277,12 @@
             "state" : "translated",
             "value" : "靛蓝"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "靛藍色"
+          }
         }
       }
     },
@@ -350,6 +368,12 @@
           }
         },
         "zh-CN" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "橙色"
+          }
+        },
+        "zh-TW" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "橙色"
@@ -443,6 +467,12 @@
             "state" : "translated",
             "value" : "粉色"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "粉紅色"
+          }
         }
       }
     },
@@ -528,6 +558,12 @@
           }
         },
         "zh-CN" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "紫色"
+          }
+        },
+        "zh-TW" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "紫色"
@@ -621,6 +657,12 @@
             "state" : "translated",
             "value" : "红色"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "紅色"
+          }
         }
       }
     },
@@ -709,6 +751,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "青色"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "藍綠色"
           }
         }
       }
@@ -799,6 +847,12 @@
             "state" : "translated",
             "value" : "训练：%1$lld"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "訓練：%1$lld"
+          }
         }
       }
     },
@@ -887,6 +941,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "添加比赛"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新增比賽"
           }
         }
       }
@@ -977,6 +1037,12 @@
             "state" : "translated",
             "value" : "添加对手"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新增對手"
+          }
         }
       }
     },
@@ -1066,6 +1132,12 @@
             "state" : "translated",
             "value" : "添加训练"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新增訓練"
+          }
         }
       }
     },
@@ -1151,6 +1223,12 @@
           }
         },
         "zh-CN" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "返回"
+          }
+        },
+        "zh-TW" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "返回"
@@ -1244,6 +1322,12 @@
             "state" : "translated",
             "value" : "取消"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取消"
+          }
         }
       }
     },
@@ -1332,6 +1416,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "更改"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "變更"
           }
         }
       }
@@ -1422,6 +1512,12 @@
             "state" : "translated",
             "value" : "关闭"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "關閉"
+          }
         }
       }
     },
@@ -1510,6 +1606,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "复制用户ID"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "複製使用者 ID"
           }
         }
       }
@@ -1600,6 +1702,12 @@
             "state" : "translated",
             "value" : "调试"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "除錯"
+          }
         }
       }
     },
@@ -1688,6 +1796,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "删除"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "刪除"
           }
         }
       }
@@ -1778,6 +1892,12 @@
             "state" : "translated",
             "value" : "编辑"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "編輯"
+          }
         }
       }
     },
@@ -1866,6 +1986,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "编辑对手"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "編輯對手"
           }
         }
       }
@@ -1956,6 +2082,12 @@
             "state" : "translated",
             "value" : "增加我的分数"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "增加我的分數"
+          }
         }
       }
     },
@@ -2044,6 +2176,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "增加对手分数"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "增加對手分數"
           }
         }
       }
@@ -2134,6 +2272,12 @@
             "state" : "translated",
             "value" : "语言"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "語言"
+          }
         }
       }
     },
@@ -2219,6 +2363,12 @@
           }
         },
         "zh-CN" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "下移"
+          }
+        },
+        "zh-TW" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "下移"
@@ -2312,6 +2462,12 @@
             "state" : "translated",
             "value" : "上移"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "上移"
+          }
         }
       }
     },
@@ -2400,6 +2556,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "确定"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "確定"
           }
         }
       }
@@ -2490,6 +2652,12 @@
             "state" : "translated",
             "value" : "对手"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "對手"
+          }
         }
       }
     },
@@ -2578,6 +2746,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "隐私政策"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "隱私權政策"
           }
         }
       }
@@ -2668,6 +2842,12 @@
             "state" : "translated",
             "value" : "为应用评分"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "為 App 評分"
+          }
         }
       }
     },
@@ -2756,6 +2936,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "恢复购买"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "回復購買項目"
           }
         }
       }
@@ -2846,6 +3032,12 @@
             "state" : "translated",
             "value" : "保存"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "儲存"
+          }
         }
       }
     },
@@ -2934,6 +3126,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "发送反馈"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "傳送意見回饋"
           }
         }
       }
@@ -3024,6 +3222,12 @@
             "state" : "translated",
             "value" : "主题"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "主題"
+          }
         }
       }
     },
@@ -3112,6 +3316,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "界面设置"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "介面設定"
           }
         }
       }
@@ -3202,6 +3412,12 @@
             "state" : "translated",
             "value" : "网站"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "網站"
+          }
         }
       }
     },
@@ -3290,6 +3506,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "每周起始日"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "每週起始日"
           }
         }
       }
@@ -3380,6 +3602,12 @@
             "state" : "translated",
             "value" : "添加比赛"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新增比賽"
+          }
         }
       }
     },
@@ -3468,6 +3696,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "局分 %1$lld–%2$lld"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "局數 %1$lld–%2$lld"
           }
         }
       }
@@ -3558,6 +3792,12 @@
             "state" : "translated",
             "value" : "交手战绩"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "交手戰績"
+          }
         }
       }
     },
@@ -3647,6 +3887,12 @@
             "state" : "translated",
             "value" : "所有对手"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "所有對手"
+          }
         }
       }
     },
@@ -3732,6 +3978,12 @@
           }
         },
         "zh-CN" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "少"
+          }
+        },
+        "zh-TW" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "少"
@@ -3825,6 +4077,12 @@
             "state" : "translated",
             "value" : "多"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "多"
+          }
         }
       }
     },
@@ -3913,6 +4171,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "训练会话热力图"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "訓練熱度圖"
           }
         }
       }
@@ -4003,6 +4267,12 @@
             "state" : "translated",
             "value" : "%1$lld小时%2$lld分钟"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld 小時 %2$lld 分鐘"
+          }
         }
       }
     },
@@ -4088,6 +4358,12 @@
           }
         },
         "zh-CN" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "洞察"
+          }
+        },
+        "zh-TW" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "洞察"
@@ -4181,6 +4457,12 @@
             "state" : "translated",
             "value" : "负"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "負"
+          }
         }
       }
     },
@@ -4269,6 +4551,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "暂无比赛记录"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "尚無比賽紀錄"
           }
         }
       }
@@ -4359,6 +4647,12 @@
             "state" : "translated",
             "value" : "暂无训练数据"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "尚無訓練資料"
+          }
         }
       }
     },
@@ -4447,6 +4741,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "时间范围"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "時間範圍"
           }
         }
       }
@@ -4537,6 +4837,12 @@
             "state" : "translated",
             "value" : "1年"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 年"
+          }
         }
       }
     },
@@ -4625,6 +4931,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "6个月"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "6 個月"
           }
         }
       }
@@ -4715,6 +5027,12 @@
             "state" : "translated",
             "value" : "8周"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "8 週"
+          }
         }
       }
     },
@@ -4800,6 +5118,12 @@
           }
         },
         "zh-CN" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "全部"
+          }
+        },
+        "zh-TW" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "全部"
@@ -4893,6 +5217,12 @@
             "state" : "translated",
             "value" : "未分类"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未分類"
+          }
         }
       }
     },
@@ -4981,6 +5311,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "训练类型"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "訓練類型"
           }
         }
       }
@@ -5071,6 +5407,12 @@
             "state" : "translated",
             "value" : "分析组件"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分析元件"
+          }
         }
       }
     },
@@ -5159,6 +5501,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "当前连续纪录"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "目前連續紀錄"
           }
         }
       }
@@ -5249,6 +5597,12 @@
             "state" : "translated",
             "value" : "每周至少训练一次的连续周数"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "每週至少訓練一次的連續週數"
+          }
         }
       }
     },
@@ -5337,6 +5691,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "最长连续纪录"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最長連續紀錄"
           }
         }
       }
@@ -5427,6 +5787,12 @@
             "state" : "translated",
             "value" : "总结"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "總結"
+          }
         }
       }
     },
@@ -5515,6 +5881,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "训练"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "訓練"
           }
         }
       }
@@ -5605,6 +5977,12 @@
             "state" : "translated",
             "value" : "训练时间"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "訓練時間"
+          }
         }
       }
     },
@@ -5693,6 +6071,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "训练负荷"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "訓練負荷"
           }
         }
       }
@@ -5783,6 +6167,12 @@
             "state" : "translated",
             "value" : "分钟 × 强度（RPE），按周统计"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分鐘 × 強度（RPE），按週統計"
+          }
         }
       }
     },
@@ -5868,6 +6258,12 @@
           }
         },
         "zh-CN" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "平均"
+          }
+        },
+        "zh-TW" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "平均"
@@ -5961,6 +6357,12 @@
             "state" : "translated",
             "value" : "总计"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "總計"
+          }
         }
       }
     },
@@ -6049,6 +6451,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "每周训练时间"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "每週訓練時間"
           }
         }
       }
@@ -6139,6 +6547,12 @@
             "state" : "translated",
             "value" : "训练热力图"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "訓練熱度圖"
+          }
         }
       }
     },
@@ -6227,6 +6641,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "训练连续纪录"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "訓練連續紀錄"
           }
         }
       }
@@ -6317,6 +6737,12 @@
             "state" : "translated",
             "value" : "总结"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "總結"
+          }
         }
       }
     },
@@ -6405,6 +6831,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "每周训练"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "每週訓練"
           }
         }
       }
@@ -6495,6 +6927,12 @@
             "state" : "translated",
             "value" : "胜负图表"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "勝負圖表"
+          }
         }
       }
     },
@@ -6583,6 +7021,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "拖动以重新排序"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "拖移以重新排序"
           }
         }
       }
@@ -6673,6 +7117,12 @@
             "state" : "translated",
             "value" : "胜 / 负"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "勝 / 負"
+          }
         }
       }
     },
@@ -6761,6 +7211,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "比赛结果"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "比賽結果"
           }
         }
       }
@@ -6851,6 +7307,12 @@
             "state" : "translated",
             "value" : "胜率"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "勝率"
+          }
         }
       }
     },
@@ -6939,6 +7401,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "胜"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "勝"
           }
         }
       }
@@ -7029,6 +7497,12 @@
             "state" : "translated",
             "value" : "联赛"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "聯賽"
+          }
         }
       }
     },
@@ -7117,6 +7591,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "练习"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "練習"
           }
         }
       }
@@ -7207,6 +7687,12 @@
             "state" : "translated",
             "value" : "锦标赛"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "錦標賽"
+          }
         }
       }
     },
@@ -7292,6 +7778,12 @@
           }
         },
         "zh-CN" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld/1000"
+          }
+        },
+        "zh-TW" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$lld/1000"
@@ -7385,6 +7877,12 @@
             "state" : "translated",
             "value" : "清除所有训练"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "清除所有訓練"
+          }
         }
       }
     },
@@ -7473,6 +7971,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "永久删除数据库中的所有训练。此操作无法撤消。"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "永久刪除資料庫中的所有訓練。此動作無法復原。"
           }
         }
       }
@@ -7563,6 +8067,12 @@
             "state" : "translated",
             "value" : "清除数据库"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "清除資料庫"
+          }
         }
       }
     },
@@ -7651,6 +8161,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "生成过去一年的随机训练数据，用于测试应用。"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "產生過去一年的隨機訓練資料，用於測試 App。"
           }
         }
       }
@@ -7741,6 +8257,12 @@
             "state" : "translated",
             "value" : "数据生成"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "資料產生"
+          }
         }
       }
     },
@@ -7829,6 +8351,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "生成100条随机训练"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "產生 100 筆隨機訓練"
           }
         }
       }
@@ -7919,6 +8447,12 @@
             "state" : "translated",
             "value" : "生成商店截图数据"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "產生商店截圖資料"
+          }
         }
       }
     },
@@ -8007,6 +8541,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "数据库中的训练"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "資料庫中的訓練"
           }
         }
       }
@@ -8097,6 +8637,12 @@
             "state" : "translated",
             "value" : "这也将删除与此对手的所有比赛。此操作无法撤销。"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "這也會刪除與此對手的所有比賽。此動作無法復原。"
+          }
         }
       }
     },
@@ -8185,6 +8731,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "删除对手？"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "要刪除對手嗎？"
           }
         }
       }
@@ -8275,6 +8827,12 @@
             "state" : "translated",
             "value" : "此操作无法撤消。训练将被永久删除。"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此動作無法復原，訓練將被永久刪除。"
+          }
         }
       }
     },
@@ -8363,6 +8921,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "删除训练？"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "要刪除訓練嗎？"
           }
         }
       }
@@ -8453,6 +9017,12 @@
             "state" : "translated",
             "value" : "编辑比赛"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "編輯比賽"
+          }
         }
       }
     },
@@ -8538,6 +9108,12 @@
           }
         },
         "zh-CN" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "左手"
+          }
+        },
+        "zh-TW" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "左手"
@@ -8631,6 +9207,12 @@
             "state" : "translated",
             "value" : "右手"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "右手"
+          }
         }
       }
     },
@@ -8719,6 +9301,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "显示帮助"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "顯示說明"
           }
         }
       }
@@ -8809,6 +9397,12 @@
             "state" : "translated",
             "value" : "RPE（自觉用力程度）衡量你在运动中感到身体用力的程度。"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RPE（自覺費力程度）衡量你在運動時身體感覺有多費力。"
+          }
         }
       }
     },
@@ -8897,6 +9491,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "1-2：非常轻松 - 轻度活动，可以轻松说话"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1–2：非常輕鬆 — 輕度活動，可以輕鬆說話"
           }
         }
       }
@@ -8987,6 +9587,12 @@
             "state" : "translated",
             "value" : "3-4：轻松 - 舒适节奏，可以交谈"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3–4：輕鬆 — 舒適的節奏，可以交談"
+          }
         }
       }
     },
@@ -9075,6 +9681,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "5-6：中等 - 呼吸更急促，有些挑战"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "5–6：中等 — 呼吸變急促，有點挑戰"
           }
         }
       }
@@ -9165,6 +9777,12 @@
             "state" : "translated",
             "value" : "7-8：困难 - 难以说话，需要逼自己"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "7–8：吃力 — 難以說話，需要逼自己"
+          }
         }
       }
     },
@@ -9253,6 +9871,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "9-10：最大努力 - 全力强度，无法持续"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "9–10：最大強度 — 全力以赴，無法持續"
           }
         }
       }
@@ -9343,6 +9967,12 @@
             "state" : "translated",
             "value" : "1-10 量表有助于跟踪训练强度："
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1–10 分的量表有助於追蹤訓練強度："
+          }
         }
       }
     },
@@ -9431,6 +10061,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "提示：大多数训练应在 5-7 区间。"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "提示：大多數訓練應落在 5–7 區間。"
           }
         }
       }
@@ -9521,6 +10157,12 @@
             "state" : "translated",
             "value" : "什么是 RPE？"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "什麼是 RPE？"
+          }
         }
       }
     },
@@ -9609,6 +10251,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "添加关于这场比赛的备注..."
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新增這場比賽的備註…"
           }
         }
       }
@@ -9699,6 +10347,12 @@
             "state" : "translated",
             "value" : "添加关于训练的备注..."
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新增這次訓練的備註…"
+          }
         }
       }
     },
@@ -9787,6 +10441,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "输入对手姓名"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "輸入對手姓名"
           }
         }
       }
@@ -9877,6 +10537,12 @@
             "state" : "translated",
             "value" : "比赛级别（可选）"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "比賽級別（選填）"
+          }
         }
       }
     },
@@ -9962,6 +10628,12 @@
           }
         },
         "zh-CN" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "日期"
+          }
+        },
+        "zh-TW" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "日期"
@@ -10055,6 +10727,12 @@
             "state" : "translated",
             "value" : "默认备注"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "預設備註"
+          }
         }
       }
     },
@@ -10143,6 +10821,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "双打"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "雙打"
           }
         }
       }
@@ -10233,6 +10917,12 @@
             "state" : "translated",
             "value" : "时长"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "時長"
+          }
         }
       }
     },
@@ -10321,6 +11011,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "强度（RPE）"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "強度（RPE）"
           }
         }
       }
@@ -10411,6 +11107,12 @@
             "state" : "translated",
             "value" : "备注（可选）"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "備註（選填）"
+          }
         }
       }
     },
@@ -10500,6 +11202,12 @@
             "state" : "translated",
             "value" : "比赛（可选）"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "比賽（選填）"
+          }
         }
       }
     },
@@ -10585,6 +11293,12 @@
           }
         },
         "zh-CN" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "我"
+          }
+        },
+        "zh-TW" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "我"
@@ -10678,6 +11392,12 @@
             "state" : "translated",
             "value" : "备注"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "備註"
+          }
         }
       }
     },
@@ -10766,6 +11486,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "备注（可选）"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "備註（選填）"
           }
         }
       }
@@ -10856,6 +11582,12 @@
             "state" : "translated",
             "value" : "对手"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "對手"
+          }
         }
       }
     },
@@ -10944,6 +11676,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "俱乐部（可选）"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "俱樂部（選填）"
           }
         }
       }
@@ -11034,6 +11772,12 @@
             "state" : "translated",
             "value" : "惯用手（可选）"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "慣用手（選填）"
+          }
         }
       }
     },
@@ -11119,6 +11863,12 @@
           }
         },
         "zh-CN" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "姓名"
+          }
+        },
+        "zh-TW" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "姓名"
@@ -11212,6 +11962,12 @@
             "state" : "translated",
             "value" : "备注（可选）"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "備註（選填）"
+          }
         }
       }
     },
@@ -11300,6 +12056,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "等级分（可选）"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "積分（選填）"
           }
         }
       }
@@ -11390,6 +12152,12 @@
             "state" : "translated",
             "value" : "打法（可选）"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打法（選填）"
+          }
         }
       }
     },
@@ -11479,6 +12247,12 @@
             "state" : "translated",
             "value" : "排位"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "積分賽"
+          }
         }
       }
     },
@@ -11564,6 +12338,12 @@
           }
         },
         "zh-CN" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RPE"
+          }
+        },
+        "zh-TW" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "RPE"
@@ -11657,6 +12437,12 @@
             "state" : "translated",
             "value" : "比分"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "比分"
+          }
         }
       }
     },
@@ -11745,6 +12531,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "训练类型"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "訓練類型"
           }
         }
       }
@@ -11835,6 +12627,12 @@
             "state" : "translated",
             "value" : "选择语言"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇語言"
+          }
         }
       }
     },
@@ -11924,6 +12722,12 @@
             "state" : "translated",
             "value" : "负"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "負"
+          }
         }
       }
     },
@@ -12009,6 +12813,12 @@
           }
         },
         "zh-CN" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld - %2$lld"
+          }
+        },
+        "zh-TW" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$lld - %2$lld"
@@ -12102,6 +12912,12 @@
             "state" : "translated",
             "value" : "胜"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "勝"
+          }
         }
       }
     },
@@ -12191,6 +13007,12 @@
             "state" : "translated",
             "value" : "尚未添加比赛"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "尚未新增比賽"
+          }
         }
       }
     },
@@ -12276,6 +13098,12 @@
           }
         },
         "zh-CN" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分析"
+          }
+        },
+        "zh-TW" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "分析"
@@ -12369,6 +13197,12 @@
             "state" : "translated",
             "value" : "训练"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "訓練"
+          }
         }
       }
     },
@@ -12457,6 +13291,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "设置"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定"
           }
         }
       }
@@ -12547,6 +13387,12 @@
             "state" : "translated",
             "value" : "等级分：%1$lld"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "積分：%1$lld"
+          }
         }
       }
     },
@@ -12635,6 +13481,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "暂无对手"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "尚無對手"
           }
         }
       }
@@ -12725,6 +13577,12 @@
             "state" : "translated",
             "value" : "你在此添加的对手将在记录训练会话中的比赛时可快速选择。"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在這裡新增的對手，可在訓練中記錄比賽時快速選擇。"
+          }
         }
       }
     },
@@ -12813,6 +13671,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "关于对手"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "關於對手"
           }
         }
       }
@@ -12903,6 +13767,12 @@
             "state" : "translated",
             "value" : "获取 Pro"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取得 Pro"
+          }
         }
       }
     },
@@ -12992,6 +13862,12 @@
             "state" : "translated",
             "value" : "读懂你的训练，打造专属于你的应用"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "讀懂你的訓練，打造專屬於你的 App"
+          }
         }
       }
     },
@@ -13077,6 +13953,12 @@
           }
         },
         "zh-CN" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TT Tracker Pro"
+          }
+        },
+        "zh-TW" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "TT Tracker Pro"
@@ -13170,6 +14052,12 @@
             "state" : "translated",
             "value" : "为应用和小组件换上你喜欢的颜色"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "為 App 和小工具換上你喜歡的顏色"
+          }
         }
       }
     },
@@ -13258,6 +14146,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "强调色"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "強調色"
           }
         }
       }
@@ -13348,6 +14242,12 @@
             "state" : "translated",
             "value" : "将训练和比赛导入电子表格"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "將訓練和比賽匯入試算表"
+          }
         }
       }
     },
@@ -13436,6 +14336,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "导出为 CSV"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "匯出為 CSV"
           }
         }
       }
@@ -13526,6 +14432,12 @@
             "state" : "translated",
             "value" : "你与每位对手的战绩和近期状态"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你與每位對手的戰績和近期狀態"
+          }
         }
       }
     },
@@ -13614,6 +14526,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "交手战绩"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "交手戰績"
           }
         }
       }
@@ -13704,6 +14622,12 @@
             "state" : "translated",
             "value" : "6 个月、1 年或全部时间的每周训练"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "6 個月、1 年或全部時間的每週訓練"
+          }
         }
       }
     },
@@ -13792,6 +14716,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "完整历史"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "完整歷史"
           }
         }
       }
@@ -13882,6 +14812,12 @@
             "state" : "translated",
             "value" : "连续纪录、每周训练负荷和训练类型分布"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "連續紀錄、每週訓練負荷和訓練類型分布"
+          }
         }
       }
     },
@@ -13970,6 +14906,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "训练洞察"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "訓練洞察"
           }
         }
       }
@@ -14060,6 +15002,12 @@
             "state" : "translated",
             "value" : "帮助 TT Tracker 持续成长"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "幫助 TT Tracker 持續成長"
+          }
         }
       }
     },
@@ -14148,6 +15096,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "支持独立开发者"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "支持獨立開發者"
           }
         }
       }
@@ -14238,6 +15192,12 @@
             "state" : "translated",
             "value" : "在主屏幕上查看连续纪录和训练负荷"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在主畫面上查看連續紀錄和訓練負荷"
+          }
         }
       }
     },
@@ -14326,6 +15286,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "更多小组件"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "更多小工具"
           }
         }
       }
@@ -14416,6 +15382,12 @@
             "state" : "translated",
             "value" : "无法恢复购买，请重试。"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法回復購買項目，請再試一次。"
+          }
         }
       }
     },
@@ -14504,6 +15476,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "没有可恢复的购买项目"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "沒有可回復的購買項目"
           }
         }
       }
@@ -14594,6 +15572,12 @@
             "state" : "translated",
             "value" : "已恢复购买"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已回復購買項目"
+          }
         }
       }
     },
@@ -14679,6 +15663,12 @@
           }
         },
         "zh-CN" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PRO"
+          }
+        },
+        "zh-TW" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "PRO"
@@ -14772,6 +15762,12 @@
             "state" : "translated",
             "value" : "使用 Pro 解锁"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用 Pro 解鎖"
+          }
         }
       }
     },
@@ -14860,6 +15856,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "打开 Pro 升级选项"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打開 Pro 升級選項"
           }
         }
       }
@@ -14950,6 +15952,12 @@
             "state" : "translated",
             "value" : "轻松"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "輕鬆"
+          }
         }
       }
     },
@@ -15038,6 +16046,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "困难"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "吃力"
           }
         }
       }
@@ -15128,6 +16142,12 @@
             "state" : "translated",
             "value" : "最大强度"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最大強度"
+          }
         }
       }
     },
@@ -15213,6 +16233,12 @@
           }
         },
         "zh-CN" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "中等"
+          }
+        },
+        "zh-TW" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "中等"
@@ -15306,6 +16332,12 @@
             "state" : "translated",
             "value" : "非常轻松"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "非常輕鬆"
+          }
         }
       }
     },
@@ -15394,6 +16426,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "训练"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "訓練"
           }
         }
       }
@@ -15484,6 +16522,12 @@
             "state" : "translated",
             "value" : "%1$lld分钟"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld 分鐘"
+          }
         }
       }
     },
@@ -15572,6 +16616,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "比赛（%1$lld）"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "比賽（%1$lld）"
           }
         }
       }
@@ -15662,6 +16712,12 @@
             "state" : "translated",
             "value" : "自由练习"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自由練習"
+          }
         }
       }
     },
@@ -15751,6 +16807,12 @@
             "state" : "translated",
             "value" : "比赛对打"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "比賽對打"
+          }
         }
       }
     },
@@ -15836,6 +16898,12 @@
           }
         },
         "zh-CN" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "其他"
+          }
+        },
+        "zh-TW" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "其他"
@@ -15929,6 +16997,12 @@
             "state" : "translated",
             "value" : "体能训练"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "體能訓練"
+          }
         }
       }
     },
@@ -16017,6 +17091,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "发球练习"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "發球練習"
           }
         }
       }
@@ -16107,6 +17187,12 @@
             "state" : "translated",
             "value" : "技术训练"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "技術訓練"
+          }
         }
       }
     },
@@ -16195,6 +17281,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "锦标赛"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "錦標賽"
           }
         }
       }
@@ -16285,6 +17377,12 @@
             "state" : "translated",
             "value" : "暂无训练"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "尚無訓練"
+          }
         }
       }
     },
@@ -16370,6 +17468,12 @@
           }
         },
         "zh-CN" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "月"
+          }
+        },
+        "zh-TW" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "月"
@@ -16463,6 +17567,12 @@
             "state" : "translated",
             "value" : "选择一次训练"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇一次訓練"
+          }
         }
       }
     },
@@ -16551,6 +17661,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "周"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "週"
           }
         }
       }
@@ -16641,6 +17757,12 @@
             "state" : "translated",
             "value" : "强调色"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "強調色"
+          }
         }
       }
     },
@@ -16726,6 +17848,12 @@
           }
         },
         "zh-CN" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nineva Studios"
+          }
+        },
+        "zh-TW" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nineva Studios"
@@ -16819,6 +17947,12 @@
             "state" : "translated",
             "value" : "导出为 CSV"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "匯出為 CSV"
+          }
         }
       }
     },
@@ -16907,6 +18041,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "你的训练和比赛，导出为两个表格文件"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你的訓練和比賽，匯出為兩個試算表檔案"
           }
         }
       }
@@ -16997,6 +18137,12 @@
             "state" : "translated",
             "value" : "高亮显示当前日期"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "醒目標示今天"
+          }
         }
       }
     },
@@ -17085,6 +18231,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "你的 iCloud 账户已更改，因此同步已关闭。如需与此账户同步，请重新打开。"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你的 iCloud 帳號已變更，因此同步已關閉。如要與此帳號同步，請重新開啟。"
           }
         }
       }
@@ -17175,6 +18327,12 @@
             "state" : "translated",
             "value" : "部分更改未能同步，稍后将自动重试。"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "部分變更未能同步，稍後會自動重試。"
+          }
         }
       }
     },
@@ -17260,6 +18418,12 @@
           }
         },
         "zh-CN" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "上次同步：%1$@"
+          }
+        },
+        "zh-TW" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "上次同步：%1$@"
@@ -17353,6 +18517,12 @@
             "state" : "translated",
             "value" : "请在“设置”中登录 iCloud 以进行同步。"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "請在「設定」中登入 iCloud 以進行同步。"
+          }
         }
       }
     },
@@ -17442,6 +18612,12 @@
             "state" : "translated",
             "value" : "你的 iCloud 储存空间已满，部分更改未能同步。"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你的 iCloud 儲存空間已滿，部分變更未能同步。"
+          }
         }
       }
     },
@@ -17527,6 +18703,12 @@
           }
         },
         "zh-CN" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud"
+          }
+        },
+        "zh-TW" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "iCloud"
@@ -17620,6 +18802,12 @@
             "state" : "translated",
             "value" : "通过 iCloud 同步"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "透過 iCloud 同步"
+          }
         }
       }
     },
@@ -17709,6 +18897,12 @@
             "state" : "translated",
             "value" : "让你的训练、比赛和对手在所有设备上保持一致。"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "讓你的訓練、比賽和對手在所有裝置上保持一致。"
+          }
         }
       }
     },
@@ -17794,6 +18988,12 @@
           }
         },
         "zh-CN" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "立即同步"
+          }
+        },
+        "zh-TW" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "立即同步"
@@ -17887,6 +19087,12 @@
             "state" : "translated",
             "value" : "正在同步…"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在同步…"
+          }
         }
       }
     },
@@ -17976,6 +19182,12 @@
             "state" : "translated",
             "value" : "此应用的 iCloud 数据已被删除，因此同步已关闭。此设备上的内容均未删除。"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此 App 的 iCloud 資料已被刪除，因此同步已關閉。此裝置上的內容都未刪除。"
+          }
         }
       }
     },
@@ -18061,6 +19273,12 @@
           }
         },
         "zh-CN" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "等待同步"
+          }
+        },
+        "zh-TW" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "等待同步"
@@ -18154,6 +19372,12 @@
             "state" : "translated",
             "value" : "用 ❤️ 制作于"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "用 ❤️ 製作於"
+          }
         }
       }
     },
@@ -18242,6 +19466,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "关于"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "關於"
           }
         }
       }
@@ -18332,6 +19562,12 @@
             "state" : "translated",
             "value" : "外观"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "外觀"
+          }
         }
       }
     },
@@ -18420,6 +19656,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "日历"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "行事曆"
           }
         }
       }
@@ -18510,6 +19752,12 @@
             "state" : "translated",
             "value" : "数据"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "資料"
+          }
         }
       }
     },
@@ -18598,6 +19846,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "开发者"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開發者"
           }
         }
       }
@@ -18688,6 +19942,12 @@
             "state" : "translated",
             "value" : "通用"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一般"
+          }
         }
       }
     },
@@ -18776,6 +20036,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "帮助"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "說明"
           }
         }
       }
@@ -18866,6 +20132,12 @@
             "state" : "translated",
             "value" : "训练默认设置"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "訓練預設值"
+          }
         }
       }
     },
@@ -18951,6 +20223,12 @@
           }
         },
         "zh-CN" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "版本 %1$@ (%2$@)"
+          }
+        },
+        "zh-TW" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "版本 %1$@ (%2$@)"
@@ -19044,6 +20322,12 @@
             "state" : "translated",
             "value" : "全能型"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "全能型"
+          }
         }
       }
     },
@@ -19132,6 +20416,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "进攻型"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "進攻型"
           }
         }
       }
@@ -19222,6 +20512,12 @@
             "state" : "translated",
             "value" : "削球手"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "削球型"
+          }
         }
       }
     },
@@ -19307,6 +20603,12 @@
           }
         },
         "zh-CN" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "防守型"
+          }
+        },
+        "zh-TW" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "防守型"
@@ -19400,6 +20702,12 @@
             "state" : "translated",
             "value" : "长胶"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "長膠"
+          }
         }
       }
     },
@@ -19488,6 +20796,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "分钟"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分鐘"
           }
         }
       }
@@ -19578,6 +20892,12 @@
             "state" : "translated",
             "value" : "%1$lld分钟"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld 分鐘"
+          }
         }
       }
     },
@@ -19663,6 +20983,12 @@
           }
         },
         "zh-CN" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "深色"
+          }
+        },
+        "zh-TW" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "深色"
@@ -19756,6 +21082,12 @@
             "state" : "translated",
             "value" : "浅色"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "淺色"
+          }
         }
       }
     },
@@ -19844,6 +21176,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "选择主题"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇主題"
           }
         }
       }
@@ -19934,6 +21272,12 @@
             "state" : "translated",
             "value" : "跟随系统"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "跟隨系統"
+          }
         }
       }
     },
@@ -20019,6 +21363,12 @@
           }
         },
         "zh-CN" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今天"
+          }
+        },
+        "zh-TW" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "今天"
@@ -20112,6 +21462,12 @@
             "state" : "translated",
             "value" : "明天"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "明天"
+          }
         }
       }
     },
@@ -20197,6 +21553,12 @@
           }
         },
         "zh-CN" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "昨天"
+          }
+        },
+        "zh-TW" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "昨天"
@@ -20290,6 +21652,12 @@
             "state" : "translated",
             "value" : "创建训练"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "建立訓練"
+          }
         }
       }
     },
@@ -20378,6 +21746,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "错误"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "錯誤"
           }
         }
       }
@@ -20468,6 +21842,12 @@
             "state" : "translated",
             "value" : "对手"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "對手"
+          }
         }
       }
     },
@@ -20556,6 +21936,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "设置"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定"
           }
         }
       }
@@ -20646,6 +22032,12 @@
             "state" : "translated",
             "value" : "已复制用户ID"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已複製使用者 ID"
+          }
         }
       }
     },
@@ -20731,6 +22123,12 @@
           }
         },
         "zh-CN" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "星期一"
+          }
+        },
+        "zh-TW" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "星期一"
@@ -20824,6 +22222,12 @@
             "state" : "translated",
             "value" : "星期六"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "星期六"
+          }
         }
       }
     },
@@ -20913,6 +22317,12 @@
             "state" : "translated",
             "value" : "每周起始日"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "每週起始日"
+          }
         }
       }
     },
@@ -20998,6 +22408,12 @@
           }
         },
         "zh-CN" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "星期日"
+          }
+        },
+        "zh-TW" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "星期日"
@@ -21091,6 +22507,12 @@
             "state" : "translated",
             "value" : "打开 TT Tracker 并开始记录一次训练。"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打開 TT Tracker 並開始記錄一次訓練。"
+          }
         }
       }
     },
@@ -21179,6 +22601,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "添加训练"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新增訓練"
           }
         }
       }
@@ -21269,6 +22697,12 @@
             "state" : "translated",
             "value" : "还没有训练"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "還沒有訓練"
+          }
         }
       }
     },
@@ -21357,6 +22791,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "你的训练日，按当天的训练量深浅着色。"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你的訓練日，依當天的訓練量深淺著色。"
           }
         }
       }
@@ -21447,6 +22887,12 @@
             "state" : "translated",
             "value" : "训练活跃度"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "訓練活躍度"
+          }
         }
       }
     },
@@ -21535,6 +22981,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "上次训练的时间、时长和结果。"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "上次訓練的時間、時長和結果。"
           }
         }
       }
@@ -21625,6 +23077,12 @@
             "state" : "translated",
             "value" : "最近一次训练"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最近一次訓練"
+          }
         }
       }
     },
@@ -21713,6 +23171,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "上周"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "上週"
           }
         }
       }
@@ -21803,6 +23267,12 @@
             "state" : "translated",
             "value" : "本周的训练负荷，与之前几周并列对比。"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "本週的訓練負荷，與前幾週並列比較。"
+          }
         }
       }
     },
@@ -21891,6 +23361,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "训练负荷"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "訓練負荷"
           }
         }
       }
@@ -21981,6 +23457,12 @@
             "state" : "translated",
             "value" : "没有比赛"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "沒有比賽"
+          }
         }
       }
     },
@@ -22069,6 +23551,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "在应用中使用 Pro 解锁"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在 App 中使用 Pro 解鎖"
           }
         }
       }
@@ -22159,6 +23647,12 @@
             "state" : "translated",
             "value" : "你已连续训练了多少周，以及最长纪录。"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你已連續訓練了幾週，以及最長紀錄。"
+          }
         }
       }
     },
@@ -22247,6 +23741,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "连续训练"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "連續訓練"
           }
         }
       }
@@ -22337,6 +23837,12 @@
             "state" : "translated",
             "value" : "一眼看到训练次数、时长和你的比赛战绩。"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一眼看到訓練次數、時長和你的比賽戰績。"
+          }
         }
       }
     },
@@ -22426,6 +23932,12 @@
             "state" : "translated",
             "value" : "训练总览"
           }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "訓練總覽"
+          }
         }
       }
     },
@@ -22514,6 +24026,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "本周"
+          }
+        },
+        "zh-TW" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "本週"
           }
         }
       }

@@ -24,9 +24,10 @@ ACCESSORS = REPO_ROOT / "iosApp/Common/Generated/AppStrings.swift"
 
 SOURCE_LANGUAGE = "en"
 
-# Android's `values-zh-rCN` is Apple's `zh-CN`, which is what knownRegions and
-# CFBundleLocalizations already use.
-LANGUAGE_OVERRIDES = {"zh-rCN": "zh-CN"}
+# Android's `values-zh-rCN` and `values-zh-rTW` are Apple's `zh-CN` and `zh-TW`, which is what
+# knownRegions and CFBundleLocalizations already use. Apple resolves every Traditional preference
+# (`zh-Hant-HK`, `zh-Hant-MO`) onto `zh-TW`, so one catalog covers Hong Kong too.
+LANGUAGE_OVERRIDES = {"zh-rCN": "zh-CN", "zh-rTW": "zh-TW"}
 
 # Unreferenced anywhere in Kotlin. Kept in strings.xml (the Android UI owns that file) but not
 # carried onto iOS.

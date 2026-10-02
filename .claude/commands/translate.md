@@ -8,7 +8,7 @@ speaker localizing a polished iOS and Android app would: idiomatic UI language, 
 rendering of the English.
 
 1. Read the base English strings file: `androidApp/src/main/res/values/strings.xml`.
-2. For each supported locale (ar, de, es, fr, hi, id, it, ja, ko, pt, tr, uk, zh-rCN):
+2. For each supported locale (ar, de, es, fr, hi, id, it, ja, ko, pt, tr, uk, zh-rCN, zh-rTW):
     - Read the locale file at `androidApp/src/main/res/values-{locale}/strings.xml` **in full**
       before translating anything. It is your glossary and style guide for that language.
     - Find string keys that exist in English but are missing in the locale file.
@@ -45,8 +45,9 @@ rendering of the English.
 - **Escape apostrophes** as `\'` — aapt rejects a bare `'` in a string resource. This matters for
   French, Italian and Ukrainian especially. Escape `"` and `@`/`?` at the start of a string the same
   way.
-- **Script and locale**: `zh-rCN` is Simplified Chinese; `pt` is Brazilian Portuguese; `uk` is
-  Ukrainian, not Russian; `ar` is written right-to-left, so check punctuation reads naturally in
-  RTL.
+- **Script and locale**: `zh-rCN` is Simplified Chinese; `zh-rTW` is Traditional Chinese as written
+  in Taiwan, using the Taiwan UI terms Apple and Google use (設定, 儲存, 新增, 帳號) — it also serves
+  Hong Kong, so avoid Taiwan-only slang; `pt` is Brazilian Portuguese; `uk` is Ukrainian, not
+  Russian; `ar` is written right-to-left, so check punctuation reads naturally in RTL.
 - **Typography**: use the language's own quotes and punctuation (« » with spaces in French, „ " in
   German, full-width punctuation in Japanese and Chinese), and the proper ellipsis `…`.

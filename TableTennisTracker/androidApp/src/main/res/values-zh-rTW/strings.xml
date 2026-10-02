@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- RPE Labels -->
+    <string name="rpe_very_easy">非常輕鬆</string>
+    <string name="rpe_easy">輕鬆</string>
+    <string name="rpe_moderate">中等</string>
+    <string name="rpe_hard">吃力</string>
+    <string name="rpe_max_effort">最大強度</string>
+
+    <!-- General Actions -->
+    <string name="action_ok">確定</string>
+    <string name="action_cancel">取消</string>
+    <string name="action_close">關閉</string>
+    <string name="action_change">變更</string>
+    <string name="action_edit">編輯</string>
+    <string name="action_save">儲存</string>
+    <string name="action_add_session">新增訓練</string>
+	<string name="action_ui_settings">介面設定</string>
+    <string name="action_opponents">對手</string>
+    <string name="opponents_empty">尚無對手</string>
+    <string name="title_opponents">對手</string>
+    <string name="action_back">返回</string>
+
+    <!-- Navigation -->
+    <string name="nav_sessions">訓練</string>
+    <string name="nav_analytics">分析</string>
+    <string name="nav_settings">設定</string>
+
+    <!-- Screen Titles -->
+    <string name="title_create_session">建立訓練</string>
+    <string name="title_settings">設定</string>
+    <string name="title_error">錯誤</string>
+
+    <!-- Sessions Screen -->
+    <string name="sessions_week_mode">週</string>
+    <string name="sessions_month_mode">月</string>
+    <string name="sessions_empty">尚無訓練</string>
+    <string name="sessions_select_prompt">選擇一次訓練</string>
+    <string name="session_duration_format">%1$d 分鐘</string>
+
+    <!-- Create Session Screen -->
+    <string name="label_date">日期</string>
+    <string name="label_duration">時長</string>
+    <string name="suffix_minutes">分鐘</string>
+    <string name="suffix_minutes_value">%1$d 分鐘</string>
+    <string name="label_session_type">訓練類型</string>
+    <string name="label_intensity_rpe">強度（RPE）</string>
+    <string name="label_notes_optional">備註（選填）</string>
+    <string name="label_default_notes">預設備註</string>
+    <string name="hint_notes">新增這次訓練的備註…</string>
+    <string name="counter_notes">%1$d/1000</string>
+
+    <!-- Session Details Screen -->
+    <string name="session_default_title">訓練</string>
+    <string name="label_rpe">RPE</string>
+    <string name="label_notes">備註</string>
+    <string name="action_delete">刪除</string>
+    <string name="delete_session_title">要刪除訓練嗎？</string>
+    <string name="delete_session_message">此動作無法復原，訓練將被永久刪除。</string>
+
+    <!-- Session Types -->
+    <string name="session_type_technique">技術訓練</string>
+    <string name="session_type_match_play">比賽對打</string>
+    <string name="session_type_tournament">錦標賽</string>
+    <string name="session_type_serve_practice">發球練習</string>
+    <string name="session_type_physical">體能訓練</string>
+    <string name="session_type_free_play">自由練習</string>
+    <string name="session_type_other">其他</string>
+
+    <!-- Analytics Screen -->
+	<string name="analytics_summary">總結</string>
+	<string name="analytics_total_sessions">訓練</string>
+	<string name="analytics_total_time">訓練時間</string>
+	<string name="analytics_hours_minutes">%1$d 小時 %2$d 分鐘</string>
+    <string name="analytics_win_loss">勝 / 負</string>
+    <string name="analytics_win_rate">勝率</string>
+    <string name="analytics_heatmap_title">訓練熱度圖</string>
+    <string name="analytics_heatmap_less">少</string>
+    <string name="analytics_heatmap_more">多</string>
+    <string name="analytics_weekly_training">每週訓練時間</string>
+    <string name="analytics_win_loss_chart">比賽結果</string>
+    <string name="analytics_wins">勝</string>
+    <string name="analytics_losses">負</string>
+    <string name="analytics_no_matches">尚無比賽紀錄</string>
+    <string name="analytics_no_training">尚無訓練資料</string>
+    <string name="analytics_weekly_avg">平均</string>
+    <string name="analytics_weekly_total">總計</string>
+    <string name="analytics_settings_title">分析元件</string>
+    <string name="analytics_widget_summary">總結</string>
+    <string name="analytics_widget_win_loss">勝負圖表</string>
+    <string name="analytics_widget_weekly">每週訓練</string>
+    <string name="analytics_widget_heatmap">訓練熱度圖</string>
+    <string name="analytics_widget_streak">訓練連續紀錄</string>
+    <string name="analytics_widgets_reorder_hint">拖移以重新排序</string>
+    <string name="action_move_up">上移</string>
+    <string name="action_move_down">下移</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_section_general">一般</string>
+    <string name="settings_section_help">說明</string>
+    <string name="settings_section_about">關於</string>
+    <string name="action_send_feedback">傳送意見回饋</string>
+    <string name="action_visit_website">網站</string>
+    <string name="action_rate_app">為 App 評分</string>
+    <string name="action_copy_user_id">複製使用者 ID</string>
+    <string name="user_id_copied">已複製使用者 ID</string>
+
+    <!-- General Settings Screen -->
+	<string name="settings_section_appearance">外觀</string>
+    <string name="settings_section_calendar">行事曆</string>
+    <string name="settings_section_sessions">訓練預設值</string>
+    <string name="action_theme">主題</string>
+    <string name="theme_select_title">選擇主題</string>
+	<string name="action_language">語言</string>
+	<string name="language_select_title">選擇語言</string>
+    <string name="theme_system">跟隨系統</string>
+    <string name="theme_light">淺色</string>
+    <string name="theme_dark">深色</string>
+    <string name="action_privacy_policy">隱私權政策</string>
+    <string name="action_week_start">每週起始日</string>
+    <string name="week_start_select_title">每週起始日</string>
+    <string name="week_start_monday">星期一</string>
+    <string name="week_start_sunday">星期日</string>
+    <string name="week_start_saturday">星期六</string>
+    <string name="settings_highlight_current_day">醒目標示今天</string>
+    <string name="settings_section_developer">開發者</string>
+    <string name="action_debug">除錯</string>
+    <string name="settings_version_format">版本 %1$s (%2$s)</string>
+    <string name="settings_made_with_prefix">用 ❤️ 製作於</string>
+    <string name="settings_company_name">Nineva Studios</string>
+
+    <!-- Home Screen -->
+
+    <!-- Debug Screen -->
+    <string name="debug_data_generation_title">資料產生</string>
+    <string name="debug_data_generation_description">產生過去一年的隨機訓練資料，用於測試 App。</string>
+    <string name="debug_generate_random_sessions">產生 100 筆隨機訓練</string>
+    <string name="debug_seed_showcase_data">產生商店截圖資料</string>
+    <string name="debug_sessions_in_database">資料庫中的訓練</string>
+    <string name="debug_clear_database_title">清除資料庫</string>
+    <string name="debug_clear_database_description">永久刪除資料庫中的所有訓練。此動作無法復原。</string>
+    <string name="debug_clear_all_sessions">清除所有訓練</string>
+
+    <!-- Date & Time -->
+    <string name="time_today">今天</string>
+    <string name="time_yesterday">昨天</string>
+    <string name="time_tomorrow">明天</string>
+    <string name="month_january">一月</string>
+    <string name="month_february">二月</string>
+    <string name="month_march">三月</string>
+    <string name="month_april">四月</string>
+    <string name="month_may">五月</string>
+    <string name="month_june">六月</string>
+    <string name="month_july">七月</string>
+    <string name="month_august">八月</string>
+    <string name="month_september">九月</string>
+    <string name="month_october">十月</string>
+    <string name="month_november">十一月</string>
+    <string name="month_december">十二月</string>
+    <string name="day_monday">星期一</string>
+    <string name="day_tuesday">星期二</string>
+    <string name="day_wednesday">星期三</string>
+    <string name="day_thursday">星期四</string>
+    <string name="day_friday">星期五</string>
+    <string name="day_saturday">星期六</string>
+    <string name="day_sunday">星期日</string>
+    <string name="day_monday_short">一</string>
+    <string name="day_tuesday_short">二</string>
+    <string name="day_wednesday_short">三</string>
+    <string name="day_thursday_short">四</string>
+    <string name="day_friday_short">五</string>
+    <string name="day_saturday_short">六</string>
+    <string name="day_sunday_short">日</string>
+    <string name="month_january_short">1月</string>
+    <string name="month_february_short">2月</string>
+    <string name="month_march_short">3月</string>
+    <string name="month_april_short">4月</string>
+    <string name="month_may_short">5月</string>
+    <string name="month_june_short">6月</string>
+    <string name="month_july_short">7月</string>
+    <string name="month_august_short">8月</string>
+    <string name="month_september_short">9月</string>
+    <string name="month_october_short">10月</string>
+    <string name="month_november_short">11月</string>
+    <string name="month_december_short">12月</string>
+
+    <string name="duration_minutes_full">%1$d 分鐘</string>
+    <string name="duration_hours_full">%1$d 小時</string>
+    <string name="duration_hours_plural_full">%1$d 小時</string>
+    <string name="duration_hm_short">%1$d時%2$d分</string>
+
+	<!-- Help -->
+	<string name="help_icon_content_description">顯示說明</string>
+	<string name="help_rpe_title">什麼是 RPE？</string>
+	<string name="help_rpe_description">RPE（自覺費力程度）衡量你在運動時身體感覺有多費力。</string>
+	<string name="help_rpe_scale_intro">1–10 分的量表有助於追蹤訓練強度：</string>
+	<string name="help_rpe_level_1_2">1–2：非常輕鬆 — 輕度活動，可以輕鬆說話</string>
+	<string name="help_rpe_level_3_4">3–4：輕鬆 — 舒適的節奏，可以交談</string>
+	<string name="help_rpe_level_5_6">5–6：中等 — 呼吸變急促，有點挑戰</string>
+	<string name="help_rpe_level_7_8">7–8：吃力 — 難以說話，需要逼自己</string>
+	<string name="help_rpe_level_9_10">9–10：最大強度 — 全力以赴，無法持續</string>
+	<string name="help_rpe_tip">提示：大多數訓練應落在 5–7 區間。</string>
+
+    <!-- Match Creation -->
+    <string name="label_matches_optional">比賽（選填）</string>
+    <string name="action_add_match">新增比賽</string>
+    <string name="add_match">新增比賽</string>
+    <string name="edit_match">編輯比賽</string>
+    <string name="label_match_notes_optional">備註（選填）</string>
+    <string name="hint_match_notes">新增這場比賽的備註…</string>
+    <string name="label_opponent">對手</string>
+    <string name="hint_opponent_name">輸入對手姓名</string>
+    <string name="label_score">比分</string>
+    <string name="label_me">我</string>
+    <string name="action_increase_my_score">增加我的分數</string>
+    <string name="action_increase_opponent_score">增加對手分數</string>
+    <string name="label_competition_level_optional">比賽級別（選填）</string>
+    <string name="matches_empty_hint">尚未新增比賽</string>
+    <string name="label_doubles">雙打</string>
+    <string name="label_ranked">積分賽</string>
+    <string name="competition_level_practice">練習</string>
+    <string name="competition_level_league">聯賽</string>
+    <string name="competition_level_tournament">錦標賽</string>
+    <string name="match_score_format">%1$d - %2$d</string>
+    <string name="match_win">勝</string>
+    <string name="match_loss">負</string>
+
+	<!-- Session Details -->
+	<string name="session_matches_count">比賽（%1$d）</string>
+	<string name="opponent_rating_format">積分：%1$d</string>
+
+	<!-- Opponents -->
+    <string name="action_add_opponent">新增對手</string>
+	<string name="action_edit_opponent">編輯對手</string>
+    <string name="label_opponent_name">姓名</string>
+    <string name="label_opponent_club">俱樂部（選填）</string>
+    <string name="label_opponent_rating">積分（選填）</string>
+    <string name="label_opponent_handedness">慣用手（選填）</string>
+    <string name="label_opponent_style">打法（選填）</string>
+    <string name="label_opponent_notes">備註（選填）</string>
+    <string name="handedness_right">右手</string>
+    <string name="handedness_left">左手</string>
+    <string name="style_attacker">進攻型</string>
+    <string name="style_defender">防守型</string>
+    <string name="style_all_round">全能型</string>
+    <string name="style_pips">長膠</string>
+    <string name="style_chopper">削球型</string>
+
+	<!-- Delete Confirmation -->
+	<string name="delete_opponent_title">要刪除對手嗎？</string>
+	<string name="delete_opponent_message">這也會刪除與此對手的所有比賽。此動作無法復原。</string>
+
+	<!-- Opponents Info -->
+	<string name="opponents_info_title">關於對手</string>
+	<string name="opponents_info_message">在這裡新增的對手，可在訓練中記錄比賽時快速選擇。</string>
+
+    <!-- Accessibility -->
+    <string name="accessibility_sessions_count">訓練：%1$d</string>
+
+    <!-- Home screen widgets -->
+    <string name="widget_summary_name">訓練總覽</string>
+    <string name="widget_summary_description">一眼看到訓練次數、時長和你的比賽戰績。</string>
+    <string name="widget_heatmap_name">訓練活躍度</string>
+    <string name="widget_heatmap_description">你的訓練日，依當天的訓練量深淺著色。</string>
+    <string name="widget_last_session_name">最近一次訓練</string>
+    <string name="widget_last_session_description">上次訓練的時間、時長和結果。</string>
+    <string name="widget_add_session_name">新增訓練</string>
+    <string name="widget_add_session_description">打開 TT Tracker 並開始記錄一次訓練。</string>
+    <string name="widget_streak_name">連續訓練</string>
+    <string name="widget_streak_description">你已連續訓練了幾週，以及最長紀錄。</string>
+    <string name="widget_load_name">訓練負荷</string>
+    <string name="widget_load_description">本週的訓練負荷，與前幾週並列比較。</string>
+    <string name="widget_this_week">本週</string>
+    <string name="widget_last_week">上週</string>
+    <string name="widget_pro_locked">在 App 中使用 Pro 解鎖</string>
+    <string name="widget_empty">還沒有訓練</string>
+    <string name="widget_no_matches">沒有比賽</string>
+    <string name="settings_icloud_section">iCloud</string>
+    <string name="settings_icloud_sync">透過 iCloud 同步</string>
+    <string name="settings_icloud_sync_hint">讓你的訓練、比賽和對手在所有裝置上保持一致。</string>
+    <string name="settings_icloud_sync_now">立即同步</string>
+    <string name="settings_icloud_syncing">正在同步…</string>
+    <string name="settings_icloud_waiting">等待同步</string>
+    <string name="settings_icloud_last_synced">上次同步：%1$s</string>
+    <string name="settings_icloud_no_account">請在「設定」中登入 iCloud 以進行同步。</string>
+    <string name="settings_icloud_quota_exceeded">你的 iCloud 儲存空間已滿，部分變更未能同步。</string>
+    <string name="settings_icloud_failed">部分變更未能同步，稍後會自動重試。</string>
+    <string name="settings_icloud_turned_off">此 App 的 iCloud 資料已被刪除，因此同步已關閉。此裝置上的內容都未刪除。</string>
+    <string name="settings_icloud_account_changed">你的 iCloud 帳號已變更，因此同步已關閉。如要與此帳號同步，請重新開啟。</string>
+    <string name="pro_unlock">使用 Pro 解鎖</string>
+    <string name="settings_section_data">資料</string>
+    <string name="settings_export">匯出為 CSV</string>
+    <string name="settings_export_hint">你的訓練和比賽，匯出為兩個試算表檔案</string>
+    <string name="settings_accent_color">強調色</string>
+    <string name="accent_default">預設</string>
+    <string name="accent_green">綠色</string>
+    <string name="accent_teal">藍綠色</string>
+    <string name="accent_indigo">靛藍色</string>
+    <string name="accent_purple">紫色</string>
+    <string name="accent_pink">粉紅色</string>
+    <string name="accent_red">紅色</string>
+    <string name="accent_orange">橙色</string>
+    <string name="pro_toolbar_button">PRO</string>
+    <string name="pro_upgrade_hint">打開 Pro 升級選項</string>
+    <string name="pro_banner_title">TT Tracker Pro</string>
+    <string name="pro_banner_tagline">讀懂你的訓練，打造專屬於你的 App</string>
+    <string name="pro_benefit_insights_title">訓練洞察</string>
+    <string name="pro_benefit_insights_detail">連續紀錄、每週訓練負荷和訓練類型分布</string>
+    <string name="pro_benefit_head_to_head_title">交手戰績</string>
+    <string name="pro_benefit_head_to_head_detail">你與每位對手的戰績和近期狀態</string>
+    <string name="pro_benefit_history_title">完整歷史</string>
+    <string name="pro_benefit_history_detail">6 個月、1 年或全部時間的每週訓練</string>
+    <string name="pro_benefit_widgets_title">更多小工具</string>
+    <string name="pro_benefit_widgets_detail">在主畫面上查看連續紀錄和訓練負荷</string>
+    <string name="pro_benefit_export_title">匯出為 CSV</string>
+    <string name="pro_benefit_export_detail">將訓練和比賽匯入試算表</string>
+    <string name="pro_benefit_accent_title">強調色</string>
+    <string name="pro_benefit_accent_detail">為 App 和小工具換上你喜歡的顏色</string>
+    <string name="analytics_insights">洞察</string>
+    <string name="analytics_streak_current">目前連續紀錄</string>
+    <string name="analytics_streak_longest">最長連續紀錄</string>
+    <string name="analytics_streak_hint">每週至少訓練一次的連續週數</string>
+    <string name="analytics_training_load">訓練負荷</string>
+    <string name="analytics_training_load_hint">分鐘 × 強度（RPE），按週統計</string>
+    <string name="analytics_session_types">訓練類型</string>
+    <string name="analytics_session_type_none">未分類</string>
+    <string name="analytics_head_to_head">交手戰績</string>
+    <string name="analytics_head_to_head_all">所有對手</string>
+    <string name="analytics_games_format">局數 %1$d–%2$d</string>
+    <string name="analytics_range">時間範圍</string>
+    <string name="analytics_range_8w">8 週</string>
+    <string name="analytics_range_6m">6 個月</string>
+    <string name="analytics_range_1y">1 年</string>
+    <string name="analytics_range_all">全部</string>
+    <string name="pro_banner_cta">取得 Pro</string>
+    <string name="pro_benefit_support_title">支持獨立開發者</string>
+    <string name="pro_benefit_support_detail">幫助 TT Tracker 持續成長</string>
+    <string name="action_restore_purchases">回復購買項目</string>
+    <string name="pro_restore_success">已回復購買項目</string>
+    <string name="pro_restore_nothing">沒有可回復的購買項目</string>
+    <string name="pro_restore_failed">無法回復購買項目，請再試一次。</string>
+</resources>

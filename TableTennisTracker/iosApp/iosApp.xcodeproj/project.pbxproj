@@ -276,6 +276,7 @@
 				tr,
 				uk,
 				"zh-CN",
+				"zh-TW",
 				Base,
 			);
 			mainGroup = 572F70F244A1229DCD705873;
