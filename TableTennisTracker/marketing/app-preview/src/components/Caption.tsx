@@ -26,13 +26,14 @@ const parse = (caption: string): Run[][] => {
  * marker that sweeps in once its words have landed. `frame` is local to the caption; it leaves
  * over the last frames of `duration`.
  */
-export const Caption: React.FC<{text: string; frame: number; duration: number; palette: Palette; size: number}> = ({
-	text,
-	frame,
-	duration,
-	palette,
-	size,
-}) => {
+export const Caption: React.FC<{
+	text: string;
+	frame: number;
+	duration: number;
+	palette: Palette;
+	size: number;
+	align?: 'center' | 'left';
+}> = ({text, frame, duration, palette, size, align = 'center'}) => {
 	const {fps} = useVideoConfig();
 	const out = interpolate(frame, [duration - 9, duration], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
 	const gap = size * 0.26;
@@ -61,7 +62,7 @@ export const Caption: React.FC<{text: string; frame: number; duration: number; p
 			style={{
 				display: 'flex',
 				flexDirection: 'column',
-				alignItems: 'center',
+				alignItems: align === 'left' ? 'flex-start' : 'center',
 				gap: size * 0.08,
 				fontFamily: HEADLINE,
 				fontWeight: 700,

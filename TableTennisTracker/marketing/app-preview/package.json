@@ -4,12 +4,14 @@
   "scripts": {
     "capture:iphone": "python3 capture/capture_clips.py iphone",
     "capture:ipad": "python3 capture/capture_clips.py ipad",
+    "capture:android": "python3 capture/capture_android.py",
     "audio": "python3 capture/make_audio.py",
     "studio": "remotion studio src/index.ts",
     "typecheck": "tsc -p .",
     "render:iphone": "remotion render src/index.ts iPhone out/raw-iphone.mp4 --codec h264 --crf 12 --audio-codec aac --audio-bitrate 320k && sh capture/finalize.sh out/raw-iphone.mp4 out/app-preview-iphone.mp4",
     "render:ipad": "remotion render src/index.ts iPad out/raw-ipad.mp4 --codec h264 --crf 12 --audio-codec aac --audio-bitrate 320k && sh capture/finalize.sh out/raw-ipad.mp4 out/app-preview-ipad.mp4",
-    "render": "npm run render:iphone && npm run render:ipad"
+    "render:android": "remotion render src/index.ts Android out/raw-android.mp4 --codec h264 --crf 12 --audio-codec aac --audio-bitrate 320k && ffmpeg -v error -y -i out/raw-android.mp4 -c:v libx264 -profile:v high -preset slow -crf 17 -pix_fmt yuv420p -c:a aac -b:a 256k -ar 48000 -movflags +faststart out/promo-android.mp4",
+    "render": "npm run render:iphone && npm run render:ipad && npm run render:android"
   },
   "dependencies": {
     "@remotion/cli": "4.0.529",

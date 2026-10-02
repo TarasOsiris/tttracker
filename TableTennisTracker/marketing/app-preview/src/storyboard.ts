@@ -6,10 +6,14 @@ import iphoneAnalytics from '../public/clips/iphone/analytics.json';
 import iphoneBrowse from '../public/clips/iphone/browse.json';
 import iphoneDark from '../public/clips/iphone/dark.json';
 import iphoneLog from '../public/clips/iphone/log.json';
+import androidAnalytics from '../public/clips/android/analytics.json';
+import androidBrowse from '../public/clips/android/browse.json';
+import androidDark from '../public/clips/android/dark.json';
+import androidLog from '../public/clips/android/log.json';
 
 export const FPS = 30;
 
-export type DeviceKind = 'iphone' | 'ipad';
+export type DeviceKind = 'iphone' | 'ipad' | 'android';
 export type ClipName = 'browse' | 'log' | 'analytics' | 'dark';
 
 export type ClipEvent = {
@@ -61,6 +65,11 @@ export type Layout = {
 	captionWidth: number;
 	iconSize: number;
 	titleSize: number;
+	/** Horizontal centre of the device; the middle of the frame when absent. */
+	deviceX?: number;
+	/** Left edge of the caption box; centred over the device when absent. */
+	captionLeft?: number;
+	captionAlign?: 'center' | 'left';
 };
 
 export type Storyboard = {
@@ -76,18 +85,20 @@ export type Storyboard = {
 const at = (clip: ClipMeta, index: number) => clip.events[index].t;
 
 /**
- * One edit for both devices, its boundaries read off the take logs. The log take's events, in
- * order: add, duration, type menu, Match Play, intensity, scroll, add match, name field, typing,
- * suggestion, three of mine, one of theirs, save match, save session. Browse: scroll, month, back a
- * month. Analytics: the tab, then four scrolls.
+ * One edit for every device, its boundaries read off the take logs. The log take opens on the add
+ * button and ends saving the match and then the session; the match editor opens two gestures before
+ * the typing (the add-match tap, then the name field). Browse opens on a scroll, then the month.
+ * Analytics opens on its tab.
  */
-const beats = (clips: Record<ClipName, ClipMeta>, ipad: boolean): Beat[] => {
+const beats = (clips: Record<ClipName, ClipMeta>, kind: DeviceKind): Beat[] => {
 	const {browse, log, analytics} = clips;
+	const ipad = kind === 'ipad';
+	const typing = log.events.findIndex((e) => e.kind === 'type');
 	const scroll = at(browse, 0);
 	const month = at(browse, 1);
 	const add = at(log, 0);
-	const addMatch = at(log, 6);
-	const saveMatch = at(log, 14);
+	const addMatch = at(log, typing - 2);
+	const saveMatch = at(log, log.events.length - 2);
 	const tab = at(analytics, 0);
 	const analyticsEnd = analytics.duration - 0.2;
 	const split = tab + (analyticsEnd - tab) * 0.5;
@@ -103,13 +114,15 @@ const beats = (clips: Record<ClipName, ClipMeta>, ipad: boolean): Beat[] => {
 		{clip: 'log', ...span(saveMatch - 0.1, log.duration - 0.2, 2.4), caption: 'Celebrate|*every win*', enter: 'cut',
 			effect: 'confetti', confettiAt: saveMatch + 0.15},
 		{clip: 'analytics', ...span(tab - 0.3, split, 3.2), caption: 'See your game|*improve*'},
-		{clip: 'analytics', ...span(split, analyticsEnd, 3.0), caption: 'Streaks, load and|*head-to-head*', enter: 'cut'},
+		{clip: 'analytics', ...span(split, analyticsEnd, 3.0), enter: 'cut',
+			caption: kind === 'android' ? 'Find your|*training rhythm*' : 'Streaks, load and|*head-to-head*'},
 		{clip: 'browse', from: 0.3, dur: 2.8, caption: 'Easy on the eyes,|*day or night*', effect: 'night'},
 	];
 };
 
 const IPHONE_CLIPS = {browse: iphoneBrowse, log: iphoneLog, analytics: iphoneAnalytics, dark: iphoneDark};
 const IPAD_CLIPS = {browse: ipadBrowse, log: ipadLog, analytics: ipadAnalytics, dark: ipadDark};
+const ANDROID_CLIPS = {browse: androidBrowse, log: androidLog, analytics: androidAnalytics, dark: androidDark};
 
 export const STORYBOARDS: Record<DeviceKind, Storyboard> = {
 	iphone: {
@@ -121,7 +134,7 @@ export const STORYBOARDS: Record<DeviceKind, Storyboard> = {
 		clips: IPHONE_CLIPS,
 		intro: 2.3,
 		outro: 2.9,
-		beats: beats(IPHONE_CLIPS, false),
+		beats: beats(IPHONE_CLIPS, 'iphone'),
 	},
 	ipad: {
 		kind: 'ipad',
@@ -132,7 +145,20 @@ export const STORYBOARDS: Record<DeviceKind, Storyboard> = {
 		clips: IPAD_CLIPS,
 		intro: 2.3,
 		outro: 2.9,
-		beats: beats(IPAD_CLIPS, true),
+		beats: beats(IPAD_CLIPS, 'ipad'),
+	},
+	// Google Play takes a YouTube promo video, which it shows landscape: the phone beside its caption.
+	android: {
+		kind: 'android',
+		layout: {
+			width: 1920, height: 1080, screenW: 452, screenH: 904, deviceTop: 74, bezel: 12, radius: 46,
+			captionTop: 0, captionBottom: 1080, captionSize: 84, captionWidth: 860, iconSize: 220, titleSize: 76,
+			deviceX: 1360, captionLeft: 150, captionAlign: 'left',
+		},
+		clips: ANDROID_CLIPS,
+		intro: 2.3,
+		outro: 2.9,
+		beats: beats(ANDROID_CLIPS, 'android'),
 	},
 };
 

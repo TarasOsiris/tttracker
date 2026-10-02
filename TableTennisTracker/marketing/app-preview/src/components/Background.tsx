@@ -23,15 +23,17 @@ const ARCS = [
 export const Background: React.FC<{palette: Palette}> = ({palette}) => {
 	const frame = useCurrentFrame();
 	const {width, height, fps} = useVideoConfig();
+	// Sized from the shorter side, so the discs keep their scale in a landscape frame.
+	const unit = Math.min(width, height);
 	return (
 		<AbsoluteFill
 			style={{background: `linear-gradient(165deg, ${palette.background} 0%, ${palette.background} 38%, ${palette.backgroundDeep} 100%)`}}
 		>
 			{DISCS.map((d, i) => {
 				const grow = spring({frame: frame - d.delay, fps, config: {damping: 14, stiffness: 60, mass: 1.2}});
-				const size = d.size * width;
-				const driftX = Math.sin((frame + i * 40) / 70) * width * 0.012;
-				const driftY = Math.cos((frame + i * 55) / 85) * width * 0.016;
+				const size = d.size * unit;
+				const driftX = Math.sin((frame + i * 40) / 70) * unit * 0.012;
+				const driftY = Math.cos((frame + i * 55) / 85) * unit * 0.016;
 				return (
 					<div
 						key={i}
@@ -59,9 +61,9 @@ export const Background: React.FC<{palette: Palette}> = ({palette}) => {
 							fill="none"
 							stroke={palette.brand}
 							strokeOpacity={0.12}
-							strokeWidth={width * 0.006}
+							strokeWidth={unit * 0.006}
 							strokeLinecap="round"
-							strokeDasharray={`${width * 0.012} ${width * 0.024}`}
+							strokeDasharray={`${unit * 0.012} ${unit * 0.024}`}
 							pathLength={1000}
 							style={{strokeDashoffset: (1 - draw) * 1000, clipPath: `inset(0 ${(1 - draw) * 100}% 0 0)`}}
 						/>

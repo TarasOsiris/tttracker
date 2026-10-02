@@ -56,7 +56,7 @@ export const Lockup: React.FC<{frame: number; layout: Layout; palette: Palette; 
 				position: 'absolute',
 				left: 0,
 				right: 0,
-				top: height * 0.3,
+				top: height * (width > height ? 0.2 : 0.3),
 				display: 'flex',
 				flexDirection: 'column',
 				alignItems: 'center',

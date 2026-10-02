@@ -37,13 +37,13 @@ const Stage: React.FC<{board: Storyboard; timeline: Timeline; frame: number; pal
 						key={beat.index}
 						style={{
 							position: 'absolute',
-							left: (layout.width - layout.captionWidth) / 2,
+							left: layout.captionLeft ?? (layout.width - layout.captionWidth) / 2,
 							width: layout.captionWidth,
 							top: layout.captionTop,
 							height: layout.captionBottom - layout.captionTop,
 							display: 'flex',
 							alignItems: 'center',
-							justifyContent: 'center',
+							justifyContent: layout.captionAlign === 'left' ? 'flex-start' : 'center',
 						}}
 					>
 						<Caption
@@ -52,6 +52,7 @@ const Stage: React.FC<{board: Storyboard; timeline: Timeline; frame: number; pal
 							duration={beat.end - beat.start}
 							palette={palette}
 							size={layout.captionSize}
+							align={layout.captionAlign}
 						/>
 					</div>
 				) : null,
@@ -77,7 +78,7 @@ export const Preview: React.FC<{device: DeviceKind}> = ({device}) => {
 		});
 		nightRadius = Math.hypot(width, height) * open * (1 - close);
 	}
-	const nightCenter = `${width * 0.82}px ${board.layout.deviceTop + 60}px`;
+	const nightCenter = `${(board.layout.deviceX ?? width / 2) + board.layout.screenW * 0.5}px ${board.layout.deviceTop + 60}px`;
 
 	// The confetti fires on the tap that saves the won match, wherever that lands in its beat.
 	const confettiBeat = timeline.beats.find((b) => b.effect === 'confetti');

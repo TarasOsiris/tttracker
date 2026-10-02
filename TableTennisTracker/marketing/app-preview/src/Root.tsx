@@ -26,5 +26,15 @@ export const Root: React.FC = () => (
 			fps={FPS}
 			durationInFrames={buildTimeline(STORYBOARDS.ipad).total}
 		/>
+		{/* Google Play's promo video is a YouTube link, shown landscape: 1920x1080 at 30 fps. */}
+		<Composition
+			id="Android"
+			component={Preview}
+			defaultProps={{device: 'android' as const}}
+			width={STORYBOARDS.android.layout.width}
+			height={STORYBOARDS.android.layout.height}
+			fps={FPS}
+			durationInFrames={buildTimeline(STORYBOARDS.android).total}
+		/>
 	</>
 );

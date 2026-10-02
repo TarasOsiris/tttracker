@@ -110,7 +110,7 @@ export const Device: React.FC<{board: Storyboard; timeline: Timeline; frame: num
 		<div
 			style={{
 				position: 'absolute',
-				left: (width - screenW) / 2 - bezel,
+				left: (board.layout.deviceX ?? width / 2) - screenW / 2 - bezel,
 				top: deviceTop,
 				width: screenW + bezel * 2,
 				height: screenH + bezel * 2,
