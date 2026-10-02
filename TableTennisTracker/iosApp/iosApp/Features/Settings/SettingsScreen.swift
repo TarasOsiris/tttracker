@@ -103,9 +103,10 @@ struct SettingsScreen: View {
                     Label {
                         VStack(alignment: .leading, spacing: 2) {
                             Text(L.settingsExport)
+                                .foregroundStyle(Color.primary)
                             Text(L.settingsExportHint)
                                 .font(.footnote)
-                                .foregroundStyle(.secondary)
+                                .foregroundStyle(Color.secondary)
                         }
                     } icon: {
                         Image(systemName: "square.and.arrow.up")

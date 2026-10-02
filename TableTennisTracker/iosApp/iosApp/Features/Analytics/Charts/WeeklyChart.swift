@@ -55,9 +55,12 @@ struct WeeklyChart: View {
         .chartXAxis {
             AxisMarks(values: .automatic(desiredCount: model.weeklyRange == .eightWeeks ? 8 : 6)) { _ in
                 AxisGridLine()
-                AxisValueLabel(format: model.weeklyRange.axisFormat)
+                AxisValueLabel(format: model.weeklyRange.axisFormat(weeks: model.weekly.count))
             }
         }
+        // Room after the last bar, so a month label falling in the current week is not clipped by
+        // the y axis.
+        .chartXScale(range: .plotDimension(endPadding: model.weeklyRange == .eightWeeks ? 0 : 14))
         .frame(height: isWide ? 220 : 160)
     }
 }

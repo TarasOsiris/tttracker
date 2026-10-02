@@ -51,7 +51,7 @@ struct SettingsProBanner: View {
     }
 
     private var benefits: some View {
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: 9) {
             ForEach(ProBenefit.all) { ProBenefitRow(benefit: $0) }
         }
     }
@@ -73,6 +73,7 @@ struct SettingsProBanner: View {
 /// What Pro includes. Keep it in step with the benefit rows of the paywall designed in RevenueCat;
 /// "Support an indie developer" stays last. A new Pro feature adds a row here.
 struct ProBenefit: Identifiable {
+    let symbol: String
     let title: String
     let detail: String
 
@@ -80,35 +81,35 @@ struct ProBenefit: Identifiable {
 
     static var all: [ProBenefit] {
         [
-            ProBenefit(title: L.proBenefitInsightsTitle, detail: L.proBenefitInsightsDetail),
-            ProBenefit(title: L.proBenefitHeadToHeadTitle, detail: L.proBenefitHeadToHeadDetail),
-            ProBenefit(title: L.proBenefitHistoryTitle, detail: L.proBenefitHistoryDetail),
-            ProBenefit(title: L.proBenefitWidgetsTitle, detail: L.proBenefitWidgetsDetail),
-            ProBenefit(title: L.proBenefitExportTitle, detail: L.proBenefitExportDetail),
-            ProBenefit(title: L.proBenefitAccentTitle, detail: L.proBenefitAccentDetail),
-            ProBenefit(title: L.proBenefitSupportTitle, detail: L.proBenefitSupportDetail),
+            ProBenefit(symbol: "flame.fill", title: L.proBenefitInsightsTitle, detail: L.proBenefitInsightsDetail),
+            ProBenefit(symbol: "person.2.fill", title: L.proBenefitHeadToHeadTitle, detail: L.proBenefitHeadToHeadDetail),
+            ProBenefit(symbol: "chart.bar.fill", title: L.proBenefitHistoryTitle, detail: L.proBenefitHistoryDetail),
+            ProBenefit(symbol: "square.grid.2x2.fill", title: L.proBenefitWidgetsTitle, detail: L.proBenefitWidgetsDetail),
+            ProBenefit(symbol: "tablecells.fill", title: L.proBenefitExportTitle, detail: L.proBenefitExportDetail),
+            ProBenefit(symbol: "paintpalette.fill", title: L.proBenefitAccentTitle, detail: L.proBenefitAccentDetail),
+            ProBenefit(symbol: "heart.fill", title: L.proBenefitSupportTitle, detail: L.proBenefitSupportDetail),
         ]
     }
 }
 
+/// One line per benefit, so seven of them still leave the free user's Settings readable; the detail
+/// line is spoken rather than shown.
 private struct ProBenefitRow: View {
     let benefit: ProBenefit
 
+    @ScaledMetric(relativeTo: .subheadline) private var iconWidth = 22
+
     var body: some View {
-        HStack(alignment: .top, spacing: 12) {
-            Image(systemName: "checkmark")
-                .font(.footnote.bold())
+        HStack(spacing: 10) {
+            Image(systemName: benefit.symbol)
+                .font(.footnote)
                 .foregroundStyle(.tint)
-                .frame(width: 18)
-                .padding(.top, 2)
-            VStack(alignment: .leading, spacing: 2) {
-                Text(benefit.title)
-                    .font(.subheadline.weight(.semibold))
-                    .foregroundStyle(.primary)
-                Text(benefit.detail)
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
-            }
+                .frame(width: iconWidth)
+            Text(benefit.title)
+                .font(.subheadline.weight(.medium))
+                .foregroundStyle(.primary)
         }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text(verbatim: "\(benefit.title), \(benefit.detail)"))
     }
 }

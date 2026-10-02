@@ -34,7 +34,7 @@ struct InsightsSections: View {
                     TrainingLoadChart(model: model, isWide: isWide)
                 }
                 .padding(.vertical, 4)
-                .proLocked(.analyticsInsights)
+                .proLocked(.analyticsInsights, caption: L.proBenefitInsightsDetail)
             }
         }
     }
@@ -99,6 +99,7 @@ private struct SessionTypeBreakdown: View {
                         Text(share.minutes.trainingDuration, format: .trainingDuration)
                     }
                     ProgressView(value: Double(share.minutes), total: Double(most))
+                        .tint(Color.sessionKind(share.kind))
                         .accessibilityHidden(true)
                 }
                 .padding(.vertical, 2)

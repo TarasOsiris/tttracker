@@ -24,7 +24,7 @@ struct StreakWidgetView: View {
 
     var body: some View {
         if !entry.showsPro {
-            ProWidgetLock()
+            ProWidgetLock(name: L.widgetStreakName, symbol: "flame.fill")
         } else if snapshot.isEmpty, family == .systemSmall {
             WidgetEmpty()
         } else {
@@ -42,12 +42,13 @@ struct StreakWidgetView: View {
             Text(streak.currentWeeks, format: .integer)
                 .font(.system(size: 40, weight: .semibold, design: .rounded))
                 .contentTransition(.numericText())
-            weeks(streak.currentWeeks).font(.caption).foregroundStyle(.secondary)
+            Text(L.analyticsStreakCurrent).font(.caption).foregroundStyle(.secondary)
             WeekDots(weeks: snapshot.weeks ?? [])
                 .padding(.top, 4)
         }
-        .accessibilityElement(children: .combine)
+        .accessibilityElement(children: .ignore)
         .accessibilityLabel(L.analyticsStreakCurrent)
+        .accessibilityValue(weeks(streak.currentWeeks))
     }
 
     private var rectangular: some View {

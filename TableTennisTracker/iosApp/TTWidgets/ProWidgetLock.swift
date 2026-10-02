@@ -1,9 +1,12 @@
 import SwiftUI
 import WidgetKit
 
-/// What a Pro widget shows when it was placed without Pro: what it is, and that the app unlocks it.
-/// The tap goes to the paywall, through `DeepLink.pro`.
+/// What a Pro widget shows when it was placed without Pro: which widget it is, and that the app
+/// unlocks it. The tap goes to the paywall, through `DeepLink.pro`.
 struct ProWidgetLock: View {
+    let name: String
+    let symbol: String
+
     @Environment(\.widgetFamily) private var family
 
     var body: some View {
@@ -18,11 +21,15 @@ struct ProWidgetLock: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
         default:
             VStack(spacing: 6) {
-                Image(systemName: "crown.fill").font(.title2).foregroundStyle(.tint)
-                Text(L.proBannerTitle).font(.caption.bold())
-                Text(L.widgetProLocked).font(.caption2).foregroundStyle(.secondary)
+                Image(systemName: symbol).font(.title2).foregroundStyle(.tint)
+                Text(name).font(.caption.bold()).lineLimit(1).minimumScaleFactor(0.8)
+                // The crown inline, so it sits on the first line of the text when it wraps.
+                Text("\(Image(systemName: "crown.fill")) \(L.widgetProLocked)")
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
             }
             .multilineTextAlignment(.center)
+            .accessibilityElement(children: .combine)
         }
     }
 }
@@ -37,3 +44,4 @@ extension View {
 extension SnapshotEntry {
     var showsPro: Bool { snapshot.hasPro || isPreview }
 }
+

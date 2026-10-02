@@ -35,12 +35,10 @@ enum WeeklyRange: CaseIterable, Identifiable {
         }
     }
 
-    /// Day and month while each bar is a labelled week; months once there are too many to label.
-    var axisFormat: Date.FormatStyle {
-        switch self {
-        case .eightWeeks: .dateTime.day().month(.defaultDigits)
-        case .sixMonths, .year: .dateTime.month(.abbreviated)
-        case .all: .dateTime.month(.abbreviated).year(.twoDigits)
-        }
+    /// Day and month while each bar is a labelled week, months once there are too many to label, and
+    /// years once the months would repeat.
+    func axisFormat(weeks: Int) -> Date.FormatStyle {
+        if self == .eightWeeks { return .dateTime.day().month(.defaultDigits) }
+        return weeks > 60 ? .dateTime.year() : .dateTime.month(.abbreviated)
     }
 }

@@ -26,7 +26,7 @@ struct TrainingLoadWidgetView: View {
 
     var body: some View {
         if !entry.showsPro {
-            ProWidgetLock()
+            ProWidgetLock(name: L.widgetLoadName, symbol: "chart.bar.fill")
         } else if entry.snapshot.isEmpty {
             WidgetEmpty()
         } else if family == .systemSmall {
