@@ -721,6 +721,9 @@ enum L {
 	/// Settings
 	static var titleSettings: String { Localization.string("title_settings") }
 
+	/// User ID copied
+	static var userIdCopied: String { Localization.string("user_id_copied") }
+
 	/// Monday
 	static var weekStartMonday: String { Localization.string("week_start_monday") }
 

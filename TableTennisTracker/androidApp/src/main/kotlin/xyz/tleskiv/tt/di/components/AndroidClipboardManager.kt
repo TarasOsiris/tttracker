@@ -2,6 +2,9 @@ package xyz.tleskiv.tt.di.components
 
 import android.content.ClipData
 import android.content.Context
+import android.os.Build
+import android.widget.Toast
+import xyz.tleskiv.tt.R
 import android.content.ClipboardManager as AndroidSystemClipboardManager
 
 class AndroidClipboardManager(private val context: Context) : ClipboardManager {
@@ -9,5 +12,8 @@ class AndroidClipboardManager(private val context: Context) : ClipboardManager {
 		val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as AndroidSystemClipboardManager
 		val clip = ClipData.newPlainText("User ID", text)
 		clipboard.setPrimaryClip(clip)
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+			Toast.makeText(context, R.string.user_id_copied, Toast.LENGTH_SHORT).show()
+		}
 	}
 }

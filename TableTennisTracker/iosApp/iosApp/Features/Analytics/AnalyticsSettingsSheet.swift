@@ -25,8 +25,8 @@ struct AnalyticsSettingsSheet: View {
             .navigationTitle(L.analyticsSettingsTitle)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button(L.actionClose, action: dismiss.callAsFunction)
+                ToolbarItem(placement: .topBarTrailing) {
+                    CloseButton(action: dismiss.callAsFunction)
                 }
             }
         }

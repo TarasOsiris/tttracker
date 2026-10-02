@@ -38,8 +38,8 @@ struct RpeHelpSheet: View {
             .navigationTitle(L.helpRpeTitle)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button(L.actionOk, action: dismiss.callAsFunction)
+                ToolbarItem(placement: .topBarTrailing) {
+                    CloseButton(action: dismiss.callAsFunction)
                 }
             }
         }

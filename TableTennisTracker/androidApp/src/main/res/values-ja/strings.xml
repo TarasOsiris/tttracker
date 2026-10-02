@@ -103,6 +103,7 @@
     <string name="action_visit_website">ウェブサイト</string>
     <string name="action_rate_app">アプリを評価</string>
     <string name="action_copy_user_id">ユーザーIDをコピー</string>
+    <string name="user_id_copied">ユーザーIDをコピーしました</string>
 
     <!-- General Settings Screen -->
 	<string name="settings_section_appearance">外観</string>

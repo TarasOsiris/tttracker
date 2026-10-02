@@ -13,11 +13,13 @@ import xyz.tleskiv.tt.di.components.AndroidClipboardManager
 import xyz.tleskiv.tt.di.components.AndroidExternalAppLauncher
 import xyz.tleskiv.tt.di.components.AndroidLocaleApplier
 import xyz.tleskiv.tt.di.components.AndroidNativeInfoProvider
+import xyz.tleskiv.tt.di.components.AndroidPurchasesIdProvider
 import xyz.tleskiv.tt.di.components.ClipboardManager
 import xyz.tleskiv.tt.di.components.CrashReporter
 import xyz.tleskiv.tt.di.components.ExternalAppLauncher
 import xyz.tleskiv.tt.di.components.LocaleApplier
 import xyz.tleskiv.tt.di.components.NativeInfoProvider
+import xyz.tleskiv.tt.di.components.PurchasesIdProvider
 import xyz.tleskiv.tt.di.components.SentryCrashReporter
 
 val androidPlatformModule = module {
@@ -27,6 +29,7 @@ val androidPlatformModule = module {
 	singleOf(::AndroidNativeInfoProvider) bind NativeInfoProvider::class
 	singleOf(::AndroidExternalAppLauncher) bind ExternalAppLauncher::class
 	singleOf(::AndroidClipboardManager) bind ClipboardManager::class
+	singleOf(::AndroidPurchasesIdProvider) bind PurchasesIdProvider::class
 	singleOf(::AndroidLocaleApplier) bind LocaleApplier::class
 	singleOf(::AndroidAnalyticsService) bind AnalyticsService::class
 	singleOf(::SentryCrashReporter) bind CrashReporter::class

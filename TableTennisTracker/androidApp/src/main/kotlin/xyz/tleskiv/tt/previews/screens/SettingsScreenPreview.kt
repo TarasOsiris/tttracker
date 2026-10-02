@@ -10,6 +10,7 @@ import xyz.tleskiv.tt.previews.fakes.FakeAnalyticsService
 import xyz.tleskiv.tt.previews.fakes.FakeClipboardManager
 import xyz.tleskiv.tt.previews.fakes.FakeExternalAppLauncher
 import xyz.tleskiv.tt.previews.fakes.FakeNativeInfoProvider
+import xyz.tleskiv.tt.previews.fakes.FakePurchasesIdProvider
 import xyz.tleskiv.tt.previews.fakes.FakeUserIdService
 import xyz.tleskiv.tt.previews.fakes.FakeUserPreferencesRepository
 import xyz.tleskiv.tt.ui.screens.SettingsScreen
@@ -28,6 +29,7 @@ fun SettingsScreenPreview() {
 				externalAppLauncher = FakeExternalAppLauncher(),
 				userIdService = FakeUserIdService(),
 				clipboardManager = FakeClipboardManager(),
+				purchasesIdProvider = FakePurchasesIdProvider(),
 				analyticsService = FakeAnalyticsService()
 			)
 		)
@@ -46,6 +48,7 @@ fun SettingsScreenPreviewDebug() {
 				externalAppLauncher = FakeExternalAppLauncher(),
 				userIdService = FakeUserIdService(),
 				clipboardManager = FakeClipboardManager(),
+				purchasesIdProvider = FakePurchasesIdProvider(),
 				analyticsService = FakeAnalyticsService()
 			)
 		)

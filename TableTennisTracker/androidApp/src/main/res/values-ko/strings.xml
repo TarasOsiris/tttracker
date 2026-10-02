@@ -103,6 +103,7 @@
     <string name="action_visit_website">웹사이트</string>
     <string name="action_rate_app">앱 평가하기</string>
     <string name="action_copy_user_id">사용자 ID 복사</string>
+    <string name="user_id_copied">사용자 ID를 복사했습니다</string>
 
     <!-- General Settings Screen -->
 	<string name="settings_section_appearance">외관</string>

@@ -12,6 +12,7 @@ import xyz.tleskiv.tt.di.components.AnalyticsService
 import xyz.tleskiv.tt.di.components.ClipboardManager
 import xyz.tleskiv.tt.di.components.ExternalAppLauncher
 import xyz.tleskiv.tt.di.components.NativeInfoProvider
+import xyz.tleskiv.tt.di.components.PurchasesIdProvider
 import xyz.tleskiv.tt.model.AppThemeMode
 import xyz.tleskiv.tt.repo.UserPreferencesRepository
 import xyz.tleskiv.tt.service.UserIdService
@@ -22,6 +23,7 @@ class SettingsViewModel(
 	private val externalAppLauncher: ExternalAppLauncher,
 	private val userIdService: UserIdService,
 	private val clipboardManager: ClipboardManager,
+	private val purchasesIdProvider: PurchasesIdProvider,
 	private val analyticsService: AnalyticsService
 ) : ViewModel() {
 
@@ -69,6 +71,7 @@ class SettingsViewModel(
 	}
 
 	fun copyUserId() {
-		clipboardManager.copyToClipboard(_userId.value)
+		clipboardManager.copyToClipboard(purchasesIdProvider.appUserId ?: _userId.value)
+		analyticsService.capture("user_id_copied")
 	}
 }

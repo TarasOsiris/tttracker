@@ -103,6 +103,7 @@
     <string name="action_visit_website">网站</string>
     <string name="action_rate_app">为应用评分</string>
     <string name="action_copy_user_id">复制用户ID</string>
+    <string name="user_id_copied">已复制用户ID</string>
 
     <!-- General Settings Screen -->
 	<string name="settings_section_appearance">外观</string>

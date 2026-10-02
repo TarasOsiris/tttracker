@@ -103,6 +103,7 @@
     <string name="action_visit_website">Situs web</string>
     <string name="action_rate_app">Beri nilai aplikasi</string>
     <string name="action_copy_user_id">Salin ID pengguna</string>
+    <string name="user_id_copied">ID pengguna disalin</string>
 
     <!-- General Settings Screen -->
 	<string name="settings_section_appearance">Tampilan</string>

@@ -24,11 +24,11 @@ struct MatchEditorSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button(L.actionCancel, action: dismiss.callAsFunction)
+                    CancelButton(action: dismiss.callAsFunction)
                         .accessibilityIdentifier("matchEditor.cancel")
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button(L.actionSave, action: save)
+                    ConfirmButton(action: save)
                         .disabled(!model.canSave)
                 }
             }

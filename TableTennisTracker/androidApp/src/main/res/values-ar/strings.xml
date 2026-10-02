@@ -103,6 +103,7 @@
     <string name="action_visit_website">الموقع</string>
     <string name="action_rate_app">تقييم التطبيق</string>
     <string name="action_copy_user_id">نسخ معرّف المستخدم</string>
+    <string name="user_id_copied">تم نسخ معرّف المستخدم</string>
 
     <!-- General Settings Screen -->
 	<string name="settings_section_appearance">المظهر</string>

@@ -30,8 +30,11 @@ private struct ProLockedModifier: ViewModifier {
                 .overlay {
                     VStack(spacing: 10) {
                         Button { showsPaywall = true } label: {
+                            // White by hand: inside a List the label's icon takes the accent, which
+                            // is the button's own fill, and the crown disappears into it.
                             Label(L.proUnlock, systemImage: "crown.fill")
                                 .font(.subheadline.weight(.semibold))
+                                .foregroundStyle(.white)
                         }
                         .buttonStyle(.borderedProminent)
                         .buttonBorderShape(.capsule)

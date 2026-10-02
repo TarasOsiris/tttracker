@@ -103,6 +103,7 @@
     <string name="action_visit_website">Website</string>
     <string name="action_rate_app">Avalie o aplicativo</string>
     <string name="action_copy_user_id">Copiar ID do usuário</string>
+    <string name="user_id_copied">ID do usuário copiado</string>
 
     <!-- General Settings Screen -->
 	<string name="settings_section_appearance">Aparência</string>

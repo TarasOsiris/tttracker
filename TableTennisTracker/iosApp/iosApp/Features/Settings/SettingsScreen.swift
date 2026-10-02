@@ -4,6 +4,7 @@ struct SettingsScreen: View {
     @StateModel private var model = SettingsModel()
     @StateModel private var dataExport = DataExportModel()
     @State private var paywallSource: PaywallSource?
+    @State private var showsCopied = false
     @Environment(ProModel.self) private var pro: ProModel?
 
     private static let website = URL(string: "https://ninevastudios.com")
@@ -130,9 +131,22 @@ struct SettingsScreen: View {
                 Label(L.actionRateApp, systemImage: "star")
             }
             Button(action: model.copyUserId) {
-                Label(L.actionCopyUserId, systemImage: "person")
+                if showsCopied {
+                    Label(L.userIdCopied, systemImage: "checkmark")
+                } else {
+                    Label(L.actionCopyUserId, systemImage: "person")
+                }
             }
-            .disabled(model.userId.isEmpty)
+            .disabled(model.copyableUserId.isEmpty)
+            .sensoryFeedback(.success, trigger: model.copyCount)
+            // Each copy restarts the timer, so the confirmation stays up for two seconds after the
+            // last tap rather than the first.
+            .task(id: model.copyCount) {
+                guard model.copyCount > 0 else { return }
+                showsCopied = true
+                try? await Task.sleep(for: .seconds(2))
+                if !Task.isCancelled { showsCopied = false }
+            }
         }
     }
 

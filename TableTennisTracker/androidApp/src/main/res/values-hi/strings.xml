@@ -103,6 +103,7 @@
     <string name="action_visit_website">वेबसाइट</string>
     <string name="action_rate_app">ऐप को रेट करें</string>
     <string name="action_copy_user_id">यूज़र आईडी कॉपी करें</string>
+    <string name="user_id_copied">यूज़र आईडी कॉपी हो गई</string>
 
     <!-- General Settings Screen -->
 	<string name="settings_section_appearance">दिखावट</string>

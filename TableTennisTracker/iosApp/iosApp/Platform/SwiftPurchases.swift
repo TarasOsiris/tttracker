@@ -16,4 +16,8 @@ enum SwiftPurchases {
         #endif
         Purchases.configure(with: Configuration.Builder(withAPIKey: apiKey).build())
     }
+
+    /// The id RevenueCat knows this user by, which is what support looks a customer up with. Nil
+    /// when the SDK is not configured, as in a build without an API key.
+    static var appUserID: String? { Purchases.isConfigured ? Purchases.shared.appUserID : nil }
 }

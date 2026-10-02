@@ -5,6 +5,8 @@ import Shared
 @Observable
 final class SettingsModel {
     private(set) var userId: String = ""
+    /// Bumped on every copy, so the screen can confirm each one, not just the first.
+    private(set) var copyCount = 0
 
     let versionName: String
     let buildNumber: String
@@ -35,9 +37,15 @@ final class SettingsModel {
         userId = (try? await userIdService.getUserId()) ?? ""
     }
 
+    /// RevenueCat's id rather than the app's own, so a purchase question can be looked up in the
+    /// RevenueCat dashboard directly.
+    var copyableUserId: String { SwiftPurchases.appUserID ?? userId }
+
     func copyUserId() {
-        guard !userId.isEmpty else { return }
-        clipboard.doCopyToClipboard(text: userId)
+        let id = copyableUserId
+        guard !id.isEmpty else { return }
+        clipboard.doCopyToClipboard(text: id)
+        copyCount += 1
         analytics.capture(event: "user_id_copied", properties: nil)
     }
 
