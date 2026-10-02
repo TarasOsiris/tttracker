@@ -46,10 +46,10 @@ WIDGETS ON YOUR HOME AND LOCK SCREEN
 BUILT FOR PLAYERS
 
 - Log a session in under 30 seconds
-- Works fully offline - your data stays on your device
+- Works fully offline, with optional iCloud sync across your devices
 - No account needed, no sign-up
 - Light and dark themes
-- Available in 14 languages
+- Available in 15 languages
 
 PERFECT FOR
 

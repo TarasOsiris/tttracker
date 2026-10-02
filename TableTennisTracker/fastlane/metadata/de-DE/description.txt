@@ -46,10 +46,10 @@ WIDGETS AUF DEINEM HOME-BILDSCHIRM UND SPERRBILDSCHIRM
 FÜR SPIELER GEMACHT
 
 - Eine Einheit in unter 30 Sekunden eintragen
-- Funktioniert vollständig offline - deine Daten bleiben auf deinem Gerät
+- Funktioniert vollständig offline, mit optionaler iCloud-Synchronisierung zwischen deinen Geräten
 - Kein Konto, keine Anmeldung nötig
 - Helles und dunkles Design
-- In 14 Sprachen verfügbar
+- In 15 Sprachen verfügbar
 
 PERFEKT FÜR
 

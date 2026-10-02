@@ -46,10 +46,10 @@ WIDGET DI LAYAR UTAMA DAN LAYAR TERKUNCI
 DIBUAT UNTUK PEMAIN
 
 - Catat satu sesi dalam kurang dari 30 detik
-- Bekerja sepenuhnya offline — datamu tetap ada di perangkatmu
+- Bekerja sepenuhnya offline, dengan sinkronisasi iCloud opsional antarperangkat
 - Tanpa akun, tanpa pendaftaran
 - Tema terang dan gelap
-- Tersedia dalam 14 bahasa
+- Tersedia dalam 15 bahasa
 
 COCOK UNTUK
 

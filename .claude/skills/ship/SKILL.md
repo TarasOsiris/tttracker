@@ -356,6 +356,24 @@ Only when Step 7 said to submit.
    variable — a naive `for L in $LOCALES` passes the whole list as one locale and every call
    fails; pipe into `while read -r L` instead.
 
+   A locale on disk that `asc localizations list` does not show yet — `zh-Hant`, added once the
+   app gained Traditional Chinese — has to be created rather than updated, with every field from
+   its directory:
+
+   ```bash
+   L=zh-Hant; D=fastlane/metadata/$L
+   asc localizations create --version <VERSION_ID> --locale $L \
+     --description "$(cat $D/description.txt)" --keywords "$(cat $D/keywords.txt)" \
+     --promotional-text "$(cat $D/promotional_text.txt)" --whats-new "$(cat $D/release_notes.txt)" \
+     --marketing-url "$(cat $D/marketing_url.txt)" --support-url "$(cat $D/support_url.txt)"
+   asc apps rename --app 6758044383 --locale $L --name "$(cat $D/name.txt)"
+   ```
+
+   The subtitle and privacy URL live on the app info record, not the version: set them for the new
+   locale in App Store Connect if `asc` cannot. Its screenshots are ready in the Screenshot Bro
+   "tt tracker" project under the same locale code; once the localization exists, push them with
+   the Screenshot Bro App Store sync (preview, then apply) for that locale only.
+
    If a locale has no file on disk, fall back to the en-US text. When the notes on disk are stale
    (they describe the *previous* ship), draft fresh English from `git log ios-<previous>..HEAD` —
    user-facing behaviour only, no refactors or dependency bumps — write it to

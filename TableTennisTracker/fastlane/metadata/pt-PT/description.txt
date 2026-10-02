@@ -46,10 +46,10 @@ WIDGETS NO ECRÃ PRINCIPAL E NO ECRÃ BLOQUEADO
 FEITA PARA JOGADORES
 
 - Aponta uma sessão em menos de 30 segundos
-- Funciona totalmente offline: os teus dados ficam no dispositivo
+- Funciona totalmente offline, com sincronização opcional por iCloud entre os teus dispositivos
 - Sem conta e sem inscrição
 - Tema claro e tema escuro
-- Disponível em 14 idiomas
+- Disponível em 15 idiomas
 
 IDEAL PARA
 

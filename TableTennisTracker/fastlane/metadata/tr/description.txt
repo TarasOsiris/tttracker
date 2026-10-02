@@ -46,10 +46,10 @@ ANA EKRAN VE KİLİTLİ EKRANDA WİDGET'LAR
 OYUNCULAR İÇİN TASARLANDI
 
 - Bir antrenmanı 30 saniyeden kısa sürede kaydet
-- Tamamen çevrimdışı çalışır, verilerin cihazında kalır
+- Tamamen çevrimdışı çalışır; istersen iCloud ile cihazların arasında eşitlenir
 - Hesap açmaya ve üye olmaya gerek yok
 - Açık ve koyu tema
-- 14 dilde kullanılabilir
+- 15 dilde kullanılabilir
 
 ŞUNLAR İÇİN İDEAL
 
