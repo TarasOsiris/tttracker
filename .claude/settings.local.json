@@ -43,8 +43,7 @@
       "Bash(xcodebuild -exportArchive*)",
       "Bash(asc:*)",
       "Bash(sentry-cli:*)",
-      "Bash(python3 ../.claude/skills/ship/play_upload.py:*)",
-      "Bash(python3 .claude/skills/ship/play_upload.py:*)",
+      "Bash(gplay:*)",
       "Bash(/usr/libexec/PlistBuddy:*)",
       "Bash(plutil:*)"
     ]

@@ -19,8 +19,7 @@ cd TableTennisTracker
 ```
 
 Skip it if the session already started there. Every path in this file (`iosApp/...`, `build/...`,
-`fastlane/...`) is relative to that directory; the one exception is `play_upload.py`, which is
-reached as `../.claude/skills/ship/play_upload.py`.
+`fastlane/...`) is relative to that directory.
 
 ## Choosing platforms
 
@@ -66,15 +65,23 @@ All App Store Connect calls go through the `asc` CLI, which authenticates on its
 system keychain — no `.p8` path, no API key flags. If any `asc` command fails on auth, run
 `asc doctor`. (The `.p8` is still needed for `xcodebuild` — see Step 6.)
 
-All Google Play calls go through `play_upload.py`, which sits next to this file and so is invoked
-as `../.claude/skills/ship/play_upload.py` from the working directory above. It is a stdlib-only
-client for the Play Developer API (it shells out to `openssl` to sign the service-account JWT — no
-`pip install`, no fastlane). It defaults to the service account key at
-`~/Library/Mobile Documents/com~apple~CloudDocs/Files/taras-android-google-play.json` and package
-`xyz.tleskiv.tt`; override with `--key` / `--package` or `$GOOGLE_PLAY_KEY_JSON`.
+All Google Play calls go through the `gplay` CLI
+([play-console-cli](https://github.com/tamtom/play-console-cli), `brew install --cask PollyGlot/tap/gplay`).
+The package comes from the committed repo-root `.gplay/config.json` pin, found by walking up from
+the cwd, so run it from inside the repo. It authenticates from its own keychain Account, registered
+once per machine from the service account key:
 
-**fastlane is not installed and must not become a dependency.** The `fastlane/metadata/` tree is
-used for its *directory layout* only — Step 8 reads localized release notes out of it.
+```bash
+gplay auth login --service-account "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Files/taras-android-google-play.json" --name play-release
+gplay auth doctor --package xyz.tleskiv.tt
+```
+
+If any `gplay` command exits 10 or 11, run `gplay auth doctor`. `gplay exit-codes` explains the
+rest; 40 and 50 are the transient ones worth retrying (`--retry 3`).
+
+**fastlane is not installed and must not become a dependency.** The `fastlane/metadata/` (App Store)
+and `fastlane/play-metadata/` (Google Play) trees are used for their *directory layout* only — Step 8
+reads localized release notes out of the first, and `gplay metadata` reads and writes the second.
 
 ---
 
@@ -464,8 +471,12 @@ Read `versionCode` and `versionName` from `androidApp/build.gradle.kts`, then as
 already has:
 
 ```bash
-python3 ../.claude/skills/ship/play_upload.py status
+gplay tracks list
+gplay tracks list --output json | python3 -c "import json,sys; print(max((int(c) for t in json.load(sys.stdin).get('tracks', []) for r in t.get('releases', []) for c in r.get('versionCodes', [])), default=0))"
 ```
+
+The table shows only each track's top release; the second line is the highest versionCode across
+every release on every track.
 
 The new `versionCode` is **one above the highest of the local value and the highest versionCode
 reported by Play** — Play rejects a bundle whose versionCode is already used, even on a track it
@@ -496,41 +507,61 @@ a committed production release goes to real users:
 
 - **Internal testing** (default) — `--track internal`, live to internal testers within minutes,
   no review.
-- **Production — draft** — `--track production --status draft`. The release sits in the Play
-  Console; a human presses the button.
-- **Production — full release** — `--track production --status completed`. Goes for review, then
-  100% of users.
-- **Production — staged rollout** — `--track production --rollout <fraction>`. Ask for the
-  percentage, pass it as a fraction (10% → `0.1`).
+- **Production — draft** — `--track production`. gplay makes a production release a draft unless
+  told otherwise; it sits in the Play Console until a human presses the button.
+- **Production — full release** — `--track production --complete --confirm`. Goes for review,
+  then 100% of users.
+- **Production — staged rollout** — `--track production --staged <fraction> --confirm`. Ask for
+  the percentage, pass it as a fraction (10% → `0.1`). Widen it later with
+  `gplay releases rollout --track production --staged <fraction> --confirm`.
 
 Skip the question when the invocation named a track (`/ship android production`).
 
 ## Step 5: Upload to Play
 
-Draft release notes from `git log android-<previous>..HEAD` — functional, user-facing changes only:
+Draft release notes from `git log android-<previous>..HEAD` — functional, user-facing changes only.
+`--release-notes` applies them to the default language, `en-US`:
 
 ```bash
-python3 ../.claude/skills/ship/play_upload.py upload \
-  --aab androidApp/build/outputs/bundle/release/androidApp-release.aab \
-  --track <track> [--status <status>] [--rollout <fraction>] \
-  --name "<versionName>" \
-  --release-notes "<what's new>"
+gplay releases upload androidApp/build/outputs/bundle/release/androidApp-release.aab \
+  --track <track> [--complete --confirm | --staged <fraction> --confirm] \
+  --mapping androidApp/build/outputs/mapping/release/mapping.txt \
+  --release-notes "<what's new>" --retry 3
 ```
 
-Add `--dry-run` to upload and validate without committing the edit.
+`--mapping` gives Play vitals the R8 mapping so its crash stacks symbolicate (Sentry gets its own
+copy from the Gradle plugin). The release name defaults to the bundle's `versionName`.
 
-The script creates an edit, uploads the bundle, sets the track, and commits in one call; it deletes
-the edit on any failure, so a failed run leaves nothing half-applied. Notes on failures:
+gplay opens an edit, uploads the bundle, sets the track and commits in one call, and discards the
+edit on any failure, so a failed run leaves nothing half-applied in the Play Console. Before any
+byte is uploaded it checks the bundle is really an AAB declaring `xyz.tleskiv.tt` — which does
+**not** catch a stale AAB from a previous ship; check Gradle's exit code and the file's mtime.
+
+`--dry-run` makes **no** HTTP call; it only previews the release payload. To have Play itself
+validate without publishing, run the upload inside an explicit edit and throw it away:
+
+```bash
+gplay edits begin
+gplay releases upload <aab> --track <track> ...   # joins the pinned edit
+gplay edits validate
+gplay edits discard
+```
+
+Notes on failures:
 
 - **`versionCode N has already been used`** — Step 2's check was skipped or Play moved ahead. Bump
   `versionCode` again, rebuild (Step 3), re-upload. The versionCode is inside the bundle.
 - **`APK signed with the wrong key` / unsigned bundle** — `keystore.properties` was missing or
   wrong at build time. Fix it and rebuild.
-- **`changesNotSentForReview`** — the script retries automatically and prints a warning; the
-  release then waits in the Play Console for a human to send it for review. Surface this in the
-  report, don't bury it.
-- **Release notes locale rejected** — drop `--release-notes` and re-run, or use a locale the store
-  listing actually has.
+- **`changesNotSentForReview`** — Play refused to send the change for review automatically. Re-run
+  with `--changes-not-sent-for-review`; the release then waits in the Play Console for a human to
+  send it for review. Surface this in the report, don't bury it.
+- **Exit 3** — a production `--complete`/`--staged` without `--confirm`. The message names the flag.
+- **`COMMIT_OUTCOME_UNKNOWN`** — the commit was sent and may be live. Check
+  `gplay releases list --track <track>` before re-running, or the retry trips over its own
+  versionCode.
+- **Exit 60 `EDIT_ALREADY_EXISTS`** — a pinned edit was left open (`gplay edits status`); commit or
+  `gplay edits discard` it.
 
 ## Step 6: Commit, tag, and push
 
@@ -544,6 +575,41 @@ git push && git push --tags
 Push straight to `master`. If the tag `android-<versionName>` already exists (a versionCode-only
 ship), skip the tag and push only the commit. When both platforms ship in one run, use the single
 combined commit described in Part A, Step 9.
+
+---
+
+# Store listing and graphics
+
+Not part of a ship, but the same tool. `fastlane/play-metadata/<lang>/` is the fastlane supply
+layout `gplay metadata` reads (`title.txt`, `short_description.txt`, `full_description.txt`):
+
+```bash
+gplay metadata list                                          # live languages and char usage
+gplay metadata pull     --dir fastlane/play-metadata         # Play is the source of truth; pull first
+gplay metadata validate --dir fastlane/play-metadata
+gplay metadata apply    --dir fastlane/play-metadata --dry-run
+gplay metadata apply    --dir fastlane/play-metadata --confirm
+```
+
+`apply` writes every locale in one edit and is additive; `--prune` deletes live locales absent from
+the tree, which is a real delete. Re-run the `--dry-run` afterwards — all `unchanged` is the
+read-back.
+
+Images are a separate tree, `<dir>/<lang>/images/<type>/1.png…N.png` for galleries and
+`<dir>/<lang>/images/<type>.png` for `icon` / `featureGraphic`. Stage it under `build/` (gitignored)
+— e.g. `fastlane/play-metadata/feature-graphic.png` copied to
+`build/play-images/<lang>/images/featureGraphic.png` for the default language and each language
+that carries its own copy (`gplay metadata images list --type featureGraphic`):
+
+```bash
+gplay metadata images validate --dir build/play-images
+gplay metadata images apply --dir build/play-images --type featureGraphic --prune --dry-run
+gplay metadata images apply --dir build/play-images --type featureGraphic --prune --confirm
+```
+
+**Always pass `--type`** — gplay 2.0.0 walks every image type when unfiltered, and Play rejects
+`promoGraphic` with an HTTP 400 that aborts the command. Without `--prune` the apply is additive and
+old images stay beside the new ones; with it only the slots the tree holds are replaced.
 
 ---
 

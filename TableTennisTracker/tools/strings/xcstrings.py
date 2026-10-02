@@ -5,7 +5,7 @@
 platforms — the `/translate` command keeps adding keys there — so this is a repeated projection,
 not a one-off migration. Run it after translating; `--check` fails if the catalog has drifted.
 
-Deliberately stdlib-only, like .claude/skills/ship/play_upload.py.
+Deliberately stdlib-only.
 """
 
 import argparse
