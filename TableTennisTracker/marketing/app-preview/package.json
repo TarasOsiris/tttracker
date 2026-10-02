@@ -1,0 +1,25 @@
+{
+  "name": "tt-tracker-app-preview",
+  "private": true,
+  "scripts": {
+    "capture:iphone": "python3 capture/capture_clips.py iphone",
+    "capture:ipad": "python3 capture/capture_clips.py ipad",
+    "audio": "python3 capture/make_audio.py",
+    "studio": "remotion studio src/index.ts",
+    "typecheck": "tsc -p .",
+    "render:iphone": "remotion render src/index.ts iPhone out/raw-iphone.mp4 --codec h264 --crf 12 --audio-codec aac --audio-bitrate 320k && sh capture/finalize.sh out/raw-iphone.mp4 out/app-preview-iphone.mp4",
+    "render:ipad": "remotion render src/index.ts iPad out/raw-ipad.mp4 --codec h264 --crf 12 --audio-codec aac --audio-bitrate 320k && sh capture/finalize.sh out/raw-ipad.mp4 out/app-preview-ipad.mp4",
+    "render": "npm run render:iphone && npm run render:ipad"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.529",
+    "@remotion/media": "4.0.529",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "remotion": "4.0.529"
+  },
+  "devDependencies": {
+    "@types/react": "19.3.0",
+    "typescript": "7.0.2"
+  }
+}

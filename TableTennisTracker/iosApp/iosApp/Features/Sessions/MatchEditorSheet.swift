@@ -30,6 +30,7 @@ struct MatchEditorSheet: View {
                 ToolbarItem(placement: .confirmationAction) {
                     ConfirmButton(action: save)
                         .disabled(!model.canSave)
+                        .accessibilityIdentifier("matchEditor.save")
                 }
             }
         }
