@@ -1,24 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:aapt="http://schemas.android.com/aapt"
     android:width="108dp"
     android:height="108dp"
     android:viewportWidth="1024"
     android:viewportHeight="1024">
-  <group>
-    <clip-path
-        android:pathData="M0,0h1024v1024h-1024z"/>
-    <path
-        android:pathData="M0,0h1024v1024h-1024z">
-      <aapt:attr name="android:fillColor">
-        <gradient
-            android:centerX="512"
-            android:centerY="512"
-            android:gradientRadius="529.1"
-            android:type="radial">
-          <item android:offset="0" android:color="#FF00B4FF"/>
-          <item android:offset="1" android:color="#FF0E53D6"/>
-        </gradient>
-      </aapt:attr>
-    </path>
-  </group>
+  <path android:pathData="M0,0h1024v1024h-1024z"><aapt:attr name="android:fillColor"><gradient android:type="linear" android:startX="512" android:startY="0" android:endX="512" android:endY="1024"><item android:offset="0" android:color="#FF1B84FF"/><item android:offset="1" android:color="#FF1A78F2"/></gradient></aapt:attr></path>
 </vector>
