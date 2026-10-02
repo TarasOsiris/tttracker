@@ -295,9 +295,6 @@
     <string name="accent_pink">粉色</string>
     <string name="accent_red">红色</string>
     <string name="accent_orange">橙色</string>
-    <string name="settings_section_support">支持开发</string>
-    <string name="settings_tip_hint">打赏可以帮助 TT Tracker 持续成长，但不会解锁任何功能。</string>
-    <string name="tip_thanks">感谢你的支持！</string>
     <string name="pro_toolbar_button">PRO</string>
     <string name="pro_upgrade_hint">打开 Pro 升级选项</string>
     <string name="pro_banner_title">TT Tracker Pro</string>

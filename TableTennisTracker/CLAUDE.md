@@ -301,9 +301,6 @@ What Pro unlocks — keep `ProBenefit.all` and the RevenueCat paywall in step wi
 Never take a free feature away to make it Pro, and do not gate iCloud sync: App Review rejected a
 purchase whose only benefit was sync, and sync is now free for everyone.
 
-Tips are consumables in a separate RevenueCat offering, `tips` (`TipJarModel`). They unlock nothing,
-and the Settings section hides itself until that offering has packages.
-
 **iCloud sync** — see `docs/icloud-sync.md` for the design and the conflict rules. Rules that affect
 everyday code:
 

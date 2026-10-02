@@ -295,9 +295,6 @@
     <string name="accent_pink">Rose</string>
     <string name="accent_red">Rouge</string>
     <string name="accent_orange">Orange</string>
-    <string name="settings_section_support">Soutenir le développement</string>
-    <string name="settings_tip_hint">Un pourboire aide TT Tracker à grandir. Il ne débloque rien.</string>
-    <string name="tip_thanks">Merci pour votre soutien !</string>
     <string name="pro_toolbar_button">PRO</string>
     <string name="pro_upgrade_hint">Ouvre les options de passage à Pro</string>
     <string name="pro_banner_title">TT Tracker Pro</string>

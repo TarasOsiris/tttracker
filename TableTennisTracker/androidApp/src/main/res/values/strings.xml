@@ -295,9 +295,6 @@
 	<string name="accent_pink">Pink</string>
 	<string name="accent_red">Red</string>
 	<string name="accent_orange">Orange</string>
-	<string name="settings_section_support">Support development</string>
-	<string name="settings_tip_hint">A tip helps keep TT Tracker growing. It does not unlock anything.</string>
-	<string name="tip_thanks">Thank you for your support!</string>
 	<string name="pro_toolbar_button">PRO</string>
 	<string name="pro_upgrade_hint">Opens the Pro upgrade options</string>
 	<string name="pro_banner_title">TT Tracker Pro</string>

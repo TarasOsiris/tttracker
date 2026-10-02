@@ -7,7 +7,6 @@ struct SettingsScreen: View {
 
     @StateModel private var model = SettingsModel()
     @StateModel private var dataExport = DataExportModel()
-    @StateModel private var tipJar = TipJarModel()
     @State private var paywallSource: PaywallSource?
     @Environment(ProModel.self) private var pro: ProModel?
 
@@ -20,9 +19,6 @@ struct SettingsScreen: View {
             .navigationDestination(for: SettingsRoute.self) { settingsPage($0) }
             .proToolbarButton()
             .task { await model.load() }
-            .task { await tipJar.load() }
-            .failureAlert($tipJar.failure)
-            .alert(L.tipThanks, isPresented: $tipJar.showsThanks) {}
             .sheet(item: $paywallSource) { ProPaywallSheet(source: $0) }
             .sheet(item: $dataExport.exported) { ShareSheet(items: $0.urls).ignoresSafeArea() }
             .failureAlert($dataExport.failure)
@@ -48,7 +44,6 @@ struct SettingsScreen: View {
         generalSection
         CloudSyncSection()
         dataSection
-        if !tipJar.tips.isEmpty { tipSection }
         helpSection
         aboutSection
         if model.isDebugBuild { developerSection }
@@ -121,25 +116,6 @@ struct SettingsScreen: View {
             }
             .disabled(dataExport.isExporting)
             .accessibilityIdentifier("settings.export")
-        }
-    }
-
-    private var tipSection: some View {
-        Section {
-            ForEach(tipJar.tips) { tip in
-                Button { Task { await tipJar.buy(tip) } } label: {
-                    LabeledContent {
-                        Text(tip.price)
-                    } label: {
-                        Label(tip.title, systemImage: "heart")
-                    }
-                }
-                .disabled(tipJar.isPurchasing)
-            }
-        } header: {
-            Text(L.settingsSectionSupport)
-        } footer: {
-            Text(L.settingsTipHint)
         }
     }
 

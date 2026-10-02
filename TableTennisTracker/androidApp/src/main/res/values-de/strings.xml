@@ -295,9 +295,6 @@
     <string name="accent_pink">Pink</string>
     <string name="accent_red">Rot</string>
     <string name="accent_orange">Orange</string>
-    <string name="settings_section_support">Entwicklung unterstützen</string>
-    <string name="settings_tip_hint">Ein Trinkgeld hilft, TT Tracker weiterzuentwickeln. Es schaltet nichts frei.</string>
-    <string name="tip_thanks">Danke für deine Unterstützung!</string>
     <string name="pro_toolbar_button">PRO</string>
     <string name="pro_upgrade_hint">Öffnet die Optionen für das Pro-Upgrade</string>
     <string name="pro_banner_title">TT Tracker Pro</string>

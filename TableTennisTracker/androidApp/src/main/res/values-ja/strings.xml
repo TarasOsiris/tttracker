@@ -295,9 +295,6 @@
     <string name="accent_pink">ピンク</string>
     <string name="accent_red">レッド</string>
     <string name="accent_orange">オレンジ</string>
-    <string name="settings_section_support">開発を応援</string>
-    <string name="settings_tip_hint">チップはTT Trackerの開発継続を支えます。ロック解除される機能はありません。</string>
-    <string name="tip_thanks">ご支援ありがとうございます！</string>
     <string name="pro_toolbar_button">PRO</string>
     <string name="pro_upgrade_hint">Proへのアップグレード画面を開きます</string>
     <string name="pro_banner_title">TT Tracker Pro</string>

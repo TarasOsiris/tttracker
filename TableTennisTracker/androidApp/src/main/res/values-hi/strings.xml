@@ -295,9 +295,6 @@
     <string name="accent_pink">गुलाबी</string>
     <string name="accent_red">लाल</string>
     <string name="accent_orange">नारंगी</string>
-    <string name="settings_section_support">विकास में सहयोग दें</string>
-    <string name="settings_tip_hint">टिप से TT Tracker आगे बढ़ता रहता है। इससे कुछ भी अनलॉक नहीं होता।</string>
-    <string name="tip_thanks">आपके सहयोग के लिए धन्यवाद!</string>
     <string name="pro_toolbar_button">PRO</string>
     <string name="pro_upgrade_hint">Pro अपग्रेड के विकल्प खोलता है</string>
     <string name="pro_banner_title">TT Tracker Pro</string>

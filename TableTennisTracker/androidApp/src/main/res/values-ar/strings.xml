@@ -295,9 +295,6 @@
     <string name="accent_pink">وردي</string>
     <string name="accent_red">أحمر</string>
     <string name="accent_orange">برتقالي</string>
-    <string name="settings_section_support">ادعم التطوير</string>
-    <string name="settings_tip_hint">تساعد الإكرامية TT Tracker على مواصلة النمو، لكنها لا تفتح أي ميزة.</string>
-    <string name="tip_thanks">شكرًا على دعمك!</string>
     <string name="pro_toolbar_button">PRO</string>
     <string name="pro_upgrade_hint">يفتح خيارات الترقية إلى Pro</string>
     <string name="pro_banner_title">TT Tracker Pro</string>

@@ -295,9 +295,6 @@
     <string name="accent_pink">Merah muda</string>
     <string name="accent_red">Merah</string>
     <string name="accent_orange">Oranye</string>
-    <string name="settings_section_support">Dukung pengembangan</string>
-    <string name="settings_tip_hint">Tip membantu TT Tracker terus berkembang. Tip tidak membuka fitur apa pun.</string>
-    <string name="tip_thanks">Terima kasih atas dukungan Anda!</string>
     <string name="pro_toolbar_button">PRO</string>
     <string name="pro_upgrade_hint">Membuka opsi upgrade ke Pro</string>
     <string name="pro_banner_title">TT Tracker Pro</string>

@@ -648,12 +648,6 @@ enum L {
 	/// Training session defaults
 	static var settingsSectionSessions: String { Localization.string("settings_section_sessions") }
 
-	/// Support development
-	static var settingsSectionSupport: String { Localization.string("settings_section_support") }
-
-	/// A tip helps keep TT Tracker growing. It does not unlock anything.
-	static var settingsTipHint: String { Localization.string("settings_tip_hint") }
-
 	/// Version %1$@ (%2$@)
 	static func settingsVersionFormat(_ a1: String, _ a2: String) -> String {
 		Localization.format("settings_version_format", a1, a2)
@@ -702,9 +696,6 @@ enum L {
 
 	/// Yesterday
 	static var timeYesterday: String { Localization.string("time_yesterday") }
-
-	/// Thank you for your support!
-	static var tipThanks: String { Localization.string("tip_thanks") }
 
 	/// Create Training Session
 	static var titleCreateSession: String { Localization.string("title_create_session") }
