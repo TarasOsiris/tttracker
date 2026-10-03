@@ -1,0 +1,38 @@
+# Ping Pong & Table Tennis Log (TT Tracker)
+
+> Free table tennis training journal for iPhone, iPad and Android. Log practice sessions in under 30 seconds, record matches game by game against saved opponents, and see progress with a 12-month training heatmap and win-rate stats. No account, works offline. This site also hosts a free table tennis serve encyclopedia and printable training plans.
+
+- App Store: https://apps.apple.com/app/id6758044383
+- Google Play: https://play.google.com/store/apps/details?id=xyz.tleskiv.tt
+- Languages: English at the root; other languages under /es, /de, /fr, /pt, /ja, /zh, /zh-tw, /ko, /it, /uk, /tr, /id, /hi, /ar
+
+## App
+
+- [Home](https://ttapp.smashyapps.com/): features, screenshots and FAQ for the app
+
+## Serve encyclopedia
+
+- [All serves](https://ttapp.smashyapps.com/serves): 29 table tennis serves with spin, bounce, placement, contact point and how to return each one
+- [Serve motions](https://ttapp.smashyapps.com/motions): pendulum, reverse pendulum, tomahawk, backhand, hook, chop and other serve motions
+- [Spin types](https://ttapp.smashyapps.com/spins): backspin, topspin, sidespin, no-spin and corkscrew explained
+- [Serve rules](https://ttapp.smashyapps.com/rules): ITTF legal serve rules, common faults and FAQ
+- [Serve quiz](https://ttapp.smashyapps.com/quiz): test your serve-reading knowledge
+
+## Training plans
+
+- [All training plans](https://ttapp.smashyapps.com/drills): printable practice sessions with timings, tips and FAQs
+- [Beginner fundamentals](https://ttapp.smashyapps.com/drills/beginner-fundamentals)
+- [Footwork drills](https://ttapp.smashyapps.com/drills/footwork-drills)
+- [Serve and receive](https://ttapp.smashyapps.com/drills/serve-and-receive)
+- [Multiball training](https://ttapp.smashyapps.com/drills/multiball-training)
+- [Forehand and backhand consistency](https://ttapp.smashyapps.com/drills/forehand-backhand-consistency)
+- [Match play preparation](https://ttapp.smashyapps.com/drills/match-play-prep)
+
+## Blog
+
+- [Blog](https://ttapp.smashyapps.com/blog): table tennis news and tournament recaps
+
+## Optional
+
+- [Sitemap](https://ttapp.smashyapps.com/sitemap.xml)
+- [Privacy policy](https://ttapp.smashyapps.com/privacy)
