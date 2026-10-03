@@ -88,6 +88,7 @@ const rubberTypes: Guide = {
   sections: [
     {
       heading: "Topsheet plus sponge",
+      figure: { type: "diagram", diagram: "rubber-section", caption: "Edge-on views of the three builds: inverted rubber, pimples-out rubber on sponge, and pimples-out without sponge (OX). Schematic, not to scale." },
       blocks: [
         `The ITTF Laws define a **sandwich rubber** as a single layer of cellular rubber (sponge) covered by a single outer layer of pimpled rubber no more than 2.0 mm thick ([ITTF Statutes 2026, Law 2.4.3.2](${statutesUrl})). ITTF Technical Leaflet T4 calls that outer layer the **top sheet**, and does not allow more than one sponge layer, even if both layers are the same compound ([ITTF T4](${t4Url})).`,
         `Butterfly sums up the split: the top sheet is the surface the ball hits, so it has a big influence on the game, while the sponge's thickness and hardness change how the rubber performs ([Butterfly](${bfSpecUrl})). Those two sponge properties have their own guides: [Sponge Thickness](/equipment/guides/sponge-thickness) and [Sponge Hardness Scales](/equipment/guides/sponge-hardness-scales).`,
@@ -133,6 +134,7 @@ const rubberTypes: Guide = {
     },
     {
       heading: "How makers link each type to a style",
+      figure: { type: "products", items: [{ kind: "rubber", id: "yasaka-mark-v", note: "Classic" }, { kind: "rubber", id: "butterfly-tenergy-05", note: "Tensor" }, { kind: "rubber", id: "dhs-hurricane-3", note: "Chinese tacky" }, { kind: "rubber", id: "butterfly-dignics-09c", note: "Hybrid" }], caption: "One well-known rubber of each type from the catalogue." },
       blocks: [
         {
           list: [
@@ -166,6 +168,7 @@ const pipsExplained: Guide = {
     },
     {
       heading: "The ITTF geometry limits",
+      figure: { type: "diagram", diagram: "pips-heights", caption: "Two pimples drawn to the T4 ratios above: the ITTF lists a rubber as Long when pimple height divided by top diameter is above 0.89, up to the 1.10 maximum." },
       blocks: [
         `The edition of T4 that took effect on 1 January 2018 sets these measurements for authorising pimples-out rubbers ([ITTF T4](${t4Url})):`,
         {
@@ -205,6 +208,7 @@ const pipsExplained: Guide = {
     },
     {
       heading: "Long pips",
+      figure: { type: "products", items: [{ kind: "rubber", id: "victas-spectol-s1", note: "Short pips" }, { kind: "rubber", id: "sauer-troger-hipster", note: "Medium pips (maker's term)" }, { kind: "rubber", id: "butterfly-feint-long-iii", note: "Long pips" }], caption: "Short, medium and long pips from the catalogue. The ITTF list itself only distinguishes Out and Long." },
       blocks: [
         `Megaspin says long pips can reverse the spin they receive, neutralise it into a knuckleball, or slow the ball and break the opponent's tempo ([Megaspin](${megaspinPipsUrl})). The reversal happens because the surface barely reacts to spin: the ball keeps rotating the same way, so a topspin can come back as backspin and the reverse ([Wikipedia glossary](${wikiGlossaryUrl})).`,
         `Butterfly says long pips with sponge produce unexpected spin because the pimples move in different ways on contact ([Butterfly](${bfGuideUrl})). Browse [long pips](/equipment/rubbers?type=long-pips).`,
@@ -256,6 +260,7 @@ const spongeThickness: Guide = {
     },
     {
       heading: "The ITTF limit",
+      figure: { type: "diagram", diagram: "sponge-thickness", caption: "Common sponge sizes against the 4.0 mm limit, which covers the topsheet, sponge and glue together, so the topsheet's thickness has to fit in the remaining space." },
       blocks: [
         `The 2026 Laws require a sandwich rubber (topsheet plus sponge), including adhesive, to be less than 4.05 mm thick. Pimpled rubber without sponge must be less than 2.05 mm, and the topsheet itself no more than 2.0 mm ([ITTF Statutes 2026, Law 2.4.3](${statutesUrl})).`,
         `ITTF Technical Leaflet T4 refers to these as the 4.0 mm and 2.0 mm limits and treats them as absolute: no part of the playing surface may exceed them. The figure includes any reinforcement in the rubber and the adhesive. T4 also warns that a thick glue layer can push a covering over 4.0 mm ([ITTF T4](${t4Url})). At events with racket control, rackets are tested for covering thickness among other things ([ITTF Statutes 2026, Regulation 3.2.4.2.1](${statutesUrl})).`,
@@ -327,6 +332,7 @@ const speedGlue: Guide = {
   sections: [
     {
       heading: "What speed glue did",
+      figure: { type: "photo", image: { src: "/equipment/guides/speed-glue.webp", width: 618, height: 516, sourceUrl: "https://commons.wikimedia.org/wiki/File:Frischkleben.jpg", credit: "Pinkafelder, CC BY-SA 3.0", alt: "A tin of glue being poured onto a bare table tennis blade, with a red rubber sheet and a brush beside it" }, caption: "Glue being poured onto a bare blade before a rubber is attached, from the speed-glue era. The 2008 ban below ended this practice for glues containing VOCs." },
       blocks: [
         `Speed glue was a solvent-based glue applied shortly before play. Its solvent vapours made the sponge's cells expand, which stretched the topsheet and gave a trampoline-like rebound. The effect lasted only hours, so players re-glued before matches. Speed glue was discovered by accident in the 1970s, when a player fixed his racket with bicycle puncture glue, and Yugoslavia's Dragutin Šurbek is credited with popularising it between 1979 and 1983 ([Wikipedia](${wikiGlueUrl})).`,
       ],
@@ -362,6 +368,7 @@ const speedGlue: Guide = {
     },
     {
       heading: "The ITTF logo and code on the rubber",
+      figure: { type: "photo", image: { src: "/equipment/guides/racket-rubber.webp", width: 1200, height: 900, sourceUrl: "https://commons.wikimedia.org/wiki/File:Yasaka_Rising_Dragon2.jpg", credit: "Erlk\u00f6nig1732, CC0", alt: "Black Yasaka table tennis rubber on a blade, with the brand logo and the boxed ITTF approval marking embossed near the handle" }, caption: "The brand logo and ITTF marking on a rubber, next to the handle." },
       blocks: [
         `Rubbers must be glued on so that the ITTF logo, the ITTF number (when present), and the supplier and brand names are clearly visible nearest the handle ([ITTF Statutes 2026, Regulation 3.2.1.3](${statutesUrl})). T4 sets the details for new rubbers:`,
         {
@@ -398,6 +405,7 @@ const firstSetup: Guide = {
   sections: [
     {
       heading: "Start slower than you think",
+      figure: { type: "photo", image: { src: "/equipment/guides/first-setup.webp", width: 1200, height: 800, sourceUrl: "https://commons.wikimedia.org/wiki/File:Tabletennis.jpg", credit: "PJ and Piko, CC BY-SA 3.0", alt: "A pre-assembled Stiga table tennis racket with red rubber on a white background" }, caption: "A ready-made racket: the maker chose and glued the blade and rubbers. A custom setup means choosing each part yourself." },
       blocks: [
         `Paddle Palace calls choosing too much speed too early the most common mistake. It notes that professionals use fast blades because their technique can control them ([Paddle Palace](${ppBladeUrl})). It also says players often improve most with a rubber that forgives small errors instead of magnifying them ([Paddle Palace](${ppRubberUrl})).`,
         `Coach Larry Hodges recommends a medium-speed blade for beginners and medium to fast blades for more advanced players. He suggests players keep to not-so-fast blades until at least intermediate level ([Hodges](${hodgesUrl})).`,

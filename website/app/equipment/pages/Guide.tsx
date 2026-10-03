@@ -1,11 +1,16 @@
 import { data, Link } from "react-router";
 import type { Route } from "./+types/Guide";
+import { GuideDiagramView } from "../components/GuideDiagrams";
+import { BrandLogo, Credit, ProductThumb } from "../components/Media";
 import { Sources } from "../components/Parts";
+import type { GuideFigure } from "../models";
+import type { FigureProduct } from "../store.server";
 import { formatDate } from "../labels";
 import { guidePayload } from "../store.server";
 import { absolute, breadcrumbs, equipmentMeta } from "../utils/seo";
 import { inline } from "~/components/site/legal-page";
 import { APP_NAME } from "~/content/site";
+import { cn } from "~/lib/utils";
 
 export function loader({ params }: Route.LoaderArgs) {
   const payload = guidePayload(params.slug);
@@ -52,10 +57,10 @@ function readingMinutes(guide: Route.ComponentProps["loaderData"]["guide"]): num
 }
 
 export default function Guide({ loaderData }: Route.ComponentProps) {
-  const { guide, terms, others } = loaderData;
+  const { guide, terms, others, products } = loaderData;
   return (
     <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_260px]">
-      <article className="max-w-3xl">
+      <article className="max-w-3xl min-w-0">
         <nav aria-label="Breadcrumb" className="text-sm text-muted-foreground">
           <Link to="/equipment/guides" className="hover:text-foreground">
             Guides
@@ -86,6 +91,7 @@ export default function Guide({ loaderData }: Route.ComponentProps) {
                 ),
               )}
             </div>
+            {s.figure && <GuideFigureView figure={s.figure} products={products} />}
           </section>
         ))}
         <div id="sources" className="mt-12 scroll-mt-24 border-t pt-8">
@@ -138,5 +144,55 @@ export default function Guide({ loaderData }: Route.ComponentProps) {
         </div>
       </aside>
     </div>
+  );
+}
+
+function GuideFigureView({ figure, products }: { figure: GuideFigure; products: Record<string, FigureProduct> }) {
+  return (
+    <figure className="mt-6 rounded-3xl border bg-card p-5 sm:p-6">
+      {figure.type === "diagram" && <GuideDiagramView diagram={figure.diagram} />}
+      {figure.type === "photo" && (
+        <img
+          src={figure.image.src}
+          alt={figure.image.alt}
+          width={figure.image.width}
+          height={figure.image.height}
+          loading="lazy"
+          decoding="async"
+          className="w-full rounded-2xl object-cover"
+        />
+      )}
+      {figure.type === "products" && (
+        <ul className={cn("grid gap-3", figure.items.length > 3 ? "grid-cols-2 sm:grid-cols-4" : figure.items.length === 3 ? "grid-cols-3" : "grid-cols-2")}>
+          {figure.items.map((it) => {
+            const p = products[`${it.kind}:${it.id}`];
+            return (
+              <li key={it.id}>
+                <Link to={p.href} className="group block text-center">
+                  <ProductThumb photo={p.photo} fallback={p.illustration} className="aspect-square w-full" />
+                  <span className="mt-2 flex justify-center">
+                    <BrandLogo logo={p.brandLogo} name={p.brandName} className="h-5" />
+                  </span>
+                  <span className="mt-1 block text-sm font-semibold group-hover:text-primary">
+                    {p.brandLogo ? "" : `${p.brandName} `}
+                    {p.name}
+                  </span>
+                  {p.note && <span className="block text-xs text-muted-foreground">{p.note}</span>}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+      <figcaption className="mt-4 text-sm leading-snug text-muted-foreground">
+        {figure.caption}
+        {figure.type === "photo" && (
+          <span className="mt-1 block text-xs">
+            Photo: <Credit image={figure.image} />
+          </span>
+        )}
+        {figure.type === "products" && <span className="mt-1 block text-xs">Product photos © their makers, from their product pages.</span>}
+      </figcaption>
+    </figure>
   );
 }

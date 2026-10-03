@@ -195,6 +195,7 @@ export const bladeGuides: Guide[] = [
     sections: [
       {
         heading: "What a composite layer is",
+        figure: { type: "photo", image: { src: "/equipment/guides/carbon-weave.webp", width: 1200, height: 900, sourceUrl: "https://commons.wikimedia.org/wiki/File:Woven_carbon_fiber_fabric.jpg", credit: "Acheolg, CC BY-SA 4.0", alt: "Close-up of black woven carbon fibre fabric showing the interlaced fibre bundles" }, caption: "Woven carbon fibre fabric. Blade makers bond thin layers of fibre cloth like this between wood plies; each uses its own fibres and weaves." },
         blocks: [
           "The ITTF Laws require that **at least 85% of the blade by thickness is natural wood**. An adhesive layer inside the blade may be reinforced with fibrous material \"such as carbon fibre, glass fibre or compressed paper\", but each such layer may not be thicker than **7.5% of the total thickness or 0.35 mm, whichever is smaller** ([ITTF Statutes, Law 2.4.2](https://documents.ittf.sport/sites/default/files/public/2026-02/2026_Statutes_v1_consolidated_clean.pdf)). So a \"carbon blade\" is a wooden blade with thin fibre-reinforced glue layers, not a carbon paddle.",
           "Makers usually write the build as wood plies plus fibre layers, for example **5W+2AC** for five wood plies and two Arylate-Carbon layers ([Butterfly](https://www.butterfly-global.com/en/products/detail/30041.html)). Where the two layers sit, under the outer veneer or next to the core, is covered in [Inner vs Outer Carbon Blades](/equipment/guides/inner-vs-outer-carbon).",
@@ -249,6 +250,7 @@ export const bladeGuides: Guide[] = [
       },
       {
         heading: "Glass, basalt and other fibres",
+        figure: { type: "products", items: [{ kind: "blade", id: "butterfly-viscaria", note: "Arylate-Carbon" }, { kind: "blade", id: "butterfly-timo-boll-zlc", note: "ZL-Carbon" }, { kind: "blade", id: "xiom-stradivarius", note: "Aramid-carbon" }, { kind: "blade", id: "stiga-inspira-ccf", note: "Carbon" }], caption: "One blade from the catalogue for each of the most common composites. Open any of them for its full specs and sources." },
         blocks: [
           "**Glass fibre** is one of the materials the ITTF Laws name explicitly ([ITTF](https://documents.ittf.sport/sites/default/files/public/2026-02/2026_Statutes_v1_consolidated_clean.pdf)). Sanwei describes high-strength fibreglass as soft and flexible, giving a soft feel when paired with hardwood, and carbon-plus-glass composites as blending carbon's crisp feedback with glass fibre's smoother contact ([Sanwei](https://sanweisport.com/en/the-difference-between-the-various-carbon-fiber-in-table-tennis-blade/)).",
           "**Basalt fibre** is made by melting basalt rock at about 1,500 °C and drawing it into filaments. Wikipedia lists its tensile strength as 2.9 to 3.1 GPa and modulus as 85 to 87 GPa, against 2.5 GPa and 76 GPa for E-glass ([Wikipedia](https://en.wikipedia.org/wiki/Basalt_fiber)). SOULSPIN says its basalt layer is flexible and \"doesn't make the blade as stiff\" as carbon ([SOULSPIN](https://shop.soulspin.de/en/products/basalt-professional-table-tennis-blade)), and andro sells a TP_LIGNA Basalt Inner blade ([andro](https://www.andro.de/en/blades)).",
@@ -313,6 +315,7 @@ export const bladeGuides: Guide[] = [
     sections: [
       {
         heading: "Where the layer sits",
+        figure: { type: "diagram", diagram: "layup-outer-inner", caption: "The two 5+2 layups described above, read from one face to the other. Schematic, not to scale: makers don't publish individual ply thicknesses." },
         blocks: [
           "Butterfly's diagram labels a blade from the outside in: **A** surface wood, **B** second layer, **C** wooden core. In an **Outerfiber** blade the fibre sits just beneath the surface veneer; in an **Innerfiber** blade it sits next to the core ([Butterfly](https://www.butterfly-global.com/en/products/blade/outer_inner_fiber.html)). Read from one face to the other, a five-wood, two-fibre (5+2) blade looks like this:",
           {
@@ -327,6 +330,7 @@ export const bladeGuides: Guide[] = [
       },
       {
         heading: "The standard example: Viscaria vs Innerforce Layer ALC",
+        figure: { type: "products", items: [{ kind: "blade", id: "butterfly-viscaria", note: "5 wood + 2 Arylate-Carbon" }, { kind: "blade", id: "butterfly-innerforce-layer-alc", note: "5 wood + 2 Arylate-Carbon, Innerfiber" }], caption: "The two Butterfly blades this guide compares. Butterfly labels only the Innerforce model's fibre position on its spec pages." },
         blocks: [
           "Both are Butterfly 5W+2AC blades (five wood plies, two Arylate-Carbon). The Viscaria has outer ALC; the Innerforce Layer ALC places the Arylate-Carbon \"closer to the core\" ([Megaspin](https://www.megaspin.net/articles/586/butterfly-harimoto-alc-review), [Butterfly](https://shop.butterflyonline.com/innerforce-layer-alc)). Butterfly's own measurements, both on Butterfly's scale:",
           {
@@ -404,12 +408,14 @@ export const bladeGuides: Guide[] = [
     sections: [
       {
         heading: "What the rules require",
+        figure: { type: "photo", image: { src: "/equipment/guides/blade-plies.webp", width: 1200, height: 802, sourceUrl: "https://commons.wikimedia.org/wiki/File:MANTRA_ARTTE.jpg", credit: "Corsa46, CC BY-SA 4.0", alt: "A bare shakehand table tennis blade without rubbers, its layered edge visible along the bottom of the head" }, caption: "A bare blade without rubbers. The layered plies show along the edge of the head." },
         blocks: [
           "The racket may be any size, shape or weight, but the blade must be flat and rigid (ITTF Law 2.4.1). **At least 85% of the blade by thickness must be natural wood**; an adhesive layer may be reinforced with fibrous material, up to 7.5% of the total thickness or 0.35 mm, whichever is smaller (Law 2.4.2). The blade and every layer within it must be continuous and of even thickness (Law 2.4.4) ([ITTF Statutes](https://documents.ittf.sport/sites/default/files/public/2026-02/2026_Statutes_v1_consolidated_clean.pdf)).",
         ],
       },
       {
         heading: "5-ply vs 7-ply all-wood",
+        figure: { type: "diagram", diagram: "plies-5-7", caption: "How a 5-ply and a 7-ply all-wood blade are layered around the core. Schematic, not to scale." },
         blocks: [
           {
             list: [
@@ -445,6 +451,7 @@ export const bladeGuides: Guide[] = [
       },
       {
         heading: "Kiso hinoki",
+        figure: { type: "products", items: [{ kind: "blade", id: "nittaku-septear", note: "7 plies of Kiso hinoki" }], caption: "Nittaku's Septear, a blade made entirely from Kiso hinoki plies." },
         blocks: [
           "\"Kiso\" refers to hinoki from Japan's Kiso area. Wikipedia notes that hinoki grown in Kiso and used for building Ise Shrine is called go-shin-boku, \"divine trees\" ([Wikipedia](https://en.wikipedia.org/wiki/Chamaecyparis_obtusa)). Butterfly sells its top single-ply penhold blades as Kiso Cypress ([Butterfly](https://shop.butterflyonline.com/cypress-g-max-s-7364)).",
         ],
@@ -505,6 +512,7 @@ export const bladeGuides: Guide[] = [
     sections: [
       {
         heading: "What the rules say",
+        figure: { type: "diagram", diagram: "handles", caption: "The handle shapes this guide covers, drawn on the same blade head. Exact sizes vary by brand and model." },
         blocks: [
           "The ITTF Laws let a racket be any size, shape or weight as long as the blade is flat and rigid, and allow \"material suitable to shape a handle\" to be added on ([ITTF Statutes, Laws 2.4.1 and 2.4.4](https://documents.ittf.sport/sites/default/files/public/2026-02/2026_Statutes_v1_consolidated_clean.pdf)). That is why makers can offer so many shapes.",
         ],

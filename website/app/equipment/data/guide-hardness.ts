@@ -68,6 +68,7 @@ export const hardnessGuide: Guide = {
     },
     {
       heading: "Our hardness bands",
+      figure: { type: "diagram", diagram: "hardness-bands", caption: "Our five bands on each scale, as used by the rubber filters. Columns line up by band, not by degree: the same number means a different hardness on each scale." },
       blocks: [
         "To let you filter across brands without pretending the numbers convert exactly, we group sponges into five broad bands, defined separately for each scale:",
         {

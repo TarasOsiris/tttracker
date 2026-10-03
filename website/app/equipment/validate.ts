@@ -137,7 +137,22 @@ export function validateEquipment(data: {
     });
   }
 
-  for (const g of data.guides) checkSources(`guide ${g.slug}`, g.sources);
+  for (const g of data.guides) {
+    checkSources(`guide ${g.slug}`, g.sources);
+    for (const s of g.sections) {
+      const f = s.figure;
+      if (!f) continue;
+      const where = `guide ${g.slug} figure in "${s.heading}"`;
+      if (!f.caption.trim()) err(where, "has no caption");
+      if (f.type === "photo") {
+        checkImage(where, f.image);
+        if (!f.image.alt.trim()) err(where, "photo has no alt text");
+      }
+      if (f.type === "products")
+        for (const it of f.items)
+          if (!(it.kind === "blade" ? bladeIds : rubberIds).has(it.id)) err(where, `points at unknown ${it.kind} "${it.id}"`);
+    }
+  }
   const guideSlugs = new Set(data.guides.map((g) => g.slug));
   for (const t of data.glossary) if (t.guide && !guideSlugs.has(t.guide)) err(`glossary ${t.id}`, `unknown guide "${t.guide}"`);
 

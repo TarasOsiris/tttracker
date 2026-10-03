@@ -212,13 +212,24 @@ export interface Player {
   lastVerified: IsoDate;
 }
 
+/** Built-in explanatory drawings (components/GuideDiagrams.tsx); schematic, drawn from what the guides state. */
+export type GuideDiagram = "layup-outer-inner" | "plies-5-7" | "handles" | "rubber-section" | "pips-heights" | "sponge-thickness" | "hardness-bands";
+
+/** An illustration shown after a guide section's text. */
+export type GuideFigure =
+  | { type: "diagram"; diagram: GuideDiagram; caption: string }
+  /** Catalog products as real-world examples, shown with their maker photos and linked to their pages. */
+  | { type: "products"; items: { kind: "blade" | "rubber"; id: string; note?: string }[]; caption: string }
+  /** A freely licensed photo stored under public/equipment/guides/. */
+  | { type: "photo"; image: Image & { alt: string }; caption: string };
+
 export interface Guide {
   slug: string;
   title: string;
   /** Meta description, 140-160 characters. */
   description: string;
   intro: string;
-  sections: { heading: string; blocks: LegalBlock[] }[];
+  sections: { heading: string; blocks: LegalBlock[]; figure?: GuideFigure }[];
   sources: Source[];
   updated: IsoDate;
 }

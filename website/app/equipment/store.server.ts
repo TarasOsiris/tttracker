@@ -260,11 +260,31 @@ export function guidesPayload() {
   return guides.map(({ slug, title, description }) => ({ slug, title, description }));
 }
 
+export type FigureProduct = { href: string; name: string; brandName: string; brandLogo?: Image; photo?: Image; illustration: string; note?: string };
+
 export function guidePayload(slug: string) {
   const guide = guides.find((g) => g.slug === slug);
   if (!guide) return null;
   const terms = glossary.filter((t) => t.guide === slug);
-  return { guide, terms, others: guidesPayload().filter((g) => g.slug !== slug) };
+  // Product figures carry only ids in the data; resolve them to names, photos and links here.
+  const products: Record<string, FigureProduct> = {};
+  for (const s of guide.sections) {
+    if (s.figure?.type !== "products") continue;
+    for (const it of s.figure.items) {
+      const item = it.kind === "blade" ? bladeById.get(it.id)! : rubberById.get(it.id)!;
+      const brand = brandById.get(item.brandId)!;
+      products[`${it.kind}:${it.id}`] = {
+        href: `/equipment/${it.kind}s/${it.id}`,
+        name: item.name,
+        brandName: brand.name,
+        brandLogo: brand.logo,
+        photo: item.photo,
+        illustration: `/equipment/img/${it.kind}s/${it.id}.svg`,
+        note: it.note,
+      };
+    }
+  }
+  return { guide, terms, products, others: guidesPayload().filter((g) => g.slug !== slug) };
 }
 
 export function glossaryPayload() {
