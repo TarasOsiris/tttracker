@@ -10,6 +10,7 @@ export type Messages = {
     howItWorks: string;
     serves: string;
     drills: string;
+    equipment: string;
     blog: string;
     faq: string;
     getApp: string;

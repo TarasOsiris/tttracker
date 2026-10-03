@@ -14,6 +14,7 @@ export const zh: Messages = {
     howItWorks: "使用方法",
     serves: "发球",
     drills: "训练计划",
+    equipment: "器材",
     blog: "博客",
     faq: "常见问题",
     getApp: "下载 App",

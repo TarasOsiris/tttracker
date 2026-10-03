@@ -13,6 +13,21 @@ const servesPages: [path: string, file: string][] = [
   ["about", "About"],
 ];
 
+const equipmentPages: [path: string, file: string][] = [
+  ["equipment", "Hub"],
+  ["equipment/blades", "BladeExplorer"],
+  ["equipment/blades/:bladeId", "BladeDetail"],
+  ["equipment/rubbers", "RubberExplorer"],
+  ["equipment/rubbers/:rubberId", "RubberDetail"],
+  ["equipment/brands/:brandId", "BrandDetail"],
+  ["equipment/compare", "Compare"],
+  ["equipment/pros", "Pros"],
+  ["equipment/pros/:playerId", "PlayerDetail"],
+  ["equipment/guides", "Guides"],
+  ["equipment/guides/:slug", "Guide"],
+  ["equipment/glossary", "Glossary"],
+];
+
 // English lives at the root; every other locale gets a /{code} prefix with the same route modules.
 function localeRoutes(l: Locale) {
   const en = l === defaultLocale;
@@ -38,4 +53,10 @@ export default [
   // Blog posts are English only too.
   route("blog", "routes/blog.tsx"),
   route("blog/:slug", "routes/blog-post.tsx"),
+  // Equipment encyclopedia, English only for now.
+  layout(
+    "routes/equipment-layout.tsx",
+    equipmentPages.map(([path, file]) => route(path, `equipment/pages/${file}.tsx`)),
+  ),
+  route("equipment/img/:kind/:file", "equipment/pages/Illustration.ts"),
 ] satisfies RouteConfig;

@@ -5,6 +5,7 @@ import { postSlugs } from "./app/content/blog";
 import { drillSlugs } from "./app/content/drills";
 import { SITE_URL } from "./app/content/site";
 import { localeInfo, locales, localizePath } from "./app/i18n/config";
+import { blades, brands, guides, players, rubbers } from "./app/equipment/data";
 import { motions, serves } from "./app/serves/data";
 
 const neutralPaths = [
@@ -20,9 +21,28 @@ const neutralPaths = [
   "/quiz",
   "/about",
 ];
-// English only, so one URL each and no hreflang alternates (legal pages and the blog).
-const legalPaths = ["/privacy", "/terms", "/blog", ...postSlugs.map((s) => `/blog/${s}`)];
-const paths = [...locales.flatMap((l) => neutralPaths.map((p) => localizePath(l, p))), ...legalPaths];
+const equipmentPaths = [
+  "/equipment",
+  "/equipment/blades",
+  ...blades.map((b) => `/equipment/blades/${b.id}`),
+  "/equipment/rubbers",
+  ...rubbers.map((r) => `/equipment/rubbers/${r.id}`),
+  ...brands.map((b) => `/equipment/brands/${b.id}`),
+  "/equipment/compare",
+  "/equipment/pros",
+  ...players.map((p) => `/equipment/pros/${p.id}`),
+  "/equipment/guides",
+  ...guides.map((g) => `/equipment/guides/${g.slug}`),
+  "/equipment/glossary",
+];
+// Spec-drawn product illustrations, prerendered as static .svg files (not pages, so not in the sitemap).
+const illustrationPaths = [
+  ...blades.map((b) => `/equipment/img/blades/${b.id}.svg`),
+  ...rubbers.map((r) => `/equipment/img/rubbers/${r.id}.svg`),
+];
+// English only, so one URL each and no hreflang alternates (legal pages, the blog and the equipment encyclopedia).
+const englishOnlyPaths = ["/privacy", "/terms", "/blog", ...postSlugs.map((s) => `/blog/${s}`), ...equipmentPaths];
+const paths = [...locales.flatMap((l) => neutralPaths.map((p) => localizePath(l, p))), ...englishOnlyPaths, ...illustrationPaths];
 
 function sitemap() {
   const entries = locales.flatMap((l) =>
@@ -33,8 +53,8 @@ function sitemap() {
       return `  <url>\n    <loc>${SITE_URL}${localizePath(l, p)}</loc>\n${alternates}\n  </url>`;
     }),
   );
-  const legal = legalPaths.map((p) => `  <url>\n    <loc>${SITE_URL}${p}</loc>\n  </url>`);
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${[...entries, ...legal].join("\n")}\n</urlset>\n`;
+  const englishOnly = englishOnlyPaths.map((p) => `  <url>\n    <loc>${SITE_URL}${p}</loc>\n  </url>`);
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${[...entries, ...englishOnly].join("\n")}\n</urlset>\n`;
 }
 
 export default {

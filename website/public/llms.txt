@@ -1,6 +1,6 @@
 # Ping Pong & Table Tennis Log (TT Tracker)
 
-> Free table tennis training journal for iPhone, iPad and Android. Log practice sessions in under 30 seconds, record matches game by game against saved opponents, and see progress with a 12-month training heatmap and win-rate stats. No account, works offline. This site also hosts a free table tennis serve encyclopedia and printable training plans.
+> Free table tennis training journal for iPhone, iPad and Android. Log practice sessions in under 30 seconds, record matches game by game against saved opponents, and see progress with a 12-month training heatmap and win-rate stats. No account, works offline. This site also hosts a free table tennis serve encyclopedia, an equipment encyclopedia (blades, rubbers, pro player setups) and printable training plans.
 
 - App Store: https://apps.apple.com/app/id6758044383
 - Google Play: https://play.google.com/store/apps/details?id=xyz.tleskiv.tt
@@ -17,6 +17,18 @@
 - [Spin types](https://ttapp.smashyapps.com/spins): backspin, topspin, sidespin, no-spin and corkscrew explained
 - [Serve rules](https://ttapp.smashyapps.com/rules): ITTF legal serve rules, common faults and FAQ
 - [Serve quiz](https://ttapp.smashyapps.com/quiz): test your serve-reading knowledge
+
+## Equipment encyclopedia (English only)
+
+Specs come from each maker's published data with sources on every page; unknown values are shown as unknown. Manufacturer speed/spin ratings are on each brand's own scale and sponge hardness on the scale the maker prints (European/ESN, Japanese or Chinese), so neither is compared across brands.
+
+- [Equipment overview](https://ttapp.smashyapps.com/equipment): blades, rubbers, brands and guides
+- [Blades](https://ttapp.smashyapps.com/equipment/blades): table tennis blades with plies, carbon type and position (inner/outer), thickness, weight and handles
+- [Rubbers](https://ttapp.smashyapps.com/equipment/rubbers): tensor, Chinese tacky, hybrid, short, medium and long pips rubbers with sponge hardness and thicknesses
+- [Compare](https://ttapp.smashyapps.com/equipment/compare): up to four blades or rubbers side by side
+- [Pro setups](https://ttapp.smashyapps.com/equipment/pros): blades and rubbers of the top-ranked men and women, with sources and dates, updated weekly
+- [Guides](https://ttapp.smashyapps.com/equipment/guides): carbon and fibres (ALC, ZLC), inner vs outer carbon, plies and woods, handles, rubber types, pips, sponge hardness scales, sponge thickness, speed glue and boosting
+- [Glossary](https://ttapp.smashyapps.com/equipment/glossary): equipment terms explained
 
 ## Training plans
 

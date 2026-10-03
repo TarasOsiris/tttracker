@@ -14,6 +14,7 @@ export const zhTw: Messages = {
     howItWorks: "使用方式",
     serves: "發球",
     drills: "訓練計畫",
+    equipment: "器材",
     blog: "部落格",
     faq: "常見問題",
     getApp: "下載 App",

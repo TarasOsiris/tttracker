@@ -88,6 +88,7 @@ function useActiveHref() {
 
   if (neutral.startsWith("/drills")) return "/drills";
   if (neutral.startsWith("/blog")) return "/blog";
+  if (neutral.startsWith("/equipment")) return "/equipment";
   if (/^\/(serves|motions|spins|rules|quiz|about)(\/|$)/.test(neutral)) return "/serves";
   return neutral === "/" && section ? `/#${section}` : null;
 }

@@ -14,6 +14,7 @@ export const id: Messages = {
     howItWorks: "Cara kerja",
     serves: "Servis",
     drills: "Program latihan",
+    equipment: "Peralatan",
     blog: "Blog",
     faq: "FAQ",
     getApp: "Unduh aplikasi",

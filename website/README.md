@@ -17,3 +17,15 @@ English is served at `/`, other languages at `/{code}` (`es`, `de`, `fr`, `pt`, 
 ## Serve encyclopedia
 
 `/serves`, `/motions`, `/spins`, `/rules`, `/quiz` and `/about` are the table tennis serve encyclopedia migrated from the former TT Serves site (same paths, so the old domain 301-redirects 1:1). Code lives in `app/serves/`: normalized data in `data/`, UI dictionaries and per-language data overlays in `i18n/`. `store.server.ts` applies a locale's overlay at build time and `routes/serves-layout.tsx` hands it to the pages through `ServesProvider`. The build fails if a serves dictionary is missing a key or a data overlay is missing a field English has.
+
+## Equipment encyclopedia
+
+`/equipment/...` (English only, like the blog): blade and rubber explorers, item and brand pages, a compare page, pro player setups, guides and a glossary. Code lives in `app/equipment/`: types in `models.ts`, one data file per brand in `data/brands/`, players in `data/players-*.ts`, guides and glossary in `data/guide*.ts`. `store.server.ts` hands each page only what it renders, and product illustrations are drawn from the specs (`illustrations.ts`) and prerendered as `/equipment/img/{blades,rubbers}/<id>.svg`.
+
+Accuracy rules, enforced by `validate.ts` at build time (a violation fails `npm run build`):
+- Every item, player slot and guide cites sources; every fact cites one of its item's sources. Unknown values are `null` and show as "—".
+- Manufacturer ratings are stored verbatim on the brand's own scale and never compared across brands.
+- Sponge hardness keeps the scale the maker prints (`esn`, `japanese`, `chinese`, or `unstated`). Cross-brand filtering uses the approximate bands in `hardness.ts`, explained on the hardness guide; change both together.
+- Links to equipment pages in prose must point at pages that exist.
+
+Pro setups are refreshed weekly by the `pro-setups-update` skill (`.claude/skills/pro-setups-update/SKILL.md`), run by a scheduled routine that pushes to `master`.

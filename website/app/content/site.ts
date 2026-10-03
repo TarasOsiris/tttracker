@@ -48,6 +48,8 @@ export const navLinks = [
   { href: "/#how-it-works", key: "howItWorks" },
   { href: "/serves", key: "serves" },
   { href: "/drills", key: "drills" },
+  // The equipment encyclopedia is English only for now, like the blog.
+  { href: "/equipment", key: "equipment", englishOnly: true },
   // The blog is English only, so every language links to the same /blog.
   { href: "/blog", key: "blog", englishOnly: true },
   { href: "/#faq", key: "faq" },

@@ -121,6 +121,12 @@ export function SiteFooter() {
               </Link>
             </li>
           ))}
+          {/* English only, so every language links to the same page. */}
+          <li>
+            <Link to="/equipment" className={linkClass}>
+              {t.nav.equipment}
+            </Link>
+          </li>
         </Column>
         <Column title={t.footer.language}>
           {languages.map((l) => (

@@ -14,6 +14,7 @@ export const ja: Messages = {
     howItWorks: "使い方",
     serves: "サーブ",
     drills: "練習メニュー",
+    equipment: "用具",
     blog: "ブログ",
     faq: "よくある質問",
     getApp: "アプリを入手",

@@ -14,6 +14,7 @@ export const tr: Messages = {
     howItWorks: "Nasıl çalışır",
     serves: "Servisler",
     drills: "Alıştırmalar",
+    equipment: "Ekipman",
     blog: "Blog",
     faq: "SSS",
     getApp: "Uygulamayı indirin",
