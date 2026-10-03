@@ -1,1 +1,1 @@
-Nastavení teď otevřeš ozubeným kolečkem vpravo nahoře na každé obrazovce a nové tlačítko dole v seznamu tréninků přidá trénink jedním klepnutím. Widgety statistik můžeš přeřadit a každý zapnout nebo vypnout. Panely používají standardní tlačítka iOS pro zavření a uložení a po zkopírování ID uživatele teď uvidíš potvrzení.
+TT Tracker teď mluví 22 jazyky. Nově: polština, nizozemština, čeština, švédština, vietnamština, thajština, malajština a tradiční čínština. Aplikace se řídí jazykem zařízení, nebo si jazyk vyber v Nastavení.

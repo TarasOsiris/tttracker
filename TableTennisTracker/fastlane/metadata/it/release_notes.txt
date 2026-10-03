@@ -1,1 +1,1 @@
-Le impostazioni ora si aprono dall’ingranaggio in alto a destra in ogni schermata, e un nuovo pulsante in fondo all’elenco aggiunge un allenamento con un tocco. Puoi riordinare i widget delle statistiche e attivare o disattivare ciascuno. I pannelli usano i pulsanti Chiudi e Salva standard di iOS, e la copia dell’ID utente ora mostra una conferma.
+TT Tracker ora parla 22 lingue. Novità: polacco, olandese, ceco, svedese, vietnamita, thailandese, malese e cinese tradizionale. L'app segue la lingua del dispositivo, oppure scegline una nelle Impostazioni.

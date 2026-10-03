@@ -1,1 +1,1 @@
-Los ajustes se abren ahora desde el engranaje de la esquina superior derecha de cada pantalla, y un nuevo botón al final de tu lista añade una sesión con un solo toque. Puedes reordenar tus widgets de análisis y activar o desactivar cada uno. Las hojas usan los botones de cerrar y guardar habituales de iOS, y al copiar tu ID de usuario ahora ves una confirmación.
+TT Tracker ya habla 22 idiomas. Novedades: polaco, neerlandés, checo, sueco, vietnamita, tailandés, malayo y chino tradicional. La app sigue el idioma de tu dispositivo, o elige uno en Ajustes.

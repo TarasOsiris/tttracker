@@ -1,1 +1,1 @@
-Settings now opens from the gear at the top right of every screen, and a new button at the bottom of your sessions list adds a session in one tap. You can reorder your analytics widgets and turn each one on or off. Sheets use the standard iOS close and save buttons, and copying your user ID now confirms that it was copied.
+TT Tracker now speaks 22 languages. New: Polish, Dutch, Czech, Swedish, Vietnamese, Thai, Malay and Traditional Chinese. The app follows your device language, or pick one in Settings.

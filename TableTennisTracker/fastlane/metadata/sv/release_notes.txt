@@ -1,1 +1,1 @@
-Inställningar öppnas nu från kugghjulet uppe till höger på varje skärm, och en ny knapp längst ned i passlistan lägger till ett pass med ett tryck. Du kan ändra ordning på statistikwidgetarna och slå på eller av var och en. Paneler använder iOS vanliga knappar för att stänga och spara, och när du kopierar ditt användar-ID får du nu en bekräftelse.
+TT Tracker finns nu på 22 språk. Nytt: polska, nederländska, tjeckiska, svenska, vietnamesiska, thailändska, malajiska och traditionell kinesiska. Appen följer enhetens språk, eller välj ett i Inställningar.

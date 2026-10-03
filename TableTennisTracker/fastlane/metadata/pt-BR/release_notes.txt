@@ -1,1 +1,1 @@
-Os ajustes agora abrem pela engrenagem no canto superior direito de cada tela, e um novo botão no fim da sua lista adiciona uma sessão com um toque. Você pode reordenar seus widgets de análise e ativar ou desativar cada um. As janelas usam os botões padrão do iOS para fechar e salvar, e copiar seu ID de usuário agora mostra uma confirmação.
+O TT Tracker agora fala 22 idiomas. Novos: polonês, holandês, tcheco, sueco, vietnamita, tailandês, malaio e chinês tradicional. O app segue o idioma do seu dispositivo, ou escolha um em Ajustes.

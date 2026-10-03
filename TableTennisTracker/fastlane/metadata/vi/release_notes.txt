@@ -1,1 +1,1 @@
-Giờ đây bạn mở Cài đặt từ biểu tượng bánh răng ở góc trên bên phải của mọi màn hình, và nút mới ở cuối danh sách buổi tập giúp thêm buổi tập chỉ với một lần chạm. Bạn có thể sắp xếp lại các tiện ích phân tích và bật hoặc tắt từng tiện ích. Các bảng dùng nút đóng và lưu chuẩn của iOS, và khi sao chép ID người dùng, ứng dụng sẽ xác nhận đã sao chép.
+TT Tracker nay hỗ trợ 22 ngôn ngữ. Mới: tiếng Ba Lan, Hà Lan, Séc, Thụy Điển, Việt, Thái, Mã Lai và Trung Phồn thể. Ứng dụng dùng ngôn ngữ của thiết bị, hoặc bạn có thể chọn trong Cài đặt.

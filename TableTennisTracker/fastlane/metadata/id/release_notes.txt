@@ -1,1 +1,1 @@
-Pengaturan kini dibuka dari ikon roda gigi di kanan atas setiap layar, dan tombol baru di bagian bawah daftar latihan menambahkan latihan dengan sekali ketuk. Anda dapat mengubah urutan widget analitik dan menyalakan atau mematikan masing-masing. Lembar kini memakai tombol tutup dan simpan standar iOS, dan menyalin ID pengguna kini menampilkan konfirmasi.
+TT Tracker kini tersedia dalam 22 bahasa. Baru: Polandia, Belanda, Ceko, Swedia, Vietnam, Thai, Melayu, dan Tionghoa Tradisional. Aplikasi mengikuti bahasa perangkatmu, atau pilih sendiri di Pengaturan.

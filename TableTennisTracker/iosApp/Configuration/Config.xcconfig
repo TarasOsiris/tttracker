@@ -3,8 +3,8 @@ TEAM_ID=
 PRODUCT_NAME=TableTennisTracker
 PRODUCT_BUNDLE_IDENTIFIER=xyz.tleskiv.tt.TableTennisTracker$(TEAM_ID)
 
-CURRENT_PROJECT_VERSION=23
-MARKETING_VERSION=1.3.11
+CURRENT_PROJECT_VERSION=24
+MARKETING_VERSION=1.3.12
 
 // RevenueCat: Debug talks to RevenueCat's Test Store, so the paywall works without App Store Connect
 // products. A Test Store key must never ship — the SDK refuses it in a release build.

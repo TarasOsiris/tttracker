@@ -1,1 +1,1 @@
-Ayarlar artık her ekranın sağ üstündeki dişli simgesinden açılıyor; antrenman listenizin altındaki yeni düğmeyle tek dokunuşta antrenman ekleyebilirsiniz. Analiz bileşenlerinizi yeniden sıralayabilir ve her birini açıp kapatabilirsiniz. Sayfalar iOS'un standart kapat ve kaydet düğmelerini kullanıyor; kullanıcı kimliğinizi kopyaladığınızda artık bir onay görüyorsunuz.
+TT Tracker artık 22 dilde. Yeni: Lehçe, Felemenkçe, Çekçe, İsveççe, Vietnamca, Tayca, Malayca ve Geleneksel Çince. Uygulama cihazının dilini kullanır; istersen Ayarlar'dan bir dil seçebilirsin.

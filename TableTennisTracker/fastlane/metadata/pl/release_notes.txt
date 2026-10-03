@@ -1,1 +1,1 @@
-Ustawienia otwierasz teraz kołem zębatym w prawym górnym rogu każdego ekranu, a nowy przycisk na dole listy treningów dodaje trening jednym stuknięciem. Możesz zmieniać kolejność widżetów statystyk i włączać lub wyłączać każdy z nich. Okna mają standardowe przyciski zamykania i zapisywania z iOS, a skopiowanie ID użytkownika jest teraz potwierdzane.
+TT Tracker mówi teraz w 22 językach. Nowe: polski, niderlandzki, czeski, szwedzki, wietnamski, tajski, malajski i chiński tradycyjny. Aplikacja używa języka urządzenia – możesz też wybrać język w Ustawieniach.
