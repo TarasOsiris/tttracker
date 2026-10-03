@@ -6,7 +6,7 @@ import XCTest
 /// in the app's SQLite container, which survives relaunch, so every language — and the Android run,
 /// which seeds the same dataset — shows the same player with the same history.
 ///
-/// Nothing here is addressed by label. Fifteen languages go past, and a label lookup would work in
+/// Nothing here is addressed by label. Every app language goes past, and a label lookup would work in
 /// exactly one of them; the tab bar, which `TabView` builds from localized strings with no view of
 /// ours to hang an identifier on, is addressed positionally instead.
 final class AppStoreScreenshotTests: XCTestCase {
@@ -24,11 +24,12 @@ final class AppStoreScreenshotTests: XCTestCase {
     /// Every language the app ships, as `Shared.xcstrings` spells them. `AppLocale` in `:core` is the
     /// source of this list; it is repeated because a UI test bundle does not link the app.
     private static let allLocales = [
-        "en", "ar", "de", "es", "fr", "hi", "id", "it", "ja", "ko", "pt", "tr", "uk", "zh-CN", "zh-TW"
+        "en", "ar", "cs", "de", "es", "fr", "hi", "id", "it", "ja", "ko", "ms", "nl", "pl", "pt", "sv", "th",
+        "tr", "uk", "vi", "zh-CN", "zh-TW"
     ]
 
     /// `TEST_RUNNER_SCREENSHOT_LOCALES=de,ja` narrows the run to those languages — a smoke test
-    /// before committing to all fifteen, and the way to re-capture one language on its own.
+    /// before committing to all of them, and the way to re-capture one language on its own.
     private static var locales: [String] {
         guard let override = ProcessInfo.processInfo.environment["SCREENSHOT_LOCALES"], !override.isEmpty else {
             return allLocales
@@ -39,7 +40,8 @@ final class AppStoreScreenshotTests: XCTestCase {
     private static let localeRegions = [
         "en": "en_US", "ar": "ar_SA", "de": "de_DE", "es": "es_ES", "fr": "fr_FR", "hi": "hi_IN",
         "id": "id_ID", "it": "it_IT", "ja": "ja_JP", "ko": "ko_KR", "pt": "pt_BR", "tr": "tr_TR",
-        "uk": "uk_UA", "zh-CN": "zh_CN", "zh-TW": "zh_TW"
+        "uk": "uk_UA", "zh-CN": "zh_CN", "zh-TW": "zh_TW", "cs": "cs_CZ", "ms": "ms_MY", "nl": "nl_NL",
+        "pl": "pl_PL", "sv": "sv_SE", "th": "th_TH", "vi": "vi_VN"
     ]
 
     private var isPad: Bool { UIDevice.current.userInterfaceIdiom == .pad }
@@ -245,7 +247,7 @@ final class AppStoreScreenshotTests: XCTestCase {
     }
 
     /// The back button is the first item in the navigation bar, and its title is the previous
-    /// screen's — localized in all fourteen languages, so it cannot be addressed by name.
+    /// screen's — localized in every app language, so it cannot be addressed by name.
     private func navigateBack() {
         let back = app.navigationBars.buttons.element(boundBy: 0)
         XCTAssertTrue(back.waitForExistence(timeout: timeout), "no back button")

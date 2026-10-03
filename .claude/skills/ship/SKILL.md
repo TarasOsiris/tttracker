@@ -356,9 +356,11 @@ Only when Step 7 said to submit.
    variable — a naive `for L in $LOCALES` passes the whole list as one locale and every call
    fails; pipe into `while read -r L` instead.
 
-   A locale on disk that `asc localizations list` does not show yet — `zh-Hant`, added once the
-   app gained Traditional Chinese — has to be created rather than updated, with every field from
-   its directory:
+   A locale on disk that `asc localizations list` does not show yet has to be created rather than
+   updated, with every field from its directory. As of Oct 2026 that is `zh-Hant` (Traditional
+   Chinese) and the seven languages added after it: `cs`, `ms`, `nl-NL`, `pl`, `sv`, `th`, `vi`.
+   Create them on the first version that ships their translations, not before, so the listing
+   never promises a language the installed build lacks. Run once per locale:
 
    ```bash
    L=zh-Hant; D=fastlane/metadata/$L
@@ -373,6 +375,12 @@ Only when Step 7 said to submit.
    locale in App Store Connect if `asc` cannot. Its screenshots are ready in the Screenshot Bro
    "tt tracker" project under the same locale code; once the localization exists, push them with
    the Screenshot Bro App Store sync (preview, then apply) for that locale only.
+
+   **Pending since Oct 2026:** the Screenshot Bro iPhone and iPad rows hold new captures of the
+   current UI for every locale, but no version was editable when they were made. Before
+   submitting the next version, run the Screenshot Bro App Store sync for **all** locales
+   (preview, then apply), not only the new ones. That replaces the old screenshots, which still
+   show the Settings tab.
 
    If a locale has no file on disk, fall back to the en-US text. When the notes on disk are stale
    (they describe the *previous* ship), draft fresh English from `git log ios-<previous>..HEAD` —
@@ -612,6 +620,15 @@ gplay metadata apply    --dir fastlane/play-metadata --confirm
 `apply` writes every locale in one edit and is additive; `--prune` deletes live locales absent from
 the tree, which is a real delete. Re-run the `--dry-run` afterwards — all `unchanged` is the
 read-back.
+
+**Pending since Oct 2026:** the tree holds listings for `cs-CZ`, `ms-MY`, `nl-NL`, `pl-PL`,
+`sv-SE`, `th` and `vi`, and every full description says the app speaks 22 languages. Both wait on
+the first Android release that ships those translations. Push the metadata right after that
+release reaches production, then upload each new language's phone screenshots. Export them from the
+Screenshot Bro "tt tracker" Android row (project locales `cs`, `ms`, `nl-NL`, `pl`, `sv`, `th`,
+`vi`), stage them as `build/play-images/<lang>/images/phoneScreenshots/1.png…8.png` and run the
+`metadata images apply --type phoneScreenshots --prune` flow below. Check with `gplay metadata
+apply --dry-run` that the text push leaves no trailing-newline diffs.
 
 Images are a separate tree, `<dir>/<lang>/images/<type>/1.png…N.png` for galleries and
 `<dir>/<lang>/images/<type>.png` for `icon` / `featureGraphic`. Stage it under `build/` (gitignored)

@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- RPE Labels -->
+    <string name="rpe_very_easy">Mycket lätt</string>
+    <string name="rpe_easy">Lätt</string>
+    <string name="rpe_moderate">Måttlig</string>
+    <string name="rpe_hard">Hård</string>
+    <string name="rpe_max_effort">Maximal ansträngning</string>
+
+    <!-- General Actions -->
+    <string name="action_ok">OK</string>
+    <string name="action_cancel">Avbryt</string>
+    <string name="action_close">Stäng</string>
+    <string name="action_change">Ändra</string>
+    <string name="action_edit">Redigera</string>
+    <string name="action_save">Spara</string>
+    <string name="action_add_session">Lägg till pass</string>
+    <string name="action_ui_settings">Gränssnitt</string>
+    <string name="action_opponents">Motståndare</string>
+    <string name="opponents_empty">Inga motståndare än</string>
+    <string name="title_opponents">Motståndare</string>
+    <string name="action_back">Tillbaka</string>
+
+    <!-- Navigation -->
+    <string name="nav_sessions">Pass</string>
+    <string name="nav_analytics">Statistik</string>
+    <string name="nav_settings">Inställningar</string>
+
+    <!-- Screen Titles -->
+    <string name="title_create_session">Nytt träningspass</string>
+    <string name="title_settings">Inställningar</string>
+    <string name="title_error">Fel</string>
+
+    <!-- Sessions Screen -->
+    <string name="sessions_week_mode">Vecka</string>
+    <string name="sessions_month_mode">Månad</string>
+    <string name="sessions_empty">Inga pass</string>
+    <string name="sessions_select_prompt">Välj ett pass</string>
+    <string name="session_duration_format">%1$d min</string>
+
+    <!-- Create Session Screen -->
+    <string name="label_date">Datum</string>
+    <string name="label_duration">Längd</string>
+    <string name="suffix_minutes">minuter</string>
+    <string name="suffix_minutes_value">%1$d min</string>
+    <string name="label_session_type">Typ av pass</string>
+    <string name="label_intensity_rpe">Intensitet (RPE)</string>
+    <string name="label_notes_optional">Anteckningar (valfritt)</string>
+    <string name="label_default_notes">Standardanteckningar</string>
+    <string name="hint_notes">Skriv anteckningar om passet…</string>
+    <string name="counter_notes">%1$d/1000</string>
+
+    <!-- Session Details Screen -->
+    <string name="session_default_title">Träningspass</string>
+    <string name="label_rpe">RPE</string>
+    <string name="label_notes">Anteckningar</string>
+    <string name="action_delete">Radera</string>
+    <string name="delete_session_title">Radera passet?</string>
+    <string name="delete_session_message">Det här går inte att ångra. Passet raderas permanent.</string>
+
+    <!-- Session Types -->
+    <string name="session_type_technique">Teknik</string>
+    <string name="session_type_match_play">Matchspel</string>
+    <string name="session_type_tournament">Tävling</string>
+    <string name="session_type_serve_practice">Serveträning</string>
+    <string name="session_type_physical">Fysträning</string>
+    <string name="session_type_free_play">Fritt spel</string>
+    <string name="session_type_other">Övrigt</string>
+
+    <!-- Analytics Screen -->
+    <string name="analytics_summary">Sammanfattning</string>
+    <string name="analytics_total_sessions">Pass</string>
+    <string name="analytics_total_time">Träningstid</string>
+    <string name="analytics_hours_minutes">%1$d h %2$d min</string>
+    <string name="analytics_win_loss">Vinster/förluster</string>
+    <string name="analytics_win_rate">Vinstandel</string>
+    <string name="analytics_heatmap_title">Värmekarta över träningspass</string>
+    <string name="analytics_heatmap_less">Mindre</string>
+    <string name="analytics_heatmap_more">Mer</string>
+    <string name="analytics_weekly_training">Träningstid per vecka</string>
+    <string name="analytics_win_loss_chart">Matchresultat</string>
+    <string name="analytics_wins">Vinster</string>
+    <string name="analytics_losses">Förluster</string>
+    <string name="analytics_no_matches">Inga matcher än</string>
+    <string name="analytics_no_training">Ingen träningsdata än</string>
+    <string name="analytics_weekly_avg">Snitt</string>
+    <string name="analytics_weekly_total">Totalt</string>
+    <string name="analytics_settings_title">Statistikwidgetar</string>
+    <string name="analytics_widget_summary">Sammanfattning</string>
+    <string name="analytics_widget_win_loss">Vinster/förluster</string>
+    <string name="analytics_widget_weekly">Träning per vecka</string>
+    <string name="analytics_widget_heatmap">Värmekarta</string>
+    <string name="analytics_widget_streak">Träningssvit</string>
+    <string name="analytics_widgets_reorder_hint">Dra för att ändra ordning</string>
+    <string name="action_move_up">Flytta upp</string>
+    <string name="action_move_down">Flytta ned</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_section_general">Allmänt</string>
+    <string name="settings_section_help">Hjälp</string>
+    <string name="settings_section_about">Om</string>
+    <string name="action_send_feedback">Skicka feedback</string>
+    <string name="action_visit_website">Webbplats</string>
+    <string name="action_rate_app">Betygsätt appen</string>
+    <string name="action_copy_user_id">Kopiera användar-ID</string>
+    <string name="user_id_copied">Användar-ID kopierat</string>
+
+    <!-- General Settings Screen -->
+    <string name="settings_section_appearance">Utseende</string>
+    <string name="settings_section_calendar">Kalender</string>
+    <string name="settings_section_sessions">Standardvärden för pass</string>
+    <string name="action_theme">Tema</string>
+    <string name="theme_select_title">Välj tema</string>
+    <string name="action_language">Språk</string>
+    <string name="language_select_title">Välj språk</string>
+    <string name="theme_system">Systemstandard</string>
+    <string name="theme_light">Ljust</string>
+    <string name="theme_dark">Mörkt</string>
+    <string name="action_privacy_policy">Integritetspolicy</string>
+    <string name="action_week_start">Veckans första dag</string>
+    <string name="week_start_select_title">Veckans första dag</string>
+    <string name="week_start_monday">Måndag</string>
+    <string name="week_start_sunday">Söndag</string>
+    <string name="week_start_saturday">Lördag</string>
+    <string name="settings_highlight_current_day">Markera dagens datum</string>
+    <string name="settings_section_developer">Utvecklare</string>
+    <string name="action_debug">Felsökning</string>
+    <string name="settings_version_format">Version %1$s (%2$s)</string>
+    <string name="settings_made_with_prefix">Gjord med ❤️ av</string>
+    <string name="settings_company_name">Nineva Studios</string>
+
+    <!-- Home Screen -->
+
+    <!-- Debug Screen -->
+    <string name="debug_data_generation_title">Datagenerering</string>
+    <string name="debug_data_generation_description">Skapa slumpmässiga träningspass för det senaste året för att testa appen med realistisk data.</string>
+    <string name="debug_generate_random_sessions">Skapa 100 slumpmässiga pass</string>
+    <string name="debug_seed_showcase_data">Fyll i data för butiksbilder</string>
+    <string name="debug_sessions_in_database">Pass i databasen</string>
+    <string name="debug_clear_database_title">Töm databasen</string>
+    <string name="debug_clear_database_description">Radera alla träningspass i databasen permanent. Det här går inte att ångra.</string>
+    <string name="debug_clear_all_sessions">Radera alla pass</string>
+
+    <!-- Date & Time -->
+    <string name="time_today">Idag</string>
+    <string name="time_yesterday">Igår</string>
+    <string name="time_tomorrow">Imorgon</string>
+    <string name="month_january">januari</string>
+    <string name="month_february">februari</string>
+    <string name="month_march">mars</string>
+    <string name="month_april">april</string>
+    <string name="month_may">maj</string>
+    <string name="month_june">juni</string>
+    <string name="month_july">juli</string>
+    <string name="month_august">augusti</string>
+    <string name="month_september">september</string>
+    <string name="month_october">oktober</string>
+    <string name="month_november">november</string>
+    <string name="month_december">december</string>
+    <string name="day_monday">måndag</string>
+    <string name="day_tuesday">tisdag</string>
+    <string name="day_wednesday">onsdag</string>
+    <string name="day_thursday">torsdag</string>
+    <string name="day_friday">fredag</string>
+    <string name="day_saturday">lördag</string>
+    <string name="day_sunday">söndag</string>
+    <string name="day_monday_short">mån</string>
+    <string name="day_tuesday_short">tis</string>
+    <string name="day_wednesday_short">ons</string>
+    <string name="day_thursday_short">tors</string>
+    <string name="day_friday_short">fre</string>
+    <string name="day_saturday_short">lör</string>
+    <string name="day_sunday_short">sön</string>
+    <string name="month_january_short">jan</string>
+    <string name="month_february_short">feb</string>
+    <string name="month_march_short">mars</string>
+    <string name="month_april_short">apr</string>
+    <string name="month_may_short">maj</string>
+    <string name="month_june_short">juni</string>
+    <string name="month_july_short">juli</string>
+    <string name="month_august_short">aug</string>
+    <string name="month_september_short">sep</string>
+    <string name="month_october_short">okt</string>
+    <string name="month_november_short">nov</string>
+    <string name="month_december_short">dec</string>
+
+    <string name="duration_minutes_full">%1$d minuter</string>
+    <string name="duration_hours_full">%1$d timme</string>
+    <string name="duration_hours_plural_full">%1$d timmar</string>
+    <string name="duration_hm_short">%1$d h %2$d min</string>
+
+    <!-- Help -->
+    <string name="help_icon_content_description">Visa hjälp</string>
+    <string name="help_rpe_title">Vad är RPE?</string>
+    <string name="help_rpe_description">RPE (Rate of Perceived Exertion) mäter hur hårt du upplever att kroppen arbetar under träningen.</string>
+    <string name="help_rpe_scale_intro">Skalan 1–10 hjälper dig att följa träningens intensitet:</string>
+    <string name="help_rpe_level_1_2">1–2: Mycket lätt – lätt aktivitet, du kan prata obehindrat</string>
+    <string name="help_rpe_level_3_4">3–4: Lätt – bekvämt tempo, det går att samtala</string>
+    <string name="help_rpe_level_5_6">5–6: Måttlig – tyngre andning, viss utmaning</string>
+    <string name="help_rpe_level_7_8">7–8: Hård – svårt att prata, du pressar dig</string>
+    <string name="help_rpe_level_9_10">9–10: Maximal ansträngning – allt du har, går inte att hålla länge</string>
+    <string name="help_rpe_tip">Tips: De flesta träningspass bör ligga mellan 5 och 7.</string>
+
+    <!-- Match Creation -->
+    <string name="label_matches_optional">Matcher (valfritt)</string>
+    <string name="action_add_match">Lägg till match</string>
+    <string name="add_match">Lägg till match</string>
+    <string name="edit_match">Redigera match</string>
+    <string name="label_match_notes_optional">Anteckningar (valfritt)</string>
+    <string name="hint_match_notes">Skriv anteckningar om matchen…</string>
+    <string name="label_opponent">Motståndare</string>
+    <string name="hint_opponent_name">Ange motståndarens namn</string>
+    <string name="label_score">Resultat</string>
+    <string name="label_me">Jag</string>
+    <string name="action_increase_my_score">Öka mitt resultat</string>
+    <string name="action_increase_opponent_score">Öka motståndarens resultat</string>
+    <string name="label_competition_level_optional">Tävlingsnivå (valfritt)</string>
+    <string name="matches_empty_hint">Inga matcher tillagda än</string>
+    <string name="label_doubles">Dubbel</string>
+    <string name="label_ranked">Rankad</string>
+    <string name="competition_level_practice">Träning</string>
+    <string name="competition_level_league">Serie</string>
+    <string name="competition_level_tournament">Tävling</string>
+    <string name="match_score_format">%1$d–%2$d</string>
+    <string name="match_win">V</string>
+    <string name="match_loss">F</string>
+
+    <!-- Session Details -->
+    <string name="session_matches_count">Matcher (%1$d)</string>
+    <string name="opponent_rating_format">Ranking: %1$d</string>
+
+    <!-- Opponents -->
+    <string name="action_add_opponent">Lägg till motståndare</string>
+    <string name="action_edit_opponent">Redigera motståndare</string>
+    <string name="label_opponent_name">Namn</string>
+    <string name="label_opponent_club">Klubb (valfritt)</string>
+    <string name="label_opponent_rating">Ranking (valfritt)</string>
+    <string name="label_opponent_handedness">Spelhand (valfritt)</string>
+    <string name="label_opponent_style">Spelstil (valfritt)</string>
+    <string name="label_opponent_notes">Anteckningar (valfritt)</string>
+    <string name="handedness_right">Höger</string>
+    <string name="handedness_left">Vänster</string>
+    <string name="style_attacker">Anfallare</string>
+    <string name="style_defender">Försvarare</string>
+    <string name="style_all_round">Allround</string>
+    <string name="style_pips">Noppor</string>
+    <string name="style_chopper">Chopspelare</string>
+
+    <!-- Delete Confirmation -->
+    <string name="delete_opponent_title">Radera motståndaren?</string>
+    <string name="delete_opponent_message">Alla matcher mot den här motståndaren raderas också. Det här går inte att ångra.</string>
+
+    <!-- Opponents Info -->
+    <string name="opponents_info_title">Om motståndare</string>
+    <string name="opponents_info_message">Motståndare du lägger till här kan du snabbt välja när du registrerar matcher i dina träningspass.</string>
+
+    <!-- Accessibility -->
+    <string name="accessibility_sessions_count">Pass: %1$d</string>
+
+    <!-- Home screen widgets -->
+    <string name="widget_summary_name">Träningsöversikt</string>
+    <string name="widget_summary_description">Pass, träningstid och ditt matchfacit i en överblick.</string>
+    <string name="widget_heatmap_name">Träningsaktivitet</string>
+    <string name="widget_heatmap_description">Dina träningsdagar, skuggade efter hur mycket du tränade.</string>
+    <string name="widget_last_session_name">Senaste passet</string>
+    <string name="widget_last_session_description">När du senast tränade, hur länge och hur det gick.</string>
+    <string name="widget_add_session_name">Lägg till pass</string>
+    <string name="widget_add_session_description">Öppna TT Tracker och börja logga ett träningspass.</string>
+    <string name="widget_streak_name">Träningssvit</string>
+    <string name="widget_streak_description">Hur många veckor i rad du har tränat, och ditt rekord.</string>
+    <string name="widget_load_name">Träningsbelastning</string>
+    <string name="widget_load_description">Veckans träningsbelastning jämfört med veckorna innan.</string>
+    <string name="widget_this_week">Den här veckan</string>
+    <string name="widget_last_week">Förra veckan</string>
+    <string name="widget_pro_locked">Lås upp med Pro i appen</string>
+    <string name="widget_empty">Inga pass än</string>
+    <string name="widget_no_matches">Inga matcher</string>
+    <string name="settings_icloud_section">iCloud</string>
+    <string name="settings_icloud_sync">Synka med iCloud</string>
+    <string name="settings_icloud_sync_hint">Håll dina pass, matcher och motståndare likadana på alla dina enheter.</string>
+    <string name="settings_icloud_sync_now">Synka nu</string>
+    <string name="settings_icloud_syncing">Synkar…</string>
+    <string name="settings_icloud_waiting">Väntar på synkning</string>
+    <string name="settings_icloud_last_synced">Senast synkad %1$s</string>
+    <string name="settings_icloud_no_account">Logga in på iCloud i appen Inställningar för att synka.</string>
+    <string name="settings_icloud_quota_exceeded">Ditt iCloud-lagringsutrymme är fullt, så vissa ändringar synkas inte.</string>
+    <string name="settings_icloud_failed">Vissa ändringar kunde inte synkas. Ett nytt försök görs senare.</string>
+    <string name="settings_icloud_turned_off">Appens iCloud-data raderades, så synkningen stängdes av. Inget på den här enheten togs bort.</string>
+    <string name="settings_icloud_account_changed">Ditt iCloud-konto har bytts, så synkningen stängdes av. Slå på den igen för att synka med det här kontot.</string>
+    <string name="pro_unlock">Lås upp med Pro</string>
+    <string name="settings_section_data">Data</string>
+    <string name="settings_export">Exportera till CSV</string>
+    <string name="settings_export_hint">Dina pass och matcher som två filer för kalkylark</string>
+    <string name="settings_accent_color">Accentfärg</string>
+    <string name="accent_default">Standard</string>
+    <string name="accent_green">Grön</string>
+    <string name="accent_teal">Blågrön</string>
+    <string name="accent_indigo">Indigo</string>
+    <string name="accent_purple">Lila</string>
+    <string name="accent_pink">Rosa</string>
+    <string name="accent_red">Röd</string>
+    <string name="accent_orange">Orange</string>
+    <string name="pro_toolbar_button">PRO</string>
+    <string name="pro_upgrade_hint">Öppnar alternativen för att uppgradera till Pro</string>
+    <string name="pro_banner_title">TT Tracker Pro</string>
+    <string name="pro_banner_tagline">Förstå din träning och gör appen till din egen</string>
+    <string name="pro_benefit_insights_title">Träningsinsikter</string>
+    <string name="pro_benefit_insights_detail">Sviter, träningsbelastning per vecka och din fördelning av passtyper</string>
+    <string name="pro_benefit_head_to_head_title">Inbördes möten</string>
+    <string name="pro_benefit_head_to_head_detail">Ditt facit och din senaste form mot varje motståndare</string>
+    <string name="pro_benefit_history_title">Hela din historik</string>
+    <string name="pro_benefit_history_detail">Träning per vecka över 6 månader, ett år eller hela tiden</string>
+    <string name="pro_benefit_widgets_title">Fler widgetar</string>
+    <string name="pro_benefit_widgets_detail">Din svit och träningsbelastning på hemskärmen</string>
+    <string name="pro_benefit_export_title">Exportera till CSV</string>
+    <string name="pro_benefit_export_detail">Ta med dina pass och matcher till ett kalkylark</string>
+    <string name="pro_benefit_accent_title">Accentfärger</string>
+    <string name="pro_benefit_accent_detail">Ge appen och dess widgetar den färg du gillar</string>
+    <string name="analytics_insights">Insikter</string>
+    <string name="analytics_streak_current">Aktuell svit</string>
+    <string name="analytics_streak_longest">Längsta svit</string>
+    <string name="analytics_streak_hint">Veckor i rad med minst ett pass</string>
+    <string name="analytics_training_load">Träningsbelastning</string>
+    <string name="analytics_training_load_hint">Minuter × intensitet (RPE), per vecka</string>
+    <string name="analytics_session_types">Passtyper</string>
+    <string name="analytics_session_type_none">Ingen typ</string>
+    <string name="analytics_head_to_head">Inbördes möten</string>
+    <string name="analytics_head_to_head_all">Alla motståndare</string>
+    <string name="analytics_games_format">Set %1$d–%2$d</string>
+    <string name="analytics_range">Period</string>
+    <string name="analytics_range_8w">8 v</string>
+    <string name="analytics_range_6m">6 mån</string>
+    <string name="analytics_range_1y">1 år</string>
+    <string name="analytics_range_all">Allt</string>
+    <string name="pro_banner_cta">Skaffa Pro</string>
+    <string name="pro_benefit_support_title">Stöd en indieutvecklare</string>
+    <string name="pro_benefit_support_detail">Hjälp TT Tracker att fortsätta växa</string>
+    <string name="action_restore_purchases">Återställ köp</string>
+    <string name="pro_restore_success">Köpen har återställts</string>
+    <string name="pro_restore_nothing">Inga köp att återställa</string>
+    <string name="pro_restore_failed">Det gick inte att återställa köpen. Försök igen.</string>
+</resources>

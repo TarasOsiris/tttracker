@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- RPE Labels -->
+    <string name="rpe_very_easy">Sangat mudah</string>
+    <string name="rpe_easy">Mudah</string>
+    <string name="rpe_moderate">Sederhana</string>
+    <string name="rpe_hard">Sukar</string>
+    <string name="rpe_max_effort">Usaha maksimum</string>
+
+    <!-- General Actions -->
+    <string name="action_ok">OK</string>
+    <string name="action_cancel">Batal</string>
+    <string name="action_close">Tutup</string>
+    <string name="action_change">Tukar</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_save">Simpan</string>
+    <string name="action_add_session">Tambah Sesi</string>
+    <string name="action_ui_settings">Tetapan UI</string>
+    <string name="action_opponents">Lawan</string>
+    <string name="opponents_empty">Belum ada lawan</string>
+    <string name="title_opponents">Lawan</string>
+    <string name="action_back">Kembali</string>
+
+    <!-- Navigation -->
+    <string name="nav_sessions">Sesi</string>
+    <string name="nav_analytics">Analitik</string>
+    <string name="nav_settings">Tetapan</string>
+
+    <!-- Screen Titles -->
+    <string name="title_create_session">Cipta Sesi Latihan</string>
+    <string name="title_settings">Tetapan</string>
+    <string name="title_error">Ralat</string>
+
+    <!-- Sessions Screen -->
+    <string name="sessions_week_mode">Minggu</string>
+    <string name="sessions_month_mode">Bulan</string>
+    <string name="sessions_empty">Tiada sesi</string>
+    <string name="sessions_select_prompt">Pilih sesi</string>
+    <string name="session_duration_format">%1$d min</string>
+
+    <!-- Create Session Screen -->
+    <string name="label_date">Tarikh</string>
+    <string name="label_duration">Tempoh</string>
+    <string name="suffix_minutes">minit</string>
+    <string name="suffix_minutes_value">%1$d min</string>
+    <string name="label_session_type">Jenis Sesi</string>
+    <string name="label_intensity_rpe">Intensiti (RPE)</string>
+    <string name="label_notes_optional">Nota (pilihan)</string>
+    <string name="label_default_notes">Nota lalai</string>
+    <string name="hint_notes">Tambah nota tentang sesi anda…</string>
+    <string name="counter_notes">%1$d/1000</string>
+
+    <!-- Session Details Screen -->
+    <string name="session_default_title">Sesi Latihan</string>
+    <string name="label_rpe">RPE</string>
+    <string name="label_notes">Nota</string>
+    <string name="action_delete">Padam</string>
+    <string name="delete_session_title">Padam sesi?</string>
+    <string name="delete_session_message">Tindakan ini tidak boleh dibuat asal. Sesi ini akan dipadam secara kekal.</string>
+
+    <!-- Session Types -->
+    <string name="session_type_technique">Teknik</string>
+    <string name="session_type_match_play">Perlawanan</string>
+    <string name="session_type_tournament">Kejohanan</string>
+    <string name="session_type_serve_practice">Latihan Servis</string>
+    <string name="session_type_physical">Fizikal</string>
+    <string name="session_type_free_play">Main Bebas</string>
+    <string name="session_type_other">Lain-lain</string>
+
+    <!-- Analytics Screen -->
+    <string name="analytics_summary">Ringkasan</string>
+    <string name="analytics_total_sessions">Sesi</string>
+    <string name="analytics_total_time">Masa berlatih</string>
+    <string name="analytics_hours_minutes">%1$dj %2$dm</string>
+    <string name="analytics_win_loss">Menang / Kalah</string>
+    <string name="analytics_win_rate">Kadar menang</string>
+    <string name="analytics_heatmap_title">Peta haba sesi latihan</string>
+    <string name="analytics_heatmap_less">Kurang</string>
+    <string name="analytics_heatmap_more">Lebih</string>
+    <string name="analytics_weekly_training">Masa latihan mingguan</string>
+    <string name="analytics_win_loss_chart">Keputusan perlawanan</string>
+    <string name="analytics_wins">Menang</string>
+    <string name="analytics_losses">Kalah</string>
+    <string name="analytics_no_matches">Belum ada perlawanan</string>
+    <string name="analytics_no_training">Belum ada data latihan</string>
+    <string name="analytics_weekly_avg">Purata</string>
+    <string name="analytics_weekly_total">Jumlah</string>
+    <string name="analytics_settings_title">Widget analitik</string>
+    <string name="analytics_widget_summary">Ringkasan</string>
+    <string name="analytics_widget_win_loss">Carta Menang/Kalah</string>
+    <string name="analytics_widget_weekly">Latihan mingguan</string>
+    <string name="analytics_widget_heatmap">Peta haba latihan</string>
+    <string name="analytics_widget_streak">Rentetan latihan</string>
+    <string name="analytics_widgets_reorder_hint">Seret untuk menyusun semula</string>
+    <string name="action_move_up">Alih ke atas</string>
+    <string name="action_move_down">Alih ke bawah</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_section_general">Umum</string>
+    <string name="settings_section_help">Bantuan</string>
+    <string name="settings_section_about">Perihal</string>
+    <string name="action_send_feedback">Hantar maklum balas</string>
+    <string name="action_visit_website">Laman web</string>
+    <string name="action_rate_app">Nilaikan apl</string>
+    <string name="action_copy_user_id">Salin ID Pengguna</string>
+    <string name="user_id_copied">ID Pengguna disalin</string>
+
+    <!-- General Settings Screen -->
+    <string name="settings_section_appearance">Penampilan</string>
+    <string name="settings_section_calendar">Kalendar</string>
+    <string name="settings_section_sessions">Lalai sesi latihan</string>
+    <string name="action_theme">Tema</string>
+    <string name="theme_select_title">Pilih tema</string>
+    <string name="action_language">Bahasa</string>
+    <string name="language_select_title">Pilih bahasa</string>
+    <string name="theme_system">Lalai sistem</string>
+    <string name="theme_light">Cerah</string>
+    <string name="theme_dark">Gelap</string>
+    <string name="action_privacy_policy">Dasar Privasi</string>
+    <string name="action_week_start">Hari pertama minggu</string>
+    <string name="week_start_select_title">Hari pertama minggu</string>
+    <string name="week_start_monday">Isnin</string>
+    <string name="week_start_sunday">Ahad</string>
+    <string name="week_start_saturday">Sabtu</string>
+    <string name="settings_highlight_current_day">Serlahkan hari ini</string>
+    <string name="settings_section_developer">Pembangun</string>
+    <string name="action_debug">Nyahpepijat</string>
+    <string name="settings_version_format">Versi %1$s (%2$s)</string>
+    <string name="settings_made_with_prefix">Dibuat dengan ❤️ di</string>
+    <string name="settings_company_name">Nineva Studios</string>
+
+    <!-- Home Screen -->
+
+    <!-- Debug Screen -->
+    <string name="debug_data_generation_title">Penjanaan Data</string>
+    <string name="debug_data_generation_description">Jana sesi latihan rawak untuk setahun yang lalu bagi menguji apl dengan data yang realistik.</string>
+    <string name="debug_generate_random_sessions">Jana 100 Sesi Rawak</string>
+    <string name="debug_seed_showcase_data">Isi Data Tangkapan Skrin Gedung</string>
+    <string name="debug_sessions_in_database">Sesi dalam pangkalan data</string>
+    <string name="debug_clear_database_title">Kosongkan Pangkalan Data</string>
+    <string name="debug_clear_database_description">Padam semua sesi latihan daripada pangkalan data secara kekal. Tindakan ini tidak boleh dibuat asal.</string>
+    <string name="debug_clear_all_sessions">Kosongkan Semua Sesi</string>
+
+    <!-- Date & Time -->
+    <string name="time_today">Hari ini</string>
+    <string name="time_yesterday">Semalam</string>
+    <string name="time_tomorrow">Esok</string>
+    <string name="month_january">Januari</string>
+    <string name="month_february">Februari</string>
+    <string name="month_march">Mac</string>
+    <string name="month_april">April</string>
+    <string name="month_may">Mei</string>
+    <string name="month_june">Jun</string>
+    <string name="month_july">Julai</string>
+    <string name="month_august">Ogos</string>
+    <string name="month_september">September</string>
+    <string name="month_october">Oktober</string>
+    <string name="month_november">November</string>
+    <string name="month_december">Disember</string>
+    <string name="day_monday">Isnin</string>
+    <string name="day_tuesday">Selasa</string>
+    <string name="day_wednesday">Rabu</string>
+    <string name="day_thursday">Khamis</string>
+    <string name="day_friday">Jumaat</string>
+    <string name="day_saturday">Sabtu</string>
+    <string name="day_sunday">Ahad</string>
+    <string name="day_monday_short">Isn</string>
+    <string name="day_tuesday_short">Sel</string>
+    <string name="day_wednesday_short">Rab</string>
+    <string name="day_thursday_short">Kha</string>
+    <string name="day_friday_short">Jum</string>
+    <string name="day_saturday_short">Sab</string>
+    <string name="day_sunday_short">Ahd</string>
+    <string name="month_january_short">Jan</string>
+    <string name="month_february_short">Feb</string>
+    <string name="month_march_short">Mac</string>
+    <string name="month_april_short">Apr</string>
+    <string name="month_may_short">Mei</string>
+    <string name="month_june_short">Jun</string>
+    <string name="month_july_short">Jul</string>
+    <string name="month_august_short">Ogo</string>
+    <string name="month_september_short">Sep</string>
+    <string name="month_october_short">Okt</string>
+    <string name="month_november_short">Nov</string>
+    <string name="month_december_short">Dis</string>
+
+    <string name="duration_minutes_full">%1$d minit</string>
+    <string name="duration_hours_full">%1$d jam</string>
+    <string name="duration_hours_plural_full">%1$d jam</string>
+    <string name="duration_hm_short">%1$dj %2$dmin</string>
+
+    <!-- Help -->
+    <string name="help_icon_content_description">Tunjukkan bantuan</string>
+    <string name="help_rpe_title">Apakah RPE?</string>
+    <string name="help_rpe_description">RPE (Rate of Perceived Exertion) mengukur sejauh mana anda rasa badan anda bekerja keras semasa bersenam.</string>
+    <string name="help_rpe_scale_intro">Skala 1-10 membantu anda menjejak intensiti latihan:</string>
+    <string name="help_rpe_level_1_2">1-2: Sangat Mudah - Aktiviti ringan, boleh bercakap dengan mudah</string>
+    <string name="help_rpe_level_3_4">3-4: Mudah - Rentak selesa, masih boleh berbual</string>
+    <string name="help_rpe_level_5_6">5-6: Sederhana - Pernafasan lebih kuat, agak mencabar</string>
+    <string name="help_rpe_level_7_8">7-8: Sukar - Sukar bercakap, memaksa diri</string>
+    <string name="help_rpe_level_9_10">9-10: Usaha Maksimum - Intensiti habis-habisan, tidak dapat dikekalkan</string>
+    <string name="help_rpe_tip">Petua: Kebanyakan sesi latihan sepatutnya dalam julat 5-7.</string>
+
+    <!-- Match Creation -->
+    <string name="label_matches_optional">Perlawanan (pilihan)</string>
+    <string name="action_add_match">Tambah Perlawanan</string>
+    <string name="add_match">Tambah Perlawanan</string>
+    <string name="edit_match">Edit Perlawanan</string>
+    <string name="label_match_notes_optional">Nota (pilihan)</string>
+    <string name="hint_match_notes">Tambah nota tentang perlawanan ini…</string>
+    <string name="label_opponent">Lawan</string>
+    <string name="hint_opponent_name">Masukkan nama lawan</string>
+    <string name="label_score">Skor</string>
+    <string name="label_me">Saya</string>
+    <string name="action_increase_my_score">Tambah skor saya</string>
+    <string name="action_increase_opponent_score">Tambah skor lawan</string>
+    <string name="label_competition_level_optional">Tahap Pertandingan (pilihan)</string>
+    <string name="matches_empty_hint">Belum ada perlawanan ditambah</string>
+    <string name="label_doubles">Beregu</string>
+    <string name="label_ranked">Berperingkat</string>
+    <string name="competition_level_practice">Latihan</string>
+    <string name="competition_level_league">Liga</string>
+    <string name="competition_level_tournament">Kejohanan</string>
+    <string name="match_score_format">%1$d - %2$d</string>
+    <string name="match_win">M</string>
+    <string name="match_loss">K</string>
+
+    <!-- Session Details -->
+    <string name="session_matches_count">Perlawanan (%1$d)</string>
+    <string name="opponent_rating_format">Penarafan: %1$d</string>
+
+    <!-- Opponents -->
+    <string name="action_add_opponent">Tambah Lawan</string>
+    <string name="action_edit_opponent">Edit Lawan</string>
+    <string name="label_opponent_name">Nama</string>
+    <string name="label_opponent_club">Kelab (pilihan)</string>
+    <string name="label_opponent_rating">Penarafan (pilihan)</string>
+    <string name="label_opponent_handedness">Tangan dominan (pilihan)</string>
+    <string name="label_opponent_style">Gaya permainan (pilihan)</string>
+    <string name="label_opponent_notes">Nota (pilihan)</string>
+    <string name="handedness_right">Kanan</string>
+    <string name="handedness_left">Kiri</string>
+    <string name="style_attacker">Penyerang</string>
+    <string name="style_defender">Pertahanan</string>
+    <string name="style_all_round">Serba boleh</string>
+    <string name="style_pips">Pips</string>
+    <string name="style_chopper">Chopper</string>
+
+    <!-- Delete Confirmation -->
+    <string name="delete_opponent_title">Padam lawan?</string>
+    <string name="delete_opponent_message">Ini juga akan memadam semua perlawanan dengan lawan ini. Tindakan ini tidak boleh dibuat asal.</string>
+
+    <!-- Opponents Info -->
+    <string name="opponents_info_title">Perihal lawan</string>
+    <string name="opponents_info_message">Lawan yang anda tambah di sini boleh dipilih dengan pantas semasa merekod perlawanan dalam sesi latihan anda.</string>
+
+    <!-- Accessibility -->
+    <string name="accessibility_sessions_count">Sesi: %1$d</string>
+
+    <!-- Home screen widgets -->
+    <string name="widget_summary_name">Ringkasan latihan</string>
+    <string name="widget_summary_description">Sesi, masa berlatih dan rekod perlawanan anda sepintas lalu.</string>
+    <string name="widget_heatmap_name">Aktiviti latihan</string>
+    <string name="widget_heatmap_description">Hari latihan anda, berwarna mengikut tahap kesibukan setiap hari.</string>
+    <string name="widget_last_session_name">Sesi terakhir</string>
+    <string name="widget_last_session_description">Bila anda terakhir berlatih, berapa lama dan bagaimana prestasinya.</string>
+    <string name="widget_add_session_name">Tambah sesi</string>
+    <string name="widget_add_session_description">Buka TT Tracker dan mula merekod sesi latihan.</string>
+    <string name="widget_streak_name">Rentetan latihan</string>
+    <string name="widget_streak_description">Berapa minggu berturut-turut anda telah berlatih, dan rekod terbaik anda.</string>
+    <string name="widget_load_name">Beban latihan</string>
+    <string name="widget_load_description">Beban latihan minggu ini berbanding minggu-minggu sebelumnya.</string>
+    <string name="widget_this_week">Minggu ini</string>
+    <string name="widget_last_week">Minggu lepas</string>
+    <string name="widget_pro_locked">Buka kunci dengan Pro dalam apl</string>
+    <string name="widget_empty">Belum ada sesi</string>
+    <string name="widget_no_matches">Tiada perlawanan</string>
+    <string name="settings_icloud_section">iCloud</string>
+    <string name="settings_icloud_sync">Segerakkan dengan iCloud</string>
+    <string name="settings_icloud_sync_hint">Pastikan sesi, perlawanan dan lawan anda sama pada semua peranti anda.</string>
+    <string name="settings_icloud_sync_now">Segerakkan sekarang</string>
+    <string name="settings_icloud_syncing">Menyegerakkan…</string>
+    <string name="settings_icloud_waiting">Menunggu untuk disegerakkan</string>
+    <string name="settings_icloud_last_synced">Kali terakhir disegerakkan %1$s</string>
+    <string name="settings_icloud_no_account">Daftar masuk ke iCloud dalam apl Tetapan untuk menyegerakkan.</string>
+    <string name="settings_icloud_quota_exceeded">Storan iCloud anda penuh, jadi sesetengah perubahan tidak disegerakkan.</string>
+    <string name="settings_icloud_failed">Sesetengah perubahan tidak dapat disegerakkan. Ia akan dicuba semula.</string>
+    <string name="settings_icloud_turned_off">Data iCloud apl ini telah dipadam, jadi penyegerakan dimatikan. Tiada apa-apa pada peranti ini yang dibuang.</string>
+    <string name="settings_icloud_account_changed">Akaun iCloud anda telah bertukar, jadi penyegerakan dimatikan. Hidupkan semula untuk menyegerakkan dengan akaun ini.</string>
+    <string name="pro_unlock">Buka kunci dengan Pro</string>
+    <string name="settings_section_data">Data</string>
+    <string name="settings_export">Eksport ke CSV</string>
+    <string name="settings_export_hint">Sesi dan perlawanan anda, sebagai dua fail untuk hamparan</string>
+    <string name="settings_accent_color">Warna aksen</string>
+    <string name="accent_default">Lalai</string>
+    <string name="accent_green">Hijau</string>
+    <string name="accent_teal">Hijau kebiruan</string>
+    <string name="accent_indigo">Indigo</string>
+    <string name="accent_purple">Ungu</string>
+    <string name="accent_pink">Merah jambu</string>
+    <string name="accent_red">Merah</string>
+    <string name="accent_orange">Oren</string>
+    <string name="pro_toolbar_button">PRO</string>
+    <string name="pro_upgrade_hint">Membuka pilihan naik taraf Pro</string>
+    <string name="pro_banner_title">TT Tracker Pro</string>
+    <string name="pro_banner_tagline">Fahami latihan anda dan jadikan apl ini milik anda</string>
+    <string name="pro_benefit_insights_title">Cerapan latihan</string>
+    <string name="pro_benefit_insights_detail">Rentetan, beban latihan mingguan dan campuran jenis sesi anda</string>
+    <string name="pro_benefit_head_to_head_title">Rekod bersemuka</string>
+    <string name="pro_benefit_head_to_head_detail">Rekod dan prestasi terkini anda menentang setiap lawan</string>
+    <string name="pro_benefit_history_title">Seluruh sejarah anda</string>
+    <string name="pro_benefit_history_detail">Latihan mingguan selama 6 bulan, setahun atau sepanjang masa</string>
+    <string name="pro_benefit_widgets_title">Lebih banyak widget</string>
+    <string name="pro_benefit_widgets_detail">Rentetan dan beban latihan anda pada Skrin Utama</string>
+    <string name="pro_benefit_export_title">Eksport ke CSV</string>
+    <string name="pro_benefit_export_detail">Bawa sesi dan perlawanan anda ke dalam hamparan</string>
+    <string name="pro_benefit_accent_title">Warna aksen</string>
+    <string name="pro_benefit_accent_detail">Berikan apl dan widgetnya warna kegemaran anda</string>
+    <string name="analytics_insights">Cerapan</string>
+    <string name="analytics_streak_current">Rentetan semasa</string>
+    <string name="analytics_streak_longest">Rentetan terpanjang</string>
+    <string name="analytics_streak_hint">Minggu berturut-turut dengan sekurang-kurangnya satu sesi</string>
+    <string name="analytics_training_load">Beban latihan</string>
+    <string name="analytics_training_load_hint">Minit × intensiti (RPE), setiap minggu</string>
+    <string name="analytics_session_types">Jenis sesi</string>
+    <string name="analytics_session_type_none">Tiada jenis</string>
+    <string name="analytics_head_to_head">Bersemuka</string>
+    <string name="analytics_head_to_head_all">Semua lawan</string>
+    <string name="analytics_games_format">Set %1$d–%2$d</string>
+    <string name="analytics_range">Julat</string>
+    <string name="analytics_range_8w">8 Mgu</string>
+    <string name="analytics_range_6m">6 Bln</string>
+    <string name="analytics_range_1y">1 Thn</string>
+    <string name="analytics_range_all">Semua</string>
+    <string name="pro_banner_cta">Dapatkan Pro</string>
+    <string name="pro_benefit_support_title">Sokong pembangun indie</string>
+    <string name="pro_benefit_support_detail">Bantu TT Tracker terus berkembang</string>
+    <string name="action_restore_purchases">Pulihkan Pembelian</string>
+    <string name="pro_restore_success">Pembelian dipulihkan</string>
+    <string name="pro_restore_nothing">Tiada pembelian untuk dipulihkan</string>
+    <string name="pro_restore_failed">Tidak dapat memulihkan pembelian. Sila cuba lagi.</string>
+</resources>

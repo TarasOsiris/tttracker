@@ -278,6 +278,13 @@
 				"zh-CN",
 				"zh-TW",
 				Base,
+				cs,
+				ms,
+				nl,
+				pl,
+				sv,
+				th,
+				vi,
 			);
 			mainGroup = 572F70F244A1229DCD705873;
 			minimizedProjectReferenceProxies = 1;

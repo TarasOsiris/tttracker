@@ -1,0 +1,61 @@
+Śledź swoje treningi tenisa stołowego jak zawodowiec
+
+Table Tennis Training Tracker to treningowy towarzysz dla graczy na każdym poziomie. Buduj regularne nawyki, zapisuj każdy rozegrany mecz i obserwuj, jak z czasem rośnie twoja forma.
+
+ZAPISUJ TRENINGI W KILKA SEKUND
+
+Zapisuj trening ze wszystkimi ważnymi szczegółami:
+
+- Czas trwania – od 5 do 300 minut
+- Rodzaj treningu – technika, gra meczowa, turniej, trening serwisu, trening fizyczny, gra swobodna lub inne
+- RPE (Rate of Perceived Exertion) – oceń intensywność od 1 do 10, aby kontrolować obciążenie treningowe
+- Notatki – ćwiczenia, obserwacje, elementy do poprawy
+- Data – zapisz dzisiejszy trening lub uzupełnij wcześniejsze dni
+
+ZAPISUJ MECZE I PRZECIWNIKÓW
+
+Do każdego treningu możesz dodać rozegrane mecze:
+
+- Wyniki set po secie, w singlu lub deblu
+- Poziom rozgrywek – sparing, liga lub turniej
+- Oznaczaj mecze rankingowe
+- Lista przeciwników z klubem, rankingiem, ręką i stylem gry – atakujący, obrońca, wszechstronny, czopy lub defensor z podcięciem
+- Notatki do każdego meczu, żeby pamiętać, co naprawdę działało
+
+STATYSTYKI, KTÓRE ODPOWIADAJĄ NA PRAWDZIWE PYTANIA
+
+- Procent wygranych oraz bilans wygranych i porażek ze wszystkich zapisanych meczów
+- Wykres wyników meczów
+- Tygodniowy czas treningu z sumami i średnimi
+- Mapa aktywności z 12 miesięcy, która od razu pokazuje twoją regularność
+- Wybierz, które widżety pojawią się na ekranie statystyk
+
+INTELIGENTNY KALENDARZ
+
+- Przełączaj widok miesiąca i tygodnia
+- Wskaźniki od razu pokazują, jak często trenujesz
+- Stuknij dowolną datę, aby zobaczyć treningi z tego dnia
+- Ustaw własny pierwszy dzień tygodnia
+
+WIDŻETY NA EKRANIE POCZĄTKOWYM I EKRANIE BLOKADY
+
+- Widżety na ekranie początkowym z podsumowaniem treningów, mapą aktywności z 12 miesięcy i ostatnim treningiem
+- Widżety na ekranie blokady, dzięki którym tygodniowe liczby masz zawsze na oku
+- Dodawaj nowy trening prosto z centrum sterowania, ekranu blokady lub przycisku czynności
+
+STWORZONE DLA GRACZY
+
+- Zapisz trening w mniej niż 30 sekund
+- Działa w pełni offline, z opcjonalną synchronizacją iCloud między twoimi urządzeniami
+- Bez konta i bez rejestracji
+- Jasny i ciemny motyw
+- Dostępne w 22 językach
+
+IDEALNE DLA
+
+- Zawodników śledzących objętość treningu i wyniki meczów
+- Graczy klubowych budujących regularne nawyki
+- Trenerów kontrolujących obciążenie zawodników
+- Amatorów, którzy chcą utrzymać motywację
+
+Zacznij śledzić swoją przygodę z tenisem stołowym już dziś. Każdy trening się liczy.

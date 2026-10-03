@@ -1,0 +1,61 @@
+Följ din bordtennisträning som ett proffs
+
+Table Tennis Training Tracker är träningskompisen för spelare på alla nivåer. Bygg upp regelbundna vanor, registrera varje match du spelar och se ditt spel bli bättre med tiden.
+
+LOGGA PASS PÅ NÅGRA SEKUNDER
+
+Registrera träningen med alla detaljer som spelar roll:
+
+- Längd – allt från 5 till 300 minuter
+- Typ av pass – Teknik, Matchspel, Tävling, Serveträning, Fysträning, Fritt spel eller Övrigt
+- RPE (Rate of Perceived Exertion) – skatta intensiteten från 1 till 10 för att följa träningsbelastningen
+- Anteckningar – övningar du körde, iakttagelser, saker att förbättra
+- Datum – logga dagens pass eller fyll i tidigare träningsdagar i efterhand
+
+REGISTRERA MATCHER OCH MOTSTÅNDARE
+
+Varje pass kan innehålla matcherna du spelade:
+
+- Resultat set för set, singel eller dubbel
+- Tävlingsnivå – Träning, Serie eller Tävling
+- Markera vilka matcher som var rankade
+- För en lista över motståndare med klubb, ranking, spelhand och spelstil – Anfallare, Försvarare, Allround, Noppor eller Chopspelare
+- Anteckningar för varje match, så att du minns vad som faktiskt fungerade
+
+STATISTIK SOM SVARAR PÅ VERKLIGA FRÅGOR
+
+- Vinstandel och vinster/förluster för alla matcher du loggar
+- Diagram över matchresultat
+- Träningstid per vecka, med totaler och snitt
+- En värmekarta över 12 månaders träning som visar hur regelbundet du tränar i en överblick
+- Välj vilka widgetar som ska visas på statistikskärmen
+
+SMART KALENDERVY
+
+- Växla mellan månads- och veckovy
+- Tydliga markeringar visar hur många pass du har haft i en överblick
+- Tryck på ett datum för att se den dagens pass
+- Välj själv vilken dag veckan ska börja på
+
+WIDGETAR PÅ HEM- OCH LÅSSKÄRMEN
+
+- Widgetar på hemskärmen för din träningsöversikt, din värmekarta över 12 månader och ditt senaste pass
+- Widgetar på låsskärmen som håller veckans siffror inom synhåll
+- Logga ett nytt pass direkt från Kontrollcenter, låsskärmen eller åtgärdsknappen
+
+BYGGD FÖR SPELARE
+
+- Logga ett pass på under 30 sekunder
+- Fungerar helt offline, med valfri iCloud-synk mellan dina enheter
+- Inget konto behövs, ingen registrering
+- Ljust och mörkt tema
+- Finns på 22 språk
+
+PERFEKT FÖR
+
+- Tävlingsspelare som följer träningsvolym och matchresultat
+- Klubbspelare som vill bygga regelbundna vanor
+- Tränare som håller koll på spelarnas belastning
+- Motionsspelare som vill hålla motivationen uppe
+
+Börja följa din bordtennisresa redan i dag. Varje pass räknas.

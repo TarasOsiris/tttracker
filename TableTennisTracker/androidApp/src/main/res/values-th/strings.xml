@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- RPE Labels -->
+    <string name="rpe_very_easy">ง่ายมาก</string>
+    <string name="rpe_easy">ง่าย</string>
+    <string name="rpe_moderate">ปานกลาง</string>
+    <string name="rpe_hard">หนัก</string>
+    <string name="rpe_max_effort">ออกแรงเต็มที่</string>
+
+    <!-- General Actions -->
+    <string name="action_ok">ตกลง</string>
+    <string name="action_cancel">ยกเลิก</string>
+	<string name="action_close">ปิด</string>
+    <string name="action_change">เปลี่ยน</string>
+    <string name="action_edit">แก้ไข</string>
+    <string name="action_save">บันทึก</string>
+    <string name="action_add_session">เพิ่มเซสชัน</string>
+    <string name="action_ui_settings">การตั้งค่า UI</string>
+    <string name="action_opponents">คู่แข่ง</string>
+    <string name="opponents_empty">ยังไม่มีคู่แข่ง</string>
+    <string name="title_opponents">คู่แข่ง</string>
+    <string name="action_back">ย้อนกลับ</string>
+
+    <!-- Navigation -->
+    <string name="nav_sessions">เซสชัน</string>
+    <string name="nav_analytics">สถิติ</string>
+    <string name="nav_settings">การตั้งค่า</string>
+
+    <!-- Screen Titles -->
+    <string name="title_create_session">สร้างเซสชันฝึกซ้อม</string>
+    <string name="title_settings">การตั้งค่า</string>
+    <string name="title_error">ข้อผิดพลาด</string>
+
+    <!-- Sessions Screen -->
+    <string name="sessions_week_mode">สัปดาห์</string>
+    <string name="sessions_month_mode">เดือน</string>
+    <string name="sessions_empty">ไม่มีเซสชัน</string>
+    <string name="sessions_select_prompt">เลือกเซสชัน</string>
+    <string name="session_duration_format">%1$d นาที</string>
+
+    <!-- Create Session Screen -->
+    <string name="label_date">วันที่</string>
+    <string name="label_duration">ระยะเวลา</string>
+    <string name="suffix_minutes">นาที</string>
+    <string name="suffix_minutes_value">%1$d นาที</string>
+    <string name="label_session_type">ประเภทเซสชัน</string>
+    <string name="label_intensity_rpe">ความหนัก (RPE)</string>
+    <string name="label_notes_optional">บันทึก (ไม่บังคับ)</string>
+    <string name="label_default_notes">บันทึกเริ่มต้น</string>
+    <string name="hint_notes">เพิ่มบันทึกเกี่ยวกับเซสชันของคุณ…</string>
+    <string name="counter_notes">%1$d/1000</string>
+
+    <!-- Session Details Screen -->
+    <string name="session_default_title">เซสชันฝึกซ้อม</string>
+    <string name="label_rpe">RPE</string>
+    <string name="label_notes">บันทึก</string>
+	<string name="action_delete">ลบ</string>
+	<string name="delete_session_title">ลบเซสชันใช่ไหม</string>
+	<string name="delete_session_message">การดำเนินการนี้ไม่สามารถเลิกทำได้ เซสชันจะถูกลบอย่างถาวร</string>
+
+    <!-- Session Types -->
+    <string name="session_type_technique">เทคนิค</string>
+    <string name="session_type_match_play">เล่นแมตช์</string>
+    <string name="session_type_tournament">ทัวร์นาเมนต์</string>
+    <string name="session_type_serve_practice">ฝึกเสิร์ฟ</string>
+    <string name="session_type_physical">ฟิตร่างกาย</string>
+    <string name="session_type_free_play">เล่นอิสระ</string>
+    <string name="session_type_other">อื่นๆ</string>
+
+    <!-- Analytics Screen -->
+	<string name="analytics_summary">สรุป</string>
+	<string name="analytics_total_sessions">เซสชัน</string>
+	<string name="analytics_total_time">เวลาฝึกซ้อม</string>
+	<string name="analytics_hours_minutes">%1$d ชม. %2$d นาที</string>
+	<string name="analytics_win_loss">ชนะ / แพ้</string>
+	<string name="analytics_win_rate">อัตราชนะ</string>
+	<string name="analytics_heatmap_title">ฮีตแมปเซสชันฝึกซ้อม</string>
+	<string name="analytics_heatmap_less">น้อย</string>
+	<string name="analytics_heatmap_more">มาก</string>
+	<string name="analytics_weekly_training">เวลาฝึกซ้อมรายสัปดาห์</string>
+	<string name="analytics_win_loss_chart">ผลการแข่งขัน</string>
+	<string name="analytics_wins">ชนะ</string>
+	<string name="analytics_losses">แพ้</string>
+	<string name="analytics_no_matches">ยังไม่มีแมตช์</string>
+	<string name="analytics_no_training">ยังไม่มีข้อมูลการฝึกซ้อม</string>
+	<string name="analytics_weekly_avg">เฉลี่ย</string>
+	<string name="analytics_weekly_total">รวม</string>
+	<string name="analytics_settings_title">วิดเจ็ตสถิติ</string>
+	<string name="analytics_widget_summary">สรุป</string>
+	<string name="analytics_widget_win_loss">กราฟชนะ/แพ้</string>
+	<string name="analytics_widget_weekly">การฝึกซ้อมรายสัปดาห์</string>
+	<string name="analytics_widget_heatmap">ฮีตแมปการฝึกซ้อม</string>
+	<string name="analytics_widget_streak">ซ้อมต่อเนื่อง</string>
+	<string name="analytics_widgets_reorder_hint">ลากเพื่อจัดลำดับใหม่</string>
+	<string name="action_move_up">เลื่อนขึ้น</string>
+	<string name="action_move_down">เลื่อนลง</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_section_general">ทั่วไป</string>
+    <string name="settings_section_help">ความช่วยเหลือ</string>
+    <string name="settings_section_about">เกี่ยวกับ</string>
+    <string name="action_send_feedback">ส่งความคิดเห็น</string>
+    <string name="action_visit_website">เว็บไซต์</string>
+    <string name="action_rate_app">ให้คะแนนแอป</string>
+	<string name="action_copy_user_id">คัดลอกรหัสผู้ใช้</string>
+	<string name="user_id_copied">คัดลอกรหัสผู้ใช้แล้ว</string>
+
+    <!-- General Settings Screen -->
+    <string name="settings_section_appearance">รูปลักษณ์</string>
+    <string name="settings_section_calendar">ปฏิทิน</string>
+    <string name="settings_section_sessions">ค่าเริ่มต้นของเซสชันฝึกซ้อม</string>
+    <string name="action_theme">ธีม</string>
+    <string name="theme_select_title">เลือกธีม</string>
+	<string name="action_language">ภาษา</string>
+	<string name="language_select_title">เลือกภาษา</string>
+    <string name="theme_system">ค่าเริ่มต้นของระบบ</string>
+    <string name="theme_light">สว่าง</string>
+    <string name="theme_dark">มืด</string>
+    <string name="action_privacy_policy">นโยบายความเป็นส่วนตัว</string>
+    <string name="action_week_start">วันแรกของสัปดาห์</string>
+    <string name="week_start_select_title">วันแรกของสัปดาห์</string>
+    <string name="week_start_monday">วันจันทร์</string>
+    <string name="week_start_sunday">วันอาทิตย์</string>
+    <string name="week_start_saturday">วันเสาร์</string>
+    <string name="settings_highlight_current_day">ไฮไลต์วันปัจจุบัน</string>
+	<string name="settings_section_developer">นักพัฒนา</string>
+	<string name="action_debug">ดีบัก</string>
+    <string name="settings_version_format">เวอร์ชัน %1$s (%2$s)</string>
+    <string name="settings_made_with_prefix">สร้างด้วย ❤️ โดย</string>
+    <string name="settings_company_name">Nineva Studios</string>
+
+    <!-- Home Screen -->
+
+    <!-- Debug Screen -->
+    <string name="debug_data_generation_title">สร้างข้อมูล</string>
+    <string name="debug_data_generation_description">สร้างเซสชันฝึกซ้อมแบบสุ่มย้อนหลังหนึ่งปี เพื่อทดสอบแอปด้วยข้อมูลที่สมจริง</string>
+    <string name="debug_generate_random_sessions">สร้างเซสชันสุ่ม 100 รายการ</string>
+    <string name="debug_seed_showcase_data">ใส่ข้อมูลสำหรับภาพหน้าร้าน</string>
+    <string name="debug_sessions_in_database">เซสชันในฐานข้อมูล</string>
+    <string name="debug_clear_database_title">ล้างฐานข้อมูล</string>
+    <string name="debug_clear_database_description">ลบเซสชันฝึกซ้อมทั้งหมดออกจากฐานข้อมูลอย่างถาวร การดำเนินการนี้ไม่สามารถเลิกทำได้</string>
+    <string name="debug_clear_all_sessions">ล้างเซสชันทั้งหมด</string>
+
+    <!-- Date & Time -->
+    <string name="time_today">วันนี้</string>
+    <string name="time_yesterday">เมื่อวาน</string>
+    <string name="time_tomorrow">พรุ่งนี้</string>
+    <string name="month_january">มกราคม</string>
+    <string name="month_february">กุมภาพันธ์</string>
+    <string name="month_march">มีนาคม</string>
+    <string name="month_april">เมษายน</string>
+    <string name="month_may">พฤษภาคม</string>
+    <string name="month_june">มิถุนายน</string>
+    <string name="month_july">กรกฎาคม</string>
+    <string name="month_august">สิงหาคม</string>
+    <string name="month_september">กันยายน</string>
+    <string name="month_october">ตุลาคม</string>
+    <string name="month_november">พฤศจิกายน</string>
+    <string name="month_december">ธันวาคม</string>
+    <string name="day_monday">วันจันทร์</string>
+    <string name="day_tuesday">วันอังคาร</string>
+    <string name="day_wednesday">วันพุธ</string>
+    <string name="day_thursday">วันพฤหัสบดี</string>
+    <string name="day_friday">วันศุกร์</string>
+    <string name="day_saturday">วันเสาร์</string>
+    <string name="day_sunday">วันอาทิตย์</string>
+    <string name="day_monday_short">จ.</string>
+    <string name="day_tuesday_short">อ.</string>
+    <string name="day_wednesday_short">พ.</string>
+    <string name="day_thursday_short">พฤ.</string>
+    <string name="day_friday_short">ศ.</string>
+    <string name="day_saturday_short">ส.</string>
+    <string name="day_sunday_short">อา.</string>
+    <string name="month_january_short">ม.ค.</string>
+    <string name="month_february_short">ก.พ.</string>
+    <string name="month_march_short">มี.ค.</string>
+    <string name="month_april_short">เม.ย.</string>
+    <string name="month_may_short">พ.ค.</string>
+    <string name="month_june_short">มิ.ย.</string>
+    <string name="month_july_short">ก.ค.</string>
+    <string name="month_august_short">ส.ค.</string>
+    <string name="month_september_short">ก.ย.</string>
+    <string name="month_october_short">ต.ค.</string>
+    <string name="month_november_short">พ.ย.</string>
+    <string name="month_december_short">ธ.ค.</string>
+
+    <string name="duration_minutes_full">%1$d นาที</string>
+    <string name="duration_hours_full">%1$d ชั่วโมง</string>
+    <string name="duration_hours_plural_full">%1$d ชั่วโมง</string>
+    <string name="duration_hm_short">%1$d ชม. %2$d นาที</string>
+
+	<!-- Help -->
+	<string name="help_icon_content_description">แสดงความช่วยเหลือ</string>
+	<string name="help_rpe_title">RPE คืออะไร</string>
+	<string name="help_rpe_description">RPE (Rate of Perceived Exertion) คือการวัดว่าคุณรู้สึกว่าร่างกายทำงานหนักแค่ไหนระหว่างออกกำลังกาย</string>
+	<string name="help_rpe_scale_intro">สเกล 1-10 ช่วยให้คุณติดตามความหนักของการฝึก:</string>
+	<string name="help_rpe_level_1_2">1-2: ง่ายมาก - กิจกรรมเบาๆ พูดคุยได้สบาย</string>
+	<string name="help_rpe_level_3_4">3-4: ง่าย - จังหวะสบายๆ ยังคุยได้</string>
+	<string name="help_rpe_level_5_6">5-6: ปานกลาง - หายใจแรงขึ้น เริ่มท้าทาย</string>
+	<string name="help_rpe_level_7_8">7-8: หนัก - พูดได้ลำบาก กำลังฝืนตัวเอง</string>
+	<string name="help_rpe_level_9_10">9-10: ออกแรงเต็มที่ - ใส่สุดกำลัง ทำต่อเนื่องไม่ไหว</string>
+	<string name="help_rpe_tip">เคล็ดลับ: เซสชันฝึกซ้อมส่วนใหญ่ควรอยู่ในช่วง 5-7</string>
+
+    <!-- Match Creation -->
+    <string name="label_matches_optional">แมตช์ (ไม่บังคับ)</string>
+    <string name="action_add_match">เพิ่มแมตช์</string>
+    <string name="add_match">เพิ่มแมตช์</string>
+    <string name="edit_match">แก้ไขแมตช์</string>
+    <string name="label_match_notes_optional">บันทึก (ไม่บังคับ)</string>
+    <string name="hint_match_notes">เพิ่มบันทึกเกี่ยวกับแมตช์นี้…</string>
+    <string name="label_opponent">คู่แข่ง</string>
+    <string name="hint_opponent_name">ป้อนชื่อคู่แข่ง</string>
+    <string name="label_score">คะแนน</string>
+    <string name="label_me">ฉัน</string>
+    <string name="action_increase_my_score">เพิ่มคะแนนของฉัน</string>
+    <string name="action_increase_opponent_score">เพิ่มคะแนนของคู่แข่ง</string>
+    <string name="label_competition_level_optional">ระดับการแข่งขัน (ไม่บังคับ)</string>
+    <string name="matches_empty_hint">ยังไม่ได้เพิ่มแมตช์</string>
+    <string name="label_doubles">ประเภทคู่</string>
+    <string name="label_ranked">นับอันดับ</string>
+    <string name="competition_level_practice">ซ้อม</string>
+    <string name="competition_level_league">ลีก</string>
+    <string name="competition_level_tournament">ทัวร์นาเมนต์</string>
+    <string name="match_score_format">%1$d - %2$d</string>
+    <string name="match_win">ช</string>
+    <string name="match_loss">พ</string>
+
+	<!-- Session Details -->
+	<string name="session_matches_count">แมตช์ (%1$d)</string>
+	<string name="opponent_rating_format">เรตติ้ง: %1$d</string>
+
+	<!-- Opponents -->
+    <string name="action_add_opponent">เพิ่มคู่แข่ง</string>
+	<string name="action_edit_opponent">แก้ไขคู่แข่ง</string>
+    <string name="label_opponent_name">ชื่อ</string>
+    <string name="label_opponent_club">สโมสร (ไม่บังคับ)</string>
+    <string name="label_opponent_rating">เรตติ้ง (ไม่บังคับ)</string>
+    <string name="label_opponent_handedness">มือที่ถนัด (ไม่บังคับ)</string>
+    <string name="label_opponent_style">สไตล์การเล่น (ไม่บังคับ)</string>
+    <string name="label_opponent_notes">บันทึก (ไม่บังคับ)</string>
+    <string name="handedness_right">ขวา</string>
+    <string name="handedness_left">ซ้าย</string>
+    <string name="style_attacker">สายบุก</string>
+    <string name="style_defender">สายรับ</string>
+    <string name="style_all_round">ออลราวด์</string>
+    <string name="style_pips">ยางเม็ด</string>
+    <string name="style_chopper">สายตัด</string>
+
+	<!-- Delete Confirmation -->
+	<string name="delete_opponent_title">ลบคู่แข่งใช่ไหม</string>
+	<string name="delete_opponent_message">แมตช์ทั้งหมดที่เล่นกับคู่แข่งรายนี้จะถูกลบไปด้วย การดำเนินการนี้ไม่สามารถเลิกทำได้</string>
+
+	<!-- Opponents Info -->
+	<string name="opponents_info_title">เกี่ยวกับคู่แข่ง</string>
+	<string name="opponents_info_message">คู่แข่งที่คุณเพิ่มไว้ที่นี่จะเลือกได้ทันทีเมื่อบันทึกแมตช์ในเซสชันฝึกซ้อมของคุณ</string>
+
+	<!-- Accessibility -->
+	<string name="accessibility_sessions_count">เซสชัน: %1$d</string>
+
+	<!-- Home screen widgets -->
+	<string name="widget_summary_name">สรุปการฝึกซ้อม</string>
+	<string name="widget_summary_description">ดูเซสชัน เวลาฝึกซ้อม และสถิติแมตช์ของคุณได้ในพริบตา</string>
+	<string name="widget_heatmap_name">กิจกรรมการฝึกซ้อม</string>
+	<string name="widget_heatmap_description">วันที่คุณฝึกซ้อม ไล่เฉดสีตามความหนาแน่นของแต่ละวัน</string>
+	<string name="widget_last_session_name">เซสชันล่าสุด</string>
+	<string name="widget_last_session_description">คุณซ้อมครั้งล่าสุดเมื่อไร นานแค่ไหน และเป็นอย่างไร</string>
+	<string name="widget_add_session_name">เพิ่มเซสชัน</string>
+	<string name="widget_add_session_description">เปิด TT Tracker แล้วเริ่มบันทึกเซสชันฝึกซ้อม</string>
+	<string name="widget_streak_name">ซ้อมต่อเนื่อง</string>
+	<string name="widget_streak_description">คุณซ้อมต่อเนื่องมากี่สัปดาห์แล้ว และสถิติดีที่สุดของคุณ</string>
+	<string name="widget_load_name">ภาระการฝึก</string>
+	<string name="widget_load_description">ภาระการฝึกของสัปดาห์นี้เทียบกับสัปดาห์ก่อนๆ</string>
+	<string name="widget_this_week">สัปดาห์นี้</string>
+	<string name="widget_last_week">สัปดาห์ที่แล้ว</string>
+	<string name="widget_pro_locked">ปลดล็อกด้วย Pro ในแอป</string>
+	<string name="widget_empty">ยังไม่มีเซสชัน</string>
+	<string name="widget_no_matches">ไม่มีแมตช์</string>
+	<string name="settings_icloud_section">iCloud</string>
+	<string name="settings_icloud_sync">ซิงค์กับ iCloud</string>
+	<string name="settings_icloud_sync_hint">ให้เซสชัน แมตช์ และคู่แข่งของคุณตรงกันในทุกอุปกรณ์</string>
+	<string name="settings_icloud_sync_now">ซิงค์เลย</string>
+	<string name="settings_icloud_syncing">กำลังซิงค์…</string>
+	<string name="settings_icloud_waiting">รอซิงค์</string>
+	<string name="settings_icloud_last_synced">ซิงค์ล่าสุด %1$s</string>
+	<string name="settings_icloud_no_account">ลงชื่อเข้า iCloud ในแอปการตั้งค่าเพื่อซิงค์</string>
+	<string name="settings_icloud_quota_exceeded">พื้นที่จัดเก็บข้อมูล iCloud ของคุณเต็ม การเปลี่ยนแปลงบางส่วนจึงยังไม่ได้ซิงค์</string>
+	<string name="settings_icloud_failed">ไม่สามารถซิงค์การเปลี่ยนแปลงบางส่วนได้ ระบบจะลองอีกครั้ง</string>
+	<string name="settings_icloud_turned_off">ข้อมูล iCloud ของแอปนี้ถูกลบแล้ว จึงปิดการซิงค์ ไม่มีข้อมูลใดในอุปกรณ์นี้ถูกลบ</string>
+	<string name="settings_icloud_account_changed">บัญชี iCloud ของคุณเปลี่ยนไป จึงปิดการซิงค์ เปิดอีกครั้งเพื่อซิงค์กับบัญชีนี้</string>
+	<string name="pro_unlock">ปลดล็อกด้วย Pro</string>
+	<string name="settings_section_data">ข้อมูล</string>
+	<string name="settings_export">ส่งออกเป็น CSV</string>
+	<string name="settings_export_hint">เซสชันและแมตช์ของคุณ เป็นไฟล์สองไฟล์สำหรับสเปรดชีต</string>
+	<string name="settings_accent_color">สีเน้น</string>
+	<string name="accent_default">ค่าเริ่มต้น</string>
+	<string name="accent_green">เขียว</string>
+	<string name="accent_teal">เขียวอมฟ้า</string>
+	<string name="accent_indigo">คราม</string>
+	<string name="accent_purple">ม่วง</string>
+	<string name="accent_pink">ชมพู</string>
+	<string name="accent_red">แดง</string>
+	<string name="accent_orange">ส้ม</string>
+	<string name="pro_toolbar_button">PRO</string>
+	<string name="pro_upgrade_hint">เปิดตัวเลือกการอัปเกรดเป็น Pro</string>
+	<string name="pro_banner_title">TT Tracker Pro</string>
+	<string name="pro_banner_tagline">เข้าใจการฝึกซ้อมของคุณ และปรับแต่งแอปในแบบของคุณ</string>
+	<string name="pro_benefit_insights_title">ข้อมูลเชิงลึกการฝึกซ้อม</string>
+	<string name="pro_benefit_insights_detail">การซ้อมต่อเนื่อง ภาระการฝึกรายสัปดาห์ และสัดส่วนประเภทเซสชัน</string>
+	<string name="pro_benefit_head_to_head_title">สถิติการพบกัน</string>
+	<string name="pro_benefit_head_to_head_detail">ผลงานและฟอร์มล่าสุดของคุณกับคู่แข่งทุกคน</string>
+	<string name="pro_benefit_history_title">ประวัติทั้งหมดของคุณ</string>
+	<string name="pro_benefit_history_detail">การฝึกซ้อมรายสัปดาห์ย้อนหลัง 6 เดือน 1 ปี หรือทั้งหมด</string>
+	<string name="pro_benefit_widgets_title">วิดเจ็ตเพิ่มเติม</string>
+	<string name="pro_benefit_widgets_detail">การซ้อมต่อเนื่องและภาระการฝึกบนหน้าจอโฮม</string>
+	<string name="pro_benefit_export_title">ส่งออกเป็น CSV</string>
+	<string name="pro_benefit_export_detail">นำเซสชันและแมตช์ของคุณไปใช้ในสเปรดชีต</string>
+	<string name="pro_benefit_accent_title">สีเน้น</string>
+	<string name="pro_benefit_accent_detail">ใส่สีที่คุณชอบให้กับแอปและวิดเจ็ต</string>
+	<string name="analytics_insights">ข้อมูลเชิงลึก</string>
+	<string name="analytics_streak_current">ต่อเนื่องปัจจุบัน</string>
+	<string name="analytics_streak_longest">ต่อเนื่องนานที่สุด</string>
+	<string name="analytics_streak_hint">จำนวนสัปดาห์ติดต่อกันที่มีอย่างน้อยหนึ่งเซสชัน</string>
+	<string name="analytics_training_load">ภาระการฝึก</string>
+	<string name="analytics_training_load_hint">นาที × ความหนัก (RPE) ต่อสัปดาห์</string>
+	<string name="analytics_session_types">ประเภทเซสชัน</string>
+	<string name="analytics_session_type_none">ไม่ระบุประเภท</string>
+	<string name="analytics_head_to_head">สถิติการพบกัน</string>
+	<string name="analytics_head_to_head_all">คู่แข่งทั้งหมด</string>
+	<string name="analytics_games_format">เกม %1$d–%2$d</string>
+	<string name="analytics_range">ช่วงเวลา</string>
+	<string name="analytics_range_8w">8 สัปดาห์</string>
+	<string name="analytics_range_6m">6 เดือน</string>
+	<string name="analytics_range_1y">1 ปี</string>
+	<string name="analytics_range_all">ทั้งหมด</string>
+	<string name="pro_banner_cta">รับ Pro</string>
+	<string name="pro_benefit_support_title">สนับสนุนนักพัฒนาอิสระ</string>
+	<string name="pro_benefit_support_detail">ช่วยให้ TT Tracker เติบโตต่อไป</string>
+	<string name="action_restore_purchases">กู้คืนการซื้อ</string>
+	<string name="pro_restore_success">กู้คืนการซื้อแล้ว</string>
+	<string name="pro_restore_nothing">ไม่มีการซื้อให้กู้คืน</string>
+	<string name="pro_restore_failed">ไม่สามารถกู้คืนการซื้อได้ โปรดลองอีกครั้ง</string>
+</resources>

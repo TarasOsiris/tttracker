@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- RPE Labels -->
+    <string name="rpe_very_easy">Rất nhẹ</string>
+    <string name="rpe_easy">Nhẹ</string>
+    <string name="rpe_moderate">Vừa phải</string>
+    <string name="rpe_hard">Nặng</string>
+    <string name="rpe_max_effort">Tối đa sức</string>
+
+    <!-- General Actions -->
+    <string name="action_ok">OK</string>
+    <string name="action_cancel">Hủy</string>
+    <string name="action_close">Đóng</string>
+    <string name="action_change">Thay đổi</string>
+    <string name="action_edit">Sửa</string>
+    <string name="action_save">Lưu</string>
+    <string name="action_add_session">Thêm buổi tập</string>
+    <string name="action_ui_settings">Cài đặt giao diện</string>
+    <string name="action_opponents">Đối thủ</string>
+    <string name="opponents_empty">Chưa có đối thủ nào</string>
+    <string name="title_opponents">Đối thủ</string>
+    <string name="action_back">Quay lại</string>
+
+    <!-- Navigation -->
+    <string name="nav_sessions">Buổi tập</string>
+    <string name="nav_analytics">Phân tích</string>
+    <string name="nav_settings">Cài đặt</string>
+
+    <!-- Screen Titles -->
+    <string name="title_create_session">Tạo buổi tập</string>
+    <string name="title_settings">Cài đặt</string>
+    <string name="title_error">Lỗi</string>
+
+    <!-- Sessions Screen -->
+    <string name="sessions_week_mode">Tuần</string>
+    <string name="sessions_month_mode">Tháng</string>
+    <string name="sessions_empty">Không có buổi tập</string>
+    <string name="sessions_select_prompt">Chọn một buổi tập</string>
+    <string name="session_duration_format">%1$d phút</string>
+
+    <!-- Create Session Screen -->
+    <string name="label_date">Ngày</string>
+    <string name="label_duration">Thời lượng</string>
+    <string name="suffix_minutes">phút</string>
+    <string name="suffix_minutes_value">%1$d phút</string>
+    <string name="label_session_type">Loại buổi tập</string>
+    <string name="label_intensity_rpe">Cường độ (RPE)</string>
+    <string name="label_notes_optional">Ghi chú (tùy chọn)</string>
+    <string name="label_default_notes">Ghi chú mặc định</string>
+    <string name="hint_notes">Thêm ghi chú về buổi tập…</string>
+    <string name="counter_notes">%1$d/1000</string>
+
+    <!-- Session Details Screen -->
+    <string name="session_default_title">Buổi tập</string>
+    <string name="label_rpe">RPE</string>
+    <string name="label_notes">Ghi chú</string>
+    <string name="action_delete">Xóa</string>
+    <string name="delete_session_title">Xóa buổi tập?</string>
+    <string name="delete_session_message">Không thể hoàn tác thao tác này. Buổi tập sẽ bị xóa vĩnh viễn.</string>
+
+    <!-- Session Types -->
+    <string name="session_type_technique">Kỹ thuật</string>
+    <string name="session_type_match_play">Đánh trận</string>
+    <string name="session_type_tournament">Giải đấu</string>
+    <string name="session_type_serve_practice">Tập giao bóng</string>
+    <string name="session_type_physical">Thể lực</string>
+    <string name="session_type_free_play">Đánh tự do</string>
+    <string name="session_type_other">Khác</string>
+
+    <!-- Analytics Screen -->
+    <string name="analytics_summary">Tổng quan</string>
+    <string name="analytics_total_sessions">Buổi tập</string>
+    <string name="analytics_total_time">Thời gian tập</string>
+    <string name="analytics_hours_minutes">%1$dh %2$dp</string>
+    <string name="analytics_win_loss">Thắng / Thua</string>
+    <string name="analytics_win_rate">Tỷ lệ thắng</string>
+    <string name="analytics_heatmap_title">Bản đồ nhiệt buổi tập</string>
+    <string name="analytics_heatmap_less">Ít</string>
+    <string name="analytics_heatmap_more">Nhiều</string>
+    <string name="analytics_weekly_training">Thời gian tập hằng tuần</string>
+    <string name="analytics_win_loss_chart">Kết quả trận đấu</string>
+    <string name="analytics_wins">Thắng</string>
+    <string name="analytics_losses">Thua</string>
+    <string name="analytics_no_matches">Chưa có trận đấu nào</string>
+    <string name="analytics_no_training">Chưa có dữ liệu tập luyện</string>
+    <string name="analytics_weekly_avg">TB</string>
+    <string name="analytics_weekly_total">Tổng</string>
+    <string name="analytics_settings_title">Tiện ích phân tích</string>
+    <string name="analytics_widget_summary">Tổng quan</string>
+    <string name="analytics_widget_win_loss">Biểu đồ thắng/thua</string>
+    <string name="analytics_widget_weekly">Tập luyện hằng tuần</string>
+    <string name="analytics_widget_heatmap">Bản đồ nhiệt tập luyện</string>
+    <string name="analytics_widget_streak">Chuỗi tập luyện</string>
+    <string name="analytics_widgets_reorder_hint">Kéo để sắp xếp lại</string>
+    <string name="action_move_up">Di chuyển lên</string>
+    <string name="action_move_down">Di chuyển xuống</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_section_general">Cài đặt chung</string>
+    <string name="settings_section_help">Trợ giúp</string>
+    <string name="settings_section_about">Giới thiệu</string>
+    <string name="action_send_feedback">Gửi phản hồi</string>
+    <string name="action_visit_website">Trang web</string>
+    <string name="action_rate_app">Đánh giá ứng dụng</string>
+    <string name="action_copy_user_id">Sao chép ID người dùng</string>
+    <string name="user_id_copied">Đã sao chép ID người dùng</string>
+
+    <!-- General Settings Screen -->
+    <string name="settings_section_appearance">Giao diện</string>
+    <string name="settings_section_calendar">Lịch</string>
+    <string name="settings_section_sessions">Mặc định cho buổi tập</string>
+    <string name="action_theme">Chủ đề</string>
+    <string name="theme_select_title">Chọn chủ đề</string>
+    <string name="action_language">Ngôn ngữ</string>
+    <string name="language_select_title">Chọn ngôn ngữ</string>
+    <string name="theme_system">Mặc định hệ thống</string>
+    <string name="theme_light">Sáng</string>
+    <string name="theme_dark">Tối</string>
+    <string name="action_privacy_policy">Chính sách quyền riêng tư</string>
+    <string name="action_week_start">Ngày đầu tuần</string>
+    <string name="week_start_select_title">Ngày đầu tuần</string>
+    <string name="week_start_monday">Thứ Hai</string>
+    <string name="week_start_sunday">Chủ Nhật</string>
+    <string name="week_start_saturday">Thứ Bảy</string>
+    <string name="settings_highlight_current_day">Làm nổi bật hôm nay</string>
+    <string name="settings_section_developer">Nhà phát triển</string>
+    <string name="action_debug">Gỡ lỗi</string>
+    <string name="settings_version_format">Phiên bản %1$s (%2$s)</string>
+    <string name="settings_made_with_prefix">Được làm với ❤️ tại</string>
+    <string name="settings_company_name">Nineva Studios</string>
+
+    <!-- Home Screen -->
+
+    <!-- Debug Screen -->
+    <string name="debug_data_generation_title">Tạo dữ liệu</string>
+    <string name="debug_data_generation_description">Tạo ngẫu nhiên các buổi tập trong năm qua để thử ứng dụng với dữ liệu thực tế.</string>
+    <string name="debug_generate_random_sessions">Tạo 100 buổi tập ngẫu nhiên</string>
+    <string name="debug_seed_showcase_data">Tạo dữ liệu ảnh chụp cửa hàng</string>
+    <string name="debug_sessions_in_database">Số buổi tập trong cơ sở dữ liệu</string>
+    <string name="debug_clear_database_title">Xóa cơ sở dữ liệu</string>
+    <string name="debug_clear_database_description">Xóa vĩnh viễn tất cả buổi tập khỏi cơ sở dữ liệu. Không thể hoàn tác thao tác này.</string>
+    <string name="debug_clear_all_sessions">Xóa tất cả buổi tập</string>
+
+    <!-- Date & Time -->
+    <string name="time_today">Hôm nay</string>
+    <string name="time_yesterday">Hôm qua</string>
+    <string name="time_tomorrow">Ngày mai</string>
+    <string name="month_january">Tháng 1</string>
+    <string name="month_february">Tháng 2</string>
+    <string name="month_march">Tháng 3</string>
+    <string name="month_april">Tháng 4</string>
+    <string name="month_may">Tháng 5</string>
+    <string name="month_june">Tháng 6</string>
+    <string name="month_july">Tháng 7</string>
+    <string name="month_august">Tháng 8</string>
+    <string name="month_september">Tháng 9</string>
+    <string name="month_october">Tháng 10</string>
+    <string name="month_november">Tháng 11</string>
+    <string name="month_december">Tháng 12</string>
+    <string name="day_monday">Thứ Hai</string>
+    <string name="day_tuesday">Thứ Ba</string>
+    <string name="day_wednesday">Thứ Tư</string>
+    <string name="day_thursday">Thứ Năm</string>
+    <string name="day_friday">Thứ Sáu</string>
+    <string name="day_saturday">Thứ Bảy</string>
+    <string name="day_sunday">Chủ Nhật</string>
+    <string name="day_monday_short">T2</string>
+    <string name="day_tuesday_short">T3</string>
+    <string name="day_wednesday_short">T4</string>
+    <string name="day_thursday_short">T5</string>
+    <string name="day_friday_short">T6</string>
+    <string name="day_saturday_short">T7</string>
+    <string name="day_sunday_short">CN</string>
+    <string name="month_january_short">Th1</string>
+    <string name="month_february_short">Th2</string>
+    <string name="month_march_short">Th3</string>
+    <string name="month_april_short">Th4</string>
+    <string name="month_may_short">Th5</string>
+    <string name="month_june_short">Th6</string>
+    <string name="month_july_short">Th7</string>
+    <string name="month_august_short">Th8</string>
+    <string name="month_september_short">Th9</string>
+    <string name="month_october_short">Th10</string>
+    <string name="month_november_short">Th11</string>
+    <string name="month_december_short">Th12</string>
+
+    <string name="duration_minutes_full">%1$d phút</string>
+    <string name="duration_hours_full">%1$d giờ</string>
+    <string name="duration_hours_plural_full">%1$d giờ</string>
+    <string name="duration_hm_short">%1$dh %2$d phút</string>
+
+    <!-- Help -->
+    <string name="help_icon_content_description">Hiện trợ giúp</string>
+    <string name="help_rpe_title">RPE là gì?</string>
+    <string name="help_rpe_description">RPE (Rate of Perceived Exertion – mức gắng sức cảm nhận) đo mức độ bạn cảm thấy cơ thể đang phải làm việc vất vả khi tập luyện.</string>
+    <string name="help_rpe_scale_intro">Thang điểm 1–10 giúp bạn theo dõi cường độ tập luyện:</string>
+    <string name="help_rpe_level_1_2">1–2: Rất nhẹ – Vận động nhẹ, nói chuyện dễ dàng</string>
+    <string name="help_rpe_level_3_4">3–4: Nhẹ – Nhịp độ thoải mái, vẫn trò chuyện được</string>
+    <string name="help_rpe_level_5_6">5–6: Vừa phải – Thở gấp hơn, có chút thử thách</string>
+    <string name="help_rpe_level_7_8">7–8: Nặng – Khó nói chuyện, đang cố gắng hết mình</string>
+    <string name="help_rpe_level_9_10">9–10: Tối đa sức – Dốc toàn lực, không thể duy trì lâu</string>
+    <string name="help_rpe_tip">Mẹo: Phần lớn buổi tập nên ở mức 5–7.</string>
+
+    <!-- Match Creation -->
+    <string name="label_matches_optional">Trận đấu (tùy chọn)</string>
+    <string name="action_add_match">Thêm trận đấu</string>
+    <string name="add_match">Thêm trận đấu</string>
+    <string name="edit_match">Sửa trận đấu</string>
+    <string name="label_match_notes_optional">Ghi chú (tùy chọn)</string>
+    <string name="hint_match_notes">Thêm ghi chú về trận đấu này…</string>
+    <string name="label_opponent">Đối thủ</string>
+    <string name="hint_opponent_name">Nhập tên đối thủ</string>
+    <string name="label_score">Tỷ số</string>
+    <string name="label_me">Tôi</string>
+    <string name="action_increase_my_score">Tăng điểm của tôi</string>
+    <string name="action_increase_opponent_score">Tăng điểm của đối thủ</string>
+    <string name="label_competition_level_optional">Cấp độ thi đấu (tùy chọn)</string>
+    <string name="matches_empty_hint">Chưa thêm trận đấu nào</string>
+    <string name="label_doubles">Đánh đôi</string>
+    <string name="label_ranked">Tính điểm xếp hạng</string>
+    <string name="competition_level_practice">Tập luyện</string>
+    <string name="competition_level_league">Giải vô địch</string>
+    <string name="competition_level_tournament">Giải đấu</string>
+    <string name="match_score_format">%1$d - %2$d</string>
+    <string name="match_win">T</string>
+    <string name="match_loss">B</string>
+
+    <!-- Session Details -->
+    <string name="session_matches_count">Trận đấu (%1$d)</string>
+    <string name="opponent_rating_format">Điểm xếp hạng: %1$d</string>
+
+    <!-- Opponents -->
+    <string name="action_add_opponent">Thêm đối thủ</string>
+    <string name="action_edit_opponent">Sửa đối thủ</string>
+    <string name="label_opponent_name">Tên</string>
+    <string name="label_opponent_club">CLB (tùy chọn)</string>
+    <string name="label_opponent_rating">Điểm xếp hạng (tùy chọn)</string>
+    <string name="label_opponent_handedness">Tay thuận (tùy chọn)</string>
+    <string name="label_opponent_style">Lối chơi (tùy chọn)</string>
+    <string name="label_opponent_notes">Ghi chú (tùy chọn)</string>
+    <string name="handedness_right">Tay phải</string>
+    <string name="handedness_left">Tay trái</string>
+    <string name="style_attacker">Tấn công</string>
+    <string name="style_defender">Phòng thủ</string>
+    <string name="style_all_round">Toàn diện</string>
+    <string name="style_pips">Mặt gai</string>
+    <string name="style_chopper">Cắt bóng</string>
+
+    <!-- Delete Confirmation -->
+    <string name="delete_opponent_title">Xóa đối thủ?</string>
+    <string name="delete_opponent_message">Thao tác này cũng sẽ xóa tất cả trận đấu với đối thủ này. Không thể hoàn tác thao tác này.</string>
+
+    <!-- Opponents Info -->
+    <string name="opponents_info_title">Về đối thủ</string>
+    <string name="opponents_info_message">Đối thủ bạn thêm ở đây sẽ có sẵn để chọn nhanh khi ghi lại trận đấu trong buổi tập.</string>
+
+    <!-- Accessibility -->
+    <string name="accessibility_sessions_count">Buổi tập: %1$d</string>
+
+    <!-- Home screen widgets -->
+    <string name="widget_summary_name">Tổng quan tập luyện</string>
+    <string name="widget_summary_description">Số buổi tập, thời gian tập và thành tích thi đấu trong nháy mắt.</string>
+    <string name="widget_heatmap_name">Hoạt động tập luyện</string>
+    <string name="widget_heatmap_description">Các ngày bạn tập, tô màu đậm nhạt theo mức độ bận rộn.</string>
+    <string name="widget_last_session_name">Buổi tập gần nhất</string>
+    <string name="widget_last_session_description">Lần cuối bạn tập là khi nào, tập bao lâu và kết quả ra sao.</string>
+    <string name="widget_add_session_name">Thêm buổi tập</string>
+    <string name="widget_add_session_description">Mở TT Tracker và bắt đầu ghi lại một buổi tập.</string>
+    <string name="widget_streak_name">Chuỗi tập luyện</string>
+    <string name="widget_streak_description">Bạn đã tập liên tiếp bao nhiêu tuần và chuỗi dài nhất của bạn.</string>
+    <string name="widget_load_name">Tải tập luyện</string>
+    <string name="widget_load_description">Tải tập luyện tuần này so với các tuần trước.</string>
+    <string name="widget_this_week">Tuần này</string>
+    <string name="widget_last_week">Tuần trước</string>
+    <string name="widget_pro_locked">Mở khóa bằng Pro trong ứng dụng</string>
+    <string name="widget_empty">Chưa có buổi tập nào</string>
+    <string name="widget_no_matches">Không có trận đấu</string>
+    <string name="settings_icloud_section">iCloud</string>
+    <string name="settings_icloud_sync">Đồng bộ hóa với iCloud</string>
+    <string name="settings_icloud_sync_hint">Giữ buổi tập, trận đấu và đối thủ giống nhau trên mọi thiết bị của bạn.</string>
+    <string name="settings_icloud_sync_now">Đồng bộ hóa ngay</string>
+    <string name="settings_icloud_syncing">Đang đồng bộ hóa…</string>
+    <string name="settings_icloud_waiting">Đang chờ đồng bộ hóa</string>
+    <string name="settings_icloud_last_synced">Đồng bộ hóa lần cuối: %1$s</string>
+    <string name="settings_icloud_no_account">Đăng nhập iCloud trong ứng dụng Cài đặt để đồng bộ hóa.</string>
+    <string name="settings_icloud_quota_exceeded">Dung lượng iCloud của bạn đã đầy nên một số thay đổi chưa được đồng bộ hóa.</string>
+    <string name="settings_icloud_failed">Không thể đồng bộ hóa một số thay đổi. Ứng dụng sẽ thử lại.</string>
+    <string name="settings_icloud_turned_off">Dữ liệu iCloud của ứng dụng này đã bị xóa nên tính năng đồng bộ hóa đã tắt. Không có gì trên thiết bị này bị xóa.</string>
+    <string name="settings_icloud_account_changed">Tài khoản iCloud của bạn đã thay đổi nên tính năng đồng bộ hóa đã tắt. Hãy bật lại để đồng bộ hóa với tài khoản này.</string>
+    <string name="pro_unlock">Mở khóa bằng Pro</string>
+    <string name="settings_section_data">Dữ liệu</string>
+    <string name="settings_export">Xuất ra CSV</string>
+    <string name="settings_export_hint">Buổi tập và trận đấu của bạn, dưới dạng hai tệp cho bảng tính</string>
+    <string name="settings_accent_color">Màu nhấn</string>
+    <string name="accent_default">Mặc định</string>
+    <string name="accent_green">Xanh lá</string>
+    <string name="accent_teal">Xanh mòng két</string>
+    <string name="accent_indigo">Chàm</string>
+    <string name="accent_purple">Tím</string>
+    <string name="accent_pink">Hồng</string>
+    <string name="accent_red">Đỏ</string>
+    <string name="accent_orange">Cam</string>
+    <string name="pro_toolbar_button">PRO</string>
+    <string name="pro_upgrade_hint">Mở các tùy chọn nâng cấp Pro</string>
+    <string name="pro_banner_title">TT Tracker Pro</string>
+    <string name="pro_banner_tagline">Hiểu rõ quá trình tập luyện và cá nhân hóa ứng dụng</string>
+    <string name="pro_benefit_insights_title">Thông tin chuyên sâu</string>
+    <string name="pro_benefit_insights_detail">Chuỗi tập, tải tập luyện hằng tuần và tỷ lệ các loại buổi tập</string>
+    <string name="pro_benefit_head_to_head_title">Thành tích đối đầu</string>
+    <string name="pro_benefit_head_to_head_detail">Thành tích và phong độ gần đây của bạn trước từng đối thủ</string>
+    <string name="pro_benefit_history_title">Toàn bộ lịch sử</string>
+    <string name="pro_benefit_history_detail">Tập luyện hằng tuần trong 6 tháng, 1 năm hoặc từ trước đến nay</string>
+    <string name="pro_benefit_widgets_title">Thêm tiện ích</string>
+    <string name="pro_benefit_widgets_detail">Chuỗi tập và tải tập luyện ngay trên Màn hình chính</string>
+    <string name="pro_benefit_export_title">Xuất ra CSV</string>
+    <string name="pro_benefit_export_detail">Đưa buổi tập và trận đấu của bạn vào bảng tính</string>
+    <string name="pro_benefit_accent_title">Màu nhấn</string>
+    <string name="pro_benefit_accent_detail">Tô cho ứng dụng và tiện ích màu bạn thích</string>
+    <string name="analytics_insights">Thông tin chuyên sâu</string>
+    <string name="analytics_streak_current">Chuỗi hiện tại</string>
+    <string name="analytics_streak_longest">Chuỗi dài nhất</string>
+    <string name="analytics_streak_hint">Số tuần liên tiếp có ít nhất một buổi tập</string>
+    <string name="analytics_training_load">Tải tập luyện</string>
+    <string name="analytics_training_load_hint">Số phút × cường độ (RPE), theo tuần</string>
+    <string name="analytics_session_types">Loại buổi tập</string>
+    <string name="analytics_session_type_none">Không có loại</string>
+    <string name="analytics_head_to_head">Đối đầu</string>
+    <string name="analytics_head_to_head_all">Tất cả đối thủ</string>
+    <string name="analytics_games_format">Ván %1$d–%2$d</string>
+    <string name="analytics_range">Khoảng thời gian</string>
+    <string name="analytics_range_8w">8 tuần</string>
+    <string name="analytics_range_6m">6 tháng</string>
+    <string name="analytics_range_1y">1 năm</string>
+    <string name="analytics_range_all">Tất cả</string>
+    <string name="pro_banner_cta">Nâng cấp Pro</string>
+    <string name="pro_benefit_support_title">Ủng hộ nhà phát triển độc lập</string>
+    <string name="pro_benefit_support_detail">Giúp TT Tracker tiếp tục phát triển</string>
+    <string name="action_restore_purchases">Khôi phục giao dịch mua</string>
+    <string name="pro_restore_success">Đã khôi phục giao dịch mua</string>
+    <string name="pro_restore_nothing">Không có giao dịch mua nào để khôi phục</string>
+    <string name="pro_restore_failed">Không thể khôi phục giao dịch mua. Vui lòng thử lại.</string>
+</resources>

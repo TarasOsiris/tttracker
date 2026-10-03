@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- RPE Labels -->
+    <string name="rpe_very_easy">Heel licht</string>
+    <string name="rpe_easy">Licht</string>
+    <string name="rpe_moderate">Gemiddeld</string>
+    <string name="rpe_hard">Zwaar</string>
+    <string name="rpe_max_effort">Maximaal</string>
+
+    <!-- General Actions -->
+    <string name="action_ok">OK</string>
+    <string name="action_cancel">Annuleer</string>
+    <string name="action_close">Sluit</string>
+    <string name="action_change">Wijzig</string>
+    <string name="action_edit">Wijzig</string>
+    <string name="action_save">Bewaar</string>
+    <string name="action_add_session">Training toevoegen</string>
+    <string name="action_ui_settings">UI-instellingen</string>
+    <string name="action_opponents">Tegenstanders</string>
+    <string name="opponents_empty">Nog geen tegenstanders</string>
+    <string name="title_opponents">Tegenstanders</string>
+    <string name="action_back">Terug</string>
+
+    <!-- Navigation -->
+    <string name="nav_sessions">Trainingen</string>
+    <string name="nav_analytics">Statistieken</string>
+    <string name="nav_settings">Instellingen</string>
+
+    <!-- Screen Titles -->
+    <string name="title_create_session">Nieuwe training</string>
+    <string name="title_settings">Instellingen</string>
+    <string name="title_error">Fout</string>
+
+    <!-- Sessions Screen -->
+    <string name="sessions_week_mode">Week</string>
+    <string name="sessions_month_mode">Maand</string>
+    <string name="sessions_empty">Geen trainingen</string>
+    <string name="sessions_select_prompt">Kies een training</string>
+    <string name="session_duration_format">%1$d min</string>
+
+    <!-- Create Session Screen -->
+    <string name="label_date">Datum</string>
+    <string name="label_duration">Duur</string>
+    <string name="suffix_minutes">minuten</string>
+    <string name="suffix_minutes_value">%1$d min</string>
+    <string name="label_session_type">Soort training</string>
+    <string name="label_intensity_rpe">Intensiteit (RPE)</string>
+    <string name="label_notes_optional">Notities (optioneel)</string>
+    <string name="label_default_notes">Standaardnotities</string>
+    <string name="hint_notes">Voeg notities over je training toe…</string>
+    <string name="counter_notes">%1$d/1000</string>
+
+    <!-- Session Details Screen -->
+    <string name="session_default_title">Training</string>
+    <string name="label_rpe">RPE</string>
+    <string name="label_notes">Notities</string>
+    <string name="action_delete">Verwijder</string>
+    <string name="delete_session_title">Training verwijderen?</string>
+    <string name="delete_session_message">Dit kan niet ongedaan worden gemaakt. De training wordt definitief verwijderd.</string>
+
+    <!-- Session Types -->
+    <string name="session_type_technique">Techniek</string>
+    <string name="session_type_match_play">Wedstrijdspel</string>
+    <string name="session_type_tournament">Toernooi</string>
+    <string name="session_type_serve_practice">Opslagtraining</string>
+    <string name="session_type_physical">Conditie</string>
+    <string name="session_type_free_play">Vrij spel</string>
+    <string name="session_type_other">Overig</string>
+
+    <!-- Analytics Screen -->
+    <string name="analytics_summary">Overzicht</string>
+    <string name="analytics_total_sessions">Trainingen</string>
+    <string name="analytics_total_time">Trainingstijd</string>
+    <string name="analytics_hours_minutes">%1$du %2$dm</string>
+    <string name="analytics_win_loss">Winst / verlies</string>
+    <string name="analytics_win_rate">Winstpercentage</string>
+    <string name="analytics_heatmap_title">Heatmap van trainingen</string>
+    <string name="analytics_heatmap_less">Minder</string>
+    <string name="analytics_heatmap_more">Meer</string>
+    <string name="analytics_weekly_training">Trainingstijd per week</string>
+    <string name="analytics_win_loss_chart">Wedstrijduitslagen</string>
+    <string name="analytics_wins">Gewonnen</string>
+    <string name="analytics_losses">Verloren</string>
+    <string name="analytics_no_matches">Nog geen wedstrijden</string>
+    <string name="analytics_no_training">Nog geen trainingsgegevens</string>
+    <string name="analytics_weekly_avg">Gem.</string>
+    <string name="analytics_weekly_total">Totaal</string>
+    <string name="analytics_settings_title">Statistiekwidgets</string>
+    <string name="analytics_widget_summary">Overzicht</string>
+    <string name="analytics_widget_win_loss">Winst/verlies-grafiek</string>
+    <string name="analytics_widget_weekly">Training per week</string>
+    <string name="analytics_widget_heatmap">Trainingsheatmap</string>
+    <string name="analytics_widget_streak">Trainingsreeks</string>
+    <string name="analytics_widgets_reorder_hint">Sleep om te ordenen</string>
+    <string name="action_move_up">Omhoog</string>
+    <string name="action_move_down">Omlaag</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_section_general">Algemeen</string>
+    <string name="settings_section_help">Hulp</string>
+    <string name="settings_section_about">Over</string>
+    <string name="action_send_feedback">Stuur feedback</string>
+    <string name="action_visit_website">Website</string>
+    <string name="action_rate_app">Beoordeel de app</string>
+    <string name="action_copy_user_id">Kopieer gebruikers-ID</string>
+    <string name="user_id_copied">Gebruikers-ID gekopieerd</string>
+
+    <!-- General Settings Screen -->
+    <string name="settings_section_appearance">Weergave</string>
+    <string name="settings_section_calendar">Kalender</string>
+    <string name="settings_section_sessions">Standaardwaarden training</string>
+    <string name="action_theme">Thema</string>
+    <string name="theme_select_title">Kies thema</string>
+    <string name="action_language">Taal</string>
+    <string name="language_select_title">Kies taal</string>
+    <string name="theme_system">Systeemstandaard</string>
+    <string name="theme_light">Licht</string>
+    <string name="theme_dark">Donker</string>
+    <string name="action_privacy_policy">Privacybeleid</string>
+    <string name="action_week_start">Eerste dag van de week</string>
+    <string name="week_start_select_title">Eerste dag van de week</string>
+    <string name="week_start_monday">Maandag</string>
+    <string name="week_start_sunday">Zondag</string>
+    <string name="week_start_saturday">Zaterdag</string>
+    <string name="settings_highlight_current_day">Markeer vandaag</string>
+    <string name="settings_section_developer">Ontwikkelaar</string>
+    <string name="action_debug">Debug</string>
+    <string name="settings_version_format">Versie %1$s (%2$s)</string>
+    <string name="settings_made_with_prefix">Gemaakt met ❤️ bij</string>
+    <string name="settings_company_name">Nineva Studios</string>
+
+    <!-- Home Screen -->
+
+    <!-- Debug Screen -->
+    <string name="debug_data_generation_title">Gegevens genereren</string>
+    <string name="debug_data_generation_description">Genereer willekeurige trainingen voor het afgelopen jaar om de app met realistische gegevens te testen.</string>
+    <string name="debug_generate_random_sessions">Genereer 100 willekeurige trainingen</string>
+    <string name="debug_seed_showcase_data">Vul data voor storescreenshots</string>
+    <string name="debug_sessions_in_database">Trainingen in database</string>
+    <string name="debug_clear_database_title">Database wissen</string>
+    <string name="debug_clear_database_description">Verwijder alle trainingen definitief uit de database. Dit kan niet ongedaan worden gemaakt.</string>
+    <string name="debug_clear_all_sessions">Wis alle trainingen</string>
+
+    <!-- Date & Time -->
+    <string name="time_today">Vandaag</string>
+    <string name="time_yesterday">Gisteren</string>
+    <string name="time_tomorrow">Morgen</string>
+    <string name="month_january">januari</string>
+    <string name="month_february">februari</string>
+    <string name="month_march">maart</string>
+    <string name="month_april">april</string>
+    <string name="month_may">mei</string>
+    <string name="month_june">juni</string>
+    <string name="month_july">juli</string>
+    <string name="month_august">augustus</string>
+    <string name="month_september">september</string>
+    <string name="month_october">oktober</string>
+    <string name="month_november">november</string>
+    <string name="month_december">december</string>
+    <string name="day_monday">maandag</string>
+    <string name="day_tuesday">dinsdag</string>
+    <string name="day_wednesday">woensdag</string>
+    <string name="day_thursday">donderdag</string>
+    <string name="day_friday">vrijdag</string>
+    <string name="day_saturday">zaterdag</string>
+    <string name="day_sunday">zondag</string>
+    <string name="day_monday_short">ma</string>
+    <string name="day_tuesday_short">di</string>
+    <string name="day_wednesday_short">wo</string>
+    <string name="day_thursday_short">do</string>
+    <string name="day_friday_short">vr</string>
+    <string name="day_saturday_short">za</string>
+    <string name="day_sunday_short">zo</string>
+    <string name="month_january_short">jan</string>
+    <string name="month_february_short">feb</string>
+    <string name="month_march_short">mrt</string>
+    <string name="month_april_short">apr</string>
+    <string name="month_may_short">mei</string>
+    <string name="month_june_short">jun</string>
+    <string name="month_july_short">jul</string>
+    <string name="month_august_short">aug</string>
+    <string name="month_september_short">sep</string>
+    <string name="month_october_short">okt</string>
+    <string name="month_november_short">nov</string>
+    <string name="month_december_short">dec</string>
+
+    <string name="duration_minutes_full">%1$d minuten</string>
+    <string name="duration_hours_full">%1$d uur</string>
+    <string name="duration_hours_plural_full">%1$d uur</string>
+    <string name="duration_hm_short">%1$du %2$dmin</string>
+
+    <!-- Help -->
+    <string name="help_icon_content_description">Toon hulp</string>
+    <string name="help_rpe_title">Wat is RPE?</string>
+    <string name="help_rpe_description">RPE (Rate of Perceived Exertion) geeft aan hoe zwaar je de inspanning tijdens het sporten zelf ervaart.</string>
+    <string name="help_rpe_scale_intro">Met de schaal van 1-10 houd je de intensiteit van je training bij:</string>
+    <string name="help_rpe_level_1_2">1-2: Heel licht - Lichte activiteit, praten gaat makkelijk</string>
+    <string name="help_rpe_level_3_4">3-4: Licht - Comfortabel tempo, een gesprek is mogelijk</string>
+    <string name="help_rpe_level_5_6">5-6: Gemiddeld - Zwaarder ademen, enige uitdaging</string>
+    <string name="help_rpe_level_7_8">7-8: Zwaar - Praten is lastig, je gaat tot het uiterste</string>
+    <string name="help_rpe_level_9_10">9-10: Maximaal - Alles geven, niet vol te houden</string>
+    <string name="help_rpe_tip">Tip: de meeste trainingen horen tussen 5 en 7 te liggen.</string>
+
+    <!-- Match Creation -->
+    <string name="label_matches_optional">Wedstrijden (optioneel)</string>
+    <string name="action_add_match">Wedstrijd toevoegen</string>
+    <string name="add_match">Wedstrijd toevoegen</string>
+    <string name="edit_match">Wedstrijd wijzigen</string>
+    <string name="label_match_notes_optional">Notities (optioneel)</string>
+    <string name="hint_match_notes">Voeg notities over deze wedstrijd toe…</string>
+    <string name="label_opponent">Tegenstander</string>
+    <string name="hint_opponent_name">Naam van tegenstander</string>
+    <string name="label_score">Score</string>
+    <string name="label_me">Ik</string>
+    <string name="action_increase_my_score">Verhoog mijn score</string>
+    <string name="action_increase_opponent_score">Verhoog score tegenstander</string>
+    <string name="label_competition_level_optional">Niveau (optioneel)</string>
+    <string name="matches_empty_hint">Nog geen wedstrijden toegevoegd</string>
+    <string name="label_doubles">Dubbel</string>
+    <string name="label_ranked">Telt voor ranking</string>
+    <string name="competition_level_practice">Oefenwedstrijd</string>
+    <string name="competition_level_league">Competitie</string>
+    <string name="competition_level_tournament">Toernooi</string>
+    <string name="match_score_format">%1$d - %2$d</string>
+    <string name="match_win">W</string>
+    <string name="match_loss">V</string>
+
+    <!-- Session Details -->
+    <string name="session_matches_count">Wedstrijden (%1$d)</string>
+    <string name="opponent_rating_format">Rating: %1$d</string>
+
+    <!-- Opponents -->
+    <string name="action_add_opponent">Tegenstander toevoegen</string>
+    <string name="action_edit_opponent">Tegenstander wijzigen</string>
+    <string name="label_opponent_name">Naam</string>
+    <string name="label_opponent_club">Club (optioneel)</string>
+    <string name="label_opponent_rating">Rating (optioneel)</string>
+    <string name="label_opponent_handedness">Speelhand (optioneel)</string>
+    <string name="label_opponent_style">Speelstijl (optioneel)</string>
+    <string name="label_opponent_notes">Notities (optioneel)</string>
+    <string name="handedness_right">Rechts</string>
+    <string name="handedness_left">Links</string>
+    <string name="style_attacker">Aanvaller</string>
+    <string name="style_defender">Verdediger</string>
+    <string name="style_all_round">Allround</string>
+    <string name="style_pips">Noppen</string>
+    <string name="style_chopper">Chopper</string>
+
+    <!-- Delete Confirmation -->
+    <string name="delete_opponent_title">Tegenstander verwijderen?</string>
+    <string name="delete_opponent_message">Ook alle wedstrijden tegen deze tegenstander worden verwijderd. Dit kan niet ongedaan worden gemaakt.</string>
+
+    <!-- Opponents Info -->
+    <string name="opponents_info_title">Over tegenstanders</string>
+    <string name="opponents_info_message">Tegenstanders die je hier toevoegt, kun je snel kiezen wanneer je wedstrijden bij je trainingen vastlegt.</string>
+
+    <!-- Accessibility -->
+    <string name="accessibility_sessions_count">Trainingen: %1$d</string>
+
+    <!-- Home screen widgets -->
+    <string name="widget_summary_name">Trainingsoverzicht</string>
+    <string name="widget_summary_description">Trainingen, trainingstijd en je wedstrijdbalans in één oogopslag.</string>
+    <string name="widget_heatmap_name">Trainingsactiviteit</string>
+    <string name="widget_heatmap_description">Je trainingsdagen, gekleurd naar hoe druk ze waren.</string>
+    <string name="widget_last_session_name">Laatste training</string>
+    <string name="widget_last_session_description">Wanneer je voor het laatst trainde, hoelang en hoe het ging.</string>
+    <string name="widget_add_session_name">Training toevoegen</string>
+    <string name="widget_add_session_description">Open TT Tracker en leg een training vast.</string>
+    <string name="widget_streak_name">Trainingsreeks</string>
+    <string name="widget_streak_description">Hoeveel weken op rij je hebt getraind, en je beste reeks.</string>
+    <string name="widget_load_name">Trainingsbelasting</string>
+    <string name="widget_load_description">De trainingsbelasting van deze week naast die van de weken ervoor.</string>
+    <string name="widget_this_week">Deze week</string>
+    <string name="widget_last_week">Vorige week</string>
+    <string name="widget_pro_locked">Ontgrendel met Pro in de app</string>
+    <string name="widget_empty">Nog geen trainingen</string>
+    <string name="widget_no_matches">Geen wedstrijden</string>
+    <string name="settings_icloud_section">iCloud</string>
+    <string name="settings_icloud_sync">Synchroniseer met iCloud</string>
+    <string name="settings_icloud_sync_hint">Houd je trainingen, wedstrijden en tegenstanders gelijk op al je apparaten.</string>
+    <string name="settings_icloud_sync_now">Synchroniseer nu</string>
+    <string name="settings_icloud_syncing">Synchroniseren…</string>
+    <string name="settings_icloud_waiting">Wacht op synchronisatie</string>
+    <string name="settings_icloud_last_synced">Laatst gesynchroniseerd: %1$s</string>
+    <string name="settings_icloud_no_account">Log in bij iCloud in de Instellingen-app om te synchroniseren.</string>
+    <string name="settings_icloud_quota_exceeded">Je iCloud-opslag is vol, dus sommige wijzigingen worden niet gesynchroniseerd.</string>
+    <string name="settings_icloud_failed">Sommige wijzigingen konden niet worden gesynchroniseerd. Dit wordt opnieuw geprobeerd.</string>
+    <string name="settings_icloud_turned_off">De iCloud-gegevens van deze app zijn verwijderd, dus synchronisatie is uitgeschakeld. Er is niets van dit apparaat verwijderd.</string>
+    <string name="settings_icloud_account_changed">Je iCloud-account is gewijzigd, dus synchronisatie is uitgeschakeld. Schakel het opnieuw in om met dit account te synchroniseren.</string>
+    <string name="pro_unlock">Ontgrendel met Pro</string>
+    <string name="settings_section_data">Gegevens</string>
+    <string name="settings_export">Exporteer naar CSV</string>
+    <string name="settings_export_hint">Je trainingen en wedstrijden, als twee bestanden voor een spreadsheet</string>
+    <string name="settings_accent_color">Accentkleur</string>
+    <string name="accent_default">Standaard</string>
+    <string name="accent_green">Groen</string>
+    <string name="accent_teal">Blauwgroen</string>
+    <string name="accent_indigo">Indigo</string>
+    <string name="accent_purple">Paars</string>
+    <string name="accent_pink">Roze</string>
+    <string name="accent_red">Rood</string>
+    <string name="accent_orange">Oranje</string>
+    <string name="pro_toolbar_button">PRO</string>
+    <string name="pro_upgrade_hint">Opent de opties voor een upgrade naar Pro</string>
+    <string name="pro_banner_title">TT Tracker Pro</string>
+    <string name="pro_banner_tagline">Begrijp je training en maak de app helemaal van jou</string>
+    <string name="pro_benefit_insights_title">Trainingsinzichten</string>
+    <string name="pro_benefit_insights_detail">Reeksen, trainingsbelasting per week en je mix van trainingssoorten</string>
+    <string name="pro_benefit_head_to_head_title">Onderlinge resultaten</string>
+    <string name="pro_benefit_head_to_head_detail">Je balans en recente vorm tegen elke tegenstander</string>
+    <string name="pro_benefit_history_title">Je hele geschiedenis</string>
+    <string name="pro_benefit_history_detail">Training per week over 6 maanden, een jaar of alles</string>
+    <string name="pro_benefit_widgets_title">Meer widgets</string>
+    <string name="pro_benefit_widgets_detail">Je reeks en trainingsbelasting op het beginscherm</string>
+    <string name="pro_benefit_export_title">Exporteer naar CSV</string>
+    <string name="pro_benefit_export_detail">Zet je trainingen en wedstrijden in een spreadsheet</string>
+    <string name="pro_benefit_accent_title">Accentkleuren</string>
+    <string name="pro_benefit_accent_detail">Geef de app en zijn widgets de kleur die jij mooi vindt</string>
+    <string name="analytics_insights">Inzichten</string>
+    <string name="analytics_streak_current">Huidige reeks</string>
+    <string name="analytics_streak_longest">Langste reeks</string>
+    <string name="analytics_streak_hint">Weken op rij met minstens één training</string>
+    <string name="analytics_training_load">Trainingsbelasting</string>
+    <string name="analytics_training_load_hint">Minuten × intensiteit (RPE), per week</string>
+    <string name="analytics_session_types">Trainingssoorten</string>
+    <string name="analytics_session_type_none">Geen soort</string>
+    <string name="analytics_head_to_head">Onderling</string>
+    <string name="analytics_head_to_head_all">Alle tegenstanders</string>
+    <string name="analytics_games_format">Games %1$d–%2$d</string>
+    <string name="analytics_range">Periode</string>
+    <string name="analytics_range_8w">8 wk</string>
+    <string name="analytics_range_6m">6 mnd</string>
+    <string name="analytics_range_1y">1 jr</string>
+    <string name="analytics_range_all">Alles</string>
+    <string name="pro_banner_cta">Neem Pro</string>
+    <string name="pro_benefit_support_title">Steun een indie-ontwikkelaar</string>
+    <string name="pro_benefit_support_detail">Help TT Tracker verder te groeien</string>
+    <string name="action_restore_purchases">Herstel aankopen</string>
+    <string name="pro_restore_success">Aankopen hersteld</string>
+    <string name="pro_restore_nothing">Geen aankopen om te herstellen</string>
+    <string name="pro_restore_failed">Kan aankopen niet herstellen. Probeer het opnieuw.</string>
+</resources>

@@ -45,7 +45,7 @@ OYUNCULAR İÇİN TASARLANDI
 - Tamamen çevrimdışı çalışır, verilerin cihazında kalır
 - Hesap açmaya ve üye olmaya gerek yok
 - Açık ve koyu tema
-- 15 dilde kullanılabilir
+- 22 dilde kullanılabilir
 
 ŞUNLAR İÇİN İDEAL
 

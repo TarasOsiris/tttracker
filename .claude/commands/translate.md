@@ -8,7 +8,8 @@ speaker localizing a polished iOS and Android app would: idiomatic UI language, 
 rendering of the English.
 
 1. Read the base English strings file: `androidApp/src/main/res/values/strings.xml`.
-2. For each supported locale (ar, de, es, fr, hi, id, it, ja, ko, pt, tr, uk, zh-rCN, zh-rTW):
+2. For each supported locale (ar, cs, de, es, fr, hi, id, it, ja, ko, ms, nl, pl, pt, sv, th, tr, uk, vi, zh-rCN,
+   zh-rTW):
     - Read the locale file at `androidApp/src/main/res/values-{locale}/strings.xml` **in full**
       before translating anything. It is your glossary and style guide for that language.
     - Find string keys that exist in English but are missing in the locale file.

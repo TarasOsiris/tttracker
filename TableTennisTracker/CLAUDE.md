@@ -388,7 +388,7 @@ iOS: `tools/strings/xcstrings.py` projects them onto `iosApp/Common/Resources/Sh
 
 Apostrophes must be escaped as `\'` — aapt rejects a bare `'` in a string resource.
 
-**Supported locales:** ar, de, es, fr, hi, id, it, ja, ko, pt, tr, uk, zh-rCN, zh-rTW
+**Supported locales:** ar, cs, de, es, fr, hi, id, it, ja, ko, ms, nl, pl, pt, sv, th, tr, uk, vi, zh-rCN, zh-rTW
 
 **During development:**
 

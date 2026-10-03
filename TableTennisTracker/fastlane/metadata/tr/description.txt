@@ -49,7 +49,7 @@ OYUNCULAR İÇİN TASARLANDI
 - Tamamen çevrimdışı çalışır; istersen iCloud ile cihazların arasında eşitlenir
 - Hesap açmaya ve üye olmaya gerek yok
 - Açık ve koyu tema
-- 15 dilde kullanılabilir
+- 22 dilde kullanılabilir
 
 ŞUNLAR İÇİN İDEAL
 

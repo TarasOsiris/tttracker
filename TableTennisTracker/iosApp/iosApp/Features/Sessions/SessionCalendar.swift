@@ -157,7 +157,7 @@ struct SessionCalendar: View {
     }
 
     /// Names the period the chevron moves to, rather than inventing a "previous month" string that
-    /// would need translating into fourteen locales.
+    /// would need translating into every app locale.
     private func periodLabel(_ steps: Int) -> Text {
         guard let target = stepped(by: steps) else { return Text(verbatim: "") }
         return Text(target, format: Date.FormatStyle(locale: locale).month(.wide).year())

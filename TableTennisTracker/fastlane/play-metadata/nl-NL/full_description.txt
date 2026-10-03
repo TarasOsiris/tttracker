@@ -1,0 +1,57 @@
+Houd je tafeltennistraining bij als een prof
+
+Table Tennis Training Tracker is het trainingsmaatje voor spelers van elk niveau. Bouw een vaste routine op, leg elke wedstrijd vast en zie je spel met de tijd beter worden.
+
+Of je het nu tafeltennis of pingpong noemt: elke training, wedstrijd en tegenstander staat in één eenvoudig trainingsdagboek.
+
+TRAININGEN IN SECONDEN VASTLEGGEN
+
+Leg je training vast met alle details die ertoe doen:
+
+- Duur - van 5 tot 300 minuten
+- Soort training - Techniek, Wedstrijdspel, Toernooi, Opslagtraining, Conditie, Vrij spel of Overig
+- RPE (Rate of Perceived Exertion) - beoordeel de intensiteit van 1 tot 10 om je trainingsbelasting te volgen
+- Notities - geoefende drills, observaties, verbeterpunten
+- Datum - leg de training van vandaag vast of vul eerdere trainingsdagen aan
+
+WEDSTRIJDEN EN TEGENSTANDERS VASTLEGGEN
+
+Bij elke training kun je de gespeelde wedstrijden opslaan:
+
+- Scores per game, enkel of dubbel
+- Niveau - Oefenwedstrijd, Competitie of Toernooi
+- Markeer wedstrijden die voor de ranking telden
+- Houd een lijst met tegenstanders bij, met club, rating, speelhand en speelstijl - Aanvaller, Verdediger, Allround, Noppen of Chopper
+- Notities per wedstrijd, zodat je weet wat echt werkte
+
+STATISTIEKEN DIE ECHTE VRAGEN BEANTWOORDEN
+
+- Winstpercentage en winst/verlies-balans over al je wedstrijden
+- Grafiek met wedstrijduitslagen
+- Trainingstijd per week, met totalen en gemiddelden
+- Een heatmap van 12 maanden die je regelmaat in één oogopslag laat zien
+- Kies zelf welke widgets op je statistiekenscherm staan
+
+SLIMME KALENDERWEERGAVE
+
+- Wissel tussen maand- en weekweergave
+- Visuele markeringen tonen in één oogopslag hoe vaak je traint
+- Tik op een datum om de trainingen van die dag te zien
+- Kies zelf de eerste dag van de week
+
+GEMAAKT VOOR SPELERS
+
+- Leg een training vast in minder dan 30 seconden
+- Werkt volledig offline - je gegevens blijven op je apparaat
+- Geen account nodig, geen registratie
+- Licht en donker thema
+- Beschikbaar in 22 talen
+
+PERFECT VOOR
+
+- Competitiespelers die trainingsvolume en wedstrijduitslagen bijhouden
+- Clubspelers die een vaste routine opbouwen
+- Trainers die de belasting van hun spelers volgen
+- Recreatieve spelers die gemotiveerd willen blijven
+
+Begin vandaag met het bijhouden van je tafeltennisreis. Elke training telt.

@@ -1,0 +1,57 @@
+Theo dõi việc tập bóng bàn như dân chuyên nghiệp
+
+Table Tennis Training Tracker là người bạn đồng hành tập luyện cho người chơi ở mọi trình độ. Xây dựng thói quen tập đều đặn, ghi lại mọi trận đấu và theo dõi trình độ của bạn tiến bộ theo thời gian.
+
+Dù bạn gọi là bóng bàn hay ping pong, mọi buổi tập, trận đấu và đối thủ đều nằm gọn trong một cuốn nhật ký tập luyện đơn giản.
+
+GHI BUỔI TẬP TRONG VÀI GIÂY
+
+Ghi lại buổi tập với đầy đủ chi tiết quan trọng:
+
+- Thời lượng - từ 5 đến 300 phút
+- Loại buổi tập - Kỹ thuật, Đánh trận, Giải đấu, Tập giao bóng, Thể lực, Đánh tự do hoặc Khác
+- RPE (mức gắng sức cảm nhận) - chấm cường độ từ 1 đến 10 để theo dõi tải tập luyện
+- Ghi chú - bài tập đã luyện, nhận xét, điểm cần cải thiện
+- Ngày - ghi buổi tập hôm nay hoặc bổ sung những ngày tập trước đó
+
+GHI LẠI TRẬN ĐẤU VÀ ĐỐI THỦ
+
+Mỗi buổi tập có thể lưu các trận đấu bạn đã chơi:
+
+- Tỷ số từng ván, đánh đơn hoặc đánh đôi
+- Cấp độ thi đấu - Tập luyện, Giải vô địch hoặc Giải đấu
+- Đánh dấu các trận tính điểm xếp hạng
+- Danh sách đối thủ với CLB, điểm xếp hạng, tay thuận và lối chơi - Tấn công, Phòng thủ, Toàn diện, Mặt gai hoặc Cắt bóng
+- Ghi chú cho từng trận để bạn nhớ điều gì thực sự hiệu quả
+
+PHÂN TÍCH TRẢ LỜI NHỮNG CÂU HỎI THỰC TẾ
+
+- Tỷ lệ thắng và thành tích thắng/thua trên mọi trận đấu bạn ghi
+- Biểu đồ kết quả trận đấu
+- Thời gian tập hằng tuần, kèm tổng và trung bình
+- Bản đồ nhiệt tập luyện 12 tháng cho thấy mức độ đều đặn chỉ trong nháy mắt
+- Tự chọn tiện ích hiển thị trên màn hình phân tích
+
+LỊCH THÔNG MINH
+
+- Chuyển đổi giữa chế độ xem tháng và tuần
+- Chỉ báo trực quan cho thấy mật độ buổi tập trong nháy mắt
+- Chạm vào bất kỳ ngày nào để xem các buổi tập của ngày đó
+- Tự chọn ngày đầu tuần
+
+DÀNH CHO NGƯỜI CHƠI
+
+- Ghi một buổi tập chưa tới 30 giây
+- Hoạt động hoàn toàn ngoại tuyến - dữ liệu luôn nằm trên thiết bị của bạn
+- Không cần tài khoản, không cần đăng ký
+- Chủ đề sáng và tối
+- Hỗ trợ 22 ngôn ngữ
+
+PHÙ HỢP VỚI
+
+- Vận động viên thi đấu theo dõi khối lượng tập và kết quả trận đấu
+- Người chơi ở CLB muốn xây dựng thói quen tập đều đặn
+- Huấn luyện viên theo dõi khối lượng tập của học trò
+- Người chơi phong trào muốn giữ động lực
+
+Hãy bắt đầu ghi lại hành trình bóng bàn của bạn ngay hôm nay. Mỗi buổi tập đều có giá trị.

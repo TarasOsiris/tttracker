@@ -8,7 +8,7 @@ import XCTest
 /// because the `List` around them had a selection binding that swallowed the tap.
 ///
 /// Elements are addressed by accessibility identifier rather than by label, so a test does not
-/// pin itself to one of the app's fourteen languages.
+/// pin itself to one of the app's languages.
 final class NavigationUITests: XCTestCase {
     private var app: XCUIApplication!
 

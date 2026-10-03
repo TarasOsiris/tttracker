@@ -13,7 +13,7 @@ sealed interface NavBarTabLevelRoute {
 	@get:DrawableRes val icon: Int
 	@get:StringRes val label: Int
 
-	/// The label is localized in fourteen languages, so the screenshot test cannot address a tab by
+	/// The label is localized in every app language, so the screenshot test cannot address a tab by
 	/// it. The tag is what it uses instead.
 	val tag: String
 }

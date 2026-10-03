@@ -27,7 +27,7 @@ class AppLocaleTest {
 
 	@Test
 	fun matching_withUnshippedLanguage_returnsEnglish() {
-		val tag = "pl-PL"
+		val tag = "fi-FI"
 
 		AppLocale.matching(tag) shouldBe AppLocale.ENGLISH
 	}

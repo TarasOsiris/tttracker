@@ -33,7 +33,7 @@ import xyz.tleskiv.tt.util.scrollToAndClickTag
 /// or the language picker through the UI. The dataset is [ShowcaseData], the same rows the iPhone
 /// and iPad runs write.
 ///
-/// Nothing is addressed by text: fifteen languages go past and a string lookup would work in one.
+/// Nothing is addressed by text: every app language goes past and a string lookup would work in one.
 @RunWith(AndroidJUnit4::class)
 class StoreScreenshotTest {
 
@@ -123,7 +123,7 @@ class StoreScreenshotTest {
 	}
 
 	/// The whole tree is re-keyed on `currentLocale` in `App.kt`, so writing the preference is all it
-	/// takes — driving the picker would only add fifteen chances to tap the wrong localized row.
+	/// takes — driving the picker would only add a chance per language to tap the wrong localized row.
 	private fun setLocale(locale: AppLocale) {
 		runBlocking { preferences.setAppLocale(locale) }
 		composeTestRule.idle()

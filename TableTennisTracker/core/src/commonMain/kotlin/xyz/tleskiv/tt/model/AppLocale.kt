@@ -4,6 +4,7 @@ enum class AppLocale(val languageTag: String, val displayName: String) {
 	SYSTEM("", "System default"),
 	ENGLISH("en", "English"),
 	ARABIC("ar", "العربية"),
+	CZECH("cs", "Čeština"),
 	GERMAN("de", "Deutsch"),
 	SPANISH("es", "Español"),
 	FRENCH("fr", "Français"),
@@ -12,9 +13,15 @@ enum class AppLocale(val languageTag: String, val displayName: String) {
 	ITALIAN("it", "Italiano"),
 	JAPANESE("ja", "日本語"),
 	KOREAN("ko", "한국어"),
+	MALAY("ms", "Bahasa Melayu"),
+	DUTCH("nl", "Nederlands"),
+	POLISH("pl", "Polski"),
 	PORTUGUESE("pt", "Português"),
+	SWEDISH("sv", "Svenska"),
+	THAI("th", "ไทย"),
 	TURKISH("tr", "Türkçe"),
 	UKRAINIAN("uk", "Українська"),
+	VIETNAMESE("vi", "Tiếng Việt"),
 	CHINESE_SIMPLIFIED("zh-CN", "简体中文"),
 	CHINESE_TRADITIONAL("zh-TW", "繁體中文");
 

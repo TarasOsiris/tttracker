@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- RPE Labels -->
+    <string name="rpe_very_easy">Bardzo lekki</string>
+    <string name="rpe_easy">Lekki</string>
+    <string name="rpe_moderate">Umiarkowany</string>
+    <string name="rpe_hard">Ciężki</string>
+    <string name="rpe_max_effort">Maksymalny wysiłek</string>
+
+    <!-- General Actions -->
+    <string name="action_ok">OK</string>
+    <string name="action_cancel">Anuluj</string>
+    <string name="action_close">Zamknij</string>
+    <string name="action_change">Zmień</string>
+    <string name="action_edit">Edytuj</string>
+    <string name="action_save">Zapisz</string>
+    <string name="action_add_session">Dodaj trening</string>
+    <string name="action_ui_settings">Ustawienia interfejsu</string>
+    <string name="action_opponents">Przeciwnicy</string>
+    <string name="opponents_empty">Brak przeciwników</string>
+    <string name="title_opponents">Przeciwnicy</string>
+    <string name="action_back">Wstecz</string>
+
+    <!-- Navigation -->
+    <string name="nav_sessions">Treningi</string>
+    <string name="nav_analytics">Statystyki</string>
+    <string name="nav_settings">Ustawienia</string>
+
+    <!-- Screen Titles -->
+    <string name="title_create_session">Nowy trening</string>
+    <string name="title_settings">Ustawienia</string>
+    <string name="title_error">Błąd</string>
+
+    <!-- Sessions Screen -->
+    <string name="sessions_week_mode">Tydzień</string>
+    <string name="sessions_month_mode">Miesiąc</string>
+    <string name="sessions_empty">Brak treningów</string>
+    <string name="sessions_select_prompt">Wybierz trening</string>
+    <string name="session_duration_format">%1$d min</string>
+
+    <!-- Create Session Screen -->
+    <string name="label_date">Data</string>
+    <string name="label_duration">Czas trwania</string>
+    <string name="suffix_minutes">min</string>
+    <string name="suffix_minutes_value">%1$d min</string>
+    <string name="label_session_type">Rodzaj treningu</string>
+    <string name="label_intensity_rpe">Intensywność (RPE)</string>
+    <string name="label_notes_optional">Notatki (opcjonalnie)</string>
+    <string name="label_default_notes">Domyślne notatki</string>
+    <string name="hint_notes">Dodaj notatki o treningu…</string>
+    <string name="counter_notes">%1$d/1000</string>
+
+    <!-- Session Details Screen -->
+    <string name="session_default_title">Trening</string>
+    <string name="label_rpe">RPE</string>
+    <string name="label_notes">Notatki</string>
+    <string name="action_delete">Usuń</string>
+    <string name="delete_session_title">Usunąć trening?</string>
+    <string name="delete_session_message">Tej operacji nie można cofnąć. Trening zostanie trwale usunięty.</string>
+
+    <!-- Session Types -->
+    <string name="session_type_technique">Technika</string>
+    <string name="session_type_match_play">Gra meczowa</string>
+    <string name="session_type_tournament">Turniej</string>
+    <string name="session_type_serve_practice">Trening serwisu</string>
+    <string name="session_type_physical">Trening fizyczny</string>
+    <string name="session_type_free_play">Gra swobodna</string>
+    <string name="session_type_other">Inne</string>
+
+    <!-- Analytics Screen -->
+    <string name="analytics_summary">Podsumowanie</string>
+    <string name="analytics_total_sessions">Treningi</string>
+    <string name="analytics_total_time">Czas treningu</string>
+    <string name="analytics_hours_minutes">%1$d h %2$d min</string>
+    <string name="analytics_win_loss">Wygrane / porażki</string>
+    <string name="analytics_win_rate">Procent wygranych</string>
+    <string name="analytics_heatmap_title">Mapa aktywności treningowej</string>
+    <string name="analytics_heatmap_less">Mniej</string>
+    <string name="analytics_heatmap_more">Więcej</string>
+    <string name="analytics_weekly_training">Tygodniowy czas treningu</string>
+    <string name="analytics_win_loss_chart">Wyniki meczów</string>
+    <string name="analytics_wins">Wygrane</string>
+    <string name="analytics_losses">Porażki</string>
+    <string name="analytics_no_matches">Brak meczów</string>
+    <string name="analytics_no_training">Brak danych o treningach</string>
+    <string name="analytics_weekly_avg">Śr.</string>
+    <string name="analytics_weekly_total">Łącznie</string>
+    <string name="analytics_settings_title">Widżety statystyk</string>
+    <string name="analytics_widget_summary">Podsumowanie</string>
+    <string name="analytics_widget_win_loss">Wykres wygranych i porażek</string>
+    <string name="analytics_widget_weekly">Treningi w tygodniu</string>
+    <string name="analytics_widget_heatmap">Mapa aktywności</string>
+    <string name="analytics_widget_streak">Seria treningów</string>
+    <string name="analytics_widgets_reorder_hint">Przeciągnij, aby zmienić kolejność</string>
+    <string name="action_move_up">Przenieś wyżej</string>
+    <string name="action_move_down">Przenieś niżej</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_section_general">Ogólne</string>
+    <string name="settings_section_help">Pomoc</string>
+    <string name="settings_section_about">Informacje</string>
+    <string name="action_send_feedback">Wyślij opinię</string>
+    <string name="action_visit_website">Strona internetowa</string>
+    <string name="action_rate_app">Oceń aplikację</string>
+    <string name="action_copy_user_id">Kopiuj ID użytkownika</string>
+    <string name="user_id_copied">Skopiowano ID użytkownika</string>
+
+    <!-- General Settings Screen -->
+    <string name="settings_section_appearance">Wygląd</string>
+    <string name="settings_section_calendar">Kalendarz</string>
+    <string name="settings_section_sessions">Domyślne ustawienia treningu</string>
+    <string name="action_theme">Motyw</string>
+    <string name="theme_select_title">Wybierz motyw</string>
+    <string name="action_language">Język</string>
+    <string name="language_select_title">Wybierz język</string>
+    <string name="theme_system">Domyślny systemowy</string>
+    <string name="theme_light">Jasny</string>
+    <string name="theme_dark">Ciemny</string>
+    <string name="action_privacy_policy">Polityka prywatności</string>
+    <string name="action_week_start">Pierwszy dzień tygodnia</string>
+    <string name="week_start_select_title">Pierwszy dzień tygodnia</string>
+    <string name="week_start_monday">Poniedziałek</string>
+    <string name="week_start_sunday">Niedziela</string>
+    <string name="week_start_saturday">Sobota</string>
+    <string name="settings_highlight_current_day">Wyróżniaj bieżący dzień</string>
+    <string name="settings_section_developer">Deweloper</string>
+    <string name="action_debug">Debugowanie</string>
+    <string name="settings_version_format">Wersja %1$s (%2$s)</string>
+    <string name="settings_made_with_prefix">Stworzone z ❤️ w</string>
+    <string name="settings_company_name">Nineva Studios</string>
+
+    <!-- Home Screen -->
+
+    <!-- Debug Screen -->
+    <string name="debug_data_generation_title">Generowanie danych</string>
+    <string name="debug_data_generation_description">Wygeneruj losowe treningi z ostatniego roku, aby przetestować aplikację na realistycznych danych.</string>
+    <string name="debug_generate_random_sessions">Wygeneruj 100 losowych treningów</string>
+    <string name="debug_seed_showcase_data">Wczytaj dane do zrzutów ekranu</string>
+    <string name="debug_sessions_in_database">Treningi w bazie danych</string>
+    <string name="debug_clear_database_title">Wyczyść bazę danych</string>
+    <string name="debug_clear_database_description">Trwale usuń wszystkie treningi z bazy danych. Tej operacji nie można cofnąć.</string>
+    <string name="debug_clear_all_sessions">Usuń wszystkie treningi</string>
+
+    <!-- Date & Time -->
+    <string name="time_today">Dzisiaj</string>
+    <string name="time_yesterday">Wczoraj</string>
+    <string name="time_tomorrow">Jutro</string>
+    <string name="month_january">Styczeń</string>
+    <string name="month_february">Luty</string>
+    <string name="month_march">Marzec</string>
+    <string name="month_april">Kwiecień</string>
+    <string name="month_may">Maj</string>
+    <string name="month_june">Czerwiec</string>
+    <string name="month_july">Lipiec</string>
+    <string name="month_august">Sierpień</string>
+    <string name="month_september">Wrzesień</string>
+    <string name="month_october">Październik</string>
+    <string name="month_november">Listopad</string>
+    <string name="month_december">Grudzień</string>
+    <string name="day_monday">Poniedziałek</string>
+    <string name="day_tuesday">Wtorek</string>
+    <string name="day_wednesday">Środa</string>
+    <string name="day_thursday">Czwartek</string>
+    <string name="day_friday">Piątek</string>
+    <string name="day_saturday">Sobota</string>
+    <string name="day_sunday">Niedziela</string>
+    <string name="day_monday_short">Pn</string>
+    <string name="day_tuesday_short">Wt</string>
+    <string name="day_wednesday_short">Śr</string>
+    <string name="day_thursday_short">Cz</string>
+    <string name="day_friday_short">Pt</string>
+    <string name="day_saturday_short">Sb</string>
+    <string name="day_sunday_short">Nd</string>
+    <string name="month_january_short">Sty</string>
+    <string name="month_february_short">Lut</string>
+    <string name="month_march_short">Mar</string>
+    <string name="month_april_short">Kwi</string>
+    <string name="month_may_short">Maj</string>
+    <string name="month_june_short">Cze</string>
+    <string name="month_july_short">Lip</string>
+    <string name="month_august_short">Sie</string>
+    <string name="month_september_short">Wrz</string>
+    <string name="month_october_short">Paź</string>
+    <string name="month_november_short">Lis</string>
+    <string name="month_december_short">Gru</string>
+
+    <string name="duration_minutes_full">%1$d min</string>
+    <string name="duration_hours_full">%1$d godz.</string>
+    <string name="duration_hours_plural_full">%1$d godz.</string>
+    <string name="duration_hm_short">%1$d godz. %2$d min</string>
+
+    <!-- Help -->
+    <string name="help_icon_content_description">Pokaż pomoc</string>
+    <string name="help_rpe_title">Co to jest RPE?</string>
+    <string name="help_rpe_description">RPE (Rate of Perceived Exertion, czyli subiektywna ocena wysiłku) mierzy, jak ciężko według ciebie pracuje twoje ciało podczas ćwiczeń.</string>
+    <string name="help_rpe_scale_intro">Skala od 1 do 10 pomaga śledzić intensywność treningu:</string>
+    <string name="help_rpe_level_1_2">1–2: Bardzo lekki – lekka aktywność, swobodnie rozmawiasz</string>
+    <string name="help_rpe_level_3_4">3–4: Lekki – komfortowe tempo, da się rozmawiać</string>
+    <string name="help_rpe_level_5_6">5–6: Umiarkowany – szybszy oddech, odczuwalny wysiłek</string>
+    <string name="help_rpe_level_7_8">7–8: Ciężki – trudno mówić, dajesz z siebie dużo</string>
+    <string name="help_rpe_level_9_10">9–10: Maksymalny wysiłek – pełna moc, nie do utrzymania</string>
+    <string name="help_rpe_tip">Wskazówka: większość treningów powinna mieścić się w przedziale 5–7.</string>
+
+    <!-- Match Creation -->
+    <string name="label_matches_optional">Mecze (opcjonalnie)</string>
+    <string name="action_add_match">Dodaj mecz</string>
+    <string name="add_match">Dodaj mecz</string>
+    <string name="edit_match">Edytuj mecz</string>
+    <string name="label_match_notes_optional">Notatki (opcjonalnie)</string>
+    <string name="hint_match_notes">Dodaj notatki o meczu…</string>
+    <string name="label_opponent">Przeciwnik</string>
+    <string name="hint_opponent_name">Wpisz imię przeciwnika</string>
+    <string name="label_score">Wynik</string>
+    <string name="label_me">Ja</string>
+    <string name="action_increase_my_score">Zwiększ mój wynik</string>
+    <string name="action_increase_opponent_score">Zwiększ wynik przeciwnika</string>
+    <string name="label_competition_level_optional">Poziom rozgrywek (opcjonalnie)</string>
+    <string name="matches_empty_hint">Nie dodano jeszcze meczów</string>
+    <string name="label_doubles">Debel</string>
+    <string name="label_ranked">Rankingowy</string>
+    <string name="competition_level_practice">Sparing</string>
+    <string name="competition_level_league">Liga</string>
+    <string name="competition_level_tournament">Turniej</string>
+    <string name="match_score_format">%1$d - %2$d</string>
+    <string name="match_win">W</string>
+    <string name="match_loss">P</string>
+
+    <!-- Session Details -->
+    <string name="session_matches_count">Mecze (%1$d)</string>
+    <string name="opponent_rating_format">Ranking: %1$d</string>
+
+    <!-- Opponents -->
+    <string name="action_add_opponent">Dodaj przeciwnika</string>
+    <string name="action_edit_opponent">Edytuj przeciwnika</string>
+    <string name="label_opponent_name">Imię i nazwisko</string>
+    <string name="label_opponent_club">Klub (opcjonalnie)</string>
+    <string name="label_opponent_rating">Ranking (opcjonalnie)</string>
+    <string name="label_opponent_handedness">Ręka (opcjonalnie)</string>
+    <string name="label_opponent_style">Styl gry (opcjonalnie)</string>
+    <string name="label_opponent_notes">Notatki (opcjonalnie)</string>
+    <string name="handedness_right">Prawa</string>
+    <string name="handedness_left">Lewa</string>
+    <string name="style_attacker">Atakujący</string>
+    <string name="style_defender">Obrońca</string>
+    <string name="style_all_round">Wszechstronny</string>
+    <string name="style_pips">Czopy</string>
+    <string name="style_chopper">Defensor z podcięciem</string>
+
+    <!-- Delete Confirmation -->
+    <string name="delete_opponent_title">Usunąć przeciwnika?</string>
+    <string name="delete_opponent_message">Zostaną też usunięte wszystkie mecze z tym przeciwnikiem. Tej operacji nie można cofnąć.</string>
+
+    <!-- Opponents Info -->
+    <string name="opponents_info_title">O przeciwnikach</string>
+    <string name="opponents_info_message">Dodani tu przeciwnicy będą dostępni do szybkiego wyboru, gdy zapisujesz mecze w swoich treningach.</string>
+
+    <!-- Accessibility -->
+    <string name="accessibility_sessions_count">Treningi: %1$d</string>
+
+    <!-- Home screen widgets -->
+    <string name="widget_summary_name">Podsumowanie treningów</string>
+    <string name="widget_summary_description">Treningi, czas treningu i bilans meczów w skrócie.</string>
+    <string name="widget_heatmap_name">Aktywność treningowa</string>
+    <string name="widget_heatmap_description">Twoje dni treningowe, zacieniowane według ich intensywności.</string>
+    <string name="widget_last_session_name">Ostatni trening</string>
+    <string name="widget_last_session_description">Kiedy był ostatni trening, ile trwał i jak poszedł.</string>
+    <string name="widget_add_session_name">Dodaj trening</string>
+    <string name="widget_add_session_description">Otwórz TT Tracker i zacznij zapisywać trening.</string>
+    <string name="widget_streak_name">Seria treningów</string>
+    <string name="widget_streak_description">Ile tygodni z rzędu trenujesz i jaki jest twój rekord.</string>
+    <string name="widget_load_name">Obciążenie treningowe</string>
+    <string name="widget_load_description">Obciążenie treningowe z tego tygodnia na tle poprzednich.</string>
+    <string name="widget_this_week">Ten tydzień</string>
+    <string name="widget_last_week">Zeszły tydzień</string>
+    <string name="widget_pro_locked">Odblokuj w aplikacji z Pro</string>
+    <string name="widget_empty">Brak treningów</string>
+    <string name="widget_no_matches">Brak meczów</string>
+    <string name="settings_icloud_section">iCloud</string>
+    <string name="settings_icloud_sync">Synchronizuj z iCloud</string>
+    <string name="settings_icloud_sync_hint">Twoje treningi, mecze i przeciwnicy będą takie same na wszystkich urządzeniach.</string>
+    <string name="settings_icloud_sync_now">Synchronizuj teraz</string>
+    <string name="settings_icloud_syncing">Synchronizowanie…</string>
+    <string name="settings_icloud_waiting">Oczekiwanie na synchronizację</string>
+    <string name="settings_icloud_last_synced">Ostatnia synchronizacja: %1$s</string>
+    <string name="settings_icloud_no_account">Aby synchronizować, zaloguj się do iCloud w aplikacji Ustawienia.</string>
+    <string name="settings_icloud_quota_exceeded">Twój iCloud jest pełny, więc niektóre zmiany nie są synchronizowane.</string>
+    <string name="settings_icloud_failed">Nie udało się zsynchronizować niektórych zmian. Spróbujemy ponownie.</string>
+    <string name="settings_icloud_turned_off">Dane tej aplikacji w iCloud zostały usunięte, więc synchronizacja została wyłączona. Nic nie zostało usunięte z tego urządzenia.</string>
+    <string name="settings_icloud_account_changed">Twoje konto iCloud się zmieniło, więc synchronizacja została wyłączona. Włącz ją ponownie, aby synchronizować z tym kontem.</string>
+    <string name="pro_unlock">Odblokuj z Pro</string>
+    <string name="settings_section_data">Dane</string>
+    <string name="settings_export">Eksportuj do CSV</string>
+    <string name="settings_export_hint">Twoje treningi i mecze jako dwa pliki do arkusza kalkulacyjnego</string>
+    <string name="settings_accent_color">Kolor akcentu</string>
+    <string name="accent_default">Domyślny</string>
+    <string name="accent_green">Zielony</string>
+    <string name="accent_teal">Morski</string>
+    <string name="accent_indigo">Indygo</string>
+    <string name="accent_purple">Fioletowy</string>
+    <string name="accent_pink">Różowy</string>
+    <string name="accent_red">Czerwony</string>
+    <string name="accent_orange">Pomarańczowy</string>
+    <string name="pro_toolbar_button">PRO</string>
+    <string name="pro_upgrade_hint">Otwiera opcje przejścia na Pro</string>
+    <string name="pro_banner_title">TT Tracker Pro</string>
+    <string name="pro_banner_tagline">Zrozum swój trening i dopasuj aplikację do siebie</string>
+    <string name="pro_benefit_insights_title">Analiza treningów</string>
+    <string name="pro_benefit_insights_detail">Serie, tygodniowe obciążenie i rodzaje treningów</string>
+    <string name="pro_benefit_head_to_head_title">Bilans bezpośredni</string>
+    <string name="pro_benefit_head_to_head_detail">Twój bilans i ostatnia forma z każdym przeciwnikiem</string>
+    <string name="pro_benefit_history_title">Cała historia</string>
+    <string name="pro_benefit_history_detail">Treningi tygodniowe z 6 miesięcy, roku lub całego okresu</string>
+    <string name="pro_benefit_widgets_title">Więcej widżetów</string>
+    <string name="pro_benefit_widgets_detail">Seria i obciążenie treningowe na ekranie początkowym</string>
+    <string name="pro_benefit_export_title">Eksport do CSV</string>
+    <string name="pro_benefit_export_detail">Przenieś treningi i mecze do arkusza kalkulacyjnego</string>
+    <string name="pro_benefit_accent_title">Kolory akcentu</string>
+    <string name="pro_benefit_accent_detail">Nadaj aplikacji i widżetom ulubiony kolor</string>
+    <string name="analytics_insights">Analiza</string>
+    <string name="analytics_streak_current">Obecna seria</string>
+    <string name="analytics_streak_longest">Najdłuższa seria</string>
+    <string name="analytics_streak_hint">Tygodnie z rzędu z co najmniej jednym treningiem</string>
+    <string name="analytics_training_load">Obciążenie treningowe</string>
+    <string name="analytics_training_load_hint">Minuty × intensywność (RPE) w tygodniu</string>
+    <string name="analytics_session_types">Rodzaje treningów</string>
+    <string name="analytics_session_type_none">Bez rodzaju</string>
+    <string name="analytics_head_to_head">Bilans bezpośredni</string>
+    <string name="analytics_head_to_head_all">Wszyscy przeciwnicy</string>
+    <string name="analytics_games_format">Sety %1$d–%2$d</string>
+    <string name="analytics_range">Zakres</string>
+    <string name="analytics_range_8w">8 tyg.</string>
+    <string name="analytics_range_6m">6 mies.</string>
+    <string name="analytics_range_1y">1 rok</string>
+    <string name="analytics_range_all">Całość</string>
+    <string name="pro_banner_cta">Kup Pro</string>
+    <string name="pro_benefit_support_title">Wesprzyj niezależnego twórcę</string>
+    <string name="pro_benefit_support_detail">Pomóż w dalszym rozwoju TT Tracker</string>
+    <string name="action_restore_purchases">Odtwórz zakupy</string>
+    <string name="pro_restore_success">Odtworzono zakupy</string>
+    <string name="pro_restore_nothing">Brak zakupów do odtworzenia</string>
+    <string name="pro_restore_failed">Nie udało się odtworzyć zakupów. Spróbuj ponownie.</string>
+</resources>

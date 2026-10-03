@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- RPE Labels -->
+    <string name="rpe_very_easy">Velmi lehké</string>
+    <string name="rpe_easy">Lehké</string>
+    <string name="rpe_moderate">Střední</string>
+    <string name="rpe_hard">Těžké</string>
+    <string name="rpe_max_effort">Maximální úsilí</string>
+
+    <!-- General Actions -->
+    <string name="action_ok">OK</string>
+    <string name="action_cancel">Zrušit</string>
+    <string name="action_close">Zavřít</string>
+    <string name="action_change">Změnit</string>
+    <string name="action_edit">Upravit</string>
+    <string name="action_save">Uložit</string>
+    <string name="action_add_session">Přidat trénink</string>
+    <string name="action_ui_settings">Nastavení vzhledu</string>
+    <string name="action_opponents">Soupeři</string>
+    <string name="opponents_empty">Zatím žádní soupeři</string>
+    <string name="title_opponents">Soupeři</string>
+    <string name="action_back">Zpět</string>
+
+    <!-- Navigation -->
+    <string name="nav_sessions">Tréninky</string>
+    <string name="nav_analytics">Statistiky</string>
+    <string name="nav_settings">Nastavení</string>
+
+    <!-- Screen Titles -->
+    <string name="title_create_session">Nový trénink</string>
+    <string name="title_settings">Nastavení</string>
+    <string name="title_error">Chyba</string>
+
+    <!-- Sessions Screen -->
+    <string name="sessions_week_mode">Týden</string>
+    <string name="sessions_month_mode">Měsíc</string>
+    <string name="sessions_empty">Žádné tréninky</string>
+    <string name="sessions_select_prompt">Vyber trénink</string>
+    <string name="session_duration_format">%1$d min</string>
+
+    <!-- Create Session Screen -->
+    <string name="label_date">Datum</string>
+    <string name="label_duration">Délka</string>
+    <string name="suffix_minutes">min</string>
+    <string name="suffix_minutes_value">%1$d min</string>
+    <string name="label_session_type">Typ tréninku</string>
+    <string name="label_intensity_rpe">Intenzita (RPE)</string>
+    <string name="label_notes_optional">Poznámky (volitelné)</string>
+    <string name="label_default_notes">Výchozí poznámky</string>
+    <string name="hint_notes">Přidej poznámky k tréninku…</string>
+    <string name="counter_notes">%1$d/1000</string>
+
+    <!-- Session Details Screen -->
+    <string name="session_default_title">Trénink</string>
+    <string name="label_rpe">RPE</string>
+    <string name="label_notes">Poznámky</string>
+    <string name="action_delete">Smazat</string>
+    <string name="delete_session_title">Smazat trénink?</string>
+    <string name="delete_session_message">Tuto akci nelze vrátit zpět. Trénink bude trvale odstraněn.</string>
+
+    <!-- Session Types -->
+    <string name="session_type_technique">Technika</string>
+    <string name="session_type_match_play">Zápasová hra</string>
+    <string name="session_type_tournament">Turnaj</string>
+    <string name="session_type_serve_practice">Trénink podání</string>
+    <string name="session_type_physical">Kondice</string>
+    <string name="session_type_free_play">Volná hra</string>
+    <string name="session_type_other">Jiné</string>
+
+    <!-- Analytics Screen -->
+    <string name="analytics_summary">Souhrn</string>
+    <string name="analytics_total_sessions">Tréninky</string>
+    <string name="analytics_total_time">Čas tréninku</string>
+    <string name="analytics_hours_minutes">%1$d h %2$d min</string>
+    <string name="analytics_win_loss">Výhry / prohry</string>
+    <string name="analytics_win_rate">Úspěšnost</string>
+    <string name="analytics_heatmap_title">Teplotní mapa tréninků</string>
+    <string name="analytics_heatmap_less">Méně</string>
+    <string name="analytics_heatmap_more">Více</string>
+    <string name="analytics_weekly_training">Týdenní čas tréninku</string>
+    <string name="analytics_win_loss_chart">Výsledky zápasů</string>
+    <string name="analytics_wins">Výhry</string>
+    <string name="analytics_losses">Prohry</string>
+    <string name="analytics_no_matches">Zatím žádné zápasy</string>
+    <string name="analytics_no_training">Zatím žádná data o tréninku</string>
+    <string name="analytics_weekly_avg">Průměr</string>
+    <string name="analytics_weekly_total">Celkem</string>
+    <string name="analytics_settings_title">Widgety statistik</string>
+    <string name="analytics_widget_summary">Souhrn</string>
+    <string name="analytics_widget_win_loss">Graf výher a proher</string>
+    <string name="analytics_widget_weekly">Týdenní trénink</string>
+    <string name="analytics_widget_heatmap">Teplotní mapa tréninků</string>
+    <string name="analytics_widget_streak">Tréninková série</string>
+    <string name="analytics_widgets_reorder_hint">Přetažením změníš pořadí</string>
+    <string name="action_move_up">Posunout nahoru</string>
+    <string name="action_move_down">Posunout dolů</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_section_general">Obecné</string>
+    <string name="settings_section_help">Nápověda</string>
+    <string name="settings_section_about">O aplikaci</string>
+    <string name="action_send_feedback">Poslat zpětnou vazbu</string>
+    <string name="action_visit_website">Web</string>
+    <string name="action_rate_app">Ohodnotit aplikaci</string>
+    <string name="action_copy_user_id">Kopírovat ID uživatele</string>
+    <string name="user_id_copied">ID uživatele zkopírováno</string>
+
+    <!-- General Settings Screen -->
+    <string name="settings_section_appearance">Vzhled</string>
+    <string name="settings_section_calendar">Kalendář</string>
+    <string name="settings_section_sessions">Výchozí hodnoty tréninku</string>
+    <string name="action_theme">Motiv</string>
+    <string name="theme_select_title">Vyber motiv</string>
+    <string name="action_language">Jazyk</string>
+    <string name="language_select_title">Vyber jazyk</string>
+    <string name="theme_system">Podle systému</string>
+    <string name="theme_light">Světlý</string>
+    <string name="theme_dark">Tmavý</string>
+    <string name="action_privacy_policy">Zásady ochrany soukromí</string>
+    <string name="action_week_start">První den týdne</string>
+    <string name="week_start_select_title">První den týdne</string>
+    <string name="week_start_monday">Pondělí</string>
+    <string name="week_start_sunday">Neděle</string>
+    <string name="week_start_saturday">Sobota</string>
+    <string name="settings_highlight_current_day">Zvýraznit dnešní den</string>
+    <string name="settings_section_developer">Vývojář</string>
+    <string name="action_debug">Ladění</string>
+    <string name="settings_version_format">Verze %1$s (%2$s)</string>
+    <string name="settings_made_with_prefix">Vytvořeno s ❤️ v</string>
+    <string name="settings_company_name">Nineva Studios</string>
+
+    <!-- Home Screen -->
+
+    <!-- Debug Screen -->
+    <string name="debug_data_generation_title">Generování dat</string>
+    <string name="debug_data_generation_description">Vygeneruje náhodné tréninky za poslední rok, aby šla aplikace vyzkoušet s realistickými daty.</string>
+    <string name="debug_generate_random_sessions">Vygenerovat 100 náhodných tréninků</string>
+    <string name="debug_seed_showcase_data">Naplnit data pro snímky do obchodu</string>
+    <string name="debug_sessions_in_database">Tréninky v databázi</string>
+    <string name="debug_clear_database_title">Vymazat databázi</string>
+    <string name="debug_clear_database_description">Trvale smaže všechny tréninky z databáze. Tuto akci nelze vrátit zpět.</string>
+    <string name="debug_clear_all_sessions">Smazat všechny tréninky</string>
+
+    <!-- Date & Time -->
+    <string name="time_today">Dnes</string>
+    <string name="time_yesterday">Včera</string>
+    <string name="time_tomorrow">Zítra</string>
+    <string name="month_january">Leden</string>
+    <string name="month_february">Únor</string>
+    <string name="month_march">Březen</string>
+    <string name="month_april">Duben</string>
+    <string name="month_may">Květen</string>
+    <string name="month_june">Červen</string>
+    <string name="month_july">Červenec</string>
+    <string name="month_august">Srpen</string>
+    <string name="month_september">Září</string>
+    <string name="month_october">Říjen</string>
+    <string name="month_november">Listopad</string>
+    <string name="month_december">Prosinec</string>
+    <string name="day_monday">Pondělí</string>
+    <string name="day_tuesday">Úterý</string>
+    <string name="day_wednesday">Středa</string>
+    <string name="day_thursday">Čtvrtek</string>
+    <string name="day_friday">Pátek</string>
+    <string name="day_saturday">Sobota</string>
+    <string name="day_sunday">Neděle</string>
+    <string name="day_monday_short">Po</string>
+    <string name="day_tuesday_short">Út</string>
+    <string name="day_wednesday_short">St</string>
+    <string name="day_thursday_short">Čt</string>
+    <string name="day_friday_short">Pá</string>
+    <string name="day_saturday_short">So</string>
+    <string name="day_sunday_short">Ne</string>
+    <string name="month_january_short">Led</string>
+    <string name="month_february_short">Úno</string>
+    <string name="month_march_short">Bře</string>
+    <string name="month_april_short">Dub</string>
+    <string name="month_may_short">Kvě</string>
+    <string name="month_june_short">Čvn</string>
+    <string name="month_july_short">Čvc</string>
+    <string name="month_august_short">Srp</string>
+    <string name="month_september_short">Zář</string>
+    <string name="month_october_short">Říj</string>
+    <string name="month_november_short">Lis</string>
+    <string name="month_december_short">Pro</string>
+
+    <string name="duration_minutes_full">%1$d min</string>
+    <string name="duration_hours_full">%1$d hod.</string>
+    <string name="duration_hours_plural_full">%1$d hod.</string>
+    <string name="duration_hm_short">%1$d h %2$d min</string>
+
+    <!-- Help -->
+    <string name="help_icon_content_description">Zobrazit nápovědu</string>
+    <string name="help_rpe_title">Co je RPE?</string>
+    <string name="help_rpe_description">RPE (Rate of Perceived Exertion, vnímaná námaha) vyjadřuje, jak moc podle tvého pocitu tělo při cvičení pracuje.</string>
+    <string name="help_rpe_scale_intro">Stupnice 1–10 ti pomůže sledovat intenzitu tréninku:</string>
+    <string name="help_rpe_level_1_2">1–2: Velmi lehké – lehká aktivita, v klidu mluvíš</string>
+    <string name="help_rpe_level_3_4">3–4: Lehké – pohodlné tempo, zvládneš konverzaci</string>
+    <string name="help_rpe_level_5_6">5–6: Střední – dýcháš rychleji, už to dá zabrat</string>
+    <string name="help_rpe_level_7_8">7–8: Těžké – mluví se špatně, jdeš na hranu</string>
+    <string name="help_rpe_level_9_10">9–10: Maximální úsilí – naplno, dlouho nevydržíš</string>
+    <string name="help_rpe_tip">Tip: Většina tréninků by měla být v rozmezí 5–7.</string>
+
+    <!-- Match Creation -->
+    <string name="label_matches_optional">Zápasy (volitelné)</string>
+    <string name="action_add_match">Přidat zápas</string>
+    <string name="add_match">Přidat zápas</string>
+    <string name="edit_match">Upravit zápas</string>
+    <string name="label_match_notes_optional">Poznámky (volitelné)</string>
+    <string name="hint_match_notes">Přidej poznámky k zápasu…</string>
+    <string name="label_opponent">Soupeř</string>
+    <string name="hint_opponent_name">Zadej jméno soupeře</string>
+    <string name="label_score">Skóre</string>
+    <string name="label_me">Já</string>
+    <string name="action_increase_my_score">Přidat bod mně</string>
+    <string name="action_increase_opponent_score">Přidat bod soupeři</string>
+    <string name="label_competition_level_optional">Úroveň soutěže (volitelné)</string>
+    <string name="matches_empty_hint">Zatím žádné zápasy</string>
+    <string name="label_doubles">Čtyřhra</string>
+    <string name="label_ranked">Do žebříčku</string>
+    <string name="competition_level_practice">Trénink</string>
+    <string name="competition_level_league">Liga</string>
+    <string name="competition_level_tournament">Turnaj</string>
+    <string name="match_score_format">%1$d - %2$d</string>
+    <string name="match_win">V</string>
+    <string name="match_loss">P</string>
+
+    <!-- Session Details -->
+    <string name="session_matches_count">Zápasy (%1$d)</string>
+    <string name="opponent_rating_format">Hodnocení: %1$d</string>
+
+    <!-- Opponents -->
+    <string name="action_add_opponent">Přidat soupeře</string>
+    <string name="action_edit_opponent">Upravit soupeře</string>
+    <string name="label_opponent_name">Jméno</string>
+    <string name="label_opponent_club">Klub (volitelné)</string>
+    <string name="label_opponent_rating">Hodnocení (volitelné)</string>
+    <string name="label_opponent_handedness">Hrající ruka (volitelné)</string>
+    <string name="label_opponent_style">Herní styl (volitelné)</string>
+    <string name="label_opponent_notes">Poznámky (volitelné)</string>
+    <string name="handedness_right">Pravák</string>
+    <string name="handedness_left">Levák</string>
+    <string name="style_attacker">Útočník</string>
+    <string name="style_defender">Obránce</string>
+    <string name="style_all_round">Univerzál</string>
+    <string name="style_pips">Čepy</string>
+    <string name="style_chopper">Čopař</string>
+
+    <!-- Delete Confirmation -->
+    <string name="delete_opponent_title">Smazat soupeře?</string>
+    <string name="delete_opponent_message">Smažou se tím i všechny zápasy s tímto soupeřem. Tuto akci nelze vrátit zpět.</string>
+
+    <!-- Opponents Info -->
+    <string name="opponents_info_title">O soupeřích</string>
+    <string name="opponents_info_message">Soupeře, které tu přidáš, pak rychle vybereš při zapisování zápasů do tréninků.</string>
+
+    <!-- Accessibility -->
+    <string name="accessibility_sessions_count">Tréninky: %1$d</string>
+
+    <!-- Home screen widgets -->
+    <string name="widget_summary_name">Souhrn tréninků</string>
+    <string name="widget_summary_description">Tréninky, odtrénovaný čas a bilance zápasů na první pohled.</string>
+    <string name="widget_heatmap_name">Tréninková aktivita</string>
+    <string name="widget_heatmap_description">Tvoje tréninkové dny, vybarvené podle toho, jak nabité byly.</string>
+    <string name="widget_last_session_name">Poslední trénink</string>
+    <string name="widget_last_session_description">Kdy proběhl tvůj poslední trénink, jak dlouho trval a jak šel.</string>
+    <string name="widget_add_session_name">Přidat trénink</string>
+    <string name="widget_add_session_description">Otevře TT Tracker a začne zápis tréninku.</string>
+    <string name="widget_streak_name">Tréninková série</string>
+    <string name="widget_streak_description">Kolik týdnů v řadě trénuješ a tvoje nejlepší série.</string>
+    <string name="widget_load_name">Tréninková zátěž</string>
+    <string name="widget_load_description">Zátěž tohoto týdne ve srovnání s předchozími týdny.</string>
+    <string name="widget_this_week">Tento týden</string>
+    <string name="widget_last_week">Minulý týden</string>
+    <string name="widget_pro_locked">Odemkni s Pro v aplikaci</string>
+    <string name="widget_empty">Zatím žádné tréninky</string>
+    <string name="widget_no_matches">Žádné zápasy</string>
+    <string name="settings_icloud_section">iCloud</string>
+    <string name="settings_icloud_sync">Synchronizovat s iCloudem</string>
+    <string name="settings_icloud_sync_hint">Tréninky, zápasy a soupeři budou stejní na všech tvých zařízeních.</string>
+    <string name="settings_icloud_sync_now">Synchronizovat</string>
+    <string name="settings_icloud_syncing">Synchronizace…</string>
+    <string name="settings_icloud_waiting">Čeká na synchronizaci</string>
+    <string name="settings_icloud_last_synced">Naposledy synchronizováno %1$s</string>
+    <string name="settings_icloud_no_account">Pro synchronizaci se přihlas k iCloudu v Nastavení.</string>
+    <string name="settings_icloud_quota_exceeded">Úložiště na iCloudu je plné, některé změny proto nejsou synchronizované.</string>
+    <string name="settings_icloud_failed">Některé změny se nepodařilo synchronizovat. Zkusíme to znovu.</string>
+    <string name="settings_icloud_turned_off">Data této aplikace na iCloudu byla smazána, a proto se synchronizace vypnula. Z tohoto zařízení se nic neodstranilo.</string>
+    <string name="settings_icloud_account_changed">Tvůj účet iCloud se změnil, a proto se synchronizace vypnula. Zapni ji znovu, pokud chceš synchronizovat s tímto účtem.</string>
+    <string name="pro_unlock">Odemknout s Pro</string>
+    <string name="settings_section_data">Data</string>
+    <string name="settings_export">Exportovat do CSV</string>
+    <string name="settings_export_hint">Tvoje tréninky a zápasy ve dvou souborech pro tabulkový procesor</string>
+    <string name="settings_accent_color">Barva zvýraznění</string>
+    <string name="accent_default">Výchozí</string>
+    <string name="accent_green">Zelená</string>
+    <string name="accent_teal">Modrozelená</string>
+    <string name="accent_indigo">Indigová</string>
+    <string name="accent_purple">Fialová</string>
+    <string name="accent_pink">Růžová</string>
+    <string name="accent_red">Červená</string>
+    <string name="accent_orange">Oranžová</string>
+    <string name="pro_toolbar_button">PRO</string>
+    <string name="pro_upgrade_hint">Otevře možnosti přechodu na Pro</string>
+    <string name="pro_banner_title">TT Tracker Pro</string>
+    <string name="pro_banner_tagline">Pochop svůj trénink a přizpůsob si aplikaci</string>
+    <string name="pro_benefit_insights_title">Tréninkové přehledy</string>
+    <string name="pro_benefit_insights_detail">Série, týdenní tréninková zátěž a skladba typů tréninku</string>
+    <string name="pro_benefit_head_to_head_title">Vzájemné bilance</string>
+    <string name="pro_benefit_head_to_head_detail">Tvoje bilance a aktuální forma proti každému soupeři</string>
+    <string name="pro_benefit_history_title">Celá historie</string>
+    <string name="pro_benefit_history_detail">Týdenní trénink za 6 měsíců, rok nebo celou dobu</string>
+    <string name="pro_benefit_widgets_title">Další widgety</string>
+    <string name="pro_benefit_widgets_detail">Série a tréninková zátěž přímo na ploše</string>
+    <string name="pro_benefit_export_title">Export do CSV</string>
+    <string name="pro_benefit_export_detail">Přenes tréninky a zápasy do tabulky</string>
+    <string name="pro_benefit_accent_title">Barvy zvýraznění</string>
+    <string name="pro_benefit_accent_detail">Dej aplikaci a jejím widgetům barvu, která se ti líbí</string>
+    <string name="analytics_insights">Přehledy</string>
+    <string name="analytics_streak_current">Aktuální série</string>
+    <string name="analytics_streak_longest">Nejdelší série</string>
+    <string name="analytics_streak_hint">Týdny v řadě s alespoň jedním tréninkem</string>
+    <string name="analytics_training_load">Tréninková zátěž</string>
+    <string name="analytics_training_load_hint">Minuty × intenzita (RPE) za týden</string>
+    <string name="analytics_session_types">Typy tréninku</string>
+    <string name="analytics_session_type_none">Bez typu</string>
+    <string name="analytics_head_to_head">Vzájemná bilance</string>
+    <string name="analytics_head_to_head_all">Všichni soupeři</string>
+    <string name="analytics_games_format">Sety %1$d–%2$d</string>
+    <string name="analytics_range">Období</string>
+    <string name="analytics_range_8w">8 T</string>
+    <string name="analytics_range_6m">6 M</string>
+    <string name="analytics_range_1y">1 R</string>
+    <string name="analytics_range_all">Vše</string>
+    <string name="pro_banner_cta">Získat Pro</string>
+    <string name="pro_benefit_support_title">Podpoř nezávislého vývojáře</string>
+    <string name="pro_benefit_support_detail">Pomoz, ať TT Tracker dál roste</string>
+    <string name="action_restore_purchases">Obnovit nákupy</string>
+    <string name="pro_restore_success">Nákupy obnoveny</string>
+    <string name="pro_restore_nothing">Žádné nákupy k obnovení</string>
+    <string name="pro_restore_failed">Nákupy se nepodařilo obnovit. Zkus to prosím znovu.</string>
+</resources>

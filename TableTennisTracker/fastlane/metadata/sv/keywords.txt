@@ -1,0 +1,1 @@
+pingpong,tracker,tränare,serie,turnering,tävling,övningar,serve,motståndare,ranking,vinst,klubb

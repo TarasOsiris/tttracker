@@ -300,6 +300,132 @@ object ShowcaseData {
 			"長回合，連續 40 板不失誤。",
 			"公開賽八強止步。",
 			"換新底板第一練。"
+		),
+
+		"cs" to listOf(
+			"Multiball: forhendový topspin proti spodní rotaci.",
+			"Žebřík na práci nohou před prací.",
+			"Krajská kvalifikace – postup do semifinále.",
+			"Kyvadlové podání, krátce na střed.",
+			"Lehký trénink s žáky.",
+			"Bekhendový protitopspin, celý trénink.",
+			"Klubový přebor – 2. místo.",
+			"Obrácené kyvadlo – pořád nejisté.",
+			"Práce nohou ve čtyřhře s Lenou.",
+			"Sprinty a střed těla.",
+			"Útok třetím míčem po krátkém podání.",
+			"Večer výměny pálek – všichni s antispinem.",
+			"Dlouhé výměny – 40 úderů bez chyby.",
+			"Open – vyřazení ve čtvrtfinále.",
+			"První trénink s novým dřevem."
+		),
+
+		"ms" to listOf(
+			"Multiball: loop forehan lawan pukulan potong.",
+			"Latihan langkah kaki sebelum kerja.",
+			"Kelayakan wilayah — mara ke separuh akhir.",
+			"Servis bandul, pendek ke tengah badan.",
+			"Sesi santai dengan kumpulan junior.",
+			"Topspin balas bakhan, sepanjang sesi.",
+			"Kejohanan kelab — naib johan.",
+			"Bandul songsang — masih tak konsisten.",
+			"Langkah kaki beregu dengan Lena.",
+			"Pecut dan otot teras.",
+			"Serangan bola ketiga dari servis pendek.",
+			"Malam tukar bet — semua guna anti-spin.",
+			"Rali panjang — 40 pukulan tanpa silap.",
+			"Terbuka — tewas di suku akhir.",
+			"Sesi pertama dengan bilah baharu."
+		),
+
+		"nl" to listOf(
+			"Multiball: forehand topspin tegen onderspin.",
+			"Voetenwerkladder voor het werk.",
+			"Regionale kwalificatie — halve finale gehaald.",
+			"Pendulumopslag, kort naar de elleboog.",
+			"Rustige training met de jeugdgroep.",
+			"Backhand tegentopspin, de hele training.",
+			"Clubkampioenschap — tweede geworden.",
+			"Omgekeerde pendulum — nog wisselvallig.",
+			"Voetenwerk dubbel met Lena.",
+			"Sprints en core.",
+			"Derde-balaanval na korte opslag.",
+			"Batjeswisselavond — iedereen met anti.",
+			"Lange rally's — 40 ballen zonder fout.",
+			"Open toernooi — verloren in de kwartfinale.",
+			"Eerste training met het nieuwe hout."
+		),
+
+		"pl" to listOf(
+			"Multiball: topspin forhendowy na podcięcie.",
+			"Drabinka koordynacyjna przed pracą.",
+			"Kwalifikacje wojewódzkie — awans do półfinału.",
+			"Serwis wahadłowy, krótko w łokieć.",
+			"Luźny trening z grupą juniorów.",
+			"Kontratopspin z bekhendu przez cały trening.",
+			"Mistrzostwa klubu — 2. miejsce.",
+			"Odwrotne wahadło — wciąż nierówno.",
+			"Praca nóg w deblu z Leną.",
+			"Sprinty i core.",
+			"Atak trzecią piłką po krótkim serwisie.",
+			"Wieczór zamiany rakietek — wszyscy na antytopspinach.",
+			"Długie wymiany — 40 uderzeń bez błędu.",
+			"Turniej open — porażka w ćwierćfinale.",
+			"Pierwszy trening na nowej desce."
+		),
+
+		"sv" to listOf(
+			"Multiboll: forehandloop mot underskruv.",
+			"Fotarbete i stege före jobbet.",
+			"Regionkval – gick till semifinal.",
+			"Pendelserve, kort mot armbågen.",
+			"Lugnt pass med juniorgruppen.",
+			"Backhand kontra-topspin, hela passet.",
+			"Klubbmästerskap – silver.",
+			"Omvänd pendelserve – fortfarande ojämn.",
+			"Fotarbete i dubbel med Lena.",
+			"Sprinter och bål.",
+			"Tredjebollsanfall efter kort serve.",
+			"Racketbyteskväll – alla med anti-spin.",
+			"Långa bollar – 40 slag utan miss.",
+			"Öppen tävling – förlust i kvartsfinal.",
+			"Första passet med nya stommen."
+		),
+
+		"th" to listOf(
+			"มัลติบอล: โฟร์แฮนด์ท็อปสปินรับลูกตัด",
+			"ฝึกฟุตเวิร์กบันไดก่อนไปทำงาน",
+			"รอบคัดเลือกระดับภาค — เข้ารอบรองชนะเลิศ",
+			"เสิร์ฟเพนดูลัม สั้นเข้ากลางตัว",
+			"ซ้อมเบาๆ กับกลุ่มเยาวชน",
+			"แบ็กแฮนด์เคาน์เตอร์ท็อปสปิน ทั้งเซสชัน",
+			"ชิงแชมป์สโมสร — ได้รองแชมป์",
+			"เพนดูลัมกลับด้าน — ยังไม่นิ่ง",
+			"ฟุตเวิร์กประเภทคู่กับเลนา",
+			"วิ่งสปรินต์และแกนกลางลำตัว",
+			"บุกลูกที่สามจากเสิร์ฟสั้น",
+			"คืนสลับไม้ — ทุกคนใช้ยางแอนตี้",
+			"แรลลี่ยาว — 40 ลูกไม่พลาด",
+			"รายการโอเพ่น — ตกรอบก่อนรองชนะเลิศ",
+			"ซ้อมครั้งแรกกับไม้ใหม่"
+		),
+
+		"vi" to listOf(
+			"Multiball: giật thuận tay vào bóng xoáy xuống.",
+			"Tập bước chân thang dây trước giờ làm.",
+			"Vòng loại khu vực — vào tới bán kết.",
+			"Giao bóng con lắc, ngắn vào khuỷu tay.",
+			"Buổi tập nhẹ với nhóm thiếu niên.",
+			"Phản giật trái tay, cả buổi.",
+			"Giải vô địch CLB — á quân.",
+			"Con lắc ngược — vẫn chưa ổn định.",
+			"Bước chân đánh đôi với Lena.",
+			"Chạy nước rút và tập cơ lõi.",
+			"Tấn công bóng thứ ba sau giao ngắn.",
+			"Tối đổi vợt — ai cũng dùng mặt chống xoáy.",
+			"Đôi công dài — 40 quả không hỏng.",
+			"Giải mở rộng — thua ở tứ kết.",
+			"Buổi đầu tiên với cốt vợt mới."
 		)
 	)
 
