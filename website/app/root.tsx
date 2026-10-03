@@ -16,6 +16,7 @@ import favicon32 from "~/assets/icon/favicon-32x32.png?no-inline";
 import { SiteFooter } from "~/components/site/footer";
 import { SiteHeader } from "~/components/site/header";
 import { buttonVariants } from "~/components/ui/button";
+import { APP_STORE_ID } from "~/content/site";
 import { localeFromPath, localeInfo, localizePath } from "~/i18n/config";
 import { uiMessages } from "~/i18n/messages.server";
 import "./app.css";
@@ -25,7 +26,7 @@ const GA_ID = "G-XPDY4TC15W";
 // Runs before paint so a saved dark theme never flashes. Light is the default.
 const themeScript = `(function(){try{document.documentElement.classList.toggle("dark",localStorage.getItem("theme")==="dark")}catch(e){}})()`;
 
-const ICON_VERSION = 2;
+const ICON_VERSION = 3;
 
 const gaScript = `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${GA_ID}');`;
 
@@ -66,7 +67,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#415f91" />
-        <meta name="robots" content="index, follow" />
+        {/* Safari's Smart App Banner: a native "Get" bar for the App Store listing on iPhone and iPad. */}
+        <meta name="apple-itunes-app" content={`app-id=${APP_STORE_ID}`} />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
         <script dangerouslySetInnerHTML={{ __html: gaScript }} />

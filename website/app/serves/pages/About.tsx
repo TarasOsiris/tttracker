@@ -36,6 +36,8 @@ export default function About() {
           <img
             src={tarasJpg}
             alt="Taras Leskiv"
+            width={112}
+            height={112}
             loading="lazy"
             className="h-28 w-28 rounded-full object-cover shadow-md"
           />

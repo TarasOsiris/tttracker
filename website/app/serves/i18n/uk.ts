@@ -11,8 +11,6 @@ export const uk: TranslationDict = {
 
   // Layout
   "layout.title": "Подачі в настільному тенісі",
-  "layout.banner": "Шукаєте застосунок, щоб детально вести облік тренувань з настільного тенісу? Спробуйте",
-  "layout.banner.link": "Table Tennis Tracker",
   "layout.tgBanner": "Приєднуйтеся до нашого Telegram-каналу:",
   "layout.contact": "Контакти",
   "layout.lightMode": "Світла тема",
@@ -21,7 +19,6 @@ export const uk: TranslationDict = {
   "layout.toggleTheme": "Змінити тему",
   "layout.toggleLanguage": "Змінити мову",
   "layout.toggleMenu": "Відкрити або закрити меню",
-  "layout.dismissBanner": "Закрити банер",
 
   // Home
   "home.pageTitle": "Подачі в настільному тенісі: 29 видів подач з поясненнями",

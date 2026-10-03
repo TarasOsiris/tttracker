@@ -11,8 +11,6 @@ export const zhTw: TranslationDict = {
 
   // Layout
   "layout.title": "桌球發球百科",
-  "layout.banner": "想找一款能詳細記錄桌球訓練的 App 嗎？試試",
-  "layout.banner.link": "桌球筆記",
   "layout.tgBanner": "加入我們的 Telegram 頻道：",
   "layout.contact": "聯絡我們",
   "layout.lightMode": "淺色模式",
@@ -21,7 +19,6 @@ export const zhTw: TranslationDict = {
   "layout.toggleTheme": "切換主題",
   "layout.toggleLanguage": "切換語言",
   "layout.toggleMenu": "切換選單",
-  "layout.dismissBanner": "關閉橫幅",
 
   // Home
   "home.pageTitle": "桌球發球種類大全：29 種乒乓球發球技巧詳解",

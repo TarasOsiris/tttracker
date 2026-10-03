@@ -11,8 +11,6 @@ export const tr: TranslationDict = {
 
   // Layout
   "layout.title": "Masa Tenisi Servisleri",
-  "layout.banner": "Masa tenisi antrenmanlarınızı ayrıntılı takip edecek bir uygulama mı arıyorsunuz? Şunu deneyin:",
-  "layout.banner.link": "Table Tennis Tracker",
   "layout.tgBanner": "Telegram kanalımıza katılın:",
   "layout.contact": "İletişim",
   "layout.lightMode": "Açık tema",
@@ -21,7 +19,6 @@ export const tr: TranslationDict = {
   "layout.toggleTheme": "Temayı değiştir",
   "layout.toggleLanguage": "Dili değiştir",
   "layout.toggleMenu": "Menüyü aç/kapat",
-  "layout.dismissBanner": "Duyuruyu kapat",
 
   // Home
   "home.pageTitle": "Masa Tenisi Servis Çeşitleri — 29 Pinpon Servisi Açıklandı",

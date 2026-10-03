@@ -205,6 +205,8 @@ export const ko: Messages = {
     drillsSubtitle: "훈련마다 유형, 시간, 강도를 기록하고 훈련 히트맵이 채워지는 걸 확인하세요.",
     drillTitle: "훈련을 마쳤나요? 30초면 기록 끝.",
     drillSubtitle: "{type} 유형으로 시간과 강도를 저장하고, 연속 기록을 쌓아 가세요.",
+    servesTitle: "서브 연습 중인가요? 매 세션을 기록하세요.",
+    servesSubtitle: "iPhone, iPad, Android용 무료 탁구 훈련일지에 서브 연습, 경기, 상대를 기록하고 무엇이 효과가 있는지 확인하세요.",
     telegram: "텔레그램 커뮤니티에 참여하세요: @tttrackerapp",
   },
   footer: {

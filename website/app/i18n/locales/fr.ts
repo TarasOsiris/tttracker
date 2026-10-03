@@ -205,6 +205,8 @@ export const fr: Messages = {
     drillsSubtitle: "Enregistrez chaque séance avec son type, sa durée et son effort, et regardez votre carte thermique d'entraînement se remplir.",
     drillTitle: "Séance terminée ? Notez-la en 30 secondes.",
     drillSubtitle: "Enregistrez-la comme séance « {type} » avec sa durée et son effort, et regardez votre série s'allonger.",
+    servesTitle: "Vous travaillez vos services ? Notez chaque séance.",
+    servesSubtitle: "Suivez vos séances de service, vos matchs et vos adversaires dans le carnet de tennis de table gratuit pour iPhone, iPad et Android, et voyez ce qui paie.",
     telegram: "Rejoignez la communauté sur Telegram : @tttrackerapp",
   },
   footer: {

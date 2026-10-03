@@ -205,6 +205,8 @@ export const zh: Messages = {
     drillsSubtitle: "记下每次训练的类型、时长和强度，看着训练热力图一点点填满。",
     drillTitle: "练完了？30 秒记一笔。",
     drillSubtitle: "按“{type}”类型保存，填上时长和强度，看着连续训练纪录不断刷新。",
+    servesTitle: "在练发球？把每次训练都记下来。",
+    servesSubtitle: "在免费的乒乓球笔记中记录发球练习、比赛和对手，支持 iPhone、iPad 和 Android，看清哪些训练真正有效。",
     telegram: "加入 Telegram 社区：@tttrackerapp",
   },
   footer: {

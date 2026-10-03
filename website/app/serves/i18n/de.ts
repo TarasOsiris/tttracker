@@ -11,8 +11,6 @@ export const de: TranslationDict = {
 
   // Layout
   "layout.title": "Tischtennis-Aufschläge",
-  "layout.banner": "Du suchst eine App, mit der du dein Tischtennistraining genau festhältst? Probier",
-  "layout.banner.link": "Table Tennis Tracker",
   "layout.tgBanner": "Tritt unserem Telegram-Kanal bei:",
   "layout.contact": "Kontakt",
   "layout.lightMode": "Helles Design",
@@ -21,7 +19,6 @@ export const de: TranslationDict = {
   "layout.toggleTheme": "Design wechseln",
   "layout.toggleLanguage": "Sprache wechseln",
   "layout.toggleMenu": "Menü ein-/ausblenden",
-  "layout.dismissBanner": "Banner schließen",
 
   // Home
   "home.pageTitle": "Tischtennis Aufschlagarten: 29 Aufschläge erklärt",

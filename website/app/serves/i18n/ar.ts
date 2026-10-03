@@ -11,8 +11,6 @@ export const ar: TranslationDict = {
 
   // Layout
   "layout.title": "الإرسال في تنس الطاولة",
-  "layout.banner": "تبحث عن تطبيق لتتبع تدريبك في تنس الطاولة بالتفصيل؟ جرّب",
-  "layout.banner.link": "تنس الطاولة: سجل التدريب",
   "layout.tgBanner": "انضم إلى قناتنا على Telegram:",
   "layout.contact": "تواصل",
   "layout.lightMode": "الوضع الفاتح",
@@ -21,7 +19,6 @@ export const ar: TranslationDict = {
   "layout.toggleTheme": "تبديل المظهر",
   "layout.toggleLanguage": "تبديل اللغة",
   "layout.toggleMenu": "تبديل القائمة",
-  "layout.dismissBanner": "إغلاق الشريط",
 
   // Home
   "home.pageTitle": "أنواع الإرسال في تنس الطاولة — شرح 29 إرسالًا في البينغ بونغ",

@@ -205,6 +205,8 @@ export const en: Messages = {
     drillsSubtitle: "Log each session with its type, duration and effort, and watch your training heatmap fill up.",
     drillTitle: "Did the session? Log it in 30 seconds.",
     drillSubtitle: "Save it as a {type} session with its duration and effort, and watch your streak build.",
+    servesTitle: "Practicing your serves? Log every session.",
+    servesSubtitle: "Track serve practice, matches and opponents in the free table tennis journal for iPhone, iPad and Android, and see what's paying off.",
     telegram: "Join the community on Telegram: @tttrackerapp",
   },
   footer: {

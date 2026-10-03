@@ -11,8 +11,6 @@ export const fr: TranslationDict = {
 
   // Layout
   "layout.title": "Services de tennis de table",
-  "layout.banner": "Vous cherchez une app pour suivre en détail vos entraînements de tennis de table ? Essayez",
-  "layout.banner.link": "Table Tennis Tracker",
   "layout.tgBanner": "Rejoignez notre chaîne Telegram :",
   "layout.contact": "Contact",
   "layout.lightMode": "Mode clair",
@@ -21,7 +19,6 @@ export const fr: TranslationDict = {
   "layout.toggleTheme": "Changer de thème",
   "layout.toggleLanguage": "Changer de langue",
   "layout.toggleMenu": "Ouvrir ou fermer le menu",
-  "layout.dismissBanner": "Fermer la bannière",
 
   // Home
   "home.pageTitle": "Types de service au tennis de table : 29 services expliqués",

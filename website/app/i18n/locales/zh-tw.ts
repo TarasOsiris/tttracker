@@ -205,6 +205,8 @@ export const zhTw: Messages = {
     drillsSubtitle: "記錄每次訓練的類型、時長與強度，看著你的訓練熱度圖一格格填滿。",
     drillTitle: "練完了嗎？30 秒記下來。",
     drillSubtitle: "存成「{type}」，填上時長與強度，看著你的連續紀錄不斷延長。",
+    servesTitle: "在練發球？把每次訓練都記下來。",
+    servesSubtitle: "在免費的桌球筆記中記錄發球練習、比賽和對手，支援 iPhone、iPad 和 Android，看清哪些訓練真正有效。",
     telegram: "加入 Telegram 社群：@tttrackerapp",
   },
   footer: {

@@ -205,6 +205,8 @@ export const ja: Messages = {
     drillsSubtitle: "練習タイプ・時間・強度を記録して、練習のヒートマップを埋めていきましょう。",
     drillTitle: "練習が終わったら、30秒で記録。",
     drillSubtitle: "「{type}」として時間と強度を記録し、継続記録を伸ばしましょう。",
+    servesTitle: "サーブ練習、記録していますか？",
+    servesSubtitle: "サーブ練習も試合も対戦相手も、iPhone・iPad・Android対応の無料卓球ノートに記録。何が効いているかが見えてきます。",
     telegram: "Telegramコミュニティに参加：@tttrackerapp",
   },
   footer: {

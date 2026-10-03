@@ -205,6 +205,8 @@ export const de: Messages = {
     drillsSubtitle: "Erfasse jede Einheit mit Typ, Dauer und Anstrengung und sieh zu, wie sich deine Trainings-Heatmap füllt.",
     drillTitle: "Einheit geschafft? In 30 Sekunden erfasst.",
     drillSubtitle: "Speichere sie als Einheit vom Typ „{type}“ mit Dauer und Anstrengung und sieh deine Trainingsserie wachsen.",
+    servesTitle: "Du trainierst Aufschläge? Erfasse jede Einheit.",
+    servesSubtitle: "Halte Aufschlagtraining, Spiele und Gegner im kostenlosen Tischtennis-Tagebuch für iPhone, iPad und Android fest und sieh, was sich auszahlt.",
     telegram: "Tritt der Community auf Telegram bei: @tttrackerapp",
   },
   footer: {

@@ -10,8 +10,6 @@ export const ja: TranslationDict = {
 
   // Layout
   "layout.title": "卓球サーブ図鑑",
-  "layout.banner": "卓球の練習を細かく記録できるアプリをお探しですか？ぜひお試しください：",
-  "layout.banner.link": "卓球ノート",
   "layout.tgBanner": "Telegramチャンネルに参加：",
   "layout.contact": "お問い合わせ",
   "layout.lightMode": "ライトモード",
@@ -20,7 +18,6 @@ export const ja: TranslationDict = {
   "layout.toggleTheme": "テーマを切り替え",
   "layout.toggleLanguage": "言語を切り替え",
   "layout.toggleMenu": "メニューを開閉",
-  "layout.dismissBanner": "バナーを閉じる",
 
   // Home
   "home.pageTitle": "卓球のサーブの種類29選｜出し方・回転・レシーブを図解",

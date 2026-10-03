@@ -11,8 +11,6 @@ export const hi: TranslationDict = {
 
   // Layout
   "layout.title": "टेबल टेनिस सर्विस",
-  "layout.banner": "अपनी टेबल टेनिस ट्रेनिंग का पूरा हिसाब रखने के लिए ऐप चाहिए? आज़माएँ",
-  "layout.banner.link": "टेबल टेनिस ट्रेनिंग डायरी",
   "layout.tgBanner": "हमारे Telegram चैनल से जुड़ें:",
   "layout.contact": "संपर्क",
   "layout.lightMode": "लाइट मोड",
@@ -21,7 +19,6 @@ export const hi: TranslationDict = {
   "layout.toggleTheme": "थीम बदलें",
   "layout.toggleLanguage": "भाषा बदलें",
   "layout.toggleMenu": "मेन्यू खोलें/बंद करें",
-  "layout.dismissBanner": "बैनर बंद करें",
 
   // Home
   "home.pageTitle": "टेबल टेनिस सर्विस कैसे करें — पिंग पोंग की 29 सर्विस, आसान भाषा में",

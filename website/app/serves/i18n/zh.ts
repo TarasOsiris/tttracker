@@ -10,8 +10,6 @@ export const zh: TranslationDict = {
 
   // Layout
   "layout.title": "乒乓球发球大全",
-  "layout.banner": "想用 App 详细记录你的乒乓球训练？试试",
-  "layout.banner.link": "乒乓球笔记",
   "layout.tgBanner": "加入我们的 Telegram 频道：",
   "layout.contact": "联系我们",
   "layout.lightMode": "浅色模式",
@@ -20,7 +18,6 @@ export const zh: TranslationDict = {
   "layout.toggleTheme": "切换主题",
   "layout.toggleLanguage": "切换语言",
   "layout.toggleMenu": "展开/收起菜单",
-  "layout.dismissBanner": "关闭横幅",
 
   // Home
   "home.pageTitle": "乒乓球发球大全：29 种发球技巧图解",

@@ -19,14 +19,14 @@ import { Heatmap, PhoneMockup } from "~/components/site/phone-mockup";
 import { ScreenshotGallery } from "~/components/site/screenshot-gallery";
 import { SectionHeading } from "~/components/site/section-heading";
 import { StoreButtons } from "~/components/site/store-buttons";
-import { APP_NAME, links, SITE_URL } from "~/content/site";
-import { localeFromPath, localizePath } from "~/i18n/config";
+import { APP_NAME, appNames, links, SITE_URL } from "~/content/site";
+import { type Locale, localeFromPath, localizePath } from "~/i18n/config";
 import { drillSummaries } from "~/i18n/messages.server";
 import { featuredServes } from "~/serves/store.server";
 import type { DrillSummary, FeatureIcon } from "~/i18n/types";
 import { useI18n } from "~/i18n/use-i18n";
 import { rootT } from "~/lib/root-data";
-import { seo } from "~/lib/seo";
+import { OG_IMAGE, seo } from "~/lib/seo";
 
 export function loader({ request }: Route.LoaderArgs) {
   const locale = localeFromPath(new URL(request.url).pathname);
@@ -48,23 +48,48 @@ const featureIcons: Record<FeatureIcon, typeof Timer> = {
   simple: WifiOff,
 };
 
-const appJsonLd = (url: string, description: string) => ({
+const publisher = { "@type": "Person", name: "Taras Leskiv", url: links.studio };
+
+// SoftwareApplication with the store-listing name per language; Google reads operatingSystem,
+// applicationCategory and offers for its app rich result.
+const appJsonLd = (locale: Locale, url: string, description: string) => ({
   "@context": "https://schema.org",
   "@type": "MobileApplication",
-  name: APP_NAME,
+  "@id": `${SITE_URL}/#app`,
+  name: appNames[locale].name,
+  alternateName: [APP_NAME, "TT Tracker"].filter((n) => n !== appNames[locale].name),
   description,
-  operatingSystem: "iOS, Android",
-  applicationCategory: "SportsApplication",
-  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
   url,
+  inLanguage: locale,
+  image: `${SITE_URL}/android-chrome-512x512.png`,
+  screenshot: OG_IMAGE.url,
+  operatingSystem: "iOS, iPadOS, Android",
+  applicationCategory: "SportsApplication",
+  applicationSubCategory: "HealthApplication",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
   downloadUrl: [links.appStore, links.googlePlay],
+  installUrl: [links.appStore, links.googlePlay],
+  sameAs: [links.appStore, links.googlePlay, links.telegram],
+  author: publisher,
+  publisher,
+});
+
+const siteJsonLd = (locale: Locale, url: string) => ({
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${SITE_URL}/#website`,
+  name: appNames[locale].name,
+  url,
+  inLanguage: locale,
+  publisher,
 });
 
 export default function Home({ loaderData }: Route.ComponentProps) {
   const { t, locale } = useI18n();
   return (
     <>
-      <JsonLd data={appJsonLd(`${SITE_URL}${localizePath(locale, "/")}`, t.meta.homeDescription)} />
+      <JsonLd data={appJsonLd(locale, `${SITE_URL}${localizePath(locale, "/")}`, t.meta.homeDescription)} />
+      <JsonLd data={siteJsonLd(locale, `${SITE_URL}${localizePath(locale, "/")}`)} />
       <JsonLd data={faqJsonLd(t.faq.items)} />
       <Hero />
       <Features />
@@ -120,7 +145,7 @@ function Hero() {
             {t.hero.subtitleAfter}
           </p>
           <div className="mt-9 animate-fade-up">
-            <StoreButtons className="mx-auto justify-center sm:mx-0 lg:justify-start" />
+            <StoreButtons placement="hero" className="mx-auto justify-center sm:mx-0 lg:justify-start" />
           </div>
           <ul className="mt-8 flex animate-fade-up flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-muted-foreground lg:justify-start">
             {t.hero.trustPoints.map((p) => (

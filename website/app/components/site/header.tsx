@@ -171,7 +171,7 @@ export function SiteHeader() {
                   </SheetClose>
                 ))}
               </nav>
-              <StoreButtons className="mt-8 max-w-none sm:flex-col [&>a]:w-full" />
+              <StoreButtons placement="menu" className="mt-8 max-w-none sm:flex-col [&>a]:w-full" />
               <MobileLanguages />
             </SheetContent>
           </Sheet>

@@ -206,6 +206,8 @@ export const es: Messages = {
     drillsSubtitle: "Guarda cada sesión con su tipo, duración y esfuerzo, y mira cómo se llena tu mapa de calor de entrenamiento.",
     drillTitle: "¿Has hecho la sesión? Regístrala en 30 segundos.",
     drillSubtitle: "Guárdala como sesión de {type} con su duración y esfuerzo, y mira cómo crece tu racha.",
+    servesTitle: "¿Entrenas tus saques? Registra cada sesión.",
+    servesSubtitle: "Anota tus entrenamientos de saque, partidos y rivales en el diario de tenis de mesa gratis para iPhone, iPad y Android, y descubre qué te funciona.",
     telegram: "Únete a la comunidad en Telegram: @tttrackerapp",
   },
   footer: {

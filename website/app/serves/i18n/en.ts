@@ -11,8 +11,6 @@ export const en: TranslationDict = {
 
   // Layout
   "layout.title": "Table Tennis Serves",
-  "layout.banner": "Looking for an app to track your table tennis training in detail? Try",
-  "layout.banner.link": "Table Tennis Tracker",
   "layout.tgBanner": "Join our Telegram channel:",
   "layout.contact": "Contact",
   "layout.lightMode": "Light Mode",
@@ -21,7 +19,6 @@ export const en: TranslationDict = {
   "layout.toggleTheme": "Toggle theme",
   "layout.toggleLanguage": "Toggle language",
   "layout.toggleMenu": "Toggle menu",
-  "layout.dismissBanner": "Dismiss banner",
 
   // Home
   "home.pageTitle": "Table Tennis Serves — 29 Ping Pong Serves Explained",

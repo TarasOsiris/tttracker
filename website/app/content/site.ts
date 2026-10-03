@@ -26,9 +26,13 @@ export const appNames: Record<Locale, { name: string; brand: string }> = {
 
 export const APP_NAME = appNames.en.name;
 
+export const APP_STORE_ID = "6758044383";
+export const PLAY_PACKAGE = "xyz.tleskiv.tt";
+
 export const links = {
-  appStore: "https://apps.apple.com/us/app/tt-training-tracker/id6758044383",
-  googlePlay: "https://play.google.com/store/apps/details?id=xyz.tleskiv.tt",
+  // No storefront in the path, so Apple opens the visitor's own country's (localized) listing.
+  appStore: `https://apps.apple.com/app/id${APP_STORE_ID}`,
+  googlePlay: `https://play.google.com/store/apps/details?id=${PLAY_PACKAGE}`,
   telegram: "https://t.me/tttrackerapp",
   support: "https://ninevastudios.com/about-us",
   email: "info@ninevastudios.com",
@@ -46,3 +50,20 @@ export const navLinks = [
 ] as const;
 
 export const screenshotFiles = ["screen-1", "screen-2", "screen-3", "screen-4", "screen-5", "screen-6", "screen-7", "screen-8"];
+
+/** Where on the site a store link sits; becomes the Play install referrer and the GA event label. */
+export type StorePlacement = "hero" | "cta" | "menu" | "footer";
+
+const playLanguage: Partial<Record<Locale, string>> = { pt: "pt-BR", zh: "zh-CN", "zh-tw": "zh-TW" };
+
+/**
+ * Store URLs for a page language. Google Play shows the listing in `hl` and passes `referrer` to the
+ * install, so Play Console's acquisition report credits the website and the placement.
+ */
+export function storeLinks(locale: Locale, placement: StorePlacement) {
+  const referrer = encodeURIComponent(`utm_source=website&utm_medium=${placement}&utm_campaign=${locale}`);
+  return {
+    appStore: links.appStore,
+    googlePlay: `${links.googlePlay}&hl=${playLanguage[locale] ?? locale}&referrer=${referrer}`,
+  };
+}

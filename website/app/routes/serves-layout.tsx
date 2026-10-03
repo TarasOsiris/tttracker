@@ -1,6 +1,8 @@
 import { Outlet, useLocation } from "react-router";
 import type { Route } from "./+types/serves-layout";
+import { CtaSection } from "~/components/site/cta-section";
 import { localeFromPath, stripLocale } from "~/i18n/config";
+import { useI18n } from "~/i18n/use-i18n";
 import { cn } from "~/lib/utils";
 import { ServesProvider } from "~/serves/context";
 import { Link } from "~/serves/navigation";
@@ -53,6 +55,15 @@ export default function ServesLayout({ loaderData }: Route.ComponentProps) {
           <Outlet />
         </div>
       </div>
+      <div className="no-print">
+        <ServesCta />
+      </div>
     </ServesProvider>
   );
+}
+
+// The encyclopedia draws most of the search traffic, so every page of it ends with the app download.
+function ServesCta() {
+  const { t } = useI18n();
+  return <CtaSection title={t.cta.servesTitle} subtitle={t.cta.servesSubtitle} />;
 }

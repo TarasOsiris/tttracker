@@ -11,8 +11,6 @@ export const it: TranslationDict = {
 
   // Layout
   "layout.title": "Servizi del tennistavolo",
-  "layout.banner": "Cerchi un'app per tenere traccia nel dettaglio dei tuoi allenamenti di tennistavolo? Prova",
-  "layout.banner.link": "Table Tennis Tracker",
   "layout.tgBanner": "Unisciti al nostro canale Telegram:",
   "layout.contact": "Contatti",
   "layout.lightMode": "Tema chiaro",
@@ -21,7 +19,6 @@ export const it: TranslationDict = {
   "layout.toggleTheme": "Cambia tema",
   "layout.toggleLanguage": "Cambia lingua",
   "layout.toggleMenu": "Apri/chiudi menu",
-  "layout.dismissBanner": "Chiudi banner",
 
   // Home
   "home.pageTitle": "Servizi nel tennistavolo: 29 tipi di servizio del ping pong",

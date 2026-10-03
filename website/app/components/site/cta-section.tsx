@@ -16,7 +16,7 @@ export function CtaSection({ title, subtitle }: { title: React.ReactNode; subtit
           {title}
         </h2>
         <p className="relative mx-auto mt-5 max-w-xl text-lg text-white/75">{subtitle}</p>
-        <StoreButtons inverted className="relative mx-auto mt-9 justify-center" />
+        <StoreButtons inverted placement="cta" className="relative mx-auto mt-9 justify-center" />
         <a
           href={links.telegram}
           target="_blank"

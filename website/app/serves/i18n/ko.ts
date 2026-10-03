@@ -11,8 +11,6 @@ export const ko: TranslationDict = {
 
   // Layout
   "layout.title": "탁구 서브 백과사전",
-  "layout.banner": "탁구 훈련을 자세히 기록할 앱을 찾고 계신가요? 이 앱을 써 보세요:",
-  "layout.banner.link": "탁구 훈련일지",
   "layout.tgBanner": "텔레그램 채널에 참여하세요:",
   "layout.contact": "문의하기",
   "layout.lightMode": "라이트 모드",
@@ -21,7 +19,6 @@ export const ko: TranslationDict = {
   "layout.toggleTheme": "테마 전환",
   "layout.toggleLanguage": "언어 전환",
   "layout.toggleMenu": "메뉴 전환",
-  "layout.dismissBanner": "배너 닫기",
 
   // Home
   "home.pageTitle": "탁구 서브 종류 29가지 — 서브 방법과 리시브 총정리",

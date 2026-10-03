@@ -205,6 +205,8 @@ export const it: Messages = {
     drillsSubtitle: "Registra ogni allenamento con tipo, durata e intensità, e guarda la tua heatmap riempirsi.",
     drillTitle: "Allenamento fatto? Registralo in 30 secondi.",
     drillSubtitle: "Salvalo nell'app con il tipo «{type}», la durata e l'intensità, e guarda crescere la tua serie.",
+    servesTitle: "Alleni il servizio? Registra ogni sessione.",
+    servesSubtitle: "Annota allenamenti al servizio, partite e avversari nel diario di tennis tavolo gratis per iPhone, iPad e Android, e scopri cosa funziona.",
     telegram: "Unisciti alla community su Telegram: @tttrackerapp",
   },
   footer: {

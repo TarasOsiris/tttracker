@@ -90,6 +90,8 @@ export type Messages = {
     drillsSubtitle: string;
     drillTitle: string;
     drillSubtitle: string;
+    servesTitle: string;
+    servesSubtitle: string;
     telegram: string;
   };
   footer: {

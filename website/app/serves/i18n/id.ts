@@ -11,8 +11,6 @@ export const id: TranslationDict = {
 
   // Layout
   "layout.title": "Servis Tenis Meja",
-  "layout.banner": "Cari aplikasi untuk mencatat latihan tenis mejamu secara detail? Coba",
-  "layout.banner.link": "Jurnal Latihan Tenis Meja",
   "layout.tgBanner": "Gabung channel Telegram kami:",
   "layout.contact": "Kontak",
   "layout.lightMode": "Mode Terang",
@@ -21,7 +19,6 @@ export const id: TranslationDict = {
   "layout.toggleTheme": "Ganti tema",
   "layout.toggleLanguage": "Ganti bahasa",
   "layout.toggleMenu": "Buka/tutup menu",
-  "layout.dismissBanner": "Tutup banner",
 
   // Home
   "home.pageTitle": "Jenis Servis Tenis Meja — 29 Servis Pingpong Dijelaskan",

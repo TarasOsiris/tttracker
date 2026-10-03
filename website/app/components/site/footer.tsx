@@ -1,9 +1,10 @@
 import { useSyncExternalStore } from "react";
 import { Link } from "react-router";
-import { links, navLinks } from "~/content/site";
+import { links, navLinks, storeLinks } from "~/content/site";
 import { localeInfo } from "~/i18n/config";
 import { useI18n } from "~/i18n/use-i18n";
 import { Logo, useLanguageLinks } from "./header";
+import { trackStoreClick } from "./store-buttons";
 
 const BUILD_YEAR = new Date().getFullYear();
 const noopSubscribe = () => () => {};
@@ -19,10 +20,10 @@ function Column({ title, children }: { title: string; children: React.ReactNode 
   );
 }
 
-function External({ href, children }: { href: string; children: React.ReactNode }) {
+function External({ href, onClick, children }: { href: string; onClick?: () => void; children: React.ReactNode }) {
   return (
     <li>
-      <a href={href} target="_blank" rel="noopener noreferrer" className={linkClass}>
+      <a href={href} onClick={onClick} target="_blank" rel="noopener noreferrer" className={linkClass}>
         {children}
       </a>
     </li>
@@ -32,6 +33,7 @@ function External({ href, children }: { href: string; children: React.ReactNode 
 export function SiteFooter() {
   const { t, href, locale } = useI18n();
   const languages = useLanguageLinks();
+  const stores = storeLinks(locale, "footer");
   const year = useSyncExternalStore(noopSubscribe, () => new Date().getFullYear(), () => BUILD_YEAR);
   return (
     <footer className="border-t bg-surface-low">
@@ -52,8 +54,12 @@ export function SiteFooter() {
           ))}
         </Column>
         <Column title={t.footer.download}>
-          <External href={links.appStore}>App Store</External>
-          <External href={links.googlePlay}>Google Play</External>
+          <External href={stores.appStore} onClick={() => trackStoreClick("app_store", "footer")}>
+            App Store
+          </External>
+          <External href={stores.googlePlay} onClick={() => trackStoreClick("google_play", "footer")}>
+            Google Play
+          </External>
         </Column>
         <Column title={t.footer.company}>
           <li>

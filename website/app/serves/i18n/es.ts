@@ -11,8 +11,6 @@ export const es: TranslationDict = {
 
   // Layout
   "layout.title": "Saques de tenis de mesa",
-  "layout.banner": "¿Buscas una app para registrar al detalle tus entrenamientos de tenis de mesa? Prueba",
-  "layout.banner.link": "Table Tennis Tracker",
   "layout.tgBanner": "Únete a nuestro canal de Telegram:",
   "layout.contact": "Contacto",
   "layout.lightMode": "Modo claro",
@@ -21,7 +19,6 @@ export const es: TranslationDict = {
   "layout.toggleTheme": "Cambiar tema",
   "layout.toggleLanguage": "Cambiar idioma",
   "layout.toggleMenu": "Abrir o cerrar el menú",
-  "layout.dismissBanner": "Cerrar aviso",
 
   // Home
   "home.pageTitle": "Saques de tenis de mesa: 29 tipos de saque de ping pong",

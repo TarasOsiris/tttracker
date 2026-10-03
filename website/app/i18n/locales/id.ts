@@ -208,6 +208,8 @@ export const id: Messages = {
     drillsSubtitle: "Catat setiap sesi lengkap dengan jenis, durasi, dan intensitasnya, lalu lihat heatmap latihanmu makin penuh.",
     drillTitle: "Sudah selesai latihan? Catat dalam 30 detik.",
     drillSubtitle: "Simpan sebagai sesi {type} lengkap dengan durasi dan intensitasnya, lalu lihat latihan beruntunmu bertambah.",
+    servesTitle: "Sedang latihan servis? Catat setiap sesinya.",
+    servesSubtitle: "Catat latihan servis, pertandingan, dan lawan di jurnal tenis meja gratis untuk iPhone, iPad, dan Android, dan lihat apa yang membuahkan hasil.",
     telegram: "Gabung komunitas kami di Telegram: @tttrackerapp",
   },
   footer: {

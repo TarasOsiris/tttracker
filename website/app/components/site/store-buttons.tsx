@@ -1,6 +1,6 @@
 import { useSyncExternalStore } from "react";
 import { cn } from "~/lib/utils";
-import { links } from "~/content/site";
+import { type StorePlacement, storeLinks } from "~/content/site";
 import { useI18n } from "~/i18n/use-i18n";
 import { AppleIcon, GooglePlayIcon } from "./icons";
 
@@ -25,20 +25,45 @@ function useIsAndroid() {
   );
 }
 
-export function StoreButtons({ className, inverted = false }: { className?: string; inverted?: boolean }) {
-  const { t } = useI18n();
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
+/** GA4 event for a store click, so installs can be traced back to the page and placement that sent them. */
+export function trackStoreClick(store: "app_store" | "google_play", placement: StorePlacement) {
+  window.gtag?.("event", "store_click", { store, placement, page_path: window.location.pathname });
+}
+
+export function StoreButtons({
+  className,
+  inverted = false,
+  placement,
+}: {
+  className?: string;
+  inverted?: boolean;
+  placement: StorePlacement;
+}) {
+  const { t, locale } = useI18n();
   const android = useIsAndroid();
+  const links = storeLinks(locale, placement);
   const style = (primary: boolean) =>
     inverted ? (primary ? styles.primaryInverted : styles.secondaryInverted) : primary ? styles.primary : styles.secondary;
 
   return (
     <div className={cn("flex w-full max-w-xs flex-col gap-3 sm:max-w-none sm:flex-row", className)}>
-      <a href={links.appStore} className={cn(base, style(!android), android && "order-2")}>
+      <a
+        href={links.appStore}
+        onClick={() => trackStoreClick("app_store", placement)}
+        className={cn(base, style(!android), android && "order-2")}
+      >
         <AppleIcon className="-mt-0.5 size-[18px]" />
         {t.store.appStore}
       </a>
       <a
         href={links.googlePlay}
+        onClick={() => trackStoreClick("google_play", placement)}
         target="_blank"
         rel="noopener noreferrer"
         className={cn(base, style(android), android && "order-1")}

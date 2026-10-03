@@ -208,6 +208,8 @@ export const tr: Messages = {
     drillsSubtitle: "Her antrenmanı türü, süresi ve yoğunluğuyla kaydedin, antrenman ısı haritanızın dolmasını izleyin.",
     drillTitle: "Antrenmanı bitirdiniz mi? 30 saniyede kaydedin.",
     drillSubtitle: "Türü {type} olarak seçip süresi ve yoğunluğuyla kaydedin, serinizin uzamasını izleyin.",
+    servesTitle: "Servis mi çalışıyorsunuz? Her antrenmanı kaydedin.",
+    servesSubtitle: "iPhone, iPad ve Android için ücretsiz masa tenisi günlüğünde servis çalışmalarınızı, maçlarınızı ve rakiplerinizi takip edin; neyin işe yaradığını görün.",
     telegram: "Telegram topluluğumuza katılın: @tttrackerapp",
   },
   footer: {

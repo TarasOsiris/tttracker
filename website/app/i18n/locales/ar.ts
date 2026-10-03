@@ -205,6 +205,8 @@ export const ar: Messages = {
     drillsSubtitle: "سجّل كل تدريب بنوعه ومدته وشدته، وشاهد خريطة تدريبك الحرارية تمتلئ.",
     drillTitle: "أنهيت التدريب؟ سجّله في 30 ثانية.",
     drillSubtitle: "احفظه كتدريب من نوع «{type}» مع مدته وشدته، وشاهد سلسلة تدريبك تطول.",
+    servesTitle: "تتمرن على الإرسال؟ سجّل كل حصة.",
+    servesSubtitle: "تتبّع تمارين الإرسال والمباريات والخصوم في يوميات تنس الطاولة المجانية على iPhone وiPad وAndroid، واعرف ما يؤتي ثماره.",
     telegram: "انضم إلى مجتمعنا على Telegram: @tttrackerapp",
   },
   footer: {
