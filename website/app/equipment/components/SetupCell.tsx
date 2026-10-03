@@ -3,6 +3,7 @@ import { confidenceLabels, formatDate } from "../labels";
 import type { Confidence, SetupSlot } from "../models";
 import type { ResolvedSetupItem } from "../store.server";
 import { cn } from "~/lib/utils";
+import { BrandLogo } from "./Media";
 
 const tone: Record<Confidence, string> = {
   confirmed: "bg-emerald-100 text-emerald-900 dark:bg-emerald-900/30 dark:text-emerald-300",
@@ -29,13 +30,16 @@ export function SetupCell({ item, slot, detailed }: { item: ResolvedSetupItem; s
   const variant = item.variant && !item.name.toLowerCase().includes(item.variant.toLowerCase()) ? item.variant : null;
   return (
     <div className="space-y-0.5">
-      {href ? (
-        <Link to={href} className="font-medium text-foreground hover:text-primary hover:underline">
-          {label}
-        </Link>
-      ) : (
-        <span className="font-medium">{label}</span>
-      )}
+      <span className="flex items-center gap-1.5">
+        <BrandLogo logo={item.brandLogo} name={item.brandName ?? ""} className="h-4" />
+        {href ? (
+          <Link to={href} className="font-medium text-foreground hover:text-primary hover:underline">
+            {label}
+          </Link>
+        ) : (
+          <span className="font-medium">{label}</span>
+        )}
+      </span>
       {variant && <p className="text-xs text-muted-foreground">{variant}</p>}
       <p className="flex flex-wrap items-center gap-1.5 text-[11px] text-muted-foreground">
         <ConfidencePill confidence={item.confidence} />

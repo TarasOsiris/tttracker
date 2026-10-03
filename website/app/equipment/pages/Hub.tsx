@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router";
 import type { Route } from "./+types/Hub";
+import { BrandLogo, ProductThumb } from "../components/Media";
 import { PageHeader } from "../components/Parts";
 import { hubPayload } from "../store.server";
 import { breadcrumbs, equipmentMeta, SECTION } from "../utils/seo";
@@ -77,10 +78,13 @@ export default function Hub({ loaderData }: Route.ComponentProps) {
               <h2 className="text-lg font-bold">{g.title}</h2>
               <ol className="mt-3 space-y-2 text-sm">
                 {g.items.map((i, n) => (
-                  <li key={i.id} className="flex items-baseline gap-3">
+                  <li key={i.id} className="flex items-center gap-3">
                     <span className="w-4 font-display font-extrabold text-primary">{n + 1}</span>
+                    <ProductThumb photo={i.photo} fallback={`/equipment/img/${g.base.split("/").pop()}/${i.id}.svg`} className="size-10" />
+                    <BrandLogo logo={i.brandLogo} name={i.brandName} className="h-5" />
                     <Link to={`${g.base}/${i.id}`} className="flex-1 hover:text-primary hover:underline">
-                      {i.brandName} {i.name}
+                      {i.brandLogo ? "" : `${i.brandName} `}
+                      {i.name}
                     </Link>
                     <span className="text-muted-foreground">
                       {i.count} pro{i.count > 1 ? "s" : ""}
@@ -101,7 +105,8 @@ export default function Hub({ loaderData }: Route.ComponentProps) {
         <ul className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {brands.map((b) => (
             <li key={b.id} className="rounded-2xl border bg-card p-4">
-              <Link to={`/equipment/brands/${b.id}`} className="font-bold hover:text-primary hover:underline">
+              <Link to={`/equipment/brands/${b.id}`} className="flex items-center gap-2 font-bold hover:text-primary hover:underline">
+                <BrandLogo logo={b.logo} name={b.name} className="h-7" />
                 {b.name}
               </Link>
               <p className="text-xs text-muted-foreground">{b.country}</p>

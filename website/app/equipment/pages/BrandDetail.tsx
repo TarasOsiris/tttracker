@@ -1,10 +1,11 @@
 import { data, Link } from "react-router";
 import type { Route } from "./+types/BrandDetail";
 import { BladeCard, RubberCard } from "../components/Cards";
+import { BrandLogo } from "../components/Media";
 import { PageHeader, Sources } from "../components/Parts";
 import { scaleLabels } from "../labels";
 import { brandPayload } from "../store.server";
-import { breadcrumbs, equipmentMeta, itemList } from "../utils/seo";
+import { absolute, breadcrumbs, equipmentMeta, itemList } from "../utils/seo";
 
 export function loader({ params }: Route.LoaderArgs) {
   const payload = brandPayload(params.brandId);
@@ -23,7 +24,14 @@ export const meta: Route.MetaFunction = ({ loaderData }) => {
     path,
     jsonLd: [
       breadcrumbs([{ name: brand.name, path }]),
-      { "@context": "https://schema.org", "@type": "Brand", name: brand.name, url: brand.website, sameAs: brand.website },
+      {
+        "@context": "https://schema.org",
+        "@type": "Brand",
+        name: brand.name,
+        url: brand.website,
+        sameAs: brand.website,
+        ...(brand.logo ? { logo: absolute(brand.logo.src) } : {}),
+      },
       itemList(`${brand.name} table tennis equipment`, path, [
         ...blades.map((b) => ({ name: `${brand.name} ${b.name}`, path: `/equipment/blades/${b.id}` })),
         ...rubbers.map((r) => ({ name: `${brand.name} ${r.name}`, path: `/equipment/rubbers/${r.id}` })),
@@ -42,6 +50,7 @@ export default function BrandDetail({ loaderData }: Route.ComponentProps) {
         </Link>{" "}
         / Brands
       </nav>
+      <BrandLogo logo={brand.logo} name={brand.name} className="-mb-4 h-12 px-3 py-2" />
       <PageHeader eyebrow={`Brand · ${brand.country}`} title={`${brand.name} blades and rubbers`}>
         <p>
           {blades.length > 0 && `${blades.length} ${brand.name} blades`}

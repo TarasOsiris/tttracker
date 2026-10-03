@@ -6,8 +6,9 @@ import { useSearchParams } from "react-router";
 import { Card, CardContent, CardHeader } from "~/components/ui/card";
 import { cn } from "~/lib/utils";
 import { useMounted } from "~/serves/hooks/useMounted";
+import type { Image } from "../models";
 
-export type FilterOption = { value: string; label: string };
+export type FilterOption = { value: string; label: string; icon?: Image };
 export type FilterDef<T> = {
   key: string;
   label: string;
@@ -116,7 +117,10 @@ export function FilterSidebar<T extends { name: string; brandName: string }>({ d
                         on ? "bg-primary text-primary-foreground" : "bg-secondary text-secondary-foreground hover:bg-secondary/80",
                       )}
                     >
-                      {o.label} <span className="opacity-60">{n}</span>
+                      <span className="inline-flex items-center gap-1">
+                        {o.icon && <img src={o.icon.src} alt="" width={o.icon.width} height={o.icon.height} className="h-3.5 w-auto rounded-sm bg-white px-0.5" />}
+                        {o.label} <span className="opacity-60">{n}</span>
+                      </span>
                     </button>
                   );
                 })}

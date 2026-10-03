@@ -3,7 +3,7 @@
 import { blades, brands, glossary, guides, players, rubbers } from "./data";
 import { type HardnessBand, hardnessBands } from "./hardness";
 import { construction } from "./labels";
-import type { Blade, Brand, Player, Rubber, SetupSlot } from "./models";
+import type { Blade, Brand, Image, Player, Rubber, SetupSlot } from "./models";
 import { validateEquipment } from "./validate";
 
 validateEquipment({ brands, blades, rubbers, players, guides, glossary });
@@ -13,7 +13,7 @@ const bladeById = new Map(blades.map((b) => [b.id, b]));
 const rubberById = new Map(rubbers.map((r) => [r.id, r]));
 const playerById = new Map(players.map((p) => [p.id, p]));
 
-export type PlayerRef = { id: string; name: string; country: string; slot: SetupSlot; variant?: string };
+export type PlayerRef = { id: string; name: string; country: string; slot: SetupSlot; variant?: string; photo?: Image };
 
 /** Who uses each catalog item, from the pro setups. */
 const usage = new Map<string, PlayerRef[]>();
@@ -24,35 +24,37 @@ for (const p of players) {
     const key = `${slot === "blade" ? "blade" : "rubber"}:${s.itemId}`;
     const list = usage.get(key) ?? [];
     // A player using the same rubber on both sides is listed once.
-    if (!list.some((r) => r.id === p.id)) list.push({ id: p.id, name: p.name, country: p.country, slot, variant: s.variant });
+    if (!list.some((r) => r.id === p.id)) list.push({ id: p.id, name: p.name, country: p.country, slot, variant: s.variant, photo: p.photo });
     usage.set(key, list);
   }
 }
 const usedBy = (kind: "blade" | "rubber", id: string) => usage.get(`${kind}:${id}`) ?? [];
 
-export type BrandRef = Pick<Brand, "id" | "name" | "country" | "ratingNote">;
+export type BrandRef = Pick<Brand, "id" | "name" | "country" | "ratingNote" | "logo">;
 const brandRef = (id: string): BrandRef => {
   const b = brandById.get(id)!;
-  return { id: b.id, name: b.name, country: b.country, ratingNote: b.ratingNote };
+  return { id: b.id, name: b.name, country: b.country, ratingNote: b.ratingNote, logo: b.logo };
 };
 
 export type BladeRow = Pick<
   Blade,
   | "id" | "name" | "brandId" | "layup" | "plies" | "fibers" | "fiberName" | "fiberPosition" | "thicknessMm" | "weightG"
-  | "handles" | "manufacturerClass" | "status" | "summary" | "releaseYear"
-> & { brandName: string; construction: string; proCount: number };
+  | "handles" | "manufacturerClass" | "status" | "summary" | "releaseYear" | "photo" | "outerWood"
+> & { brandName: string; brandLogo?: Image; construction: string; proCount: number };
 
 export type RubberRow = Pick<
   Rubber,
-  "id" | "name" | "brandId" | "type" | "tackiness" | "hardness" | "spongeThicknesses" | "status" | "summary" | "releaseYear" | "ittfApproved"
-> & { brandName: string; bands: HardnessBand[]; proCount: number };
+  | "id" | "name" | "brandId" | "type" | "tackiness" | "hardness" | "spongeThicknesses" | "status" | "summary" | "releaseYear"
+  | "ittfApproved" | "photo" | "topsheetColors" | "spongeColor"
+> & { brandName: string; brandLogo?: Image; bands: HardnessBand[]; proCount: number };
 
 function bladeRow(b: Blade): BladeRow {
   return {
     id: b.id, name: b.name, brandId: b.brandId, layup: b.layup, plies: b.plies, fibers: b.fibers, fiberName: b.fiberName,
     fiberPosition: b.fiberPosition, thicknessMm: b.thicknessMm, weightG: b.weightG, handles: b.handles,
     manufacturerClass: b.manufacturerClass, status: b.status, summary: b.summary, releaseYear: b.releaseYear,
-    brandName: brandById.get(b.brandId)!.name, construction: construction(b), proCount: usedBy("blade", b.id).length,
+    photo: b.photo, outerWood: b.outerWood,
+    brandName: brandById.get(b.brandId)!.name, brandLogo: brandById.get(b.brandId)!.logo, construction: construction(b), proCount: usedBy("blade", b.id).length,
   };
 }
 
@@ -60,7 +62,8 @@ function rubberRow(r: Rubber): RubberRow {
   return {
     id: r.id, name: r.name, brandId: r.brandId, type: r.type, tackiness: r.tackiness, hardness: r.hardness,
     spongeThicknesses: r.spongeThicknesses, status: r.status, summary: r.summary, releaseYear: r.releaseYear,
-    ittfApproved: r.ittfApproved, brandName: brandById.get(r.brandId)!.name, bands: hardnessBands(r.hardness),
+    ittfApproved: r.ittfApproved, photo: r.photo, topsheetColors: r.topsheetColors, spongeColor: r.spongeColor,
+    brandName: brandById.get(r.brandId)!.name, brandLogo: brandById.get(r.brandId)!.logo, bands: hardnessBands(r.hardness),
     proCount: usedBy("rubber", r.id).length,
   };
 }
@@ -69,7 +72,7 @@ const byBrandThenName = <T extends { brandName: string; name: string }>(a: T, b:
   a.brandName.localeCompare(b.brandName, "en") || a.name.localeCompare(b.name, "en", { numeric: true });
 
 const brandOptions = (ids: string[]) =>
-  brands.filter((b) => ids.includes(b.id)).map((b) => ({ id: b.id, name: b.name }));
+  brands.filter((b) => ids.includes(b.id)).map((b) => ({ id: b.id, name: b.name, logo: b.logo }));
 
 export function bladesPayload() {
   const rows = blades.map(bladeRow).sort(byBrandThenName);
@@ -129,33 +132,37 @@ export function comparePayload() {
     return rest as Omit<T, "description" | "facts" | "sources">;
   };
   return {
-    blades: blades.map((b) => ({ ...strip(b), brandName: brandById.get(b.brandId)!.name, construction: construction(b) })),
-    rubbers: rubbers.map((r) => ({ ...strip(r), brandName: brandById.get(r.brandId)!.name, bands: hardnessBands(r.hardness) })),
+    blades: blades.map((b) => ({ ...strip(b), brandName: brandById.get(b.brandId)!.name, brandLogo: brandById.get(b.brandId)!.logo, construction: construction(b) })),
+    rubbers: rubbers.map((r) => ({ ...strip(r), brandName: brandById.get(r.brandId)!.name, brandLogo: brandById.get(r.brandId)!.logo, bands: hardnessBands(r.hardness) })),
     brands: brands.map((b) => brandRef(b.id)),
   };
 }
 
-export type ResolvedSetupItem = Player["setup"]["blade"] & { brandName: string | null };
-export type PlayerRow = Omit<Player, "setup" | "history" | "photo"> & { setup: Record<SetupSlot, ResolvedSetupItem> };
+export type ResolvedSetupItem = Player["setup"]["blade"] & { brandName: string | null; brandLogo?: Image };
+export type PlayerRow = Omit<Player, "setup" | "history"> & { setup: Record<SetupSlot, ResolvedSetupItem> };
 
 function resolveSetup(p: Player): Record<SetupSlot, ResolvedSetupItem> {
   const resolve = (slot: SetupSlot): ResolvedSetupItem => {
     const s = p.setup[slot];
     const item = s.itemId ? (slot === "blade" ? bladeById.get(s.itemId) : rubberById.get(s.itemId)) : undefined;
-    return { ...s, brandName: item ? brandById.get(item.brandId)!.name : null };
+    const brand = item ? brandById.get(item.brandId)! : undefined;
+    return { ...s, brandName: brand?.name ?? null, brandLogo: brand?.logo };
   };
   return { blade: resolve("blade"), forehand: resolve("forehand"), backhand: resolve("backhand") };
 }
 
 function playerRow(p: Player): PlayerRow {
-  const { id, name, country, gender, hand, grip, ranking, lastVerified } = p;
-  return { id, name, country, gender, hand, grip, ranking, lastVerified, setup: resolveSetup(p) };
+  const { id, name, country, gender, hand, grip, ranking, photo, lastVerified } = p;
+  return { id, name, country, gender, hand, grip, ranking, photo, lastVerified, setup: resolveSetup(p) };
 }
 
 /** Most-used catalog items among the tracked players; a player counts once per item. */
 function mostUsed(kind: "blade" | "rubber", lookup: Map<string, Blade | Rubber>) {
   return [...lookup.values()]
-    .map((item) => ({ id: item.id, name: item.name, brandName: brandById.get(item.brandId)!.name, count: usedBy(kind, item.id).length }))
+    .map((item) => {
+      const brand = brandById.get(item.brandId)!;
+      return { id: item.id, name: item.name, brandName: brand.name, brandLogo: brand.logo, photo: item.photo, count: usedBy(kind, item.id).length };
+    })
     .filter((x) => x.count > 0)
     .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name))
     .slice(0, 6);
@@ -185,6 +192,7 @@ export function hubPayload() {
       id: b.id,
       name: b.name,
       country: b.country,
+      logo: b.logo,
       blades: blades.filter((x) => x.brandId === b.id).length,
       rubbers: rubbers.filter((x) => x.brandId === b.id).length,
     })),

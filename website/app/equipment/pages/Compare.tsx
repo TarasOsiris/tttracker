@@ -2,6 +2,7 @@ import { Info, Plus, Search, X } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router";
 import type { Route } from "./+types/Compare";
+import { BrandName, ProductThumb } from "../components/Media";
 import { PageHeader } from "../components/Parts";
 import { bandRange } from "../hardness";
 import {
@@ -170,8 +171,11 @@ export default function Compare({ loaderData }: Route.ComponentProps) {
                 <th className="w-40 p-4 text-start font-medium text-muted-foreground">Spec</th>
                 {selected.map((s) => (
                   <th key={s.id} className="p-4 text-start align-top">
-                    <Link to={`/equipment/${kind}s/${s.id}`} className="hover:text-primary">
-                      <span className="block text-xs font-semibold tracking-wide text-muted-foreground uppercase">{s.brandName}</span>
+                    <Link to={`/equipment/${kind}s/${s.id}`} className="group block hover:text-primary">
+                      <ProductThumb photo={s.photo} fallback={`/equipment/img/${kind}s/${s.id}.svg`} className="mb-2 size-24" />
+                      <span className="block text-xs font-semibold tracking-wide text-muted-foreground uppercase">
+                        <BrandName logo={s.brandLogo} name={s.brandName} size="xs" />
+                      </span>
                       <span className="font-bold">{s.name}</span>
                     </Link>
                   </th>

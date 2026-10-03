@@ -1,6 +1,7 @@
 import { data, Link } from "react-router";
 import type { Route } from "./+types/PlayerDetail";
 import { PageHeader } from "../components/Parts";
+import { Credit } from "../components/Media";
 import { SetupCell, setupLabel } from "../components/SetupCell";
 import { flag, formatDate } from "../labels";
 import { playerPayload } from "../store.server";
@@ -29,6 +30,7 @@ export const meta: Route.MetaFunction = ({ loaderData }) => {
       .map(({ slot, label }) => `${setupLabel(setup[slot])} (${label.toLowerCase()})`)
       .join(", ") || "what is publicly known"}, with sources and dates.`,
     path,
+    image: player.photo && { ...player.photo, alt: player.name },
     jsonLd: [
       breadcrumbs([
         { name: "Pro setups", path: "/equipment/pros" },
@@ -38,7 +40,13 @@ export const meta: Route.MetaFunction = ({ loaderData }) => {
         "@context": "https://schema.org",
         "@type": "ProfilePage",
         url: absolute(path),
-        mainEntity: { "@type": "Person", name: player.name, nationality: player.country, jobTitle: "Table tennis player" },
+        mainEntity: {
+          "@type": "Person",
+          name: player.name,
+          nationality: player.country,
+          jobTitle: "Table tennis player",
+          ...(player.photo ? { image: absolute(player.photo.src) } : {}),
+        },
       },
     ],
   });
@@ -57,11 +65,16 @@ export default function PlayerDetail({ loaderData }: Route.ComponentProps) {
       <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
         {player.photo && (
           <figure className="shrink-0">
-            <img src={player.photo.src} width={player.photo.width} height={player.photo.height} alt={player.name} className="size-36 rounded-3xl object-cover" />
-            <figcaption className="mt-1 max-w-36 text-[10px] text-muted-foreground">
-              <a href={player.photo.creditUrl} target="_blank" rel="noopener noreferrer" className="hover:underline">
-                {player.photo.credit}
-              </a>
+            <img
+              src={player.photo.src}
+              width={player.photo.width}
+              height={player.photo.height}
+              alt={player.name}
+              fetchPriority="high"
+              className="size-40 rounded-3xl object-cover object-top"
+            />
+            <figcaption className="mt-1 max-w-40 text-[10px] leading-tight text-muted-foreground">
+              Photo: <Credit image={player.photo} />, Wikimedia Commons
             </figcaption>
           </figure>
         )}

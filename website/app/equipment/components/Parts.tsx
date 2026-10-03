@@ -3,8 +3,8 @@ import { ExternalLink, Info } from "lucide-react";
 import { Link } from "react-router";
 import { formatDate } from "../labels";
 import type { BrandRef, PlayerRef } from "../store.server";
-import type { Fact, ManufacturerRating, Source, Status } from "../models";
-import { flag } from "../labels";
+import type { Fact, Image, ManufacturerRating, Source, Status } from "../models";
+import { Credit, PlayerAvatar } from "./Media";
 import { cn } from "~/lib/utils";
 import { inline } from "~/components/site/legal-page";
 
@@ -176,7 +176,7 @@ export function UsedBy({ players }: { players: PlayerRef[] }) {
         {players.map((p) => (
           <li key={`${p.id}-${p.slot}`}>
             <Link to={`/equipment/pros/${p.id}`} className="inline-flex items-center gap-1.5 rounded-full border bg-card px-3 py-1.5 text-sm hover:border-primary/40">
-              <span aria-hidden="true">{flag(p.country)}</span>
+              <PlayerAvatar photo={p.photo} name={p.name} country={p.country} className="size-6 text-xs" />
               {p.name}
               <span className="text-xs text-muted-foreground">
                 {slotLabel[p.slot]}
@@ -191,12 +191,29 @@ export function UsedBy({ players }: { players: PlayerRef[] }) {
   );
 }
 
-/** The spec-drawn illustration, labelled so nobody mistakes it for a product photo. */
-export function Illustration({ src, alt, note }: { src: string; alt: string; note: string }) {
+/** The maker's product photo, or the spec-drawn illustration (labelled as such) when there is no photo. */
+export function ProductFigure({ photo, alt, illustration, note }: { photo?: Image; alt: string; illustration: string; note: string }) {
   return (
     <figure className="rounded-3xl border bg-card p-5 sm:p-6">
-      <img src={src} alt={alt} width={240} height={260} className="mx-auto h-56 w-auto" />
-      <figcaption className="mt-3 text-xs leading-snug text-muted-foreground">Illustration drawn from the published specs ({note}). Not a product photo.</figcaption>
+      <div className="flex justify-center rounded-2xl bg-white p-3">
+        <img
+          src={photo?.src ?? illustration}
+          alt={photo ? alt : `Illustration: ${alt}`}
+          width={photo?.width ?? 240}
+          height={photo?.height ?? 260}
+          fetchPriority="high"
+          className="h-64 w-auto max-w-full object-contain"
+        />
+      </div>
+      <figcaption className="mt-3 text-xs leading-snug text-muted-foreground">
+        {photo ? (
+          <>
+            Photo: <Credit image={photo} />, from the maker's product page.
+          </>
+        ) : (
+          <>Illustration drawn from the published specs ({note}). Not a product photo.</>
+        )}
+      </figcaption>
     </figure>
   );
 }

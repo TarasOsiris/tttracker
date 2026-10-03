@@ -20,7 +20,9 @@ English is served at `/`, other languages at `/{code}` (`es`, `de`, `fr`, `pt`, 
 
 ## Equipment encyclopedia
 
-`/equipment/...` (English only, like the blog): blade and rubber explorers, item and brand pages, a compare page, pro player setups, guides and a glossary. Code lives in `app/equipment/`: types in `models.ts`, one data file per brand in `data/brands/`, players in `data/players-*.ts`, guides and glossary in `data/guide*.ts`. `store.server.ts` hands each page only what it renders, and product illustrations are drawn from the specs (`illustrations.ts`) and prerendered as `/equipment/img/{blades,rubbers}/<id>.svg`.
+`/equipment/...` (English only, like the blog): blade and rubber explorers, item and brand pages, a compare page, pro player setups, guides and a glossary. Code lives in `app/equipment/`: types in `models.ts`, one data file per brand in `data/brands/`, players in `data/players-*.ts`, guides and glossary in `data/guide*.ts`. `store.server.ts` hands each page only what it renders.
+
+Images live in `public/equipment/`: product photos come from each maker's own product page (`photos/`, credited "© Brand" with the source page), brand logos from the brand's site or Wikimedia Commons (`brands/`), and player photos only from freely licensed Wikimedia Commons files (`players/`, credited to the author and licence). Add one with `scripts/equipment-image.sh <url> <path under public/>` (needs ffmpeg and cwebp). A product without a photo shows an illustration drawn from its specs (`illustrations.ts`, prerendered as `/equipment/img/{blades,rubbers}/<id>.svg`); deleting a photo file and its `photo` field falls back to it.
 
 Accuracy rules, enforced by `validate.ts` at build time (a violation fails `npm run build`):
 - Every item, player slot and guide cites sources; every fact cites one of its item's sources. Unknown values are `null` and show as "—".

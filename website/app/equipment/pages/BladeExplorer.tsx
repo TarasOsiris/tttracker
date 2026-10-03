@@ -5,7 +5,7 @@ import { BladeCard } from "../components/Cards";
 import { ExplorerShell, type FilterDef, type SortDef, useFilters } from "../components/Filters";
 import { PageHeader } from "../components/Parts";
 import { fiberLabels, handleLabels } from "../labels";
-import type { Fiber, Handle } from "../models";
+import type { Image, Fiber, Handle } from "../models";
 import { type BladeRow, bladesPayload } from "../store.server";
 import { breadcrumbs, equipmentMeta, itemList } from "../utils/seo";
 
@@ -40,12 +40,12 @@ const thicknessBuckets = [
   { value: "gt6.2", label: "Over 6.2 mm", lo: 6.21, hi: 99 },
 ];
 
-function buildDefs(rows: BladeRow[], brands: { id: string; name: string }[]): FilterDef<BladeRow>[] {
+function buildDefs(rows: BladeRow[], brands: { id: string; name: string; logo?: Image }[]): FilterDef<BladeRow>[] {
   const fibers = [...new Set(rows.flatMap((r) => r.fibers))] as Fiber[];
   const plies = [...new Set(rows.map((r) => r.plies).filter((p): p is number => p != null))].sort((a, b) => a - b);
   const handles = (["FL", "ST", "AN", "CON", "CS", "JP"] as Handle[]).filter((h) => rows.some((r) => r.handles.includes(h)));
   return [
-    { key: "brand", label: "Brand", options: brands.map((b) => ({ value: b.id, label: b.name })), match: (r, v) => r.brandId === v },
+    { key: "brand", label: "Brand", options: brands.map((b) => ({ value: b.id, label: b.name, icon: b.logo })), match: (r, v) => r.brandId === v },
     {
       key: "build",
       label: "Construction",

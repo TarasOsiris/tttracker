@@ -12,14 +12,17 @@ export function equipmentMeta({
   description,
   path,
   jsonLd = [],
+  image,
 }: {
   title: string;
   description: string;
   path: string;
   jsonLd?: Record<string, unknown>[];
+  /** Share card; defaults to the site's. */
+  image?: { src: string; width: number; height: number; alt: string };
 }): MetaDescriptor[] {
   return [
-    ...seo({ title: `${title} | ${APP_NAME}`, description, path, locale: "en", localized: false }),
+    ...seo({ title: `${title} | ${APP_NAME}`, description, path, locale: "en", localized: false, ...(image ? { image } : {}) }),
     ...jsonLd.map((data) => ({ "script:ld+json": data })),
   ];
 }

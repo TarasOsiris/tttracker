@@ -2,7 +2,8 @@ import { ArrowLeftRight } from "lucide-react";
 import { data, Link } from "react-router";
 import type { Route } from "./+types/RubberDetail";
 import { RubberCard } from "../components/Cards";
-import { Facts, Illustration, Notes, PageHeader, Pill, Prose, RatingsBlock, Sources, SpecTable, StatusPill, UsedBy } from "../components/Parts";
+import { Facts, Notes, ProductFigure, PageHeader, Pill, Prose, RatingsBlock, Sources, SpecTable, StatusPill, UsedBy } from "../components/Parts";
+import { BrandLogo } from "../components/Media";
 import { bandRange } from "../hardness";
 import { DASH, formatHardness, formatThicknesses, rubberTypeLabels } from "../labels";
 import { rubberPayload } from "../store.server";
@@ -25,6 +26,7 @@ export const meta: Route.MetaFunction = ({ loaderData }) => {
     title: `${full} Rubber Specs: Sponge Hardness, Thickness & Type`,
     description: `${full} (${rubberTypeLabels[rubber.type].toLowerCase()}) specs: sponge hardness ${formatHardness(rubber.hardness)}, thicknesses, ${brand.name}'s own ratings and sources. ${rubber.summary}`,
     path,
+    image: rubber.photo && { ...rubber.photo, alt: `${full} rubber` },
     jsonLd: [
       breadcrumbs([
         { name: "Rubbers", path: "/equipment/rubbers" },
@@ -39,7 +41,7 @@ export const meta: Route.MetaFunction = ({ loaderData }) => {
         category: "Table tennis rubber",
         description: rubber.summary,
         url: absolute(path),
-        image: absolute(`/equipment/img/rubbers/${rubber.id}.svg`),
+        image: absolute(rubber.photo?.src ?? `/equipment/img/rubbers/${rubber.id}.svg`),
         additionalProperty: [
           { "@type": "PropertyValue", name: "Type", value: rubberTypeLabels[rubber.type] },
           rubber.hardness && { "@type": "PropertyValue", name: "Sponge hardness", value: formatHardness(rubber.hardness) },
@@ -102,6 +104,7 @@ export default function RubberDetail({ loaderData }: Route.ComponentProps) {
           {brand.name}
         </Link>
       </nav>
+      <BrandLogo logo={brand.logo} name={brand.name} className="-mb-4 h-8" />
       <PageHeader eyebrow={`${brand.name} rubber`} title={`${brand.name} ${rubber.name}`}>
         <p>{rubber.summary}</p>
         <div className="mt-4 flex flex-wrap items-center gap-2">
@@ -131,9 +134,10 @@ export default function RubberDetail({ loaderData }: Route.ComponentProps) {
           <UsedBy players={usedBy} />
         </div>
         <div className="space-y-6">
-          <Illustration
-            src={`/equipment/img/rubbers/${rubber.id}.svg`}
-            alt={`Illustration of ${brand.name} ${rubber.name}${rubber.topsheetColors?.length ? ` in ${rubber.topsheetColors.join(" and ").toLowerCase()}` : ""}`}
+          <ProductFigure
+            photo={rubber.photo}
+            illustration={`/equipment/img/rubbers/${rubber.id}.svg`}
+            alt={`${brand.name} ${rubber.name} rubber${rubber.topsheetColors?.length ? ` in ${rubber.topsheetColors.join(" and ").toLowerCase()}` : ""}`}
             note={[
               rubber.topsheetColors?.length ? `colours sold: ${rubber.topsheetColors.join(", ")}` : "colours not listed, shown in grey",
               rubber.type.includes("pips") ? "pips facing out" : "pips facing in",

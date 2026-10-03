@@ -13,8 +13,9 @@ A wrong setup is worse than an old one. Change data only on evidence you read in
 you're unsure, keep the current value and say so in the commit body. Never remove data without a source showing it's wrong.
 
 ## 1. Rankings
-- Fetch the current ITTF/WTT senior world ranking (worldtabletennis.com rankings, or ittf.com; if they block fetches use
-  results.ittf.link or a reliable mirror and say which). Track the top 25 men's singles and top 25 women's singles.
+- Fetch the current ITTF/WTT senior world ranking. worldtabletennis.com/rankings renders its table with JavaScript, so a
+  plain fetch shows nothing: load the page's JS bundle, find the ranking API request it makes (and the public API key it
+  sends), and call that API directly. If that fails, use ittf.com or a reliable mirror and say which in the source label. Track the top 25 men's singles and top 25 women's singles.
 - Update each tracked player's `ranking` ({ position, date: the ranking's publication date, source }).
 - A new player in the top 25: add them (step 2 for their setup). A player who left the top 25: set `ranking: null`
   (they move to "Other notable players"); never delete a player, so their page URL keeps working.
@@ -38,7 +39,15 @@ If a pro switches to a retail blade or rubber that isn't in the catalog, add it 
 only for gaps), unknown fields `null`, ratings verbatim with the brand's labels, hardness with the scale the maker uses
 (`unstated` if unclear), `sources` and `lastVerified`. Don't add products from memory.
 
-## 4. Verify and publish
+## 4. Photos
+New players: add a freely licensed Wikimedia Commons photo (CC BY / CC BY-SA / CC0 / PD only, in the player's own Commons
+category) with `scripts/equipment-image.sh "<thumburl>" equipment/players/<id>.webp 600` and set `photo` with the Commons
+file page as `sourceUrl` and "<Author>, <licence>" as `credit`. Look at the image before using it. New catalog items may
+get a `photo` from the maker's own product page the same way (`equipment/photos/<blades|rubbers>/<id>.webp`, credit
+"© <Brand>"); without one the site shows a spec-drawn illustration. If the script's tools (ffmpeg, cwebp) aren't
+installed, skip photos rather than installing system packages.
+
+## 5. Verify and publish
 - `npm run typecheck && npm run lint && npm run build`. Fix any validation error properly (never by deleting a source).
 - Skip the commit if nothing changed.
 - Commit "Weekly pro setups update (YYYY-MM-DD)". In the body, list each changed player and slot (old → new) with its

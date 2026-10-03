@@ -33,6 +33,7 @@ export const brand: Brand = {
   ratingNote:
     "der-materialspezialist rates rubbers with numbers for Speed and Control plus Spin or Disruptive effect, with no stated maximum (some values exceed 100), and gives hardness as a word grade such as \"Medium\".",
   hardnessScale: null,
+  logo: { src: "/equipment/brands/der-materialspezialist.webp", width: 168, height: 136, sourceUrl: "https://www.der-materialspezialist.com", credit: "Logo © der-materialspezialist" },
   sources: [about],
 };
 
@@ -75,6 +76,7 @@ export const rubbers: Rubber[] = [
         source: spinfire.url,
       },
     ],
+    photo: { src: "/equipment/photos/rubbers/der-materialspezialist-spinfire.webp", width: 500, height: 500, sourceUrl: "https://www.der-materialspezialist.com/en/Rubbers/der-materialspezialist/Short-pimples/SPINFIRE::201.html", credit: "© Der Materialspezialist" },
     sources: [spinfire, LARC],
     lastVerified: ACCESSED,
     type: "short-pips",
@@ -106,6 +108,7 @@ export const rubbers: Rubber[] = [
       "der-materialspezialist says the compound slows the ball when blocking hard loops and hits, producing a low, wobbling return, and that the sponge versions add power and spin. It recommends mounting the OX version with a DK-4 adhesive foil.",
     ],
     facts: [],
+    photo: { src: "/equipment/photos/rubbers/der-materialspezialist-spectre.webp", width: 500, height: 500, sourceUrl: "https://www.der-materialspezialist.com/en/Rubbers/der-materialspezialist/Long-pimples/SPECTRE::200.html", credit: "© Der Materialspezialist" },
     sources: [spectre, LARC],
     lastVerified: ACCESSED,
     type: "long-pips",
@@ -143,6 +146,7 @@ export const rubbers: Rubber[] = [
     notes: [
       "der-materialspezialist sells Hallucination in red, black, green and blue; the ITTF list (LARC 2026) also lists pink and violet topsheets.",
     ],
+    photo: { src: "/equipment/photos/rubbers/der-materialspezialist-hallucination.webp", width: 500, height: 500, sourceUrl: "https://www.der-materialspezialist.com/en/Rubbers/der-materialspezialist/Long-pimples/HALLUCINATION::235.html", credit: "© Der Materialspezialist" },
     sources: [hallucination, LARC],
     lastVerified: ACCESSED,
     type: "long-pips",
@@ -181,6 +185,7 @@ export const rubbers: Rubber[] = [
         source: fakir.url,
       },
     ],
+    photo: { src: "/equipment/photos/rubbers/der-materialspezialist-fakir.webp", width: 500, height: 500, sourceUrl: "https://www.der-materialspezialist.com/en/Rubbers/der-materialspezialist/Long-pimples/FAKIR::213.html", credit: "© Der Materialspezialist" },
     sources: [fakir, LARC],
     lastVerified: ACCESSED,
     type: "long-pips",
@@ -214,6 +219,7 @@ export const rubbers: Rubber[] = [
       "der-materialspezialist pitches it for disruptive blocking close to the table and for classic defence, says its relatively soft pimples also allow attacking strokes, and attributes its slowness and control to a new rubber compound. It is sold in red and black, OX or with 0.5 or 1.0 mm sponge.",
     ],
     facts: [],
+    photo: { src: "/equipment/photos/rubbers/der-materialspezialist-elimination-extra-long.webp", width: 500, height: 500, sourceUrl: "https://www.der-materialspezialist.com/en/Rubbers/der-materialspezialist/Long-pimples/ELIMINATION-EXTRA-LONG::78.html", credit: "© Der Materialspezialist" },
     sources: [elimination, LARC],
     lastVerified: ACCESSED,
     type: "long-pips",
@@ -247,6 +253,7 @@ export const rubbers: Rubber[] = [
       "The maker describes a flat trajectory with a ball that dives strongly, and says it is insensitive to spin. It recommends the thinner sponges for close-to-table play and classic defence and the thicker ones for offensive play.",
     ],
     facts: [],
+    photo: { src: "/equipment/photos/rubbers/der-materialspezialist-ttr-killer.webp", width: 500, height: 500, sourceUrl: "https://www.der-materialspezialist.com/en/Rubbers/der-materialspezialist/Anti-Top/TTR-KILLER::207.html", credit: "© Der Materialspezialist" },
     sources: [ttrKiller, LARC],
     lastVerified: ACCESSED,
     type: "anti",

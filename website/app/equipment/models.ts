@@ -79,6 +79,18 @@ export type FiberPosition = "outer" | "inner" | "other";
 
 export type Handle = "FL" | "ST" | "AN" | "CON" | "CS" | "JP";
 
+/** A real photo or logo stored under public/equipment/. */
+export interface Image {
+  /** Site path, e.g. "/equipment/photos/blades/butterfly-viscaria.webp". */
+  src: string;
+  width: number;
+  height: number;
+  /** The page the image was taken from (the maker's own product page for product photos). */
+  sourceUrl: string;
+  /** Shown under the image, e.g. "© Butterfly" or "Photo: Jane Doe, CC BY-SA 4.0". */
+  credit: string;
+}
+
 export interface Brand {
   id: string;
   name: string;
@@ -88,6 +100,8 @@ export interface Brand {
   ratingNote: string | null;
   /** The hardness scale the brand prints, if it is consistent across its range. */
   hardnessScale: HardnessScale | null;
+  /** The brand's logo, used wherever the brand is named. */
+  logo?: Image;
   sources: Source[];
 }
 
@@ -109,6 +123,8 @@ interface ItemBase {
   facts: Fact[];
   /** Conflicting official values and other caveats, e.g. regional sites listing different weights. */
   notes?: string[];
+  /** Product photo from the maker's own product page. Without one, the spec-drawn illustration is shown. */
+  photo?: Image;
   sources: Source[];
   lastVerified: IsoDate;
 }
@@ -191,7 +207,8 @@ export interface Player {
   ranking: { position: number; date: IsoDate; source: Source } | null;
   setup: Record<SetupSlot, SetupItem>;
   history: SetupChange[];
-  photo?: { src: string; width: number; height: number; credit: string; creditUrl: string };
+  /** Freely licensed photo (Wikimedia Commons), credited. */
+  photo?: Image;
   lastVerified: IsoDate;
 }
 

@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import type { Route } from "./+types/Pros";
+import { BrandLogo, PlayerAvatar, ProductThumb } from "../components/Media";
 import { PageHeader } from "../components/Parts";
 import { ConfidencePill, SetupCell } from "../components/SetupCell";
 import { confidenceLabels, flag, formatDate } from "../labels";
@@ -52,15 +53,20 @@ function SetupTable({ rows, title }: { rows: PlayerRow[]; title: string }) {
               <tr key={p.id} className="align-top">
                 <td className="p-3 font-display text-lg font-extrabold text-primary">{p.ranking?.position ?? "—"}</td>
                 <td className="p-3">
-                  <Link to={`/equipment/pros/${p.id}`} className="font-semibold hover:text-primary hover:underline">
-                    <span aria-hidden="true">{flag(p.country)} </span>
-                    {p.name}
-                  </Link>
-                  <p className="text-xs text-muted-foreground">
-                    {p.country}
-                    {p.hand ? ` · ${p.hand}-handed` : ""}
-                    {p.grip ? ` · ${p.grip}` : ""}
-                  </p>
+                  <div className="flex items-center gap-3">
+                    <PlayerAvatar photo={p.photo} name={p.name} country={p.country} className="size-11" />
+                    <div>
+                      <Link to={`/equipment/pros/${p.id}`} className="font-semibold hover:text-primary hover:underline">
+                        <span aria-hidden="true">{flag(p.country)} </span>
+                        {p.name}
+                      </Link>
+                      <p className="text-xs text-muted-foreground">
+                        {p.country}
+                        {p.hand ? ` · ${p.hand}-handed` : ""}
+                        {p.grip ? ` · ${p.grip}` : ""}
+                      </p>
+                    </div>
+                  </div>
                 </td>
                 <td className="p-3">
                   <SetupCell item={p.setup.blade} slot="blade" />
@@ -127,11 +133,14 @@ export default function Pros({ loaderData }: Route.ComponentProps) {
           ].map((g) => (
             <div key={g.title} className="rounded-3xl border bg-card p-5">
               <h2 className="font-bold">{g.title} among tracked pros</h2>
-              <ol className="mt-3 space-y-1.5 text-sm">
+              <ol className="mt-3 space-y-2 text-sm">
                 {g.items.map((i) => (
-                  <li key={i.id} className="flex justify-between gap-3">
-                    <Link to={`${g.base}/${i.id}`} className="hover:text-primary hover:underline">
-                      {i.brandName} {i.name}
+                  <li key={i.id} className="flex items-center gap-3">
+                    <ProductThumb photo={i.photo} fallback={`/equipment/img/${g.base.split("/").pop()}/${i.id}.svg`} className="size-10" />
+                    <BrandLogo logo={i.brandLogo} name={i.brandName} className="h-5" />
+                    <Link to={`${g.base}/${i.id}`} className="flex-1 hover:text-primary hover:underline">
+                      {i.brandLogo ? "" : `${i.brandName} `}
+                      {i.name}
                     </Link>
                     <span className="text-muted-foreground">{i.count}</span>
                   </li>

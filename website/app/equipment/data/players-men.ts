@@ -228,6 +228,13 @@ export const menPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/wang-chuqin.webp",
+      width: 600,
+      height: 712,
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Table_tennis_at_the_2018_Summer_Youth_Olympics_%E2%80%93_Men%27s_Singles_Gold_Medal_Match_068_(cropped).jpg",
+      credit: "Marcus Cyron, CC BY-SA 3.0",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -262,6 +269,13 @@ export const menPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/felix-lebrun.webp",
+      width: 600,
+      height: 642,
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:F%C3%A9lix_Lebrun_(FRA)_2022.jpg",
+      credit: "Granada, CC BY-SA 4.0",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -338,6 +352,13 @@ export const menPlayers: Player[] = [
         source: harimotoPh,
       },
     ],
+    photo: {
+      src: "/equipment/players/tomokazu-harimoto.webp",
+      width: 600,
+      height: 600,
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:ITTF_World_Tour_2017_German_Open_Harimoto_Tomokazu_06.jpg",
+      credit: "Peter Porai-Koshits, CC BY-SA 4.0",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -372,6 +393,13 @@ export const menPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/truls-moregardh.webp",
+      width: 600,
+      height: 900,
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:20220814_European_Championships_Munich_2022_Truls_M%C3%B6reg%C3%A5rdh_850_2733.jpg",
+      credit: "Granada, CC BY-SA 4.0",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -406,6 +434,13 @@ export const menPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/lin-yun-ju.webp",
+      width: 600,
+      height: 400,
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:08.05_%E7%B8%BD%E7%B5%B1%E6%8E%A5%E8%A6%8B%E6%A1%8C%E7%90%83%E9%81%B8%E6%89%8B%E6%9E%97%E6%98%80%E5%84%92_(48460894246).jpg",
+      credit: "Office of the President, Taiwan (總統府), CC BY 2.0",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -440,6 +475,13 @@ export const menPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/hugo-calderano.webp",
+      width: 390,
+      height: 520,
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Calderano_em_2021_(cropped).jpg",
+      credit: "Breno Barros, CC BY 3.0 br",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -510,6 +552,13 @@ export const menPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/alexis-lebrun.webp",
+      width: 385,
+      height: 436,
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Alexis_Lebrun_(FRA)_2024.jpg",
+      credit: "Eltito13, CC0",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -545,6 +594,13 @@ export const menPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/dang-qiu.webp",
+      width: 600,
+      height: 900,
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:20220814_European_Championships_Munich_2022_Dang_Qiu_850_2751.jpg",
+      credit: "Granada, CC BY-SA 4.0",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -579,6 +635,13 @@ export const menPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/jang-woojin.webp",
+      width: 600,
+      height: 400,
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Jang_Woo-jin_ATTC2017_7.jpeg",
+      credit: "Xiaoyu Tang, CC BY-SA 2.0",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -784,6 +847,13 @@ export const menPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/vladimir-sidorenko.webp",
+      width: 600,
+      height: 372,
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Vladimir_Sidorenko_(table_tennis)-001.jpg",
+      credit: "Vladimir Mirskiy, CC BY-SA 3.0",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -887,6 +957,13 @@ export const menPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/dimitrij-ovtcharov.webp",
+      width: 600,
+      height: 642,
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Dimitrij_Ovtcharov_(GER)_2022.jpg",
+      credit: "Sandro Halank, Wikimedia Commons, CC BY-SA 4.0",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -1025,6 +1102,13 @@ export const menPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/patrick-franziska.webp",
+      width: 600,
+      height: 600,
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2023_DM_Tischtennis_-_Patrick_Franziska_-_by_2eight_-_9SC1378.jpg",
+      credit: "Stefan Brending (2eight), CC BY-SA 3.0 de",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -1059,6 +1143,13 @@ export const menPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/kanak-jha.webp",
+      width: 600,
+      height: 428,
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Table_tennis_at_the_2018_Summer_Youth_Olympics_%E2%80%93_Men%27s_Singles_Bronze_Medal_Match_024_(cropped).jpg",
+      credit: "Marcus Cyron, CC BY-SA 3.0",
+    },
     lastVerified: VERIFIED,
   },
 ];

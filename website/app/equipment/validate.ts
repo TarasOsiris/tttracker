@@ -1,6 +1,8 @@
 // Build-time checks on the equipment data. Any problem fails `npm run build` with a list of every issue, so a
 // value without a source or a rating without its scale can never reach the site.
-import type { Blade, Brand, Guide, GlossaryTerm, Player, Rubber, Source } from "./models";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
+import type { Blade, Brand, Guide, GlossaryTerm, Image, Player, Rubber, Source } from "./models";
 
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
@@ -32,6 +34,14 @@ export function validateEquipment(data: {
     if (sources.length === 0) err(where, "has no sources");
     sources.forEach((s) => checkSource(where, s));
   };
+  // Images must exist under public/ and say where they came from.
+  const checkImage = (where: string, img: Image | undefined) => {
+    if (!img) return;
+    if (!img.src.startsWith("/equipment/") || !existsSync(join(process.cwd(), "public", img.src))) err(where, `image file ${img.src} is missing from public/`);
+    if (!/^https?:\/\//.test(img.sourceUrl)) err(where, `image ${img.src} has no source page`);
+    if (!img.credit.trim()) err(where, `image ${img.src} has no credit`);
+    if (!(img.width > 0 && img.height > 0)) err(where, `image ${img.src} has no size`);
+  };
   const unique = (kind: string, ids: string[]) => {
     const seen = new Set<string>();
     for (const id of ids) {
@@ -51,6 +61,7 @@ export function validateEquipment(data: {
   const brandIds = new Set(data.brands.map((b) => b.id));
   data.brands.forEach((b) => {
     checkSources(`brand ${b.id}`, b.sources);
+    checkImage(`brand ${b.id}`, b.logo);
     if (b.hardnessScale && !SCALES.has(b.hardnessScale)) err(`brand ${b.id}`, `unknown hardness scale "${b.hardnessScale}"`);
   });
 
@@ -59,6 +70,7 @@ export function validateEquipment(data: {
     if (!brandIds.has(item.brandId)) err(where, `unknown brand "${item.brandId}"`);
     if (!item.id.startsWith(`${item.brandId}-`)) err(where, `id should start with "${item.brandId}-"`);
     checkSources(where, item.sources);
+    checkImage(where, item.photo);
     if (!ISO_DATE.test(item.lastVerified)) err(where, `bad lastVerified "${item.lastVerified}"`);
     if (!item.summary.trim()) err(where, "has no summary");
     if (item.description.length === 0) err(where, "has no description");
@@ -106,6 +118,7 @@ export function validateEquipment(data: {
       if (!ISO_DATE.test(p.ranking.date)) err(where, `bad ranking date "${p.ranking.date}"`);
     }
     if (!ISO_DATE.test(p.lastVerified)) err(where, `bad lastVerified "${p.lastVerified}"`);
+    checkImage(where, p.photo);
     for (const slot of ["blade", "forehand", "backhand"] as const) {
       const s = p.setup[slot];
       if (!s) {

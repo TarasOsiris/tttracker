@@ -6,7 +6,7 @@ import { ExplorerShell, type FilterDef, type SortDef, useFilters } from "../comp
 import { PageHeader } from "../components/Parts";
 import { bandLabels, bandOrder, type HardnessBand } from "../hardness";
 import { rubberTypeLabels } from "../labels";
-import type { RubberType } from "../models";
+import type { Image, RubberType } from "../models";
 import { type RubberRow, rubbersPayload } from "../store.server";
 import { breadcrumbs, equipmentMeta, itemList } from "../utils/seo";
 
@@ -31,10 +31,10 @@ export const meta: Route.MetaFunction = ({ loaderData }) => {
 
 const typeOrder: RubberType[] = ["classic", "tensor", "tacky", "hybrid", "short-pips", "medium-pips", "long-pips", "anti"];
 
-function buildDefs(rows: RubberRow[], brands: { id: string; name: string }[]): FilterDef<RubberRow>[] {
+function buildDefs(rows: RubberRow[], brands: { id: string; name: string; logo?: Image }[]): FilterDef<RubberRow>[] {
   const thicknesses = [...new Set(rows.flatMap((r) => r.spongeThicknesses))].sort((a, b) => (parseFloat(a) || 99) - (parseFloat(b) || 99));
   return [
-    { key: "brand", label: "Brand", options: brands.map((b) => ({ value: b.id, label: b.name })), match: (r, v) => r.brandId === v },
+    { key: "brand", label: "Brand", options: brands.map((b) => ({ value: b.id, label: b.name, icon: b.logo })), match: (r, v) => r.brandId === v },
     {
       key: "type",
       label: "Type",

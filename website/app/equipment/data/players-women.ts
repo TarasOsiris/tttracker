@@ -163,6 +163,13 @@ export const womenPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/wang-manyu.webp",
+      width: 600,
+      height: 400,
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Wang_Manyu_ATTC2017_2.jpeg",
+      credit: "Xiaoyu Tang, CC BY-SA 2.0",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -200,6 +207,13 @@ export const womenPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/sun-yingsha.webp",
+      width: 498,
+      height: 648,
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Sun_Yingsha.png",
+      credit: "China News Service, CC BY 3.0",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -242,6 +256,13 @@ export const womenPlayers: Player[] = [
         source: harimotoPh,
       },
     ],
+    photo: {
+      src: "/equipment/players/miwa-harimoto.webp",
+      width: 511,
+      height: 668,
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Harimoto_Miwa_2023.png",
+      credit: "China News Service, CC BY 4.0",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -349,6 +370,13 @@ export const womenPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/hina-hayata.webp",
+      width: 600,
+      height: 600,
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:ITTF_World_Tour_2017_German_Open_Hina_Hayata_02.jpg",
+      credit: "Peter Porai-Koshits, CC BY-SA 4.0",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -384,6 +412,13 @@ export const womenPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/chen-xingtong.webp",
+      width: 600,
+      height: 686,
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Chen_Xingtong_(CHN)_2017.jpg",
+      credit: "Xiaoyu Tang, CC BY-SA 2.0",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -419,6 +454,13 @@ export const womenPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/zhu-yuling.webp",
+      width: 600,
+      height: 900,
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Zhu_Yuling_WTTC2016_13.jpeg",
+      credit: "Xiaoyu Tang, CC BY-SA 2.0",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -453,6 +495,13 @@ export const womenPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/sabine-winter.webp",
+      width: 600,
+      height: 776,
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:2023_DM_Tischtennis_-_Sabine_Winter_-_by_2eight_-_9SC3050.jpg",
+      credit: "Stefan Brending (2eight), CC BY-SA 3.0 de",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -525,6 +574,13 @@ export const womenPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/shin-yubin.webp",
+      width: 600,
+      height: 704,
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:%EC%8B%A0%EC%9C%A0%EB%B9%88_%EC%84%A0%EC%88%98.jpg",
+      credit: "KTTL 한국프로탁구리그, CC BY 3.0",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -560,6 +616,13 @@ export const womenPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/satsuki-odo.webp",
+      width: 462,
+      height: 576,
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Satsuki_Odo_Swedish_Open_Championships,_2018_01_(cropped).jpg",
+      credit: "Axel Pettersson, CC BY 2.5",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -595,6 +658,13 @@ export const womenPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/hitomi-sato.webp",
+      width: 600,
+      height: 924,
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Hitomi_Sato_ATTC2017_(cropped).jpg",
+      credit: "Xiaoyu Tang, CC BY-SA 2.5",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -664,6 +734,13 @@ export const womenPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/honoka-hashimoto.webp",
+      width: 600,
+      height: 868,
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Honoka_Hashimoto_ATTC2017_(cropped).jpg",
+      credit: "Xiaoyu Tang, CC BY-SA 2.5",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -698,6 +775,13 @@ export const womenPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/han-ying.webp",
+      width: 600,
+      height: 650,
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Han_Ying_(GER)_Rio2016.jpg",
+      credit: "Sander van Ginkel, CC BY-SA 2.0",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -767,6 +851,13 @@ export const womenPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/miyu-nagasaki.webp",
+      width: 468,
+      height: 694,
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Miyu_Nagasaki_Swedish_Open_Championships_2018_cropped.jpg",
+      credit: "Haxpett, CC BY 4.0",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -870,6 +961,13 @@ export const womenPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/hana-goda.webp",
+      width: 600,
+      height: 720,
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Hana_Goda.jpg",
+      credit: "Chris93, CC BY-SA 4.0",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -938,6 +1036,13 @@ export const womenPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/bernadette-szocs.webp",
+      width: 600,
+      height: 900,
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:20220818_European_Championships_Munich_2022_Bernadette_Szocs_850_0193.jpg",
+      credit: "Granada, CC BY-SA 4.0",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -972,6 +1077,13 @@ export const womenPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/mima-ito.webp",
+      width: 600,
+      height: 748,
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:ITTF_World_Tour_2017_German_Open_Ito_Mima_04.jpg",
+      credit: "Peter Porai-Koshits, CC BY-SA 4.0",
+    },
     lastVerified: VERIFIED,
   },
   {

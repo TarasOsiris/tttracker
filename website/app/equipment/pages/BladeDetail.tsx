@@ -2,7 +2,8 @@ import { ArrowLeftRight } from "lucide-react";
 import { data, Link } from "react-router";
 import type { Route } from "./+types/BladeDetail";
 import { BladeCard } from "../components/Cards";
-import { Facts, Illustration, Notes, PageHeader, Pill, Prose, RatingsBlock, Sources, SpecTable, StatusPill, UsedBy } from "../components/Parts";
+import { Facts, Notes, ProductFigure, PageHeader, Pill, Prose, RatingsBlock, Sources, SpecTable, StatusPill, UsedBy } from "../components/Parts";
+import { BrandLogo } from "../components/Media";
 import { PlyDiagram } from "../components/PlyDiagram";
 import { DASH, construction, fiberLabels, fiberPositionLabels, formatMm, formatWeight, handleLabels } from "../labels";
 import { bladePayload } from "../store.server";
@@ -24,6 +25,7 @@ export const meta: Route.MetaFunction = ({ loaderData }) => {
     title: `${full} Blade Specs: Plies, Carbon, Thickness & Weight`,
     description: `${full} specs${specs ? ` (${specs})` : ""}: construction, handles, ${brand.name}'s own ratings and sources. ${blade.summary}`,
     path,
+    image: blade.photo && { ...blade.photo, alt: `${full} blade` },
     jsonLd: [
       breadcrumbs([
         { name: "Blades", path: "/equipment/blades" },
@@ -38,7 +40,7 @@ export const meta: Route.MetaFunction = ({ loaderData }) => {
         category: "Table tennis blade",
         description: blade.summary,
         url: absolute(path),
-        image: absolute(`/equipment/img/blades/${blade.id}.svg`),
+        image: absolute(blade.photo?.src ?? `/equipment/img/blades/${blade.id}.svg`),
         additionalProperty: [
           blade.layup && { "@type": "PropertyValue", name: "Composition", value: blade.layup },
           blade.plies != null && { "@type": "PropertyValue", name: "Plies", value: blade.plies },
@@ -82,6 +84,7 @@ export default function BladeDetail({ loaderData }: Route.ComponentProps) {
           {brand.name}
         </Link>
       </nav>
+      <BrandLogo logo={brand.logo} name={brand.name} className="-mb-4 h-8" />
       <PageHeader eyebrow={`${brand.name} blade`} title={`${brand.name} ${blade.name}`}>
         <p>{blade.summary}</p>
         <div className="mt-4 flex flex-wrap items-center gap-2">
@@ -111,9 +114,10 @@ export default function BladeDetail({ loaderData }: Route.ComponentProps) {
           <UsedBy players={usedBy} />
         </div>
         <div className="space-y-6">
-          <Illustration
-            src={`/equipment/img/blades/${blade.id}.svg`}
-            alt={`Illustration of the ${brand.name} ${blade.name} blade${blade.handles[0] ? ` with a ${handleLabels[blade.handles[0]].replace(/ \(.*/, "").toLowerCase()} handle` : ""}`}
+          <ProductFigure
+            photo={blade.photo}
+            illustration={`/equipment/img/blades/${blade.id}.svg`}
+            alt={`${brand.name} ${blade.name} blade${blade.handles[0] ? ` with a ${handleLabels[blade.handles[0]].replace(/ \(.*/, "").toLowerCase()} handle` : ""}`}
             note={`${blade.handles[0] ? `${handleLabels[blade.handles[0]].replace(/ \(.*/, "").toLowerCase()} handle` : "handle shape not published"}, ${blade.outerWood ? `${blade.outerWood.toLowerCase()} outer ply` : "generic wood colour"}`}
           />
           {blade.plyOrder && <PlyDiagram plies={blade.plyOrder} />}

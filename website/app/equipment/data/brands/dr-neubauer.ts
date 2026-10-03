@@ -40,6 +40,7 @@ export const brand: Brand = {
   ratingNote:
     "Dr. Neubauer rates rubbers with numbers for Speed and Control plus Spin, Effect or Disruptive effect, and blades with Speed, Control and Rigidity; no scale maximum is stated and some values exceed 100.",
   hardnessScale: null,
+  logo: { src: "/equipment/brands/dr-neubauer.webp", width: 262, height: 112, sourceUrl: "https://www.drneubauer.com", credit: "Logo © Dr. Neubauer" },
   sources: [company, contact],
 };
 
