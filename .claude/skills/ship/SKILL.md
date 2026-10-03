@@ -535,8 +535,13 @@ a committed production release goes to real users:
   no review.
 - **Production — draft** — `--track production`. gplay makes a production release a draft unless
   told otherwise; it sits in the Play Console until a human presses the button.
-- **Production — full release** — `--track production --complete --confirm`. Goes for review,
-  then 100% of users.
+- **Production — full release** — goes for review, then 100% of users. **Do not use
+  `--complete`:** gplay 2.0.0 sends a user fraction with it (`COMPLETED release must not have
+  fraction`), and `gplay releases complete` cannot replace the previous completed release
+  (`Only one completed release is allowed`). Upload with `--draft`, then in one Publisher API edit
+  `PUT …/edits/<id>/tracks/production` with `releases: [{versionCodes: [<new>], status:
+  "completed", releaseNotes}]`, validate and commit. Oct 2026 did this with a short Python script:
+  a JWT signed by the service-account key via `cryptography`, then `urllib`.
 - **Production — staged rollout** — `--track production --staged <fraction> --confirm`. Ask for
   the percentage, pass it as a fraction (10% → `0.1`). Widen it later with
   `gplay releases rollout --track production --staged <fraction> --confirm`.
@@ -621,14 +626,9 @@ gplay metadata apply    --dir fastlane/play-metadata --confirm
 the tree, which is a real delete. Re-run the `--dry-run` afterwards — all `unchanged` is the
 read-back.
 
-**Pending since Oct 2026:** the tree holds listings for `cs-CZ`, `ms-MY`, `nl-NL`, `pl-PL`,
-`sv-SE`, `th` and `vi`, and every full description says the app speaks 22 languages. Both wait on
-the first Android release that ships those translations. Push the metadata right after that
-release reaches production, then upload each new language's phone screenshots. Export them from the
-Screenshot Bro "tt tracker" Android row (project locales `cs`, `ms`, `nl-NL`, `pl`, `sv`, `th`,
-`vi`), stage them as `build/play-images/<lang>/images/phoneScreenshots/1.png…8.png` and run the
-`metadata images apply --type phoneScreenshots --prune` flow below. Check with `gplay metadata
-apply --dry-run` that the text push leaves no trailing-newline diffs.
+gplay does not trim trailing newlines from the tree's files; push from a copy under `build/` with
+each file's final newline stripped, or every locale shows a one-character diff. Play's code for
+Malay is plain `ms` — gplay rejects `ms-MY`.
 
 Images are a separate tree, `<dir>/<lang>/images/<type>/1.png…N.png` for galleries and
 `<dir>/<lang>/images/<type>.png` for `icon` / `featureGraphic`. Stage it under `build/` (gitignored)
