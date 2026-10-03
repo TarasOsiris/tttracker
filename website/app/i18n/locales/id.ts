@@ -10,6 +10,8 @@ export const id: Messages = {
       "Program latihan tenis meja siap cetak: dasar pemula, footwork, servis & terima servis, multiball, konsistensi, dan persiapan tanding. Dengan durasi dan tips.",
   },
   nav: {
+    app: "Aplikasi",
+    learn: "Belajar",
     features: "Fitur",
     howItWorks: "Cara kerja",
     serves: "Servis",
@@ -23,6 +25,15 @@ export const id: Messages = {
     toggleTheme: "Ganti tema",
     skipToContent: "Langsung ke konten",
     language: "Bahasa",
+  },
+  navHints: {
+    features: "Semua yang dicatat aplikasi",
+    howItWorks: "Dari latihan ke kemajuan",
+    faq: "Pertanyaan umum",
+    serves: "Servis, putaran, aturan, dan kuis",
+    drills: "Program latihan yang bisa dicetak",
+    equipment: "Blade, karet, dan perlengkapan pro (Inggris)",
+    blog: "Berita tenis meja (Inggris)",
   },
   store: {
     appStore: "Unduh di App Store",

@@ -10,6 +10,8 @@ export const es: Messages = {
       "Ejercicios de tenis de mesa para imprimir: fundamentos, juego de pies, saque y resto, multibola, regularidad y preparación de partidos, con tiempos y consejos.",
   },
   nav: {
+    app: "App",
+    learn: "Aprender",
     features: "Funciones",
     howItWorks: "Cómo funciona",
     serves: "Saques",
@@ -23,6 +25,15 @@ export const es: Messages = {
     toggleTheme: "Cambiar tema",
     skipToContent: "Saltar al contenido",
     language: "Idioma",
+  },
+  navHints: {
+    features: "Todo lo que registra la app",
+    howItWorks: "Del entrenamiento al progreso",
+    faq: "Preguntas frecuentes",
+    serves: "Saques, efectos, reglas y quiz",
+    drills: "Planes de entrenamiento imprimibles",
+    equipment: "Maderas, gomas y equipos pro (inglés)",
+    blog: "Noticias de tenis de mesa (inglés)",
   },
   store: {
     appStore: "Descárgalo en el App Store",

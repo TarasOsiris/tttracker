@@ -10,6 +10,8 @@ export const ja: Messages = {
       "印刷して使える卓球の練習メニュー集。初心者の基礎練習、フットワーク、サーブ・レシーブ、多球練習、フォア・バックの安定性、試合前の調整まで。時間配分・上達のコツ・よくある質問付き。",
   },
   nav: {
+    app: "アプリ",
+    learn: "学ぶ",
     features: "機能",
     howItWorks: "使い方",
     serves: "サーブ",
@@ -23,6 +25,15 @@ export const ja: Messages = {
     toggleTheme: "テーマ切替",
     skipToContent: "本文へスキップ",
     language: "言語",
+  },
+  navHints: {
+    features: "アプリで記録できること",
+    howItWorks: "練習から上達まで",
+    faq: "よくある質問",
+    serves: "サーブ・回転・ルール・クイズ",
+    drills: "印刷できる練習メニュー",
+    equipment: "ラケット・ラバー・トップ選手の用具（英語）",
+    blog: "卓球ニュース（英語）",
   },
   store: {
     appStore: "App Storeからダウンロード",

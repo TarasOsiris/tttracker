@@ -10,6 +10,8 @@ export const zh: Messages = {
       "免费可打印的乒乓球训练计划：新手入门基础、步法训练、发球与接发球、多球训练、正反手稳定性和赛前准备，每套都附时间安排、技巧要点和常见问题。",
   },
   nav: {
+    app: "应用",
+    learn: "学习",
     features: "功能",
     howItWorks: "使用方法",
     serves: "发球",
@@ -23,6 +25,15 @@ export const zh: Messages = {
     toggleTheme: "切换主题",
     skipToContent: "跳至正文",
     language: "语言",
+  },
+  navHints: {
+    features: "应用能记录的一切",
+    howItWorks: "从训练到进步",
+    faq: "常见问题",
+    serves: "发球、旋转、规则与测验",
+    drills: "可打印的训练计划",
+    equipment: "底板、胶皮与职业球员装备（英文）",
+    blog: "乒乓球新闻（英文）",
   },
   store: {
     appStore: "在 App Store 下载",

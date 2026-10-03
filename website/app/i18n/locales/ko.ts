@@ -10,6 +10,8 @@ export const ko: Messages = {
       "인쇄해서 쓰는 탁구 연습 방법: 초보 기본기, 풋워크, 서브·리시브, 다구 훈련, 랠리 안정성, 경기 준비. 시간 배분과 팁, 자주 묻는 질문까지 담았습니다.",
   },
   nav: {
+    app: "앱",
+    learn: "배우기",
     features: "기능",
     howItWorks: "사용 방법",
     serves: "서브",
@@ -23,6 +25,15 @@ export const ko: Messages = {
     toggleTheme: "테마 전환",
     skipToContent: "본문으로 건너뛰기",
     language: "언어",
+  },
+  navHints: {
+    features: "앱으로 기록하는 모든 것",
+    howItWorks: "연습에서 실력 향상까지",
+    faq: "자주 묻는 질문",
+    serves: "서브, 회전, 규칙, 퀴즈",
+    drills: "인쇄용 훈련 계획",
+    equipment: "블레이드, 러버, 프로 용품 (영어)",
+    blog: "탁구 뉴스 (영어)",
   },
   store: {
     appStore: "App Store에서 다운로드하기",

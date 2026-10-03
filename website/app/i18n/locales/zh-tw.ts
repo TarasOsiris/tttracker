@@ -10,6 +10,8 @@ export const zhTw: Messages = {
       "可列印的桌球（乒乓球）練習菜單與訓練計畫：新手基本功、步法、發球與接發球、多球訓練、正反手穩定度與賽前準備，每份都附時間安排、技巧提醒與常見問題，帶去球館照著練。",
   },
   nav: {
+    app: "App",
+    learn: "學習",
     features: "功能",
     howItWorks: "使用方式",
     serves: "發球",
@@ -23,6 +25,15 @@ export const zhTw: Messages = {
     toggleTheme: "切換主題",
     skipToContent: "跳至主要內容",
     language: "語言",
+  },
+  navHints: {
+    features: "App 能記錄的一切",
+    howItWorks: "從練習到進步",
+    faq: "常見問題",
+    serves: "發球、旋轉、規則與測驗",
+    drills: "可列印的訓練計畫",
+    equipment: "球拍、膠皮與職業選手裝備（英文）",
+    blog: "桌球新聞（英文）",
   },
   store: {
     appStore: "在 App Store 下載",

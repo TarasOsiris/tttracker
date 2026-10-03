@@ -10,6 +10,8 @@ export const it: Messages = {
       "Esercizi di tennis tavolo da stampare: fondamentali, gioco di gambe, servizio e risposta, multiball, costanza e preparazione alle partite. Con tempi e consigli.",
   },
   nav: {
+    app: "App",
+    learn: "Impara",
     features: "Funzionalità",
     howItWorks: "Come funziona",
     serves: "Servizi",
@@ -23,6 +25,15 @@ export const it: Messages = {
     toggleTheme: "Cambia tema",
     skipToContent: "Vai al contenuto",
     language: "Lingua",
+  },
+  navHints: {
+    features: "Tutto ciò che l'app registra",
+    howItWorks: "Dall'allenamento ai progressi",
+    faq: "Domande frequenti",
+    serves: "Servizi, effetti, regole e quiz",
+    drills: "Piani di allenamento stampabili",
+    equipment: "Telai, gomme e materiale dei pro (inglese)",
+    blog: "Notizie di tennistavolo (inglese)",
   },
   store: {
     appStore: "Scarica su App Store",

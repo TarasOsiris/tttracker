@@ -10,6 +10,8 @@ export const pt: Messages = {
       "Treinos de tênis de mesa para imprimir: fundamentos, movimentação, saque e recepção, multibola, consistência e preparação para partidas, com tempos e dicas.",
   },
   nav: {
+    app: "App",
+    learn: "Aprender",
     features: "Recursos",
     howItWorks: "Como funciona",
     serves: "Saques",
@@ -23,6 +25,15 @@ export const pt: Messages = {
     toggleTheme: "Alternar tema",
     skipToContent: "Pular para o conteúdo",
     language: "Idioma",
+  },
+  navHints: {
+    features: "Tudo o que o app registra",
+    howItWorks: "Do treino ao progresso",
+    faq: "Perguntas frequentes",
+    serves: "Saques, efeitos, regras e quiz",
+    drills: "Planos de treino para imprimir",
+    equipment: "Madeiras, borrachas e equipamento pro (inglês)",
+    blog: "Notícias de tênis de mesa (inglês)",
   },
   store: {
     appStore: "Baixar na App Store",

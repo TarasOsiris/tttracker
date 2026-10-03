@@ -10,6 +10,8 @@ export const fr: Messages = {
       "Exercices de tennis de table et ping-pong à imprimer : bases pour débutants, jeu de jambes, service-remise, multiballes, régularité et préparation aux matchs.",
   },
   nav: {
+    app: "Appli",
+    learn: "Apprendre",
     features: "Fonctionnalités",
     howItWorks: "Comment ça marche",
     serves: "Services",
@@ -23,6 +25,15 @@ export const fr: Messages = {
     toggleTheme: "Changer de thème",
     skipToContent: "Aller au contenu",
     language: "Langue",
+  },
+  navHints: {
+    features: "Tout ce que l'appli suit",
+    howItWorks: "De l'entraînement au progrès",
+    faq: "Questions fréquentes",
+    serves: "Services, effets, règles et quiz",
+    drills: "Plans d'entraînement à imprimer",
+    equipment: "Bois, revêtements, matériel des pros (anglais)",
+    blog: "Actualités du tennis de table (anglais)",
   },
   store: {
     appStore: "Télécharger dans l'App Store",

@@ -6,6 +6,9 @@ type QA = { q: string; a: string };
 export type Messages = {
   meta: { homeTitle: string; homeDescription: string; drillsTitle: string; drillsDescription: string };
   nav: {
+    /** Header menu groups: the app's own pages, and the free learning content. */
+    app: string;
+    learn: string;
     features: string;
     howItWorks: string;
     serves: string;
@@ -20,6 +23,8 @@ export type Messages = {
     skipToContent: string;
     language: string;
   };
+  /** One-line descriptions under each header menu item. */
+  navHints: { features: string; howItWorks: string; faq: string; serves: string; drills: string; equipment: string; blog: string };
   store: { appStore: string; googlePlay: string };
   hero: {
     badge: string;

@@ -10,6 +10,8 @@ export const de: Messages = {
       "Kostenlose Tischtennis-Trainingspläne zum Ausdrucken: Übungen für Anfänger, Beinarbeit, Aufschlag & Rückschlag, Multiball, Konstanz und Wettkampfvorbereitung.",
   },
   nav: {
+    app: "App",
+    learn: "Wissen",
     features: "Funktionen",
     howItWorks: "So funktioniert's",
     serves: "Aufschläge",
@@ -23,6 +25,15 @@ export const de: Messages = {
     toggleTheme: "Design wechseln",
     skipToContent: "Zum Inhalt springen",
     language: "Sprache",
+  },
+  navHints: {
+    features: "Alles, was die App erfasst",
+    howItWorks: "Vom Training zum Fortschritt",
+    faq: "Häufige Fragen",
+    serves: "Aufschläge, Schnitt, Regeln und Quiz",
+    drills: "Trainingspläne zum Ausdrucken",
+    equipment: "Hölzer, Beläge, Profi-Material (Englisch)",
+    blog: "Tischtennis-News (Englisch)",
   },
   store: {
     appStore: "Laden im App Store",

@@ -43,17 +43,20 @@ export const socials = {
   threads: "https://www.threads.com/@soycastic",
 };
 
+// Header menus group these: "app" pages are sections of the home page, "learn" is the free content. The footer lists
+// them flat.
 export const navLinks = [
-  { href: "/#features", key: "features" },
-  { href: "/#how-it-works", key: "howItWorks" },
-  { href: "/serves", key: "serves" },
-  { href: "/drills", key: "drills" },
-  // The equipment encyclopedia is English only for now, like the blog.
-  { href: "/equipment", key: "equipment", englishOnly: true },
-  // The blog is English only, so every language links to the same /blog.
-  { href: "/blog", key: "blog", englishOnly: true },
-  { href: "/#faq", key: "faq" },
+  { href: "/#features", key: "features", group: "app" },
+  { href: "/#how-it-works", key: "howItWorks", group: "app" },
+  { href: "/#faq", key: "faq", group: "app" },
+  { href: "/serves", key: "serves", group: "learn" },
+  { href: "/drills", key: "drills", group: "learn" },
+  // The equipment encyclopedia and the blog are English only, so every language links to the same page.
+  { href: "/equipment", key: "equipment", group: "learn", englishOnly: true },
+  { href: "/blog", key: "blog", group: "learn", englishOnly: true },
 ] as const;
+
+export const navGroups = ["app", "learn"] as const;
 
 export const screenshotFiles = ["screen-1", "screen-2", "screen-3", "screen-4", "screen-5", "screen-6", "screen-7", "screen-8"];
 

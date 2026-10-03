@@ -10,6 +10,8 @@ export const en: Messages = {
       "Printable table tennis practice sessions: beginner fundamentals, footwork, serve & receive, multiball, consistency and match preparation. Each with timings, tips and FAQs.",
   },
   nav: {
+    app: "App",
+    learn: "Learn",
     features: "Features",
     howItWorks: "How it works",
     serves: "Serves",
@@ -23,6 +25,15 @@ export const en: Messages = {
     toggleTheme: "Toggle theme",
     skipToContent: "Skip to content",
     language: "Language",
+  },
+  navHints: {
+    features: "Everything the app tracks",
+    howItWorks: "From practice to progress",
+    faq: "Common questions",
+    serves: "Serves, spins, rules and a quiz",
+    drills: "Printable training plans",
+    equipment: "Blades, rubbers and pro setups",
+    blog: "Table tennis news",
   },
   store: {
     appStore: "Download on the App Store",

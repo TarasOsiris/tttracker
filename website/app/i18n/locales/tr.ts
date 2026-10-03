@@ -10,6 +10,8 @@ export const tr: Messages = {
       "Yazdırılabilir masa tenisi antrenman programları: temel vuruşlar, ayak çalışması, servis ve karşılama, çoklu top, istikrar ve maç hazırlığı. İpuçları ve SSS ile.",
   },
   nav: {
+    app: "Uygulama",
+    learn: "Öğren",
     features: "Özellikler",
     howItWorks: "Nasıl çalışır",
     serves: "Servisler",
@@ -23,6 +25,15 @@ export const tr: Messages = {
     toggleTheme: "Temayı değiştir",
     skipToContent: "İçeriğe geç",
     language: "Dil",
+  },
+  navHints: {
+    features: "Uygulamanın kaydettiği her şey",
+    howItWorks: "Antrenmandan gelişime",
+    faq: "Sık sorulan sorular",
+    serves: "Servisler, falso, kurallar ve test",
+    drills: "Yazdırılabilir antrenman planları",
+    equipment: "Raket, lastik ve profesyonel ekipman (İngilizce)",
+    blog: "Masa tenisi haberleri (İngilizce)",
   },
   store: {
     appStore: "App Store'dan indirin",
