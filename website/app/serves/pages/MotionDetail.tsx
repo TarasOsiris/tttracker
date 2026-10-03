@@ -79,7 +79,7 @@ export default function MotionDetail() {
           }}
           className="text-sm text-primary underline-offset-4 hover:underline"
         >
-          &larr; {t("motionDetail.backToMotions")}
+          <span className="inline-block rtl:rotate-180">&larr;</span> {t("motionDetail.backToMotions")}
         </button>
         <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">{motion.name}</h1>
         <div className="mt-2 flex items-center gap-3">

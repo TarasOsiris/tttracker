@@ -164,18 +164,18 @@ export default function ServeExplorer() {
 
       <div className="flex flex-wrap gap-3">
         <div className="relative min-w-0 basis-full sm:basis-0 sm:flex-1">
-          <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+          <Search className="pointer-events-none absolute start-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
           <input
             type="text"
             value={filters.search ?? ""}
             onChange={(e) => setSearchParams(filtersToParams({ ...filters, search: e.target.value || undefined }))}
             placeholder={t("serveExplorer.searchPlaceholder")}
-            className="h-11 w-full rounded-full border bg-card py-2 pl-9 pr-9 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring/50"
+            className="h-11 w-full rounded-full border bg-card py-2 ps-9 pe-9 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring/50"
           />
           {filters.search && (
             <button
               onClick={() => setSearchParams(filtersToParams({ ...filters, search: undefined }))}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+              className="absolute end-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
             >
               <X className="size-4" />
             </button>
@@ -184,7 +184,7 @@ export default function ServeExplorer() {
 
         {/* Sort dropdown */}
         <div className="relative min-w-0 flex-1 sm:flex-none">
-          <ArrowUpDown className="pointer-events-none absolute left-2.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+          <ArrowUpDown className="pointer-events-none absolute start-2.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
           <select
             value={filters.sort ?? ""}
             onChange={(e) =>
@@ -192,7 +192,7 @@ export default function ServeExplorer() {
                 filtersToParams({ ...filters, sort: (e.target.value || undefined) as SortOption | undefined })
               )
             }
-            className="h-full w-full appearance-none rounded-full border bg-card py-2 pl-8 pr-8 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring/50"
+            className="h-full w-full appearance-none rounded-full border bg-card py-2 ps-8 pe-8 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring/50"
           >
             <option value="">{t("serveExplorer.sortDefault")}</option>
             {SORT_OPTIONS.map((opt) => (
@@ -285,7 +285,7 @@ export default function ServeExplorer() {
               <span className="flex size-11 items-center justify-center rounded-2xl bg-accent text-xl">{s.icon}</span>
               <h3 className="mt-4 flex items-center gap-1.5 text-lg font-bold tracking-tight">
                 {s.label}
-                <ArrowRight className="size-4 text-primary transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="size-4 text-primary transition-transform group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1" />
               </h3>
               <p className="mt-1 text-sm text-muted-foreground">{s.desc}</p>
             </Link>

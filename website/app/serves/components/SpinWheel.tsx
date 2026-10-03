@@ -43,6 +43,7 @@ export function SpinWheel({ spin, size = 120 }: SpinWheelProps) {
 
   return (
     <svg
+      direction="ltr"
       width={size}
       height={size}
       viewBox={`0 0 ${size} ${size}`}

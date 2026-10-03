@@ -9,11 +9,16 @@ import { it } from "./locales/it";
 import { ja } from "./locales/ja";
 import { ko } from "./locales/ko";
 import { pt } from "./locales/pt";
-import { zh } from "./locales/zh";
-import type { DrillSummary, Messages } from "./types";
+import { ar } from "./locales/ar";
+import { hi } from "./locales/hi";
+import { id } from "./locales/id";
+import { tr } from "./locales/tr";
 import { uk } from "./locales/uk";
+import { zh } from "./locales/zh";
+import { zhTw } from "./locales/zh-tw";
+import type { DrillSummary, Messages } from "./types";
 
-const all: Record<Locale, Messages> = { en, es, de, fr, pt, ja, zh, ko, it, uk };
+const all: Record<Locale, Messages> = { en, es, de, fr, pt, ja, zh, "zh-tw": zhTw, ko, it, uk, tr, id, hi, ar };
 
 // Fail the build if a translation drifts from the English structure the routes and checklists rely on.
 const shape = (m: Messages) =>

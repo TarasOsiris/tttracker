@@ -166,11 +166,12 @@ type Mockup = Messages["mockup"];
 function useFormats() {
   const { locale } = useI18n();
   const tag = localeInfo[locale].hreflang;
+  // Western digits everywhere, as the app shows them (Arabic would otherwise default to Arabic-Indic).
   return useMemo(
     () => ({
-      month: new Intl.DateTimeFormat(tag, { month: "long", year: "numeric", timeZone: "UTC" }),
-      weekday: new Intl.DateTimeFormat(tag, { weekday: "long", timeZone: "UTC" }),
-      full: new Intl.DateTimeFormat(tag, { weekday: "long", month: "long", day: "numeric", timeZone: "UTC" }),
+      month: new Intl.DateTimeFormat(tag, { month: "long", year: "numeric", timeZone: "UTC", numberingSystem: "latn" }),
+      weekday: new Intl.DateTimeFormat(tag, { weekday: "long", timeZone: "UTC", numberingSystem: "latn" }),
+      full: new Intl.DateTimeFormat(tag, { weekday: "long", month: "long", day: "numeric", timeZone: "UTC", numberingSystem: "latn" }),
     }),
     [tag],
   );
@@ -203,21 +204,21 @@ export function PhoneMockup() {
       </div>
 
       {/* floating stat cards */}
-      <div className="pointer-events-none absolute bottom-28 -left-36 hidden w-44 rounded-2xl border bg-card/95 p-3 shadow-xl backdrop-blur xl:block">
+      <div className="pointer-events-none absolute bottom-28 -start-36 hidden w-44 rounded-2xl border bg-card/95 p-3 shadow-xl backdrop-blur xl:block">
         <p className="text-[11px] font-semibold text-muted-foreground">{m.heatmapLabel}</p>
         <Heatmap weeks={14} cell="size-2" className="mt-2 gap-[2px]" />
         <p className="mt-2 font-display text-sm font-bold">
           {m.heatmapStat} <span className="text-xs font-medium text-muted-foreground">· {m.heatmapHours}</span>
         </p>
       </div>
-      <div className="pointer-events-none absolute -top-8 -right-20 hidden items-center gap-3 rounded-2xl border bg-card/95 p-3 pr-4 shadow-xl backdrop-blur xl:flex">
+      <div className="pointer-events-none absolute -top-8 -end-20 hidden items-center gap-3 rounded-2xl border bg-card/95 p-3 pe-4 shadow-xl backdrop-blur xl:flex">
         <span className="flex size-9 items-center justify-center rounded-xl bg-tertiary-container text-tertiary-container-foreground">
           <Trophy className="size-4" />
         </span>
         <div>
           <p className="text-[11px] font-semibold text-muted-foreground">{m.winRate}</p>
           <p className="font-display text-lg leading-tight font-extrabold">
-            64% <span className="text-xs font-semibold text-[#2e7d32] dark:text-win">+8%</span>
+            64% <span dir="ltr" className="text-xs font-semibold text-[#2e7d32] dark:text-win">+8%</span>
           </p>
         </div>
       </div>
@@ -263,7 +264,7 @@ function AppScreen() {
           type="button"
           onClick={() => setAdding(true)}
           aria-label={m.addSession}
-          className="absolute right-3.5 bottom-[4.6rem] z-20 flex size-12 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg shadow-primary/30 transition-transform hover:scale-105 active:scale-95"
+          className="absolute end-3.5 bottom-[4.6rem] z-20 flex size-12 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg shadow-primary/30 transition-transform hover:scale-105 active:scale-95"
         >
           <Plus className="size-6" strokeWidth={2.5} />
         </button>
@@ -487,7 +488,9 @@ function Calendar({
     const dx = e.clientX - drag.current.x;
     const dy = e.clientY - drag.current.y;
     drag.current = null;
-    if (Math.abs(dx) > 24 && Math.abs(dx) > Math.abs(dy)) page(dx < 0 ? 1 : -1);
+    // Swiping towards the start of the line moves forward, which is leftwards only in left-to-right pages.
+    const forward = getComputedStyle(e.currentTarget).direction === "rtl" ? dx > 0 : dx < 0;
+    if (Math.abs(dx) > 24 && Math.abs(dx) > Math.abs(dy)) page(forward ? 1 : -1);
   };
 
   return (
@@ -515,7 +518,7 @@ function Calendar({
               aria-label={fmt.month.format(dateOf(step(n)))}
               className="flex size-7 items-center justify-center rounded-full text-primary hover:bg-secondary disabled:opacity-30"
             >
-              {n < 0 ? <ChevronLeft className="size-4" /> : <ChevronRight className="size-4" />}
+              {n < 0 ? <ChevronLeft className="size-4 rtl:rotate-180" /> : <ChevronRight className="size-4 rtl:rotate-180" />}
             </button>
           ))}
         </div>

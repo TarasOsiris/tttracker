@@ -1,6 +1,7 @@
 import type { Language } from "../i18n/types";
 
-type I18n = Partial<Record<Language, Record<string, string>>>;
+// Every language but English (whose labels are the values themselves), so a new locale can't fall back silently.
+type I18n = Record<Exclude<Language, "en">, Record<string, string>>;
 
 const speedEmoji: Record<string, string> = {
   slow: "🐢",
@@ -18,6 +19,11 @@ const speedI18n: I18n = {
   pt: { slow: "lento", medium: "médio", fast: "rápido" },
   ko: { slow: "느림", medium: "보통", fast: "빠름" },
   it: { slow: "lento", medium: "medio", fast: "veloce" },
+  "zh-tw": { slow: "慢速", medium: "中速", fast: "快速" },
+  tr: { slow: "yavaş", medium: "orta", fast: "hızlı" },
+  id: { slow: "lambat", medium: "sedang", fast: "cepat" },
+  hi: { slow: "धीमी", medium: "मध्यम", fast: "तेज़" },
+  ar: { slow: "بطيء", medium: "متوسط", fast: "سريع" },
 };
 
 const commonalityEmoji: Record<string, string> = {
@@ -37,6 +43,11 @@ const commonalityI18n: I18n = {
   pt: { "very common": "muito comum", common: "comum", uncommon: "incomum", rare: "raro" },
   ko: { "very common": "매우 흔함", common: "흔함", uncommon: "드묾", rare: "희귀" },
   it: { "very common": "molto comune", common: "comune", uncommon: "poco comune", rare: "raro" },
+  "zh-tw": { "very common": "非常常見", common: "常見", uncommon: "少見", rare: "罕見" },
+  tr: { "very common": "çok yaygın", common: "yaygın", uncommon: "az görülen", rare: "nadir" },
+  id: { "very common": "sangat umum", common: "umum", uncommon: "jarang", rare: "langka" },
+  hi: { "very common": "बहुत आम", common: "आम", uncommon: "कम आम", rare: "दुर्लभ" },
+  ar: { "very common": "شائع جدًا", common: "شائع", uncommon: "غير شائع", rare: "نادر" },
 };
 
 const bounceEmoji: Record<string, string> = {
@@ -55,6 +66,11 @@ const bounceI18n: I18n = {
   pt: { short: "curto", "half-long": "meio-longo", long: "longo" },
   ko: { short: "짧음", "half-long": "하프롱", long: "긺" },
   it: { short: "corto", "half-long": "mezza lunghezza", long: "lungo" },
+  "zh-tw": { short: "短球", "half-long": "半出台", long: "長球" },
+  tr: { short: "kısa", "half-long": "yarı uzun", long: "uzun" },
+  id: { short: "pendek", "half-long": "setengah panjang", long: "panjang" },
+  hi: { short: "शॉर्ट", "half-long": "हाफ-लॉन्ग", long: "लॉन्ग" },
+  ar: { short: "قصير", "half-long": "نصف طويل", long: "طويل" },
 };
 
 const riskEmoji: Record<string, string> = {
@@ -73,6 +89,11 @@ const riskI18n: I18n = {
   pt: { low: "baixo", medium: "médio", high: "alto" },
   ko: { low: "낮음", medium: "보통", high: "높음" },
   it: { low: "basso", medium: "medio", high: "alto" },
+  "zh-tw": { low: "低", medium: "中", high: "高" },
+  tr: { low: "düşük", medium: "orta", high: "yüksek" },
+  id: { low: "rendah", medium: "sedang", high: "tinggi" },
+  hi: { low: "कम", medium: "मध्यम", high: "ज़्यादा" },
+  ar: { low: "منخفض", medium: "متوسط", high: "مرتفع" },
 };
 
 const trajectoryEmoji: Record<string, string> = {
@@ -91,6 +112,11 @@ const trajectoryI18n: I18n = {
   pt: { flat: "reta", "low-arc": "arco baixo", "high-arc": "arco alto" },
   ko: { flat: "직선", "low-arc": "낮은 궤적", "high-arc": "높은 궤적" },
   it: { flat: "piatta", "low-arc": "arco basso", "high-arc": "arco alto" },
+  "zh-tw": { flat: "平直", "low-arc": "低弧線", "high-arc": "高弧線" },
+  tr: { flat: "düz", "low-arc": "alçak yay", "high-arc": "yüksek yay" },
+  id: { flat: "datar", "low-arc": "lengkung rendah", "high-arc": "lengkung tinggi" },
+  hi: { flat: "सीधी", "low-arc": "नीचा आर्क", "high-arc": "ऊँचा आर्क" },
+  ar: { flat: "مستقيم", "low-arc": "قوس منخفض", "high-arc": "قوس مرتفع" },
 };
 
 const tossEmoji: Record<string, string> = {
@@ -109,6 +135,11 @@ const tossI18n: I18n = {
   pt: { low: "baixo", medium: "médio", high: "alto" },
   ko: { low: "낮은 토스", medium: "보통 토스", high: "높은 토스" },
   it: { low: "basso", medium: "medio", high: "alto" },
+  "zh-tw": { low: "低拋", medium: "中拋", high: "高拋" },
+  tr: { low: "alçak", medium: "orta", high: "yüksek" },
+  id: { low: "rendah", medium: "sedang", high: "tinggi" },
+  hi: { low: "नीचा", medium: "मध्यम", high: "ऊँचा" },
+  ar: { low: "منخفضة", medium: "متوسطة", high: "عالية" },
 };
 
 const handEmoji: Record<string, string> = {
@@ -126,6 +157,11 @@ const handI18n: I18n = {
   pt: { forehand: "forehand", backhand: "backhand" },
   ko: { forehand: "포핸드", backhand: "백핸드" },
   it: { forehand: "dritto", backhand: "rovescio" },
+  "zh-tw": { forehand: "正手", backhand: "反手" },
+  tr: { forehand: "forehand", backhand: "backhand" },
+  id: { forehand: "forehand", backhand: "backhand" },
+  hi: { forehand: "फोरहैंड", backhand: "बैकहैंड" },
+  ar: { forehand: "الضربة الأمامية", backhand: "الضربة الخلفية" },
 };
 
 const spinCapEmoji: Record<string, string> = {
@@ -184,14 +220,41 @@ const spinCapI18n: I18n = {
     "right-sidespin": "laterale dx", "no-spin": "senza effetto", sidespin: "laterale",
     "heavy-backspin": "taglio pesante",
   },
+  "zh-tw": {
+    backspin: "下旋", topspin: "上旋", "left-sidespin": "左側旋",
+    "right-sidespin": "右側旋", "no-spin": "不轉", sidespin: "側旋",
+    "heavy-backspin": "強下旋",
+  },
+  tr: {
+    backspin: "alt falso", topspin: "üst falso", "left-sidespin": "sol yan falso",
+    "right-sidespin": "sağ yan falso", "no-spin": "falsosuz", sidespin: "yan falso",
+    "heavy-backspin": "ağır alt falso",
+  },
+  id: {
+    backspin: "backspin", topspin: "topspin", "left-sidespin": "sidespin kiri",
+    "right-sidespin": "sidespin kanan", "no-spin": "tanpa putaran", sidespin: "sidespin",
+    "heavy-backspin": "backspin berat",
+  },
+  hi: {
+    backspin: "बैकस्पिन", topspin: "टॉपस्पिन", "left-sidespin": "बाईं साइडस्पिन",
+    "right-sidespin": "दाईं साइडस्पिन", "no-spin": "नो-स्पिन", sidespin: "साइडस्पिन",
+    "heavy-backspin": "भारी बैकस्पिन",
+  },
+  ar: {
+    backspin: "دوران خلفي", topspin: "دوران أمامي", "left-sidespin": "جانبي أيسر",
+    "right-sidespin": "جانبي أيمن", "no-spin": "بدون دوران", sidespin: "دوران جانبي",
+    "heavy-backspin": "دوران خلفي قوي",
+  },
 };
 
 function label(v: string, i18n: I18n, lang?: Language) {
-  return lang ? (i18n[lang]?.[v] ?? v) : v;
+  return lang && lang !== "en" ? (i18n[lang][v] ?? v) : v;
 }
 
 export function eSpeed(v: string, lang?: Language) { return `${speedEmoji[v] ?? ""} ${label(v, speedI18n, lang)}`; }
 export function eCommonality(v: string, lang?: Language) { return `${commonalityEmoji[v] ?? ""} ${label(v, commonalityI18n, lang)}`; }
+/** The bounce category without its emoji, for diagram labels. */
+export function bounceName(v: string, lang?: Language) { return label(v, bounceI18n, lang); }
 export function eBounce(v: string, lang?: Language) { return `${bounceEmoji[v] ?? ""} ${label(v, bounceI18n, lang)}`; }
 export function eRisk(v: string, lang?: Language) { return `${riskEmoji[v] ?? ""} ${label(v, riskI18n, lang)}`; }
 export function eTrajectory(v: string, lang?: Language) { return `${trajectoryEmoji[v] ?? ""} ${label(v, trajectoryI18n, lang)}`; }

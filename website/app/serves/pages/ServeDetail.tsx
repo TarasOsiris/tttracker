@@ -94,7 +94,7 @@ export default function ServeDetail() {
             }}
             className="text-sm text-primary underline-offset-4 hover:underline"
           >
-            &larr; {t("serveDetail.backToServes")}
+            <span className="inline-block rtl:rotate-180">&larr;</span> {t("serveDetail.backToServes")}
           </button>
           <button
             onClick={() => {

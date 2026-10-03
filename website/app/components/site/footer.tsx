@@ -103,7 +103,7 @@ export function SiteFooter() {
               <Link
                 to={l.to}
                 hrefLang={localeInfo[l.locale].hreflang}
-                lang={l.locale}
+                lang={localeInfo[l.locale].hreflang}
                 className={l.locale === locale ? "font-semibold text-foreground" : linkClass}
               >
                 {l.label}

@@ -105,7 +105,7 @@ export function DrillChecklist({ drill }: { drill: Drill }) {
           <section key={b.title}>
             <div className="flex items-baseline justify-between">
               <h2 className="text-xl font-bold tracking-tight">{b.title}</h2>
-              <span className="text-sm text-muted-foreground">{b.items.reduce((s, i) => s + i.minutes, 0)} min</span>
+              <span className="text-sm text-muted-foreground">{format(t.drillsPage.minutes, { n: b.items.reduce((s, i) => s + i.minutes, 0) })}</span>
             </div>
             <ul className="mt-3 divide-y overflow-hidden rounded-3xl border bg-card">
               {b.items.map((it) => {

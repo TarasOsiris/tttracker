@@ -1,5 +1,6 @@
 import type { Bounce } from "../models";
 import { useLanguage } from "../context";
+import { bounceName } from "../utils/emoji";
 
 interface BounceDiagramProps {
   bounce: Bounce;
@@ -12,7 +13,7 @@ const riskColor: Record<string, string> = {
 };
 
 export function BounceDiagram({ bounce }: BounceDiagramProps) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   // Table dimensions in SVG coordinates
   const tableY = 60;
@@ -56,6 +57,7 @@ export function BounceDiagram({ bounce }: BounceDiagramProps) {
 
   return (
     <svg
+      direction="ltr"
       width="300"
       height="90"
       viewBox="0 0 300 90"
@@ -87,7 +89,7 @@ export function BounceDiagram({ bounce }: BounceDiagramProps) {
       <text x={tableLeft} y={tableY + 18} fontSize="9" fill={labelColor}>{t("components.server")}</text>
       <text x={tableRight - 40} y={tableY + 18} fontSize="9" fill={labelColor}>{t("components.receiver")}</text>
       <text x={bounceX} y={tableY - 8} textAnchor="middle" fontSize="8" fill={color} fontWeight="600">
-        {bounce.category}
+        {bounceName(bounce.category, language)}
       </text>
     </svg>
   );

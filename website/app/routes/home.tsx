@@ -242,7 +242,7 @@ function DrillsTeaser({ drills }: { drills: DrillSummary[] }) {
             to={href("/drills")}
             className="inline-flex items-center gap-2 rounded-full border bg-card px-5 py-2.5 text-sm font-semibold transition-colors hover:border-primary/40"
           >
-            {t.drillsTeaser.browseAll} <ArrowRight className="size-4" />
+            {t.drillsTeaser.browseAll} <ArrowRight className="size-4 rtl:rotate-180" />
           </Link>
         </div>
       </div>
@@ -273,7 +273,7 @@ function ServesTeaser({ serves }: { serves: Route.ComponentProps["loaderData"]["
               </div>
               <h3 className="mt-5 text-lg font-bold tracking-tight">{s.name}</h3>
               <p className="mt-1.5 line-clamp-3 flex-1 text-sm leading-relaxed text-muted-foreground">{s.description}</p>
-              <ArrowRight className="mt-5 size-4 text-primary transition-transform group-hover:translate-x-1" />
+              <ArrowRight className="mt-5 size-4 text-primary transition-transform group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1" />
             </Link>
           ))}
         </div>
@@ -282,7 +282,7 @@ function ServesTeaser({ serves }: { serves: Route.ComponentProps["loaderData"]["
             to={href("/serves")}
             className="inline-flex h-11 items-center gap-2 rounded-full bg-primary px-6 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all hover:-translate-y-0.5 hover:bg-primary/90"
           >
-            {t.servesTeaser.cta} <ArrowRight className="size-4" />
+            {t.servesTeaser.cta} <ArrowRight className="size-4 rtl:rotate-180" />
           </Link>
         </div>
       </div>

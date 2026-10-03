@@ -1,11 +1,14 @@
+import { useLanguage } from "../context";
+
 interface DifficultyMeterProps {
   level: number; // 1-5
   max?: number;
 }
 
 export function DifficultyMeter({ level, max = 5 }: DifficultyMeterProps) {
+  const { t } = useLanguage();
   return (
-    <div className="flex items-center gap-1" title={`Difficulty: ${level}/${max}`}>
+    <div className="flex items-center gap-1" title={`${t("serveDetail.difficulty")}: ${level}/${max}`}>
       {Array.from({ length: max }, (_, i) => (
         <div
           key={i}

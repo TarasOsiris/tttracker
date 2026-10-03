@@ -34,7 +34,7 @@ export const en: Messages = {
     subtitleStrong: "ping pong & table tennis training journal",
     subtitleAfter:
       ". Log practice in under 30 seconds, record matches against saved opponents, and see a year of progress at a glance.",
-    trustPoints: ["Free", "No account", "Works offline", "14 languages"],
+    trustPoints: ["Free", "No account", "Works offline", "15 languages"],
   },
   mockup: {
     weekdays: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
@@ -112,7 +112,7 @@ export const en: Messages = {
         icon: "simple",
         title: "Simple by design",
         body: "No sign-up, no clutter, no cloud required. Everything stays on your device.",
-        bullets: ["Works fully offline", "Light & dark theme", "Available in 14 languages"],
+        bullets: ["Works fully offline", "Light & dark theme", "Available in 15 languages"],
       },
     ],
   },
@@ -193,7 +193,7 @@ export const en: Messages = {
       },
       {
         q: "What languages is it available in?",
-        a: "14: English, Arabic, Chinese, French, German, Hindi, Indonesian, Italian, Japanese, Korean, Portuguese, Spanish, Turkish and Ukrainian.",
+        a: "15: English, Arabic, Chinese (Simplified and Traditional), French, German, Hindi, Indonesian, Italian, Japanese, Korean, Portuguese, Spanish, Turkish and Ukrainian.",
       },
     ],
   },
@@ -360,7 +360,7 @@ export const en: Messages = {
       level: "All levels",
       sessionType: "serve",
       intro:
-        "Every point starts with a serve, yet it's the most under-practised shot. This plan needs only a bucket of balls for the serve half, and a partner for receive. Pair it with our sister site TT Serves for technique breakdowns.",
+        "Every point starts with a serve, yet it's the most under-practised shot. This plan needs only a bucket of balls for the serve half, and a partner for receive. Pair it with our serve encyclopedia for a technique breakdown of every serve.",
       blocks: [
         {
           title: "Warm-up",
@@ -394,7 +394,7 @@ export const en: Messages = {
       faqs: [
         { q: "How many serves should I practise?", a: "A bucket of 50–100 balls per session is plenty. Focus on quality and placement." },
         { q: "What's the most important serve to learn first?", a: "A short backspin serve. It stops opponents attacking and sets up your third ball." },
-        { q: "Where can I learn more serve techniques?", a: "TT Serves covers 20+ serves, from pendulum to reverse and tomahawk, with step-by-step guides." },
+        { q: "Where can I learn more serve techniques?", a: "Our free serve encyclopedia covers 29 serves, from pendulum to reverse pendulum and tomahawk: how to do each one and how to return it." },
       ],
     },
     {

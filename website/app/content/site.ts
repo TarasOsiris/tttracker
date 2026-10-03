@@ -2,8 +2,8 @@ export const SITE_URL = "https://ttapp.smashyapps.com";
 import type { Locale } from "~/i18n/config";
 
 /**
- * The app as each store listing names it (TableTennisTracker/fastlane/metadata/<lang>/name.txt), for
- * page titles, the header and share cards. `brand` is the part that fits a header; the full name in
+ * The app as each store listing names it (TableTennisTracker/fastlane/metadata/<lang>/name.txt, or
+ * play-metadata/zh-TW/title.txt for zh-tw), for page titles, the header and share cards. `brand` is the part that fits a header; the full name in
  * some languages carries keywords after it. "TT Tracker" is only the label under the home-screen icon.
  */
 export const appNames: Record<Locale, { name: string; brand: string }> = {
@@ -17,6 +17,11 @@ export const appNames: Record<Locale, { name: string; brand: string }> = {
   ko: { name: "탁구 훈련일지 - 경기·연습 기록 노트", brand: "탁구 훈련일지" },
   it: { name: "Ping Pong & Tennis Tavolo", brand: "Ping Pong & Tennis Tavolo" },
   uk: { name: "Настільний теніс: щоденник", brand: "Настільний теніс" },
+  "zh-tw": { name: "桌球筆記 乒乓球訓練·比賽紀錄·勝率", brand: "桌球筆記" },
+  tr: { name: "Masa Tenisi Antrenman Günlüğü", brand: "Masa Tenisi Antrenman Günlüğü" },
+  id: { name: "Jurnal Latihan Tenis Meja", brand: "Jurnal Latihan Tenis Meja" },
+  hi: { name: "टेबल टेनिस ट्रेनिंग डायरी", brand: "टेबल टेनिस ट्रेनिंग डायरी" },
+  ar: { name: "تنس الطاولة: سجل التدريب", brand: "تنس الطاولة: سجل التدريب" },
 };
 
 export const APP_NAME = appNames.en.name;

@@ -1,8 +1,9 @@
-export const locales = ["en", "es", "de", "fr", "pt", "ja", "zh", "ko", "it", "uk"] as const;
+export const locales = ["en", "es", "de", "fr", "pt", "ja", "zh", "zh-tw", "ko", "it", "uk", "tr", "id", "hi", "ar"] as const;
 export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = "en";
 
-export const localeInfo: Record<Locale, { label: string; hreflang: string; og: string }> = {
+/** `hreflang` doubles as the `lang` attribute. Arabic is the only right-to-left locale. */
+export const localeInfo: Record<Locale, { label: string; hreflang: string; og: string; dir?: "rtl" }> = {
   en: { label: "English", hreflang: "en", og: "en_US" },
   es: { label: "Español", hreflang: "es", og: "es_ES" },
   de: { label: "Deutsch", hreflang: "de", og: "de_DE" },
@@ -10,9 +11,14 @@ export const localeInfo: Record<Locale, { label: string; hreflang: string; og: s
   pt: { label: "Português", hreflang: "pt-BR", og: "pt_BR" },
   ja: { label: "日本語", hreflang: "ja", og: "ja_JP" },
   zh: { label: "简体中文", hreflang: "zh-Hans", og: "zh_CN" },
+  "zh-tw": { label: "繁體中文", hreflang: "zh-Hant", og: "zh_TW" },
   ko: { label: "한국어", hreflang: "ko", og: "ko_KR" },
   it: { label: "Italiano", hreflang: "it", og: "it_IT" },
   uk: { label: "Українська", hreflang: "uk", og: "uk_UA" },
+  tr: { label: "Türkçe", hreflang: "tr", og: "tr_TR" },
+  id: { label: "Bahasa Indonesia", hreflang: "id", og: "id_ID" },
+  hi: { label: "हिन्दी", hreflang: "hi", og: "hi_IN" },
+  ar: { label: "العربية", hreflang: "ar", og: "ar_AR", dir: "rtl" },
 };
 
 const isLocale = (s: string | undefined): s is Locale => !!s && (locales as readonly string[]).includes(s);

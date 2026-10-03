@@ -46,7 +46,7 @@ export function inline(text: string): ReactNode[] {
 function Block({ block }: { block: LegalBlock }) {
   if (typeof block === "string") return <p>{inline(block)}</p>;
   return (
-    <ul className="list-disc space-y-3 pl-5 marker:text-primary">
+    <ul className="list-disc space-y-3 ps-5 marker:text-primary">
       {block.list.map((item, i) => (
         <li key={i}>{inline(item)}</li>
       ))}

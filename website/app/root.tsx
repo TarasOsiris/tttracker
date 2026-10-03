@@ -5,6 +5,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  type ShouldRevalidateFunctionArgs,
   useLocation,
   useRouteLoaderData,
 } from "react-router";
@@ -15,7 +16,7 @@ import favicon32 from "~/assets/icon/favicon-32x32.png?no-inline";
 import { SiteFooter } from "~/components/site/footer";
 import { SiteHeader } from "~/components/site/header";
 import { buttonVariants } from "~/components/ui/button";
-import { localeFromPath, localizePath } from "~/i18n/config";
+import { localeFromPath, localeInfo, localizePath } from "~/i18n/config";
 import { uiMessages } from "~/i18n/messages.server";
 import "./app.css";
 
@@ -50,11 +51,17 @@ export function loader({ request }: Route.LoaderArgs) {
   return { locale, t: uiMessages(locale) };
 }
 
+// The root route has no URL params, so by default its strings would stay in the old language after a
+// client-side switch from /es/... to /de/....
+export function shouldRevalidate({ currentUrl, nextUrl, defaultShouldRevalidate }: ShouldRevalidateFunctionArgs) {
+  return localeFromPath(currentUrl.pathname) !== localeFromPath(nextUrl.pathname) || defaultShouldRevalidate;
+}
+
 export function Layout({ children }: { children: React.ReactNode }) {
   const locale = localeFromPath(useLocation().pathname);
   const data = useRouteLoaderData<typeof loader>("root");
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={localeInfo[locale].hreflang} dir={localeInfo[locale].dir ?? "ltr"} suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -69,7 +76,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:rounded-md focus:bg-card focus:px-3 focus:py-2"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:start-3 focus:z-50 focus:rounded-md focus:bg-card focus:px-3 focus:py-2"
         >
           {data?.t.nav.skipToContent ?? "Skip to content"}
         </a>

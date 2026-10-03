@@ -32,9 +32,35 @@ import { uk } from "./i18n/uk";
 import { ukData } from "./i18n/uk-data";
 import { zh } from "./i18n/zh";
 import { zhData } from "./i18n/zh-data";
+import { zhTw } from "./i18n/zh-tw";
+import { zhTwData } from "./i18n/zh-tw-data";
+import { tr } from "./i18n/tr";
+import { trData } from "./i18n/tr-data";
+import { id } from "./i18n/id";
+import { idData } from "./i18n/id-data";
+import { hi } from "./i18n/hi";
+import { hiData } from "./i18n/hi-data";
+import { ar } from "./i18n/ar";
+import { arData } from "./i18n/ar-data";
 
-const dictionaries: Record<Locale, TranslationDict> = { en, es, de, fr, pt, ja, zh, ko, it, uk };
-const dataTranslations: Partial<Record<Locale, DataTranslations>> = {
+const dictionaries: Record<Locale, TranslationDict> = {
+  en,
+  es,
+  de,
+  fr,
+  pt,
+  ja,
+  zh,
+  "zh-tw": zhTw,
+  ko,
+  it,
+  uk,
+  tr,
+  id,
+  hi,
+  ar,
+};
+const dataTranslations: Record<Exclude<Locale, "en">, DataTranslations> = {
   es: esData,
   de: deData,
   fr: frData,
@@ -44,12 +70,40 @@ const dataTranslations: Partial<Record<Locale, DataTranslations>> = {
   ko: koData,
   it: itData,
   uk: ukData,
+  "zh-tw": zhTwData,
+  tr: trData,
+  id: idData,
+  hi: hiData,
+  ar: arData,
 };
 
 // A missing key would put English on a page indexed as another language, so fail the build instead.
 for (const [locale, dict] of Object.entries(dictionaries)) {
   const missing = Object.keys(en).filter((k) => !(k in dict));
   if (missing.length) throw new Error(`Serves dictionary "${locale}" is missing: ${missing.slice(0, 5).join(", ")}`);
+}
+
+// Same for the data overlays: every text field English has must be translated.
+const translatedFields: { [K in keyof DataTranslations]: [items: { id: string }[], fields: string[]] } = {
+  serves: [serves, ["name", "description", "legalityNotes", "contactPoint", "returnAdvice"]],
+  motions: [motions, ["name", "description"]],
+  spins: [spins, ["name", "description"]],
+  bounces: [bounces, ["label", "secondBouncePosition"]],
+  speeds: [speeds, ["tacticalNote"]],
+  trajectories: [trajectories, ["netClearance"]],
+  tosses: [tosses, ["position"]],
+  deceptions: [deceptions, ["name", "description", "counterplay"]],
+  tacticalPurposes: [tacticalPurposes, ["name", "goal"]],
+  placements: [placements, ["label", "description"]],
+};
+for (const [locale, tr] of Object.entries(dataTranslations)) {
+  for (const [collection, [items, fields]] of Object.entries(translatedFields)) {
+    const overlay = tr[collection as keyof DataTranslations] as Record<string, Record<string, unknown>>;
+    for (const item of items as Record<string, unknown>[]) {
+      const missing = fields.filter((f) => item[f] && !overlay[item.id as string]?.[f]);
+      if (missing.length) throw new Error(`Serves data "${locale}" is missing ${collection}.${item.id}: ${missing.join(", ")}`);
+    }
+  }
 }
 
 function applyTranslation<T extends { id: string }>(items: T[], translations: Record<string, Partial<T>> | undefined): T[] {
@@ -61,7 +115,7 @@ function applyTranslation<T extends { id: string }>(items: T[], translations: Re
 }
 
 export function servesPayload(locale: Locale) {
-  const tr = dataTranslations[locale];
+  const tr = locale === "en" ? undefined : dataTranslations[locale];
   return {
     dict: dictionaries[locale],
     data: {

@@ -23,6 +23,7 @@ export function PlacementGrid({ placements, allPlacements }: PlacementGridProps)
 
   return (
     <svg
+      direction="ltr"
       width="300"
       height="400"
       viewBox="0 0 300 400"

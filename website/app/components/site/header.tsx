@@ -48,7 +48,7 @@ function LanguageMenu() {
       <DropdownMenuContent align="end" className="w-48 rounded-2xl p-1.5">
         {languages.map((l) => (
           <DropdownMenuItem key={l.locale} asChild className="rounded-xl px-3 py-2">
-            <Link to={l.to} hrefLang={localeInfo[l.locale].hreflang} lang={l.locale}>
+            <Link to={l.to} hrefLang={localeInfo[l.locale].hreflang} lang={localeInfo[l.locale].hreflang}>
               <span className="flex-1">{l.label}</span>
               {l.locale === locale && <Check className="size-4 text-primary" />}
             </Link>
@@ -150,7 +150,7 @@ export function SiteHeader() {
                 <Menu className="size-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[85vw] max-w-sm overflow-y-auto p-6">
+            <SheetContent side={localeInfo[locale].dir === "rtl" ? "left" : "right"} className="w-[85vw] max-w-sm overflow-y-auto p-6">
               <SheetTitle className="sr-only">{t.nav.menu}</SheetTitle>
               <Logo />
               <nav className="mt-8 flex flex-col gap-1" aria-label="Mobile">
@@ -191,7 +191,7 @@ function MobileLanguages() {
             <Link
               to={l.to}
               hrefLang={localeInfo[l.locale].hreflang}
-              lang={l.locale}
+              lang={localeInfo[l.locale].hreflang}
               className={cn(
                 "rounded-full border px-3 py-1.5 text-sm",
                 l.locale === locale ? "border-primary bg-accent font-semibold text-accent-foreground" : "hover:bg-secondary",

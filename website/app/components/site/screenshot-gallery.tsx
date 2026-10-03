@@ -24,8 +24,10 @@ export function ScreenshotGallery() {
   const updateEdges = useCallback(() => {
     const el = track.current;
     if (!el) return;
-    const start = el.scrollLeft < 8;
-    const end = el.scrollLeft + el.clientWidth >= el.scrollWidth - 8;
+    // scrollLeft runs from 0 towards negative values in right-to-left pages.
+    const offset = Math.abs(el.scrollLeft);
+    const start = offset < 8;
+    const end = offset + el.clientWidth >= el.scrollWidth - 8;
     setEdges((prev) => (prev.start === start && prev.end === end ? prev : { start, end }));
   }, []);
 
@@ -38,7 +40,8 @@ export function ScreenshotGallery() {
   const scroll = (dir: 1 | -1) => {
     const el = track.current;
     if (!el) return;
-    el.scrollBy({ left: dir * el.clientWidth * 0.8, behavior: "smooth" });
+    const rtl = getComputedStyle(el).direction === "rtl";
+    el.scrollBy({ left: (rtl ? -dir : dir) * el.clientWidth * 0.8, behavior: "smooth" });
   };
 
   const step = (dir: 1 | -1) => setIndex((i) => (i + dir + screenshots.length) % screenshots.length);
@@ -56,7 +59,7 @@ export function ScreenshotGallery() {
           disabled={edges.start}
           aria-label={t.screenshots.previous}
         >
-          <ChevronLeft className="size-5" />
+          <ChevronLeft className="size-5 rtl:rotate-180" />
         </Button>
         <Button
           variant="outline"
@@ -66,7 +69,7 @@ export function ScreenshotGallery() {
           disabled={edges.end}
           aria-label={t.screenshots.next}
         >
-          <ChevronRight className="size-5" />
+          <ChevronRight className="size-5 rtl:rotate-180" />
         </Button>
       </div>
       <div
@@ -103,15 +106,15 @@ export function ScreenshotGallery() {
           showCloseButton={false}
           className="w-auto max-w-[calc(100%-2rem)] border-0 bg-transparent p-0 shadow-none sm:max-w-none"
           onKeyDown={(e) => {
-            if (e.key === "ArrowRight") step(1);
-            if (e.key === "ArrowLeft") step(-1);
+            const forward = getComputedStyle(e.currentTarget).direction === "rtl" ? "ArrowLeft" : "ArrowRight";
+            if (e.key === "ArrowRight" || e.key === "ArrowLeft") step(e.key === forward ? 1 : -1);
           }}
         >
           <DialogTitle className="sr-only">Screenshot {index + 1}</DialogTitle>
           <DialogDescription className="sr-only">{current.alt}</DialogDescription>
           <div className="flex items-center gap-3">
             <Button variant="secondary" size="icon-lg" className="hidden rounded-full sm:inline-flex" onClick={() => step(-1)} aria-label={t.screenshots.previousOne}>
-              <ChevronLeft className="size-5" />
+              <ChevronLeft className="size-5 rtl:rotate-180" />
             </Button>
             <img
               src={src(current.file)}
@@ -122,7 +125,7 @@ export function ScreenshotGallery() {
               className="max-h-[85vh] w-auto cursor-pointer rounded-3xl shadow-2xl"
             />
             <Button variant="secondary" size="icon-lg" className="hidden rounded-full sm:inline-flex" onClick={() => step(1)} aria-label={t.screenshots.nextOne}>
-              <ChevronRight className="size-5" />
+              <ChevronRight className="size-5 rtl:rotate-180" />
             </Button>
           </div>
           <p className="text-center text-sm text-white/80 tabular-nums">

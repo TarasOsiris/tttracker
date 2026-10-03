@@ -28,7 +28,7 @@ export function DrillCard({ drill }: { drill: DrillSummary }) {
             <ListChecks className="size-3.5" /> {format(t.drillsPage.drillCount, { n: drill.count })}
           </span>
         </span>
-        <ArrowRight className="size-4 text-primary transition-transform group-hover:translate-x-1" />
+        <ArrowRight className="size-4 text-primary transition-transform group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1" />
       </div>
     </Link>
   );

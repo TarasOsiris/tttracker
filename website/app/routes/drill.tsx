@@ -8,7 +8,7 @@ import { Faq, faqJsonLd, JsonLd } from "~/components/site/faq";
 import { Button } from "~/components/ui/button";
 import { drillCount, totalMinutes } from "~/content/drills";
 import { SITE_URL } from "~/content/site";
-import { format, localeFromPath, localizePath } from "~/i18n/config";
+import { format, localeFromPath, localeInfo, localizePath } from "~/i18n/config";
 import { getMessages, summarize } from "~/i18n/messages.server";
 import { useI18n } from "~/i18n/use-i18n";
 import { rootT } from "~/lib/root-data";
@@ -44,7 +44,7 @@ export default function DrillPage({ loaderData }: Route.ComponentProps) {
     name: drill.title,
     description: drill.metaDescription,
     totalTime: `PT${totalMinutes(drill)}M`,
-    inLanguage: locale,
+    inLanguage: localeInfo[locale].hreflang,
     url: `${SITE_URL}${localizePath(locale, `/drills/${drill.slug}`)}`,
     step: drill.blocks.flatMap((b) =>
       b.items.map((it) => ({ "@type": "HowToStep", name: it.name, text: it.note ?? format(t.drillsPage.minutesLong, { n: it.minutes }) })),
@@ -58,7 +58,7 @@ export default function DrillPage({ loaderData }: Route.ComponentProps) {
       <article className="px-4 pt-28 pb-12 sm:px-6 sm:pt-36">
         <div className="mx-auto max-w-3xl">
           <Link to={href("/drills")} className="no-print inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground">
-            <ArrowLeft className="size-4" /> {t.drillsPage.back}
+            <ArrowLeft className="size-4 rtl:rotate-180" /> {t.drillsPage.back}
           </Link>
           <div className="mt-8 flex items-center gap-4">
             <span className="flex size-16 shrink-0 items-center justify-center rounded-3xl bg-accent text-4xl">{drill.emoji}</span>

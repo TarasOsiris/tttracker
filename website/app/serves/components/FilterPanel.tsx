@@ -127,7 +127,7 @@ function FilterGroup({ label, count, children }: { label: string; count?: number
       <p className="mb-1.5 text-xs font-medium uppercase tracking-wide text-muted-foreground">
         {label}
         {count != null && count > 0 && (
-          <span className="ml-1.5 inline-flex size-4 items-center justify-center rounded-full bg-primary text-[10px] font-semibold text-primary-foreground">
+          <span className="ms-1.5 inline-flex size-4 items-center justify-center rounded-full bg-primary text-[10px] font-semibold text-primary-foreground">
             {count}
           </span>
         )}
