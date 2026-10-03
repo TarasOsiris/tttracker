@@ -7,12 +7,13 @@ import { DrillChecklist } from "~/components/site/drill-checklist";
 import { Faq, faqJsonLd, JsonLd } from "~/components/site/faq";
 import { Button } from "~/components/ui/button";
 import { drillCount, totalMinutes } from "~/content/drills";
-import { SITE_URL } from "~/content/site";
+import { appNames, SITE_URL } from "~/content/site";
 import { format, localeFromPath, localeInfo, localizePath } from "~/i18n/config";
 import { getMessages, summarize } from "~/i18n/messages.server";
 import { useI18n } from "~/i18n/use-i18n";
 import { rootT } from "~/lib/root-data";
 import { seo } from "~/lib/seo";
+import { breadcrumbList } from "~/serves/utils/seo";
 
 // Runs at build time for every prerendered locale/slug pair.
 export function loader({ params, request }: Route.LoaderArgs) {
@@ -54,6 +55,12 @@ export default function DrillPage({ loaderData }: Route.ComponentProps) {
   return (
     <>
       <JsonLd data={howTo} />
+      <JsonLd
+        data={breadcrumbList(locale, appNames[locale].brand, [
+          { name: t.nav.drills, path: "/drills" },
+          { name: drill.title, path: `/drills/${drill.slug}` },
+        ])}
+      />
       <JsonLd data={faqJsonLd(drill.faqs)} />
       <article className="px-4 pt-28 pb-12 sm:px-6 sm:pt-36">
         <div className="mx-auto max-w-3xl">

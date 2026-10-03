@@ -1,11 +1,14 @@
 import type { Route } from "./+types/drills";
 import { CtaSection } from "~/components/site/cta-section";
 import { DrillCard } from "~/components/site/drill-card";
-import { localeFromPath } from "~/i18n/config";
+import { JsonLd } from "~/components/site/faq";
+import { appNames, SITE_URL } from "~/content/site";
+import { localeFromPath, localizePath } from "~/i18n/config";
 import { drillSummaries } from "~/i18n/messages.server";
 import { useI18n } from "~/i18n/use-i18n";
 import { rootT } from "~/lib/root-data";
 import { seo } from "~/lib/seo";
+import { breadcrumbList } from "~/serves/utils/seo";
 
 export function loader({ request }: Route.LoaderArgs) {
   return { drills: drillSummaries(localeFromPath(new URL(request.url).pathname)) };
@@ -22,9 +25,22 @@ export const meta: Route.MetaFunction = ({ matches, location }) => {
 };
 
 export default function Drills({ loaderData }: Route.ComponentProps) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   return (
     <>
+      <JsonLd data={breadcrumbList(locale, appNames[locale].brand, [{ name: t.nav.drills, path: "/drills" }])} />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          itemListElement: loaderData.drills.map((d, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            name: d.title,
+            url: `${SITE_URL}${localizePath(locale, `/drills/${d.slug}`)}`,
+          })),
+        }}
+      />
       <section className="relative overflow-hidden px-4 pt-32 pb-16 sm:px-6 sm:pt-40">
         <div className="dot-grid absolute inset-0" />
         <div className="hero-glow" />
