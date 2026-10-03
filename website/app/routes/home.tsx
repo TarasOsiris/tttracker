@@ -26,7 +26,7 @@ import { featuredServes } from "~/serves/store.server";
 import type { DrillSummary, FeatureIcon } from "~/i18n/types";
 import { useI18n } from "~/i18n/use-i18n";
 import { rootT } from "~/lib/root-data";
-import { OG_IMAGE, seo } from "~/lib/seo";
+import { ogImageUrl, seo } from "~/lib/seo";
 
 export function loader({ request }: Route.LoaderArgs) {
   const locale = localeFromPath(new URL(request.url).pathname);
@@ -62,7 +62,7 @@ const appJsonLd = (locale: Locale, url: string, description: string) => ({
   url,
   inLanguage: locale,
   image: `${SITE_URL}/android-chrome-512x512.png`,
-  screenshot: OG_IMAGE.url,
+  screenshot: ogImageUrl(locale),
   operatingSystem: "iOS, iPadOS, Android",
   applicationCategory: "SportsApplication",
   applicationSubCategory: "HealthApplication",

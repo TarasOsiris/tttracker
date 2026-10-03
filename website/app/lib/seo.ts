@@ -2,7 +2,9 @@ import type { MetaDescriptor } from "react-router";
 import { appNames, SITE_URL } from "~/content/site";
 import { type Locale, localeInfo, locales, localizePath } from "~/i18n/config";
 
-export const OG_IMAGE = { url: `${SITE_URL}/og-image.png`, width: 1200, height: 630 };
+/** Share card per language: the home hero rendered by `scripts/og-images.sh` into public/og/. */
+export const OG_IMAGE = { width: 1200, height: 630 };
+export const ogImageUrl = (locale: Locale) => `${SITE_URL}/og/${locale}.jpg`;
 
 /** Google cuts snippets at about 155–160 characters; cut on a word boundary so it ends cleanly. */
 const MAX_DESCRIPTION = 160;
@@ -24,14 +26,18 @@ export function seo({
   path,
   locale,
   localized = true,
+  image = { src: ogImageUrl(locale), ...OG_IMAGE, alt: appNames[locale].name },
 }: {
   title: string;
   description: string;
   path: string;
   locale: Locale;
   localized?: boolean;
+  /** Share card; defaults to the language's home hero. `src` may be site-relative. */
+  image?: { src: string; width: number; height: number; alt: string };
 }): MetaDescriptor[] {
   const description = clampDescription(raw);
+  const imageUrl = image.src.startsWith("/") ? `${SITE_URL}${image.src}` : image.src;
   const url = `${SITE_URL}${localizePath(locale, path)}`;
   const alternates: MetaDescriptor[] = localized
     ? [
@@ -55,13 +61,13 @@ export function seo({
     { property: "og:title", content: title },
     { property: "og:description", content: description },
     { property: "og:url", content: url },
-    { property: "og:image", content: OG_IMAGE.url },
-    { property: "og:image:width", content: String(OG_IMAGE.width) },
-    { property: "og:image:height", content: String(OG_IMAGE.height) },
-    { property: "og:image:alt", content: appNames[locale].name },
+    { property: "og:image", content: imageUrl },
+    { property: "og:image:width", content: String(image.width) },
+    { property: "og:image:height", content: String(image.height) },
+    { property: "og:image:alt", content: image.alt },
     { name: "twitter:card", content: "summary_large_image" },
     { name: "twitter:title", content: title },
     { name: "twitter:description", content: description },
-    { name: "twitter:image", content: OG_IMAGE.url },
+    { name: "twitter:image", content: imageUrl },
   ];
 }

@@ -1,6 +1,6 @@
 import { appNames, SITE_URL } from "~/content/site";
 import { localeInfo, locales, localizePath } from "~/i18n/config";
-import { clampDescription, OG_IMAGE } from "~/lib/seo";
+import { clampDescription, OG_IMAGE, ogImageUrl } from "~/lib/seo";
 import { useLanguage } from "../context";
 
 export type JsonLd = Record<string, unknown> | (Record<string, unknown> | undefined)[];
@@ -42,14 +42,14 @@ export function Seo({ title, description: raw, path = "/", jsonLd, noIndex }: Se
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={url} />
-      <meta property="og:image" content={OG_IMAGE.url} />
+      <meta property="og:image" content={ogImageUrl(language)} />
       <meta property="og:image:width" content={String(OG_IMAGE.width)} />
       <meta property="og:image:height" content={String(OG_IMAGE.height)} />
       <meta property="og:image:alt" content={appNames[language].name} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={OG_IMAGE.url} />
+      <meta name="twitter:image" content={ogImageUrl(language)} />
       {blocks.map((b, i) => (
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(b) }} />
       ))}

@@ -17,13 +17,14 @@ export const meta: Route.MetaFunction = ({ data }) => {
   const url = `${SITE_URL}/blog/${post.slug}`;
   const image = `${SITE_URL}${post.hero.src}`;
   return [
-    ...seo({ title: `${post.title} | ${APP_NAME}`, description: post.description, path: `/blog/${post.slug}`, locale: "en", localized: false }).map((m) => {
-      if ("property" in m && m.property === "og:type") return { property: "og:type", content: "article" };
-      if ("property" in m && m.property === "og:image") return { property: "og:image", content: image };
-      if ("name" in m && m.name === "twitter:image") return { name: "twitter:image", content: image };
-      return m;
-    }),
-    { property: "og:image:alt", content: post.hero.alt },
+    ...seo({
+      title: `${post.title} | ${APP_NAME}`,
+      description: post.description,
+      path: `/blog/${post.slug}`,
+      locale: "en",
+      localized: false,
+      image: post.hero,
+    }).map((m) => ("property" in m && m.property === "og:type" ? { property: "og:type", content: "article" } : m)),
     { name: "keywords", content: post.keywords.join(", ") },
     { property: "article:published_time", content: post.published },
     {
