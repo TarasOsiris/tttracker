@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import type { Route } from "./+types/blog-post";
 import { inline } from "~/components/site/legal-page";
-import { formatDate, getPost, posts } from "~/content/blog";
+import { type BlogImage, formatDate, getPost, posts } from "~/content/blog";
 import { APP_NAME, SITE_URL } from "~/content/site";
 import { seo } from "~/lib/seo";
 
@@ -15,10 +15,15 @@ export const meta: Route.MetaFunction = ({ data }) => {
   if (!data) return [{ title: `Not found | ${APP_NAME}` }];
   const { post } = data;
   const url = `${SITE_URL}/blog/${post.slug}`;
+  const image = `${SITE_URL}${post.hero.src}`;
   return [
-    ...seo({ title: `${post.title} | ${APP_NAME}`, description: post.description, path: `/blog/${post.slug}`, locale: "en", localized: false }).map((m) =>
-      "property" in m && m.property === "og:type" ? { property: "og:type", content: "article" } : m,
-    ),
+    ...seo({ title: `${post.title} | ${APP_NAME}`, description: post.description, path: `/blog/${post.slug}`, locale: "en", localized: false }).map((m) => {
+      if ("property" in m && m.property === "og:type") return { property: "og:type", content: "article" };
+      if ("property" in m && m.property === "og:image") return { property: "og:image", content: image };
+      if ("name" in m && m.name === "twitter:image") return { name: "twitter:image", content: image };
+      return m;
+    }),
+    { property: "og:image:alt", content: post.hero.alt },
     { name: "keywords", content: post.keywords.join(", ") },
     { property: "article:published_time", content: post.published },
     {
@@ -30,7 +35,7 @@ export const meta: Route.MetaFunction = ({ data }) => {
         datePublished: post.published,
         dateModified: post.published,
         keywords: post.keywords.join(", "),
-        image: `${SITE_URL}/og-image.png`,
+        image,
         mainEntityOfPage: url,
         author: { "@type": "Organization", name: "Nineva Studios", url: "https://ninevastudios.com" },
         publisher: { "@type": "Organization", name: "Nineva Studios", url: "https://ninevastudios.com" },
@@ -38,6 +43,30 @@ export const meta: Route.MetaFunction = ({ data }) => {
     },
   ];
 };
+
+function Figure({ image, priority }: { image: BlogImage; priority?: boolean }) {
+  return (
+    <figure className="mt-6">
+      <img
+        src={image.src}
+        width={image.width}
+        height={image.height}
+        alt={image.alt}
+        loading={priority ? "eager" : "lazy"}
+        fetchPriority={priority ? "high" : undefined}
+        decoding="async"
+        className="h-auto w-full rounded-2xl border object-cover"
+      />
+      <figcaption className="mt-2 text-xs leading-relaxed text-muted-foreground">
+        {image.caption} Photo:{" "}
+        <a href={image.creditUrl} target="_blank" rel="noopener noreferrer" className="underline-offset-2 hover:underline">
+          {image.credit}
+        </a>
+        , via Wikimedia Commons.
+      </figcaption>
+    </figure>
+  );
+}
 
 export default function BlogPost({ loaderData }: Route.ComponentProps) {
   const { post } = loaderData;
@@ -57,9 +86,19 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
           </p>
           <p className="mt-6 text-lg leading-relaxed text-muted-foreground">{post.intro}</p>
         </header>
+        <Figure image={post.hero} priority />
+        <aside className="mt-8 rounded-2xl border bg-card p-6">
+          <h2 className="font-display text-lg font-bold">In short</h2>
+          <ul className="mt-3 list-disc space-y-2 pl-5 leading-relaxed text-muted-foreground marker:text-primary">
+            {post.takeaways.map((t, i) => (
+              <li key={i}>{inline(t)}</li>
+            ))}
+          </ul>
+        </aside>
         {post.sections.map((section) => (
           <section key={section.heading} className="mt-10">
             <h2 className="font-display text-xl font-bold tracking-tight sm:text-2xl">{section.heading}</h2>
+            {section.image && <Figure image={section.image} />}
             <div className="mt-4 space-y-4 leading-relaxed text-muted-foreground">
               {section.blocks.map((block, i) =>
                 typeof block === "string" ? (
