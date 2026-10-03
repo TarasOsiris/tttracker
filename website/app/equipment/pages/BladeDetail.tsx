@@ -14,6 +14,7 @@ import {
   StatusPill,
   UsedBy,
 } from "../components/Parts";
+import { BladeInContext, schematicPlies } from "../components/ItemVisuals";
 import { PlyDiagram } from "../components/PlyDiagram";
 import { DASH, construction, fiberLabels, fiberPositionLabels, formatMm, formatWeight, handleLabels } from "../labels";
 import { bladePayload } from "../store.server";
@@ -82,7 +83,8 @@ export const meta: Route.MetaFunction = ({ loaderData }) => {
 };
 
 export default function BladeDetail({ loaderData }: Route.ComponentProps) {
-  const { blade, brand, usedBy, similar } = loaderData;
+  const { blade, brand, usedBy, similar, distribution, weightMid } = loaderData;
+  const schematic = schematicPlies(blade);
   const rows = [
     { label: "Brand", value: brand.name },
     { label: "Construction", value: construction(blade) },
@@ -175,6 +177,8 @@ export default function BladeDetail({ loaderData }: Route.ComponentProps) {
         </div>
         <div className="space-y-6">
           {blade.plyOrder && <PlyDiagram plies={blade.plyOrder} />}
+          {schematic && <PlyDiagram plies={schematic} schematicFrom={blade.layup ?? `${blade.plies} plies`} />}
+          <BladeInContext thickness={blade.thicknessMm} weight={weightMid} weightLabel={formatWeight(blade.weightG)} distribution={distribution} />
           <RatingsBlock ratings={blade.manufacturerRatings} brand={brand} />
           <Notes notes={blade.notes} />
           <Sources sources={blade.sources} lastVerified={blade.lastVerified} />

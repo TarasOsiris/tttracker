@@ -465,6 +465,7 @@ export const bladeGuides: Guide[] = [
       },
       {
         heading: "Speed classes (OFF, ALL, DEF)",
+        figure: { type: "diagram", diagram: "speed-classes", caption: "The class labels in order from fastest to slowest, as Paddle Palace lists them. Each brand uses its own subset and its own idea of where a blade belongs." },
         blocks: [
           "Makers sort blades into speed classes. Paddle Palace lists them from \"OFF+ to the slowest rating of DEF-\", where a faster rating means the ball bounces farther off the blade for the same force ([Paddle Palace](https://blog.paddlepalace.com/2011/03/table-tennis-blade-selection-guide/)). Megaspin describes all-round blades as quicker than defensive ones but short of power from mid-distance, and defensive blades as made for choppers and blockers ([Megaspin](https://www.megaspin.net/store/extra/blade-guide.asp)).",
           "Each brand assigns its own classes, so an OFF from one maker isn't necessarily as fast as an OFF from another. We show each maker's class as printed and don't compare them across brands.",
@@ -472,6 +473,7 @@ export const bladeGuides: Guide[] = [
       },
       {
         heading: "Thickness and weight",
+        figure: { type: "diagram", diagram: "blade-thickness-weight", caption: "Every blade in our catalogue whose maker publishes both thickness and weight (a weight range is plotted at its midpoint). Hover a dot to see the blade, click to open it." },
         blocks: [
           "Megaspin's guide puts blades under about 6 mm on the control-and-spin side and 6 mm and up on the power side, and notes that composites can stiffen a thinner blade ([Megaspin](https://www.megaspin.net/store/extra/blade-guide.asp)). Single-ply hinoki penholds are much thicker, around 10 mm ([Butterfly](https://shop.butterflyonline.com/cypress-g-max-s-7364)).",
           "Stiga sorts its blades into weight bands: low 75 to 85 g, mid 80 to 90 g, high 85 to 95 g ([Stiga](https://www.stigasports.com/en/explore-stiga-sports/choosing-the-right-blade-for-your-table-tennis-racket)). Butterfly's advice is to \"choose a racket as heavy as you can swing comfortably and with full control\": heavier gives more power at the same swing speed, lighter is quicker between forehand and backhand ([Butterfly](https://www.butterfly-global.com/en/faq/detail/015710.html)). Butterfly also notes that a blade's weight varies with humidity and temperature ([Butterfly](https://butterflyonline.com/butterfly-blade-specifications/)), so a listed weight is nominal.",

@@ -213,7 +213,20 @@ export interface Player {
 }
 
 /** Built-in explanatory drawings (components/GuideDiagrams.tsx); schematic, drawn from what the guides state. */
-export type GuideDiagram = "layup-outer-inner" | "plies-5-7" | "handles" | "rubber-section" | "pips-heights" | "sponge-thickness" | "hardness-bands";
+export type GuideDiagram =
+  | "layup-outer-inner"
+  | "plies-5-7"
+  | "handles"
+  | "rubber-section"
+  | "pips-heights"
+  | "sponge-thickness"
+  | "hardness-bands"
+  | "speed-classes"
+  | "max-sponge"
+  | "colour-rules"
+  | "scale-anchors"
+  /** Data chart of every catalogue blade with a published thickness and weight. */
+  | "blade-thickness-weight";
 
 /** An illustration shown after a guide section's text. */
 export type GuideFigure =

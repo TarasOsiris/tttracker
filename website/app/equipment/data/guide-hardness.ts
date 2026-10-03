@@ -61,6 +61,7 @@ export const hardnessGuide: Guide = {
     },
     {
       heading: "How the scales roughly line up",
+      figure: { type: "diagram", diagram: "scale-anchors", caption: "Products quoted in this guide on their own scales. Each line is a separate scale, so positions can't be compared from one line to the next." },
       blocks: [
         "The only conversion we found published by a manufacturer is Nittaku's dual labelling, which puts its Japanese figure ten points below the German one (37.5 and 47.5). Retailers' estimates for Chinese sponges are less consistent: TableTennis11 puts DHS 36, 39 and 40 at roughly 45, 51 and 53 on the ESN scale, so the gap grows as sponges get harder. Other retailers give figures two or three degrees apart from that.",
         "So treat any conversion as approximate. A 40° Chinese sponge is far harder than a 40° European one, but no table can tell you its exact European equivalent.",

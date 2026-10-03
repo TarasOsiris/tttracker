@@ -119,8 +119,35 @@ function SetupTable({ id, rows, title }: { id: string; rows: PlayerRow[]; title:
   );
 }
 
+type Share = Route.ComponentProps["loaderData"]["brandShare"]["blades"];
+
+/** One bar per brand; bars share a scale within the chart so lengths compare directly. */
+function BrandShare({ title, unit, share }: { title: string; unit: string; share: Share }) {
+  const max = Math.max(...share.rows.map((r) => r.count), 1);
+  return (
+    <div className="rounded-3xl border bg-card p-5">
+      <h2 className="font-bold">{title}</h2>
+      <p className="mt-0.5 text-xs text-muted-foreground">
+        Out of {share.total} {unit}
+        {share.unresolved > 0 ? `; ${share.unresolved} are custom, unconfirmed or not in our catalogue` : ""}.
+      </p>
+      <ul className="mt-4 space-y-2">
+        {share.rows.map((r) => (
+          <li key={r.id} className="grid grid-cols-[6.5rem_minmax(0,1fr)_2rem] items-center gap-3 text-sm">
+            <Link to={`/equipment/brands/${r.id}`} className="flex h-6 items-center hover:opacity-80" title={r.name}>
+              {r.logo ? <BrandLogo logo={r.logo} name={r.name} className="h-6" /> : <span className="font-medium">{r.name}</span>}
+            </Link>
+            <span className="h-3 rounded-e bg-[#2a78d6] dark:bg-[#3987e5]" style={{ width: `${(r.count / max) * 100}%` }} title={`${r.name}: ${r.count}`} />
+            <span className="text-end font-semibold tabular-nums">{r.count}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 export default function Pros({ loaderData }: Route.ComponentProps) {
-  const { rows, topBlades, topRubbers } = loaderData;
+  const { rows, topBlades, topRubbers, brandShare } = loaderData;
   const ranked = rows.filter((r) => r.ranking);
   const men = ranked.filter((r) => r.gender === "men");
   const women = ranked.filter((r) => r.gender === "women");
@@ -195,6 +222,11 @@ export default function Pros({ loaderData }: Route.ComponentProps) {
           ))}
         </section>
       )}
+
+      <section className="grid gap-4 sm:grid-cols-2">
+        <BrandShare title="Blade brands" unit="blades" share={brandShare.blades} />
+        <BrandShare title="Rubber brands" unit="rubbers (forehand and backhand)" share={brandShare.rubbers} />
+      </section>
 
       <SetupTable id="men" rows={men} title="Men's top players" />
       <SetupTable id="women" rows={women} title="Women's top players" />

@@ -9,7 +9,8 @@ function plyStyle(name: string): string {
   return "bg-amber-200 dark:bg-amber-300";
 }
 
-export function PlyDiagram({ plies }: { plies: string[] }) {
+/** `schematicFrom`: the published build this generic order was derived from, when the maker gives no exact ply order. */
+export function PlyDiagram({ plies, schematicFrom }: { plies: string[]; schematicFrom?: string }) {
   const core = Math.floor(plies.length / 2);
   return (
     <figure className="rounded-3xl border bg-card p-5 sm:p-6">
@@ -23,7 +24,9 @@ export function PlyDiagram({ plies }: { plies: string[] }) {
         ))}
       </div>
       <figcaption className="mt-3 text-xs text-muted-foreground">
-        Ply order as published by the maker. Schematic, not to scale; composite layers are hatched.
+        {schematicFrom
+          ? `Typical order for the published build (${schematicFrom}); the maker doesn't publish its ply-by-ply order or woods. Not to scale; composite layers are hatched.`
+          : "Ply order as published by the maker. Schematic, not to scale; composite layers are hatched."}
       </figcaption>
     </figure>
   );

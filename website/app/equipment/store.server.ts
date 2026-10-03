@@ -5,6 +5,7 @@ import { type HardnessBand, hardnessBands } from "./hardness";
 import { construction } from "./labels";
 import type { Blade, Brand, Image, Player, Rubber, SetupSlot } from "./models";
 import { validateEquipment } from "./validate";
+import type { BladePoint } from "./components/GuideDiagrams";
 
 validateEquipment({ brands, blades, rubbers, players, guides, glossary });
 
@@ -116,10 +117,28 @@ function similarRubbers(r: Rubber): RubberRow[] {
     .map(({ o }) => rubberRow(o));
 }
 
+const midWeight = (w: NonNullable<Blade["weightG"]>) => (w.max != null ? (w.min + w.max) / 2 : w.min);
+
+/** Published thickness and weight of every other blade, for the "compared with the catalogue" strips. */
+function bladeDistribution(exceptId: string) {
+  const others = blades.filter((b) => b.id !== exceptId);
+  return {
+    thickness: others.flatMap((b) => (b.thicknessMm != null ? [b.thicknessMm] : [])),
+    weight: others.flatMap((b) => (b.weightG ? [midWeight(b.weightG)] : [])),
+  };
+}
+
 export function bladePayload(id: string) {
   const blade = bladeById.get(id);
   if (!blade) return null;
-  return { blade, brand: brandRef(blade.brandId), usedBy: usedBy("blade", id), similar: similarBlades(blade) };
+  return {
+    blade,
+    brand: brandRef(blade.brandId),
+    usedBy: usedBy("blade", id),
+    similar: similarBlades(blade),
+    distribution: bladeDistribution(id),
+    weightMid: blade.weightG ? midWeight(blade.weightG) : null,
+  };
 }
 
 export function rubberPayload(id: string) {
@@ -196,10 +215,28 @@ function mostUsed(kind: "blade" | "rubber", lookup: Map<string, Blade | Rubber>)
     .slice(0, 6);
 }
 
+/** How many tracked setups use each brand, from slots that resolve to a catalog item; the rest are counted apart. */
+function brandShare(slots: SetupSlot[]) {
+  const counts = new Map<string, number>();
+  let unresolved = 0;
+  for (const p of players)
+    for (const slot of slots) {
+      const id = p.setup[slot].itemId;
+      const item = id ? (slot === "blade" ? bladeById.get(id) : rubberById.get(id)) : undefined;
+      if (item) counts.set(item.brandId, (counts.get(item.brandId) ?? 0) + 1);
+      else unresolved++;
+    }
+  const rows = [...counts]
+    .map(([id, count]) => ({ id, name: brandById.get(id)!.name, logo: brandById.get(id)!.logo, count }))
+    .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
+  return { rows, unresolved, total: players.length * slots.length };
+}
+
 export function prosPayload() {
   const rank = (p: Player) => p.ranking?.position ?? Number.POSITIVE_INFINITY;
   const sorted = [...players].sort((a, b) => rank(a) - rank(b) || a.name.localeCompare(b.name));
   return {
+    brandShare: { blades: brandShare(["blade"]), rubbers: brandShare(["forehand", "backhand"]) },
     rows: sorted.map(playerRow),
     topBlades: mostUsed("blade", bladeById),
     topRubbers: mostUsed("rubber", rubberById),
@@ -260,6 +297,20 @@ export function guidesPayload() {
   return guides.map(({ slug, title, description }) => ({ slug, title, description }));
 }
 
+/** Every blade with a published thickness and weight; a weight range is plotted at its midpoint. */
+function bladeScatter(): BladePoint[] {
+  return blades
+    .filter((b) => b.thicknessMm != null && b.weightG)
+    .map((b) => ({
+      name: b.name,
+      brandName: brandById.get(b.brandId)!.name,
+      href: `/equipment/blades/${b.id}`,
+      thickness: b.thicknessMm!,
+      weight: b.weightG!.max != null ? (b.weightG!.min + b.weightG!.max) / 2 : b.weightG!.min,
+      group: b.fibers.length === 0 ? "all-wood" : b.fiberPosition === "outer" ? "outer" : b.fiberPosition === "inner" ? "inner" : "unstated",
+    }));
+}
+
 export type FigureProduct = { href: string; name: string; brandName: string; brandLogo?: Image; photo?: Image; illustration: string; note?: string };
 
 export function guidePayload(slug: string) {
@@ -284,7 +335,10 @@ export function guidePayload(slug: string) {
       };
     }
   }
-  return { guide, terms, products, others: guidesPayload().filter((g) => g.slug !== slug) };
+  // Data charts get their points only on the guide that shows them.
+  const needsBlades = guide.sections.some((s) => s.figure?.type === "diagram" && s.figure.diagram === "blade-thickness-weight");
+  const bladePoints = needsBlades ? bladeScatter() : [];
+  return { guide, terms, products, bladePoints, others: guidesPayload().filter((g) => g.slug !== slug) };
 }
 
 export function glossaryPayload() {

@@ -1,6 +1,6 @@
 import { data, Link } from "react-router";
 import type { Route } from "./+types/Guide";
-import { GuideDiagramView } from "../components/GuideDiagrams";
+import { type BladePoint, GuideDiagramView } from "../components/GuideDiagrams";
 import { BrandLogo, Credit, ProductThumb } from "../components/Media";
 import { Sources } from "../components/Parts";
 import type { GuideFigure } from "../models";
@@ -57,7 +57,7 @@ function readingMinutes(guide: Route.ComponentProps["loaderData"]["guide"]): num
 }
 
 export default function Guide({ loaderData }: Route.ComponentProps) {
-  const { guide, terms, others, products } = loaderData;
+  const { guide, terms, others, products, bladePoints } = loaderData;
   return (
     <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_260px]">
       <article className="max-w-3xl min-w-0">
@@ -91,7 +91,7 @@ export default function Guide({ loaderData }: Route.ComponentProps) {
                 ),
               )}
             </div>
-            {s.figure && <GuideFigureView figure={s.figure} products={products} />}
+            {s.figure && <GuideFigureView figure={s.figure} products={products} bladePoints={bladePoints} />}
           </section>
         ))}
         <div id="sources" className="mt-12 scroll-mt-24 border-t pt-8">
@@ -147,10 +147,18 @@ export default function Guide({ loaderData }: Route.ComponentProps) {
   );
 }
 
-function GuideFigureView({ figure, products }: { figure: GuideFigure; products: Record<string, FigureProduct> }) {
+function GuideFigureView({
+  figure,
+  products,
+  bladePoints,
+}: {
+  figure: GuideFigure;
+  products: Record<string, FigureProduct>;
+  bladePoints: BladePoint[];
+}) {
   return (
     <figure className="mt-6 rounded-3xl border bg-card p-5 sm:p-6">
-      {figure.type === "diagram" && <GuideDiagramView diagram={figure.diagram} />}
+      {figure.type === "diagram" && <GuideDiagramView diagram={figure.diagram} bladePoints={bladePoints} />}
       {figure.type === "photo" && (
         <img
           src={figure.image.src}

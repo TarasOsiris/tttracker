@@ -49,7 +49,7 @@ function parseIds(raw: string | null): { kind: Kind; ids: string[] } | null {
   return { kind, ids: [...new Set(parts.filter(([k]) => k === kind).map(([, id]) => id))].slice(0, MAX) };
 }
 
-type Row<T> = { label: string; render: (item: T) => React.ReactNode };
+type Row<T> = { label: string; render: (item: T) => React.ReactNode; /** Physical value drawn as a bar, sharing one scale across the row. */ bar?: (item: T) => number | null };
 
 const bladeRows: Row<BladeItem>[] = [
   { label: "Construction", render: (b) => b.construction },
@@ -58,8 +58,12 @@ const bladeRows: Row<BladeItem>[] = [
   { label: "Composite", render: (b) => (b.fibers.length ? (b.fiberName ?? b.fibers.map((f) => fiberLabels[f]).join(", ")) : "None") },
   { label: "Composite position", render: (b) => (b.fibers.length ? (b.fiberPosition ? fiberPositionLabels[b.fiberPosition] : DASH) : "—") },
   { label: "Outer ply", render: (b) => b.outerWood ?? DASH },
-  { label: "Thickness", render: (b) => formatMm(b.thicknessMm) },
-  { label: "Nominal weight", render: (b) => formatWeight(b.weightG) },
+  { label: "Thickness", render: (b) => formatMm(b.thicknessMm), bar: (b) => b.thicknessMm },
+  {
+    label: "Nominal weight",
+    render: (b) => formatWeight(b.weightG),
+    bar: (b) => (b.weightG ? (b.weightG.max != null ? (b.weightG.min + b.weightG.max) / 2 : b.weightG.min) : null),
+  },
   { label: "Handles", render: (b) => (b.handles.length ? b.handles.map((h) => handleLabels[h].replace(/ \(.*/, "")).join(", ") : DASH) },
   { label: "Maker's class", render: (b) => b.manufacturerClass ?? DASH },
   { label: "Made in", render: (b) => b.madeIn ?? DASH },
@@ -204,11 +208,19 @@ export default function Compare({ loaderData }: Route.ComponentProps) {
                   <th scope="row" className="sticky start-0 z-10 bg-card p-3 text-start text-xs font-normal text-muted-foreground sm:p-4 sm:text-sm">
                     {row.label}
                   </th>
-                  {selected.map((s) => (
-                    <td key={s.id} className="p-3 align-top font-medium sm:p-4">
-                      {(row.render as (x: BladeItem | RubberItem) => React.ReactNode)(s)}
-                    </td>
-                  ))}
+                  {selected.map((s) => {
+                    const values = row.bar ? selected.map((x) => (row.bar as (i: BladeItem | RubberItem) => number | null)(x)) : [];
+                    const max = Math.max(...values.map((v) => v ?? 0));
+                    const v = row.bar ? (row.bar as (i: BladeItem | RubberItem) => number | null)(s) : null;
+                    return (
+                      <td key={s.id} className="p-3 align-top font-medium sm:p-4">
+                        {(row.render as (x: BladeItem | RubberItem) => React.ReactNode)(s)}
+                        {v != null && max > 0 && (
+                          <span className="mt-1.5 block h-1.5 rounded-e bg-[#2a78d6] dark:bg-[#3987e5]" style={{ width: `${(v / max) * 100}%` }} aria-hidden="true" />
+                        )}
+                      </td>
+                    );
+                  })}
                 </tr>
               ))}
               <tr className="bg-secondary/40">

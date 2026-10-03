@@ -268,6 +268,7 @@ const spongeThickness: Guide = {
     },
     {
       heading: "What MAX means",
+      figure: { type: "diagram", diagram: "max-sponge", caption: "Two published examples: andro's ultramax build fills the 4.0 mm limit exactly, and Butterfly prints a range for each sponge size instead of a single figure." },
       blocks: [
         `MAX is not a standard measurement. It means the thickest sponge that still keeps that rubber within the 4.0 mm limit ([Wikipedia](${wikiRubberUrl})), so it depends on how thick that rubber's topsheet is. Brands label the top size differently:`,
         {
@@ -385,6 +386,7 @@ const speedGlue: Guide = {
     },
     {
       heading: "Colour rules",
+      figure: { type: "diagram", diagram: "colour-rules", caption: "One side must be black; the other a bright colour. Not every rubber is authorised in every colour, so check the ITTF list for a specific rubber." },
       blocks: [
         `Law 2.4.6 says the surfaces must be matt, "black on one side, and of a bright colour clearly distinguishable from black and from the colour of the ball on the other" ([ITTF Statutes 2026](${statutesUrl})). For decades that meant red and black, the rule since 1986. From 1 October 2021, blue, green, pink and violet were added as alternatives to red. One side must still be black ([Paddle Palace](${ppColoursUrl})).`,
         `Not every rubber is authorised in every colour. The LARC lists each one's approved colours (red, black, green, blue, pink, violet) separately ([ITTF LARC](${larcUrl})). T4 also makes the player responsible for colour: a red covering, for example, may look too dark once it is glued over a dark sponge or blade ([ITTF T4](${t4Url})). Colour doesn't change performance; Butterfly says its colours play the same ([Butterfly](${bfSpecUrl})).`,

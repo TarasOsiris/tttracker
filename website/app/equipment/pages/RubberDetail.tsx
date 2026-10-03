@@ -1,6 +1,7 @@
 import { data, Link } from "react-router";
 import type { Route } from "./+types/RubberDetail";
 import { RubberCard } from "../components/Cards";
+import { HardnessGauge } from "../components/ItemVisuals";
 import {
   Facts,
   ItemHero,
@@ -189,6 +190,7 @@ export default function RubberDetail({ loaderData }: Route.ComponentProps) {
           <UsedBy players={usedBy} />
         </div>
         <div className="space-y-6">
+          {rubber.hardness && <HardnessGauge hardness={rubber.hardness} brandName={brand.name} />}
           <RatingsBlock ratings={rubber.manufacturerRatings} brand={brand} />
           <Notes notes={rubber.notes} />
           <Sources sources={rubber.sources} lastVerified={rubber.lastVerified} />
