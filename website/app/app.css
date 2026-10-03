@@ -30,6 +30,8 @@
   --surface-low: #f3f3fa;
   --heat-0: #e2e2e9;
   --brand-navy: #16325c;
+  --logo-top: #4a94ff;
+  --logo-bottom: #1f6be6;
   /* Serve diagrams (bounce + placement) */
   --diagram-leg: #74777f;
   --diagram-net: #44474e;
@@ -67,6 +69,8 @@
   --surface-low: #191c20;
   --heat-0: #282a2f;
   --brand-navy: #0c1d38;
+  --logo-top: #2a62c4;
+  --logo-bottom: #0f429c;
   --diagram-leg: #8e9099;
   --diagram-net: #c4c6d0;
   --diagram-label: #c4c6d0;
@@ -212,5 +216,58 @@
   footer,
   .no-print {
     display: none !important;
+  }
+}
+
+/* Header logo: the ball hops twice off the icon, then rests. */
+.app-logo-ball {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: logo-ball 3.6s 1s infinite;
+}
+.app-logo-trail {
+  animation: logo-trail 3.6s 1s infinite;
+}
+@keyframes logo-ball {
+  0% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0.2, 0.6, 0.35, 1);
+  }
+  13% {
+    transform: translateY(-150px) scale(0.95, 1.06);
+    animation-timing-function: cubic-bezier(0.6, 0, 0.85, 0.4);
+  }
+  24% {
+    transform: scale(1.18, 0.82);
+    animation-timing-function: cubic-bezier(0.2, 0.6, 0.35, 1);
+  }
+  32% {
+    transform: translateY(-60px) scale(0.98, 1.03);
+    animation-timing-function: cubic-bezier(0.6, 0, 0.85, 0.4);
+  }
+  40% {
+    transform: scale(1.08, 0.92);
+    animation-timing-function: ease-out;
+  }
+  45%,
+  100% {
+    transform: none;
+  }
+}
+@keyframes logo-trail {
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+  6%,
+  40% {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app-logo-ball,
+  .app-logo-trail {
+    animation: none;
   }
 }

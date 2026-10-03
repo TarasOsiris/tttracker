@@ -1,5 +1,4 @@
 import { Check, Globe, Menu } from "lucide-react";
-import appIcon from "~/assets/icon/app-icon-512.png";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router";
 import { Button } from "~/components/ui/button";
@@ -14,6 +13,7 @@ import { appNames, navLinks } from "~/content/site";
 import { localeInfo, locales, localizePath, stripLocale } from "~/i18n/config";
 import { useI18n } from "~/i18n/use-i18n";
 import { cn } from "~/lib/utils";
+import { AppLogo } from "./app-logo";
 import { StoreButtons } from "./store-buttons";
 import { ThemeToggle } from "./theme-toggle";
 
@@ -21,7 +21,7 @@ export function Logo() {
   const { href, locale } = useI18n();
   return (
     <Link to={href("/")} className="flex min-w-0 items-center gap-2.5 font-display text-[17px] font-bold tracking-tight">
-      <img src={appIcon} alt="" width={32} height={32} className="size-8 shrink-0" />
+      <AppLogo className="size-8 shrink-0" />
       <span className="line-clamp-2 text-[15px] leading-tight sm:line-clamp-1 sm:text-[17px]">{appNames[locale].brand}</span>
     </Link>
   );

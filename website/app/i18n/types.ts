@@ -29,14 +29,30 @@ export type Messages = {
     trustPoints: string[];
   };
   mockup: {
-    month: string;
-    week: string;
-    monthToggle: string;
     weekdays: string[];
     today: string;
-    techniqueMeta: string;
-    matchMeta: string;
-    win: string;
+    yesterday: string;
+    tomorrow: string;
+    noSessions: string;
+    /** "{n} min" */
+    minutes: string;
+    /** "{n} h" */
+    hours: string;
+    addSession: string;
+    save: string;
+    cancel: string;
+    duration: string;
+    sessionType: string;
+    intensity: string;
+    summary: string;
+    totalSessions: string;
+    totalTime: string;
+    winLoss: string;
+    heatmapTitle: string;
+    weeklyTraining: string;
+    /** A technique note, then a match note. */
+    notes: string[];
+    /** Sessions, Analytics */
     tabs: string[];
     heatmapLabel: string;
     heatmapStat: string;
