@@ -1,6 +1,7 @@
 import { copyFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import type { Config } from "@react-router/dev/config";
+import { postSlugs } from "./app/content/blog";
 import { drillSlugs } from "./app/content/drills";
 import { SITE_URL } from "./app/content/site";
 import { localeInfo, locales, localizePath } from "./app/i18n/config";
@@ -19,8 +20,8 @@ const neutralPaths = [
   "/quiz",
   "/about",
 ];
-// English only, so one URL each and no hreflang alternates.
-const legalPaths = ["/privacy", "/terms"];
+// English only, so one URL each and no hreflang alternates (legal pages and the blog).
+const legalPaths = ["/privacy", "/terms", "/blog", ...postSlugs.map((s) => `/blog/${s}`)];
 const paths = [...locales.flatMap((l) => neutralPaths.map((p) => localizePath(l, p))), ...legalPaths];
 
 function sitemap() {

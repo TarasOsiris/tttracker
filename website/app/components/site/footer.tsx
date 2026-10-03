@@ -63,6 +63,11 @@ export function SiteFooter() {
           </li>
           <External href={links.support}>{t.footer.support}</External>
           <li>
+            <Link to="/blog" className={linkClass}>
+              Blog
+            </Link>
+          </li>
+          <li>
             <Link to="/privacy" className={linkClass}>
               {t.footer.privacy}
             </Link>

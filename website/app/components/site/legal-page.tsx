@@ -5,7 +5,7 @@ import type { LegalBlock, LegalDocument } from "~/content/legal";
 const INLINE = /\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*/g;
 
 /** `[label](url)` becomes a link (internal paths stay in the router), `**text**` becomes bold. */
-function inline(text: string): ReactNode[] {
+export function inline(text: string): ReactNode[] {
   const nodes: ReactNode[] = [];
   let last = 0;
   for (const match of text.matchAll(INLINE)) {

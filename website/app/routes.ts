@@ -35,4 +35,7 @@ export default [
   // English only (see content/legal.ts), so each exists once, at the root, for every language's footer.
   route("privacy", "routes/privacy.tsx"),
   route("terms", "routes/terms.tsx"),
+  // Blog posts are English only too.
+  route("blog", "routes/blog.tsx"),
+  route("blog/:slug", "routes/blog-post.tsx"),
 ] satisfies RouteConfig;
