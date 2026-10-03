@@ -11,7 +11,6 @@ export const uk: TranslationDict = {
 
   // Layout
   "layout.title": "Подачі в настільному тенісі",
-  "layout.tgBanner": "Приєднуйтеся до нашого Telegram-каналу:",
   "layout.contact": "Контакти",
   "layout.lightMode": "Світла тема",
   "layout.darkMode": "Темна тема",

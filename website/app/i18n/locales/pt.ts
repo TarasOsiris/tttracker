@@ -209,7 +209,6 @@ export const pt: Messages = {
     drillSubtitle: "Salve como uma sessão de {type} com duração e esforço, e veja sua sequência crescer.",
     servesTitle: "Treinando seus saques? Registre cada sessão.",
     servesSubtitle: "Anote treinos de saque, partidas e adversários no diário de tênis de mesa grátis para iPhone, iPad e Android e veja o que está dando resultado.",
-    telegram: "Participe da comunidade no Telegram: @tttrackerapp",
   },
   footer: {
     tagline: "O diário de treino para quem joga ping pong e tênis de mesa. Registre treinos, anote partidas e acompanhe sua evolução.",
@@ -217,10 +216,8 @@ export const pt: Messages = {
     download: "Baixar",
     company: "Empresa",
     contact: "Fale conosco",
-    support: "Suporte",
     privacy: "Política de Privacidade",
     terms: "Termos de Uso",
-    telegram: "Comunidade no Telegram",
     encyclopedia: "Enciclopédia de saques",
     allServes: "Todos os saques",
     motions: "Movimentos",

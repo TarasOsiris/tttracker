@@ -207,7 +207,6 @@ export const zhTw: Messages = {
     drillSubtitle: "存成「{type}」，填上時長與強度，看著你的連續紀錄不斷延長。",
     servesTitle: "在練發球？把每次訓練都記下來。",
     servesSubtitle: "在免費的桌球筆記中記錄發球練習、比賽和對手，支援 iPhone、iPad 和 Android，看清哪些訓練真正有效。",
-    telegram: "加入 Telegram 社群：@tttrackerapp",
   },
   footer: {
     tagline: "專為桌球（乒乓球）球友打造的訓練日誌。記下練習與比賽，看見自己的進步。",
@@ -215,10 +214,8 @@ export const zhTw: Messages = {
     download: "下載",
     company: "公司",
     contact: "聯絡我們",
-    support: "支援",
     privacy: "隱私權政策",
     terms: "使用條款",
-    telegram: "Telegram 社群",
     encyclopedia: "發球百科",
     allServes: "所有發球",
     motions: "發球動作",

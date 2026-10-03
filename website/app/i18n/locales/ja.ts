@@ -208,7 +208,6 @@ export const ja: Messages = {
     drillSubtitle: "「{type}」として時間と強度を記録し、継続記録を伸ばしましょう。",
     servesTitle: "サーブ練習、記録していますか？",
     servesSubtitle: "サーブ練習も試合も対戦相手も、iPhone・iPad・Android対応の無料卓球ノートに記録。何が効いているかが見えてきます。",
-    telegram: "Telegramコミュニティに参加：@tttrackerapp",
   },
   footer: {
     tagline: "卓球・ピンポンをする人のための練習日誌アプリ。練習と試合を記録して、上達を見える化。",
@@ -216,10 +215,8 @@ export const ja: Messages = {
     download: "ダウンロード",
     company: "会社情報",
     contact: "お問い合わせ",
-    support: "サポート",
     privacy: "プライバシーポリシー",
     terms: "利用規約",
-    telegram: "Telegramコミュニティ",
     encyclopedia: "サーブ図鑑",
     allServes: "サーブ一覧",
     motions: "モーション",

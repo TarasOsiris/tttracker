@@ -11,7 +11,6 @@ export const zhTw: TranslationDict = {
 
   // Layout
   "layout.title": "桌球發球百科",
-  "layout.tgBanner": "加入我們的 Telegram 頻道：",
   "layout.contact": "聯絡我們",
   "layout.lightMode": "淺色模式",
   "layout.darkMode": "深色模式",

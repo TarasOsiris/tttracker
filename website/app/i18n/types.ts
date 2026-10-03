@@ -94,7 +94,6 @@ export type Messages = {
     drillSubtitle: string;
     servesTitle: string;
     servesSubtitle: string;
-    telegram: string;
   };
   footer: {
     tagline: string;
@@ -102,10 +101,8 @@ export type Messages = {
     download: string;
     company: string;
     contact: string;
-    support: string;
     privacy: string;
     terms: string;
-    telegram: string;
     encyclopedia: string;
     allServes: string;
     motions: string;

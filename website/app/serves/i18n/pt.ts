@@ -11,7 +11,6 @@ export const pt: TranslationDict = {
 
   // Layout
   "layout.title": "Saques de tênis de mesa",
-  "layout.tgBanner": "Participe do nosso canal no Telegram:",
   "layout.contact": "Contato",
   "layout.lightMode": "Modo claro",
   "layout.darkMode": "Modo escuro",

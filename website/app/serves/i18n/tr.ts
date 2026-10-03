@@ -11,7 +11,6 @@ export const tr: TranslationDict = {
 
   // Layout
   "layout.title": "Masa Tenisi Servisleri",
-  "layout.tgBanner": "Telegram kanalımıza katılın:",
   "layout.contact": "İletişim",
   "layout.lightMode": "Açık tema",
   "layout.darkMode": "Koyu tema",

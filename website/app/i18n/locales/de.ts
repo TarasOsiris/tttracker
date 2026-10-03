@@ -208,7 +208,6 @@ export const de: Messages = {
     drillSubtitle: "Speichere sie als Einheit vom Typ „{type}“ mit Dauer und Anstrengung und sieh deine Trainingsserie wachsen.",
     servesTitle: "Du trainierst Aufschläge? Erfasse jede Einheit.",
     servesSubtitle: "Halte Aufschlagtraining, Spiele und Gegner im kostenlosen Tischtennis-Tagebuch für iPhone, iPad und Android fest und sieh, was sich auszahlt.",
-    telegram: "Tritt der Community auf Telegram bei: @tttrackerapp",
   },
   footer: {
     tagline: "Das Trainingstagebuch für Tischtennis- und Ping-Pong-Spieler. Einheiten erfassen, Spiele eintragen, Fortschritt sehen.",
@@ -216,10 +215,8 @@ export const de: Messages = {
     download: "Download",
     company: "Unternehmen",
     contact: "Kontakt",
-    support: "Support",
     privacy: "Datenschutz",
     terms: "Nutzungsbedingungen",
-    telegram: "Telegram-Community",
     encyclopedia: "Aufschlag-Lexikon",
     allServes: "Alle Aufschläge",
     motions: "Bewegungen",

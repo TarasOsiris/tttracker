@@ -10,7 +10,6 @@ export const ja: TranslationDict = {
 
   // Layout
   "layout.title": "卓球サーブ図鑑",
-  "layout.tgBanner": "Telegramチャンネルに参加：",
   "layout.contact": "お問い合わせ",
   "layout.lightMode": "ライトモード",
   "layout.darkMode": "ダークモード",

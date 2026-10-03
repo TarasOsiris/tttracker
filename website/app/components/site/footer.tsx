@@ -1,9 +1,10 @@
 import { useSyncExternalStore } from "react";
 import { Link } from "react-router";
-import { links, navLinks, storeLinks } from "~/content/site";
+import { links, navLinks, socials, storeLinks } from "~/content/site";
 import { localeInfo } from "~/i18n/config";
 import { useI18n } from "~/i18n/use-i18n";
 import { Logo, useLanguageLinks } from "./header";
+import { ThreadsIcon, XIcon } from "./icons";
 import { trackStoreClick } from "./store-buttons";
 
 const BUILD_YEAR = new Date().getFullYear();
@@ -43,6 +44,26 @@ export function SiteFooter() {
           <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
             {t.footer.tagline}
           </p>
+          <div className="mt-5 flex items-center gap-3">
+            {(
+              [
+                [socials.x, "X (@soycastic)", XIcon],
+                [socials.threads, "Threads (@soycastic)", ThreadsIcon],
+              ] as const
+            ).map(([url, label, Icon]) => (
+              <a
+                key={url}
+                href={url}
+                target="_blank"
+                rel="noopener me"
+                aria-label={label}
+                title={label}
+                className="flex size-9 items-center justify-center rounded-[0.7rem] border bg-card text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
+              >
+                <Icon className="size-4" />
+              </a>
+            ))}
+          </div>
         </div>
         <Column title={t.footer.product}>
           {navLinks.map((l) => (
@@ -67,7 +88,6 @@ export function SiteFooter() {
               {t.footer.contact}
             </a>
           </li>
-          <External href={links.support}>{t.footer.support}</External>
           <li>
             <Link to="/blog" className={linkClass}>
               {t.nav.blog}
@@ -83,7 +103,6 @@ export function SiteFooter() {
               {t.footer.terms}
             </Link>
           </li>
-          <External href={links.telegram}>{t.footer.telegram}</External>
         </Column>
         <Column title={t.footer.encyclopedia}>
           {(

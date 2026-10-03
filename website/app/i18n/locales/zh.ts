@@ -208,7 +208,6 @@ export const zh: Messages = {
     drillSubtitle: "按“{type}”类型保存，填上时长和强度，看着连续训练纪录不断刷新。",
     servesTitle: "在练发球？把每次训练都记下来。",
     servesSubtitle: "在免费的乒乓球笔记中记录发球练习、比赛和对手，支持 iPhone、iPad 和 Android，看清哪些训练真正有效。",
-    telegram: "加入 Telegram 社区：@tttrackerapp",
   },
   footer: {
     tagline: "为乒乓球爱好者打造的训练日记。记录训练、记录比赛、看见进步。",
@@ -216,10 +215,8 @@ export const zh: Messages = {
     download: "下载",
     company: "公司",
     contact: "联系我们",
-    support: "支持",
     privacy: "隐私政策",
     terms: "使用条款",
-    telegram: "Telegram 社区",
     encyclopedia: "发球百科",
     allServes: "全部发球",
     motions: "发球动作",

@@ -33,10 +33,14 @@ export const links = {
   // No storefront in the path, so Apple opens the visitor's own country's (localized) listing.
   appStore: `https://apps.apple.com/app/id${APP_STORE_ID}`,
   googlePlay: `https://play.google.com/store/apps/details?id=${PLAY_PACKAGE}`,
-  telegram: "https://t.me/tttrackerapp",
-  support: "https://ninevastudios.com/about-us",
   email: "info@ninevastudios.com",
   studio: "https://ninevastudios.com",
+};
+
+/** The developer's own profiles, shown as icons in the footer. */
+export const socials = {
+  x: "https://x.com/soycastic",
+  threads: "https://www.threads.com/@soycastic",
 };
 
 export const navLinks = [

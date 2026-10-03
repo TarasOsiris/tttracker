@@ -11,7 +11,6 @@ export const en: TranslationDict = {
 
   // Layout
   "layout.title": "Table Tennis Serves",
-  "layout.tgBanner": "Join our Telegram channel:",
   "layout.contact": "Contact",
   "layout.lightMode": "Light Mode",
   "layout.darkMode": "Dark Mode",

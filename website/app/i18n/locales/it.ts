@@ -208,7 +208,6 @@ export const it: Messages = {
     drillSubtitle: "Salvalo nell'app con il tipo «{type}», la durata e l'intensità, e guarda crescere la tua serie.",
     servesTitle: "Alleni il servizio? Registra ogni sessione.",
     servesSubtitle: "Annota allenamenti al servizio, partite e avversari nel diario di tennis tavolo gratis per iPhone, iPad e Android, e scopri cosa funziona.",
-    telegram: "Unisciti alla community su Telegram: @tttrackerapp",
   },
   footer: {
     tagline: "Il diario di allenamento per chi gioca a ping pong e tennistavolo. Registra gli allenamenti, segna le partite, segui i tuoi progressi.",
@@ -216,10 +215,8 @@ export const it: Messages = {
     download: "Scarica",
     company: "Azienda",
     contact: "Contattaci",
-    support: "Assistenza",
     privacy: "Informativa sulla privacy",
     terms: "Termini di utilizzo",
-    telegram: "Community su Telegram",
     encyclopedia: "Enciclopedia dei servizi",
     allServes: "Tutti i servizi",
     motions: "Movimenti",

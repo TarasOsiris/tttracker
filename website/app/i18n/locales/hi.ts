@@ -209,7 +209,6 @@ export const hi: Messages = {
     drillSubtitle: "इसे अवधि और मेहनत के साथ {type} प्रकार में सेव करें और अपनी स्ट्रीक बढ़ते देखें।",
     servesTitle: "सर्विस की प्रैक्टिस कर रहे हैं? हर सेशन दर्ज करें।",
     servesSubtitle: "iPhone, iPad और Android के लिए मुफ़्त टेबल टेनिस ट्रेनिंग डायरी में सर्विस प्रैक्टिस, मैच और विरोधी ट्रैक करें, और देखें क्या काम आ रहा है।",
-    telegram: "Telegram पर हमारी कम्युनिटी से जुड़ें: @tttrackerapp",
   },
   footer: {
     tagline: "पिंग पोंग और टेबल टेनिस खिलाड़ियों की ट्रेनिंग डायरी। अभ्यास दर्ज करें, मैच रिकॉर्ड करें, अपनी प्रगति देखें।",
@@ -217,10 +216,8 @@ export const hi: Messages = {
     download: "डाउनलोड",
     company: "कंपनी",
     contact: "संपर्क करें",
-    support: "सहायता",
     privacy: "गोपनीयता नीति",
     terms: "उपयोग की शर्तें",
-    telegram: "Telegram कम्युनिटी",
     encyclopedia: "सर्विस विश्वकोश",
     allServes: "सभी सर्विस",
     motions: "सर्विस एक्शन",

@@ -207,7 +207,6 @@ export const ar: Messages = {
     drillSubtitle: "احفظه كتدريب من نوع «{type}» مع مدته وشدته، وشاهد سلسلة تدريبك تطول.",
     servesTitle: "تتمرن على الإرسال؟ سجّل كل حصة.",
     servesSubtitle: "تتبّع تمارين الإرسال والمباريات والخصوم في يوميات تنس الطاولة المجانية على iPhone وiPad وAndroid، واعرف ما يؤتي ثماره.",
-    telegram: "انضم إلى مجتمعنا على Telegram: @tttrackerapp",
   },
   footer: {
     tagline: "سجل التدريب للاعبي تنس الطاولة والبينغ بونغ. دوّن تدريباتك، وسجّل مبارياتك، وتابع تقدمك.",
@@ -215,10 +214,8 @@ export const ar: Messages = {
     download: "التنزيل",
     company: "الشركة",
     contact: "تواصل معنا",
-    support: "الدعم",
     privacy: "سياسة الخصوصية",
     terms: "شروط الاستخدام",
-    telegram: "مجتمع Telegram",
     encyclopedia: "موسوعة الإرسال",
     allServes: "كل أنواع الإرسال",
     motions: "الحركات",

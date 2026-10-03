@@ -208,7 +208,6 @@ export const fr: Messages = {
     drillSubtitle: "Enregistrez-la comme séance « {type} » avec sa durée et son effort, et regardez votre série s'allonger.",
     servesTitle: "Vous travaillez vos services ? Notez chaque séance.",
     servesSubtitle: "Suivez vos séances de service, vos matchs et vos adversaires dans le carnet de tennis de table gratuit pour iPhone, iPad et Android, et voyez ce qui paie.",
-    telegram: "Rejoignez la communauté sur Telegram : @tttrackerapp",
   },
   footer: {
     tagline: "Le carnet d'entraînement des joueurs de ping-pong et de tennis de table. Notez vos séances, enregistrez vos matchs, suivez votre progression.",
@@ -216,10 +215,8 @@ export const fr: Messages = {
     download: "Télécharger",
     company: "Entreprise",
     contact: "Nous contacter",
-    support: "Assistance",
     privacy: "Politique de confidentialité",
     terms: "Conditions d'utilisation",
-    telegram: "Communauté Telegram",
     encyclopedia: "Encyclopédie des services",
     allServes: "Tous les services",
     motions: "Mouvements",

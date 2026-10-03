@@ -11,7 +11,6 @@ export const hi: TranslationDict = {
 
   // Layout
   "layout.title": "टेबल टेनिस सर्विस",
-  "layout.tgBanner": "हमारे Telegram चैनल से जुड़ें:",
   "layout.contact": "संपर्क",
   "layout.lightMode": "लाइट मोड",
   "layout.darkMode": "डार्क मोड",

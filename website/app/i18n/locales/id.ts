@@ -210,7 +210,6 @@ export const id: Messages = {
     drillSubtitle: "Simpan sebagai sesi {type} lengkap dengan durasi dan intensitasnya, lalu lihat latihan beruntunmu bertambah.",
     servesTitle: "Sedang latihan servis? Catat setiap sesinya.",
     servesSubtitle: "Catat latihan servis, pertandingan, dan lawan di jurnal tenis meja gratis untuk iPhone, iPad, dan Android, dan lihat apa yang membuahkan hasil.",
-    telegram: "Gabung komunitas kami di Telegram: @tttrackerapp",
   },
   footer: {
     tagline:
@@ -219,10 +218,8 @@ export const id: Messages = {
     download: "Unduh",
     company: "Perusahaan",
     contact: "Hubungi kami",
-    support: "Bantuan",
     privacy: "Kebijakan Privasi",
     terms: "Ketentuan Penggunaan",
-    telegram: "Komunitas Telegram",
     encyclopedia: "Ensiklopedia servis",
     allServes: "Semua servis",
     motions: "Gerakan",

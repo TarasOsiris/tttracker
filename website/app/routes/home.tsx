@@ -69,7 +69,7 @@ const appJsonLd = (locale: Locale, url: string, description: string) => ({
   offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
   downloadUrl: [links.appStore, links.googlePlay],
   installUrl: [links.appStore, links.googlePlay],
-  sameAs: [links.appStore, links.googlePlay, links.telegram],
+  sameAs: [links.appStore, links.googlePlay],
   author: publisher,
   publisher,
 });

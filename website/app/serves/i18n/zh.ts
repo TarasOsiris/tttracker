@@ -10,7 +10,6 @@ export const zh: TranslationDict = {
 
   // Layout
   "layout.title": "乒乓球发球大全",
-  "layout.tgBanner": "加入我们的 Telegram 频道：",
   "layout.contact": "联系我们",
   "layout.lightMode": "浅色模式",
   "layout.darkMode": "深色模式",

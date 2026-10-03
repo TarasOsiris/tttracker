@@ -11,7 +11,6 @@ export const ar: TranslationDict = {
 
   // Layout
   "layout.title": "الإرسال في تنس الطاولة",
-  "layout.tgBanner": "انضم إلى قناتنا على Telegram:",
   "layout.contact": "تواصل",
   "layout.lightMode": "الوضع الفاتح",
   "layout.darkMode": "الوضع الداكن",

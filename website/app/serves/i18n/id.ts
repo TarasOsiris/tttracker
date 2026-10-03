@@ -11,7 +11,6 @@ export const id: TranslationDict = {
 
   // Layout
   "layout.title": "Servis Tenis Meja",
-  "layout.tgBanner": "Gabung channel Telegram kami:",
   "layout.contact": "Kontak",
   "layout.lightMode": "Mode Terang",
   "layout.darkMode": "Mode Gelap",

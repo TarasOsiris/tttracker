@@ -208,7 +208,6 @@ export const ko: Messages = {
     drillSubtitle: "{type} 유형으로 시간과 강도를 저장하고, 연속 기록을 쌓아 가세요.",
     servesTitle: "서브 연습 중인가요? 매 세션을 기록하세요.",
     servesSubtitle: "iPhone, iPad, Android용 무료 탁구 훈련일지에 서브 연습, 경기, 상대를 기록하고 무엇이 효과가 있는지 확인하세요.",
-    telegram: "텔레그램 커뮤니티에 참여하세요: @tttrackerapp",
   },
   footer: {
     tagline: "탁구인을 위한 훈련일지. 연습을 기록하고, 경기를 남기고, 실력 향상을 확인하세요.",
@@ -216,10 +215,8 @@ export const ko: Messages = {
     download: "다운로드",
     company: "회사",
     contact: "문의하기",
-    support: "고객 지원",
     privacy: "개인정보 처리방침",
     terms: "이용약관",
-    telegram: "텔레그램 커뮤니티",
     encyclopedia: "서브 백과",
     allServes: "서브 전체",
     motions: "서브 모션",

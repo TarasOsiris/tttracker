@@ -11,7 +11,6 @@ export const ko: TranslationDict = {
 
   // Layout
   "layout.title": "탁구 서브 백과사전",
-  "layout.tgBanner": "텔레그램 채널에 참여하세요:",
   "layout.contact": "문의하기",
   "layout.lightMode": "라이트 모드",
   "layout.darkMode": "다크 모드",

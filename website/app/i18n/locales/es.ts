@@ -209,7 +209,6 @@ export const es: Messages = {
     drillSubtitle: "Guárdala como sesión de {type} con su duración y esfuerzo, y mira cómo crece tu racha.",
     servesTitle: "¿Entrenas tus saques? Registra cada sesión.",
     servesSubtitle: "Anota tus entrenamientos de saque, partidos y rivales en el diario de tenis de mesa gratis para iPhone, iPad y Android, y descubre qué te funciona.",
-    telegram: "Únete a la comunidad en Telegram: @tttrackerapp",
   },
   footer: {
     tagline:
@@ -218,10 +217,8 @@ export const es: Messages = {
     download: "Descargar",
     company: "Empresa",
     contact: "Contacto",
-    support: "Soporte",
     privacy: "Política de privacidad",
     terms: "Condiciones de uso",
-    telegram: "Comunidad de Telegram",
     encyclopedia: "Enciclopedia de saques",
     allServes: "Todos los saques",
     motions: "Movimientos",

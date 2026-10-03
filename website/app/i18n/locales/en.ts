@@ -208,7 +208,6 @@ export const en: Messages = {
     drillSubtitle: "Save it as a {type} session with its duration and effort, and watch your streak build.",
     servesTitle: "Practicing your serves? Log every session.",
     servesSubtitle: "Track serve practice, matches and opponents in the free table tennis journal for iPhone, iPad and Android, and see what's paying off.",
-    telegram: "Join the community on Telegram: @tttrackerapp",
   },
   footer: {
     tagline: "The training journal for ping pong and table tennis players. Log sessions, record matches, see your progress.",
@@ -216,10 +215,8 @@ export const en: Messages = {
     download: "Download",
     company: "Company",
     contact: "Contact us",
-    support: "Support",
     privacy: "Privacy Policy",
     terms: "Terms of Use",
-    telegram: "Telegram community",
     encyclopedia: "Serve encyclopedia",
     allServes: "All serves",
     motions: "Motions",

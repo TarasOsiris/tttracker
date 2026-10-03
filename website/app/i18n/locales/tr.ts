@@ -210,7 +210,6 @@ export const tr: Messages = {
     drillSubtitle: "Türü {type} olarak seçip süresi ve yoğunluğuyla kaydedin, serinizin uzamasını izleyin.",
     servesTitle: "Servis mi çalışıyorsunuz? Her antrenmanı kaydedin.",
     servesSubtitle: "iPhone, iPad ve Android için ücretsiz masa tenisi günlüğünde servis çalışmalarınızı, maçlarınızı ve rakiplerinizi takip edin; neyin işe yaradığını görün.",
-    telegram: "Telegram topluluğumuza katılın: @tttrackerapp",
   },
   footer: {
     tagline:
@@ -219,10 +218,8 @@ export const tr: Messages = {
     download: "İndir",
     company: "Şirket",
     contact: "Bize ulaşın",
-    support: "Destek",
     privacy: "Gizlilik Politikası",
     terms: "Kullanım Koşulları",
-    telegram: "Telegram topluluğu",
     encyclopedia: "Servis ansiklopedisi",
     allServes: "Tüm servisler",
     motions: "Hareketler",
