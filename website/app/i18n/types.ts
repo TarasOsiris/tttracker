@@ -30,6 +30,8 @@ export type Messages = {
     trustPoints: string[];
   };
   mockup: {
+    /** Hint under the hero phone that it can be used. */
+    tryIt: string;
     weekdays: string[];
     today: string;
     yesterday: string;

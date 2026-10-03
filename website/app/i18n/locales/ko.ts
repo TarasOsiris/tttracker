@@ -38,6 +38,7 @@ export const ko: Messages = {
     trustPoints: ["무료", "계정 불필요", "오프라인 사용", "15개 언어"],
   },
   mockup: {
+    tryIt: "직접 눌러 보세요",
     weekdays: ["월", "화", "수", "목", "금", "토", "일"],
     today: "오늘",
     yesterday: "어제",

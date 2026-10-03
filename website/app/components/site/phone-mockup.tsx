@@ -1,4 +1,4 @@
-import { BarChart3, ChevronDown, ChevronLeft, ChevronRight, Plus, Settings, Trophy } from "lucide-react";
+import { BarChart3, ChevronDown, ChevronLeft, ChevronRight, Plus, Pointer, Settings, Trophy } from "lucide-react";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore, type PointerEvent, type ReactNode } from "react";
 import { format, localeInfo } from "~/i18n/config";
 import type { Messages } from "~/i18n/types";
@@ -184,9 +184,13 @@ const noopSubscribe = () => () => {};
 export function PhoneMockup() {
   const { t } = useI18n();
   const m = t.mockup;
+  const [touched, setTouched] = useState(false);
   return (
     <div className="relative mx-auto w-[290px] sm:w-[320px]">
-      <div className="rounded-[3.2rem] bg-neutral-900 p-3 shadow-[0_40px_80px_-30px_rgb(10_30_60/0.55)] ring-1 ring-black/10 dark:ring-white/10">
+      <div
+        onPointerDown={() => setTouched(true)}
+        className="rounded-[3.2rem] bg-neutral-900 p-3 shadow-[0_40px_80px_-30px_rgb(10_30_60/0.55)] ring-1 ring-black/10 dark:ring-white/10"
+      >
         <div className="relative flex h-[580px] flex-col overflow-hidden rounded-[2.6rem] bg-background text-foreground sm:h-[640px]">
           {/* status bar */}
           <div className="flex h-11 shrink-0 items-center justify-between px-7 pt-1 text-[12px] font-semibold">
@@ -203,8 +207,26 @@ export function PhoneMockup() {
         </div>
       </div>
 
+      {/* Says the phone is live; steps aside once it has been used. */}
+      <p
+        className={cn(
+          "mt-5 flex justify-center transition-opacity duration-500",
+          touched && "pointer-events-none opacity-0",
+        )}
+        aria-hidden={touched}
+      >
+        <span className="inline-flex items-center gap-2 rounded-full border bg-card/80 px-3.5 py-1.5 text-xs font-semibold text-muted-foreground shadow-sm backdrop-blur">
+          <span className="relative flex size-2">
+            <span className="absolute inset-0 animate-ping rounded-full bg-primary/60 motion-reduce:animate-none" />
+            <span className="relative size-2 rounded-full bg-primary" />
+          </span>
+          {m.tryIt}
+          <Pointer className="size-3.5 text-primary" />
+        </span>
+      </p>
+
       {/* floating stat cards */}
-      <div className="pointer-events-none absolute bottom-28 -start-36 hidden w-44 rounded-2xl border bg-card/95 p-3 shadow-xl backdrop-blur xl:block">
+      <div className="pointer-events-none absolute bottom-40 -start-36 hidden w-44 rounded-2xl border bg-card/95 p-3 shadow-xl backdrop-blur xl:block">
         <p className="text-[11px] font-semibold text-muted-foreground">{m.heatmapLabel}</p>
         <Heatmap weeks={14} cell="size-2" className="mt-2 gap-[2px]" />
         <p className="mt-2 font-display text-sm font-bold">

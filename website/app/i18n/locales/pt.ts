@@ -38,6 +38,7 @@ export const pt: Messages = {
     trustPoints: ["Grátis", "Sem cadastro", "Funciona offline", "15 idiomas"],
   },
   mockup: {
+    tryIt: "Experimente: toque para explorar",
     weekdays: ["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"],
     today: "Hoje",
     yesterday: "Ontem",

@@ -38,6 +38,7 @@ export const ja: Messages = {
     trustPoints: ["無料", "アカウント不要", "オフライン対応", "15言語対応"],
   },
   mockup: {
+    tryIt: "タップして試してみてください",
     weekdays: ["月", "火", "水", "木", "金", "土", "日"],
     today: "今日",
     yesterday: "昨日",
