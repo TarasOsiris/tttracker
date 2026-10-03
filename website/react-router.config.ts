@@ -20,6 +20,10 @@ const neutralPaths = [
   "/rules",
   "/quiz",
   "/about",
+  "/blog",
+  ...postSlugs.map((s) => `/blog/${s}`),
+  "/privacy",
+  "/terms",
 ];
 const equipmentPaths = [
   "/equipment",
@@ -40,9 +44,7 @@ const illustrationPaths = [
   ...blades.map((b) => `/equipment/img/blades/${b.id}.svg`),
   ...rubbers.map((r) => `/equipment/img/rubbers/${r.id}.svg`),
 ];
-// English only, so one URL each and no hreflang alternates (legal pages, the blog and the equipment encyclopedia).
-const englishOnlyPaths = ["/privacy", "/terms", "/blog", ...postSlugs.map((s) => `/blog/${s}`), ...equipmentPaths];
-const paths = [...locales.flatMap((l) => neutralPaths.map((p) => localizePath(l, p))), ...englishOnlyPaths, ...illustrationPaths];
+const paths = [...locales.flatMap((l) => neutralPaths.map((p) => localizePath(l, p))), ...equipmentPaths, ...illustrationPaths];
 
 function sitemap() {
   const entries = locales.flatMap((l) =>
@@ -53,8 +55,8 @@ function sitemap() {
       return `  <url>\n    <loc>${SITE_URL}${localizePath(l, p)}</loc>\n${alternates}\n  </url>`;
     }),
   );
-  const englishOnly = englishOnlyPaths.map((p) => `  <url>\n    <loc>${SITE_URL}${p}</loc>\n  </url>`);
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${[...entries, ...englishOnly].join("\n")}\n</urlset>\n`;
+  const equipment = equipmentPaths.map((p) => `  <url>\n    <loc>${SITE_URL}${p}</loc>\n  </url>`);
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${[...entries, ...equipment].join("\n")}\n</urlset>\n`;
 }
 
 export default {

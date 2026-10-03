@@ -242,6 +242,18 @@ export const id: Messages = {
     about: "Tentang",
     language: "Bahasa",
     legal: "App Store adalah merek layanan Apple Inc. Google Play adalah merek dagang Google LLC.",
+    blog: "Blog",
+  },
+  blog: {
+    title: "Blog Berita & Tips Tenis Meja",
+    description: "Berita tenis meja terkini, rangkuman turnamen, dan tips latihan praktis dari kreator Jurnal Latihan Tenis Meja.",
+    readMinutes: "{n} mnt baca",
+    sources: "Sumber",
+    moreFromBlog: "Artikel blog lainnya",
+    breadcrumb: "Blog",
+  },
+  legal: {
+    lastUpdated: "Terakhir diperbarui: {date}",
   },
   drillsPage: {
     eyebrow: "Program latihan",

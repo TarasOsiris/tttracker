@@ -238,6 +238,18 @@ export const zh: Messages = {
     about: "关于",
     language: "语言",
     legal: "App Store 是 Apple Inc. 的服务商标。Google Play 是 Google LLC 的商标。",
+    blog: "博客",
+  },
+  blog: {
+    title: "乒乓球新闻与技巧博客",
+    description: "最新的乒乓球赛事新闻、比赛战报以及实用的训练技巧，由「乒乓球笔记」团队呈献。",
+    readMinutes: "阅读时间约 {n} 分钟",
+    sources: "参考来源",
+    moreFromBlog: "更多博客文章",
+    breadcrumb: "博客",
+  },
+  legal: {
+    lastUpdated: "最后更新于 {date}",
   },
   drillsPage: {
     eyebrow: "训练计划",

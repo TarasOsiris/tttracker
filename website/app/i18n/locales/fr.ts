@@ -238,6 +238,18 @@ export const fr: Messages = {
     about: "À propos",
     language: "Langue",
     legal: "App Store est une marque de service d'Apple Inc. Google Play est une marque de Google LLC.",
+    blog: "Blog",
+  },
+  blog: {
+    title: "Blog Actualités & Conseils Tennis de Table",
+    description: "Dernières actualités du tennis de table, résumés de tournois et conseils d'entraînement pratiques, par les créateurs de Tennis de table & Ping Pong.",
+    readMinutes: "{n} min de lecture",
+    sources: "Sources",
+    moreFromBlog: "Plus d'articles du blog",
+    breadcrumb: "Blog",
+  },
+  legal: {
+    lastUpdated: "Dernière mise à jour le {date}",
   },
   drillsPage: {
     eyebrow: "Plans d'entraînement",

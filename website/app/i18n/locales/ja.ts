@@ -238,6 +238,18 @@ export const ja: Messages = {
     about: "このサイトについて",
     language: "言語",
     legal: "App StoreはApple Inc.のサービスマークです。Google PlayはGoogle LLCの商標です。",
+    blog: "ブログ",
+  },
+  blog: {
+    title: "卓球ニュース＆上達のヒント ブログ",
+    description: "卓球の最新ニュース、大会結果、実践的な練習のコツをお届けします。「卓球ノート」開発チームより。",
+    readMinutes: "読了時間 {n} 分",
+    sources: "情報源・出典",
+    moreFromBlog: "ブログの他の記事",
+    breadcrumb: "ブログ",
+  },
+  legal: {
+    lastUpdated: "最終更新日: {date}",
   },
   drillsPage: {
     eyebrow: "練習メニュー",

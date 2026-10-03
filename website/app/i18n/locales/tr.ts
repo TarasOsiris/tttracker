@@ -242,6 +242,18 @@ export const tr: Messages = {
     about: "Hakkında",
     language: "Dil",
     legal: "App Store, Apple Inc.'in hizmet markasıdır. Google Play, Google LLC'nin ticari markasıdır.",
+    blog: "Blog",
+  },
+  blog: {
+    title: "Masa Tenisi Haberleri ve İpuçları Blogu",
+    description: "Masa Tenisi Antrenman Günlüğü ekibinden en güncel masa tenisi haberleri, turnuva özetleri ve pratik antrenman ipuçları.",
+    readMinutes: "{n} dk okuma",
+    sources: "Kaynaklar",
+    moreFromBlog: "Blogdan diğer yazılar",
+    breadcrumb: "Blog",
+  },
+  legal: {
+    lastUpdated: "Son güncelleme: {date}",
   },
   drillsPage: {
     eyebrow: "Antrenman programları",

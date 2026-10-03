@@ -1,12 +1,28 @@
 import type { Route } from "./+types/terms";
 import { LegalPage } from "~/components/site/legal-page";
-import { termsOfUse } from "~/content/legal";
-import { APP_NAME } from "~/content/site";
+import { getTermsOfUse } from "~/content/legal";
+import { appNames } from "~/content/site";
+import { localeFromPath } from "~/i18n/config";
 import { seo } from "~/lib/seo";
 
-export const meta: Route.MetaFunction = () =>
-  seo({ title: `${termsOfUse.title} | ${APP_NAME}`, description: termsOfUse.description, path: "/terms", locale: "en", localized: false });
-
-export default function Page() {
-  return <LegalPage document={termsOfUse} />;
+export function loader({ request }: Route.LoaderArgs) {
+  const locale = localeFromPath(new URL(request.url).pathname);
+  return { document: getTermsOfUse(locale), locale };
 }
+
+export const meta: Route.MetaFunction = ({ data, location }) => {
+  const locale = localeFromPath(location.pathname);
+  const doc = data?.document ?? getTermsOfUse(locale);
+  const appName = appNames[locale].name;
+  return seo({
+    title: `${doc.title} | ${appName}`,
+    description: doc.description,
+    path: "/terms",
+    locale,
+  });
+};
+
+export default function Page({ loaderData }: Route.ComponentProps) {
+  return <LegalPage document={loaderData.document} locale={loaderData.locale} />;
+}
+

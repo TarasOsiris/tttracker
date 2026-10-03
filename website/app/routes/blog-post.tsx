@@ -1,28 +1,33 @@
-import { Link } from "react-router";
+import { data, Link } from "react-router";
 import type { Route } from "./+types/blog-post";
 import { inline } from "~/components/site/legal-page";
-import { type BlogImage, formatDate, getPost, posts } from "~/content/blog";
-import { APP_NAME, SITE_URL } from "~/content/site";
+import { type BlogImage, formatDate, getPost, getPosts } from "~/content/blog";
+import { appNames, SITE_URL } from "~/content/site";
+import { localeFromPath, localizePath } from "~/i18n/config";
+import { useI18n } from "~/i18n/use-i18n";
 import { seo } from "~/lib/seo";
 
-export function loader({ params }: Route.LoaderArgs) {
-  const post = getPost(params.slug);
-  if (!post) throw new Response("Not found", { status: 404 });
-  return { post };
+export function loader({ params, request }: Route.LoaderArgs) {
+  const locale = localeFromPath(new URL(request.url).pathname);
+  const post = getPost(params.slug, locale);
+  if (!post) throw data(null, { status: 404 });
+  const others = getPosts(locale).filter((p) => p.slug !== post.slug);
+  return { post, others, locale };
 }
 
-export const meta: Route.MetaFunction = ({ data }) => {
-  if (!data) return [{ title: `Not found | ${APP_NAME}` }];
-  const { post } = data;
-  const url = `${SITE_URL}/blog/${post.slug}`;
+export const meta: Route.MetaFunction = ({ data: loaderData, location }) => {
+  const locale = localeFromPath(location.pathname);
+  const appName = appNames[locale].name;
+  if (!loaderData) return [{ title: `Not found | ${appName}` }];
+  const { post } = loaderData;
+  const url = `${SITE_URL}${localizePath(locale, `/blog/${post.slug}`)}`;
   const image = `${SITE_URL}${post.hero.src}`;
   return [
     ...seo({
-      title: `${post.title} | ${APP_NAME}`,
+      title: `${post.title} | ${appName}`,
       description: post.description,
       path: `/blog/${post.slug}`,
-      locale: "en",
-      localized: false,
+      locale,
       image: post.hero,
     }).map((m) => ("property" in m && m.property === "og:type" ? { property: "og:type", content: "article" } : m)),
     { name: "keywords", content: post.keywords.join(", ") },
@@ -35,6 +40,7 @@ export const meta: Route.MetaFunction = ({ data }) => {
         description: post.description,
         datePublished: post.published,
         dateModified: post.published,
+        inLanguage: locale,
         keywords: post.keywords.join(", "),
         image,
         mainEntityOfPage: url,
@@ -70,20 +76,21 @@ function Figure({ image, priority }: { image: BlogImage; priority?: boolean }) {
 }
 
 export default function BlogPost({ loaderData }: Route.ComponentProps) {
-  const { post } = loaderData;
-  const others = posts.filter((p) => p.slug !== post.slug);
+  const { post, others, locale } = loaderData;
+  const { t, href } = useI18n();
+
   return (
-    <article lang="en" className="px-4 pt-32 pb-20 sm:px-6 sm:pt-40">
+    <article lang={locale} className="px-4 pt-32 pb-20 sm:px-6 sm:pt-40">
       <div className="mx-auto max-w-3xl">
-        <nav aria-label="Breadcrumb" className="text-sm text-muted-foreground">
-          <Link to="/blog" className="hover:text-foreground">
-            Blog
+        <nav aria-label={t.blog.breadcrumb} className="text-sm text-muted-foreground">
+          <Link to={href("/blog")} className="hover:text-foreground">
+            {t.blog.breadcrumb}
           </Link>
         </nav>
         <header className="mt-4 border-b pb-8">
           <h1 className="text-3xl font-extrabold tracking-tight text-balance sm:text-5xl">{post.title}</h1>
           <p className="mt-3 text-sm text-muted-foreground">
-            <time dateTime={post.published}>{formatDate(post.published)}</time> · {post.readMinutes} min read
+            <time dateTime={post.published}>{formatDate(post.published, locale)}</time> · {t.blog.readMinutes.replace("{n}", String(post.readMinutes))}
           </p>
           <p className="mt-6 text-lg leading-relaxed text-muted-foreground">{post.intro}</p>
         </header>
@@ -103,11 +110,11 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
             <div className="mt-4 space-y-4 leading-relaxed text-muted-foreground">
               {section.blocks.map((block, i) =>
                 typeof block === "string" ? (
-                  <p key={i}>{inline(block)}</p>
+                  <p key={i}>{inline(block, locale)}</p>
                 ) : (
                   <ul key={i} className="list-disc space-y-3 pl-5 marker:text-primary">
                     {block.list.map((item, j) => (
-                      <li key={j}>{inline(item)}</li>
+                      <li key={j}>{inline(item, locale)}</li>
                     ))}
                   </ul>
                 ),
@@ -116,7 +123,7 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
           </section>
         ))}
         <section className="mt-12 border-t pt-8">
-          <h2 className="font-display text-lg font-bold">Sources</h2>
+          <h2 className="font-display text-lg font-bold">{t.blog.sources}</h2>
           <ul className="mt-3 list-disc space-y-2 pl-5 text-sm text-muted-foreground marker:text-primary">
             {post.sources.map((s) => (
               <li key={s.url}>
@@ -129,11 +136,11 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
         </section>
         {others.length > 0 && (
           <section className="mt-10">
-            <h2 className="font-display text-lg font-bold">More from the blog</h2>
+            <h2 className="font-display text-lg font-bold">{t.blog.moreFromBlog}</h2>
             <ul className="mt-3 space-y-2">
               {others.map((p) => (
                 <li key={p.slug}>
-                  <Link to={`/blog/${p.slug}`} className="text-primary underline-offset-2 hover:underline">
+                  <Link to={href(`/blog/${p.slug}`)} className="text-primary underline-offset-2 hover:underline">
                     {p.title}
                   </Link>
                 </li>
@@ -145,3 +152,4 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
     </article>
   );
 }
+

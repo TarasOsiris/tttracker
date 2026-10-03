@@ -238,6 +238,18 @@ export const uk: Messages = {
     about: "Про сайт",
     language: "Мова",
     legal: "App Store — знак обслуговування Apple Inc. Google Play — торговельна марка Google LLC.",
+    blog: "Блог",
+  },
+  blog: {
+    title: "Блог про настільний теніс: новини та поради",
+    description: "Останні новини настільного тенісу, огляди турнірів і практичні поради для тренувань від творців щоденника «Настільний теніс».",
+    readMinutes: "{n} хв читання",
+    sources: "Джерела",
+    moreFromBlog: "Більше з блогу",
+    breadcrumb: "Блог",
+  },
+  legal: {
+    lastUpdated: "Останнє оновлення: {date}",
   },
   drillsPage: {
     eyebrow: "Плани тренувань",

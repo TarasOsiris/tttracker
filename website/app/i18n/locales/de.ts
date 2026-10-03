@@ -238,6 +238,18 @@ export const de: Messages = {
     about: "Über",
     language: "Sprache",
     legal: "App Store ist eine Dienstleistungsmarke der Apple Inc. Google Play ist eine Marke der Google LLC.",
+    blog: "Blog",
+  },
+  blog: {
+    title: "Tischtennis News & Tipps Blog",
+    description: "Aktuelle Tischtennis-Nachrichten, Turnierberichte und praktische Trainingstipps für Tischtennisspieler von den Machern des Tischtennis Trainingstagebuchs.",
+    readMinutes: "{n} Min. Lesezeit",
+    sources: "Quellen",
+    moreFromBlog: "Mehr aus dem Blog",
+    breadcrumb: "Blog",
+  },
+  legal: {
+    lastUpdated: "Zuletzt aktualisiert am {date}",
   },
   drillsPage: {
     eyebrow: "Trainingspläne",

@@ -238,6 +238,18 @@ export const ko: Messages = {
     about: "소개",
     language: "언어",
     legal: "App Store는 Apple Inc.의 서비스 마크입니다. Google Play는 Google LLC의 상표입니다.",
+    blog: "블로그",
+  },
+  blog: {
+    title: "탁구 뉴스 & 훈련 팁 블로그",
+    description: "최신 탁구 뉴스, 대회 하이라이트, 실전 연습 팁을 전해드립니다. '탁구 훈련일지' 제작진 제공.",
+    readMinutes: "읽는 시간 {n}분",
+    sources: "출처 및 참고 자료",
+    moreFromBlog: "블로그 더보기",
+    breadcrumb: "블로그",
+  },
+  legal: {
+    lastUpdated: "최종 업데이트: {date}",
   },
   drillsPage: {
     eyebrow: "훈련 프로그램",

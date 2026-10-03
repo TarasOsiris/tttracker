@@ -238,6 +238,18 @@ export const en: Messages = {
     about: "About",
     language: "Language",
     legal: "App Store is a service mark of Apple Inc. Google Play is a trademark of Google LLC.",
+    blog: "Blog",
+  },
+  blog: {
+    title: "Table Tennis News & Tips Blog",
+    description: "Latest table tennis news, tournament recaps and practical training tips for ping pong players, from the makers of Ping Pong & Table Tennis Log.",
+    readMinutes: "{n} min read",
+    sources: "Sources",
+    moreFromBlog: "More from the blog",
+    breadcrumb: "Blog",
+  },
+  legal: {
+    lastUpdated: "Last updated {date}",
   },
   drillsPage: {
     eyebrow: "Training plans",

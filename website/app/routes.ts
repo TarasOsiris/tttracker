@@ -37,6 +37,10 @@ function localeRoutes(l: Locale) {
     en ? index("routes/home.tsx") : route(l, "routes/home.tsx", id("home")),
     route(`${prefix}drills`, "routes/drills.tsx", id("drills")),
     route(`${prefix}drills/:slug`, "routes/drill.tsx", id("drill")),
+    route(`${prefix}blog`, "routes/blog.tsx", id("blog")),
+    route(`${prefix}blog/:slug`, "routes/blog-post.tsx", id("blog-post")),
+    route(`${prefix}privacy`, "routes/privacy.tsx", id("privacy")),
+    route(`${prefix}terms`, "routes/terms.tsx", id("terms")),
     layout(
       "routes/serves-layout.tsx",
       id("serves-layout"),
@@ -47,12 +51,6 @@ function localeRoutes(l: Locale) {
 
 export default [
   ...locales.flatMap(localeRoutes),
-  // English only (see content/legal.ts), so each exists once, at the root, for every language's footer.
-  route("privacy", "routes/privacy.tsx"),
-  route("terms", "routes/terms.tsx"),
-  // Blog posts are English only too.
-  route("blog", "routes/blog.tsx"),
-  route("blog/:slug", "routes/blog-post.tsx"),
   // Equipment encyclopedia, English only for now.
   layout(
     "routes/equipment-layout.tsx",

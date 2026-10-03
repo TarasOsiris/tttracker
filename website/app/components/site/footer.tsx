@@ -90,17 +90,17 @@ export function SiteFooter() {
             </a>
           </li>
           <li>
-            <Link to="/blog" className={linkClass}>
+            <Link to={href("/blog")} className={linkClass}>
               {t.nav.blog}
             </Link>
           </li>
           <li>
-            <Link to="/privacy" className={linkClass}>
+            <Link to={href("/privacy")} className={linkClass}>
               {t.footer.privacy}
             </Link>
           </li>
           <li>
-            <Link to="/terms" className={linkClass}>
+            <Link to={href("/terms")} className={linkClass}>
               {t.footer.terms}
             </Link>
           </li>

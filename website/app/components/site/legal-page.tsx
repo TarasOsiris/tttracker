@@ -1,11 +1,13 @@
 import { Fragment, type ReactNode } from "react";
 import { Link } from "react-router";
 import type { LegalBlock, LegalDocument } from "~/content/legal";
+import { type Locale, localizePath } from "~/i18n/config";
+import { useI18n } from "~/i18n/use-i18n";
 
 const INLINE = /\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*/g;
 
 /** `[label](url)` becomes a link (internal paths stay in the router), `**text**` becomes bold. */
-export function inline(text: string): ReactNode[] {
+export function inline(text: string, locale?: Locale): ReactNode[] {
   const nodes: ReactNode[] = [];
   let last = 0;
   for (const match of text.matchAll(INLINE)) {
@@ -19,8 +21,9 @@ export function inline(text: string): ReactNode[] {
         </strong>,
       );
     } else if (url.startsWith("/")) {
+      const target = locale ? localizePath(locale, url) : url;
       nodes.push(
-        <Link key={index} to={url} className="font-medium text-primary underline-offset-2 hover:underline">
+        <Link key={index} to={target} className="font-medium text-primary underline-offset-2 hover:underline">
           {label}
         </Link>,
       );
@@ -43,24 +46,26 @@ export function inline(text: string): ReactNode[] {
   return nodes;
 }
 
-function Block({ block }: { block: LegalBlock }) {
-  if (typeof block === "string") return <p>{inline(block)}</p>;
+function Block({ block, locale }: { block: LegalBlock; locale?: Locale }) {
+  if (typeof block === "string") return <p>{inline(block, locale)}</p>;
   return (
     <ul className="list-disc space-y-3 ps-5 marker:text-primary">
       {block.list.map((item, i) => (
-        <li key={i}>{inline(item)}</li>
+        <li key={i}>{inline(item, locale)}</li>
       ))}
     </ul>
   );
 }
 
-export function LegalPage({ document }: { document: LegalDocument }) {
+export function LegalPage({ document, locale }: { document: LegalDocument; locale?: Locale }) {
+  const { t, locale: currentLocale } = useI18n();
+  const loc = locale ?? currentLocale;
   return (
-    <article lang="en" className="px-4 pt-32 pb-20 sm:px-6 sm:pt-40">
+    <article lang={loc} className="px-4 pt-32 pb-20 sm:px-6 sm:pt-40">
       <div className="mx-auto max-w-3xl">
         <header className="border-b pb-8">
           <h1 className="text-4xl font-extrabold tracking-tight text-balance sm:text-5xl">{document.title}</h1>
-          <p className="mt-3 text-sm text-muted-foreground">Last updated {document.updated}</p>
+          <p className="mt-3 text-sm text-muted-foreground">{t.legal.lastUpdated.replace("{date}", document.updated)}</p>
           <p className="mt-6 text-lg leading-relaxed text-muted-foreground">{document.intro}</p>
         </header>
         {document.sections.map((section) => (
@@ -69,7 +74,7 @@ export function LegalPage({ document }: { document: LegalDocument }) {
               <h2 className="font-display text-xl font-bold tracking-tight sm:text-2xl">{section.heading}</h2>
               <div className="mt-4 space-y-4 leading-relaxed text-muted-foreground">
                 {section.blocks.map((block, i) => (
-                  <Block key={i} block={block} />
+                  <Block key={i} block={block} locale={loc} />
                 ))}
               </div>
             </section>

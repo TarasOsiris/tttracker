@@ -238,6 +238,18 @@ export const ar: Messages = {
     about: "حول",
     language: "اللغة",
     legal: "App Store علامة خدمة لشركة Apple Inc. وGoogle Play علامة تجارية لشركة Google LLC.",
+    blog: "المدونة",
+  },
+  blog: {
+    title: "مدونة أخبار ونصائح تنس الطاولة",
+    description: "آخر أخبار تنس الطاولة وملخصات البطولات ونصائح تدريب عملية للاعبين من صانعي تطبيق تنس الطاولة: سجل التدريب.",
+    readMinutes: "{n} دقيقة قراءة",
+    sources: "المصادر",
+    moreFromBlog: "المزيد من المدونة",
+    breadcrumb: "المدونة",
+  },
+  legal: {
+    lastUpdated: "آخر تحديث: {date}",
   },
   drillsPage: {
     eyebrow: "خطط التدريب",

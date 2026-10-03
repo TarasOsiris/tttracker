@@ -196,3 +196,15 @@ export const termsOfUse: LegalDocument = {
     },
   ],
 };
+
+import { defaultLocale, type Locale } from "../i18n/config";
+import { legalTranslations } from "./legal-translations";
+
+export function getPrivacyPolicy(locale: Locale = defaultLocale): LegalDocument {
+  return legalTranslations[locale]?.privacy ?? privacyPolicy;
+}
+
+export function getTermsOfUse(locale: Locale = defaultLocale): LegalDocument {
+  return legalTranslations[locale]?.terms ?? termsOfUse;
+}
+

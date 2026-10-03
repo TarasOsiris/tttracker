@@ -240,6 +240,18 @@ export const hi: Messages = {
     about: "हमारे बारे में",
     language: "भाषा",
     legal: "App Store, Apple Inc. का सर्विस मार्क है। Google Play, Google LLC का ट्रेडमार्क है।",
+    blog: "ब्लॉग",
+  },
+  blog: {
+    title: "टेबल टेनिस समाचार एवं टिप्स ब्लॉग",
+    description: "टेबल टेनिस ट्रेनिंग डायरी के निर्माताओं की ओर से नवीनतम टेबल टेनिस समाचार, टूर्नामेंट समीक्षा और व्यावहारिक प्रशिक्षण टिप्स।",
+    readMinutes: "{n} मिनट का पाठ",
+    sources: "स्रोत",
+    moreFromBlog: "ब्लॉग से और पढ़ें",
+    breadcrumb: "ब्लॉग",
+  },
+  legal: {
+    lastUpdated: "अंतिम अपडेट: {date}",
   },
   drillsPage: {
     eyebrow: "ट्रेनिंग प्लान",

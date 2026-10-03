@@ -240,6 +240,18 @@ export const es: Messages = {
     about: "Acerca de",
     language: "Idioma",
     legal: "App Store es una marca de servicio de Apple Inc. Google Play es una marca comercial de Google LLC.",
+    blog: "Blog",
+  },
+  blog: {
+    title: "Blog de Noticias y Consejos de Tenis de Mesa",
+    description: "Últimas noticias de tenis de mesa, resúmenes de torneos y consejos prácticos de entrenamiento, de los creadores de Ping Pong y Tenis de Mesa.",
+    readMinutes: "{n} min de lectura",
+    sources: "Fuentes",
+    moreFromBlog: "Más del blog",
+    breadcrumb: "Blog",
+  },
+  legal: {
+    lastUpdated: "Última actualización: {date}",
   },
   drillsPage: {
     eyebrow: "Planes de entrenamiento",

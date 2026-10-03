@@ -238,6 +238,18 @@ export const zhTw: Messages = {
     about: "關於",
     language: "語言",
     legal: "App Store 是 Apple Inc. 的服務標章。Google Play 是 Google LLC 的商標。",
+    blog: "部落格",
+  },
+  blog: {
+    title: "桌球新聞與技巧部落格",
+    description: "桌球最新新聞、賽事回顧與實用訓練技巧，由「桌球筆記」團隊為乒乓球愛好者呈現。",
+    readMinutes: "{n} 分鐘閱讀",
+    sources: "資料來源",
+    moreFromBlog: "更多部落格文章",
+    breadcrumb: "部落格",
+  },
+  legal: {
+    lastUpdated: "最後更新：{date}",
   },
   drillsPage: {
     eyebrow: "訓練計畫",

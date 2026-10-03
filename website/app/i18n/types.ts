@@ -118,6 +118,18 @@ export type Messages = {
     about: string;
     language: string;
     legal: string;
+    blog: string;
+  };
+  blog: {
+    title: string;
+    description: string;
+    readMinutes: string;
+    sources: string;
+    moreFromBlog: string;
+    breadcrumb: string;
+  };
+  legal: {
+    lastUpdated: string;
   };
   drillsPage: {
     eyebrow: string;
