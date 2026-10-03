@@ -14,6 +14,7 @@ export const hi: Messages = {
     howItWorks: "कैसे काम करता है",
     serves: "सर्विस",
     drills: "ड्रिल",
+    blog: "ब्लॉग",
     faq: "सवाल-जवाब",
     getApp: "ऐप डाउनलोड करें",
     openMenu: "मेन्यू खोलें",

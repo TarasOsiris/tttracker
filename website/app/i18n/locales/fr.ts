@@ -14,6 +14,7 @@ export const fr: Messages = {
     howItWorks: "Comment ça marche",
     serves: "Services",
     drills: "Exercices",
+    blog: "Blog",
     faq: "FAQ",
     getApp: "Télécharger l'app",
     openMenu: "Ouvrir le menu",

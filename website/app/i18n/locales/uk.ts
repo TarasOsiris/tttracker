@@ -14,6 +14,7 @@ export const uk: Messages = {
     howItWorks: "Як це працює",
     serves: "Подачі",
     drills: "Вправи",
+    blog: "Блог",
     faq: "Запитання",
     getApp: "Завантажити застосунок",
     openMenu: "Відкрити меню",

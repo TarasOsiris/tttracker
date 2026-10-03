@@ -14,6 +14,7 @@ export const ar: Messages = {
     howItWorks: "طريقة العمل",
     serves: "الإرسال",
     drills: "التمارين",
+    blog: "المدونة",
     faq: "الأسئلة الشائعة",
     getApp: "حمّل التطبيق",
     openMenu: "فتح القائمة",

@@ -14,6 +14,7 @@ export const ko: Messages = {
     howItWorks: "사용 방법",
     serves: "서브",
     drills: "훈련 프로그램",
+    blog: "블로그",
     faq: "FAQ",
     getApp: "앱 받기",
     openMenu: "메뉴 열기",

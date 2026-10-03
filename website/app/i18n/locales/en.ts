@@ -14,6 +14,7 @@ export const en: Messages = {
     howItWorks: "How it works",
     serves: "Serves",
     drills: "Drills",
+    blog: "Blog",
     faq: "FAQ",
     getApp: "Get the app",
     openMenu: "Open menu",

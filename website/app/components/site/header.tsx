@@ -87,6 +87,7 @@ function useActiveHref() {
   }, [neutral]);
 
   if (neutral.startsWith("/drills")) return "/drills";
+  if (neutral.startsWith("/blog")) return "/blog";
   if (/^\/(serves|motions|spins|rules|quiz|about)(\/|$)/.test(neutral)) return "/serves";
   return neutral === "/" && section ? `/#${section}` : null;
 }
@@ -97,6 +98,7 @@ export function SiteHeader() {
   const longBrand = appNames[locale].brand.length > 16;
   const [scrolled, setScrolled] = useState(false);
   const active = useActiveHref();
+  const linkTo = (l: (typeof navLinks)[number]) => ("englishOnly" in l ? l.href : href(l.href));
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -118,10 +120,10 @@ export function SiteHeader() {
           {navLinks.map((l) => (
             <Link
               key={l.href}
-              to={href(l.href)}
+              to={linkTo(l)}
               aria-current={active === l.href ? "page" : undefined}
               className={cn(
-                "rounded-full px-3.5 py-2 text-sm font-medium whitespace-nowrap text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground",
+                "rounded-full px-2.5 py-2 text-sm font-medium whitespace-nowrap xl:px-3.5 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground",
                 active === l.href && "bg-secondary text-foreground",
               )}
             >
@@ -157,7 +159,7 @@ export function SiteHeader() {
                 {navLinks.map((l) => (
                   <SheetClose asChild key={l.href}>
                     <Link
-                      to={href(l.href)}
+                      to={linkTo(l)}
                       aria-current={active === l.href ? "page" : undefined}
                       className={cn(
                         "rounded-2xl px-4 py-3 font-display text-lg font-semibold hover:bg-secondary",

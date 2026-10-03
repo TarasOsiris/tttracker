@@ -40,6 +40,8 @@ export const navLinks = [
   { href: "/#how-it-works", key: "howItWorks" },
   { href: "/serves", key: "serves" },
   { href: "/drills", key: "drills" },
+  // The blog is English only, so every language links to the same /blog.
+  { href: "/blog", key: "blog", englishOnly: true },
   { href: "/#faq", key: "faq" },
 ] as const;
 
