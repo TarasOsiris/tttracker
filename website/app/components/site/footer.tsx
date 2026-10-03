@@ -68,7 +68,8 @@ export function SiteFooter() {
         <Column title={t.footer.product}>
           {navLinks.map((l) => (
             <li key={l.href}>
-              <Link to={href(l.href)} className={linkClass}>
+              {/* English-only pages (blog, equipment) exist once, at the root. */}
+              <Link to={"englishOnly" in l ? l.href : href(l.href)} className={linkClass}>
                 {t.nav[l.key]}
               </Link>
             </li>
