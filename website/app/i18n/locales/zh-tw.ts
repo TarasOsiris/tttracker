@@ -38,6 +38,7 @@ export const zhTw: Messages = {
     trustPoints: ["免費", "免註冊", "可離線使用", "支援 15 種語言"],
   },
   mockup: {
+    tryIt: "點一點，親自試試",
     weekdays: ["一", "二", "三", "四", "五", "六", "日"],
     today: "今天",
     yesterday: "昨天",

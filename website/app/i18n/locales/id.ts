@@ -38,6 +38,7 @@ export const id: Messages = {
     trustPoints: ["Gratis", "Tanpa akun", "Bisa offline", "15 bahasa"],
   },
   mockup: {
+    tryIt: "Coba — ketuk untuk menjelajah",
     weekdays: ["Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Min"],
     today: "Hari ini",
     yesterday: "Kemarin",

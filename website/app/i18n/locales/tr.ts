@@ -38,6 +38,7 @@ export const tr: Messages = {
     trustPoints: ["Ücretsiz", "Hesap gerekmez", "Çevrimdışı çalışır", "15 dil"],
   },
   mockup: {
+    tryIt: "Deneyin — dokunarak keşfedin",
     weekdays: ["Pzt", "Sal", "Çar", "Per", "Cum", "Cmt", "Paz"],
     today: "Bugün",
     yesterday: "Dün",

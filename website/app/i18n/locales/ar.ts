@@ -38,6 +38,7 @@ export const ar: Messages = {
     trustPoints: ["مجاني", "بلا حساب", "يعمل دون إنترنت", "15 لغة"],
   },
   mockup: {
+    tryIt: "جرّبه — انقر للاستكشاف",
     weekdays: ["إث", "ث", "أر", "خ", "ج", "س", "أح"],
     today: "اليوم",
     yesterday: "أمس",
