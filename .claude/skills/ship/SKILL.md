@@ -279,6 +279,7 @@ provision the distribution certificate itself, so there is no `.p12` to hunt dow
 evicted to a placeholder on a machine that hasn't opened it recently:
 
 1. `/Users/taras/Documents/creds/ios/AuthKey_4KK2B86XC6_BRO.p8` — local, cannot be evicted
+   (absent as of Oct 2026; the 1.3.12 ship used the iCloud copy below)
 2. `~/Library/Mobile Documents/com~apple~CloudDocs/Files/AuthKey_4KK2B86XC6_BRO.p8`
 3. If neither resolves: `find "$HOME" -maxdepth 5 -name 'AuthKey_*.p8'`
 
@@ -357,10 +358,10 @@ Only when Step 7 said to submit.
    fails; pipe into `while read -r L` instead.
 
    A locale on disk that `asc localizations list` does not show yet has to be created rather than
-   updated, with every field from its directory. As of Oct 2026 that is `zh-Hant` (Traditional
-   Chinese) and the seven languages added after it: `cs`, `ms`, `nl-NL`, `pl`, `sv`, `th`, `vi`.
-   Create them on the first version that ships their translations, not before, so the listing
-   never promises a language the installed build lacks. Run once per locale:
+   updated, with every field from its directory. Create a locale on the first version that ships
+   its translations, not before, so the listing never promises a language the installed build
+   lacks. Creating the version localization also auto-creates the app-info localization with the
+   **English** name and subtitle, so overwrite those straight away. Run once per locale:
 
    ```bash
    L=zh-Hant; D=fastlane/metadata/$L
@@ -368,19 +369,17 @@ Only when Step 7 said to submit.
      --description "$(cat $D/description.txt)" --keywords "$(cat $D/keywords.txt)" \
      --promotional-text "$(cat $D/promotional_text.txt)" --whats-new "$(cat $D/release_notes.txt)" \
      --marketing-url "$(cat $D/marketing_url.txt)" --support-url "$(cat $D/support_url.txt)"
-   asc apps rename --app 6758044383 --locale $L --name "$(cat $D/name.txt)"
+   asc localizations update --type app-info --app 6758044383 --app-info <EDITABLE_APP_INFO_ID> --locale $L \
+     --name "$(cat $D/name.txt)" --subtitle "$(cat $D/subtitle.txt)" --privacy-policy-url "$(cat $D/privacy_url.txt)"
    ```
 
-   The subtitle and privacy URL live on the app info record, not the version: set them for the new
-   locale in App Store Connect if `asc` cannot. Its screenshots are ready in the Screenshot Bro
-   "tt tracker" project under the same locale code; once the localization exists, push them with
-   the Screenshot Bro App Store sync (preview, then apply) for that locale only.
+   `asc localizations list --app 6758044383 --type app-info` prints the editable app-info id it
+   auto-selects (the `PREPARE_FOR_SUBMISSION` one).
 
-   **Pending since Oct 2026:** the Screenshot Bro iPhone and iPad rows hold new captures of the
-   current UI for every locale, but no version was editable when they were made. Before
-   submitting the next version, run the Screenshot Bro App Store sync for **all** locales
-   (preview, then apply), not only the new ones. That replaces the old screenshots, which still
-   show the Settings tab.
+   To refresh screenshots, run the Screenshot Bro App Store sync (preview, then apply) against the
+   editable version. Locales that exist only on Play (en-IN, en-SG, en-ZA, es-US, zh-TW, zh-HK) and
+   the Android row are skipped, as they should be. Syncing all 28 locales is 574 operations and
+   takes close to an hour, so start it right after creating the version record.
 
    If a locale has no file on disk, fall back to the en-US text. When the notes on disk are stale
    (they describe the *previous* ship), draft fresh English from `git log ios-<previous>..HEAD` —
