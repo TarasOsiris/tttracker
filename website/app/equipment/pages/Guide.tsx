@@ -39,6 +39,18 @@ export const meta: Route.MetaFunction = ({ loaderData }) => {
   });
 };
 
+const slugify = (s: string) =>
+  s
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+
+/** About 220 words a minute, counting the intro and every block. */
+function readingMinutes(guide: Route.ComponentProps["loaderData"]["guide"]): number {
+  const text = [guide.intro, ...guide.sections.flatMap((s) => s.blocks.flatMap((b) => (typeof b === "string" ? [b] : b.list)))].join(" ");
+  return Math.max(1, Math.round(text.split(/\s+/).length / 220));
+}
+
 export default function Guide({ loaderData }: Route.ComponentProps) {
   const { guide, terms, others } = loaderData;
   return (
@@ -50,11 +62,17 @@ export default function Guide({ loaderData }: Route.ComponentProps) {
           </Link>
         </nav>
         <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-balance sm:text-5xl">{guide.title}</h1>
-        <p className="mt-3 text-sm text-muted-foreground">Updated {formatDate(guide.updated)}</p>
+        <p className="mt-3 text-sm text-muted-foreground">
+          Updated {formatDate(guide.updated)} · {readingMinutes(guide)} min read · {guide.sources.length} sources
+        </p>
         <p className="mt-6 text-lg leading-relaxed text-muted-foreground">{inline(guide.intro)}</p>
         {guide.sections.map((s) => (
-          <section key={s.heading} className="mt-10">
-            <h2 className="font-display text-xl font-bold tracking-tight sm:text-2xl">{s.heading}</h2>
+          <section key={s.heading} id={slugify(s.heading)} className="mt-10 scroll-mt-24">
+            <h2 className="font-display text-xl font-bold tracking-tight sm:text-2xl">
+              <a href={`#${slugify(s.heading)}`} className="hover:text-primary">
+                {s.heading}
+              </a>
+            </h2>
             <div className="mt-4 space-y-4 leading-relaxed text-muted-foreground">
               {s.blocks.map((b, i) =>
                 typeof b === "string" ? (
@@ -70,11 +88,28 @@ export default function Guide({ loaderData }: Route.ComponentProps) {
             </div>
           </section>
         ))}
-        <div className="mt-12 border-t pt-8">
+        <div id="sources" className="mt-12 scroll-mt-24 border-t pt-8">
           <Sources sources={guide.sources} />
         </div>
       </article>
-      <aside className="space-y-6 text-sm lg:sticky lg:top-24 lg:self-start">
+      <aside className="space-y-6 text-sm lg:sticky lg:top-24 lg:max-h-[calc(100vh-7rem)] lg:self-start lg:overflow-y-auto">
+        <nav aria-label="On this page" className="rounded-3xl border bg-card p-5">
+          <p className="font-semibold">On this page</p>
+          <ol className="mt-2 space-y-1.5">
+            {guide.sections.map((s) => (
+              <li key={s.heading}>
+                <a href={`#${slugify(s.heading)}`} className="text-muted-foreground hover:text-primary">
+                  {s.heading}
+                </a>
+              </li>
+            ))}
+            <li>
+              <a href="#sources" className="text-muted-foreground hover:text-primary">
+                Sources
+              </a>
+            </li>
+          </ol>
+        </nav>
         {terms.length > 0 && (
           <div className="rounded-3xl border bg-card p-5">
             <p className="font-semibold">Terms in this guide</p>

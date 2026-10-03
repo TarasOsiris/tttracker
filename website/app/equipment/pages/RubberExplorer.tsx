@@ -75,6 +75,7 @@ function buildDefs(rows: RubberRow[], brands: { id: string; name: string; logo?:
 const nullsLast = (a: number | null, b: number | null, dir = 1) => (a == null ? 1 : b == null ? -1 : (a - b) * dir);
 
 const sorts: SortDef<RubberRow>[] = [
+  { value: "brand", label: "brand, then name", compare: (a, b) => a.brandName.localeCompare(b.brandName, "en") || a.name.localeCompare(b.name, "en", { numeric: true }) },
   { value: "name", label: "name", compare: (a, b) => a.name.localeCompare(b.name, "en", { numeric: true }) },
   {
     value: "softest",
@@ -107,13 +108,9 @@ export default function RubberExplorer({ loaderData }: Route.ComponentProps) {
           .
         </p>
       </PageHeader>
-      <ExplorerShell defs={defs} sorts={sorts} state={state} total={rows.length} noun="rubbers">
-        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-          {state.results.map((r) => (
-            <RubberCard key={r.id} rubber={r} />
-          ))}
-        </div>
-      </ExplorerShell>
+      <ExplorerShell defs={defs} sorts={sorts} state={state} total={rows.length} noun="rubbers"
+        renderItem={(r) => <RubberCard rubber={r} />}
+      />
     </div>
   );
 }

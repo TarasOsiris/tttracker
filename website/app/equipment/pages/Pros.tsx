@@ -32,12 +32,58 @@ function latestCheck(rows: PlayerRow[]): string | null {
   return rows.reduce<string | null>((max, r) => (!max || r.lastVerified > max ? r.lastVerified : max), null);
 }
 
-function SetupTable({ rows, title }: { rows: PlayerRow[]; title: string }) {
+function PlayerLine({ p }: { p: PlayerRow }) {
+  return (
+    <div className="flex items-center gap-3">
+      <PlayerAvatar photo={p.photo} name={p.name} country={p.country} className="size-11" />
+      <div>
+        <Link to={`/equipment/pros/${p.id}`} className="font-semibold hover:text-primary hover:underline">
+          <span aria-hidden="true">{flag(p.country)} </span>
+          {p.name}
+        </Link>
+        <p className="text-xs text-muted-foreground">
+          {p.country}
+          {p.hand ? ` · ${p.hand}-handed` : ""}
+          {p.grip ? ` · ${p.grip}` : ""}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+const slotNames = [
+  ["blade", "Blade"],
+  ["forehand", "Forehand"],
+  ["backhand", "Backhand"],
+] as const;
+
+function SetupTable({ id, rows, title }: { id: string; rows: PlayerRow[]; title: string }) {
   if (!rows.length) return null;
   return (
-    <section>
+    <section id={id} className="scroll-mt-24">
       <h2 className="text-2xl font-bold tracking-tight">{title}</h2>
-      <div className="mt-4 overflow-x-auto rounded-3xl border bg-card">
+      {/* Phones get one card per player; the table needs more width than they have. */}
+      <ol className="mt-4 space-y-3 md:hidden">
+        {rows.map((p) => (
+          <li key={p.id} className="rounded-3xl border bg-card p-4">
+            <div className="flex items-center gap-3">
+              <span className="w-7 font-display text-lg font-extrabold text-primary">{p.ranking?.position ?? "—"}</span>
+              <PlayerLine p={p} />
+            </div>
+            <dl className="mt-3 space-y-2.5 border-t pt-3 text-sm">
+              {slotNames.map(([slot, label]) => (
+                <div key={slot} className="grid grid-cols-[5.5rem_minmax(0,1fr)] gap-2">
+                  <dt className="pt-0.5 text-xs text-muted-foreground">{label}</dt>
+                  <dd>
+                    <SetupCell item={p.setup[slot]} slot={slot} />
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </li>
+        ))}
+      </ol>
+      <div className="mt-4 hidden overflow-x-auto rounded-3xl border bg-card md:block">
         <table className="w-full min-w-[720px] text-sm">
           <thead>
             <tr className="border-b text-start text-muted-foreground">
@@ -53,20 +99,7 @@ function SetupTable({ rows, title }: { rows: PlayerRow[]; title: string }) {
               <tr key={p.id} className="align-top">
                 <td className="p-3 font-display text-lg font-extrabold text-primary">{p.ranking?.position ?? "—"}</td>
                 <td className="p-3">
-                  <div className="flex items-center gap-3">
-                    <PlayerAvatar photo={p.photo} name={p.name} country={p.country} className="size-11" />
-                    <div>
-                      <Link to={`/equipment/pros/${p.id}`} className="font-semibold hover:text-primary hover:underline">
-                        <span aria-hidden="true">{flag(p.country)} </span>
-                        {p.name}
-                      </Link>
-                      <p className="text-xs text-muted-foreground">
-                        {p.country}
-                        {p.hand ? ` · ${p.hand}-handed` : ""}
-                        {p.grip ? ` · ${p.grip}` : ""}
-                      </p>
-                    </div>
-                  </div>
+                  <PlayerLine p={p} />
                 </td>
                 <td className="p-3">
                   <SetupCell item={p.setup.blade} slot="blade" />
@@ -108,6 +141,18 @@ export default function Pros({ loaderData }: Route.ComponentProps) {
           </p>
         )}
       </PageHeader>
+
+      <nav aria-label="Jump to" className="flex flex-wrap gap-2">
+        {[
+          ["#men", `Men (${men.length})`],
+          ["#women", `Women (${women.length})`],
+          ...(notable.length ? [["#notable", `Other notable (${notable.length})`]] : []),
+        ].map(([href, label]) => (
+          <a key={href} href={href} className="rounded-full border bg-card px-4 py-2 text-sm font-medium hover:border-primary/40 hover:bg-secondary">
+            {label}
+          </a>
+        ))}
+      </nav>
 
       <aside className="rounded-3xl border bg-card p-5 text-sm leading-relaxed text-muted-foreground">
         <p className="font-semibold text-foreground">How to read this</p>
@@ -151,9 +196,9 @@ export default function Pros({ loaderData }: Route.ComponentProps) {
         </section>
       )}
 
-      <SetupTable rows={men} title="Men's top players" />
-      <SetupTable rows={women} title="Women's top players" />
-      <SetupTable rows={notable} title="Other notable players" />
+      <SetupTable id="men" rows={men} title="Men's top players" />
+      <SetupTable id="women" rows={women} title="Women's top players" />
+      <SetupTable id="notable" rows={notable} title="Other notable players" />
     </div>
   );
 }

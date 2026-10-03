@@ -35,7 +35,7 @@ function CardShell({
           </p>
           <h3 className="mt-1 text-lg leading-snug font-bold tracking-tight group-hover:text-primary">{name}</h3>
         </div>
-        <ProductThumb photo={photo} fallback={fallback} className="size-20" />
+        <ProductThumb photo={photo} fallback={fallback} className="h-20 w-24" />
       </div>
       {children}
     </Link>

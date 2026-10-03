@@ -1,9 +1,19 @@
-import { ArrowLeftRight } from "lucide-react";
 import { data, Link } from "react-router";
 import type { Route } from "./+types/BladeDetail";
 import { BladeCard } from "../components/Cards";
-import { Facts, Notes, ProductFigure, PageHeader, Pill, Prose, RatingsBlock, Sources, SpecTable, StatusPill, UsedBy } from "../components/Parts";
-import { BrandLogo } from "../components/Media";
+import {
+  Facts,
+  ItemHero,
+  Notes,
+  ProductFigure,
+  Pill,
+  Prose,
+  RatingsBlock,
+  Sources,
+  SpecTable,
+  StatusPill,
+  UsedBy,
+} from "../components/Parts";
 import { PlyDiagram } from "../components/PlyDiagram";
 import { DASH, construction, fiberLabels, fiberPositionLabels, formatMm, formatWeight, handleLabels } from "../labels";
 import { bladePayload } from "../store.server";
@@ -20,7 +30,9 @@ export const meta: Route.MetaFunction = ({ loaderData }) => {
   const { blade, brand } = loaderData;
   const full = `${brand.name} ${blade.name}`;
   const path = `/equipment/blades/${blade.id}`;
-  const specs = [blade.layup, blade.thicknessMm != null && `${blade.thicknessMm} mm`, blade.weightG && formatWeight(blade.weightG)].filter(Boolean).join(", ");
+  const specs = [blade.layup, blade.thicknessMm != null && `${blade.thicknessMm} mm`, blade.weightG && formatWeight(blade.weightG)]
+    .filter(Boolean)
+    .join(", ");
   return equipmentMeta({
     title: `${full} Blade Specs: Plies, Carbon, Thickness & Weight`,
     description: `${full} specs${specs ? ` (${specs})` : ""}: construction, handles, ${brand.name}'s own ratings and sources. ${blade.summary}`,
@@ -42,10 +54,27 @@ export const meta: Route.MetaFunction = ({ loaderData }) => {
         url: absolute(path),
         image: absolute(blade.photo?.src ?? `/equipment/img/blades/${blade.id}.svg`),
         additionalProperty: [
-          blade.layup && { "@type": "PropertyValue", name: "Composition", value: blade.layup },
-          blade.plies != null && { "@type": "PropertyValue", name: "Plies", value: blade.plies },
-          blade.thicknessMm != null && { "@type": "PropertyValue", name: "Thickness", value: blade.thicknessMm, unitCode: "MMT" },
-          blade.weightG && { "@type": "PropertyValue", name: "Nominal weight", value: formatWeight(blade.weightG) },
+          blade.layup && {
+            "@type": "PropertyValue",
+            name: "Composition",
+            value: blade.layup,
+          },
+          blade.plies != null && {
+            "@type": "PropertyValue",
+            name: "Plies",
+            value: blade.plies,
+          },
+          blade.thicknessMm != null && {
+            "@type": "PropertyValue",
+            name: "Thickness",
+            value: blade.thicknessMm,
+            unitCode: "MMT",
+          },
+          blade.weightG && {
+            "@type": "PropertyValue",
+            name: "Nominal weight",
+            value: formatWeight(blade.weightG),
+          },
         ].filter(Boolean),
       },
     ],
@@ -57,19 +86,41 @@ export default function BladeDetail({ loaderData }: Route.ComponentProps) {
   const rows = [
     { label: "Brand", value: brand.name },
     { label: "Construction", value: construction(blade) },
-    { label: "Composition", value: blade.layup ?? DASH, hint: "As the maker writes it" },
+    {
+      label: "Composition",
+      value: blade.layup ?? DASH,
+      hint: "As the maker writes it",
+    },
     { label: "Plies", value: blade.plies ?? DASH },
     {
       label: "Composite",
       value: blade.fibers.length ? (blade.fiberName ?? DASH) : "None",
       hint: blade.fibers.length ? `Type: ${blade.fibers.map((f) => fiberLabels[f]).join(", ")}` : undefined,
     },
-    ...(blade.fibers.length ? [{ label: "Composite position", value: blade.fiberPosition ? fiberPositionLabels[blade.fiberPosition] : DASH }] : []),
+    ...(blade.fibers.length
+      ? [
+          {
+            label: "Composite position",
+            value: blade.fiberPosition ? fiberPositionLabels[blade.fiberPosition] : DASH,
+          },
+        ]
+      : []),
     { label: "Outer ply", value: blade.outerWood ?? DASH },
     { label: "Thickness", value: formatMm(blade.thicknessMm) },
-    { label: "Weight", value: formatWeight(blade.weightG), hint: "Nominal; wood varies blade to blade" },
-    { label: "Handles", value: blade.handles.length ? blade.handles.map((h) => handleLabels[h]).join(", ") : DASH },
-    { label: "Maker's class", value: blade.manufacturerClass ?? DASH, hint: "The brand's own category" },
+    {
+      label: "Weight",
+      value: formatWeight(blade.weightG),
+      hint: "Nominal; wood varies blade to blade",
+    },
+    {
+      label: "Handles",
+      value: blade.handles.length ? blade.handles.map((h) => handleLabels[h]).join(", ") : DASH,
+    },
+    {
+      label: "Maker's class",
+      value: blade.manufacturerClass ?? DASH,
+      hint: "The brand's own category",
+    },
     { label: "Made in", value: blade.madeIn ?? DASH },
     { label: "Released", value: blade.releaseYear ?? DASH },
   ];
@@ -84,22 +135,31 @@ export default function BladeDetail({ loaderData }: Route.ComponentProps) {
           {brand.name}
         </Link>
       </nav>
-      <BrandLogo logo={brand.logo} name={brand.name} className="-mb-4 h-8" />
-      <PageHeader eyebrow={`${brand.name} blade`} title={`${brand.name} ${blade.name}`}>
-        <p>{blade.summary}</p>
-        <div className="mt-4 flex flex-wrap items-center gap-2">
-          <Pill tone="primary">{construction(blade)}</Pill>
-          {blade.layup && <Pill>{blade.layup}</Pill>}
-          <StatusPill status={blade.status} />
-          {blade.aliases?.map((a) => <Pill key={a}>Also sold as {a}</Pill>)}
-          <Link
-            to={`/equipment/compare?ids=blade:${blade.id}`}
-            className="ms-auto inline-flex items-center gap-1.5 rounded-full border bg-card px-4 py-1.5 text-sm font-medium hover:border-primary/40"
-          >
-            <ArrowLeftRight className="size-4" /> Compare
-          </Link>
-        </div>
-      </PageHeader>
+      <ItemHero
+        brand={brand}
+        kind="Blade"
+        title={`${brand.name} ${blade.name}`}
+        summary={blade.summary}
+        compareHref={`/equipment/compare?ids=blade:${blade.id}`}
+        tags={
+          <>
+            <Pill tone="primary">{construction(blade)}</Pill>
+            {blade.layup && <Pill>{blade.layup}</Pill>}
+            <StatusPill status={blade.status} />
+            {blade.aliases?.map((a) => (
+              <Pill key={a}>Also sold as {a}</Pill>
+            ))}
+          </>
+        }
+        figure={
+          <ProductFigure
+            photo={blade.photo}
+            illustration={`/equipment/img/blades/${blade.id}.svg`}
+            alt={`${brand.name} ${blade.name} blade${blade.handles[0] ? ` with a ${handleLabels[blade.handles[0]].replace(/ \(.*/, "").toLowerCase()} handle` : ""}`}
+            note={`${blade.handles[0] ? `${handleLabels[blade.handles[0]].replace(/ \(.*/, "").toLowerCase()} handle` : "handle shape not published"}, ${blade.outerWood ? `${blade.outerWood.toLowerCase()} outer ply` : "generic wood colour"}`}
+          />
+        }
+      />
 
       <div className="grid gap-6 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
         <div className="space-y-6">
@@ -114,12 +174,6 @@ export default function BladeDetail({ loaderData }: Route.ComponentProps) {
           <UsedBy players={usedBy} />
         </div>
         <div className="space-y-6">
-          <ProductFigure
-            photo={blade.photo}
-            illustration={`/equipment/img/blades/${blade.id}.svg`}
-            alt={`${brand.name} ${blade.name} blade${blade.handles[0] ? ` with a ${handleLabels[blade.handles[0]].replace(/ \(.*/, "").toLowerCase()} handle` : ""}`}
-            note={`${blade.handles[0] ? `${handleLabels[blade.handles[0]].replace(/ \(.*/, "").toLowerCase()} handle` : "handle shape not published"}, ${blade.outerWood ? `${blade.outerWood.toLowerCase()} outer ply` : "generic wood colour"}`}
-          />
           {blade.plyOrder && <PlyDiagram plies={blade.plyOrder} />}
           <RatingsBlock ratings={blade.manufacturerRatings} brand={brand} />
           <Notes notes={blade.notes} />

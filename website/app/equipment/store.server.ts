@@ -68,19 +68,31 @@ function rubberRow(r: Rubber): RubberRow {
   };
 }
 
-const byBrandThenName = <T extends { brandName: string; name: string }>(a: T, b: T) =>
-  a.brandName.localeCompare(b.brandName, "en") || a.name.localeCompare(b.name, "en", { numeric: true });
+/**
+ * Default explorer order: what the tracked pros use, then items with a photo and the most published specs, so the
+ * first screen shows the best-documented, most relevant products rather than whichever brand sorts first.
+ */
+const bladeDetail = (b: BladeRow) =>
+  [b.plies, b.thicknessMm, b.weightG, b.handles.length || null, b.fibers.length ? b.fiberPosition : "n/a"].filter((v) => v != null).length;
+const rubberDetail = (r: RubberRow) =>
+  [r.hardness, r.spongeThicknesses.length || null, r.topsheetColors?.length || null, r.tackiness].filter((v) => v != null).length;
+const popular = <T extends { brandName: string; name: string; proCount: number; photo?: Image }>(detail: (row: T) => number) => (a: T, b: T) =>
+  b.proCount - a.proCount ||
+  Number(!!b.photo) - Number(!!a.photo) ||
+  detail(b) - detail(a) ||
+  a.brandName.localeCompare(b.brandName, "en") ||
+  a.name.localeCompare(b.name, "en", { numeric: true });
 
 const brandOptions = (ids: string[]) =>
   brands.filter((b) => ids.includes(b.id)).map((b) => ({ id: b.id, name: b.name, logo: b.logo }));
 
 export function bladesPayload() {
-  const rows = blades.map(bladeRow).sort(byBrandThenName);
+  const rows = blades.map(bladeRow).sort(popular(bladeDetail));
   return { rows, brands: brandOptions([...new Set(blades.map((b) => b.brandId))]) };
 }
 
 export function rubbersPayload() {
-  const rows = rubbers.map(rubberRow).sort(byBrandThenName);
+  const rows = rubbers.map(rubberRow).sort(popular(rubberDetail));
   return { rows, brands: brandOptions([...new Set(rubbers.map((r) => r.brandId))]) };
 }
 
@@ -122,6 +134,15 @@ export function rubberPayload(id: string) {
   };
 }
 
+/** Starting points for the compare page; pairs whose items aren't in the catalog are dropped. */
+const suggestedComparisons: { kind: "blade" | "rubber"; ids: string[] }[] = [
+  { kind: "blade", ids: ["butterfly-viscaria", "butterfly-innerforce-layer-alc"] },
+  { kind: "blade", ids: ["butterfly-fan-zhendong-alc", "butterfly-timo-boll-alc", "stiga-cybershape-carbon"] },
+  { kind: "rubber", ids: ["butterfly-dignics-09c", "dhs-hurricane-3-neo"] },
+  { kind: "rubber", ids: ["butterfly-tenergy-05", "tibhar-evolution-mx-p", "xiom-omega-vii-pro"] },
+  { kind: "rubber", ids: ["butterfly-dignics-05", "butterfly-tenergy-05", "butterfly-zyre-03"] },
+];
+
 /** Everything the compare table can show, minus the prose. */
 export function comparePayload() {
   const strip = <T extends Blade | Rubber>(item: T) => {
@@ -135,6 +156,13 @@ export function comparePayload() {
     blades: blades.map((b) => ({ ...strip(b), brandName: brandById.get(b.brandId)!.name, brandLogo: brandById.get(b.brandId)!.logo, construction: construction(b) })),
     rubbers: rubbers.map((r) => ({ ...strip(r), brandName: brandById.get(r.brandId)!.name, brandLogo: brandById.get(r.brandId)!.logo, bands: hardnessBands(r.hardness) })),
     brands: brands.map((b) => brandRef(b.id)),
+    suggestions: suggestedComparisons
+      .filter((s) => s.ids.every((id) => (s.kind === "blade" ? bladeById : rubberById).has(id)))
+      .map((s) => ({
+        href: `/equipment/compare?ids=${s.ids.map((id) => `${s.kind}:${id}`).join(",")}`,
+        label: s.ids.map((id) => (s.kind === "blade" ? bladeById : rubberById).get(id)!.name).join(" vs "),
+        kind: s.kind,
+      })),
   };
 }
 
@@ -184,9 +212,24 @@ export function playerPayload(id: string) {
   return { player, setup: resolveSetup(player) };
 }
 
+export type SearchEntry = { label: string; kind: "Blade" | "Rubber" | "Player" | "Brand" | "Guide"; href: string; image?: string };
+
+/** Everything the hub's search box can find, as compact rows. */
+function searchIndex(): SearchEntry[] {
+  const brandName = (id: string) => brandById.get(id)!.name;
+  return [
+    ...blades.map((b) => ({ label: `${brandName(b.brandId)} ${b.name}`, kind: "Blade" as const, href: `/equipment/blades/${b.id}`, image: b.photo?.src ?? `/equipment/img/blades/${b.id}.svg` })),
+    ...rubbers.map((r) => ({ label: `${brandName(r.brandId)} ${r.name}`, kind: "Rubber" as const, href: `/equipment/rubbers/${r.id}`, image: r.photo?.src ?? `/equipment/img/rubbers/${r.id}.svg` })),
+    ...players.map((p) => ({ label: p.name, kind: "Player" as const, href: `/equipment/pros/${p.id}`, image: p.photo?.src })),
+    ...brands.map((b) => ({ label: b.name, kind: "Brand" as const, href: `/equipment/brands/${b.id}`, image: b.logo?.src })),
+    ...guides.map((g) => ({ label: g.title, kind: "Guide" as const, href: `/equipment/guides/${g.slug}` })),
+  ];
+}
+
 export function hubPayload() {
   const pros = prosPayload();
   return {
+    search: searchIndex(),
     counts: { blades: blades.length, rubbers: rubbers.length, brands: brands.length, players: players.length },
     brands: brands.map((b) => ({
       id: b.id,

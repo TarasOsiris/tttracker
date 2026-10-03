@@ -1,9 +1,12 @@
+import { Search } from "lucide-react";
+import { useState } from "react";
 import { Link } from "react-router";
 import type { Route } from "./+types/Glossary";
 import { PageHeader } from "../components/Parts";
 import { glossaryPayload } from "../store.server";
 import { absolute, breadcrumbs, equipmentMeta } from "../utils/seo";
 import { inline } from "~/components/site/legal-page";
+import { cn } from "~/lib/utils";
 
 export function loader() {
   return glossaryPayload();
@@ -33,13 +36,29 @@ export const meta: Route.MetaFunction = ({ loaderData }) =>
   });
 
 export default function Glossary({ loaderData }: Route.ComponentProps) {
+  const [q, setQ] = useState("");
+  const needle = q.trim().toLowerCase();
+  const matches = (t: (typeof loaderData)[number]) =>
+    !needle || [t.term, ...(t.aliases ?? []), t.definition].some((x) => x.toLowerCase().includes(needle));
+  const shown = loaderData.filter(matches);
   const letters = [...new Set(loaderData.map((t) => t.term[0].toUpperCase()))];
   return (
     <div className="space-y-8">
       <PageHeader eyebrow="Equipment encyclopedia" title="Equipment glossary">
         <p>The words on blade and rubber packaging, in plain English.</p>
       </PageHeader>
-      <nav aria-label="Letters" className="flex flex-wrap gap-1.5">
+      <div className="relative max-w-md">
+        <Search className="pointer-events-none absolute start-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+        <input
+          type="search"
+          value={q}
+          onChange={(e) => setQ(e.target.value)}
+          placeholder={`Filter ${loaderData.length} terms`}
+          aria-label="Filter glossary terms"
+          className="h-11 w-full rounded-full border bg-card ps-9 pe-4 text-sm placeholder:text-muted-foreground focus:ring-2 focus:ring-ring/50 focus:outline-none"
+        />
+      </div>
+      <nav aria-label="Letters" className={needle ? "hidden" : "flex flex-wrap gap-1.5"}>
         {letters.map((l) => (
           <a key={l} href={`#letter-${l}`} className="flex size-8 items-center justify-center rounded-full border bg-card text-sm font-semibold hover:border-primary/40">
             {l}
@@ -47,11 +66,12 @@ export default function Glossary({ loaderData }: Route.ComponentProps) {
         ))}
       </nav>
       <dl className="max-w-3xl space-y-3">
+        {shown.length === 0 && <p className="text-muted-foreground">No terms match “{q}”.</p>}
         {loaderData.map((t, i) => {
           const letter = t.term[0].toUpperCase();
           const first = i === 0 || loaderData[i - 1].term[0].toUpperCase() !== letter;
           return (
-            <div key={t.id} id={t.id} className="scroll-mt-24 rounded-2xl border bg-card p-4">
+            <div key={t.id} id={t.id} className={cn("scroll-mt-24 rounded-2xl border bg-card p-4 target:border-primary target:ring-2 target:ring-primary/30", !matches(t) && "hidden")}>
               {first && <span id={`letter-${letter}`} className="block scroll-mt-24" />}
               <dt className="font-bold">
                 {t.term}

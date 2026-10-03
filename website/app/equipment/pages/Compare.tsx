@@ -160,17 +160,33 @@ export default function Compare({ loaderData }: Route.ComponentProps) {
       </div>
 
       {selected.length === 0 ? (
-        <div className="rounded-3xl border border-dashed p-10 text-center text-muted-foreground">
-          Add a {kind} above to start. You can also press <strong>Compare</strong> on any {kind} page.
+        <div className="rounded-3xl border border-dashed p-8 text-center sm:p-10">
+          <p className="text-muted-foreground">
+            Add a {kind} above to start, or press <strong>Compare with others</strong> on any blade or rubber page.
+          </p>
+          {loaderData.suggestions.length > 0 && (
+            <>
+              <p className="mt-6 text-sm font-semibold">Popular comparisons</p>
+              <ul className="mt-3 flex flex-wrap justify-center gap-2">
+                {loaderData.suggestions.map((s) => (
+                  <li key={s.href}>
+                    <Link to={s.href} className="inline-flex rounded-full border bg-card px-4 py-2 text-sm font-medium hover:border-primary/40 hover:bg-secondary">
+                      {s.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
         </div>
       ) : (
         <div className="overflow-x-auto rounded-3xl border bg-card">
-          <table className="w-full min-w-[560px] text-sm">
+          <table className="w-full text-sm">
             <thead>
               <tr className="border-b">
-                <th className="w-40 p-4 text-start font-medium text-muted-foreground">Spec</th>
+                <th className="sticky start-0 z-10 w-28 bg-card p-3 text-start font-medium text-muted-foreground sm:w-40 sm:p-4">Spec</th>
                 {selected.map((s) => (
-                  <th key={s.id} className="p-4 text-start align-top">
+                  <th key={s.id} className="min-w-36 p-3 text-start align-top sm:p-4">
                     <Link to={`/equipment/${kind}s/${s.id}`} className="group block hover:text-primary">
                       <ProductThumb photo={s.photo} fallback={`/equipment/img/${kind}s/${s.id}.svg`} className="mb-2 size-24" />
                       <span className="block text-xs font-semibold tracking-wide text-muted-foreground uppercase">
@@ -185,22 +201,22 @@ export default function Compare({ loaderData }: Route.ComponentProps) {
             <tbody className="divide-y">
               {(kind === "blade" ? bladeRows : rubberRows).map((row) => (
                 <tr key={row.label}>
-                  <th scope="row" className="p-4 text-start font-normal text-muted-foreground">
+                  <th scope="row" className="sticky start-0 z-10 bg-card p-3 text-start text-xs font-normal text-muted-foreground sm:p-4 sm:text-sm">
                     {row.label}
                   </th>
                   {selected.map((s) => (
-                    <td key={s.id} className="p-4 align-top font-medium">
+                    <td key={s.id} className="p-3 align-top font-medium sm:p-4">
                       {(row.render as (x: BladeItem | RubberItem) => React.ReactNode)(s)}
                     </td>
                   ))}
                 </tr>
               ))}
               <tr className="bg-secondary/40">
-                <th scope="row" className="p-4 text-start align-top font-normal text-muted-foreground">
+                <th scope="row" className="sticky start-0 z-10 bg-card p-3 text-start align-top text-xs font-normal text-muted-foreground sm:p-4 sm:text-sm">
                   Maker's own ratings
                 </th>
                 {selected.map((s) => (
-                  <td key={s.id} className="p-4 align-top">
+                  <td key={s.id} className="p-3 align-top sm:p-4">
                     <Ratings ratings={s.manufacturerRatings} brandName={s.brandName} />
                   </td>
                 ))}

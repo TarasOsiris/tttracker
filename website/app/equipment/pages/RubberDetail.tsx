@@ -1,9 +1,19 @@
-import { ArrowLeftRight } from "lucide-react";
 import { data, Link } from "react-router";
 import type { Route } from "./+types/RubberDetail";
 import { RubberCard } from "../components/Cards";
-import { Facts, Notes, ProductFigure, PageHeader, Pill, Prose, RatingsBlock, Sources, SpecTable, StatusPill, UsedBy } from "../components/Parts";
-import { BrandLogo } from "../components/Media";
+import {
+  Facts,
+  ItemHero,
+  Notes,
+  ProductFigure,
+  Pill,
+  Prose,
+  RatingsBlock,
+  Sources,
+  SpecTable,
+  StatusPill,
+  UsedBy,
+} from "../components/Parts";
 import { bandRange } from "../hardness";
 import { DASH, formatHardness, formatThicknesses, rubberTypeLabels } from "../labels";
 import { rubberPayload } from "../store.server";
@@ -15,7 +25,11 @@ export function loader({ params }: Route.LoaderArgs) {
   return payload;
 }
 
-const tackLabels = { "non-tacky": "Non-tacky", "slightly-tacky": "Slightly tacky", tacky: "Tacky" } as const;
+const tackLabels = {
+  "non-tacky": "Non-tacky",
+  "slightly-tacky": "Slightly tacky",
+  tacky: "Tacky",
+} as const;
 
 export const meta: Route.MetaFunction = ({ loaderData }) => {
   if (!loaderData) return [];
@@ -43,9 +57,21 @@ export const meta: Route.MetaFunction = ({ loaderData }) => {
         url: absolute(path),
         image: absolute(rubber.photo?.src ?? `/equipment/img/rubbers/${rubber.id}.svg`),
         additionalProperty: [
-          { "@type": "PropertyValue", name: "Type", value: rubberTypeLabels[rubber.type] },
-          rubber.hardness && { "@type": "PropertyValue", name: "Sponge hardness", value: formatHardness(rubber.hardness) },
-          rubber.spongeThicknesses.length > 0 && { "@type": "PropertyValue", name: "Sponge thicknesses", value: formatThicknesses(rubber) },
+          {
+            "@type": "PropertyValue",
+            name: "Type",
+            value: rubberTypeLabels[rubber.type],
+          },
+          rubber.hardness && {
+            "@type": "PropertyValue",
+            name: "Sponge hardness",
+            value: formatHardness(rubber.hardness),
+          },
+          rubber.spongeThicknesses.length > 0 && {
+            "@type": "PropertyValue",
+            name: "Sponge thicknesses",
+            value: formatThicknesses(rubber),
+          },
         ].filter(Boolean),
       },
     ],
@@ -58,7 +84,10 @@ export default function RubberDetail({ loaderData }: Route.ComponentProps) {
   const rows = [
     { label: "Brand", value: brand.name },
     { label: "Type", value: rubberTypeLabels[rubber.type] },
-    { label: "Topsheet", value: rubber.tackiness ? tackLabels[rubber.tackiness] : DASH },
+    {
+      label: "Topsheet",
+      value: rubber.tackiness ? tackLabels[rubber.tackiness] : DASH,
+    },
     {
       label: "Sponge hardness",
       value: formatHardness(rubber.hardness),
@@ -83,13 +112,22 @@ export default function RubberDetail({ loaderData }: Route.ComponentProps) {
     { label: "Sponge colour", value: rubber.spongeColor ?? DASH },
     ...(pips
       ? [
-          { label: "Pip height", value: pips.heightMm != null ? `${pips.heightMm} mm` : DASH },
-          { label: "Pip diameter", value: pips.diameterMm != null ? `${pips.diameterMm} mm` : DASH },
+          {
+            label: "Pip height",
+            value: pips.heightMm != null ? `${pips.heightMm} mm` : DASH,
+          },
+          {
+            label: "Pip diameter",
+            value: pips.diameterMm != null ? `${pips.diameterMm} mm` : DASH,
+          },
           ...(pips.ratio != null ? [{ label: "Height / width ratio", value: pips.ratio }] : []),
           ...(pips.note ? [{ label: "Pip notes", value: pips.note }] : []),
         ]
       : []),
-    { label: "ITTF approved", value: rubber.ittfApproved == null ? DASH : rubber.ittfApproved ? "Yes" : "No" },
+    {
+      label: "ITTF approved",
+      value: rubber.ittfApproved == null ? DASH : rubber.ittfApproved ? "Yes" : "No",
+    },
     { label: "Made in", value: rubber.madeIn ?? DASH },
     { label: "Released", value: rubber.releaseYear ?? DASH },
   ];
@@ -104,36 +142,23 @@ export default function RubberDetail({ loaderData }: Route.ComponentProps) {
           {brand.name}
         </Link>
       </nav>
-      <BrandLogo logo={brand.logo} name={brand.name} className="-mb-4 h-8" />
-      <PageHeader eyebrow={`${brand.name} rubber`} title={`${brand.name} ${rubber.name}`}>
-        <p>{rubber.summary}</p>
-        <div className="mt-4 flex flex-wrap items-center gap-2">
-          <Pill tone="primary">{rubberTypeLabels[rubber.type]}</Pill>
-          {bands.length > 0 && <Pill>{bandRange(bands)}</Pill>}
-          <StatusPill status={rubber.status} />
-          {rubber.aliases?.map((a) => <Pill key={a}>Also sold as {a}</Pill>)}
-          <Link
-            to={`/equipment/compare?ids=rubber:${rubber.id}`}
-            className="ms-auto inline-flex items-center gap-1.5 rounded-full border bg-card px-4 py-1.5 text-sm font-medium hover:border-primary/40"
-          >
-            <ArrowLeftRight className="size-4" /> Compare
-          </Link>
-        </div>
-      </PageHeader>
-
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
-        <div className="space-y-6">
-          <SpecTable title="Specifications" rows={rows} />
-          <section>
-            <h2 className="text-xl font-bold tracking-tight">About {rubber.name}</h2>
-            <div className="mt-3">
-              <Prose paragraphs={rubber.description} />
-            </div>
-          </section>
-          <Facts facts={rubber.facts} sources={rubber.sources} />
-          <UsedBy players={usedBy} />
-        </div>
-        <div className="space-y-6">
+      <ItemHero
+        brand={brand}
+        kind="Rubber"
+        title={`${brand.name} ${rubber.name}`}
+        summary={rubber.summary}
+        compareHref={`/equipment/compare?ids=rubber:${rubber.id}`}
+        tags={
+          <>
+            <Pill tone="primary">{rubberTypeLabels[rubber.type]}</Pill>
+            {bands.length > 0 && <Pill>{bandRange(bands)}</Pill>}
+            <StatusPill status={rubber.status} />
+            {rubber.aliases?.map((a) => (
+              <Pill key={a}>Also sold as {a}</Pill>
+            ))}
+          </>
+        }
+        figure={
           <ProductFigure
             photo={rubber.photo}
             illustration={`/equipment/img/rubbers/${rubber.id}.svg`}
@@ -148,6 +173,22 @@ export default function RubberDetail({ loaderData }: Route.ComponentProps) {
                   : "sponge colour not listed, shown in grey",
             ].join(", ")}
           />
+        }
+      />
+
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
+        <div className="space-y-6">
+          <SpecTable title="Specifications" rows={rows} />
+          <section>
+            <h2 className="text-xl font-bold tracking-tight">About {rubber.name}</h2>
+            <div className="mt-3">
+              <Prose paragraphs={rubber.description} />
+            </div>
+          </section>
+          <Facts facts={rubber.facts} sources={rubber.sources} />
+          <UsedBy players={usedBy} />
+        </div>
+        <div className="space-y-6">
           <RatingsBlock ratings={rubber.manufacturerRatings} brand={brand} />
           <Notes notes={rubber.notes} />
           <Sources sources={rubber.sources} lastVerified={rubber.lastVerified} />

@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import type { Route } from "./+types/Hub";
 import { BrandLogo, ProductThumb } from "../components/Media";
 import { PageHeader } from "../components/Parts";
+import { SiteSearch } from "../components/SiteSearch";
 import { hubPayload } from "../store.server";
 import { breadcrumbs, equipmentMeta, SECTION } from "../utils/seo";
 
@@ -19,7 +20,7 @@ export const meta: Route.MetaFunction = ({ loaderData }) =>
   });
 
 export default function Hub({ loaderData }: Route.ComponentProps) {
-  const { counts, brands, topBlades, topRubbers, guides } = loaderData;
+  const { counts, brands, topBlades, topRubbers, guides, search } = loaderData;
   const sections = [
     { to: "/equipment/blades", icon: "🪵", title: "Blades", desc: `${counts.blades} blades: all-wood, inner and outer carbon, ALC, ZLC and more.` },
     { to: "/equipment/rubbers", icon: "🟥", title: "Rubbers", desc: `${counts.rubbers} rubbers: tensors, Chinese tacky, hybrids and pips.` },
@@ -35,6 +36,8 @@ export default function Hub({ loaderData }: Route.ComponentProps) {
           When a maker doesn't publish a value, we show {"—"} rather than guess.
         </p>
       </PageHeader>
+
+      <SiteSearch entries={search} />
 
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {sections.map((s) => (
@@ -104,12 +107,15 @@ export default function Hub({ loaderData }: Route.ComponentProps) {
         <h2 className="text-2xl font-bold tracking-tight">Brands</h2>
         <ul className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {brands.map((b) => (
-            <li key={b.id} className="rounded-2xl border bg-card p-4">
-              <Link to={`/equipment/brands/${b.id}`} className="flex items-center gap-2 font-bold hover:text-primary hover:underline">
-                <BrandLogo logo={b.logo} name={b.name} className="h-7" />
-                {b.name}
+            <li key={b.id} className="rounded-2xl border bg-card p-4 transition-colors hover:border-primary/40">
+              <Link to={`/equipment/brands/${b.id}`} className="group block">
+                <span className="flex h-10 items-center">
+                  {b.logo ? <BrandLogo logo={b.logo} name={b.name} className="h-9 px-2" /> : <span className="font-bold">{b.name}</span>}
+                </span>
+                <span className="mt-2 block text-sm font-semibold group-hover:text-primary">
+                  {b.name} <span className="font-normal text-muted-foreground">· {b.country}</span>
+                </span>
               </Link>
-              <p className="text-xs text-muted-foreground">{b.country}</p>
               <p className="mt-2 flex gap-3 text-sm">
                 {b.blades > 0 && (
                   <Link to={`/equipment/blades?brand=${b.id}`} className="text-primary hover:underline">

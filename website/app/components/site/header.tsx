@@ -203,7 +203,10 @@ export function SiteHeader() {
             </SheetTrigger>
             <SheetContent side={localeInfo[locale].dir === "rtl" ? "left" : "right"} className="w-[85vw] max-w-sm overflow-y-auto p-6">
               <SheetTitle className="sr-only">{t.nav.menu}</SheetTitle>
-              <Logo />
+              {/* Leave room for the sheet's close button. */}
+              <div className="pe-10">
+                <Logo />
+              </div>
               <nav className="mt-6 flex flex-col gap-5" aria-label="Mobile">
                 {navGroups.map((group) => (
                   <div key={group}>

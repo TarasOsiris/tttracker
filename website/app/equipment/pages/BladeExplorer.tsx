@@ -92,6 +92,7 @@ function buildDefs(rows: BladeRow[], brands: { id: string; name: string; logo?: 
 const nullsLast = (a: number | null, b: number | null, dir = 1) => (a == null ? 1 : b == null ? -1 : (a - b) * dir);
 
 const sorts: SortDef<BladeRow>[] = [
+  { value: "brand", label: "brand, then name", compare: (a, b) => a.brandName.localeCompare(b.brandName, "en") || a.name.localeCompare(b.name, "en", { numeric: true }) },
   { value: "name", label: "name", compare: (a, b) => a.name.localeCompare(b.name, "en", { numeric: true }) },
   { value: "light", label: "lightest first", compare: (a, b) => nullsLast(a.weightG?.min ?? null, b.weightG?.min ?? null) },
   { value: "heavy", label: "heaviest first", compare: (a, b) => nullsLast(a.weightG?.max ?? a.weightG?.min ?? null, b.weightG?.max ?? b.weightG?.min ?? null, -1) },
@@ -117,13 +118,9 @@ export default function BladeExplorer({ loaderData }: Route.ComponentProps) {
           .
         </p>
       </PageHeader>
-      <ExplorerShell defs={defs} sorts={sorts} state={state} total={rows.length} noun="blades">
-        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-          {state.results.map((b) => (
-            <BladeCard key={b.id} blade={b} />
-          ))}
-        </div>
-      </ExplorerShell>
+      <ExplorerShell defs={defs} sorts={sorts} state={state} total={rows.length} noun="blades"
+        renderItem={(b) => <BladeCard blade={b} />}
+      />
     </div>
   );
 }

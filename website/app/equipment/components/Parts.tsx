@@ -1,10 +1,10 @@
 // Small shared pieces of the equipment pages.
-import { ExternalLink, Info } from "lucide-react";
+import { ArrowLeftRight, ExternalLink, Info } from "lucide-react";
 import { Link } from "react-router";
 import { formatDate } from "../labels";
 import type { BrandRef, PlayerRef } from "../store.server";
 import type { Fact, Image, ManufacturerRating, Source, Status } from "../models";
-import { Credit, PlayerAvatar } from "./Media";
+import { BrandLogo, Credit, PlayerAvatar } from "./Media";
 import { cn } from "~/lib/utils";
 import { inline } from "~/components/site/legal-page";
 
@@ -215,5 +215,45 @@ export function ProductFigure({ photo, alt, illustration, note }: { photo?: Imag
         )}
       </figcaption>
     </figure>
+  );
+}
+
+/** Title block of a blade or rubber page: brand logo, name, summary and tags, with the product image beside it. */
+export function ItemHero({
+  brand,
+  kind,
+  title,
+  summary,
+  tags,
+  compareHref,
+  figure,
+}: {
+  brand: BrandRef;
+  kind: "Blade" | "Rubber";
+  title: string;
+  summary: string;
+  tags: React.ReactNode;
+  compareHref: string;
+  figure: React.ReactNode;
+}) {
+  return (
+    <div className="grid items-center gap-6 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:gap-10">
+      <header>
+        <p className="flex items-center gap-2 text-sm font-semibold tracking-wide text-primary uppercase">
+          <BrandLogo logo={brand.logo} name={brand.name} className="h-7" />
+          {brand.logo ? kind : `${brand.name} ${kind.toLowerCase()}`}
+        </p>
+        <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-balance sm:text-5xl">{title}</h1>
+        <p className="mt-4 text-lg leading-relaxed text-muted-foreground">{summary}</p>
+        <div className="mt-5 flex flex-wrap items-center gap-2">{tags}</div>
+        <Link
+          to={compareHref}
+          className="mt-6 inline-flex h-10 items-center gap-1.5 rounded-full border bg-card px-4 text-sm font-semibold transition-colors hover:border-primary/40 hover:bg-secondary"
+        >
+          <ArrowLeftRight className="size-4" /> Compare with others
+        </Link>
+      </header>
+      {figure}
+    </div>
   );
 }

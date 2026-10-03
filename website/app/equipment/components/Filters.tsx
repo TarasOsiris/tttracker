@@ -135,22 +135,30 @@ export function FilterSidebar<T extends { name: string; brandName: string }>({ d
 }
 
 /** Search box, sort menu, active chips and the sidebar/results grid. */
-export function ExplorerShell<T extends { name: string; brandName: string }>({
+export function ExplorerShell<T extends { id: string; name: string; brandName: string }>({
   defs,
   sorts,
   state,
   total,
   noun,
-  children,
+  renderItem,
+  pageSize = 24,
 }: {
   defs: FilterDef<T>[];
   sorts: SortDef<T>[];
   state: FiltersState<T>;
   total: number;
   noun: string;
-  children: React.ReactNode;
+  renderItem: (item: T) => React.ReactNode;
+  pageSize?: number;
 }) {
   const [open, setOpen] = useState(false);
+  // Show a page at a time, starting over whenever the filters, search or sort change. Hidden cards stay in the HTML so
+  // every item page is linked from the prerendered explorer.
+  const signature = `${state.query}|${state.sort}|${state.chips.map((c) => `${c.key}=${c.value}`).join(",")}`;
+  const [shown, setShown] = useState({ signature, count: pageSize });
+  const visible = shown.signature === signature ? shown.count : pageSize;
+  const remaining = state.results.length - visible;
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap gap-3">
@@ -173,7 +181,7 @@ export function ExplorerShell<T extends { name: string; brandName: string }>({
             aria-label="Sort"
             className="h-11 w-full appearance-none rounded-full border bg-card py-2 ps-8 pe-8 text-sm text-foreground focus:ring-2 focus:ring-ring/50 focus:outline-none"
           >
-            <option value="">Sort: brand, then name</option>
+            <option value="">Sort: popular first</option>
             {sorts.map((s) => (
               <option key={s.value} value={s.value}>
                 Sort: {s.label}
@@ -205,7 +213,7 @@ export function ExplorerShell<T extends { name: string; brandName: string }>({
       )}
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[280px_minmax(0,1fr)]">
-        <aside className={open ? "block" : "hidden lg:block"}>
+        <aside className={cn(open ? "block" : "hidden lg:block", "lg:sticky lg:top-20 lg:max-h-[calc(100vh-6rem)] lg:self-start lg:overflow-y-auto lg:overscroll-contain")}>
           <FilterSidebar defs={defs} state={state} />
         </aside>
         <div>
@@ -220,7 +228,31 @@ export function ExplorerShell<T extends { name: string; brandName: string }>({
               </button>
             </div>
           ) : (
-            children
+            <>
+              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                {state.results.map((item, i) => (
+                  <div key={item.id} className={i < visible ? "contents" : "hidden"}>
+                    {renderItem(item)}
+                  </div>
+                ))}
+              </div>
+              {remaining > 0 && (
+                <div className="mt-8 flex flex-col items-center gap-2">
+                  <button
+                    onClick={() => setShown({ signature, count: visible + pageSize })}
+                    className="inline-flex h-11 items-center rounded-full border bg-card px-6 text-sm font-semibold transition-colors hover:border-primary/40 hover:bg-secondary"
+                  >
+                    Show {Math.min(pageSize, remaining)} more
+                  </button>
+                  <p className="text-xs text-muted-foreground">
+                    Showing {visible} of {state.results.length}.{" "}
+                    <button onClick={() => setShown({ signature, count: state.results.length })} className="text-primary hover:underline">
+                      Show all
+                    </button>
+                  </p>
+                </div>
+              )}
+            </>
           )}
         </div>
       </div>
