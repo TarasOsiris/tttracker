@@ -310,6 +310,13 @@ export const menPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/sora-matsushima.webp",
+      width: 400,
+      height: 640,
+      sourceUrl: "https://www.worldtabletennis.com/playerDescription?playerId=135996",
+      credit: "© World Table Tennis",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -518,6 +525,13 @@ export const menPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/lin-shidong.webp",
+      width: 400,
+      height: 640,
+      sourceUrl: "https://www.worldtabletennis.com/playerDescription?playerId=137237",
+      credit: "© World Table Tennis",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -676,6 +690,13 @@ export const menPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/darko-jorgic.webp",
+      width: 400,
+      height: 640,
+      sourceUrl: "https://www.worldtabletennis.com/playerDescription?playerId=118927",
+      credit: "© World Table Tennis",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -710,6 +731,13 @@ export const menPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/shunsuke-togami.webp",
+      width: 400,
+      height: 640,
+      sourceUrl: "https://www.worldtabletennis.com/playerDescription?playerId=133694",
+      credit: "© World Table Tennis",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -744,6 +772,13 @@ export const menPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/anders-lind.webp",
+      width: 400,
+      height: 640,
+      sourceUrl: "https://www.worldtabletennis.com/playerDescription?playerId=115029",
+      credit: "© World Table Tennis",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -779,6 +814,13 @@ export const menPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/wen-ruibo.webp",
+      width: 400,
+      height: 640,
+      sourceUrl: "https://www.worldtabletennis.com/playerDescription?playerId=203067",
+      credit: "© World Table Tennis",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -813,6 +855,13 @@ export const menPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/zhou-qihao.webp",
+      width: 400,
+      height: 640,
+      sourceUrl: "https://www.worldtabletennis.com/playerDescription?playerId=119533",
+      credit: "© World Table Tennis",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -888,6 +937,13 @@ export const menPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/hiroto-shinozuka.webp",
+      width: 400,
+      height: 640,
+      sourceUrl: "https://www.worldtabletennis.com/playerDescription?playerId=134442",
+      credit: "© World Table Tennis",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -922,6 +978,13 @@ export const menPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/flavien-coton.webp",
+      width: 400,
+      height: 640,
+      sourceUrl: "https://www.worldtabletennis.com/playerDescription?playerId=144528",
+      credit: "© World Table Tennis",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -998,6 +1061,13 @@ export const menPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/thibault-poret.webp",
+      width: 400,
+      height: 640,
+      sourceUrl: "https://www.worldtabletennis.com/playerDescription?playerId=134718",
+      credit: "© World Table Tennis",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -1034,6 +1104,13 @@ export const menPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/xiang-peng.webp",
+      width: 400,
+      height: 640,
+      sourceUrl: "https://www.worldtabletennis.com/playerDescription?playerId=135888",
+      credit: "© World Table Tennis",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -1068,6 +1145,13 @@ export const menPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/oh-junsung.webp",
+      width: 400,
+      height: 640,
+      sourceUrl: "https://www.worldtabletennis.com/playerDescription?playerId=135367",
+      credit: "© World Table Tennis",
+    },
     lastVerified: VERIFIED,
   },
   {

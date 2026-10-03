@@ -52,7 +52,7 @@ export function PlayerAvatar({ photo, name, country, className }: { photo?: Imag
       height={photo.height}
       loading="lazy"
       decoding="async"
-      className={cn("shrink-0 rounded-full object-cover object-top", className)}
+      className={cn("shrink-0 rounded-full bg-secondary object-cover object-top", className)}
     />
   );
 }

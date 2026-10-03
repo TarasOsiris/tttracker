@@ -299,6 +299,13 @@ export const womenPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/kuai-man.webp",
+      width: 400,
+      height: 640,
+      sourceUrl: "https://www.worldtabletennis.com/playerDescription?playerId=135049",
+      credit: "© World Table Tennis",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -334,6 +341,13 @@ export const womenPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/wang-yidi.webp",
+      width: 400,
+      height: 640,
+      sourceUrl: "https://www.worldtabletennis.com/playerDescription?playerId=124110",
+      credit: "© World Table Tennis",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -537,6 +551,13 @@ export const womenPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/chen-yi.webp",
+      width: 400,
+      height: 640,
+      sourceUrl: "https://www.worldtabletennis.com/playerDescription?playerId=132132",
+      credit: "© World Table Tennis",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -699,6 +720,13 @@ export const womenPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/joo-cheonhui.webp",
+      width: 400,
+      height: 640,
+      sourceUrl: "https://www.worldtabletennis.com/playerDescription?playerId=200413",
+      credit: "© World Table Tennis",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -817,6 +845,13 @@ export const womenPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/shi-xunyao.webp",
+      width: 400,
+      height: 640,
+      sourceUrl: "https://www.worldtabletennis.com/playerDescription?playerId=123120",
+      credit: "© World Table Tennis",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -892,6 +927,13 @@ export const womenPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/miyuu-kihara.webp",
+      width: 400,
+      height: 640,
+      sourceUrl: "https://www.worldtabletennis.com/playerDescription?playerId=131036",
+      credit: "© World Table Tennis",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -927,6 +969,13 @@ export const womenPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/adriana-diaz.webp",
+      width: 400,
+      height: 640,
+      sourceUrl: "https://www.worldtabletennis.com/playerDescription?playerId=115009",
+      credit: "© World Table Tennis",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -1002,6 +1051,13 @@ export const womenPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/sakura-yokoi.webp",
+      width: 400,
+      height: 640,
+      sourceUrl: "https://www.worldtabletennis.com/playerDescription?playerId=135935",
+      credit: "© World Table Tennis",
+    },
     lastVerified: VERIFIED,
   },
   {
@@ -1119,6 +1175,13 @@ export const womenPlayers: Player[] = [
       },
     },
     history: [],
+    photo: {
+      src: "/equipment/players/qin-yuxuan.webp",
+      width: 400,
+      height: 640,
+      sourceUrl: "https://www.worldtabletennis.com/playerDescription?playerId=144628",
+      credit: "© World Table Tennis",
+    },
     lastVerified: VERIFIED,
   },
 ];

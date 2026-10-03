@@ -207,7 +207,7 @@ export interface Player {
   ranking: { position: number; date: IsoDate; source: Source } | null;
   setup: Record<SetupSlot, SetupItem>;
   history: SetupChange[];
-  /** Freely licensed photo (Wikimedia Commons), credited. */
+  /** Freely licensed photo (Wikimedia Commons, Openverse), or the official World Table Tennis headshot, credited. */
   photo?: Image;
   lastVerified: IsoDate;
 }

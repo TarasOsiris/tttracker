@@ -40,9 +40,10 @@ only for gaps), unknown fields `null`, ratings verbatim with the brand's labels,
 (`unstated` if unclear), `sources` and `lastVerified`. Don't add products from memory.
 
 ## 4. Photos
-New players: add a freely licensed Wikimedia Commons photo (CC BY / CC BY-SA / CC0 / PD only, in the player's own Commons
-category) with `scripts/equipment-image.sh "<thumburl>" equipment/players/<id>.webp 600` and set `photo` with the Commons
-file page as `sourceUrl` and "<Author>, <licence>" as `credit`. Look at the image before using it. New catalog items may
+New players: add a photo with `scripts/equipment-image.sh "<image-url>" equipment/players/<id>.webp 600`, preferring a
+freely licensed one (Wikimedia Commons or Openverse; CC BY / CC BY-SA / CC0 / PD only, clearly the player; `sourceUrl` the
+file page, `credit` "<Author>, <licence>"), and otherwise the official headshot from the player's World Table Tennis
+profile (`sourceUrl` the profile page, `credit` "© World Table Tennis"). Look at the image before using it. New catalog items may
 get a `photo` from the maker's own product page the same way (`equipment/photos/<blades|rubbers>/<id>.webp`, credit
 "© <Brand>"); without one the site shows a spec-drawn illustration. If the script's tools (ffmpeg, cwebp) aren't
 installed, skip photos rather than installing system packages.

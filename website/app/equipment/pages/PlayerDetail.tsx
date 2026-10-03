@@ -71,10 +71,10 @@ export default function PlayerDetail({ loaderData }: Route.ComponentProps) {
               height={player.photo.height}
               alt={player.name}
               fetchPriority="high"
-              className="size-40 rounded-3xl object-cover object-top"
+              className="size-40 rounded-3xl bg-secondary object-cover object-top"
             />
             <figcaption className="mt-1 max-w-40 text-[10px] leading-tight text-muted-foreground">
-              Photo: <Credit image={player.photo} />, Wikimedia Commons
+              Photo: <Credit image={player.photo} />
             </figcaption>
           </figure>
         )}
