@@ -45,7 +45,9 @@
       "Bash(sentry-cli:*)",
       "Bash(gplay:*)",
       "Bash(/usr/libexec/PlistBuddy:*)",
-      "Bash(plutil:*)"
+      "Bash(plutil:*)",
+      "Skill(vibe-aso)",
+      "Skill(vibe-aso:*)"
     ]
   }
 }
