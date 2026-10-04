@@ -1,1 +1,1 @@
-pingpong,trénink,soupeř,liga,turnaj,podání,trenér,žebříček,úspěšnost,výsledky,pálka,klub,tracker
+pingpong,trénink,soupeř,liga,turnaj,podání,trenér,žebříček,úspěšnost,výsledky,pálka,klub,zápas

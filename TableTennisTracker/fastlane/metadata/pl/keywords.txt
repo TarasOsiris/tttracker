@@ -1,1 +1,1 @@
-pingpong,trener,liga,turniej,ćwiczenia,serwis,przeciwnik,ranking,mecz,statystyki,klub,paletka,set
+trening,trener,liga,turniej,ćwiczenia,serwis,przeciwnik,ranking,mecz,statystyki,klub,paletka,set
