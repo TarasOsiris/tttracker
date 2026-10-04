@@ -1,1 +1,1 @@
-TT Tracker parle maintenant 22 langues. Nouveau : polonais, néerlandais, tchèque, suédois, vietnamien, thaï, malais et chinois traditionnel. L'app suit la langue de votre appareil, ou choisissez-en une dans les Réglages.
+Améliorations mineures.

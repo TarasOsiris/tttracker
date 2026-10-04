@@ -1,1 +1,1 @@
-TT Tracker teď mluví 22 jazyky. Nově: polština, nizozemština, čeština, švédština, vietnamština, thajština, malajština a tradiční čínština. Aplikace se řídí jazykem zařízení, nebo si jazyk vyber v Nastavení.
+Drobná vylepšení.

@@ -1,1 +1,1 @@
-TT Tracker artık 22 dilde. Yeni: Lehçe, Felemenkçe, Çekçe, İsveççe, Vietnamca, Tayca, Malayca ve Geleneksel Çince. Uygulama cihazının dilini kullanır; istersen Ayarlar'dan bir dil seçebilirsin.
+Küçük iyileştirmeler.

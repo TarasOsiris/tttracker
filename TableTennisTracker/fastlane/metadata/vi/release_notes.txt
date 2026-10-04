@@ -1,1 +1,1 @@
-TT Tracker nay hỗ trợ 22 ngôn ngữ. Mới: tiếng Ba Lan, Hà Lan, Séc, Thụy Điển, Việt, Thái, Mã Lai và Trung Phồn thể. Ứng dụng dùng ngôn ngữ của thiết bị, hoặc bạn có thể chọn trong Cài đặt.
+Cải tiến nhỏ.

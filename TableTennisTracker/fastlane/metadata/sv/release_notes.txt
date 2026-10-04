@@ -1,1 +1,1 @@
-TT Tracker finns nu på 22 språk. Nytt: polska, nederländska, tjeckiska, svenska, vietnamesiska, thailändska, malajiska och traditionell kinesiska. Appen följer enhetens språk, eller välj ett i Inställningar.
+Mindre förbättringar.
