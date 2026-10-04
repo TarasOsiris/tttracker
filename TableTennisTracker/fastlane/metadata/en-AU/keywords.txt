@@ -1,1 +1,1 @@
-tracker,diary,coach,league,tournament,drills,serve,opponent,rating,practice,win rate,tabletennis
+tracker,diary,notes,notebook,coach,league,tournament,opponent,practice,win rate,pingpong,tabletennis
