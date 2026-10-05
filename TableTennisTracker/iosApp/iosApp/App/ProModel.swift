@@ -22,7 +22,8 @@ final class ProModel {
         }
     }
 
-    private(set) var isPro = false
+    /// Debug builds and test runs never configure RevenueCat and count as Pro.
+    private(set) var isPro = !SwiftPurchases.isEnabled
     private(set) var isRestoring = false
     var restoreResult: RestoreResult?
 
@@ -45,7 +46,7 @@ final class ProModel {
     @ObservationIgnored private var observation: Task<Void, Never>?
 
     func start() {
-        guard observation == nil, Purchases.isConfigured else { return }
+        guard observation == nil, SwiftPurchases.isEnabled, Purchases.isConfigured else { return }
         // Seeded from RevenueCat's on-disk cache, so a returning buyer does not see the free tier for
         // the frames before the first network call lands.
         apply(Purchases.shared.cachedCustomerInfo)
@@ -65,7 +66,7 @@ final class ProModel {
     /// The restored entitlement reaches `isPro` through the customer-info stream like any other
     /// update; the result here only picks the alert.
     func restore() async {
-        guard !isRestoring, Purchases.isConfigured else { return }
+        guard !isRestoring, SwiftPurchases.isEnabled, Purchases.isConfigured else { return }
         isRestoring = true
         defer { isRestoring = false }
         do {
