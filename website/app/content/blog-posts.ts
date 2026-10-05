@@ -29,8 +29,125 @@ const wangManyuImage = {
   creditUrl: "https://commons.wikimedia.org/wiki/File:Wang_Manyu_ACTTC2016_10.jpeg",
 };
 
+const lebrunHero = {
+  src: "/blog/felix-lebrun.webp",
+  width: 1200,
+  height: 675,
+  alt: "Felix Lebrun leaning over the table to play a forehand with the ball just leaving his paddle",
+  caption: "Félix Lebrun in action. Archive photo from the 2022 European Championships in Munich, not from Beijing.",
+  credit: "Granada, CC BY-SA 4.0",
+  creditUrl: "https://commons.wikimedia.org/wiki/File:20220818_European_Championships_Munich_2022_Felix_Lebrun_850_9499.jpg",
+};
+const lebrunInline = {
+  src: "/blog/felix-lebrun-serve.webp",
+  width: 1000,
+  height: 666,
+  alt: "Felix Lebrun playing a close-to-the-table shot with glasses on and the ball by his paddle",
+  caption: "Lebrun at the 2022 European Championships in Munich, aged 15. Archive photo.",
+  credit: "Granada, CC BY-SA 4.0",
+  creditUrl: "https://commons.wikimedia.org/wiki/File:20220818_European_Championships_Munich_2022_Felix_Lebrun_850_9499.jpg",
+};
+
+const arenaImage = {
+  ...hero,
+  caption: "A packed arena at the 2026 World Team Table Tennis Championships in London. Archive photo, not from Beijing.",
+};
+
 export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: BlogPost[] } = {
   en: [{
+  slug: "china-smash-2026-beijing-table-tennis-preview",
+  title: "China Smash 2026: Lebrun Leads Beijing Draw as Wang Chuqin and Lin Shidong Withdraw",
+  description:
+    "WTT China Smash 2026 in Beijing: Lebrun is top seed after Wang Chuqin and Lin Shidong pulled out, with $2M prize money, 2,000 ranking points and early upsets.",
+  published: "2026-10-05",
+  readMinutes: 4,
+  keywords: [
+    "China Smash 2026",
+    "WTT China Smash Beijing",
+    "Felix Lebrun",
+    "Wang Manyu",
+    "Sun Yingsha",
+    "table tennis news",
+    "WTT Grand Smash",
+    "ping pong news",
+  ],
+  hero: lebrunHero,
+  intro:
+    "The last big WTT event of the season is under way in Beijing, and the draw just lost its two biggest stars. Wang Chuqin and Lin Shidong have both withdrawn injured, which hands France's Félix Lebrun the No. 1 seed and a very open path to 2,000 ranking points. Here is what you need to know before the main draw hits full speed.",
+  takeaways: [
+    "**WTT China Smash runs October 1-11** at Shougang Park in Beijing, with the main draw from October 4.",
+    "**Wang Chuqin and Lin Shidong withdrew injured**, so Félix Lebrun is now the top men's seed.",
+    "**Wang Manyu and Sun Yingsha are the top two women's seeds**, with China holding six of the top nine.",
+    "**The winners collect 2,000 ranking points**, and the singles champions take home $135,000.",
+    "**English qualifiers fell early**, including Liam Pitchford and Tin-Tin Ho.",
+  ],
+  sections: [
+    {
+      heading: "Lebrun is the man to beat",
+      image: lebrunInline,
+      blocks: [
+        "With Wang Chuqin and Lin Shidong out through injury, [Félix Lebrun](https://en.wikipedia.org/wiki/F%C3%A9lix_Lebrun) is the No. 1 seed in men's singles, followed by Japan's [Sora Matsushima](https://en.wikipedia.org/wiki/Sora_Matsushima), [Tomokazu Harimoto](https://en.wikipedia.org/wiki/Tomokazu_Harimoto) and Sweden's Truls Möregårdh. Both Japanese players arrive on a high after the Asian Games, which we covered in our [Asian Games recap](/blog/asian-games-2026-table-tennis-recap).",
+        "Why it matters: Wang Chuqin was the defending champion and the world No. 1 coming into the event, so his absence reshuffles the rankings race as well as the trophy picture. [Olympics.com's preview](https://www.olympics.com/en/news/table-tennis-china-smash-2026-top-stars-watch-live) calls the China Smash the last major of the WTT circuit season.",
+      ],
+    },
+    {
+      heading: "Women's draw: Wang Manyu and Sun Yingsha lead",
+      blocks: [
+        "In the women's singles, [Wang Manyu](https://en.wikipedia.org/wiki/Wang_Manyu) is seeded first and [Sun Yingsha](https://en.wikipedia.org/wiki/Sun_Yingsha) second, followed by Japan's Miwa Harimoto and China's Kuai Man. China has six of the top nine women in the field. Wang Manyu beat Sun 4-2 in the Asian Games final last week, so the rematch everyone wants is a semifinal at the earliest.",
+      ],
+    },
+    {
+      heading: "What is at stake",
+      blocks: [
+        "China Smash is a WTT Grand Smash, the top tier of the circuit, and the numbers show it:",
+        {
+          list: [
+            "**Prize money:** US$2,050,000 in total, with $135,000 for each singles winner and $68,000 for the finalists.",
+            "**Ranking points:** 2,000 for the singles winner, 1,400 for the finalist, 900 for a semifinalist and 580 for a quarterfinalist.",
+            "**Venue:** Shougang Park in Shijingshan, Beijing, with qualifying from October 1 and the main draw from October 4 to 11.",
+          ],
+        },
+        "Draws, schedules and live streams are on [World Table Tennis](https://www.worldtabletennis.com), and the [China Smash 2026 Wikipedia page](https://en.wikipedia.org/wiki/China_Smash_2026) tracks the bracket as it fills in.",
+      ],
+    },
+    {
+      heading: "Early upsets: England's hopes end in qualifying",
+      image: arenaImage,
+      blocks: [
+        "The qualifiers produced some tight finishes. [Table Tennis England](https://www.tabletennisengland.co.uk/news/2026/wtt-china-smash-2026/) reports that Liam Pitchford beat Edward Ly 11-4, 11-7, 5-11, 11-9 and Maciej Kubik 11-5, 11-3, 11-8, before losing a five-game thriller to Belgium's Cedric Nuytinck (world No. 59) 11-9, 11-5, 3-11, 8-11, 11-4.",
+        "Tin-Tin Ho beat Chile's Paulina Vega 11-5, 11-3, 11-9, then lost in five to France's Audrey Zarif (world No. 105), 10-12, 7-11, 13-11, 11-7, 11-3, after leading two games to nil. Connor Green also went out in round one, losing 3-2 to Egypt's Youssef Abdelaziz. Lesson for everyone: leading 2-0 means nothing at this level.",
+      ],
+    },
+    {
+      heading: "More table tennis coming up",
+      blocks: [
+        {
+          list: [
+            "**WTT Champions Montpellier:** October 27 to November 1.",
+            "**WTT Feeder Chennai:** October 28 to November 1.",
+            "**WTT Youth Contender Lignano:** October 21-27.",
+          ],
+        },
+        "Check the [ITTF events calendar](https://www.ittf.com/2026-events-calendar/) in case dates change.",
+      ],
+    },
+    {
+      heading: "Learn from Pitchford and Ho: how to close a match",
+      blocks: [
+        "Losing from 2-0 up or 2-1 up is the most common way club players give away matches too. Log your games in [Ping Pong & Table Tennis Log](/) and check whether your losses come in deciding games, and against which opponents. Then work on the fix: sharpen your third-ball attack with a few [training drills](/drills), add a surprise from the [serve encyclopedia](/serves), and make sure you understand the [spin](/spins) coming back at you. Test yourself with the [serve quiz](/quiz).",
+      ],
+    },
+  ],
+  sources: [
+    { label: "Olympics.com: China Smash 2026 top stars and how to watch", url: "https://www.olympics.com/en/news/table-tennis-china-smash-2026-top-stars-watch-live" },
+    { label: "Wikipedia: China Smash 2026", url: "https://en.wikipedia.org/wiki/China_Smash_2026" },
+    { label: "Table Tennis England: WTT China Smash 2026", url: "https://www.tabletennisengland.co.uk/news/2026/wtt-china-smash-2026/" },
+    { label: "Butterfly: China Smash, Japan brings momentum to Beijing", url: "https://butterflyonline.com/china-smash-japan-brings-momentum-to-beijing/" },
+    { label: "PingSunday: China Smash 2026 players, schedule and prize money", url: "https://pingsunday.com/china-smash-2026-players-schedule-prize-money-and-ranking-points/" },
+    { label: "ITTF 2026 events calendar", url: "https://www.ittf.com/2026-events-calendar/" },
+  ],
+},
+  {
   slug: "asian-games-2026-table-tennis-recap",
   title: "Table Tennis News: Japan Stuns China, Lin Shidong Wins Three Golds at the 2026 Asian Games",
   description:
@@ -970,3 +1087,11 @@ export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: Blog
     },
   ],
 };
+
+// Newer posts are English only for now; other locales list them untranslated until a translation is added.
+const englishOnlyPosts = blogPostsByLocale.en.filter((post) => post.slug !== "asian-games-2026-table-tennis-recap");
+for (const locale of Object.keys(blogPostsByLocale) as Locale[]) {
+  if (locale === "en") continue;
+  const list = blogPostsByLocale[locale] ?? [];
+  blogPostsByLocale[locale] = [...englishOnlyPosts.filter((p) => !list.some((l) => l.slug === p.slug)), ...list];
+}
