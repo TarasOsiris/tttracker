@@ -48,6 +48,25 @@ const lebrunInline = {
   creditUrl: "https://commons.wikimedia.org/wiki/File:20220818_European_Championships_Munich_2022_Felix_Lebrun_850_9499.jpg",
 };
 
+const batraHero = {
+  src: "/blog/manika-batra.webp",
+  width: 1200,
+  height: 675,
+  alt: "Manika Batra in a blue India shirt waiting for the ball at the table, with an opponent in yellow in the foreground",
+  caption: "Manika Batra in action. Archive photo from the Commonwealth Table Tennis Championships in Cuttack, India, not from Beijing.",
+  credit: "Government of Odisha, CC BY 4.0",
+  creditUrl: "https://commons.wikimedia.org/wiki/File:Manika_Batra.jpg",
+};
+const batraInline = {
+  src: "/blog/manika-batra-rally.webp",
+  width: 1000,
+  height: 666,
+  alt: "Manika Batra watching the ball after tossing it up to serve at the table",
+  caption: "Batra at the Commonwealth Championships in Cuttack. Archive photo, not from China Smash.",
+  credit: "Government of Odisha, CC BY 4.0",
+  creditUrl: "https://commons.wikimedia.org/wiki/File:216_Batra_Manika_India1.jpg",
+};
+
 const arenaImage = {
   ...hero,
   caption: "A packed arena at the 2026 World Team Table Tennis Championships in London. Archive photo, not from Beijing.",
@@ -55,6 +74,80 @@ const arenaImage = {
 
 export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: BlogPost[] } = {
   en: [{
+  slug: "china-smash-2026-day-results-wang-manyu-batra-lebrun-scare",
+  title: "China Smash 2026 Results: Wang Manyu Survives Batra, Lebrun Escapes a French Scare",
+  description:
+    "China Smash 2026 round of 32 results from Beijing: Wang Manyu beats Manika Batra, Félix Lebrun survives Coton, Wen Ruibo stops Duda and Harimoto comes back from 0-2.",
+  published: "2026-10-07",
+  readMinutes: 4,
+  keywords: [
+    "China Smash 2026 results",
+    "Wang Manyu Manika Batra",
+    "Felix Lebrun Flavien Coton",
+    "Harimoto China Smash",
+    "WTT China Smash Beijing",
+    "table tennis results",
+    "table tennis news today",
+    "WTT Grand Smash",
+  ],
+  hero: batraHero,
+  intro:
+    "Two top seeds, two scares. At the WTT China Smash in Beijing, world No. 58 Manika Batra took a game off top-seeded Wang Manyu, and Félix Lebrun had to come back from a game down against his own countryman Flavien Coton. Both got through, but the early rounds showed how thin the margin is at a Grand Smash.",
+  takeaways: [
+    "**Wang Manyu beat Manika Batra 11-5, 9-11, 11-6, 11-5** in 31 minutes, after Batra led 9-9 in the second game.",
+    "**Félix Lebrun beat Flavien Coton 9-11, 14-12, 11-9, 11-4** to reach the last 16.",
+    "**Wen Ruibo, 19, swept Benedikt Duda 11-6, 11-8, 11-7** a day after Duda beat England's Tom Jarvis 3-2.",
+    "**Tomokazu Harimoto came back from 0-2** to beat Denmark's Jonathan Groth 3-2 in round one.",
+    "**The tournament runs until October 11** at Shougang Park in Beijing.",
+  ],
+  sections: [
+    {
+      heading: "Wang Manyu holds off Manika Batra",
+      image: batraInline,
+      blocks: [
+        "Top seed [Wang Manyu](https://en.wikipedia.org/wiki/Wang_Manyu) won 11-5, 9-11, 11-6, 11-5 in 31 minutes, but it was not as comfortable as the result suggests. India's [Manika Batra](https://en.wikipedia.org/wiki/Manika_Batra), ranked 58th, was level at 9-9 in the second game and took it. [Xinhua](https://english.news.cn/20261006/5f57048bb3574fc9ae0d31bc1ffc82a6/c.html) quotes Wang afterwards: \"I didn't handle some opportunity balls particularly well, and there were some unforced errors.\"",
+        "Why it matters: Wang is the favorite in a women's draw without much resistance at the top, so any wobble is news. Other round-of-32 results: Shi Xunyao beat Poland's Natalia Bajor 13-11, 11-7, 11-9, Wang Yidi beat Cheng I-Ching 15-13, 11-9, 2-11, 11-7, and Japan's Miwa Harimoto beat Hong Kong's Su Tsz Tung 11-5, 13-15, 11-6, 11-5.",
+      ],
+    },
+    {
+      heading: "Lebrun survives an all-French battle",
+      blocks: [
+        "[Félix Lebrun](https://en.wikipedia.org/wiki/F%C3%A9lix_Lebrun), the top seed since Wang Chuqin and Lin Shidong withdrew injured (see our [China Smash preview](/blog/china-smash-2026-beijing-table-tennis-preview)), lost the first game 9-11 to Flavien Coton, who then held two game points in the second. Lebrun saved them, won 14-12 and closed out 11-9, 11-4.",
+        "Also through to the last 16 was Chinese Taipei's [Lin Yun-Ju](https://en.wikipedia.org/wiki/Lin_Yun-ju), who survived a five-game match against China's Huang Youzheng in which Huang had two match points.",
+      ],
+    },
+    {
+      heading: "Wen Ruibo stops Duda, Harimoto fights back",
+      image: harimotoImage,
+      blocks: [
+        "Benedikt Duda (Germany) had beaten England's Tom Jarvis 3-2 in the round of 64 (12-14, 11-3, 9-11, 11-9, 11-6), according to [Table Tennis England](https://www.tabletennisengland.co.uk/news/2026/wtt-china-smash-2026/). The next day 19-year-old Wen Ruibo beat him 11-6, 11-8, 11-7.",
+        "Japan's [Tomokazu Harimoto](https://en.wikipedia.org/wiki/Tomokazu_Harimoto) lost the first two games to Jonathan Groth, 9-11 and 7-11, then won three straight to take the match 3-2.",
+        "In mixed doubles, Huang Youzheng and Chen Yi advanced 11-8, 11-6, 11-7 and now face Japan's Sora Matsushima and Miwa Harimoto.",
+      ],
+    },
+    {
+      heading: "What to watch next",
+      blocks: [
+        "Rankings after the event will matter: as of September 14, Wang Chuqin was world No. 1 on 8,157 points, with Lebrun second on 7,479 and Matsushima third on 6,930, according to the [ITTF ranking](https://en.wikipedia.org/wiki/ITTF_World_Ranking). A deep run for Lebrun with Wang Chuqin out could change that. Follow the bracket on [Wikipedia](https://en.wikipedia.org/wiki/China_Smash_2026) or [World Table Tennis](https://www.worldtabletennis.com).",
+        "After Beijing: the Youth Contender in Lignano (October 21-27) and the Parkinson's and Alzheimer's world championships in Shanghai (October 20-25).",
+      ],
+    },
+    {
+      heading: "The lesson for your own matches",
+      blocks: [
+        "Batra won a game off the world's top-seeded player by playing the big points better for one game. You can do the same at club level, but only if you know where your points go. Log your matches in [Ping Pong & Table Tennis Log](/) and see which games you lose from 9-9. Then practice the shots that decide close games: [drills](/drills) for your third-ball attack, new options from the [serve encyclopedia](/serves), and reading incoming [spin](/spins). Not sure what you are facing? Try the [quiz](/quiz).",
+      ],
+    },
+  ],
+  sources: [
+    { label: "Xinhua: Wang Manyu holds off tricky Batra as Lebrun, Lin survive scares at WTT China Smash", url: "https://english.news.cn/20261006/5f57048bb3574fc9ae0d31bc1ffc82a6/c.html" },
+    { label: "Table Tennis England: WTT China Smash 2026", url: "https://www.tabletennisengland.co.uk/news/2026/wtt-china-smash-2026/" },
+    { label: "Wikipedia: China Smash 2026", url: "https://en.wikipedia.org/wiki/China_Smash_2026" },
+    { label: "Wikipedia: ITTF World Ranking", url: "https://en.wikipedia.org/wiki/ITTF_World_Ranking" },
+    { label: "Olympics.com: China Smash 2026 top stars and how to watch", url: "https://www.olympics.com/en/news/table-tennis-china-smash-2026-top-stars-watch-live" },
+  ],
+},
+  {
   slug: "china-smash-2026-beijing-table-tennis-preview",
   title: "China Smash 2026: Lebrun Leads Beijing Draw as Wang Chuqin and Lin Shidong Withdraw",
   description:
