@@ -5,9 +5,12 @@
 package xyz.tleskiv.tt.previews.screens
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.tooling.preview.Preview
 import xyz.tleskiv.tt.previews.fakes.FakeAnalyticsScreenViewModel
 import xyz.tleskiv.tt.ui.nav.navdisplay.TopAppBarState
+import xyz.tleskiv.tt.ui.pro.LocalPro
+import xyz.tleskiv.tt.ui.pro.ProState
 import xyz.tleskiv.tt.ui.screens.AnalyticsScreen
 import xyz.tleskiv.tt.ui.theme.AppTheme
 
@@ -16,5 +19,15 @@ import xyz.tleskiv.tt.ui.theme.AppTheme
 fun AnalyticsScreenPreview() {
 	AppTheme {
 		AnalyticsScreen(topAppBarState = TopAppBarState(), viewModel = FakeAnalyticsScreenViewModel())
+	}
+}
+
+@Preview(showBackground = true, name = "Pro")
+@Composable
+fun AnalyticsScreenProPreview() {
+	CompositionLocalProvider(LocalPro provides ProState(hasProFeatures = true)) {
+		AppTheme {
+			AnalyticsScreen(topAppBarState = TopAppBarState(), viewModel = FakeAnalyticsScreenViewModel())
+		}
 	}
 }

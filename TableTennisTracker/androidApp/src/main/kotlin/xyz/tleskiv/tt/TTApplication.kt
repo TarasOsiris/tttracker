@@ -2,7 +2,9 @@ package xyz.tleskiv.tt
 
 import android.app.Application
 import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.android.get
 import org.koin.android.ext.koin.androidLogger
+import xyz.tleskiv.tt.appwidget.WidgetUpdater
 import xyz.tleskiv.tt.di.androidPlatformModule
 import xyz.tleskiv.tt.di.initApp
 
@@ -17,5 +19,6 @@ class TTApplication : Application() {
 		}
 
 		PurchasesSetup.configure(this)
+		get<WidgetUpdater>().start()
 	}
 }

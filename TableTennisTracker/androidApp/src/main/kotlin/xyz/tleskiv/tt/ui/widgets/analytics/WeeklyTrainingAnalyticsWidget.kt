@@ -1,221 +1,161 @@
 package xyz.tleskiv.tt.ui.widgets.analytics
 
-import androidx.compose.foundation.background
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SegmentedButton
+import androidx.compose.material3.SegmentedButtonDefaults
+import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.number
 import xyz.tleskiv.tt.R
-import xyz.tleskiv.tt.analytics.WeeklyTrainingData
+import xyz.tleskiv.tt.analytics.TrainingWeek
+import xyz.tleskiv.tt.analytics.WeeklyChartRange
+import xyz.tleskiv.tt.pro.PaywallSource
+import xyz.tleskiv.tt.ui.pro.LocalPro
+import xyz.tleskiv.tt.ui.pro.ProBadge
+import xyz.tleskiv.tt.util.ext.shortDisplayText
 
-private const val CHART_HEIGHT = 140
-private const val GRID_LINES = 3
+private const val MAX_AXIS_LABELS = 6
+private const val YEAR_LABELS_AFTER_WEEKS = 60
 
+/**
+ * The longer ranges stay listed for everyone; picking one without Pro opens the paywall and leaves
+ * the chart where it was.
+ */
 @Composable
-fun WeeklyTrainingAnalyticsWidget(weeklyData: List<WeeklyTrainingData>) {
-	val barColor = MaterialTheme.colorScheme.primary
-	val currentWeekColor = MaterialTheme.colorScheme.tertiary
-
+fun WeeklyTrainingAnalyticsWidget(
+	weeks: List<TrainingWeek>,
+	range: WeeklyChartRange,
+	onRangeSelected: (WeeklyChartRange) -> Unit
+) {
+	val pro = LocalPro.current
 	AnalyticsWidget(title = R.string.analytics_weekly_training) {
-		if (weeklyData.isEmpty() || weeklyData.all { it.totalMinutes == 0 }) {
-			Box(
-				modifier = Modifier.fillMaxWidth().height(200.dp),
-				contentAlignment = Alignment.Center
-			) {
-				Text(
-					text = stringResource(R.string.analytics_no_training),
-					style = MaterialTheme.typography.bodyMedium,
-					color = MaterialTheme.colorScheme.onSurfaceVariant
-				)
-			}
-		} else {
-			val maxMinutes = remember(weeklyData) { weeklyData.maxOfOrNull { it.totalMinutes } ?: 60 }
-			val totalMinutes = remember(weeklyData) { weeklyData.sumOf { it.totalMinutes } }
-			val avgMinutes = remember(weeklyData) { totalMinutes / weeklyData.size }
-			val roundedMax = remember(maxMinutes) { roundUpToNiceNumber(maxMinutes) }
-
-			Column(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
-				Row(modifier = Modifier.fillMaxWidth()) {
-					YAxisLabels(roundedMax = roundedMax)
-					ChartArea(
-						weeklyData = weeklyData,
-						roundedMax = roundedMax,
-						barColor = barColor,
-						currentWeekColor = currentWeekColor
-					)
+		Column(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
+			WeeklyRangeSelector(
+				selected = range,
+				isLocked = { it.needsPro && !pro.hasProFeatures },
+				onSelect = { picked ->
+					if (picked.needsPro && !pro.hasProFeatures) pro.openPaywall(PaywallSource.ANALYTICS_RANGE)
+					else onRangeSelected(picked)
 				}
-
-				Spacer(modifier = Modifier.height(6.dp))
-				WeekLabels(weeklyData = weeklyData)
-
-				Spacer(modifier = Modifier.height(12.dp))
-				HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
-				Spacer(modifier = Modifier.height(12.dp))
-
-				TrainingSummaryRow(totalMinutes = totalMinutes, avgMinutes = avgMinutes)
-			}
-		}
-	}
-}
-
-@Composable
-private fun YAxisLabels(roundedMax: Int) {
-	Column(
-		modifier = Modifier.width(36.dp).height(CHART_HEIGHT.dp),
-		verticalArrangement = Arrangement.SpaceBetween
-	) {
-		Text(
-			text = formatMinutesShort(roundedMax),
-			style = MaterialTheme.typography.labelSmall,
-			color = MaterialTheme.colorScheme.onSurfaceVariant
-		)
-		Text(
-			text = formatMinutesShort(roundedMax / 2),
-			style = MaterialTheme.typography.labelSmall,
-			color = MaterialTheme.colorScheme.onSurfaceVariant
-		)
-		Text(
-			text = "0",
-			style = MaterialTheme.typography.labelSmall,
-			color = MaterialTheme.colorScheme.onSurfaceVariant
-		)
-	}
-}
-
-@Composable
-private fun RowScope.ChartArea(
-	weeklyData: List<WeeklyTrainingData>,
-	roundedMax: Int,
-	barColor: Color,
-	currentWeekColor: Color
-) {
-	Box(modifier = Modifier.weight(1f).height(CHART_HEIGHT.dp)) {
-		ChartGridLines()
-		ChartBars(
-			weeklyData = weeklyData,
-			roundedMax = roundedMax,
-			barColor = barColor,
-			currentWeekColor = currentWeekColor
-		)
-	}
-}
-
-@Composable
-private fun ChartGridLines() {
-	Column(
-		modifier = Modifier.fillMaxWidth().fillMaxHeight(),
-		verticalArrangement = Arrangement.SpaceBetween
-	) {
-		repeat(GRID_LINES) {
-			HorizontalDivider(
-				color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f),
-				thickness = 1.dp
 			)
-		}
-	}
-}
-
-@Composable
-private fun ChartBars(
-	weeklyData: List<WeeklyTrainingData>,
-	roundedMax: Int,
-	barColor: Color,
-	currentWeekColor: Color
-) {
-	Row(
-		modifier = Modifier.fillMaxWidth().fillMaxHeight(),
-		horizontalArrangement = Arrangement.SpaceEvenly,
-		verticalAlignment = Alignment.Bottom
-	) {
-		weeklyData.forEachIndexed { index, data ->
-			val isCurrentWeek = index == weeklyData.lastIndex
-			val heightFraction = if (roundedMax > 0) {
-				data.totalMinutes.toFloat() / roundedMax
-			} else 0f
-
-			Column(
-				horizontalAlignment = Alignment.CenterHorizontally,
-				modifier = Modifier.weight(1f)
-			) {
-				if (data.totalMinutes > 0) {
-					Text(
-						text = formatMinutesShort(data.totalMinutes),
-						style = MaterialTheme.typography.labelSmall,
-						color = MaterialTheme.colorScheme.onSurfaceVariant,
-						fontWeight = if (isCurrentWeek) FontWeight.Bold else FontWeight.Normal
-					)
-					Spacer(modifier = Modifier.height(2.dp))
-				}
-				Box(
-					modifier = Modifier
-						.width(20.dp)
-						.fillMaxHeight(heightFraction.coerceAtLeast(if (data.totalMinutes > 0) 0.02f else 0f))
-						.clip(MaterialTheme.shapes.extraSmall)
-						.background(if (isCurrentWeek) currentWeekColor else barColor)
-				)
+			Spacer(modifier = Modifier.height(16.dp))
+			if (weeks.all { it.totalMinutes == 0 }) {
+				AnalyticsEmptyState(message = R.string.analytics_no_training, height = 160.dp)
+			} else {
+				WeeklyTrainingChart(weeks = weeks, range = range)
 			}
 		}
 	}
 }
 
 @Composable
-private fun WeekLabels(weeklyData: List<WeeklyTrainingData>) {
-	Row(
-		modifier = Modifier.fillMaxWidth().padding(start = 36.dp),
-		horizontalArrangement = Arrangement.SpaceEvenly
-	) {
-		weeklyData.forEachIndexed { index, data ->
-			val isCurrentWeek = index == weeklyData.lastIndex
-			Text(
-				text = data.weekLabel,
-				style = MaterialTheme.typography.labelSmall,
-				color = if (isCurrentWeek) {
-					MaterialTheme.colorScheme.tertiary
-				} else {
-					MaterialTheme.colorScheme.onSurfaceVariant
+private fun WeeklyRangeSelector(
+	selected: WeeklyChartRange,
+	isLocked: (WeeklyChartRange) -> Boolean,
+	onSelect: (WeeklyChartRange) -> Unit
+) {
+	val ranges = WeeklyChartRange.entries
+	SingleChoiceSegmentedButtonRow(modifier = Modifier.fillMaxWidth()) {
+		ranges.forEachIndexed { index, range ->
+			val isSelected = range == selected
+			SegmentedButton(
+				selected = isSelected,
+				onClick = { onSelect(range) },
+				shape = SegmentedButtonDefaults.itemShape(index = index, count = ranges.size),
+				icon = {
+					if (isLocked(range)) ProBadge(modifier = Modifier.size(14.dp))
+					else SegmentedButtonDefaults.Icon(active = isSelected)
 				},
-				fontWeight = if (isCurrentWeek) FontWeight.SemiBold else FontWeight.Normal,
-				modifier = Modifier.weight(1f),
-				textAlign = TextAlign.Center
+				label = { Text(text = stringResource(range.label), maxLines = 1) }
 			)
 		}
 	}
 }
+
+@Composable
+private fun WeeklyTrainingChart(weeks: List<TrainingWeek>, range: WeeklyChartRange) {
+	val minutes = remember(weeks) { weeks.map { it.totalMinutes } }
+	val totalMinutes = remember(minutes) { minutes.sum() }
+	val avgMinutes = remember(minutes) { totalMinutes / minutes.size.coerceAtLeast(1) }
+	val axisMax = remember(minutes) { roundUpToNiceNumber(minutes.maxOrNull() ?: 0) }
+
+	WeeklyBarChart(
+		values = minutes,
+		axisLabels = weeklyAxisLabels(weeks = weeks, range = range),
+		axisMax = axisMax,
+		formatValue = ::formatMinutesShort,
+		showValueLabels = range == WeeklyChartRange.EIGHT_WEEKS
+	)
+	Spacer(modifier = Modifier.height(12.dp))
+	HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
+	Spacer(modifier = Modifier.height(12.dp))
+	TrainingSummaryRow(totalMinutes = totalMinutes, avgMinutes = avgMinutes)
+}
+
+/**
+ * Day and month under each bar while each bar is a labelled week, months once there are too many to
+ * label, and years once the months would repeat.
+ */
+@Composable
+private fun weeklyAxisLabels(weeks: List<TrainingWeek>, range: WeeklyChartRange): List<String?> {
+	if (range == WeeklyChartRange.EIGHT_WEEKS) return weeks.map { it.start.dayMonthLabel() }
+	val byYear = weeks.size > YEAR_LABELS_AFTER_WEEKS
+	val boundaries = weeks.indices.filter { index ->
+		val previous = weeks.getOrNull(index - 1)?.start ?: return@filter false
+		val start = weeks[index].start
+		if (byYear) start.year != previous.year else start.month != previous.month
+	}
+	val shown = boundaries.thinnedFromEnd(MAX_AXIS_LABELS).toSet()
+	return weeks.mapIndexed { index, week ->
+		when {
+			index !in shown -> null
+			byYear -> week.start.year.toString()
+			else -> week.start.month.shortDisplayText()
+		}
+	}
+}
+
+internal fun LocalDate.dayMonthLabel(): String = "$day/${month.number}"
+
+/** Every n-th of these, counting back from the last, so at most [max] remain and the latest stays. */
+internal fun List<Int>.thinnedFromEnd(max: Int): List<Int> {
+	if (size <= max) return this
+	val step = (size + max - 1) / max
+	return filterIndexed { position, _ -> (lastIndex - position) % step == 0 }
+}
+
+@get:StringRes
+private val WeeklyChartRange.label: Int
+	get() = when (this) {
+		WeeklyChartRange.EIGHT_WEEKS -> R.string.analytics_range_8w
+		WeeklyChartRange.SIX_MONTHS -> R.string.analytics_range_6m
+		WeeklyChartRange.YEAR -> R.string.analytics_range_1y
+		WeeklyChartRange.ALL -> R.string.analytics_range_all
+	}
 
 @Composable
 private fun TrainingSummaryRow(totalMinutes: Int, avgMinutes: Int) {
-	Row(
-		modifier = Modifier.fillMaxWidth(),
-		horizontalArrangement = Arrangement.SpaceEvenly
-	) {
-		SummaryItem(
-			label = stringResource(R.string.analytics_weekly_total),
-			value = formatMinutesFull(totalMinutes)
-		)
-		SummaryItem(
-			label = stringResource(R.string.analytics_weekly_avg),
-			value = formatMinutesFull(avgMinutes)
-		)
+	Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
+		SummaryItem(label = stringResource(R.string.analytics_weekly_total), value = formatMinutesFull(totalMinutes))
+		SummaryItem(label = stringResource(R.string.analytics_weekly_avg), value = formatMinutesFull(avgMinutes))
 	}
 }
 
@@ -228,20 +168,14 @@ private fun SummaryItem(label: String, value: String) {
 			fontWeight = FontWeight.SemiBold,
 			color = MaterialTheme.colorScheme.onSurface
 		)
-		Text(
-			text = label,
-			style = MaterialTheme.typography.labelSmall,
-			color = MaterialTheme.colorScheme.onSurfaceVariant
-		)
+		Text(text = label, style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
 	}
 }
 
 @Composable
 private fun formatMinutesFull(minutes: Int): String {
 	return if (minutes >= 60) {
-		val hours = minutes / 60
-		val mins = minutes % 60
-		stringResource(R.string.analytics_hours_minutes, hours, mins)
+		stringResource(R.string.analytics_hours_minutes, minutes / 60, minutes % 60)
 	} else {
 		stringResource(R.string.suffix_minutes_value, minutes)
 	}

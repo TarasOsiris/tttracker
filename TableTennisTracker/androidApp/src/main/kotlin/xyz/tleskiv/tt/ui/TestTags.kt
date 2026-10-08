@@ -1,5 +1,7 @@
 package xyz.tleskiv.tt.ui
 
+import xyz.tleskiv.tt.pro.PaywallSource
+
 object TestTags {
 	const val DURATION_SLIDER = "duration_slider"
 	const val RPE_SLIDER = "rpe_slider"
@@ -14,6 +16,13 @@ object TestTags {
 	const val TAB_SESSIONS = "tab_sessions"
 	const val TAB_ANALYTICS = "tab_analytics"
 	const val TOOLBAR_SETTINGS = "toolbar_settings"
+	const val PRO_TOOLBAR = "pro_toolbar"
+	const val SETTINGS_PRO_BANNER = "settings_pro_banner"
+	const val SETTINGS_RESTORE = "settings_restore"
+	const val SETTINGS_EXPORT = "settings_export"
+	const val GENERAL_ACCENT = "general_accent"
+
+	fun proUnlock(source: PaywallSource) = "pro_unlock_${source.value}"
 
 	const val SESSIONS_ADD = "sessions_add"
 	const val SESSIONS_TODAY = "sessions_today"

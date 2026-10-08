@@ -37,7 +37,24 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.outlined.IosShare
+import androidx.compose.material.icons.outlined.Refresh
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.getValue
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import xyz.tleskiv.tt.pro.PaywallSource
+import xyz.tleskiv.tt.pro.ProModel
+import xyz.tleskiv.tt.ui.pro.LocalPro
+import xyz.tleskiv.tt.ui.pro.ProBadge
+import xyz.tleskiv.tt.ui.pro.ProState
+import xyz.tleskiv.tt.ui.pro.SettingsProBanner
+import xyz.tleskiv.tt.viewmodel.settings.DataExportViewModel
 import org.koin.compose.viewmodel.koinViewModel
 import xyz.tleskiv.tt.R
 import xyz.tleskiv.tt.ui.TestTags
@@ -51,9 +68,13 @@ fun SettingsScreen(
 	onNavigateToGeneralSettings: () -> Unit = {},
 	onNavigateToOpponents: () -> Unit = {},
 	onNavigateToDebug: () -> Unit = {},
-	viewModel: SettingsViewModel = koinViewModel()
+	viewModel: SettingsViewModel = koinViewModel(),
+	exportViewModel: DataExportViewModel = koinViewModel()
 ) {
 	val uriHandler = LocalUriHandler.current
+	val pro = LocalPro.current
+	val isExporting by exportViewModel.isExporting.collectAsStateWithLifecycle()
+	val exportFailure by exportViewModel.failure.collectAsStateWithLifecycle()
 
 	Column(
 		modifier = Modifier
@@ -69,6 +90,11 @@ fun SettingsScreen(
 				.navigationBarsPadding()
 				.padding(16.dp)
 		) {
+			if (pro.showsUpsell) {
+				ProSections(pro)
+				Spacer(modifier = Modifier.height(24.dp))
+			}
+
 			SettingsSectionHeader(title = stringResource(R.string.settings_section_general))
 			Spacer(modifier = Modifier.height(8.dp))
 			ContentCard {
@@ -97,6 +123,20 @@ fun SettingsScreen(
 						onClick = onNavigateToOpponents
 					)
 				}
+			}
+
+			Spacer(modifier = Modifier.height(24.dp))
+
+			SettingsSectionHeader(title = stringResource(R.string.settings_section_data))
+			Spacer(modifier = Modifier.height(8.dp))
+			ContentCard {
+				ExportRow(
+					isExporting = isExporting,
+					hasPro = pro.hasProFeatures,
+					onClick = {
+						if (pro.hasProFeatures) exportViewModel.export() else pro.openPaywall(PaywallSource.SETTINGS_EXPORT)
+					}
+				)
 			}
 
 			Spacer(modifier = Modifier.height(24.dp))
@@ -172,7 +212,7 @@ fun SettingsScreen(
 			Text(
 				text = stringResource(R.string.settings_version_format, viewModel.versionName, viewModel.buildNumber),
 				modifier = Modifier.fillMaxWidth(),
-				textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+				textAlign = TextAlign.Center,
 				style = MaterialTheme.typography.bodySmall,
 				color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
 			)
@@ -181,7 +221,7 @@ fun SettingsScreen(
 
 			Row(
 				modifier = Modifier.fillMaxWidth(),
-				horizontalArrangement = androidx.compose.foundation.layout.Arrangement.Center
+				horizontalArrangement = Arrangement.Center
 			) {
 				Text(
 					text = stringResource(R.string.settings_made_with_prefix),
@@ -201,6 +241,84 @@ fun SettingsScreen(
 			Spacer(modifier = Modifier.height(16.dp))
 		}
 	}
+
+	pro.restoreResult?.let { RestoreResultDialog(result = it, onDismiss = pro.consumeRestoreResult) }
+	exportFailure?.let { ExportFailureDialog(message = it, onDismiss = exportViewModel::dismissFailure) }
+}
+
+@Composable
+private fun ProSections(pro: ProState) {
+	Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+		SettingsProBanner(onClick = { pro.openPaywall(PaywallSource.SETTINGS_BANNER) })
+		// Play, like Apple, wants a way to restore a one-time purchase outside the purchase flow.
+		ContentCard {
+			SettingsMenuRow(
+				item = SettingsMenuItem(R.string.action_restore_purchases, Icons.Outlined.Refresh, pro.restore, TestTags.SETTINGS_RESTORE),
+				onClick = pro.restore,
+				enabled = !pro.isRestoring,
+				showsChevron = false
+			)
+		}
+	}
+}
+
+@Composable
+private fun ExportRow(isExporting: Boolean, hasPro: Boolean, onClick: () -> Unit) {
+	Surface(
+		modifier = Modifier
+			.fillMaxWidth()
+			.testTag(TestTags.SETTINGS_EXPORT)
+			.clickable(enabled = !isExporting, onClick = onClick),
+		color = MaterialTheme.colorScheme.surfaceContainerLow
+	) {
+		Row(
+			modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 14.dp),
+			verticalAlignment = Alignment.CenterVertically
+		) {
+			Icon(imageVector = Icons.Outlined.IosShare, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
+			Spacer(modifier = Modifier.width(16.dp))
+			Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
+				Text(
+					text = stringResource(R.string.settings_export),
+					style = MaterialTheme.typography.bodyLarge,
+					color = MaterialTheme.colorScheme.onSurface
+				)
+				Text(
+					text = stringResource(R.string.settings_export_hint),
+					style = MaterialTheme.typography.bodySmall,
+					color = MaterialTheme.colorScheme.onSurfaceVariant
+				)
+			}
+			when {
+				isExporting -> CircularProgressIndicator(modifier = Modifier.size(20.dp), strokeWidth = 2.dp)
+				!hasPro -> ProBadge()
+			}
+		}
+	}
+}
+
+@Composable
+private fun RestoreResultDialog(result: ProModel.RestoreResult, onDismiss: () -> Unit) {
+	val message = when (result) {
+		ProModel.RestoreResult.RESTORED -> R.string.pro_restore_success
+		ProModel.RestoreResult.NOTHING_TO_RESTORE -> R.string.pro_restore_nothing
+		ProModel.RestoreResult.FAILED -> R.string.pro_restore_failed
+	}
+	AlertDialog(
+		onDismissRequest = onDismiss,
+		confirmButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.action_ok)) } },
+		text = { Text(stringResource(message)) }
+	)
+}
+
+@Composable
+private fun ExportFailureDialog(message: String, onDismiss: () -> Unit) {
+	AlertDialog(
+		onDismissRequest = onDismiss,
+		confirmButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.action_ok)) } },
+		title = { Text(stringResource(R.string.title_error)) },
+		text = message.takeIf { it.isNotBlank() }?.let { { Text(it) } }
+	)
 }
 
 @Composable
@@ -223,10 +341,15 @@ private data class SettingsMenuItem(
 )
 
 @Composable
-private fun SettingsMenuRow(item: SettingsMenuItem, onClick: () -> Unit) {
+private fun SettingsMenuRow(
+	item: SettingsMenuItem,
+	onClick: () -> Unit,
+	enabled: Boolean = true,
+	showsChevron: Boolean = true
+) {
 	Surface(
 		modifier = Modifier.fillMaxWidth().then(item.tag?.let { Modifier.testTag(it) } ?: Modifier)
-			.clickable(onClick = onClick),
+			.clickable(enabled = enabled, onClick = onClick),
 		color = MaterialTheme.colorScheme.surfaceContainerLow
 	) {
 		Row(
@@ -245,11 +368,13 @@ private fun SettingsMenuRow(item: SettingsMenuItem, onClick: () -> Unit) {
 				style = MaterialTheme.typography.bodyLarge,
 				color = MaterialTheme.colorScheme.onSurface
 			)
-			Icon(
-				imageVector = Icons.AutoMirrored.Outlined.KeyboardArrowRight,
-				contentDescription = null,
-				tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
-			)
+			if (showsChevron) {
+				Icon(
+					imageVector = Icons.AutoMirrored.Outlined.KeyboardArrowRight,
+					contentDescription = null,
+					tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
+				)
+			}
 		}
 	}
 }

@@ -40,18 +40,22 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlin.uuid.Uuid
 import org.koin.compose.viewmodel.koinViewModel
 import xyz.tleskiv.tt.R
+import xyz.tleskiv.tt.analytics.OpponentRecord
 import xyz.tleskiv.tt.data.model.Opponent
 import xyz.tleskiv.tt.ui.TestTags
 import xyz.tleskiv.tt.ui.dialogs.AddOpponentDialog
 import xyz.tleskiv.tt.ui.dialogs.DeleteConfirmationDialog
 import xyz.tleskiv.tt.ui.dialogs.EditOpponentDialog
 import xyz.tleskiv.tt.ui.dialogs.InfoDialog
+import xyz.tleskiv.tt.ui.pro.LocalPro
 import xyz.tleskiv.tt.ui.widgets.AddFab
 import xyz.tleskiv.tt.ui.widgets.ContentCard
 import xyz.tleskiv.tt.ui.widgets.FabListBottomPadding
+import xyz.tleskiv.tt.ui.widgets.RecordBadge
 import xyz.tleskiv.tt.ui.widgets.SimpleTopAppBar
 import xyz.tleskiv.tt.viewmodel.settings.OpponentsScreenViewModel
 
@@ -61,6 +65,8 @@ fun OpponentsScreen(
 	viewModel: OpponentsScreenViewModel = koinViewModel()
 ) {
 	val opponents by viewModel.opponents.collectAsState()
+	val records by viewModel.records.collectAsStateWithLifecycle()
+	val hasPro = LocalPro.current.hasProFeatures
 	var showAddDialog by rememberSaveable { mutableStateOf(false) }
 	var showInfoDialog by rememberSaveable { mutableStateOf(false) }
 	var editingOpponentId by rememberSaveable { mutableStateOf<String?>(null) }
@@ -132,6 +138,7 @@ fun OpponentsScreen(
 					items(opponents, key = { it.id.toString() }) { opponent ->
 						OpponentCard(
 							opponent = opponent,
+							record = if (hasPro) records[opponent.id] else null,
 							onEdit = { editingOpponentId = it.toString() },
 							onDelete = { deletingOpponentId = it.toString() }
 						)
@@ -170,6 +177,7 @@ private fun OpponentsTopBar(onNavigateBack: () -> Unit, onInfoClick: () -> Unit)
 @Composable
 private fun OpponentCard(
 	opponent: Opponent,
+	record: OpponentRecord?,
 	onEdit: (Uuid) -> Unit,
 	onDelete: (Uuid) -> Unit
 ) {
@@ -240,6 +248,11 @@ private fun OpponentCard(
 						maxLines = 2
 					)
 				}
+			}
+
+			if (record != null && record.matchCount > 0) {
+				Spacer(modifier = Modifier.width(8.dp))
+				RecordBadge(wins = record.wins, losses = record.losses)
 			}
 
 			IconButton(onClick = { onEdit(opponent.id) }) {

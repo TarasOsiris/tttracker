@@ -23,3 +23,10 @@ fun parseAnalyticsWidgetOrder(stored: String?): List<AnalyticsWidget> {
 }
 
 fun List<AnalyticsWidget>.toAnalyticsWidgetOrder(): String = joinToString(",") { it.key }
+
+fun List<AnalyticsWidgetSetting>.moving(widget: AnalyticsWidget, offset: Int): List<AnalyticsWidgetSetting> {
+	val from = indexOfFirst { it.widget == widget }
+	if (from < 0) return this
+	val to = (from + offset).coerceIn(indices)
+	return toMutableList().apply { add(to, removeAt(from)) }
+}

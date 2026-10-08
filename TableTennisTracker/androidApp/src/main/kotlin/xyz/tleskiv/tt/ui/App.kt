@@ -19,6 +19,8 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalResources
 import org.koin.compose.viewmodel.koinViewModel
+import xyz.tleskiv.tt.deeplink.DeepLink
+import xyz.tleskiv.tt.model.AppAccent
 import xyz.tleskiv.tt.model.AppLocale
 import xyz.tleskiv.tt.model.AppThemeMode.DARK
 import xyz.tleskiv.tt.model.AppThemeMode.LIGHT
@@ -26,15 +28,18 @@ import xyz.tleskiv.tt.model.AppThemeMode.SYSTEM
 import xyz.tleskiv.tt.ui.nav.navdisplay.TopNavDisplay
 import xyz.tleskiv.tt.ui.nav.routes.CoreAppRoute
 import xyz.tleskiv.tt.ui.nav.routes.TopLevelRoute
+import xyz.tleskiv.tt.ui.pro.LocalPro
+import xyz.tleskiv.tt.ui.pro.ProHost
 import xyz.tleskiv.tt.ui.theme.AppTheme
 import xyz.tleskiv.tt.viewmodel.AppViewModel
 import java.util.Locale
 
 @Composable
-fun App() {
+fun App(deepLink: DeepLink? = null, onDeepLinkHandled: () -> Unit = {}) {
 	val viewModel = koinViewModel<AppViewModel>()
 	val themeMode by viewModel.themeMode.collectAsState()
 	val appLocale by viewModel.appLocale.collectAsState()
+	val accent by viewModel.accent.collectAsState()
 
 	val currentTheme = themeMode ?: return
 	val currentLocale = appLocale ?: return
@@ -59,13 +64,16 @@ fun App() {
 			LocalResources provides localizedContext.resources,
 			LocalConfiguration provides localizedContext.resources.configuration
 		) {
-			AppTheme(darkTheme = darkTheme) {
-				Surface(
-					modifier = Modifier.fillMaxSize(),
-					color = MaterialTheme.colorScheme.surface
-				) {
-					val topLevelBackStack = remember { mutableStateListOf<TopLevelRoute>(CoreAppRoute) }
-					TopNavDisplay(topLevelBackStack)
+			ProHost {
+				val effectiveAccent = if (LocalPro.current.hasProFeatures) accent else AppAccent.DEFAULT
+				AppTheme(darkTheme = darkTheme, accent = effectiveAccent) {
+					Surface(
+						modifier = Modifier.fillMaxSize(),
+						color = MaterialTheme.colorScheme.surface
+					) {
+						val topLevelBackStack = remember { mutableStateListOf<TopLevelRoute>(CoreAppRoute) }
+						TopNavDisplay(topLevelBackStack, deepLink, onDeepLinkHandled)
+					}
 				}
 			}
 		}

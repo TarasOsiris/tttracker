@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.KeyboardArrowDown
 import androidx.compose.material.icons.rounded.KeyboardArrowUp
@@ -27,6 +29,8 @@ import androidx.compose.ui.unit.dp
 import xyz.tleskiv.tt.R
 import xyz.tleskiv.tt.model.AnalyticsWidget
 import xyz.tleskiv.tt.model.AnalyticsWidgetSetting
+import xyz.tleskiv.tt.ui.pro.LocalPro
+import xyz.tleskiv.tt.ui.pro.ProBadge
 
 @Composable
 fun AnalyticsSettingsDialog(
@@ -35,6 +39,7 @@ fun AnalyticsSettingsDialog(
 	onMove: (AnalyticsWidget, Int) -> Unit,
 	onDismiss: () -> Unit
 ) {
+	val hasPro = LocalPro.current.hasProFeatures
 	BasicAlertDialog(onDismissRequest = onDismiss) {
 		Surface(
 			shape = MaterialTheme.shapes.extraLarge,
@@ -48,13 +53,16 @@ fun AnalyticsSettingsDialog(
 				)
 				Spacer(modifier = Modifier.height(16.dp))
 
-				widgets.forEachIndexed { index, setting ->
-					WidgetRow(
-						setting = setting,
-						onCheckedChange = { onVisibleChange(setting.widget, it) },
-						onMoveUp = { onMove(setting.widget, -1) }.takeIf { index > 0 },
-						onMoveDown = { onMove(setting.widget, 1) }.takeIf { index < widgets.lastIndex }
-					)
+				Column(modifier = Modifier.weight(1f, fill = false).verticalScroll(rememberScrollState())) {
+					widgets.forEachIndexed { index, setting ->
+						WidgetRow(
+							setting = setting,
+							isLocked = setting.widget.isInsight && !hasPro,
+							onCheckedChange = { onVisibleChange(setting.widget, it) },
+							onMoveUp = { onMove(setting.widget, -1) }.takeIf { index > 0 },
+							onMoveDown = { onMove(setting.widget, 1) }.takeIf { index < widgets.lastIndex }
+						)
+					}
 				}
 
 				Spacer(modifier = Modifier.height(16.dp))
@@ -70,9 +78,14 @@ fun AnalyticsSettingsDialog(
 	}
 }
 
+/**
+ * Without Pro an insight is part of the locked preview, which has no off switch; it can still be
+ * moved, and the preview moves with it.
+ */
 @Composable
 private fun WidgetRow(
 	setting: AnalyticsWidgetSetting,
+	isLocked: Boolean,
 	onCheckedChange: (Boolean) -> Unit,
 	onMoveUp: (() -> Unit)?,
 	onMoveDown: (() -> Unit)?
@@ -89,7 +102,11 @@ private fun WidgetRow(
 		)
 		MoveButton(Icons.Rounded.KeyboardArrowUp, R.string.action_move_up, onMoveUp)
 		MoveButton(Icons.Rounded.KeyboardArrowDown, R.string.action_move_down, onMoveDown)
-		Switch(checked = setting.visible, onCheckedChange = onCheckedChange)
+		if (isLocked) {
+			ProBadge(modifier = Modifier.padding(horizontal = 17.dp))
+		} else {
+			Switch(checked = setting.visible, onCheckedChange = onCheckedChange)
+		}
 	}
 }
 

@@ -34,7 +34,6 @@ fun HeatMapLevel.toColor(): Color {
 	}
 }
 
-@Composable
 fun SessionType?.toColor(): Color = when (this) {
 	SessionType.TECHNIQUE -> sessionTypeTechnique
 	SessionType.MATCH_PLAY -> sessionTypeMatchPlay

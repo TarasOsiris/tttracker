@@ -83,7 +83,7 @@ fun SummaryAnalyticsWidget(stats: SummaryStats) {
 }
 
 @Composable
-private fun StatBox(
+internal fun StatBox(
 	modifier: Modifier = Modifier,
 	emoji: String,
 	value: String,

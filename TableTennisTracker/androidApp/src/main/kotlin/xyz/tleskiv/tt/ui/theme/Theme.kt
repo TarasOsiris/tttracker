@@ -1,11 +1,13 @@
 package xyz.tleskiv.tt.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialExpressiveTheme
 import androidx.compose.material3.MotionScheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import xyz.tleskiv.tt.model.AppAccent
 
 private val LightColorScheme = lightColorScheme(
 	primary = primaryLight,
@@ -107,12 +109,46 @@ private val DarkColorScheme = darkColorScheme(
 	onTertiaryFixedVariant = onTertiaryFixedVariant,
 )
 
+/// The palette behind a Pro accent; null for [AppAccent.DEFAULT], which keeps the brand scheme.
+val AppAccent.palette: AccentPalette?
+	get() = when (this) {
+		AppAccent.DEFAULT -> null
+		AppAccent.GREEN -> accentGreen
+		AppAccent.TEAL -> accentTeal
+		AppAccent.INDIGO -> accentIndigo
+		AppAccent.PURPLE -> accentPurple
+		AppAccent.PINK -> accentPink
+		AppAccent.RED -> accentRed
+		AppAccent.ORANGE -> accentOrange
+	}
+
+private fun ColorScheme.withAccent(palette: AccentPalette?, darkTheme: Boolean): ColorScheme {
+	palette ?: return this
+	val tones = if (darkTheme) palette.dark else palette.light
+	val inverse = if (darkTheme) palette.light else palette.dark
+	return copy(
+		primary = tones.primary,
+		onPrimary = tones.onPrimary,
+		primaryContainer = tones.container,
+		onPrimaryContainer = tones.onContainer,
+		inversePrimary = inverse.primary,
+		surfaceTint = tones.primary
+	)
+}
+
+/// The app's scheme with [accent] applied — also what the home-screen widgets are themed from.
+fun appColorScheme(darkTheme: Boolean, accent: AppAccent): ColorScheme =
+	(if (darkTheme) DarkColorScheme else LightColorScheme).withAccent(accent.palette, darkTheme)
+
+/// [accent] is applied only while Pro is owned; the caller passes [AppAccent.DEFAULT] otherwise, so
+/// losing Pro puts the default back without forgetting the choice.
 @Composable
 fun AppTheme(
 	darkTheme: Boolean = isSystemInDarkTheme(),
+	accent: AppAccent = AppAccent.DEFAULT,
 	content: @Composable () -> Unit
 ) {
-	val colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme
+	val colorScheme = appColorScheme(darkTheme, accent)
 	val typography = AppTypography()
 
 	MaterialExpressiveTheme(

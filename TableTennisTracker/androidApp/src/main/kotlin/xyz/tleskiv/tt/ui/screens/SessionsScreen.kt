@@ -37,6 +37,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.ToggleButton
 import androidx.compose.runtime.Composable
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
@@ -159,7 +160,13 @@ fun SessionsScreen(
 	}
 
 	val titleText = visibleYearMonth.formatMonthYear()
-	topAppBarState.title = { Text(titleText) }
+	topAppBarState.title = {
+		Text(
+			text = titleText,
+			maxLines = 1,
+			autoSize = TextAutoSize.StepBased(minFontSize = 14.sp, maxFontSize = MaterialTheme.typography.titleLarge.fontSize)
+		)
+	}
 	topAppBarState.actions = {
 		Row(verticalAlignment = Alignment.CenterVertically) {
 			AnimatedVisibility(

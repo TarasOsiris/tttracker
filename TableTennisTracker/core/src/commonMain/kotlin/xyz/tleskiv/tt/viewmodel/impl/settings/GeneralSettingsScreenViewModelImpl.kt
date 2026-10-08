@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import xyz.tleskiv.tt.di.components.AnalyticsService
+import xyz.tleskiv.tt.model.AppAccent
 import xyz.tleskiv.tt.model.AppLocale
 import xyz.tleskiv.tt.model.AppThemeMode
 import xyz.tleskiv.tt.model.WeekStartDay
@@ -35,6 +36,9 @@ class GeneralSettingsScreenViewModelImpl(
 	override val appLocale: StateFlow<AppLocale> = userPreferencesRepository.appLocale
 		.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), AppLocale.SYSTEM)
 
+	override val accent: StateFlow<AppAccent> = userPreferencesRepository.accent
+		.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), AppAccent.DEFAULT)
+
 	override fun setThemeMode(mode: AppThemeMode) {
 		viewModelScope.launch {
 			userPreferencesRepository.setThemeMode(mode)
@@ -60,6 +64,13 @@ class GeneralSettingsScreenViewModelImpl(
 		viewModelScope.launch {
 			userPreferencesRepository.setAppLocale(locale)
 			analyticsService.capture("locale_changed", mapOf("locale" to locale.name))
+		}
+	}
+
+	override fun setAccent(accent: AppAccent) {
+		viewModelScope.launch {
+			userPreferencesRepository.setAccent(accent)
+			analyticsService.capture("accent_changed", mapOf("accent" to accent.name))
 		}
 	}
 

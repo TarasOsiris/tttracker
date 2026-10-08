@@ -5,14 +5,18 @@
 package xyz.tleskiv.tt.previews.screens
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.tooling.preview.Preview
 import xyz.tleskiv.tt.previews.fakes.FakeAnalyticsService
 import xyz.tleskiv.tt.previews.fakes.FakeClipboardManager
+import xyz.tleskiv.tt.previews.fakes.FakeDataExportViewModel
 import xyz.tleskiv.tt.previews.fakes.FakeExternalAppLauncher
 import xyz.tleskiv.tt.previews.fakes.FakeNativeInfoProvider
 import xyz.tleskiv.tt.previews.fakes.FakePurchasesIdProvider
 import xyz.tleskiv.tt.previews.fakes.FakeUserIdService
 import xyz.tleskiv.tt.previews.fakes.FakeUserPreferencesRepository
+import xyz.tleskiv.tt.ui.pro.LocalPro
+import xyz.tleskiv.tt.ui.pro.ProState
 import xyz.tleskiv.tt.ui.screens.SettingsScreen
 import xyz.tleskiv.tt.ui.theme.AppTheme
 import xyz.tleskiv.tt.viewmodel.SettingsViewModel
@@ -31,8 +35,31 @@ fun SettingsScreenPreview() {
 				clipboardManager = FakeClipboardManager(),
 				purchasesIdProvider = FakePurchasesIdProvider(),
 				analyticsService = FakeAnalyticsService()
-			)
+			),
+			exportViewModel = FakeDataExportViewModel()
 		)
+	}
+}
+
+@Preview(showBackground = true)
+@Composable
+fun SettingsScreenPreviewUpsell() {
+	AppTheme {
+		CompositionLocalProvider(LocalPro provides ProState(showsUpsell = true)) {
+			SettingsScreen(
+				onNavigateBack = {},
+				viewModel = SettingsViewModel(
+					userPreferencesRepository = FakeUserPreferencesRepository(),
+					nativeInfoProvider = FakeNativeInfoProvider(),
+					externalAppLauncher = FakeExternalAppLauncher(),
+					userIdService = FakeUserIdService(),
+					clipboardManager = FakeClipboardManager(),
+					purchasesIdProvider = FakePurchasesIdProvider(),
+					analyticsService = FakeAnalyticsService()
+				),
+				exportViewModel = FakeDataExportViewModel()
+			)
+		}
 	}
 }
 
@@ -50,7 +77,8 @@ fun SettingsScreenPreviewDebug() {
 				clipboardManager = FakeClipboardManager(),
 				purchasesIdProvider = FakePurchasesIdProvider(),
 				analyticsService = FakeAnalyticsService()
-			)
+			),
+			exportViewModel = FakeDataExportViewModel()
 		)
 	}
 }

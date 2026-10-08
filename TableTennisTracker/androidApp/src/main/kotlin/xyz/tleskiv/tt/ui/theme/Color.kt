@@ -106,3 +106,50 @@ val winColor = brand(BrandColors.Win)
 val lossColor = brand(BrandColors.Loss)
 val winContainerColor = brand(BrandColors.WinContainer)
 val onWinContainerColor = brand(BrandColors.OnWinContainer)
+
+// Win/Loss as text on a light widget background: the brand green measures 2.9:1 there, so light
+// mode uses a deeper tone of each hue, as iOS's `Palette.matchWinText` does. Dark mode keeps the brand.
+val winTextLight = Color(0xFF2E7D32)
+val lossTextLight = Color(0xFFC62828)
+
+/// The Pro accent choices, one Material tonal set per light/dark, seeded from the same system hues
+/// iOS uses for `AccentChoice`: primary, onPrimary, primaryContainer, onPrimaryContainer.
+data class AccentTones(val primary: Color, val onPrimary: Color, val container: Color, val onContainer: Color)
+
+data class AccentPalette(val swatch: Color, val light: AccentTones, val dark: AccentTones)
+
+val accentGreen = AccentPalette(
+	swatch = Color(0xFF34C759),
+	light = AccentTones(Color(0xFF006E26), Color(0xFFFFFFFF), Color(0xFF97F7A0), Color(0xFF002106)),
+	dark = AccentTones(Color(0xFF7BDA87), Color(0xFF00390F), Color(0xFF00531A), Color(0xFF97F7A0))
+)
+val accentTeal = AccentPalette(
+	swatch = Color(0xFF30B0C7),
+	light = AccentTones(Color(0xFF006878), Color(0xFFFFFFFF), Color(0xFFA6EEFF), Color(0xFF001F25)),
+	dark = AccentTones(Color(0xFF83D2E4), Color(0xFF00363F), Color(0xFF004E5A), Color(0xFFA6EEFF))
+)
+val accentIndigo = AccentPalette(
+	swatch = Color(0xFF5856D6),
+	light = AccentTones(Color(0xFF4D4BC9), Color(0xFFFFFFFF), Color(0xFFE2DFFF), Color(0xFF0E0068)),
+	dark = AccentTones(Color(0xFFC2C1FF), Color(0xFF1F1B98), Color(0xFF3631B1), Color(0xFFE2DFFF))
+)
+val accentPurple = AccentPalette(
+	swatch = Color(0xFFAF52DE),
+	light = AccentTones(Color(0xFF8B32B8), Color(0xFFFFFFFF), Color(0xFFF8D8FF), Color(0xFF330045)),
+	dark = AccentTones(Color(0xFFECB1FF), Color(0xFF52006F), Color(0xFF71139D), Color(0xFFF8D8FF))
+)
+val accentPink = AccentPalette(
+	swatch = Color(0xFFFF2D55),
+	light = AccentTones(Color(0xFFBA0B45), Color(0xFFFFFFFF), Color(0xFFFFD9DD), Color(0xFF400012)),
+	dark = AccentTones(Color(0xFFFFB2BC), Color(0xFF670021), Color(0xFF910032), Color(0xFFFFD9DD))
+)
+val accentRed = AccentPalette(
+	swatch = Color(0xFFFF3B30),
+	light = AccentTones(Color(0xFFB9161B), Color(0xFFFFFFFF), Color(0xFFFFDAD5), Color(0xFF410001)),
+	dark = AccentTones(Color(0xFFFFB4AA), Color(0xFF690003), Color(0xFF930007), Color(0xFFFFDAD5))
+)
+val accentOrange = AccentPalette(
+	swatch = Color(0xFFFF9500),
+	light = AccentTones(Color(0xFF8B5000), Color(0xFFFFFFFF), Color(0xFFFFDCBE), Color(0xFF2C1600)),
+	dark = AccentTones(Color(0xFFFFB870), Color(0xFF4A2800), Color(0xFF6A3C00), Color(0xFFFFDCBE))
+)

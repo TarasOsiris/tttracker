@@ -128,6 +128,9 @@ dependencies {
 	implementation(libs.androidx.nav3.ui)
 	implementation(libs.kotlinx.serialization.json)
 
+	implementation(libs.androidx.glance.appwidget)
+	implementation(libs.androidx.glance.material3)
+
 	// Koin DI
 	implementation(platform(libs.koin.bom))
 	implementation(libs.koin.core)
@@ -146,6 +149,7 @@ dependencies {
 
 	// RevenueCat
 	implementation(libs.revenuecat.purchases)
+	implementation(libs.revenuecat.purchases.ui)
 
 	implementation(libs.sqldelight.driver.android)
 

@@ -15,6 +15,7 @@ import org.junit.runner.RunWith
 import org.koin.core.context.GlobalContext
 import xyz.tleskiv.tt.model.AppLocale
 import xyz.tleskiv.tt.model.AppThemeMode
+import xyz.tleskiv.tt.pro.ProModel
 import xyz.tleskiv.tt.repo.UserPreferencesRepository
 import xyz.tleskiv.tt.service.OpponentService
 import xyz.tleskiv.tt.service.TrainingSessionService
@@ -49,6 +50,9 @@ class StoreScreenshotTest {
 
 	@Test
 	fun capturesEveryLocale() {
+		// The listing shows the Pro features themselves, not the PRO pill, banner and locks.
+		composeTestRule.runOnUiThread { GlobalContext.get().get<ProModel>().hideUpsellForScreenshots() }
+
 		// Re-seeded per language, not seeded once: the session notes are user content, so
 		// `ShowcaseSeeder` writes the translation for the language it is handed.
 		for (locale in locales) {

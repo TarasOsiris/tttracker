@@ -19,6 +19,7 @@ import xyz.tleskiv.tt.viewmodel.impl.sessions.CreateSessionScreenViewModelImpl
 import xyz.tleskiv.tt.viewmodel.impl.sessions.EditSessionScreenViewModelImpl
 import xyz.tleskiv.tt.viewmodel.impl.sessions.SessionDetailsScreenViewModelImpl
 import xyz.tleskiv.tt.viewmodel.impl.sessions.SessionsScreenViewModelImpl
+import xyz.tleskiv.tt.viewmodel.impl.settings.DataExportViewModelImpl
 import xyz.tleskiv.tt.viewmodel.impl.settings.GeneralSettingsScreenViewModelImpl
 import xyz.tleskiv.tt.viewmodel.impl.settings.OpponentsScreenViewModelImpl
 import xyz.tleskiv.tt.viewmodel.sessions.CreateSessionScreenViewModel
@@ -26,6 +27,7 @@ import xyz.tleskiv.tt.viewmodel.sessions.EditSessionScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.PendingMatch
 import xyz.tleskiv.tt.viewmodel.sessions.SessionDetailsScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.SessionsScreenViewModel
+import xyz.tleskiv.tt.viewmodel.settings.DataExportViewModel
 import xyz.tleskiv.tt.viewmodel.settings.GeneralSettingsScreenViewModel
 import xyz.tleskiv.tt.viewmodel.settings.OpponentsScreenViewModel
 import kotlin.uuid.Uuid
@@ -38,6 +40,7 @@ val viewModelModule = module {
 	viewModelOf(::SessionDetailsScreenViewModelImpl) bind SessionDetailsScreenViewModel::class
 	viewModelOf(::GeneralSettingsScreenViewModelImpl) bind GeneralSettingsScreenViewModel::class
 	viewModelOf(::OpponentsScreenViewModelImpl) bind OpponentsScreenViewModel::class
+	viewModelOf(::DataExportViewModelImpl) bind DataExportViewModel::class
 	viewModel<AddMatchDialogViewModel> { params ->
 		AddMatchDialogViewModelImpl(params.getOrNull<PendingMatch>(), get())
 	}

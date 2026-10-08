@@ -88,7 +88,9 @@ Android resources in `androidApp/src/main/res`, previews, and instrumentation te
 - **DI:** Koin for Compose (`koin-compose`, `koin-compose-viewmodel`)
 - **Navigation:** Navigation 3 (`androidx.navigation3`)
 - **Application class:** `TTApplication.kt` — initializes Koin with the Android context
-- **MainActivity:** a `ComponentActivity` that calls `setContent { App() }`
+- **MainActivity:** a `ComponentActivity` that calls `setContent { App() }`, and hands the
+  `tttracker://` deep links it is opened with (widgets, the launcher shortcut) to `App`
+- **Home-screen widgets:** Jetpack Glance, in `appwidget/`; see `docs/widgets.md`
 - Min SDK 24, Target SDK 36. Core library desugaring is on, because the calendar library is
   `java.time`-based.
 
@@ -267,8 +269,7 @@ interface AnalyticsService {
 
 ## Purchases with RevenueCat
 
-RevenueCat is initialised on both clients. Android uses it only so the dashboard reports active
-users.
+RevenueCat is initialised on both clients, and both sell Pro.
 
 - Android: `PurchasesSetup.configure(...)` from `TTApplication.onCreate`, key in the
   `REVENUECAT_API_KEY` BuildConfig field, set per build type in `androidApp/build.gradle.kts`
@@ -278,13 +279,21 @@ users.
   without store products; release builds use the store keys (`appl_…` / `goog_…`). Never ship the
   Test Store key — the SDK rejects it in release builds.
 
-**iOS sells Pro** — the `Pro Lifetime` non-consumable (`xyz.tleskiv.tt.pro.lifetime`). `ProModel` (`iosApp/iosApp/App/ProModel.swift`) is the single reader of the entitlement
+**Pro** is the `Pro Lifetime` one-time purchase, `xyz.tleskiv.tt.pro.lifetime` on both stores. On iOS
+`ProModel` (`iosApp/iosApp/App/ProModel.swift`) is the single reader of the entitlement
 (`ProEntitlement.id`, which must match the RevenueCat dashboard) and every Pro surface checks
 `showsUpsell` (the PRO pill on each tab's toolbar, `.proToolbarButton()`, and the banner and
 Restore purchases row at the top of Settings) or `hasProFeatures` (the features themselves). The
 paywall is RevenueCatUI's `PaywallView`, designed in the dashboard; every opening passes a
-`PaywallSource` for the PostHog funnel. Kotlin knows nothing about Pro: it computes everything, and
-Swift decides what to show.
+`PaywallSource` for the PostHog funnel. `:core` knows nothing about Pro: it computes everything, and
+each UI decides what to show.
+
+Android mirrors it in `:androidApp`: `pro/ProModel.kt` reads the entitlement (`ProEntitlement.ID`),
+`pro/ProViewModel.kt` exposes it to Compose, and `ui/pro/ProHost` provides `LocalPro` (`showsUpsell`,
+`hasProFeatures`, `openPaywall(PaywallSource)`) and hosts RevenueCat's `PaywallDialog` — the same
+dashboard paywall iOS shows. The surfaces match iOS: `ProToolbarButton` in the tabs' top bar,
+`SettingsProBanner` plus a Restore purchases row in Settings, `ProLocked { }` and `ProBadge()` on the
+features. `StoreScreenshotTest` calls `ProModel.hideUpsellForScreenshots()` (debug builds only).
 
 What Pro unlocks — keep `ProBenefit.all` and the RevenueCat paywall in step with this list:
 
@@ -292,8 +301,9 @@ What Pro unlocks — keep `ProBenefit.all` and the RevenueCat paywall in step wi
   head-to-head records (`InsightsService` in `:core`). Free users see one blurred preview behind
   `.proLocked(_:)`. Records also show on the opponents list.
 - **Longer weekly-chart ranges** (6M / 1Y / All); 8 weeks stays free.
-- **Pro widgets**: Training streak and Training load. The snapshot carries `isPro`, and a locked
-  widget opens the paywall through `tttracker://pro`. The original widgets stay free.
+- **Pro widgets**: Training streak and Training load. The snapshot carries `isPro` (on Android,
+  `WidgetProStore`), and a locked widget opens the paywall through `tttracker://pro`. The original
+  widgets stay free.
 - **CSV export** in Settings (`CsvExport.kt` in `:core`).
 - **Accent colors** (`AppAccent` preference); the UI draws its accent with the `.tint` style, never
   `Color.accentColor`, so the choice reaches every screen and widget.

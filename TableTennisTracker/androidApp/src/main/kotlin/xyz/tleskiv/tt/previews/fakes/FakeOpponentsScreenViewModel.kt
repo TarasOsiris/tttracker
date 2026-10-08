@@ -2,9 +2,11 @@ package xyz.tleskiv.tt.previews.fakes
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import xyz.tleskiv.tt.analytics.OpponentRecord
 import xyz.tleskiv.tt.data.model.Opponent
 import xyz.tleskiv.tt.data.model.enums.Handedness
 import xyz.tleskiv.tt.data.model.enums.PlayingStyle
+import xyz.tleskiv.tt.util.today
 import xyz.tleskiv.tt.viewmodel.settings.OpponentsScreenViewModel
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
@@ -14,11 +16,28 @@ class FakeOpponentsScreenViewModel(
 	opponents: List<Opponent> = sampleOpponents
 ) : OpponentsScreenViewModel() {
 	override val opponents: StateFlow<List<Opponent>> = MutableStateFlow(opponents)
+	override val records: StateFlow<Map<Uuid, OpponentRecord>> = MutableStateFlow(
+		opponents.take(RECORDED_OPPONENTS).mapIndexed { i, opponent ->
+			opponent.id to OpponentRecord(
+				opponentId = opponent.id,
+				name = opponent.name,
+				wins = recordWins[i],
+				losses = recordLosses[i],
+				gamesWon = recordWins[i] * 3,
+				gamesLost = recordLosses[i] * 3,
+				recentResults = emptyList(),
+				lastPlayed = today()
+			)
+		}.toMap()
+	)
 
 	override fun deleteOpponent(id: Uuid) {}
 
 	companion object {
 		private const val NOW = 1706300000000L
+		private const val RECORDED_OPPONENTS = 3
+		private val recordWins = listOf(4, 1, 2)
+		private val recordLosses = listOf(2, 3, 2)
 		private val names = listOf("Zhang Wei", "Maria Schmidt", "Kenji Tanaka", "Alex Johnson", "Li Na")
 		private val clubs = listOf("Beijing TT Club", "Munich Sports", null, "Local Club", "Tokyo TT")
 		private val ratings = listOf(2150.0, 1890.0, 2050.0, null, 1950.0)

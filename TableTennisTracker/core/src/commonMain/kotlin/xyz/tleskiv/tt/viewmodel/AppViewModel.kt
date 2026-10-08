@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 import xyz.tleskiv.tt.di.components.LocaleApplier
+import xyz.tleskiv.tt.model.AppAccent
 import xyz.tleskiv.tt.model.AppLocale
 import xyz.tleskiv.tt.model.AppThemeMode
 import xyz.tleskiv.tt.repo.UserPreferencesRepository
@@ -27,6 +28,13 @@ class AppViewModel(
 			scope = viewModelScope,
 			started = SharingStarted.Eagerly,
 			initialValue = null
+		)
+
+	val accent: StateFlow<AppAccent> = userPreferencesRepository.accent
+		.stateIn(
+			scope = viewModelScope,
+			started = SharingStarted.Eagerly,
+			initialValue = AppAccent.DEFAULT
 		)
 
 	fun applyLocale(locale: AppLocale) {

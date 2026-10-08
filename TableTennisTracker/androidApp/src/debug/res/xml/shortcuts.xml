@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The launcher's long-press "Add session", standing in for iOS's Control Center control. The
+     target package is the application id, so debug builds carry their own copy of this file. -->
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+	<shortcut
+		android:enabled="true"
+		android:icon="@drawable/ic_shortcut_add"
+		android:shortcutId="add_session"
+		android:shortcutLongLabel="@string/widget_add_session_name"
+		android:shortcutShortLabel="@string/widget_add_session_name">
+		<intent
+			android:action="android.intent.action.VIEW"
+			android:data="tttracker://sessions/new"
+			android:targetClass="xyz.tleskiv.tt.MainActivity"
+			android:targetPackage="xyz.tleskiv.tt.debug" />
+	</shortcut>
+</shortcuts>

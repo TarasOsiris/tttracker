@@ -9,11 +9,6 @@ data class SummaryStats(
 	val matchesLost: Int = 0
 )
 
-data class WeeklyTrainingData(
-	val weekLabel: String,
-	val totalMinutes: Int
-)
-
 /**
  * One day's training, as a flat list entry rather than a map.
  *

@@ -42,6 +42,7 @@ import xyz.tleskiv.tt.ui.nav.routes.SessionDetailsRoute
 import xyz.tleskiv.tt.ui.nav.routes.SessionsRoute
 import xyz.tleskiv.tt.ui.nav.routes.SettingsRoute
 import xyz.tleskiv.tt.ui.nav.routes.TopLevelRoute
+import xyz.tleskiv.tt.ui.pro.ProToolbarButton
 import xyz.tleskiv.tt.ui.screens.AnalyticsScreen
 import xyz.tleskiv.tt.ui.screens.SessionsScreen
 
@@ -60,6 +61,7 @@ fun TabsNavDisplay(
 		topBar = {
 			TopAppBar(
 				title = { currentTopAppBarState.title() },
+				navigationIcon = { ProToolbarButton() },
 				actions = {
 					currentTopAppBarState.actions?.invoke()
 					IconButton(

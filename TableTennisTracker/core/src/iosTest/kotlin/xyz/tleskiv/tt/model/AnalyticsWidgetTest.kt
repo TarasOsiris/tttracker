@@ -46,4 +46,33 @@ class AnalyticsWidgetTest {
 
 		parseAnalyticsWidgetOrder(order.toAnalyticsWidgetOrder()) shouldContainExactly order
 	}
+
+	@Test
+	fun moving_downByOne_swapsWithNextIncludingInsights() {
+		val widgets = defaultAnalyticsWidgets()
+		val moved = AnalyticsWidget.HEATMAP
+		val offset = 1
+		val expectedOrder = listOf(
+			AnalyticsWidget.SUMMARY,
+			AnalyticsWidget.WIN_LOSS,
+			AnalyticsWidget.WEEKLY,
+			AnalyticsWidget.STREAK,
+			AnalyticsWidget.HEATMAP,
+			AnalyticsWidget.TRAINING_LOAD,
+			AnalyticsWidget.SESSION_TYPES,
+			AnalyticsWidget.HEAD_TO_HEAD
+		)
+
+		widgets.moving(moved, offset).map { it.widget } shouldContainExactly expectedOrder
+	}
+
+	@Test
+	fun moving_pastTheStart_staysFirst() {
+		val widgets = defaultAnalyticsWidgets()
+		val moved = AnalyticsWidget.WIN_LOSS
+		val offset = -5
+		val expectedFirst = AnalyticsWidget.WIN_LOSS
+
+		widgets.moving(moved, offset).first().widget shouldBe expectedFirst
+	}
 }

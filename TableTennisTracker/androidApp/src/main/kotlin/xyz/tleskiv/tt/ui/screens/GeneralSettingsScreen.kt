@@ -2,6 +2,7 @@ package xyz.tleskiv.tt.ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -9,8 +10,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -18,6 +21,7 @@ import androidx.compose.material.icons.automirrored.outlined.KeyboardArrowRight
 import androidx.compose.material.icons.outlined.BrightnessMedium
 import androidx.compose.material.icons.outlined.CalendarMonth
 import androidx.compose.material.icons.outlined.Language
+import androidx.compose.material.icons.outlined.Palette
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -41,11 +45,16 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.koin.compose.viewmodel.koinViewModel
 import xyz.tleskiv.tt.R
+import xyz.tleskiv.tt.model.AppAccent
 import xyz.tleskiv.tt.model.AppLocale
 import xyz.tleskiv.tt.model.AppThemeMode
 import xyz.tleskiv.tt.model.WeekStartDay
+import xyz.tleskiv.tt.pro.PaywallSource
 import xyz.tleskiv.tt.ui.TestTags
 import xyz.tleskiv.tt.ui.dialogs.SelectionDialog
+import xyz.tleskiv.tt.ui.pro.LocalPro
+import xyz.tleskiv.tt.ui.pro.ProBadge
+import xyz.tleskiv.tt.ui.theme.palette
 import xyz.tleskiv.tt.ui.widgets.ContentCard
 import xyz.tleskiv.tt.ui.widgets.fields.DurationField
 import xyz.tleskiv.tt.ui.widgets.fields.NotesField
@@ -67,6 +76,9 @@ fun GeneralSettingsScreen(
 	val weekStartDay by viewModel.weekStartDay.collectAsStateWithLifecycle()
 	val highlightCurrentDay by viewModel.highlightCurrentDay.collectAsStateWithLifecycle()
 	val appLocale by viewModel.appLocale.collectAsStateWithLifecycle()
+	val accent by viewModel.accent.collectAsStateWithLifecycle()
+	val pro = LocalPro.current
+	var showAccentDialog by rememberSaveable { mutableStateOf(false) }
 	var showThemeDialog by rememberSaveable { mutableStateOf(false) }
 	var showWeekStartDialog by rememberSaveable { mutableStateOf(false) }
 	var showLanguageDialog by rememberSaveable { mutableStateOf(false) }
@@ -86,6 +98,21 @@ fun GeneralSettingsScreen(
 					AppThemeMode.SYSTEM -> stringResource(R.string.theme_system)
 					AppThemeMode.LIGHT -> stringResource(R.string.theme_light)
 					AppThemeMode.DARK -> stringResource(R.string.theme_dark)
+				}
+			}
+		)
+	}
+
+	if (showAccentDialog) {
+		AccentDialog(
+			currentAccent = if (pro.hasProFeatures) accent else AppAccent.DEFAULT,
+			onDismissRequest = { showAccentDialog = false },
+			onAccentSelected = { choice ->
+				showAccentDialog = false
+				if (choice != AppAccent.DEFAULT && !pro.hasProFeatures) {
+					pro.openPaywall(PaywallSource.ACCENT_COLOR)
+				} else {
+					viewModel.setAccent(choice)
 				}
 			}
 		)
@@ -146,6 +173,12 @@ fun GeneralSettingsScreen(
 					ThemeRow(
 						currentMode = themeMode,
 						onClick = { showThemeDialog = true }
+					)
+					HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
+					AccentRow(
+						currentAccent = if (pro.hasProFeatures) accent else AppAccent.DEFAULT,
+						hasPro = pro.hasProFeatures,
+						onClick = { showAccentDialog = true }
 					)
 					HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
 					LanguageRow(
@@ -324,6 +357,91 @@ private fun HighlightCurrentDayRow(enabled: Boolean, onToggle: (Boolean) -> Unit
 		}
 	}
 }
+
+/// Every colour is listed for everyone; choosing one other than the default without Pro opens the
+/// paywall instead.
+@Composable
+private fun AccentDialog(
+	currentAccent: AppAccent,
+	onDismissRequest: () -> Unit,
+	onAccentSelected: (AppAccent) -> Unit
+) {
+	SelectionDialog(
+		title = stringResource(R.string.settings_accent_color),
+		options = AppAccent.entries,
+		currentSelection = currentAccent,
+		onDismissRequest = onDismissRequest,
+		onOptionSelected = onAccentSelected,
+		optionLabel = { stringResource(it.labelRes) },
+		optionLeading = { AccentSwatch(it) }
+	)
+}
+
+@Composable
+private fun AccentSwatch(accent: AppAccent) {
+	Box(
+		modifier = Modifier
+			.size(20.dp)
+			.background(accent.palette?.swatch ?: MaterialTheme.colorScheme.primary, CircleShape)
+	)
+}
+
+@Composable
+private fun AccentRow(currentAccent: AppAccent, hasPro: Boolean, onClick: () -> Unit) {
+	Surface(
+		modifier = Modifier.fillMaxWidth().testTag(TestTags.GENERAL_ACCENT).clickable(onClick = onClick),
+		color = MaterialTheme.colorScheme.surfaceContainerLow
+	) {
+		Row(
+			modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 14.dp),
+			verticalAlignment = Alignment.CenterVertically
+		) {
+			Icon(
+				imageVector = Icons.Outlined.Palette,
+				contentDescription = null,
+				tint = MaterialTheme.colorScheme.onSurfaceVariant
+			)
+			Spacer(modifier = Modifier.width(16.dp))
+			Column(modifier = Modifier.weight(1f)) {
+				Row(verticalAlignment = Alignment.CenterVertically) {
+					Text(
+						text = stringResource(R.string.settings_accent_color),
+						style = MaterialTheme.typography.bodyLarge,
+						color = MaterialTheme.colorScheme.onSurface
+					)
+					if (!hasPro) {
+						Spacer(modifier = Modifier.width(6.dp))
+						ProBadge()
+					}
+				}
+				Text(
+					text = stringResource(currentAccent.labelRes),
+					style = MaterialTheme.typography.bodySmall,
+					color = MaterialTheme.colorScheme.onSurfaceVariant
+				)
+			}
+			AccentSwatch(currentAccent)
+			Spacer(modifier = Modifier.width(8.dp))
+			Icon(
+				imageVector = Icons.AutoMirrored.Outlined.KeyboardArrowRight,
+				contentDescription = null,
+				tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
+			)
+		}
+	}
+}
+
+private val AppAccent.labelRes: Int
+	get() = when (this) {
+		AppAccent.DEFAULT -> R.string.accent_default
+		AppAccent.GREEN -> R.string.accent_green
+		AppAccent.TEAL -> R.string.accent_teal
+		AppAccent.INDIGO -> R.string.accent_indigo
+		AppAccent.PURPLE -> R.string.accent_purple
+		AppAccent.PINK -> R.string.accent_pink
+		AppAccent.RED -> R.string.accent_red
+		AppAccent.ORANGE -> R.string.accent_orange
+	}
 
 @Composable
 private fun ThemeRow(currentMode: AppThemeMode, onClick: () -> Unit) {

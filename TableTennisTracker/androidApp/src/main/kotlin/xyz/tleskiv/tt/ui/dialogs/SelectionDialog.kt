@@ -40,7 +40,8 @@ fun <T> SelectionDialog(
 	currentSelection: T,
 	onDismissRequest: () -> Unit,
 	onOptionSelected: (T) -> Unit,
-	optionLabel: @Composable (T) -> String
+	optionLabel: @Composable (T) -> String,
+	optionLeading: (@Composable (T) -> Unit)? = null
 ) {
 	val listState = rememberLazyListState()
 	val canScrollUp by remember { derivedStateOf { listState.canScrollBackward } }
@@ -72,6 +73,10 @@ fun <T> SelectionDialog(
 							) {
 								RadioButton(selected = option == currentSelection, onClick = null)
 								Spacer(modifier = Modifier.width(12.dp))
+								if (optionLeading != null) {
+									optionLeading(option)
+									Spacer(modifier = Modifier.width(12.dp))
+								}
 								Text(
 									text = optionLabel(option),
 									style = MaterialTheme.typography.bodyLarge,

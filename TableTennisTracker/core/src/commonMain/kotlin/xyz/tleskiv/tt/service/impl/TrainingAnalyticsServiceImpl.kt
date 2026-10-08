@@ -5,30 +5,20 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.shareIn
-import kotlinx.datetime.DateTimeUnit
-import kotlinx.datetime.DayOfWeek
 import kotlinx.datetime.LocalDate
-import kotlinx.datetime.minus
 import xyz.tleskiv.tt.analytics.DailyTrainingLoad
 import xyz.tleskiv.tt.analytics.SummaryStats
-import xyz.tleskiv.tt.analytics.WeeklyTrainingData
-import xyz.tleskiv.tt.analytics.weekStart
 import xyz.tleskiv.tt.data.model.TrainingSession
 import xyz.tleskiv.tt.repo.AnalyticsRepository
-import xyz.tleskiv.tt.repo.UserPreferencesRepository
 import xyz.tleskiv.tt.service.TrainingAnalyticsService
-import xyz.tleskiv.tt.service.TrainingAnalyticsService.Companion.WEEKS_SHOWN
 import xyz.tleskiv.tt.service.TrainingSessionService
 import xyz.tleskiv.tt.util.ext.toLocalDate
-import xyz.tleskiv.tt.util.today
 
 class TrainingAnalyticsServiceImpl(
 	sessionService: TrainingSessionService,
-	analyticsRepository: AnalyticsRepository,
-	userPreferencesRepository: UserPreferencesRepository
+	analyticsRepository: AnalyticsRepository
 ) : TrainingAnalyticsService {
 
 	// An implementation detail of the sharing below, not a dependency: this service is a singleton
@@ -62,29 +52,6 @@ class TrainingAnalyticsServiceImpl(
 				totalMinutes = forDay.sumOf { it.durationMinutes }
 			)
 		}.sortedBy { it.date }
-	}
-
-	override val weeklyTraining: Flow<List<WeeklyTrainingData>> =
-		combine(dailyLoad, userPreferencesRepository.weekStartDay) { load, weekStartDay ->
-			weeklyTotals(load, weekStartDay.toDayOfWeek())
-		}
-
-	private fun weeklyTotals(
-		load: List<DailyTrainingLoad>,
-		firstDayOfWeek: DayOfWeek
-	): List<WeeklyTrainingData> {
-		val minutesByWeek = load
-			.groupBy { weekStart(it.date, firstDayOfWeek) }
-			.mapValues { (_, days) -> days.sumOf { it.totalMinutes } }
-		val currentWeek = weekStart(today(), firstDayOfWeek)
-
-		return (WEEKS_SHOWN - 1 downTo 0).map { weeksAgo ->
-			val start = currentWeek.minus(weeksAgo * 7, DateTimeUnit.DAY)
-			WeeklyTrainingData(
-				weekLabel = "${start.day}/${start.month.ordinal + 1}",
-				totalMinutes = minutesByWeek[start] ?: 0
-			)
-		}
 	}
 
 	private companion object {

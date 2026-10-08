@@ -2,6 +2,7 @@ package xyz.tleskiv.tt.previews.fakes
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import xyz.tleskiv.tt.model.AppAccent
 import xyz.tleskiv.tt.model.AppLocale
 import xyz.tleskiv.tt.model.AppThemeMode
 import xyz.tleskiv.tt.model.WeekStartDay
@@ -17,6 +18,8 @@ class FakeGeneralSettingsScreenViewModel : GeneralSettingsScreenViewModel() {
 	override val highlightCurrentDay: StateFlow<Boolean> = _highlightCurrentDay
 	private val _appLocale = MutableStateFlow(AppLocale.SYSTEM)
 	override val appLocale: StateFlow<AppLocale> = _appLocale
+	private val _accent = MutableStateFlow(AppAccent.DEFAULT)
+	override val accent: StateFlow<AppAccent> = _accent
 
 	override fun setThemeMode(mode: AppThemeMode) {
 		_themeMode.value = mode
@@ -32,5 +35,9 @@ class FakeGeneralSettingsScreenViewModel : GeneralSettingsScreenViewModel() {
 
 	override fun setAppLocale(locale: AppLocale) {
 		_appLocale.value = locale
+	}
+
+	override fun setAccent(accent: AppAccent) {
+		_accent.value = accent
 	}
 }
