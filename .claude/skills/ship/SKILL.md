@@ -420,13 +420,17 @@ Only when Step 7 said to submit.
 
    ```bash
    asc validate --app 6758044383 --version-id <VERSION_ID> --platform IOS --output table
-   asc review submit --app 6758044383 --version-id <VERSION_ID> --build <BUILD_ID> --confirm --output table
+   ASC_TIMEOUT=90s asc review submit --app 6758044383 --version-id <VERSION_ID> --build-id <BUILD_ID> --confirm --output table
    ```
 
-   `--build` is **not optional** — `asc review submit` wraps attach-build + submissions-create +
+   `--build-id` is **not optional** (asc 5.0 removed the old `--build` flag) — `asc review submit` wraps attach-build + submissions-create +
    items-add + submissions-submit, and without it the submission has nothing to review. Prefer
    `--version-id` over `--version` when you already hold the ID; both flags exist and the ID is
    unambiguous. To see the plan without mutating, swap `--confirm` for `--dry-run`.
+
+   A `context deadline exceeded` on the final PATCH does not mean it failed — the Oct 2026 1.3.14
+   submit timed out yet landed. Check `asc versions list --app 6758044383 --platform IOS --limit 1`
+   for `WAITING_FOR_REVIEW` before retrying.
 
    If `asc validate` reports blocking errors, stop and report them — do not submit.
    `asc review doctor --app 6758044383` explains why an app can't be submitted.
