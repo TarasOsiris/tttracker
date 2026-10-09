@@ -22,3 +22,6 @@
 # Sentry
 -keep class io.sentry.** { *; }
 -keepnames class io.sentry.** { *; }
+
+# Room (WorkManager) instantiates generated *_Impl databases by reflection
+-keep class * extends androidx.room.RoomDatabase { <init>(); }

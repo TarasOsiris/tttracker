@@ -33,6 +33,9 @@ revenuecat = "10.20.0"
 androidx-lifecycle = "2.11.0"
 androidx-nav3 = "1.1.1"
 androidx-glance = "1.2.0"
+# Glance only pulls work-runtime 2.7.1 (Room 2.2.5), whose R8 rules drop WorkDatabase_Impl's
+# constructor under full mode and crash the release build on launch.
+androidx-work = "2.11.2"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -93,6 +96,7 @@ androidx-lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-co
 androidx-lifecycle-viewmodel-nav3 = { module = "androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "androidx-lifecycle" }
 androidx-glance-appwidget = { module = "androidx.glance:glance-appwidget", version.ref = "androidx-glance" }
 androidx-glance-material3 = { module = "androidx.glance:glance-material3", version.ref = "androidx-glance" }
+androidx-work-runtime = { module = "androidx.work:work-runtime-ktx", version.ref = "androidx-work" }
 
 # :core targets iOS as well, so its ViewModel base class must come from the multiplatform build
 # of lifecycle. On Android that artifact is a thin redirect onto androidx.lifecycle.
