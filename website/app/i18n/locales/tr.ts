@@ -251,6 +251,8 @@ export const tr: Messages = {
     sources: "Kaynaklar",
     moreFromBlog: "Blogdan diğer yazılar",
     breadcrumb: "Blog",
+    inShort: "Kısaca",
+    moreInEnglish: "İngilizce diğer yazılar",
   },
   legal: {
     lastUpdated: "Son güncelleme: {date}",

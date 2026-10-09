@@ -1,4 +1,5 @@
 import { type RouteConfig, index, layout, route } from "@react-router/dev/routes";
+import { blogLocales } from "./content/blog.server";
 import { defaultLocale, type Locale, locales } from "./i18n/config";
 
 // Serve encyclopedia (migrated from TT Serves): same paths as the old site, so its URLs redirect 1:1.
@@ -37,8 +38,10 @@ function localeRoutes(l: Locale) {
     en ? index("routes/home.tsx") : route(l, "routes/home.tsx", id("home")),
     route(`${prefix}drills`, "routes/drills.tsx", id("drills")),
     route(`${prefix}drills/:slug`, "routes/drill.tsx", id("drill")),
-    route(`${prefix}blog`, "routes/blog.tsx", id("blog")),
-    route(`${prefix}blog/:slug`, "routes/blog-post.tsx", id("blog-post")),
+    // Only languages with translated posts have a blog; the rest link to the English one.
+    ...(blogLocales.includes(l)
+      ? [route(`${prefix}blog`, "routes/blog.tsx", id("blog")), route(`${prefix}blog/:slug`, "routes/blog-post.tsx", id("blog-post"))]
+      : []),
     route(`${prefix}privacy`, "routes/privacy.tsx", id("privacy")),
     route(`${prefix}terms`, "routes/terms.tsx", id("terms")),
     layout(

@@ -251,6 +251,8 @@ export const id: Messages = {
     sources: "Sumber",
     moreFromBlog: "Artikel blog lainnya",
     breadcrumb: "Blog",
+    inShort: "Ringkasnya",
+    moreInEnglish: "Artikel lainnya dalam bahasa Inggris",
   },
   legal: {
     lastUpdated: "Terakhir diperbarui: {date}",

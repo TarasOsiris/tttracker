@@ -249,6 +249,8 @@ export const hi: Messages = {
     sources: "स्रोत",
     moreFromBlog: "ब्लॉग से और पढ़ें",
     breadcrumb: "ब्लॉग",
+    inShort: "संक्षेप में",
+    moreInEnglish: "अंग्रेज़ी में और लेख",
   },
   legal: {
     lastUpdated: "अंतिम अपडेट: {date}",

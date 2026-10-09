@@ -1,6 +1,8 @@
-// Blog posts, in English only (news and commentary are not translated). Newest first. Inline links use
-// [label](url) and **bold**, same as the legal pages. Adding a post here adds its page to the prerender
-// list and sitemap.xml automatically.
+// Blog post types and formatting, safe for the client bundle. The posts themselves live in blog-posts.ts and
+// reach pages only through the build-time loaders in blog.server.ts, so a page ships just the post it shows.
+// Posts are written in English; a few have translations. Inline links use [label](url) and **bold**, same as
+// the legal pages. Adding a post adds its page to the prerender list and sitemap.xml automatically.
+import { defaultLocale, type Locale, localeInfo } from "../i18n/config";
 import type { LegalBlock } from "./legal";
 
 export type BlogImage = {
@@ -24,6 +26,8 @@ export type BlogPost = {
   description: string;
   /** ISO date. */
   published: string;
+  /** ISO date of the last substantive edit, if the post was revised after publishing. */
+  updated?: string;
   readMinutes: number;
   keywords: string[];
   hero: BlogImage;
@@ -34,24 +38,13 @@ export type BlogPost = {
   sources: { label: string; url: string }[];
 };
 
-import { defaultLocale, type Locale, localeInfo } from "../i18n/config";
-import { blogPostsByLocale } from "./blog-posts";
+/** What a list of posts needs: the card fields, without the article body. */
+export type PostSummary = Pick<BlogPost, "slug" | "title" | "description" | "published" | "updated" | "readMinutes"> & {
+  hero: Pick<BlogImage, "src" | "width" | "height" | "alt">;
+};
 
-export const posts: BlogPost[] = blogPostsByLocale.en;
-export const postSlugs = posts.map((p) => p.slug);
-
-export function getPosts(locale: Locale = defaultLocale): BlogPost[] {
-  return blogPostsByLocale[locale] ?? blogPostsByLocale.en;
-}
-
-export function getPost(slug: string, locale: Locale = defaultLocale): BlogPost | undefined {
-  const list = getPosts(locale);
-  return list.find((p) => p.slug === slug);
-}
-
-export const BLOG_TITLE = "Table Tennis News & Tips Blog";
-export const BLOG_DESCRIPTION =
-  "Latest table tennis news, tournament recaps and practical training tips for ping pong players, from the makers of Ping Pong & Table Tennis Log.";
+/** A link to another post: in the page's language when translated, otherwise the English original. */
+export type PostLink = { slug: string; title: string; href: string; lang: Locale };
 
 export function formatDate(iso: string, locale: Locale = defaultLocale): string {
   const tag = localeInfo[locale]?.hreflang ?? "en";

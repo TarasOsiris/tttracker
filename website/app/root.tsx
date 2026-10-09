@@ -16,6 +16,7 @@ import favicon32 from "~/assets/icon/favicon-32x32.png?no-inline";
 import { SiteFooter } from "~/components/site/footer";
 import { SiteHeader } from "~/components/site/header";
 import { buttonVariants } from "~/components/ui/button";
+import { blogLocales } from "~/content/blog.server";
 import { APP_STORE_ID } from "~/content/site";
 import { localeFromPath, localeInfo, localizePath } from "~/i18n/config";
 import { uiMessages } from "~/i18n/messages.server";
@@ -49,7 +50,8 @@ export const links: Route.LinksFunction = () => [
 // Runs at build time for every prerendered path; only that locale's UI strings reach the page.
 export function loader({ request }: Route.LoaderArgs) {
   const locale = localeFromPath(new URL(request.url).pathname);
-  return { locale, t: uiMessages(locale) };
+  // Languages with a blog index of their own; the others link to the English blog.
+  return { locale, t: uiMessages(locale), blogLocales };
 }
 
 // The root route has no URL params, so by default its strings would stay in the old language after a

@@ -1,6 +1,6 @@
 import { Check, ChevronDown, CircleHelp, ClipboardList, Globe, Layers, Menu, Newspaper, RotateCw, Sparkles, Workflow, type LucideIcon } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router";
+import { Link, useLocation, useMatches } from "react-router";
 import { Button } from "~/components/ui/button";
 import {
   DropdownMenu,
@@ -10,7 +10,7 @@ import {
 } from "~/components/ui/dropdown-menu";
 import { Sheet, SheetClose, SheetContent, SheetTitle, SheetTrigger } from "~/components/ui/sheet";
 import { appNames, navGroups, navLinks } from "~/content/site";
-import { localeInfo, locales, localizePath, stripLocale } from "~/i18n/config";
+import { type Locale, localeInfo, locales, localizePath, type PageHandle, stripLocale } from "~/i18n/config";
 import { useI18n } from "~/i18n/use-i18n";
 import { cn } from "~/lib/utils";
 import { AppLogo } from "./app-logo";
@@ -27,11 +27,24 @@ export function Logo() {
   );
 }
 
-/** Same page in each language, keeping the hash. */
+/**
+ * Same page in each language, keeping the hash. A page that exists in some languages only says which, through
+ * its loader data (`locales`) or route handle (`locales`); the other languages link to their home page.
+ */
 export function useLanguageLinks() {
   const { pathname, hash } = useLocation();
+  const matches = useMatches();
   const neutral = stripLocale(pathname);
-  return locales.map((l) => ({ locale: l, label: localeInfo[l].label, to: localizePath(l, neutral) + hash }));
+  let available: readonly Locale[] | undefined;
+  for (const m of matches) {
+    const own = (m.data as { locales?: readonly Locale[] } | undefined)?.locales ?? (m.handle as PageHandle | undefined)?.locales;
+    if (own) available = own;
+  }
+  return locales.map((l) => ({
+    locale: l,
+    label: localeInfo[l].label,
+    to: !available || available.includes(l) ? localizePath(l, neutral) + hash : localizePath(l, "/"),
+  }));
 }
 
 function LanguageMenu() {
@@ -106,8 +119,8 @@ const navIcons: Record<NavLink["key"], LucideIcon> = {
 };
 
 function useLinkTo() {
-  const { href } = useI18n();
-  return (l: NavLink) => ("englishOnly" in l ? l.href : href(l.href));
+  const { href, blogHref } = useI18n();
+  return (l: NavLink) => (l.key === "blog" ? blogHref : "englishOnly" in l ? l.href : href(l.href));
 }
 
 /** A header dropdown for one group of links, highlighted when the current page or home section is in it. */

@@ -32,7 +32,7 @@ function External({ href, onClick, children }: { href: string; onClick?: () => v
 }
 
 export function SiteFooter() {
-  const { t, href, locale } = useI18n();
+  const { t, href, locale, blogHref } = useI18n();
   const languages = useLanguageLinks();
   const stores = storeLinks(locale, "footer");
   const year = useSyncExternalStore(noopSubscribe, () => new Date().getFullYear(), () => BUILD_YEAR);
@@ -68,8 +68,8 @@ export function SiteFooter() {
         <Column title={t.footer.product}>
           {navLinks.map((l) => (
             <li key={l.href}>
-              {/* English-only pages (blog, equipment) exist once, at the root. */}
-              <Link to={"englishOnly" in l ? l.href : href(l.href)} className={linkClass}>
+              {/* English-only pages exist once, at the root; the blog is localized where it has translations. */}
+              <Link to={l.key === "blog" ? blogHref : "englishOnly" in l ? l.href : href(l.href)} className={linkClass}>
                 {t.nav[l.key]}
               </Link>
             </li>
@@ -90,7 +90,7 @@ export function SiteFooter() {
             </a>
           </li>
           <li>
-            <Link to={href("/blog")} className={linkClass}>
+            <Link to={blogHref} className={linkClass}>
               {t.nav.blog}
             </Link>
           </li>

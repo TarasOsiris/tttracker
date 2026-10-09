@@ -247,6 +247,8 @@ export const uk: Messages = {
     sources: "Джерела",
     moreFromBlog: "Більше з блогу",
     breadcrumb: "Блог",
+    inShort: "Коротко",
+    moreInEnglish: "Більше статей англійською",
   },
   legal: {
     lastUpdated: "Останнє оновлення: {date}",

@@ -18,7 +18,8 @@ export function clampDescription(text: string): string {
 
 /**
  * `path` is locale-neutral ("/drills"); canonical and hreflang alternates are derived from it. A page
- * that exists in one language only (`localized: false`) gets no alternates.
+ * that exists in one language only (`localized: false`) gets no alternates, and one that exists in some
+ * languages lists just those (`alternates`, which must include English, the x-default).
  */
 export function seo({
   title,
@@ -26,6 +27,7 @@ export function seo({
   path,
   locale,
   localized = true,
+  alternates = locales,
   image = { src: ogImageUrl(locale), ...OG_IMAGE, alt: appNames[locale].name },
 }: {
   title: string;
@@ -33,15 +35,17 @@ export function seo({
   path: string;
   locale: Locale;
   localized?: boolean;
+  alternates?: readonly Locale[];
   /** Share card; defaults to the language's home hero. `src` may be site-relative. */
   image?: { src: string; width: number; height: number; alt: string };
 }): MetaDescriptor[] {
   const description = clampDescription(raw);
   const imageUrl = image.src.startsWith("/") ? `${SITE_URL}${image.src}` : image.src;
   const url = `${SITE_URL}${localizePath(locale, path)}`;
-  const alternates: MetaDescriptor[] = localized
+  const alternateLinks: MetaDescriptor[] =
+    localized && alternates.length > 1
     ? [
-        ...locales.map((l) => ({
+        ...alternates.map((l) => ({
           tagName: "link",
           rel: "alternate",
           hrefLang: localeInfo[l].hreflang,
@@ -54,7 +58,7 @@ export function seo({
     { title },
     { name: "description", content: description },
     { tagName: "link", rel: "canonical", href: url },
-    ...alternates,
+    ...alternateLinks,
     { property: "og:type", content: "website" },
     { property: "og:site_name", content: appNames[locale].name },
     { property: "og:locale", content: localeInfo[locale].og },

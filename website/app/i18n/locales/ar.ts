@@ -247,6 +247,8 @@ export const ar: Messages = {
     sources: "المصادر",
     moreFromBlog: "المزيد من المدونة",
     breadcrumb: "المدونة",
+    inShort: "باختصار",
+    moreInEnglish: "مزيد من المقالات بالإنجليزية",
   },
   legal: {
     lastUpdated: "آخر تحديث: {date}",

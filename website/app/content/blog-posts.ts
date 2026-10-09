@@ -1,3 +1,5 @@
+// The posts, newest first, in English. A translation goes in its language's list under the same slug; only
+// translated posts get a page in that language (blog.server.ts), the rest are linked in English.
 import type { Locale } from "../i18n/config";
 import type { BlogPost } from "./blog";
 
@@ -1254,11 +1256,3 @@ export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: Blog
     },
   ],
 };
-
-// Newer posts are English only for now; other locales list them untranslated until a translation is added.
-const englishOnlyPosts = blogPostsByLocale.en.filter((post) => post.slug !== "asian-games-2026-table-tennis-recap");
-for (const locale of Object.keys(blogPostsByLocale) as Locale[]) {
-  if (locale === "en") continue;
-  const list = blogPostsByLocale[locale] ?? [];
-  blogPostsByLocale[locale] = [...englishOnlyPosts.filter((p) => !list.some((l) => l.slug === p.slug)), ...list];
-}

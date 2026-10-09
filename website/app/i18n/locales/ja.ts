@@ -247,6 +247,8 @@ export const ja: Messages = {
     sources: "情報源・出典",
     moreFromBlog: "ブログの他の記事",
     breadcrumb: "ブログ",
+    inShort: "要点",
+    moreInEnglish: "英語の記事",
   },
   legal: {
     lastUpdated: "最終更新日: {date}",

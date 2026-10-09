@@ -247,6 +247,8 @@ export const en: Messages = {
     sources: "Sources",
     moreFromBlog: "More from the blog",
     breadcrumb: "Blog",
+    inShort: "In short",
+    moreInEnglish: "More posts in English",
   },
   legal: {
     lastUpdated: "Last updated {date}",

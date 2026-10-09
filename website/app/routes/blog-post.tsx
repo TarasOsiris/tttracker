@@ -1,18 +1,19 @@
 import { data, Link } from "react-router";
 import type { Route } from "./+types/blog-post";
 import { inline } from "~/components/site/legal-page";
-import { type BlogImage, formatDate, getPost, getPosts } from "~/content/blog";
+import { type BlogImage, formatDate } from "~/content/blog";
+import { blogPost } from "~/content/blog.server";
 import { appNames, SITE_URL } from "~/content/site";
-import { localeFromPath, localizePath } from "~/i18n/config";
+import { localeFromPath, localeInfo, localizePath } from "~/i18n/config";
 import { useI18n } from "~/i18n/use-i18n";
 import { seo } from "~/lib/seo";
 
+// Only real translations have a page (the prerender list matches), so the content's language is the page's.
 export function loader({ params, request }: Route.LoaderArgs) {
   const locale = localeFromPath(new URL(request.url).pathname);
-  const post = getPost(params.slug, locale);
-  if (!post) throw data(null, { status: 404 });
-  const others = getPosts(locale).filter((p) => p.slug !== post.slug);
-  return { post, others, locale };
+  const found = blogPost(params.slug, locale);
+  if (!found) throw data(null, { status: 404 });
+  return { ...found, locale };
 }
 
 export const meta: Route.MetaFunction = ({ data: loaderData, location }) => {
@@ -28,6 +29,7 @@ export const meta: Route.MetaFunction = ({ data: loaderData, location }) => {
       description: post.description,
       path: `/blog/${post.slug}`,
       locale,
+      alternates: loaderData.locales,
       image: post.hero,
     }).map((m) => ("property" in m && m.property === "og:type" ? { property: "og:type", content: "article" } : m)),
     { name: "keywords", content: post.keywords.join(", ") },
@@ -40,7 +42,7 @@ export const meta: Route.MetaFunction = ({ data: loaderData, location }) => {
         description: post.description,
         datePublished: post.published,
         dateModified: post.published,
-        inLanguage: locale,
+        inLanguage: localeInfo[locale].hreflang,
         keywords: post.keywords.join(", "),
         image,
         mainEntityOfPage: url,
@@ -51,9 +53,11 @@ export const meta: Route.MetaFunction = ({ data: loaderData, location }) => {
   ];
 };
 
+// Photos and their captions are shared by every translation of a post and written in English.
 function Figure({ image, priority }: { image: BlogImage; priority?: boolean }) {
+  const { locale } = useI18n();
   return (
-    <figure className="mt-6">
+    <figure className="mt-6" lang={locale === "en" ? undefined : "en"}>
       <img
         src={image.src}
         width={image.width}
@@ -80,7 +84,7 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
   const { t, href } = useI18n();
 
   return (
-    <article lang={locale} className="px-4 pt-32 pb-20 sm:px-6 sm:pt-40">
+    <article className="px-4 pt-32 pb-20 sm:px-6 sm:pt-40">
       <div className="mx-auto max-w-3xl">
         <nav aria-label={t.blog.breadcrumb} className="text-sm text-muted-foreground">
           <Link to={href("/blog")} className="hover:text-foreground">
@@ -96,7 +100,7 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
         </header>
         <Figure image={post.hero} priority />
         <aside className="mt-8 rounded-2xl border bg-card p-6">
-          <h2 className="font-display text-lg font-bold">In short</h2>
+          <h2 className="font-display text-lg font-bold">{t.blog.inShort}</h2>
           <ul className="mt-3 list-disc space-y-2 pl-5 leading-relaxed text-muted-foreground marker:text-primary">
             {post.takeaways.map((t, i) => (
               <li key={i}>{inline(t)}</li>
@@ -110,11 +114,11 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
             <div className="mt-4 space-y-4 leading-relaxed text-muted-foreground">
               {section.blocks.map((block, i) =>
                 typeof block === "string" ? (
-                  <p key={i}>{inline(block, locale)}</p>
+                  <p key={i}>{inline(block)}</p>
                 ) : (
                   <ul key={i} className="list-disc space-y-3 pl-5 marker:text-primary">
                     {block.list.map((item, j) => (
-                      <li key={j}>{inline(item, locale)}</li>
+                      <li key={j}>{inline(item)}</li>
                     ))}
                   </ul>
                 ),
@@ -139,8 +143,12 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
             <h2 className="font-display text-lg font-bold">{t.blog.moreFromBlog}</h2>
             <ul className="mt-3 space-y-2">
               {others.map((p) => (
-                <li key={p.slug}>
-                  <Link to={href(`/blog/${p.slug}`)} className="text-primary underline-offset-2 hover:underline">
+                <li key={p.slug} lang={p.lang === locale ? undefined : localeInfo[p.lang].hreflang}>
+                  <Link
+                    to={p.href}
+                    hrefLang={p.lang === locale ? undefined : localeInfo[p.lang].hreflang}
+                    className="text-primary underline-offset-2 hover:underline"
+                  >
                     {p.title}
                   </Link>
                 </li>

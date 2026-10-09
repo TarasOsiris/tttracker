@@ -127,6 +127,10 @@ export type Messages = {
     sources: string;
     moreFromBlog: string;
     breadcrumb: string;
+    /** Heading of the takeaways box under a post's intro. */
+    inShort: string;
+    /** Heading over the English posts listed on a translated blog index. */
+    moreInEnglish: string;
   };
   legal: {
     lastUpdated: string;

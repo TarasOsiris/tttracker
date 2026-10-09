@@ -1,6 +1,9 @@
 import { Link, Outlet, useLocation } from "react-router";
 import { CtaSection } from "~/components/site/cta-section";
+import type { PageHandle } from "~/i18n/config";
 import { cn } from "~/lib/utils";
+
+export const handle: PageHandle = { locales: ["en"] };
 
 const tabs = [
   { to: "/equipment", label: "Overview", emoji: "🏓", exact: true },

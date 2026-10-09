@@ -21,6 +21,9 @@ export const localeInfo: Record<Locale, { label: string; hreflang: string; og: s
   ar: { label: "العربية", hreflang: "ar", og: "ar_AR", dir: "rtl" },
 };
 
+/** Route `handle` for a page that exists in some languages only (English-only sections). */
+export type PageHandle = { locales?: readonly Locale[] };
+
 const isLocale = (s: string | undefined): s is Locale => !!s && (locales as readonly string[]).includes(s);
 
 export function localeFromPath(pathname: string): Locale {

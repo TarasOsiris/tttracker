@@ -247,6 +247,8 @@ export const zh: Messages = {
     sources: "参考来源",
     moreFromBlog: "更多博客文章",
     breadcrumb: "博客",
+    inShort: "要点速览",
+    moreInEnglish: "更多英文文章",
   },
   legal: {
     lastUpdated: "最后更新于 {date}",

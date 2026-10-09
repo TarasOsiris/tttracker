@@ -247,6 +247,8 @@ export const ko: Messages = {
     sources: "출처 및 참고 자료",
     moreFromBlog: "블로그 더보기",
     breadcrumb: "블로그",
+    inShort: "핵심 요약",
+    moreInEnglish: "영어로 된 다른 글",
   },
   legal: {
     lastUpdated: "최종 업데이트: {date}",

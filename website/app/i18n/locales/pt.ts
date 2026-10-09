@@ -248,6 +248,8 @@ export const pt: Messages = {
     sources: "Fontes",
     moreFromBlog: "Mais do blog",
     breadcrumb: "Blog",
+    inShort: "Em resumo",
+    moreInEnglish: "Mais artigos em inglês",
   },
   legal: {
     lastUpdated: "Última atualização em {date}",

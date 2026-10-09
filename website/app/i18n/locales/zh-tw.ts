@@ -247,6 +247,8 @@ export const zhTw: Messages = {
     sources: "資料來源",
     moreFromBlog: "更多部落格文章",
     breadcrumb: "部落格",
+    inShort: "重點整理",
+    moreInEnglish: "更多英文文章",
   },
   legal: {
     lastUpdated: "最後更新：{date}",
