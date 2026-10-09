@@ -74,7 +74,81 @@ const arenaImage = {
 
 export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: BlogPost[] } = {
   en: [{
-  slug: "china-smash-2026-day-results-wang-manyu-batra-lebrun-scare",
+  slug: "china-smash-2026-upsets-zhu-sibing-zhou-qihao-quarterfinals",
+  title: "China Smash 2026: Zhu Sibing and Zhou Qihao Stun Seeds, Quarterfinals Set",
+  description:
+    "China Smash 2026 round of 16: qualifier Zhu Sibing beats Kuai Man, Zhou Qihao sweeps Harimoto, and Sun Yingsha falls to world No. 101. Full quarterfinal lineup.",
+  published: "2026-10-09",
+  readMinutes: 4,
+  keywords: [
+    "China Smash 2026 quarterfinals",
+    "Zhu Sibing Kuai Man",
+    "Zhou Qihao Harimoto",
+    "Sun Yingsha Orawan Paranang",
+    "Wang Manyu Shin Yu-bin",
+    "WTT China Smash Beijing",
+    "table tennis results",
+    "table tennis news today",
+  ],
+  hero: {
+    ...hero,
+    caption: "A packed arena at the 2026 World Team Table Tennis Championships in London. Archive photo, not from Beijing.",
+  },
+  intro:
+    "Beijing has turned into the upset capital of table tennis. World No. 1 Sun Yingsha lost to a player ranked 101st, qualifier Zhu Sibing (No. 134) knocked out fourth seed Kuai Man, and Zhou Qihao swept third seed Tomokazu Harimoto. The quarterfinals at the WTT China Smash are now wide open.",
+  takeaways: [
+    "**Orawan Paranang (Thailand, No. 101) beat Sun Yingsha 3-1** (8-11, 11-4, 12-10, 12-10), then lost to Honoka Hashimoto.",
+    "**Qualifier Zhu Sibing beat Kuai Man 5-11, 12-10, 9-11, 11-9, 11-7** for her first Grand Smash quarterfinal.",
+    "**Zhou Qihao beat Tomokazu Harimoto 11-9, 11-8, 11-9** and plays Jang Woo-jin next.",
+    "**Defending champion Wang Manyu** beat Shi Xunyao in five games and meets Shin Yu-bin in the quarters.",
+    "**Félix Lebrun (seed 1) plays Hugo Calderano** in the men's quarterfinals.",
+  ],
+  sections: [
+    {
+      heading: "Sun Yingsha out, Zhu Sibing in",
+      image: wangManyuImage,
+      blocks: [
+        "On Wednesday, Thai qualifier Orawan Paranang beat two-time defending champion [Sun Yingsha](https://en.wikipedia.org/wiki/Sun_Yingsha) 3-1 (8-11, 11-4, 12-10, 12-10), according to [CGTN](https://news.cgtn.com/news/2026-10-08/WTT-China-Smash-highlighted-by-string-of-major-early-upsets-in-Beijing-1R4py2V4RKo/p.html). On Thursday Honoka Hashimoto beat her in straight games, but the damage to the draw was done.",
+        "Then came Zhu Sibing, ranked 134th, who beat fourth seed Kuai Man 5-11, 12-10, 9-11, 11-9, 11-7, per [China Daily](https://chinadailyhk.com/hk/article/640772). She trailed in the match and won both deciding games. She now plays Japan's Hitomi Sato.",
+        "Defending champion [Wang Manyu](https://en.wikipedia.org/wiki/Wang_Manyu) beat Shi Xunyao in five games and plays Korea's Shin Yu-bin, who beat Hina Hayata. The other women's quarterfinals are Miwa Harimoto against Wang Yidi, and Chen Xingtong against Hashimoto.",
+      ],
+    },
+    {
+      heading: "Zhou Qihao ends Harimoto's run",
+      image: harimotoImage,
+      blocks: [
+        "[Tomokazu Harimoto](https://en.wikipedia.org/wiki/Tomokazu_Harimoto) came back from 0-2 in round one, but on Thursday he had no such rescue: Zhou Qihao won 11-9, 11-8, 11-9. Zhou plays ninth seed Jang Woo-jin of South Korea on Friday.",
+        "Elsewhere Truls Möregårdh beat 13th seed Wen Ruibo in five games, and Sora Matsushima beat Kuo Guan-Hong 11-6, 5-11, 11-6, 11-4. Top seed [Félix Lebrun](https://en.wikipedia.org/wiki/F%C3%A9lix_Lebrun) meets Hugo Calderano, Möregårdh plays Lin Yun-Ju, and Matsushima plays Feng Yi-hsin, per the [Wikipedia bracket](https://en.wikipedia.org/wiki/China_Smash_2026).",
+      ],
+    },
+    {
+      heading: "Doubles and mixed doubles",
+      blocks: [
+        "In women's doubles, Wang Yidi/Jiang Yiyi beat Bernadette Szocs/Elizabeta Samara 3-0, and Wang Manyu/Kuai Man, Chen Yi/Li Yihui also reached the semifinals. In men's doubles, Wen Ruibo/Yuan Licen beat Izaac Quek/Koen Pang. The mixed doubles final on Friday is Lin Yun-ju/Cheng I-ching of Chinese Taipei against Korea's Lim Jong-hoon/Shin Yu-bin.",
+      ],
+    },
+    {
+      heading: "What it means",
+      blocks: [
+        "With Wang Chuqin and Lin Shidong absent injured, and Sun out, this is the most open Grand Smash of the year. Follow the final rounds (the event ends October 11) on [World Table Tennis](https://www.worldtabletennis.com). Our earlier posts cover the [preview](/blog/china-smash-2026-beijing-table-tennis-preview) and the [round of 32](/blog/china-smash-2026-day-results-wang-manyu-batra-lebrun-scare).",
+      ],
+    },
+    {
+      heading: "The lesson for your own matches",
+      blocks: [
+        "Both Zhu and Paranang won the deciding games by staying aggressive when ranking said they should not. At club level, the same happens at 9-9. Log your matches in [Ping Pong & Table Tennis Log](/) to see how you do in close games, then work on them with [drills](/drills), new options from the [serve encyclopedia](/serves) and reading [spin](/spins). Not sure where you stand? Try the [quiz](/quiz).",
+      ],
+    },
+  ],
+  sources: [
+    { label: "CGTN: WTT China Smash highlighted by string of major early upsets in Beijing", url: "https://news.cgtn.com/news/2026-10-08/WTT-China-Smash-highlighted-by-string-of-major-early-upsets-in-Beijing-1R4py2V4RKo/p.html" },
+    { label: "China Daily HK: Zhu, Zhou stun top seeds as Chinese paddlers surge at China Smash", url: "https://chinadailyhk.com/hk/article/640772" },
+    { label: "Wikipedia: China Smash 2026", url: "https://en.wikipedia.org/wiki/China_Smash_2026" },
+    { label: "Olympics.com: China Smash 2026 top stars and how to watch", url: "https://www.olympics.com/en/news/table-tennis-china-smash-2026-top-stars-watch-live" },
+  ],
+},
+  {
+    slug: "china-smash-2026-day-results-wang-manyu-batra-lebrun-scare",
   title: "China Smash 2026 Results: Wang Manyu Survives Batra, Lebrun Escapes a French Scare",
   description:
     "China Smash 2026 round of 32 results from Beijing: Wang Manyu beats Manika Batra, Félix Lebrun survives Coton, Wen Ruibo stops Duda and Harimoto comes back from 0-2.",
