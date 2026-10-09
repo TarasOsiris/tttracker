@@ -1,5 +1,6 @@
 // Build-time only (.server): loaders hand each page the one post or the summaries it renders, so the client
 // bundle never carries the posts. Relative imports, because react-router.config.ts reads this file too.
+import { players } from "../equipment/data/players";
 import { defaultLocale, type Locale, locales, localizePath } from "../i18n/config";
 import type { BlogPost, PostLink, PostSummary } from "./blog";
 import type { LegalBlock } from "./legal";
@@ -90,6 +91,73 @@ function resolveHref(url: string, locale: Locale): string {
   return localizePath(locale, path) + (hash ? `#${hash}` : "");
 }
 
+// Same syntax as `inline` in legal-page.tsx.
+const INLINE = /\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*/g;
+
+/** Lower case without accents, one character per character, so indexes still line up with the original. */
+const fold = (s: string) =>
+  Array.from(s, (c) => {
+    if (c.length > 1) return c;
+    const base = c.normalize("NFD")[0].toLowerCase()[0];
+    return ({ ø: "o", ł: "l", đ: "d" } as Record<string, string>)[base] ?? base;
+  }).join("");
+
+// A name matches with or without its hyphens and accents ("Lin Yun-ju", "Jang Woo-jin" for "Jang Woojin").
+const proPages = players.map((p) => {
+  const letters = Array.from(fold(p.name).replace(/[^\p{L}]/gu, ""));
+  return {
+    key: letters.join(""),
+    href: `/equipment/pros/${p.id}`,
+    pattern: new RegExp(`(?<!\\p{L})${letters.map((c) => c.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("[-\\s]?")}(?!\\p{L})`, "u"),
+  };
+});
+
+/**
+ * Points the first mention of each player who has a pro-setup page at that page: a Wikipedia link with the
+ * player's name becomes an internal link, and so does the first plain mention of a player not linked yet.
+ * Later Wikipedia links to the same player become plain text, so a post links each player once.
+ */
+function linkPros(sections: BlogPost["sections"]): BlogPost["sections"] {
+  const linked = new Set<string>();
+  const linkText = (text: string): string => {
+    let out = "";
+    let last = 0;
+    const plain = (segment: string) => {
+      let rest = segment;
+      let result = "";
+      for (;;) {
+        const folded = fold(rest);
+        let first: { index: number; length: number; href: string } | undefined;
+        for (const pro of proPages) {
+          if (linked.has(pro.href)) continue;
+          const m = pro.pattern.exec(folded);
+          if (m && (!first || m.index < first.index)) first = { index: m.index, length: m[0].length, href: pro.href };
+        }
+        if (!first) return result + rest;
+        linked.add(first.href);
+        result += `${rest.slice(0, first.index)}[${rest.slice(first.index, first.index + first.length)}](${first.href})`;
+        rest = rest.slice(first.index + first.length);
+      }
+    };
+    for (const match of text.matchAll(INLINE)) {
+      const [whole, label, url] = match;
+      const index = match.index ?? 0;
+      out += plain(text.slice(last, index));
+      last = index + whole.length;
+      const pro = label && /^https?:\/\/[a-z-]+\.wikipedia\.org\//.test(url) ? proPages.find((p) => p.key === fold(label).replace(/[^\p{L}]/gu, "")) : undefined;
+      if (!pro) out += whole;
+      else if (linked.has(pro.href)) out += label;
+      else {
+        linked.add(pro.href);
+        out += `[${label}](${pro.href})`;
+      }
+    }
+    return out + plain(text.slice(last));
+  };
+  const linkBlock = (b: LegalBlock): LegalBlock => (typeof b === "string" ? linkText(b) : { list: b.list.map(linkText) });
+  return sections.map((s) => ({ ...s, blocks: s.blocks.map(linkBlock) }));
+}
+
 /** Rewrites every `[label](url)` in a post's text to the page it should open from `locale`. */
 function localizeLinks(post: BlogPost, locale: Locale): BlogPost {
   const text = (s: string) => s.replace(/\]\((\/[^)]*)\)/g, (_, url: string) => `](${resolveHref(url, locale)})`);
@@ -119,5 +187,5 @@ export function blogPost(slug: string, locale: Locale): { post: BlogPost; others
         ? { slug: p.slug, title: translated.title, href: localizePath(locale, `/blog/${p.slug}`), lang: locale }
         : { slug: p.slug, title: p.title, href: `/blog/${p.slug}`, lang: defaultLocale };
     });
-  return { post: localizeLinks(post, locale), others, locales: postLocales(slug) };
+  return { post: localizeLinks({ ...post, sections: linkPros(post.sections) }, locale), others, locales: postLocales(slug) };
 }
