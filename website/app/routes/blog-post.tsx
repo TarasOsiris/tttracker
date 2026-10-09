@@ -1,7 +1,8 @@
 import { Fragment } from "react";
 import { data, Link } from "react-router";
 import type { Route } from "./+types/blog-post";
-import appIcon from "~/assets/icon/app-icon-512.png";
+// 144 px WebP: the icon shows at 72 px (56 px in posts), so this covers 2x screens at a fraction of the 512 px PNG.
+import appIcon from "~/assets/icon/app-icon-144.webp";
 import { CtaSection } from "~/components/site/cta-section";
 import { inline } from "~/components/site/legal-page";
 import { StoreButtons } from "~/components/site/store-buttons";
