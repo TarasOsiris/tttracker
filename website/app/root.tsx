@@ -10,6 +10,7 @@ import {
   useRouteLoaderData,
 } from "react-router";
 import type { Route } from "./+types/root";
+import poppinsLatin400 from "@fontsource/poppins/files/poppins-latin-400-normal.woff2?url";
 import appleTouchIcon from "~/assets/icon/apple-touch-icon.png";
 import favicon16 from "~/assets/icon/favicon-16x16.png?no-inline";
 import favicon32 from "~/assets/icon/favicon-32x32.png?no-inline";
@@ -46,12 +47,8 @@ const gaScript =
   `gtag('js',new Date());gtag('config','${GA_ID}');`;
 
 export const links: Route.LinksFunction = () => [
-  { rel: "preconnect", href: "https://fonts.googleapis.com" },
-  { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-  {
-    rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Poppins:wght@400;500;600&display=swap",
-  },
+  // Body text's font (app.css), so the first paint doesn't wait for the stylesheet to discover it.
+  { rel: "preload", href: poppinsLatin400, as: "font", type: "font/woff2", crossOrigin: "anonymous" },
   // The PNGs are imported so their URLs carry a content hash; files that must keep a fixed path take
   // ICON_VERSION instead. Bump it whenever public/favicon.ico or the manifest icons change.
   { rel: "icon", href: `/favicon.ico?v=${ICON_VERSION}`, sizes: "any" },

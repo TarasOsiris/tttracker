@@ -1,5 +1,11 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+/* Self-hosted fonts, split by script with unicode-range like Google Fonts: a page downloads only the subsets its
+   text uses, and scripts the fonts lack (Arabic, CJK, Cyrillic for Poppins) fall back to the system font. */
+@import "@fontsource/poppins/400.css";
+@import "@fontsource/poppins/500.css";
+@import "@fontsource/poppins/600.css";
+@import "@fontsource-variable/montserrat/wght.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -84,7 +90,7 @@
 
 @theme inline {
   --font-sans: "Poppins", ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-display: "Montserrat", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Montserrat Variable", "Montserrat", ui-sans-serif, system-ui, -apple-system, sans-serif;
 
   --radius-sm: calc(var(--radius) - 8px);
   --radius-md: calc(var(--radius) - 4px);
