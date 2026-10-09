@@ -47,7 +47,8 @@
       "Bash(/usr/libexec/PlistBuddy:*)",
       "Bash(plutil:*)",
       "Skill(vibe-aso)",
-      "Skill(vibe-aso:*)"
+      "Skill(vibe-aso:*)",
+      "mcp__claude_ai_Sentry__get_sentry_resource"
     ]
   }
 }

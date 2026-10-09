@@ -568,22 +568,57 @@ crashes arrive deobfuscated-less — mention it in the report rather than failin
 
 If the build fails, stop and report the error. Do not upload.
 
+## Step 3b: Smoke-test the release build on the emulator
+
+**Never upload a release build that has not been launched.** Debug builds skip R8, so a shrinker
+problem only exists in release — and it can kill the app before the first frame, where Sentry is
+not running yet and records nothing. That is exactly how versionCode 26 reached 100% of production
+in Oct 2026: Glance pulled in WorkManager 2.7.1, whose R8 rules let full mode strip
+`WorkDatabase_Impl`'s constructor, and `InitializationProvider` crashed every launch with
+`Failed to create an instance of androidx.work.impl.WorkDatabase`.
+
+Build an APK with the same release config (there is no bundletool on this machine to split the
+AAB) and launch it on the **emulator**:
+
+```bash
+./gradlew :androidApp:assembleRelease
+export ANDROID_SERIAL=emulator-5554
+ADB=$ANDROID_HOME/platform-tools/adb
+$ADB uninstall xyz.tleskiv.tt; $ADB install androidApp/build/outputs/apk/release/androidApp-release.apk
+$ADB logcat -c -b crash; $ADB shell am start -n xyz.tleskiv.tt/xyz.tleskiv.tt.MainActivity
+sleep 8; $ADB logcat -d -b crash; $ADB shell pidof xyz.tleskiv.tt
+```
+
+Pass: the crash buffer is empty and `pidof` prints a pid. Then tap the Add Session FAB
+(`content-desc="Add Session"` in `uiautomator dump`) and re-check the crash buffer — that covers
+Koin view-model wiring, which also only breaks at runtime.
+
+- **Always set `ANDROID_SERIAL` to the emulator.** The user's phone is often plugged in too, with
+  the Play build installed; `adb uninstall` there wipes their real data.
+- No emulator running: `adb devices` is empty → start one with
+  `$ANDROID_HOME/emulator/emulator -avd onb_phone -no-snapshot-save &`, then
+  `adb wait-for-device` and poll `adb shell getprop sys.boot_completed` until it prints `1`.
+- On a crash, stop: do not upload. Read the `Caused by:` chain; for an R8 cause, check the
+  resolved versions with `./gradlew :androidApp:dependencies --configuration releaseRuntimeClasspath`.
+
 ## Step 4: Ask where to publish
 
 Ask with the AskUserQuestion tool — this is the one irreversible choice in the Android flow, since
 a committed production release goes to real users:
 
-- **Internal testing** (default) — `--track internal`, live to internal testers within minutes,
-  no review.
+- **Internal testing** (default) — live to internal testers within minutes, no review. A plain
+  `--track internal` upload fails the same way as `--complete` below (`COMPLETED release must not
+  have fraction`), so upload with `--track internal --draft` and then run
+  `python3 tools/play_complete_release.py internal <versionCode> "<notes>"`.
 - **Production — draft** — `--track production`. gplay makes a production release a draft unless
   told otherwise; it sits in the Play Console until a human presses the button.
 - **Production — full release** — goes for review, then 100% of users. **Do not use
   `--complete`:** gplay 2.0.0 sends a user fraction with it (`COMPLETED release must not have
   fraction`), and `gplay releases complete` cannot replace the previous completed release
-  (`Only one completed release is allowed`). Upload with `--draft`, then in one Publisher API edit
-  `PUT …/edits/<id>/tracks/production` with `releases: [{versionCodes: [<new>], status:
-  "completed", releaseNotes}]`, validate and commit. Oct 2026 did this with a short Python script:
-  a JWT signed by the service-account key via `cryptography`, then `urllib`.
+  (`Only one completed release is allowed`). Upload with `--draft`, then run
+  `python3 tools/play_complete_release.py production <versionCode> "<notes>"`, which puts that one
+  completed release on the track in a single Publisher API edit, validates and commits. A bundle
+  already uploaded to another track needs no re-upload — run the script with its versionCode.
 - **Production — staged rollout** — `--track production --staged <fraction> --confirm`. Ask for
   the percentage, pass it as a fraction (10% → `0.1`). Widen it later with
   `gplay releases rollout --track production --staged <fraction> --confirm`.
