@@ -1,5 +1,6 @@
 package xyz.tleskiv.tt.di
 
+import kotlinx.datetime.LocalDate
 import org.koin.core.module.dsl.viewModel
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.bind
@@ -35,7 +36,9 @@ import kotlin.uuid.Uuid
 val viewModelModule = module {
 	viewModelOf(::SessionsScreenViewModelImpl) bind SessionsScreenViewModel::class
 	viewModelOf(::AnalyticsScreenViewModelImpl) bind AnalyticsScreenViewModel::class
-	viewModelOf(::CreateSessionScreenViewModelImpl) bind CreateSessionScreenViewModel::class
+	viewModel<CreateSessionScreenViewModel> { params ->
+		CreateSessionScreenViewModelImpl(params.getOrNull<LocalDate>(), get(), get(), get())
+	}
 	viewModelOf(::EditSessionScreenViewModelImpl) bind EditSessionScreenViewModel::class
 	viewModelOf(::SessionDetailsScreenViewModelImpl) bind SessionDetailsScreenViewModel::class
 	viewModelOf(::GeneralSettingsScreenViewModelImpl) bind GeneralSettingsScreenViewModel::class
