@@ -86,9 +86,20 @@ export function SiteFooter() {
         </Column>
         <Column title={t.footer.company}>
           <li>
+            <Link to={href("/support")} className={linkClass}>
+              {t.footer.support}
+            </Link>
+          </li>
+          <li>
             <a href={`mailto:${links.email}`} className={linkClass}>
               {t.footer.contact}
             </a>
+          </li>
+          <li>
+            {/* English only. */}
+            <Link to="/changelog" hrefLang={locale === "en" ? undefined : "en"} className={linkClass}>
+              {t.footer.changelog}
+            </Link>
           </li>
           <li>
             <Link to={blogHref} className={linkClass}>

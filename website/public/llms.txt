@@ -9,6 +9,8 @@
 ## App
 
 - [Home](https://ttapp.smashyapps.com/): features, screenshots, Free vs Pro and FAQ for the app
+- [Support](https://ttapp.smashyapps.com/support): contact, restoring Pro, refunds and FAQ
+- [What's new](https://ttapp.smashyapps.com/changelog): release notes for each app version (English only)
 
 ## Serve encyclopedia
 

@@ -3,6 +3,7 @@ import { join } from "node:path";
 import type { Config } from "@react-router/dev/config";
 import { blogPages, untranslatedBlogPaths } from "./app/content/blog.server";
 import { drillSlugs } from "./app/content/drills";
+import { releases } from "./app/content/changelog";
 import { SITE_URL } from "./app/content/site";
 import { defaultLocale, type Locale, localeInfo, locales, localizePath } from "./app/i18n/config";
 import { blades, brands, guides, players, rubbers } from "./app/equipment/data";
@@ -22,6 +23,7 @@ const neutralPaths = [
   "/about",
   "/privacy",
   "/terms",
+  "/support",
 ];
 const equipmentPaths = [
   "/equipment",
@@ -50,6 +52,7 @@ const pages: Page[] = [
   // Blog posts are written in English; a language gets a page only for the posts translated into it.
   ...blogPages(),
   ...equipmentPaths.map((path) => ({ path, locales: [defaultLocale] })),
+  { path: "/changelog", locales: [defaultLocale], lastmod: () => releases[0].date },
 ];
 
 const paths = [...pages.flatMap((p) => p.locales.map((l) => localizePath(l, p.path))), ...illustrationPaths, "/404"];

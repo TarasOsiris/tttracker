@@ -150,6 +150,9 @@ export type Messages = {
     language: string;
     legal: string;
     blog: string;
+    support: string;
+    /** Link to the English-only changelog. */
+    changelog: string;
   };
   blog: {
     title: string;
@@ -168,6 +171,23 @@ export type Messages = {
   };
   /** Analytics cookie banner (Google Consent Mode) and the footer link that reopens it. */
   consent: { label: string; text: string; accept: string; reject: string; settings: string };
+  /** /support. Bodies may hold [label](/path) links; `emailButton` has an {email} placeholder. */
+  support: {
+    title: string;
+    metaTitle: string;
+    description: string;
+    intro: string;
+    emailTitle: string;
+    emailBody: string;
+    emailButton: string;
+    restoreTitle: string;
+    restoreBody: string;
+    refundTitle: string;
+    refundBody: string;
+    dataTitle: string;
+    dataBody: string;
+    faqTitle: string;
+  };
   drillsPage: {
     eyebrow: string;
     title: string;
