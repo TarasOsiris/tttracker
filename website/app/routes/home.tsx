@@ -21,17 +21,19 @@ import { ScreenshotGallery } from "~/components/site/screenshot-gallery";
 import { SectionHeading } from "~/components/site/section-heading";
 import { StoreButtons } from "~/components/site/store-buttons";
 import { APP_NAME, appNames, links, SITE_URL } from "~/content/site";
-import { type Locale, localeFromPath, localizePath } from "~/i18n/config";
+import { type Locale, localeFromPath, localeInfo, localizePath } from "~/i18n/config";
 import { drillSummaries } from "~/i18n/messages.server";
+import { appStoreRating, type AppRating } from "~/content/ratings.server";
 import { featuredServes } from "~/serves/store.server";
 import type { DrillSummary, FeatureIcon } from "~/i18n/types";
 import { useI18n } from "~/i18n/use-i18n";
 import { rootT } from "~/lib/root-data";
+import { authorSchema, publisherSchema } from "~/lib/schema";
 import { ogImageUrl, seo } from "~/lib/seo";
 
-export function loader({ request }: Route.LoaderArgs) {
+export async function loader({ request }: Route.LoaderArgs) {
   const locale = localeFromPath(new URL(request.url).pathname);
-  return { drills: drillSummaries(locale), serves: featuredServes(locale) };
+  return { drills: drillSummaries(locale), serves: featuredServes(locale), rating: await appStoreRating() };
 }
 
 export const meta: Route.MetaFunction = ({ matches, location }) => {
@@ -49,11 +51,10 @@ const featureIcons: Record<FeatureIcon, typeof Timer> = {
   simple: WifiOff,
 };
 
-const publisher = { "@type": "Person", name: "Taras Leskiv", url: links.studio };
-
 // SoftwareApplication with the store-listing name per language; Google reads operatingSystem,
-// applicationCategory and offers for its app rich result.
-const appJsonLd = (locale: Locale, url: string, description: string) => ({
+// applicationCategory, offers and aggregateRating for its app rich result. The offer is the free download
+// only: Pro's price varies by country and isn't recorded anywhere authoritative in the repo.
+const appJsonLd = (locale: Locale, url: string, description: string, rating: AppRating | null) => ({
   "@context": "https://schema.org",
   "@type": "MobileApplication",
   "@id": `${SITE_URL}/#app`,
@@ -61,18 +62,19 @@ const appJsonLd = (locale: Locale, url: string, description: string) => ({
   alternateName: [APP_NAME, "TT Tracker"].filter((n) => n !== appNames[locale].name),
   description,
   url,
-  inLanguage: locale,
+  inLanguage: localeInfo[locale].hreflang,
   image: `${SITE_URL}/android-chrome-512x512.png`,
   screenshot: ogImageUrl(locale),
   operatingSystem: "iOS, iPadOS, Android",
   applicationCategory: "SportsApplication",
   applicationSubCategory: "HealthApplication",
   offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  ...(rating && { aggregateRating: { "@type": "AggregateRating", ...rating, bestRating: 5, worstRating: 1 } }),
   downloadUrl: [links.appStore, links.googlePlay],
   installUrl: [links.appStore, links.googlePlay],
   sameAs: [links.appStore, links.googlePlay],
-  author: publisher,
-  publisher,
+  author: authorSchema,
+  publisher: publisherSchema,
 });
 
 const siteJsonLd = (locale: Locale, url: string) => ({
@@ -81,15 +83,15 @@ const siteJsonLd = (locale: Locale, url: string) => ({
   "@id": `${SITE_URL}/#website`,
   name: appNames[locale].name,
   url,
-  inLanguage: locale,
-  publisher,
+  inLanguage: localeInfo[locale].hreflang,
+  publisher: publisherSchema,
 });
 
 export default function Home({ loaderData }: Route.ComponentProps) {
   const { t, locale } = useI18n();
   return (
     <>
-      <JsonLd data={appJsonLd(locale, `${SITE_URL}${localizePath(locale, "/")}`, t.meta.homeDescription)} />
+      <JsonLd data={appJsonLd(locale, `${SITE_URL}${localizePath(locale, "/")}`, t.meta.homeDescription, loaderData.rating)} />
       <JsonLd data={siteJsonLd(locale, `${SITE_URL}${localizePath(locale, "/")}`)} />
       <JsonLd data={faqJsonLd(t.faq.items)} />
       <Hero />

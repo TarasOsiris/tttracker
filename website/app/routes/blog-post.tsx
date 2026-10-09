@@ -10,7 +10,10 @@ import { blogPost } from "~/content/blog.server";
 import { appNames, SITE_URL } from "~/content/site";
 import { localeFromPath, localeInfo, localizePath } from "~/i18n/config";
 import { useI18n } from "~/i18n/use-i18n";
+import { rootT } from "~/lib/root-data";
+import { authorSchema, publisherSchema } from "~/lib/schema";
 import { seo } from "~/lib/seo";
+import { breadcrumbList } from "~/serves/utils/seo";
 
 // Only real translations have a page (the prerender list matches), so the content's language is the page's.
 export function loader({ params, request }: Route.LoaderArgs) {
@@ -20,7 +23,7 @@ export function loader({ params, request }: Route.LoaderArgs) {
   return { ...found, locale };
 }
 
-export const meta: Route.MetaFunction = ({ data: loaderData, location }) => {
+export const meta: Route.MetaFunction = ({ data: loaderData, matches, location }) => {
   const locale = localeFromPath(location.pathname);
   const appName = appNames[locale].name;
   if (!loaderData) return [{ title: `Not found | ${appName}` }];
@@ -38,6 +41,7 @@ export const meta: Route.MetaFunction = ({ data: loaderData, location }) => {
     }).map((m) => ("property" in m && m.property === "og:type" ? { property: "og:type", content: "article" } : m)),
     { name: "keywords", content: post.keywords.join(", ") },
     { property: "article:published_time", content: post.published },
+    ...(post.updated ? [{ property: "article:modified_time", content: post.updated }] : []),
     {
       "script:ld+json": {
         "@context": "https://schema.org",
@@ -45,14 +49,20 @@ export const meta: Route.MetaFunction = ({ data: loaderData, location }) => {
         headline: post.title,
         description: post.description,
         datePublished: post.published,
-        dateModified: post.published,
+        dateModified: post.updated ?? post.published,
         inLanguage: localeInfo[locale].hreflang,
         keywords: post.keywords.join(", "),
         image,
         mainEntityOfPage: url,
-        author: { "@type": "Organization", name: "Nineva Studios", url: "https://ninevastudios.com" },
-        publisher: { "@type": "Organization", name: "Nineva Studios", url: "https://ninevastudios.com" },
+        author: authorSchema,
+        publisher: publisherSchema,
       },
+    },
+    {
+      "script:ld+json": breadcrumbList(locale, appNames[locale].brand, [
+        { name: rootT(matches).blog.breadcrumb, path: "/blog" },
+        { name: post.title, path: `/blog/${post.slug}` },
+      ]),
     },
   ];
 };

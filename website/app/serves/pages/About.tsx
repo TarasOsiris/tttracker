@@ -4,6 +4,7 @@ import { Alert, AlertTitle, AlertDescription } from "~/components/ui/alert";
 import { Info } from "lucide-react";
 import tarasJpg from "~/assets/taras.jpg";
 import { breadcrumbList } from "../utils/seo";
+import { authorSchema } from "~/lib/schema";
 
 export default function About() {
   const { language, t } = useLanguage();
@@ -20,11 +21,7 @@ export default function About() {
           {
             "@context": "https://schema.org",
             "@type": "AboutPage",
-            mainEntity: {
-              "@type": "Person",
-              name: "Taras Leskiv",
-              description: t("about.p1"),
-            },
+            mainEntity: { ...authorSchema, description: t("about.p1") },
           },
         ]}
       />
