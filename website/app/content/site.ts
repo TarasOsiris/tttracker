@@ -68,13 +68,21 @@ export type StorePlacement = "hero" | "cta" | "menu" | "footer" | "blog" | "blog
 const playLanguage: Partial<Record<Locale, string>> = { pt: "pt-BR", zh: "zh-CN", "zh-tw": "zh-TW" };
 
 /**
+ * App Store Connect provider token (`pt`), from App Analytics > Campaigns > Generate a link. App Analytics only
+ * credits campaign links that carry it; leave it null until it is copied from there.
+ */
+const APP_STORE_PROVIDER_TOKEN: string | null = null;
+
+/**
  * Store URLs for a page language. Google Play shows the listing in `hl` and passes `referrer` to the
- * install, so Play Console's acquisition report credits the website and the placement.
+ * install, so Play Console's acquisition report credits the website and the placement. The App Store link
+ * carries the placement as its campaign token (`ct`, at most 40 characters).
  */
 export function storeLinks(locale: Locale, placement: StorePlacement) {
   const referrer = encodeURIComponent(`utm_source=website&utm_medium=${placement}&utm_campaign=${locale}`);
+  const campaign = new URLSearchParams({ ...(APP_STORE_PROVIDER_TOKEN ? { pt: APP_STORE_PROVIDER_TOKEN } : {}), ct: `website-${placement}` });
   return {
-    appStore: links.appStore,
+    appStore: `${links.appStore}?${campaign}`,
     googlePlay: `${links.googlePlay}&hl=${playLanguage[locale] ?? locale}&referrer=${referrer}`,
   };
 }
