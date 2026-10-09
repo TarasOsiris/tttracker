@@ -386,13 +386,52 @@ Only when Step 7 said to submit.
    user-facing behaviour only, no refactors or dependency bumps — write it to
    `fastlane/metadata/en-US/release_notes.txt`, and use it for every locale.
 
-3. **Attach the build** uploaded in Step 6:
+3. **Write the App Review notes. Disclose everything, hide nothing.** This is a standing rule from
+   the user. The App Review notes (App Review Information → Notes) are not the release notes.
+   Release notes pick out what users would notice. The review notes are the **complete** list of
+   what changed since the last version Apple approved, written for the reviewer. Never leave out,
+   soften or vaguely reword a change to make review go more smoothly. A change you would rather
+   not mention is exactly the kind that has to be in the notes.
+
+   - **Range:** from the newest `READY_FOR_SALE` version in `asc versions list` (Step 2) to `HEAD`.
+     Read the commit bodies and the diff itself, not just the subjects:
+
+     ```bash
+     git log --format='- %s%n%b' ios-<lastApprovedVersion>..HEAD
+     git diff --stat ios-<lastApprovedVersion>..HEAD
+     ```
+
+     Open the diff for any commit whose subject does not fully say what it changed. Including too
+     much is fine. Leaving something out is not.
+   - **Cover, grouped by area:** every user-visible feature, change, fix and removal. In-app
+     purchases (the `Pro Lifetime` IAP), paywall, pricing and anything that gates content. Data
+     handling: PostHog events, Sentry, iCloud/CloudKit sync and its schema, and SDKs added,
+     removed or bumped. Permissions and privacy: `Info.plist`, entitlements, App Groups,
+     background modes, the privacy manifest. The widget and any other extension. Anything behind a
+     flag, Debug/TestFlight-only, or dormant in the binary: say that it is there and how it is
+     gated. Internal work (refactors, Kotlin/shared-module changes, tooling): summarize it, don't
+     drop it. Finally, how the reviewer can reach and test anything new. When the IAP goes into
+     the same submission, say so and explain how to reach the purchase.
+   - **Keep the standing reviewer information, replace the change list.** App Store Connect
+     copies the previous version's notes forward. Read them with
+     `asc review details-for-version --version-id <VERSION_ID> --pretty`, keep what is still
+     true, correct anything this release changed, and replace the old change list entirely.
+     Use this layout: `Changes in <version> (<build>) since <lastApprovedVersion>:`, then one
+     section per area, then the standing instructions.
+   - **Write it** with `asc review details-create --version-id <VERSION_ID> --contact-… --notes "$(cat <notesFile>)"`
+     when the version has no review details yet; copy the contact fields from the previous
+     version's. When details already exist, update their notes. `asc review --help` lists the
+     update subcommand; record its exact name here once confirmed. Read the notes back and confirm
+     the full text was stored. The cap is 4000 characters: tighten the wording and group related
+     items to fit, and never drop an item.
+
+4. **Attach the build** uploaded in Step 6:
 
    ```bash
    asc versions attach-build --version-id <VERSION_ID> --build-id <BUILD_ID>
    ```
 
-4. **Gate on validation**, then submit. **If the `Pro Lifetime` in-app purchase has never been
+5. **Gate on validation**, then submit. **If the `Pro Lifetime` in-app purchase has never been
    approved** (`asc iap list --app 6758044383` shows it `READY_TO_SUBMIT` rather than `APPROVED`),
    it must go to review in the same submission as the version — Apple rejects a binary that sells a
    product it has not reviewed, and `asc review submit` adds only the version. Build the submission
@@ -657,8 +696,8 @@ Print one summary covering everything that ran:
 
 **iOS** — previous → new version and build number; whether the Step 2 train check bumped
 `MARKETING_VERSION` (and if Step 6 had to re-archive, say so); Sentry dSYM status; upload status
-and build id; version record created or reused; how many locales got release notes; validation
-result; review submission id and state — or that the build is uploaded but **not** submitted.
+and build id; version record created or reused; how many locales got release notes; the App Review
+notes in full as stored; validation result; review submission id and state — or that the build is uploaded but **not** submitted.
 
 **Android** — previous → new `versionCode`/`versionName`; whether Play's highest versionCode forced
 a larger bump than +1; whether the Sentry mapping upload ran; track, release status and rollout
