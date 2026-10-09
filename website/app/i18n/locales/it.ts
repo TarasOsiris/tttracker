@@ -19,6 +19,7 @@ export const it: Messages = {
     equipment: "Attrezzatura",
     blog: "Blog",
     faq: "FAQ",
+    pricing: "Prezzi",
     getApp: "Scarica l'app",
     openMenu: "Apri il menu",
     menu: "Menu",
@@ -30,6 +31,7 @@ export const it: Messages = {
     features: "Tutto ciò che l'app registra",
     howItWorks: "Dall'allenamento ai progressi",
     faq: "Domande frequenti",
+    pricing: "Gratis e Pro a confronto",
     serves: "Servizi, effetti, regole e quiz",
     drills: "Piani di allenamento stampabili",
     equipment: "Telai, gomme e materiale dei pro (inglese)",
@@ -47,7 +49,7 @@ export const it: Messages = {
     subtitleStrong: "diario di allenamento per ping pong e tennis tavolo",
     subtitleAfter:
       ". Registra un allenamento in meno di 30 secondi, segna le partite contro gli avversari salvati e guarda un anno di progressi a colpo d'occhio.",
-    trustPoints: ["Gratis", "Nessun account", "Funziona offline", "15 lingue"],
+    trustPoints: ["Gratis, Pro facoltativo", "Nessun account", "Funziona offline", "22 lingue"],
   },
   mockup: {
     tryIt: "Provalo: tocca per esplorare",
@@ -119,14 +121,14 @@ export const it: Messages = {
       {
         icon: "widgets",
         title: "Widget per la schermata Home e di blocco",
-        body: "Tieni la heatmap e l'ultimo allenamento sulla schermata Home e registra nuovi allenamenti dal Centro di Controllo.",
+        body: "Tieni la heatmap e l'ultimo allenamento sulla schermata Home, su iPhone e Android. Su iPhone puoi anche registrare nuovi allenamenti dal Centro di Controllo.",
         bullets: ["Widget di riepilogo e heatmap", "Statistiche sulla schermata di blocco", "Controllo rapido per aggiungere un allenamento"],
       },
       {
         icon: "simple",
         title: "Semplice per scelta",
         body: "Niente registrazione, niente fronzoli, nessun cloud obbligatorio. Tutto resta sul tuo dispositivo.",
-        bullets: ["Funziona completamente offline", "Tema chiaro e scuro", "Disponibile in 15 lingue"],
+        bullets: ["Funziona completamente offline", "Tema chiaro e scuro", "Disponibile in 22 lingue"],
       },
     ],
   },
@@ -181,17 +183,41 @@ export const it: Messages = {
     subtitle: "29 servizi di tennistavolo spiegati: effetto, rimbalzo, piazzamento e come rispondere. Gratis, con diagrammi.",
     cta: "Esplora i servizi",
   },
+  pricing: {
+    eyebrow: "Prezzi",
+    title: "Gratis da usare. Pro se vuoi di più.",
+    subtitle: "Tutto ciò che serve per tenere un diario di allenamento è gratis. TT Tracker Pro è un acquisto unico per statistiche più approfondite e qualche extra.",
+    freeTitle: "Gratis",
+    freeTagline: "Tutto ciò che serve per registrare il tuo allenamento",
+    freeItems: ["Allenamenti, partite e avversari illimitati", "Calendario, heatmap di 12 mesi e percentuale di vittorie", "Grafico dell'allenamento settimanale delle ultime 8 settimane", "Widget di riepilogo, heatmap e ultimo allenamento", "Sincronizzazione iCloud gratuita su iPhone e iPad"],
+    proTitle: "TT Tracker Pro",
+    proTagline: "Capisci il tuo allenamento e rendi l'app davvero tua",
+    proItems: [
+      { title: "Statistiche di allenamento", detail: "Serie, carico settimanale e mix dei tipi di allenamento" },
+      { title: "Scontri diretti", detail: "Il tuo bilancio e la forma recente contro ogni avversario" },
+      { title: "Tutto il tuo storico", detail: "Allenamento settimanale su 6 mesi, un anno o da sempre" },
+      { title: "Più widget", detail: "La tua serie e il carico di allenamento nella schermata Home" },
+      { title: "Esporta in CSV", detail: "Porta allenamenti e partite in un foglio di calcolo" },
+      { title: "Colori d'accento", detail: "Dai all'app e ai suoi widget il colore che preferisci" },
+    ],
+    oneTime: "Acquisto unico",
+    priceNote: "Nessun abbonamento. Il prezzo nella tua valuta è indicato sull'App Store o su Google Play.",
+  },
   faq: {
     eyebrow: "FAQ",
     title: "Domande e risposte",
     items: [
       {
         q: "TT Tracker è gratis?",
-        a: "Sì. Puoi scaricarla gratis da App Store e Google Play e registrare tutti gli allenamenti e le partite che vuoi.",
+        a: "Sì. Puoi scaricarla gratis dall'App Store e da Google Play e registrare tutti gli allenamenti e le partite che vuoi. TT Tracker Pro è un acquisto unico facoltativo che aggiunge statistiche di allenamento, scontri diretti, tutto il tuo storico, più widget, esportazione in CSV e colori d'accento.",
+      },
+      {
+        q: "Pro è un abbonamento?",
+        a: "No. TT Tracker Pro è un acquisto unico e lo store ti mostra il prezzo nella tua valuta prima dell'acquisto. Dopo una reinstallazione o su un nuovo dispositivo, tocca Ripristina acquisti nelle Impostazioni, con lo stesso account Apple o Google.",
       },
       {
         q: "Su quali dispositivi funziona?",
-        a: "iPhone e iPad (iOS) e smartphone e tablet Android. I widget per la schermata Home e di blocco sono disponibili su iOS.",
+        a: "Su iPhone e iPad (iOS) e su smartphone e tablet Android. I widget della schermata Home sono su entrambi; i widget della schermata di blocco e il pulsante del Centro di Controllo sono solo per iOS.",
       },
       {
         q: "Serve un account?",
@@ -199,7 +225,7 @@ export const it: Messages = {
       },
       {
         q: "Funziona offline? Dove vengono salvati i miei dati?",
-        a: "Funziona completamente offline. Allenamenti, partite e avversari restano salvati sul tuo dispositivo, non sui nostri server.",
+        a: "Funziona completamente offline. Allenamenti, partite e avversari sono salvati sul tuo dispositivo, non sui nostri server. Su iPhone e iPad puoi attivare la sincronizzazione iCloud gratuita per averli uguali su tutti i tuoi dispositivi Apple.",
       },
       {
         q: "È per il ping pong o per il tennistavolo?",
@@ -207,7 +233,7 @@ export const it: Messages = {
       },
       {
         q: "In quali lingue è disponibile?",
-        a: "15: inglese, arabo, cinese (semplificato e tradizionale), francese, tedesco, hindi, indonesiano, italiano, giapponese, coreano, portoghese, spagnolo, turco e ucraino.",
+        a: "In 22: inglese, arabo, cinese (semplificato e tradizionale), ceco, olandese, francese, tedesco, hindi, indonesiano, italiano, giapponese, coreano, malese, polacco, portoghese, spagnolo, svedese, thailandese, turco, ucraino e vietnamita.",
       },
     ],
   },

@@ -19,6 +19,7 @@ export const de: Messages = {
     equipment: "Material",
     blog: "Blog",
     faq: "FAQ",
+    pricing: "Preise",
     getApp: "App laden",
     openMenu: "Menü öffnen",
     menu: "Menü",
@@ -30,6 +31,7 @@ export const de: Messages = {
     features: "Alles, was die App erfasst",
     howItWorks: "Vom Training zum Fortschritt",
     faq: "Häufige Fragen",
+    pricing: "Kostenlos und Pro im Vergleich",
     serves: "Aufschläge, Schnitt, Regeln und Quiz",
     drills: "Trainingspläne zum Ausdrucken",
     equipment: "Hölzer, Beläge, Profi-Material (Englisch)",
@@ -47,7 +49,7 @@ export const de: Messages = {
     subtitleStrong: "Trainingstagebuch für Tischtennis und Ping Pong",
     subtitleAfter:
       ". Training in unter 30 Sekunden erfassen, Spiele gegen gespeicherte Gegner eintragen und ein ganzes Jahr Fortschritt auf einen Blick sehen.",
-    trustPoints: ["Kostenlos", "Kein Konto", "Funktioniert offline", "15 Sprachen"],
+    trustPoints: ["Kostenlos, Pro optional", "Kein Konto", "Funktioniert offline", "22 Sprachen"],
   },
   mockup: {
     tryIt: "Probier’s aus – tipp dich durch",
@@ -119,14 +121,14 @@ export const de: Messages = {
       {
         icon: "widgets",
         title: "Widgets für Home- & Sperrbildschirm",
-        body: "Behalte Heatmap und letzte Einheit auf dem Home-Bildschirm im Blick und erfasse neue Einheiten direkt aus dem Kontrollzentrum.",
+        body: "Behalte Heatmap und letzte Einheit auf dem Home-Bildschirm im Blick, auf iPhone und Android. Auf dem iPhone erfasst du neue Einheiten auch direkt aus dem Kontrollzentrum.",
         bullets: ["Übersichts- & Heatmap-Widgets", "Statistiken auf dem Sperrbildschirm", "Schnellzugriff „Einheit hinzufügen“"],
       },
       {
         icon: "simple",
         title: "Bewusst einfach",
         body: "Keine Anmeldung, kein Schnickschnack, keine Cloud nötig. Alles bleibt auf deinem Gerät.",
-        bullets: ["Funktioniert komplett offline", "Helles & dunkles Design", "In 15 Sprachen verfügbar"],
+        bullets: ["Funktioniert komplett offline", "Helles & dunkles Design", "In 22 Sprachen verfügbar"],
       },
     ],
   },
@@ -181,17 +183,41 @@ export const de: Messages = {
     subtitle: "29 Tischtennis-Aufschläge im Detail: Schnitt, Länge, Platzierung und wie du sie zurückspielst. Kostenlos, mit Diagrammen.",
     cta: "Aufschläge entdecken",
   },
+  pricing: {
+    eyebrow: "Preise",
+    title: "Kostenlos nutzbar. Pro, wenn du mehr willst.",
+    subtitle: "Alles, was du für ein Trainingstagebuch brauchst, ist kostenlos. TT Tracker Pro ist ein Einmalkauf für tiefere Einblicke und ein paar Extras.",
+    freeTitle: "Kostenlos",
+    freeTagline: "Alles, was du zum Erfassen deines Trainings brauchst",
+    freeItems: ["Unbegrenzt viele Einheiten, Spiele und Gegner", "Kalender, 12-Monats-Heatmap und Siegquote", "Wöchentliches Trainingsdiagramm der letzten 8 Wochen", "Widgets für Übersicht, Heatmap und letzte Einheit", "Kostenlose iCloud-Synchronisierung auf iPhone und iPad"],
+    proTitle: "TT Tracker Pro",
+    proTagline: "Verstehe dein Training und mach die App zu deiner",
+    proItems: [
+      { title: "Trainingseinblicke", detail: "Serien, Wochenbelastung und dein Mix an Einheitstypen" },
+      { title: "Direkter Vergleich", detail: "Deine Bilanz und aktuelle Form gegen jeden Gegner" },
+      { title: "Deine ganze Historie", detail: "Wöchentliches Training über 6 Monate, ein Jahr oder die gesamte Zeit" },
+      { title: "Mehr Widgets", detail: "Deine Serie und Trainingsbelastung auf dem Home-Bildschirm" },
+      { title: "Als CSV exportieren", detail: "Übertrage deine Einheiten und Spiele in eine Tabelle" },
+      { title: "Akzentfarben", detail: "Gib der App und ihren Widgets deine Lieblingsfarbe" },
+    ],
+    oneTime: "Einmalkauf",
+    priceNote: "Kein Abo. Den Preis in deiner Währung siehst du im App Store oder bei Google Play.",
+  },
   faq: {
     eyebrow: "FAQ",
     title: "Fragen & Antworten",
     items: [
       {
         q: "Ist TT Tracker kostenlos?",
-        a: "Ja. Du kannst die App kostenlos im App Store und bei Google Play laden und so viele Einheiten und Spiele erfassen, wie du willst.",
+        a: "Ja. Du kannst die App kostenlos im App Store und bei Google Play laden und so viele Einheiten und Spiele erfassen, wie du willst. TT Tracker Pro ist ein optionaler Einmalkauf mit Trainingseinblicken, direktem Vergleich, deiner ganzen Historie, mehr Widgets, CSV-Export und Akzentfarben.",
+      },
+      {
+        q: "Ist Pro ein Abo?",
+        a: "Nein. TT Tracker Pro ist ein Einmalkauf, und der Store zeigt dir den Preis in deiner Währung vor dem Kauf. Nach einer Neuinstallation oder auf einem neuen Gerät tippst du in den Einstellungen auf „Käufe wiederherstellen“, mit demselben Apple- oder Google-Konto.",
       },
       {
         q: "Auf welchen Geräten läuft die App?",
-        a: "Auf iPhone und iPad (iOS) sowie auf Android-Smartphones und -Tablets. Widgets für Home- und Sperrbildschirm gibt es unter iOS.",
+        a: "Auf iPhone und iPad (iOS) sowie auf Android-Smartphones und -Tablets. Widgets für den Home-Bildschirm gibt es auf beiden; Sperrbildschirm-Widgets und die Taste im Kontrollzentrum nur unter iOS.",
       },
       {
         q: "Brauche ich ein Konto?",
@@ -199,7 +225,7 @@ export const de: Messages = {
       },
       {
         q: "Funktioniert die App offline? Wo werden meine Daten gespeichert?",
-        a: "Sie funktioniert komplett offline. Deine Einheiten, Spiele und Gegner werden auf deinem Gerät gespeichert, nicht auf unseren Servern.",
+        a: "Sie funktioniert komplett offline. Deine Einheiten, Spiele und Gegner werden auf deinem Gerät gespeichert, nicht auf unseren Servern. Auf iPhone und iPad kannst du die kostenlose iCloud-Synchronisierung einschalten, damit sie auf all deinen Apple-Geräten gleich sind.",
       },
       {
         q: "Ist die App für Ping Pong oder Tischtennis?",
@@ -207,7 +233,7 @@ export const de: Messages = {
       },
       {
         q: "In welchen Sprachen ist die App verfügbar?",
-        a: "In 15: Englisch, Arabisch, Chinesisch (vereinfacht und traditionell), Französisch, Deutsch, Hindi, Indonesisch, Italienisch, Japanisch, Koreanisch, Portugiesisch, Spanisch, Türkisch und Ukrainisch.",
+        a: "In 22: Englisch, Arabisch, Chinesisch (vereinfacht und traditionell), Tschechisch, Niederländisch, Französisch, Deutsch, Hindi, Indonesisch, Italienisch, Japanisch, Koreanisch, Malaiisch, Polnisch, Portugiesisch, Spanisch, Schwedisch, Thailändisch, Türkisch, Ukrainisch und Vietnamesisch.",
       },
     ],
   },

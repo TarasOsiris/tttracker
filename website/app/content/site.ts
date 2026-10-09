@@ -48,6 +48,7 @@ export const socials = {
 export const navLinks = [
   { href: "/#features", key: "features", group: "app" },
   { href: "/#how-it-works", key: "howItWorks", group: "app" },
+  { href: "/#pricing", key: "pricing", group: "app" },
   { href: "/#faq", key: "faq", group: "app" },
   { href: "/serves", key: "serves", group: "learn" },
   { href: "/drills", key: "drills", group: "learn" },
@@ -62,7 +63,7 @@ export const navGroups = ["app", "learn"] as const;
 export const screenshotFiles = ["screen-1", "screen-2", "screen-3", "screen-4", "screen-5", "screen-6", "screen-7", "screen-8"];
 
 /** Where on the site a store link sits; becomes the Play install referrer and the GA event label. */
-export type StorePlacement = "hero" | "cta" | "menu" | "footer" | "blog" | "blog-inline";
+export type StorePlacement = "hero" | "cta" | "menu" | "footer" | "blog" | "blog-inline" | "pricing";
 
 const playLanguage: Partial<Record<Locale, string>> = { pt: "pt-BR", zh: "zh-CN", "zh-tw": "zh-TW" };
 

@@ -3,6 +3,7 @@ import {
   BarChart3,
   CalendarDays,
   Check,
+  Crown,
   LayoutGrid,
   Sparkles,
   Swords,
@@ -107,6 +108,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
       </section>
       <DrillsTeaser drills={loaderData.drills} />
       <ServesTeaser serves={loaderData.serves} />
+      <Pricing />
       <section id="faq" className="px-4 py-20 sm:px-6 sm:py-24">
         <div className="mx-auto max-w-3xl">
           <SectionHeading eyebrow={t.faq.eyebrow} title={t.faq.title} />
@@ -246,6 +248,56 @@ function HowItWorks() {
             </li>
           ))}
         </ol>
+      </div>
+    </section>
+  );
+}
+
+/** Free vs Pro. No price: the stores show it in each visitor's currency, so the site never goes stale. */
+function Pricing() {
+  const { t } = useI18n();
+  const p = t.pricing;
+  return (
+    <section id="pricing" className="bg-surface-low px-4 py-20 sm:px-6 sm:py-28">
+      <div className="mx-auto max-w-5xl">
+        <SectionHeading eyebrow={p.eyebrow} title={p.title} subtitle={p.subtitle} />
+        <div className="mt-14 grid gap-5 md:grid-cols-2">
+          <article className="flex flex-col rounded-3xl border bg-card p-7">
+            <h3 className="text-2xl font-bold tracking-tight">{p.freeTitle}</h3>
+            <p className="mt-2 text-muted-foreground">{p.freeTagline}</p>
+            <ul className="mt-6 space-y-3">
+              {p.freeItems.map((item) => (
+                <li key={item} className="flex gap-2.5">
+                  <Check className="mt-0.5 size-5 shrink-0 text-primary" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <StoreButtons placement="pricing" className="mt-auto pt-8" />
+          </article>
+          <article className="flex flex-col rounded-3xl border-2 border-primary/40 bg-card p-7 shadow-lg shadow-primary/5">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <h3 className="flex items-center gap-2 text-2xl font-bold tracking-tight">
+                <Crown className="size-6 text-primary" />
+                {p.proTitle}
+              </h3>
+              <span className="rounded-full bg-accent px-3 py-1 text-xs font-semibold text-accent-foreground">{p.oneTime}</span>
+            </div>
+            <p className="mt-2 text-muted-foreground">{p.proTagline}</p>
+            <ul className="mt-6 space-y-3">
+              {p.proItems.map((item) => (
+                <li key={item.title} className="flex gap-2.5">
+                  <Check className="mt-0.5 size-5 shrink-0 text-primary" />
+                  <span>
+                    <span className="font-semibold">{item.title}</span>
+                    <span className="block text-sm text-muted-foreground">{item.detail}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-auto pt-8 text-sm text-muted-foreground">{p.priceNote}</p>
+          </article>
+        </div>
       </div>
     </section>
   );

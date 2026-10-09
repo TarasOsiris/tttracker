@@ -19,6 +19,7 @@ export const zhTw: Messages = {
     equipment: "器材",
     blog: "部落格",
     faq: "常見問題",
+    pricing: "價格",
     getApp: "下載 App",
     openMenu: "開啟選單",
     menu: "選單",
@@ -30,6 +31,7 @@ export const zhTw: Messages = {
     features: "App 能記錄的一切",
     howItWorks: "從練習到進步",
     faq: "常見問題",
+    pricing: "免費版與 Pro 比較",
     serves: "發球、旋轉、規則與測驗",
     drills: "可列印的訓練計畫",
     equipment: "球拍、膠皮與職業選手裝備（英文）",
@@ -47,7 +49,7 @@ export const zhTw: Messages = {
     subtitleStrong: "桌球（乒乓球）訓練日誌",
     subtitleAfter:
       "。30 秒內記下一次練習，對已儲存的對手記錄比賽，一整年的進步一眼看清。",
-    trustPoints: ["免費", "免註冊", "可離線使用", "支援 15 種語言"],
+    trustPoints: ["免費，Pro 可選", "免註冊", "可離線使用", "22 種語言"],
   },
   mockup: {
     tryIt: "點一點，親自試試",
@@ -119,14 +121,14 @@ export const zhTw: Messages = {
       {
         icon: "widgets",
         title: "主畫面與鎖定畫面小工具",
-        body: "把熱度圖和最近一次訓練放在主畫面上，還能從控制中心直接新增訓練。",
+        body: "把熱度圖和最近一次訓練放在主畫面上，iPhone 與 Android 都支援。在 iPhone 上還能從控制中心直接新增訓練。",
         bullets: ["總覽與熱度圖小工具", "鎖定畫面統計", "快速新增訓練控制項"],
       },
       {
         icon: "simple",
         title: "簡單，是設計的初衷",
         body: "免註冊、不雜亂、不需要雲端。所有資料都留在你的裝置上。",
-        bullets: ["完全離線可用", "淺色與深色主題", "支援 15 種語言"],
+        bullets: ["完全離線可用", "淺色與深色主題", "支援 22 種語言"],
       },
     ],
   },
@@ -181,17 +183,41 @@ export const zhTw: Messages = {
     subtitle: "完整拆解 29 種桌球發球：旋轉、彈跳、落點，以及怎麼接發球。免費，附圖解。",
     cta: "探索發球",
   },
+  pricing: {
+    eyebrow: "價格",
+    title: "免費使用，想要更多就選 Pro。",
+    subtitle: "記錄訓練所需的一切都是免費的。TT Tracker Pro 是一次性購買，帶來更深入的洞察和一些額外功能。",
+    freeTitle: "免費",
+    freeTagline: "記錄訓練所需的一切",
+    freeItems: ["不限數量的訓練、比賽和對手", "日曆、12 個月熱度圖和勝率", "最近 8 週的每週訓練圖表", "總覽、熱度圖和最近訓練小工具", "iPhone 和 iPad 上免費的 iCloud 同步"],
+    proTitle: "TT Tracker Pro",
+    proTagline: "讀懂你的訓練，打造專屬於你的 App",
+    proItems: [
+      { title: "訓練洞察", detail: "連續紀錄、每週訓練負荷和訓練類型分布" },
+      { title: "交手戰績", detail: "你與每位對手的戰績和近期狀態" },
+      { title: "完整歷史", detail: "6 個月、1 年或全部時間的每週訓練" },
+      { title: "更多小工具", detail: "在主畫面上查看連續紀錄和訓練負荷" },
+      { title: "匯出為 CSV", detail: "將訓練和比賽匯入試算表" },
+      { title: "強調色", detail: "為 App 和小工具換上你喜歡的顏色" },
+    ],
+    oneTime: "一次性購買",
+    priceNote: "不是訂閱制。以你的貨幣計的價格會顯示在 App Store 或 Google Play 中。",
+  },
   faq: {
     eyebrow: "常見問題",
     title: "你的問題，這裡有解答",
     items: [
       {
         q: "桌球筆記（TT Tracker）是免費的嗎？",
-        a: "是的。你可以在 App Store 和 Google Play 免費下載，訓練和比賽想記多少就記多少。",
+        a: "是的。你可以在 App Store 和 Google Play 免費下載，想記錄多少訓練和比賽都可以。TT Tracker Pro 是可選的一次性購買，增加訓練洞察、交手戰績、完整歷史、更多小工具、CSV 匯出和強調色。",
+      },
+      {
+        q: "Pro 是訂閱制嗎？",
+        a: "不是。TT Tracker Pro 是一次性購買，購買前商店會以你的貨幣顯示價格。重新安裝或換新裝置後，用同一個 Apple 或 Google 帳號在設定中點一下「回復購買項目」即可。",
       },
       {
         q: "支援哪些裝置？",
-        a: "iPhone 與 iPad（iOS），以及 Android 手機與平板。iOS 版另提供主畫面與鎖定畫面小工具。",
+        a: "支援 iPhone 和 iPad（iOS）以及 Android 手機與平板。兩個平台都有主畫面小工具；鎖定畫面小工具和控制中心按鈕僅限 iOS。",
       },
       {
         q: "需要註冊帳號嗎？",
@@ -199,7 +225,7 @@ export const zhTw: Messages = {
       },
       {
         q: "可以離線使用嗎？我的資料存在哪裡？",
-        a: "完全可以離線使用。你的訓練、比賽和對手資料都儲存在你的裝置上，不會上傳到我們的伺服器。",
+        a: "完全可以離線使用。你的訓練、比賽和對手都儲存在你的裝置上，而不是我們的伺服器上。在 iPhone 和 iPad 上，你可以開啟免費的 iCloud 同步，讓所有 Apple 裝置上的資料保持一致。",
       },
       {
         q: "這是給桌球還是乒乓球用的？",
@@ -207,7 +233,7 @@ export const zhTw: Messages = {
       },
       {
         q: "支援哪些語言？",
-        a: "共 15 種：英文、阿拉伯文、簡體中文、繁體中文、法文、德文、印地文、印尼文、義大利文、日文、韓文、葡萄牙文、西班牙文、土耳其文和烏克蘭文。",
+        a: "22 種：英文、阿拉伯文、中文（簡體與繁體）、捷克文、荷蘭文、法文、德文、印地文、印尼文、義大利文、日文、韓文、馬來文、波蘭文、葡萄牙文、西班牙文、瑞典文、泰文、土耳其文、烏克蘭文和越南文。",
       },
     ],
   },

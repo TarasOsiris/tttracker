@@ -19,6 +19,7 @@ export const pt: Messages = {
     equipment: "Equipamento",
     blog: "Blog",
     faq: "FAQ",
+    pricing: "Preços",
     getApp: "Baixar o app",
     openMenu: "Abrir menu",
     menu: "Menu",
@@ -30,6 +31,7 @@ export const pt: Messages = {
     features: "Tudo o que o app registra",
     howItWorks: "Do treino ao progresso",
     faq: "Perguntas frequentes",
+    pricing: "Grátis e Pro, comparados",
     serves: "Saques, efeitos, regras e quiz",
     drills: "Planos de treino para imprimir",
     equipment: "Madeiras, borrachas e equipamento pro (inglês)",
@@ -47,7 +49,7 @@ export const pt: Messages = {
     subtitleStrong: "diário de treino de ping pong e tênis de mesa",
     subtitleAfter:
       ". Registre seus treinos em menos de 30 segundos, anote partidas contra adversários salvos e veja um ano de evolução de relance.",
-    trustPoints: ["Grátis", "Sem cadastro", "Funciona offline", "15 idiomas"],
+    trustPoints: ["Grátis, Pro opcional", "Sem cadastro", "Funciona offline", "22 idiomas"],
   },
   mockup: {
     tryIt: "Experimente: toque para explorar",
@@ -120,14 +122,14 @@ export const pt: Messages = {
       {
         icon: "widgets",
         title: "Widgets na Tela de Início e na Tela Bloqueada",
-        body: "Deixe seu mapa de calor e sua última sessão na Tela de Início e registre novas sessões pela Central de Controle.",
+        body: "Deixe seu mapa de calor e sua última sessão na Tela de Início, no iPhone e no Android. No iPhone, registre novas sessões também pela Central de Controle.",
         bullets: ["Widgets de resumo e mapa de calor", "Estatísticas na Tela Bloqueada", "Controle rápido para adicionar sessão"],
       },
       {
         icon: "simple",
         title: "Simples de propósito",
         body: "Sem cadastro, sem poluição visual, sem precisar de nuvem. Tudo fica no seu aparelho.",
-        bullets: ["Funciona totalmente offline", "Tema claro e escuro", "Disponível em 15 idiomas"],
+        bullets: ["Funciona totalmente offline", "Tema claro e escuro", "Disponível em 22 idiomas"],
       },
     ],
   },
@@ -182,17 +184,41 @@ export const pt: Messages = {
     subtitle: "29 saques de tênis de mesa explicados: efeito, quique, colocação e como devolver cada um. Grátis e com diagramas.",
     cta: "Ver os saques",
   },
+  pricing: {
+    eyebrow: "Preços",
+    title: "Grátis para usar. Pro se quiser mais.",
+    subtitle: "Tudo o que você precisa para manter um diário de treino é grátis. O TT Tracker Pro é uma compra única com estatísticas mais completas e alguns extras.",
+    freeTitle: "Grátis",
+    freeTagline: "Tudo o que você precisa para registrar seu treino",
+    freeItems: ["Sessões, partidas e adversários ilimitados", "Calendário, mapa de calor de 12 meses e taxa de vitórias", "Gráfico de treino semanal das últimas 8 semanas", "Widgets de resumo, mapa de calor e última sessão", "Sincronização gratuita com o iCloud no iPhone e iPad"],
+    proTitle: "TT Tracker Pro",
+    proTagline: "Entenda seu treino e deixe o app do seu jeito",
+    proItems: [
+      { title: "Estatísticas de treino", detail: "Sequências, carga semanal e seu mix de tipos de sessão" },
+      { title: "Confrontos diretos", detail: "Seu retrospecto e fase recente contra cada oponente" },
+      { title: "Todo o seu histórico", detail: "Treino semanal em 6 meses, um ano ou desde o início" },
+      { title: "Mais widgets", detail: "Sua sequência e carga de treino na Tela de Início" },
+      { title: "Exportar para CSV", detail: "Leve suas sessões e partidas para uma planilha" },
+      { title: "Cores de destaque", detail: "Dê ao app e aos widgets a cor que você preferir" },
+    ],
+    oneTime: "Compra única",
+    priceNote: "Sem assinatura. O preço na sua moeda aparece na App Store ou no Google Play.",
+  },
   faq: {
     eyebrow: "Perguntas frequentes",
     title: "Perguntas respondidas",
     items: [
       {
         q: "O TT Tracker é grátis?",
-        a: "Sim. Você pode baixá-lo de graça na App Store e no Google Play e registrar quantas sessões e partidas quiser.",
+        a: "Sim. Você pode baixar grátis na App Store e no Google Play e registrar quantas sessões e partidas quiser. O TT Tracker Pro é uma compra única opcional que adiciona estatísticas de treino, confrontos diretos, todo o seu histórico, mais widgets, exportação para CSV e cores de destaque.",
+      },
+      {
+        q: "O Pro é uma assinatura?",
+        a: "Não. O TT Tracker Pro é uma compra única, e a loja mostra o preço na sua moeda antes da compra. Depois de reinstalar ou em um aparelho novo, toque em Restaurar compras em Configurações, com a mesma conta Apple ou Google.",
       },
       {
         q: "Em quais aparelhos ele funciona?",
-        a: "No iPhone e no iPad (iOS) e em celulares e tablets Android. Os widgets da Tela de Início e da Tela Bloqueada estão disponíveis no iOS.",
+        a: "iPhone e iPad (iOS) e celulares e tablets Android. Os widgets da Tela de Início estão nos dois; os widgets da Tela Bloqueada e o botão da Central de Controle são exclusivos do iOS.",
       },
       {
         q: "Preciso criar uma conta?",
@@ -200,7 +226,7 @@ export const pt: Messages = {
       },
       {
         q: "Funciona offline? Onde ficam meus dados?",
-        a: "Funciona totalmente offline. Suas sessões, partidas e adversários ficam salvos no seu aparelho, não nos nossos servidores.",
+        a: "Funciona totalmente offline. Suas sessões, partidas e adversários ficam salvos no seu aparelho, não nos nossos servidores. No iPhone e no iPad, você pode ativar a sincronização gratuita com o iCloud para mantê-los iguais em todos os seus dispositivos Apple.",
       },
       {
         q: "É para ping pong ou tênis de mesa?",
@@ -208,7 +234,7 @@ export const pt: Messages = {
       },
       {
         q: "Em quais idiomas ele está disponível?",
-        a: "Em 15: inglês, árabe, chinês (simplificado e tradicional), francês, alemão, hindi, indonésio, italiano, japonês, coreano, português, espanhol, turco e ucraniano.",
+        a: "Em 22: inglês, árabe, chinês (simplificado e tradicional), tcheco, holandês, francês, alemão, hindi, indonésio, italiano, japonês, coreano, malaio, polonês, português, espanhol, sueco, tailandês, turco, ucraniano e vietnamita.",
       },
     ],
   },

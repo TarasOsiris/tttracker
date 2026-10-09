@@ -19,6 +19,7 @@ export const fr: Messages = {
     equipment: "Matériel",
     blog: "Blog",
     faq: "FAQ",
+    pricing: "Tarifs",
     getApp: "Télécharger l'app",
     openMenu: "Ouvrir le menu",
     menu: "Menu",
@@ -30,6 +31,7 @@ export const fr: Messages = {
     features: "Tout ce que l'appli suit",
     howItWorks: "De l'entraînement au progrès",
     faq: "Questions fréquentes",
+    pricing: "Gratuit et Pro, comparés",
     serves: "Services, effets, règles et quiz",
     drills: "Plans d'entraînement à imprimer",
     equipment: "Bois, revêtements, matériel des pros (anglais)",
@@ -47,7 +49,7 @@ export const fr: Messages = {
     subtitleStrong: "carnet d'entraînement de ping-pong et de tennis de table",
     subtitleAfter:
       ". Notez un entraînement en moins de 30 secondes, saisissez vos matchs face à vos adversaires enregistrés et visualisez une année de progression d'un coup d'œil.",
-    trustPoints: ["Gratuit", "Sans compte", "Fonctionne hors ligne", "15 langues"],
+    trustPoints: ["Gratuit, Pro en option", "Sans compte", "Fonctionne hors ligne", "22 langues"],
   },
   mockup: {
     tryIt: "Essayez : touchez pour explorer",
@@ -119,14 +121,14 @@ export const fr: Messages = {
       {
         icon: "widgets",
         title: "Widgets pour l'écran d'accueil et l'écran verrouillé",
-        body: "Gardez votre carte thermique et votre dernière séance sur l'écran d'accueil, et ajoutez une séance depuis le Centre de contrôle.",
+        body: "Gardez votre carte thermique et votre dernière séance sur l'écran d'accueil, sur iPhone comme sur Android. Sur iPhone, ajoutez aussi une séance depuis le Centre de contrôle.",
         bullets: ["Widgets résumé et carte thermique", "Statistiques sur l'écran verrouillé", "Commande d'ajout rapide de séance"],
       },
       {
         icon: "simple",
         title: "Simple par nature",
         body: "Ni inscription, ni superflu, ni cloud obligatoire. Tout reste sur votre appareil.",
-        bullets: ["Fonctionne entièrement hors ligne", "Thème clair et sombre", "Disponible en 15 langues"],
+        bullets: ["Fonctionne entièrement hors ligne", "Thème clair et sombre", "Disponible en 22 langues"],
       },
     ],
   },
@@ -181,17 +183,41 @@ export const fr: Messages = {
     subtitle: "29 services de tennis de table décortiqués : effet, rebond, placement et façon de les remettre. Gratuit, avec schémas.",
     cta: "Découvrir les services",
   },
+  pricing: {
+    eyebrow: "Tarifs",
+    title: "Gratuit au quotidien. Pro pour aller plus loin.",
+    subtitle: "Tout ce qu'il faut pour tenir un carnet d'entraînement est gratuit. TT Tracker Pro est un achat unique pour des indicateurs plus poussés et quelques extras.",
+    freeTitle: "Gratuit",
+    freeTagline: "Tout ce qu'il faut pour noter votre entraînement",
+    freeItems: ["Séances, matchs et adversaires illimités", "Calendrier, carte thermique sur 12 mois et taux de victoire", "Graphique d'entraînement hebdomadaire des 8 dernières semaines", "Widgets résumé, carte thermique et dernière séance", "Synchronisation iCloud gratuite sur iPhone et iPad"],
+    proTitle: "TT Tracker Pro",
+    proTagline: "Comprenez votre entraînement et personnalisez l'app",
+    proItems: [
+      { title: "Indicateurs d'entraînement", detail: "Séries, charge hebdomadaire et répartition des types de séance" },
+      { title: "Bilans en face-à-face", detail: "Votre bilan et votre forme récente contre chaque adversaire" },
+      { title: "Tout votre historique", detail: "L'entraînement hebdomadaire sur 6 mois, un an ou depuis le début" },
+      { title: "Plus de widgets", detail: "Votre série et votre charge d'entraînement sur l'écran d'accueil" },
+      { title: "Exporter en CSV", detail: "Transférez vos séances et matchs dans un tableur" },
+      { title: "Couleurs d'accent", detail: "Donnez à l'app et à ses widgets la couleur de votre choix" },
+    ],
+    oneTime: "Achat unique",
+    priceNote: "Sans abonnement. Le prix dans votre devise est indiqué sur l'App Store ou Google Play.",
+  },
   faq: {
     eyebrow: "FAQ",
     title: "Vos questions, nos réponses",
     items: [
       {
         q: "L'app TT Tracker est-elle gratuite ?",
-        a: "Oui. Vous pouvez la télécharger gratuitement sur l'App Store et Google Play, et enregistrer autant de séances et de matchs que vous le souhaitez.",
+        a: "Oui. Vous pouvez la télécharger gratuitement sur l'App Store et Google Play, et noter autant de séances et de matchs que vous le souhaitez. TT Tracker Pro est un achat unique facultatif qui ajoute des indicateurs d'entraînement, les bilans en face-à-face, tout votre historique, plus de widgets, l'export CSV et des couleurs d'accent.",
+      },
+      {
+        q: "Pro est-il un abonnement ?",
+        a: "Non. TT Tracker Pro est un achat unique, et la boutique affiche le prix dans votre devise avant l'achat. Après une réinstallation ou sur un nouvel appareil, touchez Restaurer les achats dans les Paramètres, avec le même compte Apple ou Google.",
       },
       {
         q: "Sur quels appareils fonctionne-t-elle ?",
-        a: "iPhone et iPad (iOS), ainsi que téléphones et tablettes Android. Les widgets pour l'écran d'accueil et l'écran verrouillé sont disponibles sur iOS.",
+        a: "Sur iPhone et iPad (iOS), ainsi que sur les smartphones et tablettes Android. Les widgets de l'écran d'accueil sont disponibles sur les deux ; les widgets de l'écran verrouillé et le bouton du Centre de contrôle sont réservés à iOS.",
       },
       {
         q: "Faut-il créer un compte ?",
@@ -199,7 +225,7 @@ export const fr: Messages = {
       },
       {
         q: "Fonctionne-t-elle hors ligne ? Où sont stockées mes données ?",
-        a: "Elle fonctionne entièrement hors ligne. Vos séances, matchs et adversaires sont stockés sur votre appareil, pas sur nos serveurs.",
+        a: "Elle fonctionne entièrement hors ligne. Vos séances, matchs et adversaires sont enregistrés sur votre appareil, pas sur nos serveurs. Sur iPhone et iPad, vous pouvez activer la synchronisation iCloud gratuite pour les retrouver sur tous vos appareils Apple.",
       },
       {
         q: "C'est pour le ping-pong ou le tennis de table ?",
@@ -207,7 +233,7 @@ export const fr: Messages = {
       },
       {
         q: "Dans quelles langues est-elle disponible ?",
-        a: "15 : anglais, arabe, chinois (simplifié et traditionnel), français, allemand, hindi, indonésien, italien, japonais, coréen, portugais, espagnol, turc et ukrainien.",
+        a: "En 22 : anglais, arabe, chinois (simplifié et traditionnel), tchèque, néerlandais, français, allemand, hindi, indonésien, italien, japonais, coréen, malais, polonais, portugais, espagnol, suédois, thaï, turc, ukrainien et vietnamien.",
       },
     ],
   },

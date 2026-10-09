@@ -16,6 +16,7 @@ export type Messages = {
     equipment: string;
     blog: string;
     faq: string;
+    pricing: string;
     getApp: string;
     openMenu: string;
     menu: string;
@@ -24,7 +25,16 @@ export type Messages = {
     language: string;
   };
   /** One-line descriptions under each header menu item. */
-  navHints: { features: string; howItWorks: string; faq: string; serves: string; drills: string; equipment: string; blog: string };
+  navHints: {
+    features: string;
+    howItWorks: string;
+    faq: string;
+    pricing: string;
+    serves: string;
+    drills: string;
+    equipment: string;
+    blog: string;
+  };
   store: { appStore: string; googlePlay: string };
   hero: {
     badge: string;
@@ -90,6 +100,23 @@ export type Messages = {
   };
   drillsTeaser: { eyebrow: string; title: string; subtitle: string; browseAll: string };
   servesTeaser: { eyebrow: string; title: string; subtitle: string; cta: string };
+  /**
+   * Free vs Pro. The Pro tagline and benefits are the app's own strings (pro_banner_tagline, pro_benefit_* in
+   * androidApp/src/main/res), so keep them in step with the paywall. No price: the stores show it per country.
+   */
+  pricing: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    freeTitle: string;
+    freeTagline: string;
+    freeItems: string[];
+    proTitle: string;
+    proTagline: string;
+    proItems: { title: string; detail: string }[];
+    oneTime: string;
+    priceNote: string;
+  };
   faq: { eyebrow: string; title: string; items: QA[] };
   cta: {
     homeTitle: string;

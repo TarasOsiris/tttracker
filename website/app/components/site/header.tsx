@@ -1,4 +1,4 @@
-import { Check, ChevronDown, CircleHelp, ClipboardList, Globe, Layers, Menu, Newspaper, RotateCw, Sparkles, Workflow, type LucideIcon } from "lucide-react";
+import { Check, ChevronDown, CircleHelp, ClipboardList, Crown, Globe, Layers, Menu, Newspaper, RotateCw, Sparkles, Workflow, type LucideIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useLocation, useMatches } from "react-router";
 import { Button } from "~/components/ui/button";
@@ -111,6 +111,7 @@ type NavLink = (typeof navLinks)[number];
 const navIcons: Record<NavLink["key"], LucideIcon> = {
   features: Sparkles,
   howItWorks: Workflow,
+  pricing: Crown,
   faq: CircleHelp,
   serves: RotateCw,
   drills: ClipboardList,

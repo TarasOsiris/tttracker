@@ -19,6 +19,7 @@ export const en: Messages = {
     equipment: "Equipment",
     blog: "Blog",
     faq: "FAQ",
+    pricing: "Pricing",
     getApp: "Get the app",
     openMenu: "Open menu",
     menu: "Menu",
@@ -30,6 +31,7 @@ export const en: Messages = {
     features: "Everything the app tracks",
     howItWorks: "From practice to progress",
     faq: "Common questions",
+    pricing: "Free and Pro, compared",
     serves: "Serves, spins, rules and a quiz",
     drills: "Printable training plans",
     equipment: "Blades, rubbers and pro setups",
@@ -47,7 +49,7 @@ export const en: Messages = {
     subtitleStrong: "ping pong & table tennis training journal",
     subtitleAfter:
       ". Log practice in under 30 seconds, record matches against saved opponents, and see a year of progress at a glance.",
-    trustPoints: ["Free", "No account", "Works offline", "15 languages"],
+    trustPoints: ["Free, Pro optional", "No account", "Works offline", "22 languages"],
   },
   mockup: {
     tryIt: "Try it — tap around",
@@ -119,14 +121,14 @@ export const en: Messages = {
       {
         icon: "widgets",
         title: "Home & Lock Screen widgets",
-        body: "Keep your heatmap and last session on your Home Screen and log new sessions from Control Center.",
+        body: "Keep your heatmap and last session on your Home Screen, on iPhone and Android. On iPhone, log new sessions from Control Center too.",
         bullets: ["Summary & heatmap widgets", "Lock Screen stats", "Quick add-session control"],
       },
       {
         icon: "simple",
         title: "Simple by design",
         body: "No sign-up, no clutter, no cloud required. Everything stays on your device.",
-        bullets: ["Works fully offline", "Light & dark theme", "Available in 15 languages"],
+        bullets: ["Works fully offline", "Light & dark theme", "Available in 22 languages"],
       },
     ],
   },
@@ -181,17 +183,41 @@ export const en: Messages = {
     subtitle: "29 table tennis serves broken down: spin, bounce, placement and how to return them. Free, with diagrams.",
     cta: "Explore serves",
   },
+  pricing: {
+    eyebrow: "Pricing",
+    title: "Free to use. Pro if you want more.",
+    subtitle: "Everything you need to keep a training log is free. TT Tracker Pro is a one-time purchase for deeper insights and a few extras.",
+    freeTitle: "Free",
+    freeTagline: "Everything you need to log your training",
+    freeItems: ["Unlimited sessions, matches and opponents", "Calendar, 12-month heatmap and win rate", "Weekly training chart for the last 8 weeks", "Summary, heatmap and last-session widgets", "Free iCloud sync on iPhone and iPad"],
+    proTitle: "TT Tracker Pro",
+    proTagline: "Understand your training and make the app yours",
+    proItems: [
+      { title: "Training insights", detail: "Streaks, weekly training load and your mix of session types" },
+      { title: "Head-to-head records", detail: "Your record and recent form against every opponent" },
+      { title: "Your whole history", detail: "Weekly training over 6 months, a year or all time" },
+      { title: "More widgets", detail: "Your streak and training load on the Home Screen" },
+      { title: "Export to CSV", detail: "Take your sessions and matches into a spreadsheet" },
+      { title: "Accent colors", detail: "Give the app and its widgets the color you like" },
+    ],
+    oneTime: "One-time purchase",
+    priceNote: "No subscription. The price in your currency is shown in the App Store or Google Play.",
+  },
   faq: {
     eyebrow: "FAQ",
     title: "Questions, answered",
     items: [
       {
         q: "Is TT Tracker free?",
-        a: "Yes. You can download it for free on the App Store and Google Play and log as many sessions and matches as you like.",
+        a: "Yes. Download it free on the App Store and Google Play and log as many sessions and matches as you like. TT Tracker Pro is an optional one-time purchase that adds training insights, head-to-head records, your whole history, more widgets, CSV export and accent colors.",
+      },
+      {
+        q: "Is Pro a subscription?",
+        a: "No. TT Tracker Pro is a one-time purchase, and the store shows the price in your currency before you buy. After reinstalling or on a new device, tap Restore purchases in Settings, signed in with the same Apple or Google account.",
       },
       {
         q: "Which devices does it run on?",
-        a: "iPhone and iPad (iOS) and Android phones and tablets. Home Screen and Lock Screen widgets are available on iOS.",
+        a: "iPhone and iPad (iOS) and Android phones and tablets. Home Screen widgets are on both; Lock Screen widgets and the Control Center button are iOS only.",
       },
       {
         q: "Do I need an account?",
@@ -199,7 +225,7 @@ export const en: Messages = {
       },
       {
         q: "Does it work offline? Where is my data stored?",
-        a: "It works fully offline. Your sessions, matches and opponents are stored on your device, not on our servers.",
+        a: "It works fully offline. Your sessions, matches and opponents are stored on your device, not on our servers. On iPhone and iPad you can turn on free iCloud sync to keep them the same on all your Apple devices.",
       },
       {
         q: "Is it for ping pong or table tennis?",
@@ -207,7 +233,7 @@ export const en: Messages = {
       },
       {
         q: "What languages is it available in?",
-        a: "15: English, Arabic, Chinese (Simplified and Traditional), French, German, Hindi, Indonesian, Italian, Japanese, Korean, Portuguese, Spanish, Turkish and Ukrainian.",
+        a: "22: English, Arabic, Chinese (Simplified and Traditional), Czech, Dutch, French, German, Hindi, Indonesian, Italian, Japanese, Korean, Malay, Polish, Portuguese, Spanish, Swedish, Thai, Turkish, Ukrainian and Vietnamese.",
       },
     ],
   },

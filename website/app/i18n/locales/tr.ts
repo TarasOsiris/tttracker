@@ -19,6 +19,7 @@ export const tr: Messages = {
     equipment: "Ekipman",
     blog: "Blog",
     faq: "SSS",
+    pricing: "Fiyatlar",
     getApp: "Uygulamayı indirin",
     openMenu: "Menüyü aç",
     menu: "Menü",
@@ -30,6 +31,7 @@ export const tr: Messages = {
     features: "Uygulamanın kaydettiği her şey",
     howItWorks: "Antrenmandan gelişime",
     faq: "Sık sorulan sorular",
+    pricing: "Ücretsiz ve Pro karşılaştırması",
     serves: "Servisler, falso, kurallar ve test",
     drills: "Yazdırılabilir antrenman planları",
     equipment: "Raket, lastik ve profesyonel ekipman (İngilizce)",
@@ -47,7 +49,7 @@ export const tr: Messages = {
     subtitleStrong: "Ping pong ve masa tenisi antrenman günlüğü",
     subtitleAfter:
       ". Antrenmanınızı 30 saniyeden kısa sürede kaydedin, kayıtlı rakiplere karşı maçlarınızı girin ve bir yıllık gelişiminizi tek bakışta görün.",
-    trustPoints: ["Ücretsiz", "Hesap gerekmez", "Çevrimdışı çalışır", "15 dil"],
+    trustPoints: ["Ücretsiz, Pro isteğe bağlı", "Hesap gerekmez", "Çevrimdışı çalışır", "22 dil"],
   },
   mockup: {
     tryIt: "Deneyin — dokunarak keşfedin",
@@ -120,14 +122,14 @@ export const tr: Messages = {
       {
         icon: "widgets",
         title: "Ana Ekran ve Kilitli Ekran widget'ları",
-        body: "Isı haritanızı ve son antrenmanınızı Ana Ekran'da tutun, yeni antrenmanları Denetim Merkezi'nden ekleyin.",
+        body: "Isı haritanızı ve son antrenmanınızı Ana Ekran'da tutun; iPhone ve Android'de. iPhone'da yeni antrenmanları Denetim Merkezi'nden de ekleyebilirsiniz.",
         bullets: ["Özet ve ısı haritası widget'ları", "Kilitli Ekran'da istatistikler", "Hızlı antrenman ekleme kontrolü"],
       },
       {
         icon: "simple",
         title: "Bilinçli olarak sade",
         body: "Üyelik yok, karmaşa yok, bulut gerekmez. Her şey cihazınızda kalır.",
-        bullets: ["Tamamen çevrimdışı çalışır", "Açık ve koyu tema", "15 dilde kullanılabilir"],
+        bullets: ["Tamamen çevrimdışı çalışır", "Açık ve koyu tema", "22 dilde kullanılabilir"],
       },
     ],
   },
@@ -183,17 +185,41 @@ export const tr: Messages = {
       "29 masa tenisi servis çeşidi tek tek açıklandı: falso, sekme, yerleşim ve nasıl karşılanacağı. Ücretsiz ve şemalı.",
     cta: "Servisleri keşfedin",
   },
+  pricing: {
+    eyebrow: "Fiyatlar",
+    title: "Kullanımı ücretsiz. Daha fazlası için Pro.",
+    subtitle: "Antrenman günlüğü tutmak için gereken her şey ücretsiz. TT Tracker Pro, daha derin içgörüler ve birkaç ek özellik için tek seferlik bir satın alımdır.",
+    freeTitle: "Ücretsiz",
+    freeTagline: "Antrenmanınızı kaydetmek için gereken her şey",
+    freeItems: ["Sınırsız antrenman, maç ve rakip", "Takvim, 12 aylık ısı haritası ve kazanma oranı", "Son 8 haftanın haftalık antrenman grafiği", "Özet, ısı haritası ve son antrenman widget'ları", "iPhone ve iPad'de ücretsiz iCloud eşzamanlama"],
+    proTitle: "TT Tracker Pro",
+    proTagline: "Antrenmanınızı anlayın, uygulamayı kendinize göre uyarlayın",
+    proItems: [
+      { title: "Antrenman içgörüleri", detail: "Seriler, haftalık antrenman yükü ve antrenman türü dağılımınız" },
+      { title: "İkili rekabet geçmişi", detail: "Her rakibe karşı bilançonuz ve son formunuz" },
+      { title: "Tüm geçmişiniz", detail: "6 ay, 1 yıl veya tüm zamanlar için haftalık antrenman" },
+      { title: "Daha fazla widget", detail: "Seriniz ve antrenman yükünüz Ana Ekran'da" },
+      { title: "CSV olarak dışa aktar", detail: "Antrenmanlarınızı ve maçlarınızı bir e-tabloya aktarın" },
+      { title: "Vurgu renkleri", detail: "Uygulamaya ve widget'larına sevdiğiniz rengi verin" },
+    ],
+    oneTime: "Tek seferlik satın alım",
+    priceNote: "Abonelik yok. Kendi para biriminizdeki fiyat App Store veya Google Play'de gösterilir.",
+  },
   faq: {
     eyebrow: "SSS",
     title: "Sorular ve yanıtlar",
     items: [
       {
         q: "TT Tracker ücretsiz mi?",
-        a: "Evet. App Store ve Google Play'den ücretsiz indirebilir, dilediğiniz kadar antrenman ve maç kaydedebilirsiniz.",
+        a: "Evet. App Store ve Google Play'den ücretsiz indirip istediğiniz kadar antrenman ve maç kaydedebilirsiniz. TT Tracker Pro; antrenman içgörüleri, ikili rekabet geçmişi, tüm geçmişiniz, daha fazla widget, CSV dışa aktarma ve vurgu renkleri ekleyen isteğe bağlı, tek seferlik bir satın alımdır.",
+      },
+      {
+        q: "Pro bir abonelik mi?",
+        a: "Hayır. TT Tracker Pro tek seferlik bir satın alımdır ve mağaza, satın almadan önce fiyatı kendi para biriminizde gösterir. Yeniden yükledikten sonra ya da yeni bir cihazda, aynı Apple veya Google hesabıyla Ayarlar'daki Satın alınanları geri yükle'ye dokunun.",
       },
       {
         q: "Hangi cihazlarda çalışır?",
-        a: "iPhone ve iPad (iOS) ile Android telefon ve tabletlerde. Ana Ekran ve Kilitli Ekran widget'ları iOS'ta kullanılabilir.",
+        a: "iPhone ve iPad (iOS) ile Android telefon ve tabletlerde çalışır. Ana Ekran widget'ları her ikisinde de var; Kilitli Ekran widget'ları ve Denetim Merkezi düğmesi yalnızca iOS'ta.",
       },
       {
         q: "Hesap açmam gerekiyor mu?",
@@ -201,7 +227,7 @@ export const tr: Messages = {
       },
       {
         q: "Çevrimdışı çalışır mı? Verilerim nerede saklanıyor?",
-        a: "Tamamen çevrimdışı çalışır. Antrenmanlarınız, maçlarınız ve rakipleriniz sunucularımızda değil, kendi cihazınızda saklanır.",
+        a: "Tamamen çevrimdışı çalışır. Antrenmanlarınız, maçlarınız ve rakipleriniz sunucularımızda değil, cihazınızda saklanır. iPhone ve iPad'de ücretsiz iCloud eşzamanlamasını açarak tüm Apple cihazlarınızda aynı verileri görebilirsiniz.",
       },
       {
         q: "Ping pong için mi, masa tenisi için mi?",
@@ -209,7 +235,7 @@ export const tr: Messages = {
       },
       {
         q: "Hangi dillerde kullanılabilir?",
-        a: "15 dilde: İngilizce, Arapça, Çince (Basitleştirilmiş ve Geleneksel), Fransızca, Almanca, Hintçe, Endonezce, İtalyanca, Japonca, Korece, Portekizce, İspanyolca, Türkçe ve Ukraynaca.",
+        a: "22 dilde: İngilizce, Arapça, Çince (Basitleştirilmiş ve Geleneksel), Çekçe, Felemenkçe, Fransızca, Almanca, Hintçe, Endonezce, İtalyanca, Japonca, Korece, Malayca, Lehçe, Portekizce, İspanyolca, İsveççe, Tayca, Türkçe, Ukraynaca ve Vietnamca.",
       },
     ],
   },

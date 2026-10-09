@@ -19,6 +19,7 @@ export const id: Messages = {
     equipment: "Peralatan",
     blog: "Blog",
     faq: "FAQ",
+    pricing: "Harga",
     getApp: "Unduh aplikasi",
     openMenu: "Buka menu",
     menu: "Menu",
@@ -30,6 +31,7 @@ export const id: Messages = {
     features: "Semua yang dicatat aplikasi",
     howItWorks: "Dari latihan ke kemajuan",
     faq: "Pertanyaan umum",
+    pricing: "Gratis dan Pro, dibandingkan",
     serves: "Servis, putaran, aturan, dan kuis",
     drills: "Program latihan yang bisa dicetak",
     equipment: "Blade, karet, dan perlengkapan pro (Inggris)",
@@ -47,7 +49,7 @@ export const id: Messages = {
     subtitleStrong: "Jurnal latihan tenis meja & pingpong",
     subtitleAfter:
       " untuk pemain di semua level. Catat latihan dalam kurang dari 30 detik, simpan skor pertandingan melawan lawan tersimpan, dan lihat progres setahun penuh sekali lihat.",
-    trustPoints: ["Gratis", "Tanpa akun", "Bisa offline", "15 bahasa"],
+    trustPoints: ["Gratis, Pro opsional", "Tanpa akun", "Bisa offline", "22 bahasa"],
   },
   mockup: {
     tryIt: "Coba — ketuk untuk menjelajah",
@@ -120,14 +122,14 @@ export const id: Messages = {
       {
         icon: "widgets",
         title: "Widget Layar Utama & Layar Terkunci",
-        body: "Pajang heatmap dan sesi terakhirmu di Layar Utama, lalu catat sesi baru langsung dari Pusat Kontrol.",
+        body: "Pajang heatmap dan sesi terakhirmu di Layar Utama, di iPhone maupun Android. Di iPhone, kamu juga bisa mencatat sesi baru dari Pusat Kontrol.",
         bullets: ["Widget ringkasan & heatmap", "Statistik di Layar Terkunci", "Kontrol cepat tambah sesi"],
       },
       {
         icon: "simple",
         title: "Sederhana sejak awal",
         body: "Tanpa daftar, tanpa ribet, tanpa perlu cloud. Semua data tetap di perangkatmu.",
-        bullets: ["Bekerja sepenuhnya offline", "Tema terang & gelap", "Tersedia dalam 15 bahasa"],
+        bullets: ["Bekerja sepenuhnya offline", "Tema terang & gelap", "Tersedia dalam 22 bahasa"],
       },
     ],
   },
@@ -183,17 +185,41 @@ export const id: Messages = {
       "29 servis tenis meja dibedah satu per satu: putaran, pantulan, penempatan, dan cara mengembalikannya. Gratis, lengkap dengan diagram.",
     cta: "Jelajahi servis",
   },
+  pricing: {
+    eyebrow: "Harga",
+    title: "Gratis dipakai. Pro kalau ingin lebih.",
+    subtitle: "Semua yang kamu perlukan untuk menulis jurnal latihan gratis. TT Tracker Pro adalah pembelian sekali bayar untuk wawasan yang lebih dalam dan beberapa fitur tambahan.",
+    freeTitle: "Gratis",
+    freeTagline: "Semua yang kamu perlukan untuk mencatat latihan",
+    freeItems: ["Sesi, pertandingan, dan lawan tanpa batas", "Kalender, heatmap 12 bulan, dan rasio kemenangan", "Grafik latihan mingguan untuk 8 minggu terakhir", "Widget ringkasan, heatmap, dan sesi terakhir", "Sinkronisasi iCloud gratis di iPhone dan iPad"],
+    proTitle: "TT Tracker Pro",
+    proTagline: "Pahami latihan Anda dan sesuaikan aplikasi dengan selera Anda",
+    proItems: [
+      { title: "Wawasan latihan", detail: "Rekor beruntun, beban latihan mingguan, dan ragam jenis latihan Anda" },
+      { title: "Rekor head-to-head", detail: "Rekor dan performa terkini Anda terhadap setiap lawan" },
+      { title: "Seluruh riwayat Anda", detail: "Latihan mingguan selama 6 bulan, setahun, atau sepanjang waktu" },
+      { title: "Lebih banyak widget", detail: "Rekor beruntun dan beban latihan di Layar Utama" },
+      { title: "Ekspor ke CSV", detail: "Bawa latihan dan pertandingan Anda ke spreadsheet" },
+      { title: "Warna aksen", detail: "Beri aplikasi dan widget-nya warna favorit Anda" },
+    ],
+    oneTime: "Sekali bayar",
+    priceNote: "Bukan langganan. Harga dalam mata uangmu ditampilkan di App Store atau Google Play.",
+  },
   faq: {
     eyebrow: "FAQ",
     title: "Pertanyaan yang sering diajukan",
     items: [
       {
         q: "Apakah TT Tracker gratis?",
-        a: "Ya. Kamu bisa mengunduhnya gratis di App Store dan Google Play, lalu mencatat sesi dan pertandingan sebanyak yang kamu mau.",
+        a: "Ya. Unduh gratis di App Store dan Google Play, lalu catat sesi dan pertandingan sebanyak yang kamu mau. TT Tracker Pro adalah pembelian sekali bayar opsional yang menambahkan wawasan latihan, rekor head-to-head, seluruh riwayatmu, lebih banyak widget, ekspor CSV, dan warna aksen.",
+      },
+      {
+        q: "Apakah Pro berupa langganan?",
+        a: "Tidak. TT Tracker Pro adalah pembelian sekali bayar, dan toko menampilkan harganya dalam mata uangmu sebelum membeli. Setelah instal ulang atau di perangkat baru, ketuk Pulihkan pembelian di Pengaturan dengan akun Apple atau Google yang sama.",
       },
       {
         q: "Bisa dipakai di perangkat apa saja?",
-        a: "iPhone dan iPad (iOS), serta ponsel dan tablet Android. Widget Layar Utama dan Layar Terkunci tersedia di iOS.",
+        a: "iPhone dan iPad (iOS) serta ponsel dan tablet Android. Widget Layar Utama ada di keduanya; widget Layar Terkunci dan tombol Pusat Kontrol hanya di iOS.",
       },
       {
         q: "Apakah saya perlu membuat akun?",
@@ -201,7 +227,7 @@ export const id: Messages = {
       },
       {
         q: "Apakah bisa dipakai offline? Di mana data saya disimpan?",
-        a: "Aplikasi ini bekerja sepenuhnya offline. Sesi latihan, pertandingan, dan lawanmu disimpan di perangkatmu, bukan di server kami.",
+        a: "Aplikasi ini berfungsi sepenuhnya secara offline. Sesi, pertandingan, dan lawanmu disimpan di perangkatmu, bukan di server kami. Di iPhone dan iPad, kamu bisa mengaktifkan sinkronisasi iCloud gratis agar datanya sama di semua perangkat Apple-mu.",
       },
       {
         q: "Ini untuk pingpong atau tenis meja?",
@@ -209,7 +235,7 @@ export const id: Messages = {
       },
       {
         q: "Tersedia dalam bahasa apa saja?",
-        a: "15 bahasa: Inggris, Arab, Mandarin (Sederhana dan Tradisional), Prancis, Jerman, Hindi, Indonesia, Italia, Jepang, Korea, Portugis, Spanyol, Turki, dan Ukraina.",
+        a: "22 bahasa: Inggris, Arab, Mandarin (Sederhana dan Tradisional), Ceko, Belanda, Prancis, Jerman, Hindi, Indonesia, Italia, Jepang, Korea, Melayu, Polandia, Portugis, Spanyol, Swedia, Thai, Turki, Ukraina, dan Vietnam.",
       },
     ],
   },

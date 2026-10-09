@@ -19,6 +19,7 @@ export const zh: Messages = {
     equipment: "器材",
     blog: "博客",
     faq: "常见问题",
+    pricing: "价格",
     getApp: "下载 App",
     openMenu: "打开菜单",
     menu: "菜单",
@@ -30,6 +31,7 @@ export const zh: Messages = {
     features: "应用能记录的一切",
     howItWorks: "从训练到进步",
     faq: "常见问题",
+    pricing: "免费版与 Pro 对比",
     serves: "发球、旋转、规则与测验",
     drills: "可打印的训练计划",
     equipment: "底板、胶皮与职业球员装备（英文）",
@@ -47,7 +49,7 @@ export const zh: Messages = {
     subtitleStrong: "乒乓球训练日记",
     subtitleAfter:
       "：不到 30 秒记下一次练习，对已保存的对手记录比赛，一整年的进步一目了然。",
-    trustPoints: ["免费", "无需注册", "离线可用", "支持 15 种语言"],
+    trustPoints: ["免费，Pro 可选", "无需注册", "离线可用", "22 种语言"],
   },
   mockup: {
     tryIt: "点一点，亲自试试",
@@ -119,14 +121,14 @@ export const zh: Messages = {
       {
         icon: "widgets",
         title: "主屏幕与锁屏小组件",
-        body: "把热力图和最近一次训练放在主屏幕上，还能从控制中心快速记录新训练。",
+        body: "把热力图和最近一次训练放在主屏幕上，iPhone 和 Android 都支持。在 iPhone 上还能从控制中心快速记录新训练。",
         bullets: ["概览与热力图小组件", "锁屏统计", "快速添加训练控件"],
       },
       {
         icon: "simple",
         title: "简单纯粹",
         body: "无需注册，没有多余功能，也不依赖云端。所有数据都保存在你的设备上。",
-        bullets: ["完全离线可用", "浅色与深色主题", "支持 15 种语言"],
+        bullets: ["完全离线可用", "浅色与深色主题", "支持 22 种语言"],
       },
     ],
   },
@@ -181,17 +183,41 @@ export const zh: Messages = {
     subtitle: "详解 29 种乒乓球发球：旋转、弹跳、落点，以及怎么接发球。免费，配图解。",
     cta: "浏览发球大全",
   },
+  pricing: {
+    eyebrow: "价格",
+    title: "免费使用，想要更多就选 Pro。",
+    subtitle: "记录训练所需的一切都是免费的。TT Tracker Pro 是一次性购买，带来更深入的洞察和一些额外功能。",
+    freeTitle: "免费",
+    freeTagline: "记录训练所需的一切",
+    freeItems: ["不限数量的训练、比赛和对手", "日历、12 个月热力图和胜率", "最近 8 周的每周训练图表", "概览、热力图和最近训练小组件", "iPhone 和 iPad 上免费的 iCloud 同步"],
+    proTitle: "TT Tracker Pro",
+    proTagline: "读懂你的训练，打造专属于你的应用",
+    proItems: [
+      { title: "训练洞察", detail: "连续纪录、每周训练负荷和训练类型分布" },
+      { title: "交手战绩", detail: "你与每位对手的战绩和近期状态" },
+      { title: "完整历史", detail: "6 个月、1 年或全部时间的每周训练" },
+      { title: "更多小组件", detail: "在主屏幕上查看连续纪录和训练负荷" },
+      { title: "导出为 CSV", detail: "将训练和比赛导入电子表格" },
+      { title: "强调色", detail: "为应用和小组件换上你喜欢的颜色" },
+    ],
+    oneTime: "一次性购买",
+    priceNote: "不是订阅。以你的货币计的价格会显示在 App Store 或 Google Play 中。",
+  },
   faq: {
     eyebrow: "常见问题",
     title: "常见问题解答",
     items: [
       {
         q: "乒乓球笔记免费吗？",
-        a: "免费。你可以在 App Store 和 Google Play 免费下载，训练和比赛想记多少就记多少。",
+        a: "是的。你可以在 App Store 和 Google Play 免费下载，想记录多少训练和比赛都可以。TT Tracker Pro 是可选的一次性购买，增加训练洞察、交手战绩、完整历史、更多小组件、CSV 导出和强调色。",
+      },
+      {
+        q: "Pro 是订阅吗？",
+        a: "不是。TT Tracker Pro 是一次性购买，购买前商店会以你的货币显示价格。重新安装或换新设备后，用同一个 Apple 或 Google 账号在设置中点按“恢复购买”即可。",
       },
       {
         q: "支持哪些设备？",
-        a: "iPhone 和 iPad（iOS），以及 Android 手机和平板。iOS 上还支持主屏幕和锁屏小组件。",
+        a: "支持 iPhone 和 iPad（iOS）以及 Android 手机和平板。两个平台都有主屏幕小组件；锁屏小组件和控制中心按钮仅限 iOS。",
       },
       {
         q: "需要注册账号吗？",
@@ -199,7 +225,7 @@ export const zh: Messages = {
       },
       {
         q: "可以离线使用吗？数据存在哪里？",
-        a: "完全可以离线使用。你的训练、比赛和对手数据都保存在你的设备上，不在我们的服务器上。",
+        a: "完全可以离线使用。你的训练、比赛和对手都保存在你的设备上，而不是我们的服务器上。在 iPhone 和 iPad 上，你可以开启免费的 iCloud 同步，让所有 Apple 设备上的数据保持一致。",
       },
       {
         q: "适合业余爱好者，还是正式打比赛的球员？",
@@ -207,7 +233,7 @@ export const zh: Messages = {
       },
       {
         q: "支持哪些语言？",
-        a: "共 15 种：英语、阿拉伯语、简体中文、繁体中文、法语、德语、印地语、印尼语、意大利语、日语、韩语、葡萄牙语、西班牙语、土耳其语和乌克兰语。",
+        a: "22 种：英语、阿拉伯语、中文（简体和繁体）、捷克语、荷兰语、法语、德语、印地语、印尼语、意大利语、日语、韩语、马来语、波兰语、葡萄牙语、西班牙语、瑞典语、泰语、土耳其语、乌克兰语和越南语。",
       },
     ],
   },

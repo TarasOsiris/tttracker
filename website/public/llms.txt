@@ -1,6 +1,6 @@
 # Ping Pong & Table Tennis Log (TT Tracker)
 
-> Free table tennis training journal for iPhone, iPad and Android. Log practice sessions in under 30 seconds, record matches game by game against saved opponents, and see progress with a 12-month training heatmap and win-rate stats. No account, works offline. This site also hosts a free table tennis serve encyclopedia, an equipment encyclopedia (blades, rubbers, pro player setups) and printable training plans.
+> Free table tennis training journal for iPhone, iPad and Android. Log practice sessions in under 30 seconds, record matches game by game against saved opponents, and see progress with a 12-month training heatmap and win-rate stats. No account, works offline, available in 22 languages. Free to use; an optional one-time purchase, TT Tracker Pro, adds training insights (streaks, training load, session-type mix), head-to-head records, 6-month/1-year/all-time charts, streak and training-load widgets, CSV export and accent colors (price shown in each store). This site also hosts a free table tennis serve encyclopedia, an equipment encyclopedia (blades, rubbers, pro player setups) and printable training plans.
 
 - App Store: https://apps.apple.com/app/id6758044383
 - Google Play: https://play.google.com/store/apps/details?id=xyz.tleskiv.tt
@@ -8,7 +8,7 @@
 
 ## App
 
-- [Home](https://ttapp.smashyapps.com/): features, screenshots and FAQ for the app
+- [Home](https://ttapp.smashyapps.com/): features, screenshots, Free vs Pro and FAQ for the app
 
 ## Serve encyclopedia
 
