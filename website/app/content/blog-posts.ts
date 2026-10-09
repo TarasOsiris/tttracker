@@ -75,7 +75,83 @@ const arenaImage = {
 };
 
 export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: BlogPost[] } = {
-  en: [{
+  en: [
+  {
+  slug: "how-to-practise-table-tennis-serves-alone",
+  title: "How to Practise Table Tennis Serves Alone: A 30-Minute Routine",
+  description:
+    "A 30-minute serve practice routine for club players: a legal toss, short backspin, different spins from one motion, placement targets and serve plus third ball.",
+  published: "2026-10-09",
+  readMinutes: 6,
+  keywords: [
+    "table tennis serve practice",
+    "how to practice serves table tennis",
+    "ping pong serve drills",
+    "short backspin serve",
+    "table tennis serve routine",
+    "table tennis tips",
+  ],
+  hero: {
+    ...harimotoImage,
+    alt: "Tomokazu Harimoto crouching over the table with the ball in his palm, about to serve",
+    caption: "Tomokazu Harimoto about to serve. Archive photo from the 2017 German Open.",
+  },
+  intro:
+    "Service changes every two points, so you serve on about half the points of every game, and it is the one shot you can practise with nobody on the other side of the table. All you need is a box of balls and half an hour. Here is a routine for club players, with links to the serves and drills on this site.",
+  takeaways: [
+    "**Start legal:** ball on an open palm, tossed up almost vertically at least 16 cm, struck on the way down and never hidden from the receiver.",
+    "**Short backspin first:** a serve that would bounce twice on the other side is hard to attack.",
+    "**One motion, several spins:** backspin, no-spin and sidespin from an action that looks the same.",
+    "**Aim at targets and count hits out of 10**, so you can tell whether you are improving.",
+    "**Finish with serve plus third ball**, the way you will use the serve in a match.",
+  ],
+  sections: [
+    {
+      heading: "Before you start: make it legal",
+      blocks: [
+        "Under the laws of table tennis the ball rests on the open palm of your free hand, you toss it nearly straight up, without spin, at least 16 cm, and you hit it as it falls. It has to stay behind your end line and above the level of the table, and your body or free arm must not hide it from the receiver. If the umpire doubts a serve you get a warning; after that, a doubtful serve costs a point.",
+        "Club matches are often played without an umpire, so a barely-there toss or a hidden contact becomes a habit nobody corrects until a refereed match. Practise the legal version from the first ball. The [serve rules page](/rules) shows the common faults.",
+      ],
+    },
+    {
+      heading: "Minutes 0-10: short backspin",
+      blocks: [
+        "Start with the serve most club players need most: [pendulum backspin short](/serves/pendulum-backspin-short). Brush under the back of the ball and keep it low over the net. For a short serve the first bounce lands on your half close to the net; a first bounce near your own end line sends the ball long.",
+        "The test: if nobody touches it, a good short serve bounces at least twice on the other side instead of dropping off the end. Serve 10, count how many pass, write the number down, and repeat. Your goal is to raise that number over the weeks, not to hit 10 out of 10 today.",
+      ],
+    },
+    {
+      heading: "Minutes 10-20: same motion, different spin",
+      blocks: [
+        "Receivers read your racket. If every backspin serve looks different from every no-spin serve, a good receiver will know what is coming. So keep the motion and change only the contact: brush under the ball for backspin, and for [no-spin](/serves/pendulum-no-spin) push through the ball with little brush, contacting nearer the handle. Alternate them, and ask a clubmate later whether they can tell which is which.",
+        "When that feels natural, add [sidespin](/serves/pendulum-sidespin-long) from the same [pendulum motion](/motions/pendulum). The [spin guide](/spins) explains what each spin does on the bounce and off the receiver's racket.",
+      ],
+    },
+    {
+      heading: "Minutes 20-25: placement",
+      blocks: [
+        "Put two targets on the other side, a sheet of paper or a cap works: one short to the forehand, one short to the middle. Alternate between them. Then, every third or fourth serve, go [fast and long to the backhand](/serves/fast-long-surprise-bh). A long serve works because the receiver is expecting short, so it belongs in the mix, not on its own.",
+      ],
+    },
+    {
+      heading: "Minutes 25-30: serve plus third ball",
+      blocks: [
+        "A serve only matters for the ball that comes back. With a partner, have them push or flick your serve and attack the third ball. On your own, serve and step straight into your ready position each time, so the recovery becomes part of the serve. The [serve and receive training plan](/drills/serve-and-receive) has timed blocks for both sides when you do have a partner.",
+      ],
+    },
+    {
+      heading: "Keep score of your practice",
+      blocks: [
+        "Log the half hour in [Ping Pong & Table Tennis Log](/) as a Serve Practice session, with your counts out of 10 in the note. After a few weeks the notes show whether the short serve is getting shorter, and your match record shows whether it is winning points. Want to check how well you read serves? Try the [serve quiz](/quiz).",
+      ],
+    },
+  ],
+  sources: [
+    { label: "Wikipedia: Table tennis, service and return", url: "https://en.wikipedia.org/wiki/Table_tennis#Service_and_return" },
+    { label: "Wikipedia: Table tennis, alternation of services and ends", url: "https://en.wikipedia.org/wiki/Table_tennis#Alternation_of_services_and_ends" },
+  ],
+},
+  {
   slug: "china-smash-2026-upsets-zhu-sibing-zhou-qihao-quarterfinals",
   title: "China Smash 2026: Zhu Sibing and Zhou Qihao Stun Seeds, Quarterfinals Set",
   description:
