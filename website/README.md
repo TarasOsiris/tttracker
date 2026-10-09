@@ -8,11 +8,23 @@ Landing page and free training-plan pages for the TT Tracker app. React Router 7
 - `npm run preview` — serve the static build
 - `scripts/og-images.sh` — after a build, re-renders the per-language share cards in `public/og/` from the home hero
 
-Copy lives in `app/content/` (`site.ts`, `drills.ts`). Adding a drill there adds its page to the prerender list and `sitemap.xml` automatically.
+Copy lives in `app/content/` (`site.ts`, `drills.ts`, `changelog.ts`). Adding a drill there adds its page to the prerender list and `sitemap.xml` automatically. `/support` is localized; `/changelog` is English only and lists user-visible changes per app release, dated by the version bump.
+
+## Blog
+
+Posts live in `app/content/blog-posts.ts`, written in English. A translation goes in its language's list under the same slug; a language gets a post page, hreflang entry and sitemap entry only for posts really translated into it, and a blog index only when it has at least one (`blog.server.ts`). Other localized blog URLs 301 to the English page (nginx rule, and `serve.json` redirects written at build time). At build time the first mention of a player who has an `/equipment/pros` page links there, replacing a Wikipedia link to them.
+
+## Pricing and analytics
+
+The home page's Pricing section and the FAQ describe TT Tracker Pro from the app's own Pro benefit strings; no price is shown, since it varies by store country. The home page's app schema adds the App Store rating (fetched at build time) once the listing has at least 5 ratings. Google Analytics runs in Consent Mode v2: denied by default in the EEA, the UK and Switzerland, with a banner for visitors in a European time zone and "Cookie settings" in the footer.
+
+## Deploy
+
+Production is the `Dockerfile` (static build served by nginx with `nginx.conf`: caching, gzip, security headers, redirects) behind Cloudflare. `nixpacks.toml` (`npx serve` with `public/serve.json`) mirrors the headers and redirects but isn't used in production. `404.html` is the prerendered `/404` page without its scripts, so it works without JavaScript.
 
 ## Localization
 
-English is served at `/`, other languages at `/{code}` (`es`, `de`, `fr`, `pt`, `ja`, `zh`, `zh-tw`, `ko`, `it`, `uk`, `tr`, `id`, `hi`, `ar`) — the same languages the apps ship. All copy lives in `app/i18n/locales/{code}.ts`, typed by `app/i18n/types.ts`. Arabic renders right-to-left (`localeInfo[l].dir`), so layout uses logical classes (`ms-`, `ps-`, `start-`, `text-start`) and directional icons flip with `rtl:rotate-180`. Page titles and descriptions follow each store listing's name, subtitle and keywords (`TableTennisTracker/fastlane/metadata`). Translations are loaded only in build-time loaders (`messages.server.ts`), so each page ships just its own language. The build fails if a locale's drills drift from the English structure.
+English is served at `/`, other languages at `/{code}` (`es`, `de`, `fr`, `pt`, `ja`, `zh`, `zh-tw`, `ko`, `it`, `uk`, `tr`, `id`, `hi`, `ar`): 15 of the 22 languages the apps ship. Czech, Dutch, Malay, Polish, Swedish, Thai and Vietnamese are in the apps and store listings but not on the site yet. All copy lives in `app/i18n/locales/{code}.ts`, typed by `app/i18n/types.ts`. Arabic renders right-to-left (`localeInfo[l].dir`), so layout uses logical classes (`ms-`, `ps-`, `start-`, `text-start`) and directional icons flip with `rtl:rotate-180`. Page titles and descriptions follow each store listing's name, subtitle and keywords (`TableTennisTracker/fastlane/metadata`). Translations are loaded only in build-time loaders (`messages.server.ts`), so each page ships just its own language. The build fails if a locale's drills drift from the English structure.
 
 ## Serve encyclopedia
 
