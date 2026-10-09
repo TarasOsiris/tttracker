@@ -1,4 +1,4 @@
-import { copyFile, readFile, writeFile } from "node:fs/promises";
+import { readFile, rm, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import type { Config } from "@react-router/dev/config";
 import { blogPages, untranslatedBlogPaths } from "./app/content/blog.server";
@@ -52,7 +52,7 @@ const pages: Page[] = [
   ...equipmentPaths.map((path) => ({ path, locales: [defaultLocale] })),
 ];
 
-const paths = [...pages.flatMap((p) => p.locales.map((l) => localizePath(l, p.path))), ...illustrationPaths];
+const paths = [...pages.flatMap((p) => p.locales.map((l) => localizePath(l, p.path))), ...illustrationPaths, "/404"];
 
 function sitemap() {
   const entries = pages.flatMap((p) =>
@@ -78,14 +78,29 @@ async function serveConfig(client: string) {
   await writeFile(file, `${JSON.stringify({ ...config, redirects: [...(config.redirects ?? []), ...redirects] }, null, 2)}\n`);
 }
 
+/**
+ * nginx's 404.html: the prerendered /404 page without React Router's scripts, so it shows its content (header,
+ * message, footer) as plain HTML instead of an empty SPA shell that needs JavaScript and a matching route. React's
+ * own inline scripts stay, since they reveal streamed content.
+ */
+async function notFoundPage(client: string) {
+  const html = (await readFile(join(client, "404", "index.html"), "utf8"))
+    .replace(/<link rel="modulepreload"[^>]*>/g, "")
+    .replace(/<script type="module"[^>]*>[\s\S]*?<\/script>/g, "")
+    .replace(/<script>window\.__reactRouter[\s\S]*?<\/script>/g, "");
+  await writeFile(join(client, "404.html"), html);
+  await rm(join(client, "404"), { recursive: true });
+  await rm(join(client, "404.data"), { force: true });
+}
+
 export default {
   ssr: false,
   prerender: paths,
-  // Sitemap and 404 page are derived from the same route list, so new drills or locales can't be missed.
+  // The sitemap is derived from the same page list as the prerender, so new drills or locales can't be missed.
   async buildEnd({ reactRouterConfig }) {
     const client = join(reactRouterConfig.buildDirectory, "client");
     await writeFile(join(client, "sitemap.xml"), sitemap());
     await serveConfig(client);
-    await copyFile(join(client, "__spa-fallback.html"), join(client, "404.html"));
+    await notFoundPage(client);
   },
 } satisfies Config;

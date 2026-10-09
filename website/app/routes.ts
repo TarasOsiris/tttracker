@@ -60,4 +60,6 @@ export default [
     equipmentPages.map(([path, file]) => route(path, `equipment/pages/${file}.tsx`)),
   ),
   route("equipment/img/:kind/:file", "equipment/pages/Illustration.ts"),
+  // Becomes the static 404.html at build time; not a page of its own.
+  route("404", "routes/not-found.tsx"),
 ] satisfies RouteConfig;

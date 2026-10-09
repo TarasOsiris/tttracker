@@ -18,7 +18,7 @@ import { SiteFooter } from "~/components/site/footer";
 import { SiteHeader } from "~/components/site/header";
 import { buttonVariants } from "~/components/ui/button";
 import { blogLocales } from "~/content/blog.server";
-import { APP_STORE_ID } from "~/content/site";
+import { APP_STORE_ID, SITE_URL } from "~/content/site";
 import { localeFromPath, localeInfo, localizePath } from "~/i18n/config";
 import { uiMessages } from "~/i18n/messages.server";
 import "./app.css";
@@ -75,7 +75,8 @@ export function shouldRevalidate({ currentUrl, nextUrl, defaultShouldRevalidate 
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const locale = localeFromPath(useLocation().pathname);
+  const { pathname } = useLocation();
+  const locale = localeFromPath(pathname);
   const data = useRouteLoaderData<typeof loader>("root");
   return (
     <html lang={localeInfo[locale].hreflang} dir={localeInfo[locale].dir ?? "ltr"} suppressHydrationWarning>
@@ -83,8 +84,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#415f91" />
-        {/* Safari's Smart App Banner: a native "Get" bar for the App Store listing on iPhone and iPad. */}
-        <meta name="apple-itunes-app" content={`app-id=${APP_STORE_ID}`} />
+        {/* Safari's Smart App Banner: a native "Get" bar for the App Store listing on iPhone and iPad. When the app
+            is installed, "Open" hands it this page's URL as the app-argument. */}
+        <meta name="apple-itunes-app" content={`app-id=${APP_STORE_ID}, app-argument=${SITE_URL}${pathname === "/" ? "" : pathname}`} />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
         <script dangerouslySetInnerHTML={{ __html: gaScript }} />
