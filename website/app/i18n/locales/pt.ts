@@ -221,6 +221,9 @@ export const pt: Messages = {
     drillSubtitle: "Salve como uma sessão de {type} com duração e esforço, e veja sua sequência crescer.",
     servesTitle: "Treinando seus saques? Registre cada sessão.",
     servesSubtitle: "Anote treinos de saque, partidas e adversários no diário de tênis de mesa grátis para iPhone, iPad e Android e veja o que está dando resultado.",
+    blogTitle: "Acompanhe suas próprias partidas como os profissionais.",
+    blogSubtitle: "Registre treinos, partidas e adversários em segundos e veja sua evolução. Grátis para iPhone, iPad e Android.",
+    blogInline: "Tenha seu próprio diário de treino: sessões, partidas e adversários, em um app grátis para iPhone, iPad e Android.",
   },
   footer: {
     tagline: "O diário de treino para quem joga ping pong e tênis de mesa. Registre treinos, anote partidas e acompanhe sua evolução.",

@@ -1,6 +1,10 @@
+import { Fragment } from "react";
 import { data, Link } from "react-router";
 import type { Route } from "./+types/blog-post";
+import appIcon from "~/assets/icon/app-icon-512.png";
+import { CtaSection } from "~/components/site/cta-section";
 import { inline } from "~/components/site/legal-page";
+import { StoreButtons } from "~/components/site/store-buttons";
 import { type BlogImage, formatDate } from "~/content/blog";
 import { blogPost } from "~/content/blog.server";
 import { appNames, SITE_URL } from "~/content/site";
@@ -84,8 +88,8 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
   const { t, href } = useI18n();
 
   return (
-    <article className="px-4 pt-32 pb-20 sm:px-6 sm:pt-40">
-      <div className="mx-auto max-w-3xl">
+    <article className="pt-32 sm:pt-40">
+      <div className="mx-auto max-w-3xl px-4 sm:px-6">
         <nav aria-label={t.blog.breadcrumb} className="text-sm text-muted-foreground">
           <Link to={href("/blog")} className="hover:text-foreground">
             {t.blog.breadcrumb}
@@ -107,24 +111,27 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
             ))}
           </ul>
         </aside>
-        {post.sections.map((section) => (
-          <section key={section.heading} className="mt-10">
-            <h2 className="font-display text-xl font-bold tracking-tight sm:text-2xl">{section.heading}</h2>
-            {section.image && <Figure image={section.image} />}
-            <div className="mt-4 space-y-4 leading-relaxed text-muted-foreground">
-              {section.blocks.map((block, i) =>
-                typeof block === "string" ? (
-                  <p key={i}>{inline(block)}</p>
-                ) : (
-                  <ul key={i} className="list-disc space-y-3 pl-5 marker:text-primary">
-                    {block.list.map((item, j) => (
-                      <li key={j}>{inline(item)}</li>
-                    ))}
-                  </ul>
-                ),
-              )}
-            </div>
-          </section>
+        {post.sections.map((section, index) => (
+          <Fragment key={section.heading}>
+            {index === INLINE_CTA_AFTER && post.sections.length > INLINE_CTA_AFTER + 1 && <InlineCta />}
+            <section className="mt-10">
+              <h2 className="font-display text-xl font-bold tracking-tight sm:text-2xl">{section.heading}</h2>
+              {section.image && <Figure image={section.image} />}
+              <div className="mt-4 space-y-4 leading-relaxed text-muted-foreground">
+                {section.blocks.map((block, i) =>
+                  typeof block === "string" ? (
+                    <p key={i}>{inline(block)}</p>
+                  ) : (
+                    <ul key={i} className="list-disc space-y-3 pl-5 marker:text-primary">
+                      {block.list.map((item, j) => (
+                        <li key={j}>{inline(item)}</li>
+                      ))}
+                    </ul>
+                  ),
+                )}
+              </div>
+            </section>
+          </Fragment>
         ))}
         <section className="mt-12 border-t pt-8">
           <h2 className="font-display text-lg font-bold">{t.blog.sources}</h2>
@@ -157,7 +164,22 @@ export default function BlogPost({ loaderData }: Route.ComponentProps) {
           </section>
         )}
       </div>
+      <CtaSection title={t.cta.blogTitle} subtitle={t.cta.blogSubtitle} placement="blog" />
     </article>
+  );
+}
+
+/** A compact app pitch between sections, for readers who never reach the end of the post. */
+const INLINE_CTA_AFTER = 2;
+
+function InlineCta() {
+  const { t } = useI18n();
+  return (
+    <aside className="mt-10 flex flex-col items-center gap-5 rounded-2xl border bg-card p-6 text-center sm:flex-row sm:text-start">
+      <img src={appIcon} alt="" width={56} height={56} loading="lazy" decoding="async" className="size-14 shrink-0 rounded-[0.9rem]" />
+      <p className="flex-1 font-medium text-balance">{t.cta.blogInline}</p>
+      <StoreButtons placement="blog-inline" className="sm:w-auto sm:flex-col [&>a]:h-10 [&>a]:text-sm" />
+    </aside>
   );
 }
 

@@ -223,6 +223,9 @@ export const tr: Messages = {
     drillSubtitle: "Türü {type} olarak seçip süresi ve yoğunluğuyla kaydedin, serinizin uzamasını izleyin.",
     servesTitle: "Servis mi çalışıyorsunuz? Her antrenmanı kaydedin.",
     servesSubtitle: "iPhone, iPad ve Android için ücretsiz masa tenisi günlüğünde servis çalışmalarınızı, maçlarınızı ve rakiplerinizi takip edin; neyin işe yaradığını görün.",
+    blogTitle: "Kendi maçlarınızı profesyoneller gibi takip edin.",
+    blogSubtitle: "Antrenmanları, maçları ve rakipleri saniyeler içinde kaydedin, gelişiminizi görün. iPhone, iPad ve Android'de ücretsiz.",
+    blogInline: "Kendi antrenman günlüğünüzü tutun: antrenmanlar, maçlar ve rakipler, iPhone, iPad ve Android için ücretsiz bir uygulamada.",
   },
   footer: {
     tagline:

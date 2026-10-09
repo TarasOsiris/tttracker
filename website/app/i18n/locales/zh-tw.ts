@@ -220,6 +220,9 @@ export const zhTw: Messages = {
     drillSubtitle: "存成「{type}」，填上時長與強度，看著你的連續紀錄不斷延長。",
     servesTitle: "在練發球？把每次訓練都記下來。",
     servesSubtitle: "在免費的桌球筆記中記錄發球練習、比賽和對手，支援 iPhone、iPad 和 Android，看清哪些訓練真正有效。",
+    blogTitle: "像職業選手一樣，記錄你自己的比賽。",
+    blogSubtitle: "幾秒鐘記下訓練、比賽和對手，看清自己的進步。iPhone、iPad 與 Android 皆可免費使用。",
+    blogInline: "建立你自己的訓練日誌：訓練、比賽和對手，盡在一款適用於 iPhone、iPad 與 Android 的免費 App。",
   },
   footer: {
     tagline: "專為桌球（乒乓球）球友打造的訓練日誌。記下練習與比賽，看見自己的進步。",

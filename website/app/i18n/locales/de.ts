@@ -220,6 +220,9 @@ export const de: Messages = {
     drillSubtitle: "Speichere sie als Einheit vom Typ „{type}“ mit Dauer und Anstrengung und sieh deine Trainingsserie wachsen.",
     servesTitle: "Du trainierst Aufschläge? Erfasse jede Einheit.",
     servesSubtitle: "Halte Aufschlagtraining, Spiele und Gegner im kostenlosen Tischtennis-Tagebuch für iPhone, iPad und Android fest und sieh, was sich auszahlt.",
+    blogTitle: "Behalte deine eigenen Spiele im Blick wie die Profis.",
+    blogSubtitle: "Trainingseinheiten, Matches und Gegner in Sekunden erfassen und den Fortschritt sehen. Kostenlos für iPhone, iPad und Android.",
+    blogInline: "Führe dein eigenes Trainingstagebuch: Einheiten, Matches und Gegner in einer kostenlosen App für iPhone, iPad und Android.",
   },
   footer: {
     tagline: "Das Trainingstagebuch für Tischtennis- und Ping-Pong-Spieler. Einheiten erfassen, Spiele eintragen, Fortschritt sehen.",

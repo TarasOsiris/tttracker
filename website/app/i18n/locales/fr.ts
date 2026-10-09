@@ -220,6 +220,9 @@ export const fr: Messages = {
     drillSubtitle: "Enregistrez-la comme séance « {type} » avec sa durée et son effort, et regardez votre série s'allonger.",
     servesTitle: "Vous travaillez vos services ? Notez chaque séance.",
     servesSubtitle: "Suivez vos séances de service, vos matchs et vos adversaires dans le carnet de tennis de table gratuit pour iPhone, iPad et Android, et voyez ce qui paie.",
+    blogTitle: "Suivez vos propres matchs comme les pros.",
+    blogSubtitle: "Notez vos séances, vos matchs et vos adversaires en quelques secondes et suivez vos progrès. Gratuit sur iPhone, iPad et Android.",
+    blogInline: "Tenez votre propre carnet d'entraînement : séances, matchs et adversaires, dans une app gratuite pour iPhone, iPad et Android.",
   },
   footer: {
     tagline: "Le carnet d'entraînement des joueurs de ping-pong et de tennis de table. Notez vos séances, enregistrez vos matchs, suivez votre progression.",

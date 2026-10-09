@@ -1,7 +1,16 @@
 import appIcon from "~/assets/icon/app-icon-512.png";
+import type { StorePlacement } from "~/content/site";
 import { StoreButtons } from "./store-buttons";
 
-export function CtaSection({ title, subtitle }: { title: React.ReactNode; subtitle: string }) {
+export function CtaSection({
+  title,
+  subtitle,
+  placement = "cta",
+}: {
+  title: React.ReactNode;
+  subtitle: string;
+  placement?: StorePlacement;
+}) {
   return (
     <section id="download" className="px-4 py-20 sm:px-6">
       <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[2.5rem] bg-brand-navy px-6 py-16 text-center text-white sm:px-12 sm:py-20">
@@ -12,7 +21,7 @@ export function CtaSection({ title, subtitle }: { title: React.ReactNode; subtit
           {title}
         </h2>
         <p className="relative mx-auto mt-5 max-w-xl text-lg text-white/75">{subtitle}</p>
-        <StoreButtons inverted placement="cta" className="relative mx-auto mt-9 justify-center" />
+        <StoreButtons inverted placement={placement} className="relative mx-auto mt-9 justify-center" />
       </div>
     </section>
   );

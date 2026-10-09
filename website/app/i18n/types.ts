@@ -100,6 +100,10 @@ export type Messages = {
     drillSubtitle: string;
     servesTitle: string;
     servesSubtitle: string;
+    blogTitle: string;
+    blogSubtitle: string;
+    /** One line beside the store buttons in the middle of a blog post. */
+    blogInline: string;
   };
   footer: {
     tagline: string;

@@ -62,7 +62,7 @@ export const navGroups = ["app", "learn"] as const;
 export const screenshotFiles = ["screen-1", "screen-2", "screen-3", "screen-4", "screen-5", "screen-6", "screen-7", "screen-8"];
 
 /** Where on the site a store link sits; becomes the Play install referrer and the GA event label. */
-export type StorePlacement = "hero" | "cta" | "menu" | "footer";
+export type StorePlacement = "hero" | "cta" | "menu" | "footer" | "blog" | "blog-inline";
 
 const playLanguage: Partial<Record<Locale, string>> = { pt: "pt-BR", zh: "zh-CN", "zh-tw": "zh-TW" };
 

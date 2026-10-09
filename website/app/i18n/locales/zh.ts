@@ -220,6 +220,9 @@ export const zh: Messages = {
     drillSubtitle: "按“{type}”类型保存，填上时长和强度，看着连续训练纪录不断刷新。",
     servesTitle: "在练发球？把每次训练都记下来。",
     servesSubtitle: "在免费的乒乓球笔记中记录发球练习、比赛和对手，支持 iPhone、iPad 和 Android，看清哪些训练真正有效。",
+    blogTitle: "像职业选手一样，记录你自己的比赛。",
+    blogSubtitle: "几秒钟记下训练、比赛和对手，看清自己的进步。iPhone、iPad 和 Android 上免费使用。",
+    blogInline: "建立你自己的训练日志：训练、比赛和对手，尽在一款适用于 iPhone、iPad 和 Android 的免费应用。",
   },
   footer: {
     tagline: "为乒乓球爱好者打造的训练日记。记录训练、记录比赛、看见进步。",

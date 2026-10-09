@@ -220,6 +220,9 @@ export const it: Messages = {
     drillSubtitle: "Salvalo nell'app con il tipo «{type}», la durata e l'intensità, e guarda crescere la tua serie.",
     servesTitle: "Alleni il servizio? Registra ogni sessione.",
     servesSubtitle: "Annota allenamenti al servizio, partite e avversari nel diario di tennis tavolo gratis per iPhone, iPad e Android, e scopri cosa funziona.",
+    blogTitle: "Tieni traccia delle tue partite come i professionisti.",
+    blogSubtitle: "Registra allenamenti, partite e avversari in pochi secondi e guarda i tuoi progressi. Gratis su iPhone, iPad e Android.",
+    blogInline: "Tieni il tuo diario di allenamento: sessioni, partite e avversari, in un'app gratuita per iPhone, iPad e Android.",
   },
   footer: {
     tagline: "Il diario di allenamento per chi gioca a ping pong e tennistavolo. Registra gli allenamenti, segna le partite, segui i tuoi progressi.",

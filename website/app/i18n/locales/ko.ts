@@ -220,6 +220,9 @@ export const ko: Messages = {
     drillSubtitle: "{type} 유형으로 시간과 강도를 저장하고, 연속 기록을 쌓아 가세요.",
     servesTitle: "서브 연습 중인가요? 매 세션을 기록하세요.",
     servesSubtitle: "iPhone, iPad, Android용 무료 탁구 훈련일지에 서브 연습, 경기, 상대를 기록하고 무엇이 효과가 있는지 확인하세요.",
+    blogTitle: "프로처럼 나의 경기를 기록하세요.",
+    blogSubtitle: "훈련, 경기, 상대를 몇 초 만에 기록하고 성장을 확인하세요. iPhone, iPad, Android에서 무료.",
+    blogInline: "나만의 훈련 일지를 써 보세요. 훈련, 경기, 상대를 iPhone, iPad, Android용 무료 앱에 기록할 수 있습니다.",
   },
   footer: {
     tagline: "탁구인을 위한 훈련일지. 연습을 기록하고, 경기를 남기고, 실력 향상을 확인하세요.",

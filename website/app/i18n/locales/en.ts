@@ -220,6 +220,9 @@ export const en: Messages = {
     drillSubtitle: "Save it as a {type} session with its duration and effort, and watch your streak build.",
     servesTitle: "Practicing your serves? Log every session.",
     servesSubtitle: "Track serve practice, matches and opponents in the free table tennis journal for iPhone, iPad and Android, and see what's paying off.",
+    blogTitle: "Track your own matches like the pros do.",
+    blogSubtitle: "Log practice sessions, matches and opponents in seconds and see your progress. Free on iPhone, iPad and Android.",
+    blogInline: "Keep your own training log: sessions, matches and opponents, in a free app for iPhone, iPad and Android.",
   },
   footer: {
     tagline: "The training journal for ping pong and table tennis players. Log sessions, record matches, see your progress.",

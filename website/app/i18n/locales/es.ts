@@ -221,6 +221,9 @@ export const es: Messages = {
     drillSubtitle: "Guárdala como sesión de {type} con su duración y esfuerzo, y mira cómo crece tu racha.",
     servesTitle: "¿Entrenas tus saques? Registra cada sesión.",
     servesSubtitle: "Anota tus entrenamientos de saque, partidos y rivales en el diario de tenis de mesa gratis para iPhone, iPad y Android, y descubre qué te funciona.",
+    blogTitle: "Sigue tus propios partidos como los profesionales.",
+    blogSubtitle: "Registra entrenamientos, partidos y rivales en segundos y mira tu progreso. Gratis en iPhone, iPad y Android.",
+    blogInline: "Lleva tu propio diario de entrenamiento: sesiones, partidos y rivales, en una app gratuita para iPhone, iPad y Android.",
   },
   footer: {
     tagline:

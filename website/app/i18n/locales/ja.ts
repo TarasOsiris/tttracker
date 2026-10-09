@@ -220,6 +220,9 @@ export const ja: Messages = {
     drillSubtitle: "「{type}」として時間と強度を記録し、継続記録を伸ばしましょう。",
     servesTitle: "サーブ練習、記録していますか？",
     servesSubtitle: "サーブ練習も試合も対戦相手も、iPhone・iPad・Android対応の無料卓球ノートに記録。何が効いているかが見えてきます。",
+    blogTitle: "プロのように、自分の試合を記録しよう。",
+    blogSubtitle: "練習・試合・対戦相手を数秒で記録して、上達を確かめましょう。iPhone・iPad・Androidで無料。",
+    blogInline: "自分だけの練習ノートを。練習・試合・対戦相手を、iPhone・iPad・Android対応の無料アプリで記録できます。",
   },
   footer: {
     tagline: "卓球・ピンポンをする人のための練習日誌アプリ。練習と試合を記録して、上達を見える化。",

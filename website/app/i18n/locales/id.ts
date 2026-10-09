@@ -223,6 +223,9 @@ export const id: Messages = {
     drillSubtitle: "Simpan sebagai sesi {type} lengkap dengan durasi dan intensitasnya, lalu lihat latihan beruntunmu bertambah.",
     servesTitle: "Sedang latihan servis? Catat setiap sesinya.",
     servesSubtitle: "Catat latihan servis, pertandingan, dan lawan di jurnal tenis meja gratis untuk iPhone, iPad, dan Android, dan lihat apa yang membuahkan hasil.",
+    blogTitle: "Catat pertandinganmu sendiri seperti para pro.",
+    blogSubtitle: "Catat sesi latihan, pertandingan, dan lawan dalam hitungan detik, lalu lihat perkembanganmu. Gratis di iPhone, iPad, dan Android.",
+    blogInline: "Buat jurnal latihanmu sendiri: sesi, pertandingan, dan lawan, dalam aplikasi gratis untuk iPhone, iPad, dan Android.",
   },
   footer: {
     tagline:
