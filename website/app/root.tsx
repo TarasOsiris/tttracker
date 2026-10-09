@@ -13,6 +13,7 @@ import type { Route } from "./+types/root";
 import appleTouchIcon from "~/assets/icon/apple-touch-icon.png";
 import favicon16 from "~/assets/icon/favicon-16x16.png?no-inline";
 import favicon32 from "~/assets/icon/favicon-32x32.png?no-inline";
+import { CONSENT_KEY, ConsentBanner } from "~/components/site/consent-banner";
 import { SiteFooter } from "~/components/site/footer";
 import { SiteHeader } from "~/components/site/header";
 import { buttonVariants } from "~/components/ui/button";
@@ -29,7 +30,20 @@ const themeScript = `(function(){try{document.documentElement.classList.toggle("
 
 const ICON_VERSION = 3;
 
-const gaScript = `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${GA_ID}');`;
+// Google Consent Mode v2, before GA's config: analytics cookies wait for consent in the EEA, the UK and Switzerland
+// (Google resolves the region from the IP), and are on elsewhere; the site has no ads, so ad signals stay off
+// everywhere. A choice made in the consent banner is re-applied on every page load.
+const CONSENT_REGIONS = [
+  ...["AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IE", "IT", "LV", "LT", "LU", "MT"],
+  ...["NL", "PL", "PT", "RO", "SK", "SI", "ES", "SE", "IS", "LI", "NO", "GB", "CH"],
+];
+const deniedAds = "ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'";
+const gaScript =
+  `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}` +
+  `gtag('consent','default',{analytics_storage:'granted',${deniedAds}});` +
+  `gtag('consent','default',{analytics_storage:'denied',${deniedAds},region:${JSON.stringify(CONSENT_REGIONS)}});` +
+  `try{var c=localStorage.getItem('${CONSENT_KEY}');if(c==='granted'||c==='denied')gtag('consent','update',{analytics_storage:c})}catch(e){}` +
+  `gtag('js',new Date());gtag('config','${GA_ID}');`;
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -87,6 +101,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         {data && <SiteHeader />}
         <main id="main">{children}</main>
         {data && <SiteFooter />}
+        {data && <ConsentBanner />}
         <ScrollRestoration />
         <Scripts />
       </body>

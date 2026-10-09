@@ -286,6 +286,13 @@ export const id: Messages = {
   legal: {
     lastUpdated: "Terakhir diperbarui: {date}",
   },
+  consent: {
+    label: "Persetujuan cookie",
+    text: "Kami ingin memakai cookie Google Analytics untuk melihat halaman mana yang paling membantu pemain. Cookie hanya dipasang jika kamu setuju.",
+    accept: "Terima",
+    reject: "Tolak",
+    settings: "Pengaturan cookie",
+  },
   drillsPage: {
     eyebrow: "Program latihan",
     title: "Program latihan tenis meja untuk setiap sesi",

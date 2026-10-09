@@ -1,7 +1,7 @@
 import { Fragment, type ReactNode } from "react";
 import { Link } from "react-router";
 import type { LegalBlock, LegalDocument } from "~/content/legal";
-import { type Locale, localizePath } from "~/i18n/config";
+import { type Locale, localeInfo, localizePath } from "~/i18n/config";
 import { useI18n } from "~/i18n/use-i18n";
 
 const INLINE = /\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*/g;
@@ -57,11 +57,12 @@ function Block({ block, locale }: { block: LegalBlock; locale?: Locale }) {
   );
 }
 
-export function LegalPage({ document, locale }: { document: LegalDocument; locale?: Locale }) {
+/** `lang` is the document's own language when it differs from the page's (an untranslated policy). */
+export function LegalPage({ document, locale, lang }: { document: LegalDocument; locale?: Locale; lang?: Locale }) {
   const { t, locale: currentLocale } = useI18n();
   const loc = locale ?? currentLocale;
   return (
-    <article lang={loc} className="px-4 pt-32 pb-20 sm:px-6 sm:pt-40">
+    <article lang={lang && lang !== loc ? localeInfo[lang].hreflang : undefined} className="px-4 pt-32 pb-20 sm:px-6 sm:pt-40">
       <div className="mx-auto max-w-3xl">
         <header className="border-b pb-8">
           <h1 className="text-4xl font-extrabold tracking-tight text-balance sm:text-5xl">{document.title}</h1>

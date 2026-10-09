@@ -284,6 +284,13 @@ export const es: Messages = {
   legal: {
     lastUpdated: "Última actualización: {date}",
   },
+  consent: {
+    label: "Consentimiento de cookies",
+    text: "Nos gustaría usar cookies de Google Analytics para saber qué páginas ayudan más a los jugadores. Solo se activan si aceptas.",
+    accept: "Aceptar",
+    reject: "Rechazar",
+    settings: "Configuración de cookies",
+  },
   drillsPage: {
     eyebrow: "Planes de entrenamiento",
     title: "Ejercicios de tenis de mesa para cada sesión",

@@ -282,6 +282,13 @@ export const zh: Messages = {
   legal: {
     lastUpdated: "最后更新于 {date}",
   },
+  consent: {
+    label: "Cookie 同意",
+    text: "我们希望使用 Google Analytics Cookie 来了解哪些页面对球友最有帮助。只有在你同意后才会设置。",
+    accept: "接受",
+    reject: "拒绝",
+    settings: "Cookie 设置",
+  },
   drillsPage: {
     eyebrow: "训练计划",
     title: "乒乓球训练计划，每次练球都用得上",

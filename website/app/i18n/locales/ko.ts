@@ -282,6 +282,13 @@ export const ko: Messages = {
   legal: {
     lastUpdated: "최종 업데이트: {date}",
   },
+  consent: {
+    label: "쿠키 동의",
+    text: "어떤 페이지가 선수들에게 가장 도움이 되는지 알기 위해 Google Analytics 쿠키를 사용하고자 합니다. 동의하신 경우에만 설정됩니다.",
+    accept: "동의",
+    reject: "거부",
+    settings: "쿠키 설정",
+  },
   drillsPage: {
     eyebrow: "훈련 프로그램",
     title: "목적별 탁구 훈련 프로그램",

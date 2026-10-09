@@ -282,6 +282,13 @@ export const de: Messages = {
   legal: {
     lastUpdated: "Zuletzt aktualisiert am {date}",
   },
+  consent: {
+    label: "Cookie-Einwilligung",
+    text: "Wir würden gern Cookies von Google Analytics nutzen, um zu sehen, welche Seiten Spielern am meisten helfen. Sie werden nur gesetzt, wenn du zustimmst.",
+    accept: "Akzeptieren",
+    reject: "Ablehnen",
+    settings: "Cookie-Einstellungen",
+  },
   drillsPage: {
     eyebrow: "Trainingspläne",
     title: "Tischtennis-Übungen für jede Trainingseinheit",

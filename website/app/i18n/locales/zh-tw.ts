@@ -282,6 +282,13 @@ export const zhTw: Messages = {
   legal: {
     lastUpdated: "最後更新：{date}",
   },
+  consent: {
+    label: "Cookie 同意",
+    text: "我們希望使用 Google Analytics Cookie 來了解哪些頁面對球友最有幫助。只有在你同意後才會設定。",
+    accept: "接受",
+    reject: "拒絕",
+    settings: "Cookie 設定",
+  },
   drillsPage: {
     eyebrow: "訓練計畫",
     title: "桌球練習菜單：每一堂訓練都用得上",

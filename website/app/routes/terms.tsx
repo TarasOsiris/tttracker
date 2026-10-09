@@ -1,13 +1,13 @@
 import type { Route } from "./+types/terms";
 import { LegalPage } from "~/components/site/legal-page";
-import { getTermsOfUse } from "~/content/legal";
+import { getTermsOfUse, legalLanguage } from "~/content/legal";
 import { appNames } from "~/content/site";
 import { localeFromPath } from "~/i18n/config";
 import { seo } from "~/lib/seo";
 
 export function loader({ request }: Route.LoaderArgs) {
   const locale = localeFromPath(new URL(request.url).pathname);
-  return { document: getTermsOfUse(locale), locale };
+  return { document: getTermsOfUse(locale), locale, lang: legalLanguage(locale) };
 }
 
 export const meta: Route.MetaFunction = ({ data, location }) => {
@@ -25,6 +25,6 @@ export const meta: Route.MetaFunction = ({ data, location }) => {
 };
 
 export default function Page({ loaderData }: Route.ComponentProps) {
-  return <LegalPage document={loaderData.document} locale={loaderData.locale} />;
+  return <LegalPage document={loaderData.document} locale={loaderData.locale} lang={loaderData.lang} />;
 }
 

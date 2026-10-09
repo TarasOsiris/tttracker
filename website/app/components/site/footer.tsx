@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { links, navLinks, socials, storeLinks } from "~/content/site";
 import { localeInfo } from "~/i18n/config";
 import { useI18n } from "~/i18n/use-i18n";
+import { openConsentSettings } from "./consent-banner";
 import { Logo, useLanguageLinks } from "./header";
 import { ThreadsIcon, XIcon } from "./icons";
 import { trackStoreClick } from "./store-buttons";
@@ -103,6 +104,11 @@ export function SiteFooter() {
             <Link to={href("/terms")} className={linkClass}>
               {t.footer.terms}
             </Link>
+          </li>
+          <li>
+            <button type="button" onClick={openConsentSettings} className={`${linkClass} cursor-pointer text-start`}>
+              {t.consent.settings}
+            </button>
           </li>
         </Column>
         <Column title={t.footer.encyclopedia}>

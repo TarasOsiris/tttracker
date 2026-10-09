@@ -282,6 +282,13 @@ export const ar: Messages = {
   legal: {
     lastUpdated: "آخر تحديث: {date}",
   },
+  consent: {
+    label: "الموافقة على ملفات تعريف الارتباط",
+    text: "نود استخدام ملفات تعريف الارتباط من Google Analytics لمعرفة الصفحات الأكثر فائدة للاعبين. لا تُستخدم إلا إذا وافقت.",
+    accept: "قبول",
+    reject: "رفض",
+    settings: "إعدادات ملفات تعريف الارتباط",
+  },
   drillsPage: {
     eyebrow: "خطط التدريب",
     title: "تمارين تنس الطاولة لكل حصة تدريب",

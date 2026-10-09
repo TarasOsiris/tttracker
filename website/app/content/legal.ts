@@ -1,5 +1,6 @@
-// Privacy Policy and Terms of Use, in English only: a legal text should not change meaning in a
-// translation nobody has reviewed. Inline links use [label](url); a block is a paragraph or a list.
+// Privacy Policy and Terms of Use: the English originals. Some languages have translations in
+// legal-translations.ts; the others show the English text, marked as English. Inline links use
+// [label](url); a block is a paragraph or a list.
 // Keep the Privacy Policy in step with the SDKs the apps ship (PostHog, Sentry, RevenueCat, CloudKit)
 // and with what the website loads (Google Analytics).
 import { APP_NAME, links, SITE_URL } from "./site";
@@ -8,7 +9,7 @@ export type LegalBlock = string | { list: string[] };
 export type LegalSection = { heading: string; blocks: LegalBlock[] };
 export type LegalDocument = { title: string; description: string; updated: string; intro: string; sections: LegalSection[] };
 
-const UPDATED = "October 1, 2026";
+const UPDATED = "October 9, 2026";
 const contact = `[${links.email}](mailto:${links.email})`;
 
 export const privacyPolicy: LegalDocument = {
@@ -21,14 +22,14 @@ export const privacyPolicy: LegalDocument = {
       heading: "The data you enter",
       blocks: [
         "Training sessions, matches, opponents (names, clubs, ratings, playing style, notes) and your settings are stored in a database on your device. We do not receive them, and they are never part of analytics or crash reports.",
-        "On iOS, the Home Screen and Lock Screen widgets read a summary of your training from storage shared between the app and its widgets on the same device. It does not leave the device.",
+        "The Home Screen widgets, and on iOS the Lock Screen widgets, read a summary of your training from storage shared between the app and its widgets on the same device. It does not leave the device.",
         "Deleting the app deletes this data, unless you use iCloud sync (below) or your device's own backups.",
       ],
     },
     {
-      heading: "iCloud sync (iOS, Pro)",
+      heading: "iCloud sync (iOS)",
       blocks: [
-        "Where iCloud sync is available and you turn it on, your sessions, matches and opponents are copied to your **private** iCloud database through Apple's CloudKit, so they appear on your other devices signed in to the same Apple Account. Only you can read your private iCloud database: we have no access to it, and Apple handles it under the [Apple Privacy Policy](https://www.apple.com/legal/privacy/).",
+        "iCloud sync is free and off until you turn it on. When it is on, your sessions, matches and opponents are copied to your **private** iCloud database through Apple's CloudKit, so they appear on your other devices signed in to the same Apple Account. Only you can read your private iCloud database: we have no access to it, and Apple handles it under the [Apple Privacy Policy](https://www.apple.com/legal/privacy/).",
         "Deleted entries are kept in iCloud as markers without their content, so they stay deleted on every device. Turning sync off stops it on that device. To remove the synced data from iCloud, open Settings → [your name] → iCloud → Storage on an iPhone or iPad, and delete TT Tracker's data.",
       ],
     },
@@ -61,14 +62,14 @@ export const privacyPolicy: LegalDocument = {
     {
       heading: "This website",
       blocks: [
-        "The website uses Google Analytics (Google LLC) to count visits and see which pages are read. Google Analytics sets cookies and receives your IP address, browser and device details, and the pages you visit. [How Google uses this data](https://policies.google.com/technologies/partner-sites).",
-        "Your theme choice and the serves you mark as favorites are kept in your browser's local storage and never sent to us.",
+        "The website uses Google Analytics (Google LLC) to count visits and see which pages are read. It runs in Google's Consent Mode. Visitors in the EEA, the UK and Switzerland are asked first: until you accept, Google Analytics sets no cookies, and Google receives only cookieless signals about each page view (such as the page, time and browser) without an identifier. Elsewhere, analytics cookies are on by default. With cookies allowed, Google Analytics receives your IP address, browser and device details, and the pages you visit. [How Google uses this data](https://policies.google.com/technologies/partner-sites).",
+        "You can accept or refuse analytics cookies at any time with Cookie settings at the bottom of every page. That choice, your theme and the serves you mark as favorites are kept in your browser's local storage and never sent to us.",
       ],
     },
     {
       heading: "Why we process data",
       blocks: [
-        "We use analytics and crash reports to fix problems and decide what to improve, which is our legitimate interest in running a reliable app; they never contain your training content. Purchase data is processed to provide what you bought. Feedback emails are used to answer you.",
+        "We use analytics and crash reports to fix problems and decide what to improve, which is our legitimate interest in running a reliable app; they never contain your training content. Website analytics cookies for visitors in the EEA, the UK and Switzerland are set only with your consent, which you can withdraw at any time. Purchase data is processed to provide what you bought. Feedback emails are used to answer you.",
       ],
     },
     {
@@ -125,7 +126,7 @@ export const termsOfUse: LegalDocument = {
     {
       heading: "TT Tracker Pro",
       blocks: [
-        "TT Tracker Pro is an optional **one-time purchase**, not a subscription. It unlocks the Pro features for as long as the app is offered, on your devices that use the same Apple Account (on iOS) or Google account (on Android) as the purchase. Pro features today are iCloud sync and supporting the app's development; we may add more over time, and we do not plan to take away what you paid for.",
+        "TT Tracker Pro is an optional **one-time purchase**, not a subscription. It unlocks the Pro features for as long as the app is offered, on your devices that use the same Apple Account (on iOS) or Google account (on Android) as the purchase. Pro features today are training insights (streaks, training load and session-type mix), head-to-head records, weekly charts over 6 months, a year or all time, the training streak and training load widgets, CSV export and accent colors; we may add more over time, and we do not plan to take away what you paid for.",
         {
           list: [
             "Payment is handled by the App Store or Google Play and charged to your account there when you confirm the purchase. Prices are shown in the app before you buy.",
@@ -202,6 +203,11 @@ import { legalTranslations } from "./legal-translations";
 
 export function getPrivacyPolicy(locale: Locale = defaultLocale): LegalDocument {
   return legalTranslations[locale]?.privacy ?? privacyPolicy;
+}
+
+/** The language a legal page is really shown in: its translation's, or English. */
+export function legalLanguage(locale: Locale): Locale {
+  return legalTranslations[locale] ? locale : defaultLocale;
 }
 
 export function getTermsOfUse(locale: Locale = defaultLocale): LegalDocument {

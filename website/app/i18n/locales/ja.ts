@@ -282,6 +282,13 @@ export const ja: Messages = {
   legal: {
     lastUpdated: "最終更新日: {date}",
   },
+  consent: {
+    label: "Cookieの同意",
+    text: "どのページが役に立っているかを知るため、Google AnalyticsのCookieを使用したいと考えています。同意した場合にのみ設定されます。",
+    accept: "同意する",
+    reject: "拒否する",
+    settings: "Cookie設定",
+  },
   drillsPage: {
     eyebrow: "練習メニュー",
     title: "毎回の練習に使える卓球の練習メニュー",

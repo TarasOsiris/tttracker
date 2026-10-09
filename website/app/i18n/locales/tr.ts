@@ -286,6 +286,13 @@ export const tr: Messages = {
   legal: {
     lastUpdated: "Son güncelleme: {date}",
   },
+  consent: {
+    label: "Çerez onayı",
+    text: "Hangi sayfaların oyunculara en çok yardımcı olduğunu görmek için Google Analytics çerezlerini kullanmak istiyoruz. Yalnızca kabul ederseniz ayarlanırlar.",
+    accept: "Kabul et",
+    reject: "Reddet",
+    settings: "Çerez ayarları",
+  },
   drillsPage: {
     eyebrow: "Antrenman programları",
     title: "Her antrenman için masa tenisi alıştırmaları",

@@ -282,6 +282,13 @@ export const uk: Messages = {
   legal: {
     lastUpdated: "Останнє оновлення: {date}",
   },
+  consent: {
+    label: "Згода на cookie",
+    text: "Ми хотіли б використовувати cookie Google Analytics, щоб бачити, які сторінки найкорисніші для гравців. Вони встановлюються, лише якщо ви погодитеся.",
+    accept: "Прийняти",
+    reject: "Відхилити",
+    settings: "Налаштування cookie",
+  },
   drillsPage: {
     eyebrow: "Плани тренувань",
     title: "Вправи з настільного тенісу для кожного тренування",

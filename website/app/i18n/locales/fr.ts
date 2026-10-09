@@ -282,6 +282,13 @@ export const fr: Messages = {
   legal: {
     lastUpdated: "Dernière mise à jour le {date}",
   },
+  consent: {
+    label: "Consentement aux cookies",
+    text: "Nous aimerions utiliser les cookies de Google Analytics pour savoir quelles pages aident le plus les joueurs. Ils ne sont déposés que si vous acceptez.",
+    accept: "Accepter",
+    reject: "Refuser",
+    settings: "Paramètres des cookies",
+  },
   drillsPage: {
     eyebrow: "Plans d'entraînement",
     title: "Exercices de tennis de table pour chaque séance",

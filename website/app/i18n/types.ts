@@ -166,6 +166,8 @@ export type Messages = {
   legal: {
     lastUpdated: string;
   };
+  /** Analytics cookie banner (Google Consent Mode) and the footer link that reopens it. */
+  consent: { label: string; text: string; accept: string; reject: string; settings: string };
   drillsPage: {
     eyebrow: string;
     title: string;

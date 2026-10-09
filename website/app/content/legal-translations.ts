@@ -4,212 +4,25 @@ import type { Locale } from "../i18n/config";
 
 const contact = `[${links.email}](mailto:${links.email})`;
 
-export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument; terms: LegalDocument }>> & {
-  en: { privacy: LegalDocument; terms: LegalDocument };
-} = {
-  en: {
-    privacy: {
-      title: "Privacy Policy",
-      description: `How ${appNames.en.name} handles your data: what stays on your device, what the app sends, and who receives it.`,
-      updated: "October 1, 2026",
-      intro: `${appNames.en.name} is a training journal for table tennis players, made by Nineva Studios ("we", "us"). This policy covers the ${appNames.en.name} apps for iOS and Android and the website at ${SITE_URL}. The short version: there are no accounts, your training log stays on your device, we never sell data, and the app shows no ads.`,
-      sections: [
-        {
-          heading: "The data you enter",
-          blocks: [
-            "Training sessions, matches, opponents (names, clubs, ratings, playing style, notes) and your settings are stored in a database on your device. We do not receive them, and they are never part of analytics or crash reports.",
-            "On iOS, the Home Screen and Lock Screen widgets read a summary of your training from storage shared between the app and its widgets on the same device. It does not leave the device.",
-            "Deleting the app deletes this data, unless you use iCloud sync (below) or your device's own backups.",
-          ],
-        },
-        {
-          heading: "iCloud sync (iOS, Pro)",
-          blocks: [
-            "Where iCloud sync is available and you turn it on, your sessions, matches and opponents are copied to your **private** iCloud database through Apple's CloudKit, so they appear on your other devices signed in to the same Apple Account. Only you can read your private iCloud database: we have no access to it, and Apple handles it under the [Apple Privacy Policy](https://www.apple.com/legal/privacy/).",
-            "Deleted entries are kept in iCloud as markers without their content, so they stay deleted on every device. Turning sync off stops it on that device. To remove the synced data from iCloud, open Settings → [your name] → iCloud → Storage on an iPhone or iPad, and delete TT Tracker's data.",
-          ],
-        },
-        {
-          heading: "What the app sends, and to whom",
-          blocks: [
-            "The app creates a random identifier the first time it runs (shown as User ID in Settings). It is not linked to your name, email or Apple or Google account, and it is the only identifier attached to what follows.",
-            {
-              list: [
-                "**Usage analytics — PostHog** (PostHog Inc., data stored in the EU, Frankfurt). Which screens are opened and which features are used, for example that a session was created with its type, duration, effort rating (RPE) and number of matches, or that a setting was changed. Also app version, device model, operating system, language, and an approximate location (country or city) derived from your IP address. Only release builds send analytics. [PostHog privacy policy](https://posthog.com/privacy).",
-                "**Crash reports — Sentry** (Functional Software, Inc., United States). When the app crashes or hits an error: the technical details of the error, the app version, device model, operating system, and the recent app events leading up to it. [Sentry privacy policy](https://sentry.io/privacy/).",
-                "**Purchases — RevenueCat** (RevenueCat, Inc., United States). Purchases are made through the App Store or Google Play, which handle payment: we never see your card or billing details. RevenueCat receives the purchase receipt and its product, price, currency and country, along with device and operating system details and your IP address, so the app can tell whether Pro is unlocked and restore it on your other devices. [RevenueCat privacy policy](https://www.revenuecat.com/privacy/).",
-              ],
-            },
-            "If you send feedback from the app, your email app opens a message to us with the app version and your User ID filled in. We receive your email address and whatever you write, and use them only to reply.",
-          ],
-        },
-        {
-          heading: "What we do not do",
-          blocks: [
-            {
-              list: [
-                "We do not sell or rent your data, or share it for advertising.",
-                "The app shows no ads, contains no advertising SDKs, and does not track you across other companies' apps or websites. It does not request the iOS advertising identifier.",
-                "There is no sign-up, and we never ask for your name, email, phone number or contacts.",
-              ],
-            },
-          ],
-        },
-        {
-          heading: "This website",
-          blocks: [
-            "The website uses Google Analytics (Google LLC) to count visits and see which pages are read. Google Analytics sets cookies and receives your IP address, browser and device details, and the pages you visit. [How Google uses this data](https://policies.google.com/technologies/partner-sites).",
-            "Your theme choice and the serves you mark as favorites are kept in your browser's local storage and never sent to us.",
-          ],
-        },
-        {
-          heading: "Why we process data",
-          blocks: [
-            "We use analytics and crash reports to fix problems and decide what to improve, which is our legitimate interest in running a reliable app; they never contain your training content. Purchase data is processed to provide what you bought. Feedback emails are used to answer you.",
-          ],
-        },
-        {
-          heading: "How long we keep it",
-          blocks: [
-            "Analytics and crash reports are kept only as long as they are useful for improving the app, within the retention limits of PostHog and Sentry, and are deleted sooner on request. Purchase records are kept as long as needed to provide your purchases and meet legal obligations. Feedback emails are kept while the conversation is useful.",
-          ],
-        },
-        {
-          heading: "International transfers",
-          blocks: [
-            "Sentry and RevenueCat are based in the United States. Where data about people in the EU, UK or Switzerland is transferred there, it is protected by the safeguards these providers offer, such as the EU Standard Contractual Clauses.",
-          ],
-        },
-        {
-          heading: "Your choices and rights",
-          blocks: [
-            `You can ask to access, correct or delete the data linked to your User ID, or object to its processing: email ${contact} and include the User ID from Settings → Copy User ID, since it is the only way we can find your data. Depending on where you live (for example under the GDPR or California law) you may also have the right to data portability and to complain to your local data protection authority.`,
-            "Your training data itself is on your device and in your own iCloud account, where you can delete it at any time.",
-          ],
-        },
-        {
-          heading: "Children",
-          blocks: [
-            "The app is not directed at children under 13 and we do not knowingly collect personal data from them. If you believe a child has sent us personal data, contact us and we will delete it.",
-          ],
-        },
-        {
-          heading: "Changes",
-          blocks: [
-            "If what the app collects changes, for example when a new service is added, we will update this page and the date above.",
-          ],
-        },
-        {
-          heading: "Contact",
-          blocks: [`Nineva Studios — ${contact}`],
-        },
-      ],
-    },
-    terms: {
-      title: "Terms of Use",
-      description: `The terms for using the ${appNames.en.name} apps, TT Tracker Pro and this website.`,
-      updated: "October 1, 2026",
-      intro: `These terms apply to the ${appNames.en.name} apps for iOS and Android and the website at ${SITE_URL}, provided by Nineva Studios ("we", "us"). By downloading or using them you agree to these terms. If you do not agree, please do not use them.`,
-      sections: [
-        {
-          heading: "The app",
-          blocks: [
-            `${appNames.en.name} lets you log table tennis training sessions, matches and opponents, and see statistics about them. We grant you a personal, non-exclusive, non-transferable licence to use the app on devices you own or control, for your own non-commercial use.`,
-            "On iOS, the [Apple Standard Licensed Application End User License Agreement](https://www.apple.com/legal/internet-services/itunes/dev/stdeula/) also applies. Apple and Google are not parties to these terms and are not responsible for the app or its support.",
-          ],
-        },
-        {
-          heading: "TT Tracker Pro",
-          blocks: [
-            "TT Tracker Pro is an optional **one-time purchase**, not a subscription. It unlocks the Pro features for as long as the app is offered, on your devices that use the same Apple Account (on iOS) or Google account (on Android) as the purchase. Pro features today are iCloud sync and supporting the app's development; we may add more over time, and we do not plan to take away what you paid for.",
-            {
-              list: [
-                "Payment is handled by the App Store or Google Play and charged to your account there when you confirm the purchase. Prices are shown in the app before you buy.",
-                "Use Restore purchases (in Settings or on the purchase screen) to unlock Pro again on a new device or after reinstalling.",
-                "Refunds are handled by Apple or Google under their own policies: [Apple](https://support.apple.com/118223), [Google Play](https://support.google.com/googleplay/answer/2479637).",
-              ],
-            },
-            "iCloud sync relies on Apple's iCloud service, your Apple Account and your available iCloud storage. We cannot guarantee that it is always available or that every change syncs immediately.",
-          ],
-        },
-        {
-          heading: "Your data",
-          blocks: [
-            `What you enter in the app belongs to you. It is stored on your device (and in your own iCloud account if you use iCloud sync), and you are responsible for keeping backups. How we handle data is described in the [Privacy Policy](/privacy).`,
-          ],
-        },
-        {
-          heading: "Not medical advice",
-          blocks: [
-            "The app, its statistics and the training plans on this website are for general information and tracking only. They are not medical, health or coaching advice. Check with a doctor or qualified coach before starting a new training program, and stop if you feel pain or discomfort.",
-          ],
-        },
-        {
-          heading: "Acceptable use",
-          blocks: [
-            "Do not copy, modify, reverse engineer or redistribute the app, except where the law allows it; interfere with its operation or with the services it uses; or use it to break the law.",
-          ],
-        },
-        {
-          heading: "Content and trademarks",
-          blocks: [
-            "The app, this website and their design, text, graphics and code belong to Nineva Studios. App Store is a service mark of Apple Inc. Google Play is a trademark of Google LLC.",
-          ],
-        },
-        {
-          heading: "Third-party services",
-          blocks: [
-            "The app uses services from other companies, such as Apple, Google, RevenueCat, PostHog and Sentry, as described in the Privacy Policy. Their own terms apply to them, and we are not responsible for their availability.",
-          ],
-        },
-        {
-          heading: "Disclaimer",
-          blocks: [
-            'The app and website are provided "as is" and "as available", without warranties of any kind beyond those the law requires. We do our best to keep them working and your data safe, but we do not promise that they will be uninterrupted, error-free, or that data can never be lost.',
-          ],
-        },
-        {
-          heading: "Limitation of liability",
-          blocks: [
-            "To the fullest extent the law allows, Nineva Studios is not liable for indirect, incidental or consequential damages, or for loss of data, arising from your use of the app or website. Our total liability for any claim is limited to the amount you paid for the app or TT Tracker Pro. Nothing in these terms limits liability that cannot be limited by law, or your rights as a consumer.",
-          ],
-        },
-        {
-          heading: "Ending use",
-          blocks: [
-            "You can stop using the app at any time by deleting it. We may stop offering the app or parts of it; if that affects Pro features you paid for, we will try to give reasonable notice.",
-          ],
-        },
-        {
-          heading: "Changes to these terms",
-          blocks: [
-            "We may update these terms, for example when features change. The date above shows the latest version; continuing to use the app after a change means you accept the new terms.",
-          ],
-        },
-        {
-          heading: "Contact",
-          blocks: [`Nineva Studios — ${contact}`],
-        },
-      ],
-    },
-  },
+/** Translations of the English documents in legal.ts; a language without one shows the English text. */
+export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument; terms: LegalDocument }>> = {
   es: {
     privacy: {
       title: "Política de Privacidad",
       description: `Cómo gestiona tus datos ${appNames.es.name}: qué permanece en tu dispositivo, qué envía la aplicación y quién lo recibe.`,
-      updated: "1 de octubre de 2026",
+      updated: "9 de octubre de 2026",
       intro: `${appNames.es.name} es un diario de entrenamiento para jugadores de tenis de mesa, desarrollado por Nineva Studios («nosotros»). Esta política cubre las aplicaciones ${appNames.es.name} para iOS y Android y el sitio web en ${SITE_URL}. En resumen: no hay cuentas de usuario, tus datos de entrenamiento permanecen en tu dispositivo, nunca vendemos datos y la aplicación no contiene anuncios.`,
       sections: [
         {
           heading: "Los datos que introduces",
           blocks: [
             "Las sesiones de entrenamiento, partidos, oponentes (nombres, clubes, puntuaciones, estilo de juego, notas) y tus ajustes se guardan en una base de datos local en tu dispositivo. Nosotros no los recibimos y nunca forman parte de analíticas ni informes de fallos.",
-            "En iOS, los widgets de la pantalla de inicio y bloqueo leen un resumen de tus entrenamientos desde el almacenamiento compartido en el dispositivo. No sale del dispositivo.",
+            "Los widgets de la pantalla de inicio (y, en iOS, los de la pantalla de bloqueo) leen un resumen de tus entrenamientos desde el almacenamiento que la app comparte con ellos en el mismo dispositivo. No sale del dispositivo.",
             "Eliminar la aplicación borra estos datos, a menos que uses la sincronización de iCloud (ver más abajo) o las copias de seguridad de tu propio dispositivo.",
           ],
         },
         {
-          heading: "Sincronización con iCloud (iOS, Pro)",
+          heading: "Sincronización con iCloud (iOS)",
           blocks: [
             "Si la sincronización con iCloud está disponible y la activas, tus sesiones, partidos y oponentes se copian a tu base de datos **privada** de iCloud a través de CloudKit de Apple, para sincronizarse con tus otros dispositivos vinculados a la misma cuenta de Apple. Solo tú puedes leer tu base de datos privada de iCloud: nosotros no tenemos acceso y Apple la gestiona bajo la [Política de Privacidad de Apple](https://www.apple.com/legal/privacy/).",
             "Los elementos eliminados se conservan en iCloud como marcadores sin contenido para reflejar el borrado en todos tus dispositivos. Desactivar la sincronización la detiene en ese dispositivo.",
@@ -244,7 +57,8 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
         {
           heading: "Este sitio web",
           blocks: [
-            "El sitio web utiliza Google Analytics (Google LLC) para medir visitas anónimas. Tu elección de tema y los saques favoritos se almacenan localmente en tu navegador y nunca se nos envían.",
+            "El sitio web utiliza Google Analytics (Google LLC) para contar visitas y ver qué páginas se leen. Funciona con el modo de consentimiento de Google. A los visitantes del EEE, el Reino Unido y Suiza se les pregunta primero: hasta que aceptas, Google Analytics no instala cookies y Google solo recibe señales sin cookies sobre cada página vista (como la página, la hora y el navegador), sin ningún identificador. En el resto del mundo, las cookies de analítica están activadas por defecto. Con las cookies permitidas, Google Analytics recibe tu dirección IP, datos del navegador y del dispositivo, y las páginas que visitas. [Cómo usa Google estos datos](https://policies.google.com/technologies/partner-sites?hl=es).",
+            "Puedes aceptar o rechazar las cookies de analítica en cualquier momento desde Configuración de cookies, al pie de cada página. Esa elección, tu tema y los saques que marcas como favoritos se guardan en el almacenamiento local de tu navegador y nunca se nos envían.",
           ],
         },
         {
@@ -357,19 +171,19 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     privacy: {
       title: "Datenschutzerklärung",
       description: `Wie ${appNames.de.name} mit Ihren Daten umgeht: Was auf Ihrem Gerät verbleibt, was übertragen wird und wer Zugriff hat.`,
-      updated: "1. Oktober 2026",
+      updated: "9. Oktober 2026",
       intro: `${appNames.de.name} ist ein Trainingstagebuch für Tischtennisspieler, entwickelt von Nineva Studios („wir“, „uns“). Diese Erklärung gilt für die ${appNames.de.name}-Apps für iOS und Android sowie die Website unter ${SITE_URL}. Kurz zusammengefasst: Es gibt keine Benutzerkonten, Ihre Trainingsdaten verbleiben auf Ihrem Gerät, Daten werden niemals verkauft und die App ist werbefrei.`,
       sections: [
         {
           heading: "Die von Ihnen eingegebenen Daten",
           blocks: [
             "Trainingseinheiten, Spiele, Gegner (Namen, Vereine, Spielstile, Notizen) und Ihre Einstellungen werden lokal in einer Datenbank auf Ihrem Endgerät gespeichert. Wir haben darauf keinen Zugriff; sie sind niemals Teil von Analyse- oder Fehlerberichten.",
-            "Unter iOS lesen Widgets für den Sperr- und Startbildschirm eine Zusammenfassung Ihrer Trainingsdaten aus dem lokalen App-Speicher. Die Daten verlassen das Gerät nicht.",
+            "Die Widgets für den Home-Bildschirm (und unter iOS für den Sperrbildschirm) lesen eine Zusammenfassung Ihrer Trainingsdaten aus dem lokalen App-Speicher. Die Daten verlassen das Gerät nicht.",
             "Das Löschen der App löscht diese Daten, es sei denn, Sie nutzen die iCloud-Synchronisierung oder Gerätesicherungen.",
           ],
         },
         {
-          heading: "iCloud-Synchronisierung (iOS, Pro)",
+          heading: "iCloud-Synchronisierung (iOS)",
           blocks: [
             "Wenn Sie die optionale iCloud-Synchronisierung aktivieren, werden Ihre Einheiten und Spiele über Apple CloudKit in Ihre **private** iCloud-Datenbank kopiert. Nur Sie haben Zugriff darauf. Apple verarbeitet diese Daten gemäß der [Apple Datenschutzrichtlinie](https://www.apple.com/legal/privacy/).",
           ],
@@ -402,7 +216,8 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
         {
           heading: "Diese Website",
           blocks: [
-            "Die Website nutzt Google Analytics zur statistischen Reichweitenmessung. Ihre Theme-Einstellung und favorisierte Aufschläge verbleiben lokal im Speicher Ihres Browsers.",
+            "Die Website nutzt Google Analytics (Google LLC), um Besuche zu zählen und zu sehen, welche Seiten gelesen werden. Sie arbeitet mit dem Einwilligungsmodus von Google. Besucher aus dem EWR, dem Vereinigten Königreich und der Schweiz werden zuerst gefragt: Bis Sie zustimmen, setzt Google Analytics keine Cookies, und Google erhält zu jedem Seitenaufruf nur cookielose Signale (etwa Seite, Uhrzeit und Browser) ohne Kennung. Anderswo sind Analyse-Cookies standardmäßig aktiv. Sind Cookies erlaubt, erhält Google Analytics Ihre IP-Adresse, Browser- und Geräteangaben sowie die besuchten Seiten. [Wie Google diese Daten verwendet](https://policies.google.com/technologies/partner-sites?hl=de).",
+            "Sie können Analyse-Cookies jederzeit über „Cookie-Einstellungen“ unten auf jeder Seite annehmen oder ablehnen. Diese Wahl, Ihre Theme-Einstellung und favorisierte Aufschläge verbleiben im lokalen Speicher Ihres Browsers und werden nie an uns gesendet.",
           ],
         },
         {
@@ -458,18 +273,18 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     privacy: {
       title: "Politique de Confidentialité",
       description: `Comment ${appNames.fr.name} protège vos données : ce qui reste sur votre appareil, ce qui est transmis et à qui.`,
-      updated: "1er octobre 2026",
+      updated: "9 octobre 2026",
       intro: `${appNames.fr.name} est un journal d'entraînement pour les joueurs de tennis de table, édité par Nineva Studios (« nous »). Cette politique s'applique aux applications pour iOS et Android et au site ${SITE_URL}. En résumé : aucun compte requis, vos données restent sur votre appareil, nous ne vendons aucune donnée et l'application ne diffuse aucune publicité.`,
       sections: [
         {
           heading: "Les données que vous saisissez",
           blocks: [
             "Vos séances d'entraînement, matchs, adversaires et réglages sont stockés localement sur votre appareil. Nous n'y avons pas accès et ils ne sont jamais partagés avec des tiers.",
-            "Sous iOS, les widgets consultent un résumé local qui ne quitte jamais l'appareil.",
+            "Les widgets (écran d'accueil, et écran verrouillé sous iOS) consultent un résumé local qui ne quitte jamais l'appareil.",
           ],
         },
         {
-          heading: "Synchronisation iCloud (iOS, Pro)",
+          heading: "Synchronisation iCloud (iOS)",
           blocks: [
             "Si vous activez iCloud, vos données sont synchronisées via votre base de données **privée** CloudKit d'Apple. Seul vous pouvez y accéder sous la [Politique de confidentialité Apple](https://www.apple.com/legal/privacy/).",
           ],
@@ -491,6 +306,13 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
           heading: "Vos droits",
           blocks: [
             `Conformément au RGPD, vous disposez d'un droit d'accès et de suppression de vos données en nous écrivant à ${contact} avec votre identifiant utilisateur.`,
+          ],
+        },
+        {
+          heading: "Ce site web",
+          blocks: [
+            "Le site utilise Google Analytics (Google LLC) pour compter les visites et voir quelles pages sont lues. Il fonctionne avec le mode de consentement de Google. Les visiteurs de l'EEE, du Royaume-Uni et de Suisse sont d'abord consultés : tant que vous n'avez pas accepté, Google Analytics ne dépose aucun cookie et Google ne reçoit que des signaux sans cookie sur chaque page vue (page, heure, navigateur), sans identifiant. Ailleurs, les cookies de mesure d'audience sont activés par défaut. Lorsque les cookies sont autorisés, Google Analytics reçoit votre adresse IP, des informations sur votre navigateur et votre appareil, et les pages que vous consultez. [Comment Google utilise ces données](https://policies.google.com/technologies/partner-sites?hl=fr).",
+            "Vous pouvez accepter ou refuser ces cookies à tout moment via Paramètres des cookies, en bas de chaque page. Ce choix, votre thème et les services que vous mettez en favoris sont conservés dans le stockage local de votre navigateur et ne nous sont jamais envoyés.",
           ],
         },
         {
@@ -534,7 +356,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     privacy: {
       title: "Política de Privacidade",
       description: `Como o ${appNames.pt.name} trata os seus dados: o que permanece no dispositivo e quais dados técnicos são transmitidos.`,
-      updated: "1 de outubro de 2026",
+      updated: "9 de outubro de 2026",
       intro: `O ${appNames.pt.name} é um diário de treino para mesatenistas, desenvolvido pela Nineva Studios («nós»). Em suma: não exigimos cadastro, os dados de treino ficam no seu aparelho, nunca vendemos dados e o aplicativo não contém anúncios.`,
       sections: [
         {
@@ -544,7 +366,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
           ],
         },
         {
-          heading: "Sincronização iCloud (iOS, Pro)",
+          heading: "Sincronização iCloud (iOS)",
           blocks: [
             "A sincronização opcional com o iCloud utiliza sua base privada do CloudKit da Apple, protegida pela política de privacidade da Apple.",
           ],
@@ -553,6 +375,13 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
           heading: "Serviços de terceiros",
           blocks: [
             "Utilizamos PostHog (dados na UE) para métricas de uso, Sentry para relatórios de falhas e RevenueCat para validação de compras.",
+          ],
+        },
+        {
+          heading: "Este site",
+          blocks: [
+            "O site usa o Google Analytics (Google LLC) para contar visitas e ver quais páginas são lidas. Ele funciona com o modo de consentimento do Google. Visitantes do EEE, do Reino Unido e da Suíça são consultados primeiro: até você aceitar, o Google Analytics não grava cookies e o Google recebe apenas sinais sem cookies sobre cada página vista (como a página, o horário e o navegador), sem identificador. Nos demais lugares, os cookies de análise ficam ativados por padrão. Com os cookies permitidos, o Google Analytics recebe seu endereço IP, dados do navegador e do dispositivo, e as páginas que você visita. [Como o Google usa esses dados](https://policies.google.com/technologies/partner-sites?hl=pt-BR).",
+            "Você pode aceitar ou recusar os cookies de análise a qualquer momento em Configurações de cookies, no rodapé de cada página. Essa escolha, seu tema e os saques marcados como favoritos ficam no armazenamento local do navegador e nunca são enviados para nós.",
           ],
         },
         {
@@ -590,20 +419,20 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     privacy: {
       title: "プライバシーポリシー",
       description: `「${appNames.ja.name}」におけるユーザーデータの取り扱いについて：端末内に保持されるデータと外部送信される情報。`,
-      updated: "2026年10月1日",
+      updated: "2026年10月9日",
       intro: `「${appNames.ja.name}」はNineva Studios（以下「当社」）が提供する卓球選手のための練習記録アプリです。要約：アカウント作成は不要で、練習ログはお使いの端末内にのみ保存され、データの販売や広告の表示は一切行いません。`,
       sections: [
         {
           heading: "入力されるデータについて",
           blocks: [
             "練習セッション、試合結果、対戦相手（氏名、所属、戦型、メモ等）および各種設定は、端末内のローカルデータベースにのみ保存されます。当社がこれらのデータを収集・閲覧することはありません。",
-            "iOSのウィジェット機能は端末内の共有領域から概要を読み取りますが、外部へ送信されることはありません。",
+            "ウィジェット（ホーム画面、iOSではロック画面も）は端末内の共有領域から概要を読み取りますが、外部へ送信されることはありません。",
           ],
         },
         {
-          heading: "iCloud同期（iOS・Pro機能）",
+          heading: "iCloud同期（iOS）",
           blocks: [
-            "Pro機能のiCloud同期をご利用の場合、データはお客様個人のプライベートなCloudKitデータベースを通じて同期されます。当社がアクセスすることはできません。",
+            "iCloud同期（無料）をご利用の場合、データはお客様個人のプライベートなCloudKitデータベースを通じて同期されます。当社がアクセスすることはできません。",
           ],
         },
         {
@@ -617,6 +446,13 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
                 "**購入管理 — RevenueCat**：App StoreまたはGoogle Playでの購入状態の検証および復元。",
               ],
             },
+          ],
+        },
+        {
+          heading: "このウェブサイト",
+          blocks: [
+            "このウェブサイトでは、訪問数や読まれているページを把握するためにGoogle Analytics（Google LLC）を使用しています。Googleの同意モードで動作します。EEA、英国、スイスからの訪問者には最初に確認し、同意するまでGoogle AnalyticsはCookieを設定せず、Googleはページの閲覧ごとに識別子のないCookieなしの信号（ページ、時刻、ブラウザなど）のみを受け取ります。その他の地域では、分析用Cookieは初期設定で有効です。Cookieが許可されると、Google AnalyticsはIPアドレス、ブラウザと端末の情報、閲覧したページを受け取ります。[Googleによるデータの使用について](https://policies.google.com/technologies/partner-sites?hl=ja)",
+            "分析用Cookieは、各ページ下部の「Cookie設定」からいつでも許可または拒否できます。その選択、テーマ、お気に入りに登録したサーブは、ブラウザのローカルストレージに保存され、当社に送信されることはありません。",
           ],
         },
         {
@@ -660,18 +496,18 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     privacy: {
       title: "隐私政策",
       description: `「${appNames.zh.name}」如何处理您的数据：存储在设备上的内容、技术传输信息及相关第三方服务。`,
-      updated: "2026年10月1日",
+      updated: "2026年10月9日",
       intro: `「${appNames.zh.name}」是由 Nineva Studios（“我们”）专为乒乓球爱好者打造的训练日志应用。简要说明：无需注册账号，训练与比赛记录保存在您的本地设备中，我们绝不出售任何数据，应用内无任何广告。`,
       sections: [
         {
           heading: "您输入的数据",
           blocks: [
             "训练记录、比赛比分、对手资料（姓名、打法、战绩、备注）及偏好设置均保存在您的设备本地数据库中。我们不会上传或获取这些个人内容。",
-            "在 iOS 上，小组件通过设备本地共享储存读取概览，数据绝不离开您的手机。",
+            "小组件（主屏幕，以及 iOS 上的锁屏）通过设备本地共享储存读取概览，数据绝不离开您的手机。",
           ],
         },
         {
-          heading: "iCloud 同步（iOS Pro）",
+          heading: "iCloud 同步（iOS）",
           blocks: [
             "如果您开启了 iCloud 云同步，数据将通过 Apple CloudKit 同步至您个人的私有 iCloud 空间，受 [Apple 隐私政策](https://www.apple.com/legal/privacy/) 保护，我们无法查看。",
           ],
@@ -687,6 +523,13 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
                 "**购买验证 — RevenueCat**：用于在您的多台设备上验证和恢复 Pro 购买凭证。",
               ],
             },
+          ],
+        },
+        {
+          heading: "本网站",
+          blocks: [
+            "本网站使用 Google Analytics（Google LLC）统计访问量并了解哪些页面被阅读。它在 Google 同意模式下运行。来自欧洲经济区、英国和瑞士的访客会先被询问：在你同意之前，Google Analytics 不会设置 Cookie，Google 只会收到关于每次页面浏览的无 Cookie 信号（如页面、时间和浏览器），不含任何标识符。在其他地区，分析 Cookie 默认开启。允许 Cookie 后，Google Analytics 会收到你的 IP 地址、浏览器和设备信息以及你访问的页面。[Google 如何使用这些数据](https://policies.google.com/technologies/partner-sites?hl=zh-CN)",
+            "你可以随时通过每个页面底部的“Cookie 设置”接受或拒绝分析 Cookie。你的选择、主题以及收藏的发球都保存在浏览器的本地存储中，绝不会发送给我们。",
           ],
         },
         {
@@ -730,7 +573,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     privacy: {
       title: "개인정보 처리방침",
       description: `「${appNames.ko.name}」의 개인정보 처리 안내: 기기 내 저장 데이터, 외부 전송 항목 및 제3자 제공 현황.`,
-      updated: "2026년 10월 1일",
+      updated: "2026년 10월 9일",
       intro: `「${appNames.ko.name}」은 Nineva Studios(이하 '회사')가 개발한 탁구인을 위한 훈련일지 앱입니다. 요약: 별도의 회원가입이나 계정이 필요 없으며, 모든 기록은 사용자 기기에 안전하게 보관되고, 데이터 판매나 광고는 절대 하지 않습니다.`,
       sections: [
         {
@@ -740,7 +583,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
           ],
         },
         {
-          heading: "iCloud 동기화 (iOS Pro)",
+          heading: "iCloud 동기화 (iOS)",
           blocks: [
             "iCloud 동기화 활성화 시 사용자의 비공개 CloudKit 데이터베이스를 통해 다른 기기와 동기화됩니다. 애플의 개인정보 처리방침에 따라 보호되며 회사에는 접근 권한이 없습니다.",
           ],
@@ -756,6 +599,13 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
                 "**구매 관리 — RevenueCat** (미국): 인앱 결제 확인 및 다중 기기 구매 복원 처리.",
               ],
             },
+          ],
+        },
+        {
+          heading: "이 웹사이트",
+          blocks: [
+            "이 웹사이트는 방문 수와 많이 읽히는 페이지를 파악하기 위해 Google Analytics(Google LLC)를 사용합니다. Google 동의 모드로 작동합니다. EEA, 영국, 스위스 방문자에게는 먼저 동의를 묻습니다. 동의하기 전까지 Google Analytics는 쿠키를 설정하지 않으며, Google은 각 페이지 조회에 대해 식별자 없는 쿠키리스 신호(페이지, 시간, 브라우저 등)만 받습니다. 그 밖의 지역에서는 분석 쿠키가 기본으로 켜져 있습니다. 쿠키가 허용되면 Google Analytics는 IP 주소, 브라우저와 기기 정보, 방문한 페이지를 받습니다. [Google의 데이터 사용 방식](https://policies.google.com/technologies/partner-sites?hl=ko)",
+            "분석 쿠키는 모든 페이지 하단의 '쿠키 설정'에서 언제든지 허용하거나 거부할 수 있습니다. 이 선택과 테마, 즐겨찾기한 서브는 브라우저의 로컬 저장소에 보관되며 저희에게 전송되지 않습니다.",
           ],
         },
         {
@@ -799,7 +649,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     privacy: {
       title: "Informativa sulla Privacy",
       description: `Come ${appNames.it.name} gestisce i tuoi dati: cosa rimane sul tuo dispositivo e quali dati tecnici vengono trasmessi.`,
-      updated: "1° ottobre 2026",
+      updated: "9 ottobre 2026",
       intro: `${appNames.it.name} è un diario di allenamento per giocatori di tennistavolo, creato da Nineva Studios («noi»). In breve: nessun account richiesto, i dati rimangono sul tuo dispositivo, non vendiamo dati e non mostriamo pubblicità.`,
       sections: [
         {
@@ -809,7 +659,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
           ],
         },
         {
-          heading: "Sincronizzazione iCloud (iOS, Pro)",
+          heading: "Sincronizzazione iCloud (iOS)",
           blocks: [
             "La sincronizzazione opcional avviene tramite il tuo database privato CloudKit di Apple secondo la [Politica sulla Privacy di Apple](https://www.apple.com/legal/privacy/).",
           ],
@@ -818,6 +668,13 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
           heading: "Servizi di terze parti",
           blocks: [
             "Utilizziamo PostHog (server nell'UE a Francoforte) per statistiche d'uso anonime, Sentry per i report sui crash e RevenueCat per la gestione degli acquisti in-app.",
+          ],
+        },
+        {
+          heading: "Questo sito web",
+          blocks: [
+            "Il sito usa Google Analytics (Google LLC) per contare le visite e vedere quali pagine vengono lette. Funziona con la modalità di consenso di Google. Ai visitatori di SEE, Regno Unito e Svizzera viene chiesto prima: finché non accetti, Google Analytics non imposta cookie e Google riceve solo segnali senza cookie su ogni pagina visualizzata (come pagina, ora e browser), senza alcun identificatore. Altrove i cookie di analisi sono attivi per impostazione predefinita. Con i cookie consentiti, Google Analytics riceve il tuo indirizzo IP, i dati del browser e del dispositivo e le pagine che visiti. [Come Google usa questi dati](https://policies.google.com/technologies/partner-sites?hl=it).",
+            "Puoi accettare o rifiutare i cookie di analisi in qualsiasi momento da Impostazioni cookie, in fondo a ogni pagina. Questa scelta, il tema e i servizi che segni come preferiti restano nella memoria locale del browser e non ci vengono mai inviati.",
           ],
         },
         {
@@ -855,18 +712,18 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     privacy: {
       title: "Політика конфіденційності",
       description: `Як додаток «${appNames.uk.name}» обробляє ваші дані: що зберігається на пристрої, які технічні дані надсилаються та хто має до них доступ.`,
-      updated: "1 жовтня 2026 року",
+      updated: "9 жовтня 2026 р.",
       intro: `«${appNames.uk.name}» — це тренувальний щоденник для гравців у настільний теніс від Nineva Studios («ми»). Коротко: реєстрація не потрібна, ваші тренування зберігаються на вашому пристрої, ми ніколи не продаємо дані, а в додатку немає реклами.`,
       sections: [
         {
           heading: "Дані, які ви вводите",
           blocks: [
             "Тренування, матчі, суперники (імена, клуби, стиль гри, нотатки) та налаштування зберігаються в локальній базі даних на вашому пристрої. Ми їх не отримуємо і не використовуємо в аналітиці.",
-            "Віджети на iOS читають зведення з локального сховища безпосередньо на пристрої. Дані не залишають ваш телефон.",
+            "Віджети (на початковому екрані, а в iOS і на заблокованому) читають зведення з локального сховища безпосередньо на пристрої. Дані не залишають ваш телефон.",
           ],
         },
         {
-          heading: "Синхронізація iCloud (iOS, Pro)",
+          heading: "Синхронізація iCloud (iOS)",
           blocks: [
             "Якщо ви увімкнули синхронізацію з iCloud, ваші дані копіюються до вашої **приватної** бази даних iCloud через Apple CloudKit. Доступ маєте лише ви відповідно до [Політики конфіденційності Apple](https://www.apple.com/legal/privacy/).",
           ],
@@ -900,6 +757,13 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
           heading: "Ваші права",
           blocks: [
             `Ви маєте право на доступ або видалення технічних даних, надіславши запит на ${contact} із зазначенням вашого ID користувача з Налаштувань.`,
+          ],
+        },
+        {
+          heading: "Цей вебсайт",
+          blocks: [
+            "Вебсайт використовує Google Analytics (Google LLC), щоб рахувати відвідування й бачити, які сторінки читають. Він працює в режимі згоди Google. Відвідувачів із ЄЕЗ, Великої Британії та Швейцарії спершу запитують: доки ви не погодитеся, Google Analytics не встановлює cookie, а Google отримує лише сигнали без cookie про кожен перегляд сторінки (як-от сторінка, час і браузер), без жодного ідентифікатора. Деінде аналітичні cookie ввімкнені за замовчуванням. Якщо cookie дозволено, Google Analytics отримує вашу IP-адресу, дані про браузер і пристрій та сторінки, які ви відвідуєте. [Як Google використовує ці дані](https://policies.google.com/technologies/partner-sites?hl=uk).",
+            "Прийняти або відхилити аналітичні cookie можна будь-коли через «Налаштування cookie» внизу кожної сторінки. Цей вибір, ваша тема й подачі, позначені як улюблені, зберігаються в локальному сховищі браузера й ніколи не надсилаються нам.",
           ],
         },
         {
