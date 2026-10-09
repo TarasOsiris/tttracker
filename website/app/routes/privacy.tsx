@@ -12,7 +12,9 @@ export function loader({ request }: Route.LoaderArgs) {
 
 export const meta: Route.MetaFunction = ({ data, location }) => {
   const locale = localeFromPath(location.pathname);
-  const doc = data?.document ?? getPrivacyPolicy(locale);
+  // The document comes from the loader only, so the client bundle never carries every translation.
+  const doc = data?.document;
+  if (!doc) return [];
   const appName = appNames[locale].name;
   return seo({
     title: `${doc.title} | ${appName}`,
