@@ -44,6 +44,8 @@
 	</array>
 	<key>NSHealthShareUsageDescription</key>
 	<string>TT Tracker reads your table tennis workouts, with their heart rate, energy and effort, to fill in and show your training sessions.</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>TT Tracker only reads your workouts from Health. It never saves or changes anything in Health.</string>
 	<key>POSTHOG_API_KEY</key>
 	<string>phc_c48wFADznJ68OBUeAcQLdKAf5K0GUNxMjf4xXhoopde</string>
 	<key>REVENUECAT_API_KEY</key>

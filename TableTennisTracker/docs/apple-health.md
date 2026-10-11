@@ -43,7 +43,9 @@ recorded with the Workout app on Apple Watch. Android does the same with Health 
   with "Past 30 Days" an older linked workout shows as not found.
 - **A workout links to one session.** The picker and the suggestion leave out workouts other
   sessions have.
-- Read-only: nothing is written to Health, so there is no `NSHealthUpdateUsageDescription`.
+- Read-only: nothing is written to Health and no share permission is requested. App Store Connect still
+  rejects a HealthKit app without `NSHealthUpdateUsageDescription` (error 90683), so Info.plist carries
+  one that says the app never writes; iOS never shows it, since the app asks for no share types.
 
 ## Shipping it
 
