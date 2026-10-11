@@ -1,15 +1,15 @@
 // Privacy Policy and Terms of Use: the English originals. Some languages have translations in
 // legal-translations.ts; the others show the English text, marked as English. Inline links use
 // [label](url); a block is a paragraph or a list.
-// Keep the Privacy Policy in step with the SDKs the apps ship (PostHog, Sentry, RevenueCat, CloudKit)
-// and with what the website loads (Google Analytics).
+// Keep the Privacy Policy in step with the SDKs the apps ship (PostHog, Sentry, RevenueCat, CloudKit,
+// HealthKit, Health Connect) and with what the website loads (Google Analytics).
 import { APP_NAME, links, SITE_URL } from "./site";
 
 export type LegalBlock = string | { list: string[] };
 export type LegalSection = { heading: string; blocks: LegalBlock[] };
 export type LegalDocument = { title: string; description: string; updated: string; intro: string; sections: LegalSection[] };
 
-const UPDATED = "October 9, 2026";
+const UPDATED = "October 11, 2026";
 const contact = `[${links.email}](mailto:${links.email})`;
 
 export const privacyPolicy: LegalDocument = {
@@ -34,12 +34,27 @@ export const privacyPolicy: LegalDocument = {
       ],
     },
     {
+      heading: "Apple Health and Health Connect",
+      blocks: [
+        "You can link a training session to a workout recorded by your watch or fitness app: through Apple Health on iOS, and Health Connect on Android. The app reads health data only after you allow it in the system's permission screen, and only to fill in a session and show what happened during it. It never writes anything to Apple Health or Health Connect.",
+        {
+          list: [
+            "**What it reads:** your table tennis workouts (start and end time, recording app), the active energy (calories) and heart rate recorded during them, and on iOS the effort score you gave a workout on Apple Watch.",
+            "**Where it stays:** health data is read and shown on your device only. It is never stored in the app's database, never sent to us or to iCloud, and never included in analytics or crash reports.",
+            "**What the app keeps:** only the identifier of the workout a session is linked to, so the link survives. Like the rest of the session, it syncs through your private iCloud database if you use iCloud sync. Unlinking the workout or deleting the session removes it.",
+            "**What we never do:** health data is never sold, shared with anyone, or used for advertising, profiling or any purpose other than showing it to you in the app.",
+          ],
+        },
+        "You can stop the app reading health data at any time: on iOS in Settings → Health → Data Access & Devices, on Android in Health Connect's app permissions. Use of information received from Health Connect follows the [Health Connect Permissions policy](https://support.google.com/googleplay/android-developer/answer/12991134), including its Limited Use requirements.",
+      ],
+    },
+    {
       heading: "What the app sends, and to whom",
       blocks: [
         "The app creates a random identifier the first time it runs (shown as User ID in Settings). It is not linked to your name, email or Apple or Google account, and it is the only identifier attached to what follows.",
         {
           list: [
-            "**Usage analytics — PostHog** (PostHog Inc., data stored in the EU, Frankfurt). Which screens are opened and which features are used, for example that a session was created with its type, duration, effort rating (RPE) and number of matches, or that a setting was changed. Also app version, device model, operating system, language, and an approximate location (country or city) derived from your IP address. Only release builds send analytics. [PostHog privacy policy](https://posthog.com/privacy).",
+            "**Usage analytics — PostHog** (PostHog Inc., data stored in the EU, Frankfurt). Which screens are opened and which features are used, for example that a session was created with its type, duration, effort rating (RPE) and number of matches, that a setting was changed, or that a workout was linked (never any health data). Also app version, device model, operating system, language, and an approximate location (country or city) derived from your IP address. Only release builds send analytics. [PostHog privacy policy](https://posthog.com/privacy).",
             "**Crash reports — Sentry** (Functional Software, Inc., United States). When the app crashes or hits an error: the technical details of the error, the app version, device model, operating system, and the recent app events leading up to it. [Sentry privacy policy](https://sentry.io/privacy/).",
             "**Purchases — RevenueCat** (RevenueCat, Inc., United States). Purchases are made through the App Store or Google Play, which handle payment: we never see your card or billing details. RevenueCat receives the purchase receipt and its product, price, currency and country, along with device and operating system details and your IP address, so the app can tell whether Pro is unlocked and restore it on your other devices. [RevenueCat privacy policy](https://www.revenuecat.com/privacy/).",
           ],
@@ -55,6 +70,7 @@ export const privacyPolicy: LegalDocument = {
             "We do not sell or rent your data, or share it for advertising.",
             "The app shows no ads, contains no advertising SDKs, and does not track you across other companies' apps or websites. It does not request the iOS advertising identifier.",
             "There is no sign-up, and we never ask for your name, email, phone number or contacts.",
+            "Health data from Apple Health or Health Connect never leaves your device through the app.",
           ],
         },
       ],
@@ -126,7 +142,7 @@ export const termsOfUse: LegalDocument = {
     {
       heading: "TT Tracker Pro",
       blocks: [
-        "TT Tracker Pro is an optional **one-time purchase**, not a subscription. It unlocks the Pro features for as long as the app is offered, on your devices that use the same Apple Account (on iOS) or Google account (on Android) as the purchase. Pro features today are training insights (streaks, training load and session-type mix), head-to-head records, weekly charts over 6 months, a year or all time, the training streak and training load widgets, CSV export and accent colors; we may add more over time, and we do not plan to take away what you paid for.",
+        "TT Tracker Pro is an optional **one-time purchase**, not a subscription. It unlocks the Pro features for as long as the app is offered, on your devices that use the same Apple Account (on iOS) or Google account (on Android) as the purchase. Pro features today are training insights (streaks, training load and session-type mix), head-to-head records, weekly charts over 6 months, a year or all time, the training streak and training load widgets, CSV export, accent colors and heart rate from Apple Health or Health Connect on linked sessions; we may add more over time, and we do not plan to take away what you paid for.",
         {
           list: [
             "Payment is handled by the App Store or Google Play and charged to your account there when you confirm the purchase. Prices are shown in the app before you buy.",
@@ -146,7 +162,7 @@ export const termsOfUse: LegalDocument = {
     {
       heading: "Not medical advice",
       blocks: [
-        "The app, its statistics and the training plans on this website are for general information and tracking only. They are not medical, health or coaching advice. Check with a doctor or qualified coach before starting a new training program, and stop if you feel pain or discomfort.",
+        "The app, its statistics (including heart rate and energy read from Apple Health or Health Connect) and the training plans on this website are for general information and tracking only. They are not medical, health or coaching advice. Check with a doctor or qualified coach before starting a new training program, and stop if you feel pain or discomfort.",
       ],
     },
     {
@@ -164,7 +180,7 @@ export const termsOfUse: LegalDocument = {
     {
       heading: "Third-party services",
       blocks: [
-        "The app uses services from other companies, such as Apple, Google, RevenueCat, PostHog and Sentry, as described in the Privacy Policy. Their own terms apply to them, and we are not responsible for their availability.",
+        "The app uses services from other companies, such as Apple (including iCloud and Apple Health), Google (including Health Connect), RevenueCat, PostHog and Sentry, as described in the Privacy Policy. Their own terms apply to them, and we are not responsible for their availability.",
       ],
     },
     {

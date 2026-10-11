@@ -8,7 +8,7 @@ struct SettingsScreen: View {
     @Environment(ProModel.self) private var pro: ProModel?
 
     private static let website = URL(string: "https://ninevastudios.com")
-    private static let privacyPolicy = URL(string: "https://ninevastudios.com/privacy")
+    private static let privacyPolicy = URL(string: "https://ttapp.smashyapps.com/privacy")
 
     var body: some View {
         List { sections }

@@ -10,7 +10,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     privacy: {
       title: "Política de Privacidad",
       description: `Cómo gestiona tus datos ${appNames.es.name}: qué permanece en tu dispositivo, qué envía la aplicación y quién lo recibe.`,
-      updated: "9 de octubre de 2026",
+      updated: "11 de octubre de 2026",
       intro: `${appNames.es.name} es un diario de entrenamiento para jugadores de tenis de mesa, desarrollado por Nineva Studios («nosotros»). Esta política cubre las aplicaciones ${appNames.es.name} para iOS y Android y el sitio web en ${SITE_URL}. En resumen: no hay cuentas de usuario, tus datos de entrenamiento permanecen en tu dispositivo, nunca vendemos datos y la aplicación no contiene anuncios.`,
       sections: [
         {
@@ -29,12 +29,27 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
           ],
         },
         {
+          heading: "App Salud de Apple y Health Connect",
+          blocks: [
+            "Puedes vincular una sesión a un entrenamiento registrado por tu reloj o tu app de fitness: a través de la app Salud en iOS y de Health Connect en Android. La aplicación solo lee datos de salud después de que lo permitas en la pantalla de permisos del sistema, y solo para completar una sesión y mostrar lo que ocurrió durante ella. Nunca escribe nada en la app Salud ni en Health Connect.",
+            {
+              list: [
+                "**Qué lee:** tus entrenamientos de tenis de mesa (hora de inicio y fin, app que los registró), la energía activa (calorías) y la frecuencia cardiaca registradas durante ellos y, en iOS, la puntuación de esfuerzo que hayas dado a un entrenamiento en el Apple Watch.",
+                "**Dónde se quedan:** los datos de salud solo se leen y se muestran en tu dispositivo. Nunca se guardan en la base de datos de la app, nunca se nos envían ni a nosotros ni a iCloud y nunca se incluyen en analíticas ni en informes de errores.",
+                "**Qué conserva la app:** solo el identificador del entrenamiento vinculado a una sesión, para que el vínculo se mantenga. Como el resto de la sesión, se sincroniza a través de tu base de datos privada de iCloud si usas la sincronización con iCloud. Al desvincular el entrenamiento o eliminar la sesión, se borra.",
+                "**Lo que nunca hacemos:** los datos de salud nunca se venden, no se comparten con nadie y no se usan para publicidad, elaboración de perfiles ni ningún otro fin que no sea mostrártelos en la app.",
+              ],
+            },
+            "Puedes impedir que la app lea datos de salud en cualquier momento: en iOS, en Ajustes → Salud → Acceso a datos y dispositivos; en Android, en los permisos de apps de Health Connect. El uso de la información recibida de Health Connect cumple la [Política de permisos de Health Connect](https://support.google.com/googleplay/android-developer/answer/12991134), incluidos sus requisitos de uso limitado.",
+          ],
+        },
+        {
           heading: "Qué envía la aplicación y a quién",
           blocks: [
             "La aplicación genera un identificador aleatorio la primera vez que se inicia (visible como ID de usuario en Ajustes). No está vinculado a tu nombre, correo ni cuentas de Apple o Google.",
             {
               list: [
-                "**Analíticas de uso — PostHog** (PostHog Inc., servidores en la UE, Fráncfort). Qué pantallas se abren y qué funciones se utilizan (por ejemplo, tipo de sesión, duración y RPE). También versión de la app, modelo de dispositivo, sistema operativo, idioma y ubicación aproximada por IP. Solo las versiones oficiales de producción envían analíticas. [Política de privacidad de PostHog](https://posthog.com/privacy).",
+                "**Analíticas de uso — PostHog** (PostHog Inc., servidores en la UE, Fráncfort). Qué pantallas se abren y qué funciones se utilizan (por ejemplo, tipo de sesión, duración y RPE, o que se vinculó un entrenamiento, nunca datos de salud). También versión de la app, modelo de dispositivo, sistema operativo, idioma y ubicación aproximada por IP. Solo las versiones oficiales de producción envían analíticas. [Política de privacidad de PostHog](https://posthog.com/privacy).",
                 "**Informes de errores — Sentry** (Functional Software, Inc., Estados Unidos). Cuando la aplicación sufre un fallo técnico: detalles del error, versión de la app, modelo de dispositivo y eventos recientes. [Política de privacidad de Sentry](https://sentry.io/privacy/).",
                 "**Gestión de compras — RevenueCat** (RevenueCat, Inc., Estados Unidos). Las compras se procesan a través de App Store o Google Play. RevenueCat recibe el recibo de compra para verificar y restaurar Pro en tus dispositivos. [Política de privacidad de RevenueCat](https://www.revenuecat.com/privacy/).",
               ],
@@ -50,6 +65,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
                 "No vendemos, alquilamos ni compartimos tus datos con fines publicitarios.",
                 "La app no muestra publicidad, no incluye SDKs de anuncios y no te rastrea en apps o webs de terceros.",
                 "No hay registro obligatorio y nunca te pediremos tu nombre, correo, teléfono o contactos.",
+                "Los datos de salud de la app Salud o de Health Connect nunca salen de tu dispositivo a través de la app.",
               ],
             },
           ],
@@ -107,7 +123,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     terms: {
       title: "Términos de Uso",
       description: `Condiciones de uso de las aplicaciones ${appNames.es.name}, TT Tracker Pro y este sitio web.`,
-      updated: "1 de octubre de 2026",
+      updated: "11 de octubre de 2026",
       intro: `Estos términos se aplican a las aplicaciones ${appNames.es.name} para iOS y Android y al sitio web en ${SITE_URL}, titularidad de Nineva Studios («nosotros»). Al descargar o utilizar la app, aceptas estas condiciones.`,
       sections: [
         {
@@ -139,7 +155,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
         {
           heading: "Exención de responsabilidad médica",
           blocks: [
-            "La aplicación y los planes de entrenamiento incluidos tienen fines meramente informativos y de registro personal. No constituyen asesoramiento médico ni profesional. Consulta con un especialista antes de iniciar un programa de entrenamiento físico exigente.",
+            "La aplicación, sus estadísticas (incluidas la frecuencia cardiaca y la energía leídas de la app Salud o de Health Connect) y los planes de entrenamiento incluidos tienen fines meramente informativos y de registro personal. No constituyen asesoramiento médico ni profesional. Consulta con un especialista antes de iniciar un programa de entrenamiento físico exigente.",
           ],
         },
         {
@@ -171,7 +187,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     privacy: {
       title: "Datenschutzerklärung",
       description: `Wie ${appNames.de.name} mit Ihren Daten umgeht: Was auf Ihrem Gerät verbleibt, was übertragen wird und wer Zugriff hat.`,
-      updated: "9. Oktober 2026",
+      updated: "11. Oktober 2026",
       intro: `${appNames.de.name} ist ein Trainingstagebuch für Tischtennisspieler, entwickelt von Nineva Studios („wir“, „uns“). Diese Erklärung gilt für die ${appNames.de.name}-Apps für iOS und Android sowie die Website unter ${SITE_URL}. Kurz zusammengefasst: Es gibt keine Benutzerkonten, Ihre Trainingsdaten verbleiben auf Ihrem Gerät, Daten werden niemals verkauft und die App ist werbefrei.`,
       sections: [
         {
@@ -189,12 +205,27 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
           ],
         },
         {
+          heading: "Apple Health und Health Connect",
+          blocks: [
+            "Sie können eine Trainingseinheit mit einem Training verknüpfen, das Ihre Uhr oder Fitness-App aufgezeichnet hat: unter iOS über Apple Health, unter Android über Health Connect. Die App liest Gesundheitsdaten erst, nachdem Sie dies im Berechtigungsdialog des Systems erlaubt haben, und nur, um eine Einheit auszufüllen und zu zeigen, was während der Einheit geschah. Sie schreibt niemals Daten in Apple Health oder Health Connect.",
+            {
+              list: [
+                "**Was gelesen wird:** Ihre Tischtennis-Trainings (Start- und Endzeit, aufzeichnende App), die dabei erfasste aktive Energie (Kalorien) und Herzfrequenz sowie unter iOS die Anstrengung, mit der Sie ein Training auf der Apple Watch bewertet haben.",
+                "**Wo die Daten bleiben:** Gesundheitsdaten werden ausschließlich auf Ihrem Gerät gelesen und angezeigt. Sie werden nie in der Datenbank der App gespeichert, nie an uns oder an iCloud gesendet und sind nie Teil von Analyse- oder Absturzberichten.",
+                "**Was die App speichert:** nur die Kennung des Trainings, mit dem eine Einheit verknüpft ist, damit die Verknüpfung erhalten bleibt. Wie der Rest der Einheit wird sie über Ihre private iCloud-Datenbank synchronisiert, wenn Sie die iCloud-Synchronisierung nutzen. Wenn Sie die Verknüpfung aufheben oder die Einheit löschen, wird sie entfernt.",
+                "**Was wir niemals tun:** Gesundheitsdaten werden niemals verkauft, an Dritte weitergegeben oder für Werbung, Profilbildung oder irgendeinen anderen Zweck verwendet, als sie Ihnen in der App anzuzeigen.",
+              ],
+            },
+            "Sie können der App das Lesen von Gesundheitsdaten jederzeit entziehen: unter iOS in Einstellungen → Health → Datenzugriff & Geräte, unter Android in den App-Berechtigungen von Health Connect. Die Verwendung von Informationen aus Health Connect erfolgt gemäß der [Richtlinie zu Health Connect-Berechtigungen](https://support.google.com/googleplay/android-developer/answer/12991134), einschließlich ihrer Anforderungen zur eingeschränkten Nutzung (Limited Use).",
+          ],
+        },
+        {
           heading: "Datenübertragungen an Dritte",
           blocks: [
             "Die App erstellt beim ersten Start eine zufällige Kennung (Benutzer-ID in den Einstellungen). Sie ist nicht mit Ihrem Namen oder Konto verknüpft.",
             {
               list: [
-                "**Nutzungsanalyse — PostHog** (PostHog Inc., Serverstandort in der EU, Frankfurt). Erfassung von Bildschirmaufrufen und Funktionsnutzung. [PostHog Datenschutz](https://posthog.com/privacy).",
+                "**Nutzungsanalyse — PostHog** (PostHog Inc., Serverstandort in der EU, Frankfurt). Erfassung von Bildschirmaufrufen und Funktionsnutzung, etwa dass ein Training verknüpft wurde (niemals Gesundheitsdaten). [PostHog Datenschutz](https://posthog.com/privacy).",
                 "**Absturzberichte — Sentry** (Functional Software, Inc., USA). Technische Fehlerdetails zur Behebung von Softwarefehlern. [Sentry Datenschutz](https://sentry.io/privacy/).",
                 "**Kaufabwicklung — RevenueCat** (RevenueCat, Inc., USA). Prüfung und Wiederherstellung von In-App-Käufen über App Store oder Google Play. [RevenueCat Datenschutz](https://www.revenuecat.com/privacy/).",
               ],
@@ -209,6 +240,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
                 "Kein Verkauf oder Vermietung von Daten an Werbenetzwerke.",
                 "Keine Werbung und keine Werbe-SDKs in der Anwendung.",
                 "Keine Registrierungspflicht; keine Abfrage von Kontaktdaten.",
+                "Gesundheitsdaten aus Apple Health oder Health Connect verlassen Ihr Gerät niemals über die App.",
               ],
             },
           ],
@@ -253,7 +285,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
         {
           heading: "Keine medizinische Beratung",
           blocks: [
-            "Die App und die Trainingspläne dienen der allgemeinen sportlichen Dokumentation und stellen keine medizinische oder gesundheitliche Beratung dar.",
+            "Die App, ihre Statistiken (einschließlich der aus Apple Health oder Health Connect gelesenen Herzfrequenz- und Energiewerte) und die Trainingspläne dienen der allgemeinen sportlichen Dokumentation und stellen keine medizinische oder gesundheitliche Beratung dar.",
           ],
         },
         {
@@ -273,7 +305,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     privacy: {
       title: "Politique de Confidentialité",
       description: `Comment ${appNames.fr.name} protège vos données : ce qui reste sur votre appareil, ce qui est transmis et à qui.`,
-      updated: "9 octobre 2026",
+      updated: "11 octobre 2026",
       intro: `${appNames.fr.name} est un journal d'entraînement pour les joueurs de tennis de table, édité par Nineva Studios (« nous »). Cette politique s'applique aux applications pour iOS et Android et au site ${SITE_URL}. En résumé : aucun compte requis, vos données restent sur votre appareil, nous ne vendons aucune donnée et l'application ne diffuse aucune publicité.`,
       sections: [
         {
@@ -290,12 +322,27 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
           ],
         },
         {
+          heading: "App Santé d'Apple et Santé Connect",
+          blocks: [
+            "Vous pouvez lier une séance à un entraînement enregistré par votre montre ou votre app de fitness : via l'app Santé sur iOS, et via Santé Connect sur Android. L'application ne lit vos données de santé qu'après votre accord dans l'écran d'autorisation du système, et uniquement pour compléter une séance et montrer ce qui s'y est passé. Elle n'écrit jamais rien dans l'app Santé ni dans Santé Connect.",
+            {
+              list: [
+                "**Ce qui est lu :** vos entraînements de tennis de table (heure de début et de fin, app d'enregistrement), l'énergie active (calories) et la fréquence cardiaque enregistrées pendant ceux-ci et, sur iOS, l'évaluation de l'effort que vous avez attribuée à un entraînement sur l'Apple Watch.",
+                "**Où elles restent :** les données de santé sont lues et affichées uniquement sur votre appareil. Elles ne sont jamais enregistrées dans la base de données de l'application, jamais transmises ni à nous ni à iCloud, et jamais incluses dans les statistiques d'utilisation ou les rapports de plantage.",
+                "**Ce que l'application conserve :** uniquement l'identifiant de l'entraînement auquel une séance est liée, afin que le lien soit préservé. Comme le reste de la séance, il est synchronisé via votre base de données iCloud privée si vous utilisez la synchronisation iCloud. Il est supprimé si vous dissociez l'entraînement ou supprimez la séance.",
+                "**Ce que nous ne faisons jamais :** les données de santé ne sont jamais vendues, partagées avec qui que ce soit, ni utilisées à des fins publicitaires, de profilage ou à toute autre fin que leur affichage pour vous dans l'application.",
+              ],
+            },
+            "Vous pouvez empêcher l'application de lire vos données de santé à tout moment : sur iOS dans Réglages → Santé → Accès aux données et appareils, sur Android dans les autorisations des applications de Santé Connect. L'utilisation des informations reçues de Santé Connect respecte le [Règlement sur les autorisations Santé Connect](https://support.google.com/googleplay/android-developer/answer/12991134), y compris ses exigences d'utilisation limitée.",
+          ],
+        },
+        {
           heading: "Données transmises et partenaires",
           blocks: [
             "L'application génère un identifiant aléatoire (ID utilisateur dans Réglages) sans lien avec votre identité.",
             {
               list: [
-                "**Analytique d'utilisation — PostHog** (serveurs dans l'UE à Francfort). Mesure anonyme de l'utilisation des écrans. [Confidentialité PostHog](https://posthog.com/privacy).",
+                "**Analytique d'utilisation — PostHog** (serveurs dans l'UE à Francfort). Mesure anonyme de l'utilisation des écrans et des fonctionnalités, par exemple la liaison d'un entraînement (jamais aucune donnée de santé). [Confidentialité PostHog](https://posthog.com/privacy).",
                 "**Rapports de plantage — Sentry** (États-Unis). Analyse des erreurs techniques de l'application. [Confidentialité Sentry](https://sentry.io/privacy/).",
                 "**Achats — RevenueCat** (États-Unis). Validation et restauration des achats intégrés. [Confidentialité RevenueCat](https://www.revenuecat.com/privacy/).",
               ],
@@ -356,7 +403,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     privacy: {
       title: "Política de Privacidade",
       description: `Como o ${appNames.pt.name} trata os seus dados: o que permanece no dispositivo e quais dados técnicos são transmitidos.`,
-      updated: "9 de outubro de 2026",
+      updated: "11 de outubro de 2026",
       intro: `O ${appNames.pt.name} é um diário de treino para mesatenistas, desenvolvido pela Nineva Studios («nós»). Em suma: não exigimos cadastro, os dados de treino ficam no seu aparelho, nunca vendemos dados e o aplicativo não contém anúncios.`,
       sections: [
         {
@@ -372,9 +419,24 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
           ],
         },
         {
+          heading: "App Saúde da Apple e Conexão Saúde",
+          blocks: [
+            "Você pode vincular uma sessão a um treino registrado pelo seu relógio ou app de fitness: pelo app Saúde no iOS e pelo Conexão Saúde (Health Connect) no Android. O aplicativo só lê dados de saúde depois que você autoriza na tela de permissões do sistema, e apenas para completar uma sessão e mostrar o que aconteceu durante ela. Ele nunca grava nada no app Saúde nem no Conexão Saúde.",
+            {
+              list: [
+                "**O que é lido:** seus treinos de tênis de mesa (início e fim, app que registrou), a energia ativa (calorias) e a frequência cardíaca registradas durante eles e, no iOS, a pontuação de esforço que você deu a um treino no Apple Watch.",
+                "**Onde ficam:** os dados de saúde são lidos e exibidos somente no seu dispositivo. Nunca são armazenados no banco de dados do aplicativo, nunca são enviados para nós nem para o iCloud e nunca entram em métricas de uso ou relatórios de falhas.",
+                "**O que o aplicativo guarda:** apenas o identificador do treino vinculado a uma sessão, para que o vínculo se mantenha. Como o restante da sessão, ele é sincronizado pela sua base privada do iCloud se você usa a sincronização iCloud. Desvincular o treino ou excluir a sessão o remove.",
+                "**O que nunca fazemos:** os dados de saúde nunca são vendidos, compartilhados com ninguém nem usados para publicidade, criação de perfis ou qualquer finalidade que não seja mostrá-los a você no aplicativo.",
+              ],
+            },
+            "Você pode impedir que o aplicativo leia dados de saúde a qualquer momento: no iOS, em Ajustes → Saúde → Acesso a Dados e Dispositivos; no Android, nas permissões de apps do Conexão Saúde. O uso de informações recebidas do Conexão Saúde segue a [Política de permissões do Conexão Saúde](https://support.google.com/googleplay/android-developer/answer/12991134), incluindo seus requisitos de uso limitado.",
+          ],
+        },
+        {
           heading: "Serviços de terceiros",
           blocks: [
-            "Utilizamos PostHog (dados na UE) para métricas de uso, Sentry para relatórios de falhas e RevenueCat para validação de compras.",
+            "Utilizamos PostHog (dados na UE) para métricas de uso, Sentry para relatórios de falhas e RevenueCat para validação de compras. Nenhum dado de saúde é incluído nesses envios.",
           ],
         },
         {
@@ -419,7 +481,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     privacy: {
       title: "プライバシーポリシー",
       description: `「${appNames.ja.name}」におけるユーザーデータの取り扱いについて：端末内に保持されるデータと外部送信される情報。`,
-      updated: "2026年10月9日",
+      updated: "2026年10月11日",
       intro: `「${appNames.ja.name}」はNineva Studios（以下「当社」）が提供する卓球選手のための練習記録アプリです。要約：アカウント作成は不要で、練習ログはお使いの端末内にのみ保存され、データの販売や広告の表示は一切行いません。`,
       sections: [
         {
@@ -436,12 +498,27 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
           ],
         },
         {
+          heading: "「ヘルスケア」Appとヘルスコネクト",
+          blocks: [
+            "練習セッションを、ウォッチやフィットネスアプリで記録したワークアウトと連携できます（iOSでは「ヘルスケア」App、Androidではヘルスコネクトを使用）。アプリがヘルスケアデータを読み取るのは、システムの許可画面でお客様が許可した後に限られ、その目的はセッションの入力とセッション中の記録の表示のみです。「ヘルスケア」Appやヘルスコネクトにデータを書き込むことは一切ありません。",
+            {
+              list: [
+                "**読み取るデータ：**卓球のワークアウト（開始・終了時刻、記録したアプリ）、その間に記録されたアクティブエネルギー（カロリー）と心拍数、およびiOSではApple Watchでワークアウトに付けた負荷の評価。",
+                "**データの保存場所：**ヘルスケアデータは端末上でのみ読み取り・表示されます。アプリのデータベースに保存されることはなく、当社やiCloudに送信されることも、利用状況解析やクラッシュ報告に含まれることもありません。",
+                "**アプリが保持する情報：**連携を維持するため、セッションに連携したワークアウトの識別子のみを保持します。セッションの他のデータと同様、iCloud同期をご利用の場合はお客様のプライベートなiCloudデータベースを通じて同期されます。ワークアウトの連携を解除するか、セッションを削除すると、この識別子も削除されます。",
+                "**当社が決して行わないこと：**ヘルスケアデータを販売したり、第三者と共有したり、広告やプロファイリング、その他アプリ内でお客様に表示する以外の目的に使用したりすることは一切ありません。",
+              ],
+            },
+            "ヘルスケアデータの読み取りはいつでも停止できます。iOSでは「設定」→「ヘルスケア」→「データアクセスとデバイス」、Androidではヘルスコネクトのアプリの権限から変更してください。ヘルスコネクトから受け取った情報の使用は、限定使用（Limited Use）の要件を含む[ヘルスコネクトの権限に関するポリシー](https://support.google.com/googleplay/android-developer/answer/12991134)に従います。",
+          ],
+        },
+        {
           heading: "外部送信される技術情報",
           blocks: [
             "アプリの改善と品質維持のため、個人を特定しない形で以下のサービスを利用しています：",
             {
               list: [
-                "**利用状況解析 — PostHog**（欧州フランクフルトのサーバー）：画面遷移や機能の利用頻度等の匿名統計。",
+                "**利用状況解析 — PostHog**（欧州フランクフルトのサーバー）：画面遷移や機能の利用頻度（ワークアウトを連携したかどうか等）の匿名統計。ヘルスケアデータは一切含みません。",
                 "**エラー・クラッシュ報告 — Sentry**：アプリのクラッシュ情報およびエラー解析。",
                 "**購入管理 — RevenueCat**：App StoreまたはGoogle Playでの購入状態の検証および復元。",
               ],
@@ -482,7 +559,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
         {
           heading: "免責事項",
           blocks: [
-            "本アプリおよび掲載されている練習メニューは一般的なスポーツ記録および情報提供を目的としており、医療的助言や指導を構成するものではありません。",
+            "本アプリ（「ヘルスケア」Appまたはヘルスコネクトから読み取った心拍数や消費エネルギーの表示を含む）および掲載されている練習メニューは一般的なスポーツ記録および情報提供を目的としており、医療的助言や指導を構成するものではありません。",
           ],
         },
         {
@@ -496,7 +573,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     privacy: {
       title: "隐私政策",
       description: `「${appNames.zh.name}」如何处理您的数据：存储在设备上的内容、技术传输信息及相关第三方服务。`,
-      updated: "2026年10月9日",
+      updated: "2026年10月11日",
       intro: `「${appNames.zh.name}」是由 Nineva Studios（“我们”）专为乒乓球爱好者打造的训练日志应用。简要说明：无需注册账号，训练与比赛记录保存在您的本地设备中，我们绝不出售任何数据，应用内无任何广告。`,
       sections: [
         {
@@ -513,12 +590,27 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
           ],
         },
         {
+          heading: "“健康”App 与 Health Connect",
+          blocks: [
+            "您可以将训练记录与手表或健身应用记录的体能训练关联：iOS 上通过“健康”App，Android 上通过 Health Connect。只有在您于系统权限界面中授权后，应用才会读取健康数据，且仅用于填写训练记录并显示训练期间的情况。应用绝不会向“健康”App 或 Health Connect 写入任何数据。",
+            {
+              list: [
+                "**读取的内容：**您的乒乓球体能训练（开始和结束时间、记录所用的应用）、训练期间记录的活动能量（卡路里）和心率，以及在 iOS 上您在 Apple Watch 上为体能训练给出的强度评分。",
+                "**数据存放位置：**健康数据仅在您的设备上读取和显示，绝不会存入应用的数据库，绝不会发送给我们或 iCloud，也绝不会包含在使用统计或崩溃报告中。",
+                "**应用保留的内容：**仅保留训练记录所关联体能训练的标识符，以便保持关联。与训练记录的其他数据一样，如果您使用 iCloud 同步，它会通过您的私有 iCloud 数据库同步。取消关联该体能训练或删除训练记录即会将其移除。",
+                "**我们绝不会：**出售健康数据或与任何人共享，也不会将其用于广告、用户画像或除在应用中向您展示以外的任何目的。",
+              ],
+            },
+            "您可以随时停止应用读取健康数据：iOS 上前往“设置”→“健康”→“数据访问与设备”，Android 上在 Health Connect 的应用权限中关闭。对从 Health Connect 获取的信息的使用遵守 [Health Connect 权限政策](https://support.google.com/googleplay/android-developer/answer/12991134)，包括其中的有限使用要求。",
+          ],
+        },
+        {
           heading: "技术数据与第三方服务",
           blocks: [
             "为了保障软件稳定性，应用会生成随机匿名标识符并调用以下服务：",
             {
               list: [
-                "**使用统计 — PostHog**（数据存储在欧盟法兰克福）：记录功能使用频次等匿名数据。",
+                "**使用统计 — PostHog**（数据存储在欧盟法兰克福）：记录功能使用频次等匿名数据（例如是否关联了体能训练），绝不包含任何健康数据。",
                 "**崩溃报告 — Sentry**：分析应用运行时的崩溃错误和系统日志。",
                 "**购买验证 — RevenueCat**：用于在您的多台设备上验证和恢复 Pro 购买凭证。",
               ],
@@ -559,7 +651,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
         {
           heading: "免责声明",
           blocks: [
-            "本应用提供的数据分析与训练计划仅供参考，不构成医疗或专业运动教练建议。请根据个人身体状况合理安排训练。",
+            "本应用提供的数据分析（包括从“健康”App 或 Health Connect 读取的心率和能量数据）与训练计划仅供参考，不构成医疗或专业运动教练建议。请根据个人身体状况合理安排训练。",
           ],
         },
         {
@@ -573,7 +665,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     privacy: {
       title: "개인정보 처리방침",
       description: `「${appNames.ko.name}」의 개인정보 처리 안내: 기기 내 저장 데이터, 외부 전송 항목 및 제3자 제공 현황.`,
-      updated: "2026년 10월 9일",
+      updated: "2026년 10월 11일",
       intro: `「${appNames.ko.name}」은 Nineva Studios(이하 '회사')가 개발한 탁구인을 위한 훈련일지 앱입니다. 요약: 별도의 회원가입이나 계정이 필요 없으며, 모든 기록은 사용자 기기에 안전하게 보관되고, 데이터 판매나 광고는 절대 하지 않습니다.`,
       sections: [
         {
@@ -589,12 +681,27 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
           ],
         },
         {
+          heading: "Apple 건강 앱 및 헬스 커넥트",
+          blocks: [
+            "훈련 세션을 워치나 피트니스 앱으로 기록한 운동과 연결할 수 있습니다. iOS에서는 건강 앱, Android에서는 헬스 커넥트를 통해 연결됩니다. 앱은 사용자가 시스템 권한 화면에서 허용한 후에만 건강 데이터를 읽으며, 세션 정보를 채우고 세션 중의 기록을 보여 주는 용도로만 사용합니다. 건강 앱이나 헬스 커넥트에 어떠한 데이터도 기록하지 않습니다.",
+            {
+              list: [
+                "**읽는 데이터:** 탁구 운동 기록(시작 및 종료 시간, 기록한 앱), 운동 중 기록된 활동 에너지(칼로리)와 심박수, 그리고 iOS에서는 Apple Watch에서 운동에 매긴 운동 강도 평가.",
+                "**보관 위치:** 건강 데이터는 사용자 기기에서만 읽고 표시됩니다. 앱 데이터베이스에 저장되지 않으며, 회사나 iCloud로 전송되지 않고, 사용 통계나 오류 보고에도 포함되지 않습니다.",
+                "**앱이 보관하는 정보:** 연결을 유지하기 위해 세션에 연결된 운동의 식별자만 보관합니다. 세션의 다른 데이터와 마찬가지로 iCloud 동기화를 사용하는 경우 사용자의 비공개 iCloud 데이터베이스를 통해 동기화됩니다. 운동 연결을 해제하거나 세션을 삭제하면 함께 삭제됩니다.",
+                "**회사가 절대 하지 않는 일:** 건강 데이터를 판매하거나 누구와도 공유하지 않으며, 광고, 프로파일링 또는 앱에서 사용자에게 보여 주는 것 이외의 어떠한 목적으로도 사용하지 않습니다.",
+              ],
+            },
+            "건강 데이터 읽기는 언제든지 중단할 수 있습니다. iOS에서는 설정 → 건강 → 데이터 접근 및 기기, Android에서는 헬스 커넥트의 앱 권한에서 변경하세요. 헬스 커넥트에서 받은 정보의 사용은 제한적 사용 요구사항을 포함한 [헬스 커넥트 권한 정책](https://support.google.com/googleplay/android-developer/answer/12991134)을 따릅니다.",
+          ],
+        },
+        {
           heading: "외부 전송 기술 데이터",
           blocks: [
             "앱 오류 개선 및 안정성 유지를 위해 비식별화된 임의 식별자를 기반으로 다음 서비스를 이용합니다:",
             {
               list: [
-                "**사용 통계 — PostHog** (EU 프랑크푸르트 서버): 익명 기능 사용 빈도 측정.",
+                "**사용 통계 — PostHog** (EU 프랑크푸르트 서버): 익명 기능 사용 빈도 측정(운동 연결 여부 등, 건강 데이터는 절대 포함되지 않음).",
                 "**오류 보고 — Sentry** (미국): 앱 비정상 종료 시 기술적 오류 로그 분석.",
                 "**구매 관리 — RevenueCat** (미국): 인앱 결제 확인 및 다중 기기 구매 복원 처리.",
               ],
@@ -635,7 +742,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
         {
           heading: "의학적 면책 조항",
           blocks: [
-            "본 앱의 통계 및 훈련 계획은 참고용 일반 정보이며 의학적 조언을 대신할 수 없습니다.",
+            "본 앱의 통계(Apple 건강 앱 또는 헬스 커넥트에서 읽어 온 심박수 및 에너지 포함) 및 훈련 계획은 참고용 일반 정보이며 의학적 조언을 대신할 수 없습니다.",
           ],
         },
         {
@@ -649,7 +756,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     privacy: {
       title: "Informativa sulla Privacy",
       description: `Come ${appNames.it.name} gestisce i tuoi dati: cosa rimane sul tuo dispositivo e quali dati tecnici vengono trasmessi.`,
-      updated: "9 ottobre 2026",
+      updated: "11 ottobre 2026",
       intro: `${appNames.it.name} è un diario di allenamento per giocatori di tennistavolo, creato da Nineva Studios («noi»). In breve: nessun account richiesto, i dati rimangono sul tuo dispositivo, non vendiamo dati e non mostriamo pubblicità.`,
       sections: [
         {
@@ -661,13 +768,28 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
         {
           heading: "Sincronizzazione iCloud (iOS)",
           blocks: [
-            "La sincronizzazione opcional avviene tramite il tuo database privato CloudKit di Apple secondo la [Politica sulla Privacy di Apple](https://www.apple.com/legal/privacy/).",
+            "La sincronizzazione opzionale avviene tramite il tuo database privato CloudKit di Apple secondo la [Politica sulla Privacy di Apple](https://www.apple.com/legal/privacy/).",
+          ],
+        },
+        {
+          heading: "App Salute di Apple e Connessione Salute",
+          blocks: [
+            "Puoi collegare una sessione a un allenamento registrato dal tuo orologio o da un'app di fitness: tramite l'app Salute su iOS e Connessione Salute (Health Connect) su Android. L'app legge i dati sulla salute solo dopo che lo hai consentito nella schermata dei permessi del sistema, e solo per completare una sessione e mostrare cosa è successo durante l'allenamento. Non scrive mai nulla nell'app Salute o in Connessione Salute.",
+            {
+              list: [
+                "**Cosa legge:** i tuoi allenamenti di tennistavolo (ora di inizio e fine, app che li ha registrati), l'energia attiva (calorie) e la frequenza cardiaca registrate durante l'allenamento e, su iOS, il punteggio di sforzo che hai assegnato a un allenamento su Apple Watch.",
+                "**Dove restano:** i dati sulla salute vengono letti e mostrati solo sul tuo dispositivo. Non vengono mai salvati nel database dell'app, mai inviati a noi o a iCloud e mai inclusi nelle statistiche d'uso o nei report sui crash.",
+                "**Cosa conserva l'app:** solo l'identificativo dell'allenamento collegato a una sessione, per mantenere il collegamento. Come il resto della sessione, viene sincronizzato tramite il tuo database privato iCloud se usi la sincronizzazione iCloud. Scollegando l'allenamento o eliminando la sessione viene rimosso.",
+                "**Cosa non facciamo mai:** i dati sulla salute non vengono mai venduti, condivisi con nessuno né usati per pubblicità, profilazione o qualsiasi scopo diverso dal mostrarteli nell'app.",
+              ],
+            },
+            "Puoi impedire all'app di leggere i dati sulla salute in qualsiasi momento: su iOS in Impostazioni → Salute → Accesso ai dati e dispositivi, su Android nelle autorizzazioni app di Connessione Salute. L'uso delle informazioni ricevute da Connessione Salute rispetta le [Norme sulle autorizzazioni di Connessione Salute](https://support.google.com/googleplay/android-developer/answer/12991134), inclusi i requisiti di uso limitato.",
           ],
         },
         {
           heading: "Servizi di terze parti",
           blocks: [
-            "Utilizziamo PostHog (server nell'UE a Francoforte) per statistiche d'uso anonime, Sentry per i report sui crash e RevenueCat per la gestione degli acquisti in-app.",
+            "Utilizziamo PostHog (server nell'UE a Francoforte) per statistiche d'uso anonime, Sentry per i report sui crash e RevenueCat per la gestione degli acquisti in-app. Nessun dato sulla salute viene mai incluso in questi invii.",
           ],
         },
         {
@@ -712,7 +834,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     privacy: {
       title: "Політика конфіденційності",
       description: `Як додаток «${appNames.uk.name}» обробляє ваші дані: що зберігається на пристрої, які технічні дані надсилаються та хто має до них доступ.`,
-      updated: "9 жовтня 2026 р.",
+      updated: "11 жовтня 2026 р.",
       intro: `«${appNames.uk.name}» — це тренувальний щоденник для гравців у настільний теніс від Nineva Studios («ми»). Коротко: реєстрація не потрібна, ваші тренування зберігаються на вашому пристрої, ми ніколи не продаємо дані, а в додатку немає реклами.`,
       sections: [
         {
@@ -729,12 +851,27 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
           ],
         },
         {
+          heading: "Apple Health («Здоров’я») і Health Connect",
+          blocks: [
+            "Ви можете прив’язати тренування до запису тренування з вашого годинника чи фітнес-додатка: через «Здоров’я» (Apple Health) в iOS і через Health Connect в Android. Додаток читає дані про здоров’я лише після того, як ви дозволите це в системному вікні дозволів, і лише для того, щоб заповнити тренування й показати, що відбувалося під час нього. Він ніколи нічого не записує в «Здоров’я» чи Health Connect.",
+            {
+              list: [
+                "**Що читається:** ваші записи тренувань з настільного тенісу (час початку й завершення, додаток, що їх записав), активна енергія (калорії) і пульс, зафіксовані під час них, а в iOS — оцінка зусиль, яку ви поставили тренуванню на Apple Watch.",
+                "**Де залишаються дані:** дані про здоров’я читаються й показуються лише на вашому пристрої. Вони ніколи не зберігаються в базі даних додатка, не надсилаються ні нам, ні в iCloud і не потрапляють до аналітики чи звітів про помилки.",
+                "**Що зберігає додаток:** лише ідентифікатор запису тренування, до якого прив’язано тренування, щоб прив’язка не загубилася. Як і решта даних тренування, він синхронізується через вашу приватну базу даних iCloud, якщо ви користуєтеся синхронізацією з iCloud. Якщо відв’язати запис або видалити тренування, ідентифікатор також видаляється.",
+                "**Чого ми ніколи не робимо:** дані про здоров’я ніколи не продаються, нікому не передаються й не використовуються для реклами, профілювання чи будь-якої іншої мети, крім показу вам у додатку.",
+              ],
+            },
+            "Заборонити додатку читати дані про здоров’я можна будь-коли: в iOS у розділі «Параметри → Здоров’я → Доступ до даних і пристрої», в Android — у дозволах додатків Health Connect. Використання інформації, отриманої з Health Connect, відповідає [Правилам щодо дозволів Health Connect](https://support.google.com/googleplay/android-developer/answer/12991134), зокрема їхнім вимогам щодо обмеженого використання.",
+          ],
+        },
+        {
           heading: "Що і кому надсилає додаток",
           blocks: [
             "Додаток створює випадковий анонімний ідентифікатор при першому запуску (ID користувача в Налаштуваннях). Він не пов'язаний з вашим іменем або обліковим записом.",
             {
               list: [
-                "**Аналітика використання — PostHog** (сервери в ЄС, Франкфурт): анонімна статистика щодо переглянутих екранів та активності. [Політика PostHog](https://posthog.com/privacy).",
+                "**Аналітика використання — PostHog** (сервери в ЄС, Франкфурт): анонімна статистика щодо переглянутих екранів та активності, як-от прив’язування запису тренування (без жодних даних про здоров’я). [Політика PostHog](https://posthog.com/privacy).",
                 "**Звіти про помилки — Sentry** (США): технічні деталі збоїв для виправлення неполадок. [Політика Sentry](https://sentry.io/privacy/).",
                 "**Керування покупками — RevenueCat** (США): перевірка та відновлення покупок Pro на ваших пристроях. [Політика RevenueCat](https://www.revenuecat.com/privacy/).",
               ],
@@ -749,6 +886,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
                 "Ми не продаємо, не орендуємо та не передаємо ваші дані рекламодавцям.",
                 "Додаток не містить реклами та трекерів рекламних мереж.",
                 "Немає реєстрації: ми ніколи не запитуємо ваше ім'я, телефон чи контакти.",
+                "Дані про здоров’я з Apple Health чи Health Connect ніколи не залишають ваш пристрій через додаток.",
               ],
             },
           ],
@@ -793,7 +931,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
         {
           heading: "Не є медичною консультацією",
           blocks: [
-            "Додаток і плани тренувань носять виключно інформаційний характер і не є медичними чи професійними порадами. Проконсультуйтеся з лікарем або тренером перед початком інтенсивних занять.",
+            "Додаток, його статистика (зокрема пульс і енергія, отримані з Apple Health чи Health Connect) і плани тренувань носять виключно інформаційний характер і не є медичними чи професійними порадами. Проконсультуйтеся з лікарем або тренером перед початком інтенсивних занять.",
           ],
         },
         {

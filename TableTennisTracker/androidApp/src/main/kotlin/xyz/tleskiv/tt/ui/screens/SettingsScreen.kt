@@ -166,7 +166,7 @@ fun SettingsScreen(
 						SettingsMenuItem(
 							R.string.action_privacy_policy,
 							Icons.Outlined.Lock,
-							{ uriHandler.openUri("https://ninevastudios.com/privacy-policy") }),
+							{ uriHandler.openUri("https://ttapp.smashyapps.com/privacy") }),
 						SettingsMenuItem(R.string.action_rate_app, Icons.Outlined.Star, { viewModel.rateApp() }),
 						SettingsMenuItem(
 							R.string.action_copy_user_id,
