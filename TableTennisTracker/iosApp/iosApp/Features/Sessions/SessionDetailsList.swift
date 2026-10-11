@@ -3,6 +3,7 @@ import SwiftUI
 /// Everything recorded about one session.
 struct SessionDetailsList: View {
     let session: SessionItem
+    let health: SessionHealthModel
 
     @Environment(\.locale) private var locale
 
@@ -28,6 +29,7 @@ struct SessionDetailsList: View {
                     }
                 }
             }
+            SessionHealthSection(session: session, model: health)
             if let notes = session.notes {
                 Section(L.labelNotes) { Text(notes) }
             }

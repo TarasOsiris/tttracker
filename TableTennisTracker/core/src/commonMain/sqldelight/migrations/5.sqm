@@ -1,0 +1,3 @@
+-- Migration from version 5 to 6: the Apple Health workout a session is linked to.
+
+ALTER TABLE training_session ADD COLUMN health_workout_id TEXT;

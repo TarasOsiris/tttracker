@@ -23,7 +23,8 @@ fun List<SelectAllSessionsWithMatches>.toTrainingSessions(): List<TrainingSessio
 			notes = first.session_notes,
 			matches = rows.mapNotNull { it.toMatch() },
 			createdAt = first.session_created_at.toEpochMilliseconds(),
-			updatedAt = first.session_updated_at.toEpochMilliseconds()
+			updatedAt = first.session_updated_at.toEpochMilliseconds(),
+			healthWorkoutId = first.session_health_workout_id
 		)
 	}
 }
@@ -72,7 +73,8 @@ fun List<GetSessionWithMatchesById>.toTrainingSession(): TrainingSession? {
 		notes = first.session_notes,
 		matches = mapNotNull { it.toMatch() },
 		createdAt = first.session_created_at.toEpochMilliseconds(),
-		updatedAt = first.session_updated_at.toEpochMilliseconds()
+		updatedAt = first.session_updated_at.toEpochMilliseconds(),
+		healthWorkoutId = first.session_health_workout_id
 	)
 }
 

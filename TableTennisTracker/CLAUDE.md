@@ -305,6 +305,8 @@ What Pro unlocks — keep `ProBenefit.all` and the RevenueCat paywall in step wi
   `WidgetProStore`), and a locked widget opens the paywall through `tttracker://pro`. The original
   widgets stay free.
 - **CSV export** in Settings (`CsvExport.kt` in `:core`).
+- **Heart rate from Apple Health** on a linked session's details (iOS only; linking itself is free —
+  see `docs/apple-health.md`).
 - **Accent colors** (`AppAccent` preference); the UI draws its accent with the `.tint` style, never
   `Color.accentColor`, so the choice reaches every screen and widget.
 

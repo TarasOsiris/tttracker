@@ -33,7 +33,7 @@ private class Device {
 
 	fun insertSession(id: Uuid, at: Long, notes: String? = null) = queries.insertSession(
 		id = id, date = LocalDate(2026, 9, 1), duration_min = 60, rpe = 5, session_type = null, notes = notes,
-		updated_at = Instant.fromEpochMilliseconds(at)
+		updated_at = Instant.fromEpochMilliseconds(at), health_workout_id = null
 	)
 
 	fun editSession(id: Uuid, at: Long, notes: String?) = queries.updateSession(
@@ -242,7 +242,9 @@ class CloudSyncRepositoryTest {
 		record.isDeleted shouldBe true
 		record.strings shouldBe emptyMap()
 		record.integers shouldBe emptyMap()
-		record.nullKeys shouldContainExactlyInAnyOrder listOf("date", "durationMin", "rpe", "sessionType", "notes", "createdAt")
+		record.nullKeys shouldContainExactlyInAnyOrder listOf(
+			"date", "durationMin", "rpe", "sessionType", "notes", "createdAt", "healthWorkoutId"
+		)
 	}
 
 	@Test
@@ -443,6 +445,49 @@ class CloudSyncRepositoryTest {
 			match.rpe shouldBe matchRpe
 			match.updated_at shouldBe Instant.fromEpochMilliseconds(1_000)
 		}
+	}
+
+	@Test
+	fun setHealthWorkout_onOneDevice_reachesTheOther() {
+		val (phone, tablet, cloud) = pairedDevices()
+		val workoutId = "3F2504E0-4F89-11D3-9A0C-0305E82C3301"
+		runBlocking { phone.sessions.setHealthWorkout(sessionId, workoutId) }
+
+		cloud.push(phone)
+		cloud.pull(tablet)
+
+		tablet.session(sessionId)?.health_workout_id shouldBe workoutId
+	}
+
+	@Test
+	fun setHealthWorkout_toNull_unlinksOnTheOtherDevice() {
+		val (phone, tablet, cloud) = pairedDevices()
+		runBlocking { phone.sessions.setHealthWorkout(sessionId, "3F2504E0-4F89-11D3-9A0C-0305E82C3301") }
+		cloud.push(phone)
+		cloud.pull(tablet)
+
+		runBlocking { phone.sessions.setHealthWorkout(sessionId, null) }
+		cloud.push(phone)
+		cloud.pull(tablet)
+
+		tablet.session(sessionId)?.health_workout_id.shouldBeNull()
+	}
+
+	@Test
+	fun setHealthWorkout_withSameWorkout_neitherRestampsNorQueues() {
+		val device = Device()
+		val insertedAt = 1_000L
+		val workoutId = "3F2504E0-4F89-11D3-9A0C-0305E82C3301"
+		device.insertSession(sessionId, at = insertedAt)
+		runBlocking { device.sessions.setHealthWorkout(sessionId, workoutId) }
+		val linkedAt = device.session(sessionId)?.updated_at
+		device.sync.setEnabled(true)
+		device.sync.markSent(device.pending().mapNotNull { device.sync.recordForUpload(it) })
+
+		runBlocking { device.sessions.setHealthWorkout(sessionId, workoutId) }
+
+		device.session(sessionId)?.updated_at shouldBe linkedAt
+		device.pending().shouldBeEmpty()
 	}
 
 	/** Two devices that have already synced one session with each other. */

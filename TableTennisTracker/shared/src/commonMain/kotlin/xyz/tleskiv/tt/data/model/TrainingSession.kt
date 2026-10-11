@@ -14,5 +14,7 @@ data class TrainingSession(
     val notes: String?,
     val matches: List<Match>,
     val createdAt: Long,
-    val updatedAt: Long
+    val updatedAt: Long,
+    /** The UUID of the Apple Health workout the session is linked to, if any. */
+    val healthWorkoutId: String? = null
 )

@@ -11,6 +11,7 @@ struct SessionItem: Identifiable, Hashable {
     let rpe: Int
     let notes: String?
     let matches: [MatchItem]
+    let healthWorkoutId: String?
 
     var title: String { kind?.label ?? L.sessionDefaultTitle }
 }
@@ -26,5 +27,6 @@ extension SessionItem {
         rpe = Int(model.rpe)
         notes = model.notes?.nilIfBlank
         matches = model.matches.map(MatchItem.init)
+        healthWorkoutId = model.healthWorkoutId
     }
 }

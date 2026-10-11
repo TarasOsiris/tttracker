@@ -33,7 +33,8 @@ class TrainingSessionsRepositoryImpl(
 		rpe: Int,
 		sessionType: SessionType?,
 		notes: String?,
-		matches: List<MatchInput>
+		matches: List<MatchInput>,
+		healthWorkoutId: String?
 	): Uuid = withContext(ioDispatcher) {
 		val sessionId = Uuid.random()
 
@@ -45,7 +46,8 @@ class TrainingSessionsRepositoryImpl(
 				rpe = rpe.toLong(),
 				session_type = sessionType?.dbValue,
 				notes = notes,
-				updated_at = nowInstant
+				updated_at = nowInstant,
+				health_workout_id = healthWorkoutId
 			)
 
 			matches.forEach { insertMatch(sessionId, it) }
@@ -148,6 +150,10 @@ class TrainingSessionsRepositoryImpl(
 			notes = null,
 			updated_at = nowInstant
 		)
+	}
+
+	override suspend fun setHealthWorkout(id: Uuid, workoutId: String?): Unit = withContext(ioDispatcher) {
+		database.appDatabaseQueries.setSessionHealthWorkout(health_workout_id = workoutId, updated_at = nowInstant, id = id)
 	}
 
 	override suspend fun getAllSessions(): List<TrainingSession> = withContext(ioDispatcher) {

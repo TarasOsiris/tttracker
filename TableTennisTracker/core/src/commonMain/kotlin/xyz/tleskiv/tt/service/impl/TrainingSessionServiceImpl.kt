@@ -21,14 +21,16 @@ class TrainingSessionServiceImpl(
 		rpe: Int,
 		sessionType: SessionType?,
 		notes: String?,
-		matches: List<MatchInput>
+		matches: List<MatchInput>,
+		healthWorkoutId: String?
 	): Uuid = repository.addSession(
 		date = dateTime.date,
 		durationMinutes = durationMinutes,
 		rpe = rpe,
 		sessionType = sessionType,
 		notes = notes,
-		matches = matches
+		matches = matches,
+		healthWorkoutId = healthWorkoutId
 	)
 
 	override suspend fun editSession(
@@ -49,6 +51,10 @@ class TrainingSessionServiceImpl(
 			notes = notes,
 			matches = matches
 		)
+	}
+
+	override suspend fun setHealthWorkout(id: Uuid, workoutId: String?) {
+		repository.setHealthWorkout(id, workoutId)
 	}
 
 	override suspend fun getAllSessions(): List<TrainingSession> {

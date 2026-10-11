@@ -77,7 +77,8 @@ final class DebugModel {
                 rpe: Int32.random(in: 1...10),
                 sessionType: Bool.random() ? SessionKind.allCases.randomElement()?.kotlin : nil,
                 notes: Int.random(in: 0..<100) < 30 ? "Random session note #\(Int.random(in: 0..<1000))" : nil,
-                matches: matches(against: roster)
+                matches: matches(against: roster),
+                healthWorkoutId: nil
             )
         }
     }

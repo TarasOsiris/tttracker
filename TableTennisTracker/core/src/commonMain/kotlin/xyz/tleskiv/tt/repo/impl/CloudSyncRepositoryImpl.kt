@@ -229,7 +229,8 @@ internal class CloudSyncRepositoryImpl(
 			SyncedTable.SESSION -> queries.syncUpsertSession(
 				date = localDateAdapter.decode(r.long("date") ?: 0), duration_min = r.long("durationMin") ?: 0,
 				rpe = r.long("rpe") ?: 0, session_type = r.string("sessionType"), notes = r.string("notes"),
-				created_at = r.instant("createdAt"), updated_at = updatedAt, id = id
+				health_workout_id = r.string("healthWorkoutId"), created_at = r.instant("createdAt"), updated_at = updatedAt,
+				id = id
 			)
 			SyncedTable.MATCH -> {
 				val sessionId = r.string("sessionId")?.let(::parseId) ?: return false
@@ -274,7 +275,8 @@ internal class CloudSyncRepositoryImpl(
 					table, recordName, it.updated_at.millis,
 					mapOf(
 						"date" to localDateAdapter.encode(it.date), "durationMin" to it.duration_min, "rpe" to it.rpe,
-						"sessionType" to it.session_type, "notes" to it.notes, "createdAt" to it.created_at.millis
+						"sessionType" to it.session_type, "notes" to it.notes, "createdAt" to it.created_at.millis,
+						"healthWorkoutId" to it.health_workout_id
 					)
 				)
 			}

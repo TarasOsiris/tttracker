@@ -5,6 +5,7 @@ struct SessionFormScreen: View {
     @Environment(\.dismiss) private var dismiss
     @State private var showsRpeHelp = false
     @State private var editingMatch: MatchEditorTarget?
+    @State private var picksHealthWorkout = false
 
     init(sessionId: String? = nil, day: Date) {
         _model = StateModel(wrappedValue: SessionFormModel(sessionId: sessionId, day: day))
@@ -16,6 +17,7 @@ struct SessionFormScreen: View {
                 if model.isLoading {
                     ProgressView().frame(maxWidth: .infinity)
                 } else {
+                    if model.canImportFromHealth { healthSection }
                     dateSection
                     durationSection
                     typeSection
@@ -46,11 +48,32 @@ struct SessionFormScreen: View {
             .sheet(item: $editingMatch) { target in
                 MatchEditorSheet(editing: target.match) { model.upsert($0) }
             }
+            .sheet(isPresented: $picksHealthWorkout) {
+                HealthWorkoutPicker { workout in Task { await model.importWorkout(workout) } }
+            }
         }
     }
 
     private func save() {
         Task { if await model.save() { dismiss() } }
+    }
+
+    private var healthSection: some View {
+        Section {
+            if let workout = model.healthWorkout {
+                HealthWorkoutRow(workout: workout)
+                    .swipeActions {
+                        Button(L.healthRemoveWorkout, role: .destructive, action: model.removeHealthWorkout)
+                    }
+            } else {
+                Button(L.healthImportAction, systemImage: "heart.fill") { picksHealthWorkout = true }
+                    .accessibilityIdentifier("sessionForm.importHealth")
+            }
+        } header: {
+            Text(L.healthSectionTitle)
+        } footer: {
+            if model.healthWorkout == nil { Text(L.healthImportHint) }
+        }
     }
 
     private var dateSection: some View {

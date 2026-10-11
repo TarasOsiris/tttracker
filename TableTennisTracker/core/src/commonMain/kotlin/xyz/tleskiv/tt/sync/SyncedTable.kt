@@ -24,7 +24,10 @@ internal enum class SyncedTable(val table: String, val recordType: String, val f
 	),
 	SESSION(
 		"training_session", "TrainingSession",
-		listOf(long("date"), long("durationMin"), long("rpe"), string("sessionType"), string("notes"), long("createdAt"))
+		listOf(
+			long("date"), long("durationMin"), long("rpe"), string("sessionType"), string("notes"), long("createdAt"),
+			string("healthWorkoutId")
+		)
 	),
 	MATCH(
 		"match", "Match",

@@ -96,6 +96,7 @@ struct ProBenefit: Identifiable {
             ProBenefit(symbol: "square.grid.2x2.fill", title: L.proBenefitWidgetsTitle, detail: L.proBenefitWidgetsDetail),
             ProBenefit(symbol: "tablecells.fill", title: L.proBenefitExportTitle, detail: L.proBenefitExportDetail),
             ProBenefit(symbol: "paintpalette.fill", title: L.proBenefitAccentTitle, detail: L.proBenefitAccentDetail),
+            ProBenefit(symbol: "heart.text.square.fill", title: L.proBenefitHealthTitle, detail: L.proBenefitHealthDetail),
         ]
     }
 
@@ -104,7 +105,7 @@ struct ProBenefit: Identifiable {
     }
 }
 
-/// A glyph and a short title, two to a line, so seven of them still leave the free user's Settings
+/// A glyph and a short title, two to a line, so eight of them still leave the free user's Settings
 /// readable; the detail line is spoken rather than shown.
 private struct ProBenefitRow: View {
     let benefit: ProBenefit

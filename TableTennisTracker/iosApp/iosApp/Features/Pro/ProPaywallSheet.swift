@@ -11,6 +11,7 @@ enum PaywallSource: String, Identifiable {
     case settingsExport = "settings_export"
     case accentColor = "accent_color"
     case widget
+    case healthHeartRate = "health_heart_rate"
 
     var id: String { rawValue }
 }

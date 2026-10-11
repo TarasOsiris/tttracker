@@ -26,7 +26,9 @@ CREATE TABLE IF NOT EXISTS training_session (
     notes TEXT,
     is_deleted INTEGER AS Boolean NOT NULL DEFAULT 0,
     created_at INTEGER AS Instant NOT NULL DEFAULT (strftime('%s','now') * 1000),
-    updated_at INTEGER AS Instant NOT NULL DEFAULT (strftime('%s','now') * 1000)
+    updated_at INTEGER AS Instant NOT NULL DEFAULT (strftime('%s','now') * 1000),
+    -- The UUID of the Apple Health workout this session was played in (iOS only); see docs/apple-health.md.
+    health_workout_id TEXT
 );
 
 CREATE INDEX IF NOT EXISTS idx_training_session_date ON training_session(date DESC) WHERE is_deleted = 0;
@@ -130,6 +132,7 @@ SELECT
     s.notes AS session_notes,
     s.created_at AS session_created_at,
     s.updated_at AS session_updated_at,
+    s.health_workout_id AS session_health_workout_id,
     m.id AS match_id,
     m.my_games_won AS match_my_games_won,
     m.opponent_games_won AS match_opponent_games_won,
@@ -169,6 +172,7 @@ SELECT
     s.notes AS session_notes,
     s.created_at AS session_created_at,
     s.updated_at AS session_updated_at,
+    s.health_workout_id AS session_health_workout_id,
     m.id AS match_id,
     m.my_games_won AS match_my_games_won,
     m.opponent_games_won AS match_opponent_games_won,
@@ -206,8 +210,8 @@ WHERE session_type = ? AND is_deleted = 0
 ORDER BY date DESC;
 
 insertSession:
-INSERT INTO training_session (id, date, duration_min, rpe, session_type, notes, updated_at)
-VALUES (?, ?, ?, ?, ?, ?, ?);
+INSERT INTO training_session (id, date, duration_min, rpe, session_type, notes, updated_at, health_workout_id)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?);
 
 -- The writes below skip a row they would not change, and never move updated_at backwards. iCloud
 -- sync resolves conflicts per record by updated_at, so restamping an unchanged row would outrank a
@@ -219,6 +223,12 @@ SET date = :date, duration_min = :duration_min, rpe = :rpe, session_type = :sess
     updated_at = CASE WHEN :updated_at > updated_at THEN :updated_at ELSE updated_at + 1 END
 WHERE id = :id AND is_deleted = 0 AND (date IS NOT :date OR duration_min IS NOT :duration_min OR rpe IS NOT :rpe
     OR session_type IS NOT :session_type OR notes IS NOT :notes);
+
+setSessionHealthWorkout:
+UPDATE training_session
+SET health_workout_id = :health_workout_id,
+    updated_at = CASE WHEN :updated_at > updated_at THEN :updated_at ELSE updated_at + 1 END
+WHERE id = :id AND is_deleted = 0 AND health_workout_id IS NOT :health_workout_id;
 
 deleteSession:
 UPDATE training_session
@@ -418,10 +428,12 @@ SELECT * FROM match WHERE id = ?;
 -- IGNORE rather than INSERT OR REPLACE, which would delete the old row first and queue a hard delete.
 syncUpsertSession {
     UPDATE training_session SET date = :date, duration_min = :duration_min, rpe = :rpe, session_type = :session_type,
-        notes = :notes, is_deleted = 0, created_at = :created_at, updated_at = :updated_at
+        notes = :notes, health_workout_id = :health_workout_id, is_deleted = 0, created_at = :created_at,
+        updated_at = :updated_at
     WHERE id = :id;
-    INSERT OR IGNORE INTO training_session (id, date, duration_min, rpe, session_type, notes, is_deleted, created_at, updated_at)
-    VALUES (:id, :date, :duration_min, :rpe, :session_type, :notes, 0, :created_at, :updated_at);
+    INSERT OR IGNORE INTO training_session (id, date, duration_min, rpe, session_type, notes, health_workout_id, is_deleted,
+        created_at, updated_at)
+    VALUES (:id, :date, :duration_min, :rpe, :session_type, :notes, :health_workout_id, 0, :created_at, :updated_at);
 }
 
 syncUpsertOpponent {

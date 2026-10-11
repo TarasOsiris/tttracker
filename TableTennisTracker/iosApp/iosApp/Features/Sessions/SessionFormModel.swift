@@ -23,6 +23,9 @@ final class SessionFormModel {
     var notes = ""
     var matches: [PendingMatch] = []
 
+    /// The Apple Health workout a new session was imported from, linked to it on save.
+    private(set) var healthWorkout: HealthWorkout?
+
     var durationMinutes: Int { Int(duration.rounded()) }
     var rpe: Int { Int(intensity.rounded()) }
 
@@ -32,19 +35,25 @@ final class SessionFormModel {
     var failure: OperationFailure?
 
     let isEditing: Bool
+
+    /// Linking an existing session is done from its details, so only a new one imports.
+    var canImportFromHealth: Bool { !isEditing && health.isAvailable }
+
     var canSave: Bool { Self.durationRange.contains(durationMinutes) }
 
     @ObservationIgnored private let editing: KotlinUuid?
     @ObservationIgnored private let sessions: any TrainingSessionService
     @ObservationIgnored private let defaults: any UserPreferencesService
     @ObservationIgnored private let analytics: any AnalyticsService
+    @ObservationIgnored private let health: HealthStore
 
     init(
         sessionId: String? = nil,
         day: Date = .now,
         sessions: any TrainingSessionService = Services.sessions,
         defaults: any UserPreferencesService = Services.sessionDefaults,
-        analytics: any AnalyticsService = Services.analytics
+        analytics: any AnalyticsService = Services.analytics,
+        health: HealthStore = .shared
     ) {
         // Resolve the id once, so an unparseable one cannot fall through to the create path and add
         // a second session instead of editing the one that was tapped.
@@ -55,6 +64,7 @@ final class SessionFormModel {
         self.sessions = sessions
         self.defaults = defaults
         self.analytics = analytics
+        self.health = health
     }
 
     func load() async {
@@ -97,9 +107,11 @@ final class SessionFormModel {
                     rpe: Int32(rpe),
                     sessionType: kind.kotlin,
                     notes: notes.nilIfBlank,
-                    matches: matches.map(\.input)
+                    matches: matches.map(\.input),
+                    healthWorkoutId: healthWorkout?.id
                 )
                 analytics.capture(event: "session_created", properties: eventProperties)
+                if healthWorkout != nil { analytics.capture(event: "health_workout_imported", properties: nil) }
             }
             return true
         } catch {
@@ -108,6 +120,21 @@ final class SessionFormModel {
         }
     }
 
+
+    /// Fills the form from a workout: its day and length, and the effort rated on Apple Watch as RPE.
+    func importWorkout(_ workout: HealthWorkout) async {
+        healthWorkout = workout
+        day = workout.start
+        let range = Double(Self.durationRange.lowerBound)...Double(Self.durationRange.upperBound)
+        duration = ((Double(workout.durationMinutes) / 5).rounded() * 5).clamped(to: range)
+        if let effort = await health.effortScore(of: workout) {
+            intensity = Double(effort).clamped(to: 1...10)
+        }
+    }
+
+    func removeHealthWorkout() {
+        healthWorkout = nil
+    }
 
     func upsert(_ match: PendingMatch) {
         if let index = matches.firstIndex(where: { $0.id == match.id }) {
@@ -139,4 +166,8 @@ final class SessionFormModel {
             "match_count": matches.count
         ]
     }
+}
+
+private extension Comparable {
+    func clamped(to range: ClosedRange<Self>) -> Self { min(max(self, range.lowerBound), range.upperBound) }
 }

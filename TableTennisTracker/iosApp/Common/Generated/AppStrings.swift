@@ -305,6 +305,77 @@ enum L {
 	/// Right
 	static var handednessRight: String { Localization.string("handedness_right") }
 
+	/// Active energy
+	static var healthActiveEnergy: String { Localization.string("health_active_energy") }
+
+	/// %1$lld BPM
+	static func healthBpmFormat(_ a1: Int) -> String {
+		Localization.format("health_bpm_format", a1)
+	}
+
+	/// Connect Apple Health
+	static var healthConnectAction: String { Localization.string("health_connect_action") }
+
+	/// This session is linked to an Apple Health workout. Allow TT Tracker to read it to see it here.
+	static var healthConnectHint: String { Localization.string("health_connect_hint") }
+
+	/// Heart rate
+	static var healthHeartRate: String { Localization.string("health_heart_rate") }
+
+	/// Average
+	static var healthHeartRateAverage: String { Localization.string("health_heart_rate_average") }
+
+	/// No heart rate was recorded during this workout.
+	static var healthHeartRateEmpty: String { Localization.string("health_heart_rate_empty") }
+
+	/// See your heart rate during every session
+	static var healthHeartRateLocked: String { Localization.string("health_heart_rate_locked") }
+
+	/// Max
+	static var healthHeartRateMax: String { Localization.string("health_heart_rate_max") }
+
+	/// Import from Apple Health
+	static var healthImportAction: String { Localization.string("health_import_action") }
+
+	/// Fill in the date and duration from a table tennis workout recorded on your Apple Watch.
+	static var healthImportHint: String { Localization.string("health_import_hint") }
+
+	/// Link a workout
+	static var healthLinkAction: String { Localization.string("health_link_action") }
+
+	/// Table tennis workouts from the last 30 days appear here. Record one with the Workout app on Apple Watch, or allow TT Tracker to read workouts in Settings › Health › Data Access & Devices.
+	static var healthPickerEmptyMessage: String { Localization.string("health_picker_empty_message") }
+
+	/// No workouts found
+	static var healthPickerEmptyTitle: String { Localization.string("health_picker_empty_title") }
+
+	/// Table Tennis Workouts
+	static var healthPickerTitle: String { Localization.string("health_picker_title") }
+
+	/// Remove workout
+	static var healthRemoveWorkout: String { Localization.string("health_remove_workout") }
+
+	/// Apple Health
+	static var healthSectionTitle: String { Localization.string("health_section_title") }
+
+	/// Suggested
+	static var healthSuggested: String { Localization.string("health_suggested") }
+
+	/// A table tennis workout was recorded on this day. Link it to see what your body did during the session.
+	static var healthSuggestionHint: String { Localization.string("health_suggestion_hint") }
+
+	/// Time
+	static var healthTime: String { Localization.string("health_time") }
+
+	/// Unlink workout
+	static var healthUnlinkAction: String { Localization.string("health_unlink_action") }
+
+	/// Workout
+	static var healthWorkout: String { Localization.string("health_workout") }
+
+	/// This workout isn't in Apple Health on this device.
+	static var healthWorkoutMissing: String { Localization.string("health_workout_missing") }
+
 	/// Show help
 	static var helpIconContentDescription: String { Localization.string("help_icon_content_description") }
 
@@ -476,6 +547,12 @@ enum L {
 
 	/// Head-to-head records
 	static var proBenefitHeadToHeadTitle: String { Localization.string("pro_benefit_head_to_head_title") }
+
+	/// Average, max and a chart for every linked session
+	static var proBenefitHealthDetail: String { Localization.string("pro_benefit_health_detail") }
+
+	/// Heart rate from Apple Health
+	static var proBenefitHealthTitle: String { Localization.string("pro_benefit_health_title") }
 
 	/// Weekly training over 6 months, a year or all time
 	static var proBenefitHistoryDetail: String { Localization.string("pro_benefit_history_detail") }

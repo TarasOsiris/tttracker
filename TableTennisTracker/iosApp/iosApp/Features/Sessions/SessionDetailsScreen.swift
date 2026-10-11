@@ -5,6 +5,7 @@ struct SessionDetailsScreen: View {
     private let onDelete: () -> Void
 
     @StateModel private var model: SessionDetailsModel
+    @StateModel private var health = SessionHealthModel()
 
     @State private var isEditing = false
     @State private var confirmsDelete = false
@@ -17,7 +18,7 @@ struct SessionDetailsScreen: View {
     var body: some View {
         Group {
             if let session = model.session {
-                SessionDetailsList(session: session)
+                SessionDetailsList(session: session, health: health)
             } else if model.isLoading {
                 ProgressView().frame(maxWidth: .infinity, maxHeight: .infinity)
             } else {
@@ -55,6 +56,7 @@ struct SessionDetailsScreen: View {
             SessionFormScreen(sessionId: model.sessionId, day: model.session?.day ?? .now)
         }
         .failureAlert($model.failure)
+        .failureAlert($health.failure)
     }
 
     private func delete() {

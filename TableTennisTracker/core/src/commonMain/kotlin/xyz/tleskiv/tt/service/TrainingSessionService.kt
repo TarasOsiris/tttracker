@@ -29,7 +29,8 @@ interface TrainingSessionService {
 		rpe: Int,
 		sessionType: SessionType?,
 		notes: String?,
-		matches: List<MatchInput> = emptyList()
+		matches: List<MatchInput> = emptyList(),
+		healthWorkoutId: String? = null
 	): Uuid
 
 	suspend fun editSession(
@@ -41,6 +42,9 @@ interface TrainingSessionService {
 		notes: String?,
 		matches: List<MatchInput>? = null
 	)
+
+	/** Links the session to an Apple Health workout, or unlinks it when [workoutId] is null. */
+	suspend fun setHealthWorkout(id: Uuid, workoutId: String?)
 
 	suspend fun getAllSessions(): List<TrainingSession>
 
