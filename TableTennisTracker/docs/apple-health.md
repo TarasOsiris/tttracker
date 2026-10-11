@@ -1,8 +1,8 @@
 # Apple Health (iOS)
 
 A training session can be linked to the Apple Health workout it was played in, usually one the user
-recorded with the Workout app on Apple Watch. iOS only; Android stores the column but has no UI yet
-(Health Connect has an equivalent table tennis exercise type, and the matching already lives in `:core`).
+recorded with the Workout app on Apple Watch. Android does the same with Health Connect; see
+[health-connect.md](health-connect.md).
 
 ## What the user gets
 

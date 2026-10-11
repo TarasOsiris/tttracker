@@ -364,4 +364,13 @@
 	<string name="health_workout_missing">This workout isn\'t in Apple Health on this device.</string>
 	<string name="pro_benefit_health_title">Heart rate from Apple Health</string>
 	<string name="pro_benefit_health_detail">Average, max and a chart for every linked session</string>
+	<string name="hc_section_title">Health Connect</string>
+	<string name="hc_import_action">Import from Health Connect</string>
+	<string name="hc_import_hint">Fill in the date and duration from a table tennis workout your watch or fitness app recorded.</string>
+	<string name="hc_picker_empty_message">Table tennis workouts from the last 30 days appear here. Record one with your watch or fitness app, and let it share workouts with Health Connect.</string>
+	<string name="hc_access_action">Allow Health Connect access</string>
+	<string name="hc_access_hint">TT Tracker reads your table tennis workouts, with their heart rate and energy, to fill in and show your training sessions.</string>
+	<string name="hc_workout_missing">This workout isn\'t in Health Connect on this device.</string>
+	<string name="hc_energy_format">%1$d kcal</string>
+	<string name="hc_pro_benefit_title">Heart rate from Health Connect</string>
 </resources>

@@ -23,6 +23,8 @@ import xyz.tleskiv.tt.di.components.ClipboardManager
 import xyz.tleskiv.tt.di.components.CrashReporter
 import xyz.tleskiv.tt.di.components.ExternalAppLauncher
 import xyz.tleskiv.tt.di.components.FileSharer
+import xyz.tleskiv.tt.di.components.HealthConnectDataSource
+import xyz.tleskiv.tt.di.components.HealthDataSource
 import xyz.tleskiv.tt.di.components.LocaleApplier
 import xyz.tleskiv.tt.di.components.NativeInfoProvider
 import xyz.tleskiv.tt.di.components.PurchasesIdProvider
@@ -42,6 +44,7 @@ val androidPlatformModule = module {
 	singleOf(::AndroidLocaleApplier) bind LocaleApplier::class
 	singleOf(::AndroidAnalyticsService) bind AnalyticsService::class
 	singleOf(::SentryCrashReporter) bind CrashReporter::class
+	singleOf(::HealthConnectDataSource) bind HealthDataSource::class
 	singleOf(::ProModel)
 	singleOf(::WidgetProStore)
 	singleOf(::WidgetDataSource)

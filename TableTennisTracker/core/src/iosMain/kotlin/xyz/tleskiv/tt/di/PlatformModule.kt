@@ -11,12 +11,14 @@ import xyz.tleskiv.tt.di.components.AnalyticsService
 import xyz.tleskiv.tt.di.components.ClipboardManager
 import xyz.tleskiv.tt.di.components.CrashReporter
 import xyz.tleskiv.tt.di.components.ExternalAppLauncher
+import xyz.tleskiv.tt.di.components.HealthDataSource
 import xyz.tleskiv.tt.di.components.IosClipboardManager
 import xyz.tleskiv.tt.di.components.IosExternalAppLauncher
 import xyz.tleskiv.tt.di.components.IosLocaleApplier
 import xyz.tleskiv.tt.di.components.IosNativeInfoProvider
 import xyz.tleskiv.tt.di.components.LocaleApplier
 import xyz.tleskiv.tt.di.components.NativeInfoProvider
+import xyz.tleskiv.tt.di.components.UnavailableHealthDataSource
 import xyz.tleskiv.tt.repo.CloudSyncRepository
 import xyz.tleskiv.tt.repo.impl.CloudSyncRepositoryImpl
 import xyz.tleskiv.tt.sync.CloudSync
@@ -33,4 +35,5 @@ fun iosPlatformModule(analyticsService: AnalyticsService, crashReporter: CrashRe
 	single<CrashReporter> { crashReporter }
 	single<CloudSyncRepository> { CloudSyncRepositoryImpl(get(), get(), get(named(DispatcherQualifiers.IO))) }
 	single { CloudSync(get()) }
+	single<HealthDataSource> { UnavailableHealthDataSource }
 }

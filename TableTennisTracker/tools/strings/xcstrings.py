@@ -53,6 +53,9 @@ DURATION_KEYS = {
     "duration_hm_short",
 }
 
+# Health Connect (Android's health store) keys; iOS says "Apple Health" in its own `health_` keys.
+ANDROID_ONLY_PREFIX = "hc_"
+
 POSITIONAL_STRING = re.compile(r"%(\d+)\$s")
 POSITIONAL_INT = re.compile(r"%(\d+)\$d")
 # Everything that is a legitimate format specifier after conversion.
@@ -63,7 +66,8 @@ SWIFT_TYPES = {"lld": "Int", "@": "String"}
 
 
 def is_pruned(key: str) -> bool:
-    return key in DEAD_KEYS or key in DURATION_KEYS or bool(DATE_KEY_PATTERN.match(key))
+    return (key in DEAD_KEYS or key in DURATION_KEYS or bool(DATE_KEY_PATTERN.match(key))
+            or key.startswith(ANDROID_ONLY_PREFIX))
 
 
 def language_for(directory_name: str) -> str:

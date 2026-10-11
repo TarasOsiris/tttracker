@@ -52,6 +52,7 @@ import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.parameter.parametersOf
 import xyz.tleskiv.tt.R
 import xyz.tleskiv.tt.ui.dialogs.DeleteSessionDialog
+import xyz.tleskiv.tt.ui.health.SessionHealthSection
 import xyz.tleskiv.tt.ui.widgets.BackButton
 import xyz.tleskiv.tt.ui.widgets.ContentCard
 import xyz.tleskiv.tt.util.ext.formatDuration
@@ -231,6 +232,7 @@ private fun SessionDetailsContent(
 				}
 			}
 			item { RpeCard(rpe = session.rpe) }
+			item { SessionHealthSection(session.id.toString(), session.date, session.durationMinutes) }
 			val sessionNotes = session.notes
 			if (!sessionNotes.isNullOrBlank()) {
 				item { NotesCard(notes = sessionNotes) }

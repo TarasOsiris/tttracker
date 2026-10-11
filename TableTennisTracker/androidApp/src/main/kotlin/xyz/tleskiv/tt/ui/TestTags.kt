@@ -25,6 +25,9 @@ object TestTags {
 	fun proUnlock(source: PaywallSource) = "pro_unlock_${source.value}"
 
 	const val SESSIONS_ADD = "sessions_add"
+	const val SESSION_FORM_IMPORT_HEALTH = "session_form_import_health"
+	const val SESSION_LINK_HEALTH = "session_link_health"
+	const val HEALTH_WORKOUT_ROW = "health_workout_row"
 	const val SESSIONS_TODAY = "sessions_today"
 	const val SESSION_ROW = "session_row"
 	const val CALENDAR_WEEK_MODE = "calendar_week_mode"

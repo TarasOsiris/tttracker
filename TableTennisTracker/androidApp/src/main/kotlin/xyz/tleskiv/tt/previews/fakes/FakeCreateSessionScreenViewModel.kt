@@ -4,6 +4,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.datetime.LocalDate
 import xyz.tleskiv.tt.data.model.enums.CompetitionLevel
 import xyz.tleskiv.tt.data.model.enums.SessionType
+import xyz.tleskiv.tt.health.HealthWorkout
 import xyz.tleskiv.tt.util.today
 import xyz.tleskiv.tt.viewmodel.sessions.CreateSessionScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.PendingMatch
@@ -23,6 +24,10 @@ class FakeCreateSessionScreenViewModel(
 		}
 	}
 
+	override val canImportFromHealth: Boolean = true
+
+	override fun importHealthWorkout(workout: HealthWorkout) {}
+	override fun removeHealthWorkout() {}
 	override fun saveSession(onSuccess: () -> Unit) {}
 	override fun addPendingMatch(match: PendingMatch) {}
 	override fun updatePendingMatch(match: PendingMatch) {}

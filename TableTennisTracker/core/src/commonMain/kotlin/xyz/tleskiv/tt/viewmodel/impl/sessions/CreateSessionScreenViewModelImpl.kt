@@ -2,10 +2,13 @@ package xyz.tleskiv.tt.viewmodel.impl.sessions
 
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
+import kotlin.math.roundToInt
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.LocalTime
 import xyz.tleskiv.tt.di.components.AnalyticsService
+import xyz.tleskiv.tt.di.components.HealthDataSource
+import xyz.tleskiv.tt.health.HealthWorkout
 import xyz.tleskiv.tt.model.mappers.toMatchInput
 import xyz.tleskiv.tt.service.TrainingSessionService
 import xyz.tleskiv.tt.service.UserPreferencesService
@@ -17,11 +20,13 @@ class CreateSessionScreenViewModelImpl(
 	date: LocalDate?,
 	private val sessionService: TrainingSessionService,
 	private val preferencesService: UserPreferencesService,
-	private val analyticsService: AnalyticsService
+	private val analyticsService: AnalyticsService,
+	private val healthDataSource: HealthDataSource
 ) : CreateSessionScreenViewModel() {
 	private val _startDate = date ?: today()
 	override val initialDate: LocalDate = _startDate
 	override val inputData = InputData(viewModelScope, _startDate)
+	override val canImportFromHealth: Boolean get() = healthDataSource.isAvailable
 
 	init {
 		viewModelScope.launch {
@@ -41,7 +46,8 @@ class CreateSessionScreenViewModelImpl(
 				rpe = inputData.rpeValue.value,
 				sessionType = inputData.selectedSessionType.value,
 				notes = inputData.notes.value.takeIf { it.isNotBlank() },
-				matches = inputData.pendingMatches.value.map { it.toMatchInput() }
+				matches = inputData.pendingMatches.value.map { it.toMatchInput() },
+				healthWorkoutId = inputData.healthWorkout.value?.id
 			)
 			analyticsService.capture(
 				"session_created", mapOf(
@@ -51,8 +57,27 @@ class CreateSessionScreenViewModelImpl(
 					"match_count" to inputData.pendingMatches.value.size
 				)
 			)
+			if (inputData.healthWorkout.value != null) analyticsService.capture("health_workout_imported")
 			onSuccess()
 		}
+	}
+
+	override fun importHealthWorkout(workout: HealthWorkout) {
+		inputData.healthWorkout.value = workout
+		inputData.selectedDate.value = workout.date()
+		inputData.durationMinutes.value = (workout.durationMinutes.toDouble() / DURATION_STEP).roundToInt()
+			.times(DURATION_STEP).coerceIn(MIN_DURATION, MAX_DURATION)
+	}
+
+	override fun removeHealthWorkout() {
+		inputData.healthWorkout.value = null
+	}
+
+	private companion object {
+		/** Rounded to 5 minutes like the iOS form, within the durations a session accepts. */
+		const val DURATION_STEP = 5
+		const val MIN_DURATION = 10
+		const val MAX_DURATION = 300
 	}
 
 	override fun addPendingMatch(match: PendingMatch) = inputData.addMatch(match)

@@ -42,5 +42,6 @@ enum class PaywallSource(val value: String) {
 	ANALYTICS_RANGE("analytics_range"),
 	SETTINGS_EXPORT("settings_export"),
 	ACCENT_COLOR("accent_color"),
-	WIDGET("widget")
+	WIDGET("widget"),
+	HEALTH_HEART_RATE("health_heart_rate")
 }

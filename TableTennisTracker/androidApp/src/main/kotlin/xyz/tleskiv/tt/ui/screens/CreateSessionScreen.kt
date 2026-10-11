@@ -21,10 +21,12 @@ import xyz.tleskiv.tt.R
 import xyz.tleskiv.tt.ui.TestTags
 import xyz.tleskiv.tt.ui.dialogs.AddMatchDialog
 import xyz.tleskiv.tt.ui.dialogs.DatePickerDialog
+import xyz.tleskiv.tt.ui.dialogs.HealthWorkoutPickerDialog
 import xyz.tleskiv.tt.ui.widgets.BottomBarButtons
 import xyz.tleskiv.tt.ui.widgets.SimpleTopAppBar
 import xyz.tleskiv.tt.ui.widgets.fields.DatePickerField
 import xyz.tleskiv.tt.ui.widgets.fields.DurationField
+import xyz.tleskiv.tt.ui.widgets.fields.HealthImportField
 import xyz.tleskiv.tt.ui.widgets.fields.MatchesField
 import xyz.tleskiv.tt.ui.widgets.fields.NotesField
 import xyz.tleskiv.tt.ui.widgets.fields.RpeField
@@ -54,6 +56,15 @@ fun CreateSessionScreen(
 				.padding(16.dp),
 			verticalArrangement = Arrangement.spacedBy(24.dp)
 		) {
+			if (viewModel.canImportFromHealth) {
+				val healthWorkout by inputData.healthWorkout.collectAsStateWithLifecycle()
+				HealthImportField(
+					workout = healthWorkout,
+					onImport = { inputData.showHealthPicker.value = true },
+					onRemove = viewModel::removeHealthWorkout
+				)
+			}
+
 			CreateSessionScreenContent(
 				inputData = inputData,
 				onAddPendingMatch = viewModel::addPendingMatch,
@@ -71,6 +82,15 @@ fun CreateSessionScreen(
 
 	var showDatePicker by inputData.showDatePicker.collectAsMutableState()
 	var selectedDate by inputData.selectedDate.collectAsMutableState()
+
+	val showHealthPicker by inputData.showHealthPicker.collectAsStateWithLifecycle()
+	if (showHealthPicker) {
+		HealthWorkoutPickerDialog(
+			target = null,
+			onPick = viewModel::importHealthWorkout,
+			onDismiss = { inputData.showHealthPicker.value = false }
+		)
+	}
 
 	if (showDatePicker) {
 		DatePickerDialog(initialDate = selectedDate, onDateSelected = { date ->

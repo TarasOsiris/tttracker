@@ -12,10 +12,14 @@ import xyz.tleskiv.tt.viewmodel.analytics.AnalyticsScreenViewModel
 import xyz.tleskiv.tt.viewmodel.dialogs.AddMatchDialogViewModel
 import xyz.tleskiv.tt.viewmodel.dialogs.AddOpponentDialogViewModel
 import xyz.tleskiv.tt.viewmodel.dialogs.EditOpponentDialogViewModel
+import xyz.tleskiv.tt.viewmodel.health.HealthWorkoutPickerViewModel
+import xyz.tleskiv.tt.viewmodel.health.SessionHealthViewModel
 import xyz.tleskiv.tt.viewmodel.impl.analytics.AnalyticsScreenViewModelImpl
 import xyz.tleskiv.tt.viewmodel.impl.dialogs.AddMatchDialogViewModelImpl
 import xyz.tleskiv.tt.viewmodel.impl.dialogs.AddOpponentDialogViewModelImpl
 import xyz.tleskiv.tt.viewmodel.impl.dialogs.EditOpponentDialogViewModelImpl
+import xyz.tleskiv.tt.viewmodel.impl.health.HealthWorkoutPickerViewModelImpl
+import xyz.tleskiv.tt.viewmodel.impl.health.SessionHealthViewModelImpl
 import xyz.tleskiv.tt.viewmodel.impl.sessions.CreateSessionScreenViewModelImpl
 import xyz.tleskiv.tt.viewmodel.impl.sessions.EditSessionScreenViewModelImpl
 import xyz.tleskiv.tt.viewmodel.impl.sessions.SessionDetailsScreenViewModelImpl
@@ -37,8 +41,12 @@ val viewModelModule = module {
 	viewModelOf(::SessionsScreenViewModelImpl) bind SessionsScreenViewModel::class
 	viewModelOf(::AnalyticsScreenViewModelImpl) bind AnalyticsScreenViewModel::class
 	viewModel<CreateSessionScreenViewModel> { params ->
-		CreateSessionScreenViewModelImpl(params.getOrNull<LocalDate>(), get(), get(), get())
+		CreateSessionScreenViewModelImpl(params.getOrNull<LocalDate>(), get(), get(), get(), get())
 	}
+	viewModel<HealthWorkoutPickerViewModel> { params ->
+		HealthWorkoutPickerViewModelImpl(params.getOrNull<HealthWorkoutPickerViewModel.Target>(), get(), get())
+	}
+	viewModel<SessionHealthViewModel> { params -> SessionHealthViewModelImpl(params.get<String>(), get(), get(), get()) }
 	viewModelOf(::EditSessionScreenViewModelImpl) bind EditSessionScreenViewModel::class
 	viewModelOf(::SessionDetailsScreenViewModelImpl) bind SessionDetailsScreenViewModel::class
 	viewModelOf(::GeneralSettingsScreenViewModelImpl) bind GeneralSettingsScreenViewModel::class

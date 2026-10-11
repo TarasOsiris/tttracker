@@ -36,8 +36,10 @@ androidx-glance = "1.2.0"
 # Glance only pulls work-runtime 2.7.1 (Room 2.2.5), whose R8 rules drop WorkDatabase_Impl's
 # constructor under full mode and crash the release build on launch.
 androidx-work = "2.11.2"
+androidx-health-connect = "1.1.0"
 
 [libraries]
+androidx-health-connect-client = { module = "androidx.health.connect:connect-client", version.ref = "androidx-health-connect" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-testJunit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 junit = { module = "junit:junit", version.ref = "junit" }

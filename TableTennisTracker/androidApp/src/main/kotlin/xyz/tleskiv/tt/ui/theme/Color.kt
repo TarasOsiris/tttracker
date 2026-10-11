@@ -153,3 +153,6 @@ val accentOrange = AccentPalette(
 	light = AccentTones(Color(0xFF8B5000), Color(0xFFFFFFFF), Color(0xFFFFDCBE), Color(0xFF2C1600)),
 	dark = AccentTones(Color(0xFFFFB870), Color(0xFF4A2800), Color(0xFF6A3C00), Color(0xFFFFDCBE))
 )
+
+/** Heart rate from Health Connect, Apple Health's red-pink on iOS. */
+val heartRateColor = Color(0xFFFF2D55)

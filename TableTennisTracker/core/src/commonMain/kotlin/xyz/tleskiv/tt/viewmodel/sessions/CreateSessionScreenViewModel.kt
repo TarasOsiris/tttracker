@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.datetime.LocalDate
 import xyz.tleskiv.tt.data.model.enums.CompetitionLevel
 import xyz.tleskiv.tt.data.model.enums.SessionType
+import xyz.tleskiv.tt.health.HealthWorkout
 import xyz.tleskiv.tt.util.mapState
 import xyz.tleskiv.tt.viewmodel.ViewModelBase
 import kotlin.uuid.Uuid
@@ -30,6 +31,14 @@ abstract class CreateSessionScreenViewModel : ViewModelBase() {
 
 	abstract val inputData: InputData
 
+	/** Whether this device has a health store to import a workout from. */
+	abstract val canImportFromHealth: Boolean
+
+	/** Fills the form from a workout — its day and length — and links it on save. */
+	abstract fun importHealthWorkout(workout: HealthWorkout)
+
+	abstract fun removeHealthWorkout()
+
 	abstract fun saveSession(onSuccess: () -> Unit)
 
 	abstract fun addPendingMatch(match: PendingMatch)
@@ -52,6 +61,8 @@ abstract class CreateSessionScreenViewModel : ViewModelBase() {
 		val pendingMatches = MutableStateFlow<List<PendingMatch>>(emptyList())
 		val showAddMatchDialog = MutableStateFlow(false)
 		val editingMatch = MutableStateFlow<PendingMatch?>(null)
+		val healthWorkout = MutableStateFlow<HealthWorkout?>(null)
+		val showHealthPicker = MutableStateFlow(false)
 
 		fun addMatch(match: PendingMatch) = pendingMatches.update { it + match }
 

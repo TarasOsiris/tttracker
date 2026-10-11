@@ -13,6 +13,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BarChart
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.LocalFireDepartment
+import androidx.compose.material.icons.filled.MonitorHeart
 import androidx.compose.material.icons.filled.Palette
 import androidx.compose.material.icons.filled.People
 import androidx.compose.material.icons.filled.TableChart
@@ -116,7 +117,8 @@ data class ProBenefit(val icon: ImageVector, @StringRes val title: Int, @StringR
 			ProBenefit(Icons.Filled.BarChart, R.string.pro_benefit_history_title, R.string.pro_benefit_history_detail),
 			ProBenefit(Icons.Filled.Widgets, R.string.pro_benefit_widgets_title, R.string.pro_benefit_widgets_detail),
 			ProBenefit(Icons.Filled.TableChart, R.string.pro_benefit_export_title, R.string.pro_benefit_export_detail),
-			ProBenefit(Icons.Filled.Palette, R.string.pro_benefit_accent_title, R.string.pro_benefit_accent_detail)
+			ProBenefit(Icons.Filled.Palette, R.string.pro_benefit_accent_title, R.string.pro_benefit_accent_detail),
+			ProBenefit(Icons.Filled.MonitorHeart, R.string.hc_pro_benefit_title, R.string.pro_benefit_health_detail)
 		)
 
 		val support = ProBenefit(Icons.Filled.Favorite, R.string.pro_benefit_support_title, R.string.pro_benefit_support_detail)
