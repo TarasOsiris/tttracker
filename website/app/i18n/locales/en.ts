@@ -131,6 +131,12 @@ export const en: Messages = {
         bullets: ["Works fully offline", "Light & dark theme", "Available in 22 languages"],
       },
     ],
+    health: {
+      badge: "Coming soon",
+      title: "Apple Health & Health Connect",
+      body: "Link a session to the workout your watch recorded. Import a table tennis workout from Apple Health on iPhone or Health Connect on Android to fill in the date and duration, then see its time and calories on the session, plus heart rate with a minute-by-minute chart in Pro.",
+      bullets: ["Import a workout in one tap", "Same-day workouts suggested", "Heart rate chart with Pro", "Read-only, stays on your device"],
+    },
   },
   steps: {
     eyebrow: "How it works",
@@ -226,6 +232,10 @@ export const en: Messages = {
       {
         q: "Does it work offline? Where is my data stored?",
         a: "It works fully offline. Your sessions, matches and opponents are stored on your device, not on our servers. On iPhone and iPad you can turn on free iCloud sync to keep them the same on all your Apple devices.",
+      },
+      {
+        q: "Does it work with Apple Health or Health Connect?",
+        a: "Coming soon. You'll be able to import a table tennis workout recorded on your Apple Watch (Apple Health) or by your watch or fitness app on Android (Health Connect), link it to a session, and see its time and calories, with heart rate in Pro. The app only reads your workouts, and health data stays on your device.",
       },
       {
         q: "Is it for ping pong or table tennis?",

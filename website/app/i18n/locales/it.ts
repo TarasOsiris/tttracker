@@ -131,6 +131,12 @@ export const it: Messages = {
         bullets: ["Funziona completamente offline", "Tema chiaro e scuro", "Disponibile in 22 lingue"],
       },
     ],
+    health: {
+      badge: "In arrivo",
+      title: "App Salute e Connessione Salute",
+      body: "Collega una sessione all'allenamento registrato dal tuo smartwatch. Importa un allenamento di tennistavolo da Salute su iPhone o da Connessione Salute su Android per compilare data e durata, poi vedi orario e calorie nella sessione e, con Pro, la frequenza cardiaca con un grafico minuto per minuto.",
+      bullets: ["Importa un allenamento con un tocco", "Allenamenti dello stesso giorno suggeriti", "Grafico della frequenza cardiaca con Pro", "Sola lettura, resta sul dispositivo"],
+    },
   },
   steps: {
     eyebrow: "Come funziona",
@@ -226,6 +232,10 @@ export const it: Messages = {
       {
         q: "Funziona offline? Dove vengono salvati i miei dati?",
         a: "Funziona completamente offline. Allenamenti, partite e avversari sono salvati sul tuo dispositivo, non sui nostri server. Su iPhone e iPad puoi attivare la sincronizzazione iCloud gratuita per averli uguali su tutti i tuoi dispositivi Apple.",
+      },
+      {
+        q: "Funziona con l'app Salute o con Connessione Salute?",
+        a: "In arrivo. Potrai importare un allenamento di tennistavolo registrato dal tuo Apple Watch (Salute) o, su Android, dal tuo smartwatch o dalla tua app di fitness (Connessione Salute), collegarlo a una sessione e vederne orario e calorie, con la frequenza cardiaca in Pro. L'app legge soltanto i tuoi allenamenti e i dati sulla salute restano sul tuo dispositivo.",
       },
       {
         q: "È per il ping pong o per il tennistavolo?",

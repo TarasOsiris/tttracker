@@ -132,6 +132,12 @@ export const pt: Messages = {
         bullets: ["Funciona totalmente offline", "Tema claro e escuro", "Disponível em 22 idiomas"],
       },
     ],
+    health: {
+      badge: "Em breve",
+      title: "App Saúde e Conexão Saúde",
+      body: "Vincule uma sessão ao treino que seu relógio registrou. Importe um treino de tênis de mesa do app Saúde no iPhone ou da Conexão Saúde no Android para preencher a data e a duração, e veja o horário e as calorias na sessão, além da frequência cardíaca com gráfico minuto a minuto no Pro.",
+      bullets: ["Importe um treino com um toque", "Treinos do mesmo dia sugeridos", "Gráfico de frequência cardíaca no Pro", "Só leitura, fica no seu aparelho"],
+    },
   },
   steps: {
     eyebrow: "Como funciona",
@@ -227,6 +233,10 @@ export const pt: Messages = {
       {
         q: "Funciona offline? Onde ficam meus dados?",
         a: "Funciona totalmente offline. Suas sessões, partidas e adversários ficam salvos no seu aparelho, não nos nossos servidores. No iPhone e no iPad, você pode ativar a sincronização gratuita com o iCloud para mantê-los iguais em todos os seus dispositivos Apple.",
+      },
+      {
+        q: "Funciona com o app Saúde ou a Conexão Saúde?",
+        a: "Em breve. Você vai poder importar um treino de tênis de mesa registrado no seu Apple Watch (app Saúde) ou, no Android, pelo seu relógio ou app de fitness (Conexão Saúde), vinculá-lo a uma sessão e ver o horário e as calorias, com a frequência cardíaca no Pro. O app só lê seus treinos, e os dados de saúde ficam no seu aparelho.",
       },
       {
         q: "É para ping pong ou tênis de mesa?",

@@ -131,6 +131,12 @@ export const fr: Messages = {
         bullets: ["Fonctionne entièrement hors ligne", "Thème clair et sombre", "Disponible en 22 langues"],
       },
     ],
+    health: {
+      badge: "Bientôt",
+      title: "App Santé et Santé Connect",
+      body: "Liez une séance à l'entraînement enregistré par votre montre. Importez un entraînement de tennis de table depuis l'app Santé sur iPhone ou Santé Connect sur Android pour renseigner la date et la durée, puis retrouvez son heure et ses calories dans la séance, ainsi que la fréquence cardiaque sur un graphique minute par minute avec Pro.",
+      bullets: ["Import d'un entraînement en une touche", "Entraînements du jour suggérés", "Graphique cardiaque avec Pro", "Lecture seule, reste sur l'appareil"],
+    },
   },
   steps: {
     eyebrow: "Comment ça marche",
@@ -226,6 +232,10 @@ export const fr: Messages = {
       {
         q: "Fonctionne-t-elle hors ligne ? Où sont stockées mes données ?",
         a: "Elle fonctionne entièrement hors ligne. Vos séances, matchs et adversaires sont enregistrés sur votre appareil, pas sur nos serveurs. Sur iPhone et iPad, vous pouvez activer la synchronisation iCloud gratuite pour les retrouver sur tous vos appareils Apple.",
+      },
+      {
+        q: "Fonctionne-t-elle avec l'app Santé ou Santé Connect ?",
+        a: "Bientôt. Vous pourrez importer un entraînement de tennis de table enregistré par votre Apple Watch (app Santé) ou, sur Android, par votre montre ou votre app de fitness (Santé Connect), le lier à une séance et voir son heure et ses calories, avec la fréquence cardiaque dans Pro. L'app se contente de lire vos entraînements, et les données de santé restent sur votre appareil.",
       },
       {
         q: "C'est pour le ping-pong ou le tennis de table ?",

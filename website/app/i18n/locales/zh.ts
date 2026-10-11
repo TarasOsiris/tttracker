@@ -131,6 +131,12 @@ export const zh: Messages = {
         bullets: ["完全离线可用", "浅色与深色主题", "支持 22 种语言"],
       },
     ],
+    health: {
+      badge: "即将推出",
+      title: "Apple 健康与 Health Connect",
+      body: "把训练关联到手表记录的锻炼。在 iPhone 上从 Apple 健康、在 Android 上从 Health Connect 导入乒乓球锻炼，即可填入日期和时长，并在训练中查看锻炼时间和消耗的卡路里；Pro 还能看到心率和逐分钟心率图表。",
+      bullets: ["一键导入锻炼", "自动推荐当天的锻炼", "Pro 解锁心率图表", "只读访问，数据留在设备上"],
+    },
   },
   steps: {
     eyebrow: "使用方法",
@@ -226,6 +232,10 @@ export const zh: Messages = {
       {
         q: "可以离线使用吗？数据存在哪里？",
         a: "完全可以离线使用。你的训练、比赛和对手都保存在你的设备上，而不是我们的服务器上。在 iPhone 和 iPad 上，你可以开启免费的 iCloud 同步，让所有 Apple 设备上的数据保持一致。",
+      },
+      {
+        q: "能配合 Apple 健康或 Health Connect 使用吗？",
+        a: "即将支持。届时你可以导入用 Apple Watch 记录的乒乓球锻炼（Apple 健康），或在 Android 上用手表或健身应用记录的锻炼（Health Connect），将它关联到某次训练，并查看锻炼时间和消耗的卡路里；Pro 还会显示心率。App 只会读取你的锻炼，健康数据始终保存在你的设备上。",
       },
       {
         q: "适合业余爱好者，还是正式打比赛的球员？",

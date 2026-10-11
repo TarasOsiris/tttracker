@@ -85,6 +85,8 @@ export type Messages = {
     subtitle: string;
     sessionTypesTitle: string;
     items: { icon: FeatureIcon; title: string; body: string; bullets: string[] }[];
+    /** Apple Health / Health Connect linking, announced ahead of its release under `badge`. */
+    health: { badge: string; title: string; body: string; bullets: string[] };
   };
   steps: { eyebrow: string; title: string; items: { title: string; body: string }[] };
   screenshots: {

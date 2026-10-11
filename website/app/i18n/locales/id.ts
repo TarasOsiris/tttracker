@@ -132,6 +132,12 @@ export const id: Messages = {
         bullets: ["Bekerja sepenuhnya offline", "Tema terang & gelap", "Tersedia dalam 22 bahasa"],
       },
     ],
+    health: {
+      badge: "Segera hadir",
+      title: "App Kesehatan & Health Connect",
+      body: "Tautkan sesi ke olahraga yang direkam jam tanganmu. Impor olahraga tenis meja dari app Kesehatan di iPhone atau Health Connect di Android untuk mengisi tanggal dan durasi, lalu lihat waktu dan kalorinya di sesi, plus detak jantung dengan grafik per menit di Pro.",
+      bullets: ["Impor olahraga sekali ketuk", "Saran olahraga di hari yang sama", "Grafik detak jantung dengan Pro", "Hanya membaca, data tetap di perangkatmu"],
+    },
   },
   steps: {
     eyebrow: "Cara kerja",
@@ -228,6 +234,10 @@ export const id: Messages = {
       {
         q: "Apakah bisa dipakai offline? Di mana data saya disimpan?",
         a: "Aplikasi ini berfungsi sepenuhnya secara offline. Sesi, pertandingan, dan lawanmu disimpan di perangkatmu, bukan di server kami. Di iPhone dan iPad, kamu bisa mengaktifkan sinkronisasi iCloud gratis agar datanya sama di semua perangkat Apple-mu.",
+      },
+      {
+        q: "Apakah bisa dipakai dengan app Kesehatan atau Health Connect?",
+        a: "Segera hadir. Kamu akan bisa mengimpor olahraga tenis meja yang direkam di Apple Watch (app Kesehatan) atau oleh jam tangan maupun aplikasi kebugaran di Android (Health Connect), menautkannya ke sesi, lalu melihat waktu dan kalorinya, plus detak jantung di Pro. Aplikasi hanya membaca olahragamu, dan data kesehatan tetap di perangkatmu.",
       },
       {
         q: "Ini untuk pingpong atau tenis meja?",

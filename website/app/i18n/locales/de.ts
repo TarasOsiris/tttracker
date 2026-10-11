@@ -131,6 +131,12 @@ export const de: Messages = {
         bullets: ["Funktioniert komplett offline", "Helles & dunkles Design", "In 22 Sprachen verfügbar"],
       },
     ],
+    health: {
+      badge: "Demnächst",
+      title: "Apple Health & Health Connect",
+      body: "Verknüpfe eine Einheit mit dem Training, das deine Uhr aufgezeichnet hat. Importiere ein Tischtennis-Training aus Apple Health auf dem iPhone oder aus Health Connect auf Android, um Datum und Dauer zu übernehmen, und sieh Zeit und Kalorien direkt in der Einheit – mit Pro auch die Herzfrequenz samt Diagramm Minute für Minute.",
+      bullets: ["Training mit einem Tipp importieren", "Vorschläge vom selben Tag", "Herzfrequenz-Diagramm mit Pro", "Nur Lesezugriff, bleibt auf dem Gerät"],
+    },
   },
   steps: {
     eyebrow: "So funktioniert's",
@@ -226,6 +232,10 @@ export const de: Messages = {
       {
         q: "Funktioniert die App offline? Wo werden meine Daten gespeichert?",
         a: "Sie funktioniert komplett offline. Deine Einheiten, Spiele und Gegner werden auf deinem Gerät gespeichert, nicht auf unseren Servern. Auf iPhone und iPad kannst du die kostenlose iCloud-Synchronisierung einschalten, damit sie auf all deinen Apple-Geräten gleich sind.",
+      },
+      {
+        q: "Funktioniert die App mit Apple Health oder Health Connect?",
+        a: "Bald. Du kannst dann ein Tischtennis-Training importieren, das deine Apple Watch (Apple Health) oder unter Android deine Uhr bzw. Fitness-App (Health Connect) aufgezeichnet hat, es mit einer Einheit verknüpfen und Zeit und Kalorien sehen, mit Pro auch die Herzfrequenz. Die App liest deine Trainings nur, und Gesundheitsdaten bleiben auf deinem Gerät.",
       },
       {
         q: "Ist die App für Ping Pong oder Tischtennis?",

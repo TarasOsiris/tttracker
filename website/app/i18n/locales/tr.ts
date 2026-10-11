@@ -132,6 +132,12 @@ export const tr: Messages = {
         bullets: ["Tamamen çevrimdışı çalışır", "Açık ve koyu tema", "22 dilde kullanılabilir"],
       },
     ],
+    health: {
+      badge: "Çok yakında",
+      title: "Apple Health ve Health Connect",
+      body: "Antrenmanınızı saatinizin kaydettiği egzersize bağlayın. Tarih ve süreyi doldurmak için iPhone'da Apple Health'ten veya Android'de Health Connect'ten bir masa tenisi egzersizi içe aktarın; ardından antrenmanda egzersizin süresini ve kalorisini, Pro ile de dakika dakika grafikle kalp atış hızını görün.",
+      bullets: ["Tek dokunuşla egzersiz aktarma", "Aynı günün egzersizleri önerilir", "Pro ile kalp atış hızı grafiği", "Salt okunur, veriler cihazınızda kalır"],
+    },
   },
   steps: {
     eyebrow: "Nasıl çalışır",
@@ -228,6 +234,10 @@ export const tr: Messages = {
       {
         q: "Çevrimdışı çalışır mı? Verilerim nerede saklanıyor?",
         a: "Tamamen çevrimdışı çalışır. Antrenmanlarınız, maçlarınız ve rakipleriniz sunucularımızda değil, cihazınızda saklanır. iPhone ve iPad'de ücretsiz iCloud eşzamanlamasını açarak tüm Apple cihazlarınızda aynı verileri görebilirsiniz.",
+      },
+      {
+        q: "Apple Health veya Health Connect ile çalışır mı?",
+        a: "Çok yakında. Apple Watch'unuzla (Apple Health) ya da Android'de saatiniz veya fitness uygulamanızla (Health Connect) kaydedilen bir masa tenisi egzersizini içe aktarabilecek, bir antrenmana bağlayabilecek ve süresini ve kalorisini, Pro ile de kalp atış hızını görebileceksiniz. Uygulama egzersizlerinizi yalnızca okur ve sağlık verileriniz cihazınızda kalır.",
       },
       {
         q: "Ping pong için mi, masa tenisi için mi?",

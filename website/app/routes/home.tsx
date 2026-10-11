@@ -4,6 +4,7 @@ import {
   CalendarDays,
   Check,
   Crown,
+  HeartPulse,
   LayoutGrid,
   Sparkles,
   Swords,
@@ -200,9 +201,40 @@ function Features() {
             );
           })}
         </div>
+        <HealthComingSoon />
         <SessionTypes />
       </div>
     </section>
+  );
+}
+
+/** Full width under the grid rather than a seventh card, which would sit alone on its row. */
+function HealthComingSoon() {
+  const { t } = useI18n();
+  const h = t.features.health;
+  return (
+    <article className="mt-5 grid gap-6 rounded-3xl border border-dashed border-primary/40 bg-card p-7 md:grid-cols-[auto_1fr_auto] md:items-center">
+      <span className="flex size-12 items-center justify-center rounded-2xl bg-accent text-accent-foreground">
+        <HeartPulse className="size-6" />
+      </span>
+      <div>
+        <div className="flex flex-wrap items-center gap-2">
+          <h3 className="text-xl font-bold tracking-tight">{h.title}</h3>
+          <span className="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide text-primary">
+            {h.badge}
+          </span>
+        </div>
+        <p className="mt-2 max-w-2xl leading-relaxed text-muted-foreground">{h.body}</p>
+      </div>
+      <ul className="space-y-1.5 text-sm">
+        {h.bullets.map((b) => (
+          <li key={b} className="flex items-center gap-2">
+            <Check className="size-4 shrink-0 text-primary" />
+            {b}
+          </li>
+        ))}
+      </ul>
+    </article>
   );
 }
 

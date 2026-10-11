@@ -132,6 +132,12 @@ export const es: Messages = {
         bullets: ["Funciona totalmente sin conexión", "Tema claro y oscuro", "Disponible en 22 idiomas"],
       },
     ],
+    health: {
+      badge: "Próximamente",
+      title: "App Salud y Health Connect",
+      body: "Vincula una sesión al entrenamiento que registró tu reloj. Importa un entrenamiento de tenis de mesa desde la app Salud en iPhone o desde Health Connect en Android para rellenar la fecha y la duración, y consulta su hora y sus calorías en la sesión, además de la frecuencia cardiaca con un gráfico minuto a minuto en Pro.",
+      bullets: ["Importa un entrenamiento con un toque", "Entrenamientos del mismo día sugeridos", "Gráfico de frecuencia cardiaca con Pro", "Solo lectura, todo en tu dispositivo"],
+    },
   },
   steps: {
     eyebrow: "Cómo funciona",
@@ -227,6 +233,10 @@ export const es: Messages = {
       {
         q: "¿Funciona sin conexión? ¿Dónde se guardan mis datos?",
         a: "Funciona totalmente sin conexión. Tus sesiones, partidos y rivales se guardan en tu dispositivo, no en nuestros servidores. En iPhone y iPad puedes activar la sincronización gratuita con iCloud para tenerlos iguales en todos tus dispositivos Apple.",
+      },
+      {
+        q: "¿Funciona con la app Salud o con Health Connect?",
+        a: "Muy pronto. Podrás importar un entrenamiento de tenis de mesa registrado en tu Apple Watch (app Salud) o, en Android, por tu reloj o app de fitness (Health Connect), vincularlo a una sesión y ver su hora y sus calorías, con la frecuencia cardiaca en Pro. La app solo lee tus entrenamientos, y los datos de salud se quedan en tu dispositivo.",
       },
       {
         q: "¿Es para ping pong o para tenis de mesa?",

@@ -131,6 +131,12 @@ export const zhTw: Messages = {
         bullets: ["完全離線可用", "淺色與深色主題", "支援 22 種語言"],
       },
     ],
+    health: {
+      badge: "即將推出",
+      title: "Apple 健康與 Health Connect",
+      body: "把訓練連結到手錶記錄的運動。在 iPhone 上從 Apple 健康、在 Android 上從 Health Connect 匯入桌球運動，即可自動填入日期和時長，並在訓練中查看運動時間與消耗熱量；Pro 還能看到心率和逐分鐘的心率圖表。",
+      bullets: ["一鍵匯入運動", "自動建議同一天的運動", "Pro 解鎖心率圖表", "唯讀存取，資料留在裝置上"],
+    },
   },
   steps: {
     eyebrow: "使用方式",
@@ -226,6 +232,10 @@ export const zhTw: Messages = {
       {
         q: "可以離線使用嗎？我的資料存在哪裡？",
         a: "完全可以離線使用。你的訓練、比賽和對手都儲存在你的裝置上，而不是我們的伺服器上。在 iPhone 和 iPad 上，你可以開啟免費的 iCloud 同步，讓所有 Apple 裝置上的資料保持一致。",
+      },
+      {
+        q: "可以搭配 Apple 健康或 Health Connect 使用嗎？",
+        a: "即將推出。屆時你可以匯入用 Apple Watch 記錄的桌球運動（Apple 健康），或在 Android 上用手錶或健身 App 記錄的運動（Health Connect），將它連結到某次訓練，並查看運動時間與消耗熱量；Pro 還會顯示心率。App 只會讀取你的運動，健康資料始終留在你的裝置上。",
       },
       {
         q: "這是給桌球還是乒乓球用的？",
