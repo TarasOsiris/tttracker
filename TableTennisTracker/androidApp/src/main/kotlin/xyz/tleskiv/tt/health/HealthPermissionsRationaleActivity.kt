@@ -5,6 +5,8 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Bundle
 import androidx.core.net.toUri
+import xyz.tleskiv.tt.model.SiteLinks
+import java.util.Locale
 
 /**
  * What Health Connect opens when the user asks why the app reads their data: the privacy policy,
@@ -14,13 +16,9 @@ class HealthPermissionsRationaleActivity : Activity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		try {
-			startActivity(Intent(Intent.ACTION_VIEW, PRIVACY_POLICY_URL.toUri()))
+			startActivity(Intent(Intent.ACTION_VIEW, SiteLinks.privacyPolicy(Locale.getDefault().toLanguageTag()).toUri()))
 		} catch (_: ActivityNotFoundException) {
 		}
 		finish()
-	}
-
-	private companion object {
-		const val PRIVACY_POLICY_URL = "https://ttapp.smashyapps.com/privacy"
 	}
 }

@@ -40,8 +40,8 @@ export const privacyPolicy: LegalDocument = {
         {
           list: [
             "**What it reads:** your table tennis workouts (start and end time, recording app), the active energy (calories) and heart rate recorded during them, and on iOS the effort score you gave a workout on Apple Watch.",
-            "**Where it stays:** health data is read and shown on your device only. It is never stored in the app's database, never sent to us or to iCloud, and never included in analytics or crash reports.",
-            "**What the app keeps:** only the identifier of the workout a session is linked to, so the link survives. Like the rest of the session, it syncs through your private iCloud database if you use iCloud sync. Unlinking the workout or deleting the session removes it.",
+            "**Where it stays:** heart rate, energy and the workout's other details are read and shown on your device only. They are never stored in the app's database, never sent to us or to iCloud, and never included in analytics or crash reports.",
+            "**What the app keeps:** the identifier of the workout a session is linked to, so the link survives; unlinking the workout or deleting the session removes it. When you import a workout into a new session, its day and length (and on iOS the effort you rated it) fill in the form, which you can change before saving. Once saved, they are part of your training log like anything you enter yourself. Both sync with the rest of the session through your private iCloud database if you use iCloud sync.",
             "**What we never do:** health data is never sold, shared with anyone, or used for advertising, profiling or any purpose other than showing it to you in the app.",
           ],
         },
@@ -54,7 +54,7 @@ export const privacyPolicy: LegalDocument = {
         "The app creates a random identifier the first time it runs (shown as User ID in Settings). It is not linked to your name, email or Apple or Google account, and it is the only identifier attached to what follows.",
         {
           list: [
-            "**Usage analytics — PostHog** (PostHog Inc., data stored in the EU, Frankfurt). Which screens are opened and which features are used, for example that a session was created with its type, duration, effort rating (RPE) and number of matches, that a setting was changed, or that a workout was linked (never any health data). Also app version, device model, operating system, language, and an approximate location (country or city) derived from your IP address. Only release builds send analytics. [PostHog privacy policy](https://posthog.com/privacy).",
+            "**Usage analytics — PostHog** (PostHog Inc., data stored in the EU, Frankfurt). Which screens are opened and which features are used, for example that a session was created with its type, duration, effort rating (RPE) and number of matches, that a setting was changed, or that a workout was linked. A session linked to a workout is reported without its duration or effort rating, and no health data is ever sent. Also app version, device model, operating system, language, and an approximate location (country or city) derived from your IP address. Only release builds send analytics. [PostHog privacy policy](https://posthog.com/privacy).",
             "**Crash reports — Sentry** (Functional Software, Inc., United States). When the app crashes or hits an error: the technical details of the error, the app version, device model, operating system, and the recent app events leading up to it. [Sentry privacy policy](https://sentry.io/privacy/).",
             "**Purchases — RevenueCat** (RevenueCat, Inc., United States). Purchases are made through the App Store or Google Play, which handle payment: we never see your card or billing details. RevenueCat receives the purchase receipt and its product, price, currency and country, along with device and operating system details and your IP address, so the app can tell whether Pro is unlocked and restore it on your other devices. [RevenueCat privacy policy](https://www.revenuecat.com/privacy/).",
           ],
@@ -70,7 +70,7 @@ export const privacyPolicy: LegalDocument = {
             "We do not sell or rent your data, or share it for advertising.",
             "The app shows no ads, contains no advertising SDKs, and does not track you across other companies' apps or websites. It does not request the iOS advertising identifier.",
             "There is no sign-up, and we never ask for your name, email, phone number or contacts.",
-            "Health data from Apple Health or Health Connect never leaves your device through the app.",
+            "Heart rate and energy from Apple Health or Health Connect never leave your device through the app, and nothing read from them is sold or shared.",
           ],
         },
       ],

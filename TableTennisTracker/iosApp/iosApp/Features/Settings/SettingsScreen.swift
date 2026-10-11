@@ -1,3 +1,4 @@
+import Shared
 import SwiftUI
 
 struct SettingsScreen: View {
@@ -8,7 +9,10 @@ struct SettingsScreen: View {
     @Environment(ProModel.self) private var pro: ProModel?
 
     private static let website = URL(string: "https://ninevastudios.com")
-    private static let privacyPolicy = URL(string: "https://ttapp.smashyapps.com/privacy")
+    /// In the language the app is shown in, where the website has it.
+    private var privacyPolicy: URL? {
+        URL(string: SiteLinks.shared.privacyPolicy(languageTag: LocalizationController.shared.languageTag))
+    }
 
     var body: some View {
         List { sections }
@@ -122,7 +126,7 @@ struct SettingsScreen: View {
                     Label(L.actionVisitWebsite, systemImage: "globe")
                 }
             }
-            if let privacyPolicy = Self.privacyPolicy {
+            if let privacyPolicy {
                 Link(destination: privacyPolicy) {
                     Label(L.actionPrivacyPolicy, systemImage: "lock")
                 }

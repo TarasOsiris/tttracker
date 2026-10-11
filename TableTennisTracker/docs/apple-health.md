@@ -27,10 +27,13 @@ recorded with the Workout app on Apple Watch. Android does the same with Health 
 
 - **Only the workout's UUID is stored.** Heart rate, energy and times are read from Health each time
   and never written to the database: the database syncs to iCloud, and App Review guideline 5.1.3
-  forbids health data in iCloud. `HKWorkout.uuid` is the same on every device Health syncs the
+  forbids health data in iCloud. Importing only pre-fills the form (day, length, effort as RPE); what
+  the user saves is their own log entry, and the privacy policy says so. `HKWorkout.uuid` is the same on every device Health syncs the
   workout to, so a link made on the iPhone resolves on the iPad.
 - **Nothing from Health goes to PostHog or Sentry.** The events are `health_workout_imported`,
   `health_workout_linked` (`via`: `suggestion` or `picker`) and `health_workout_unlinked`, with no values.
+  `session_created` / `session_edited` leave out duration and RPE for a linked session, since they may
+  have come from the workout (`sessionEventProperties` in `:core`).
 - **The permission sheet only follows a tap** on Import, Link a workout or Connect Apple Health.
   Opening a session's details never raises it: the suggestion is looked for only once the user has
   already been asked (`HealthStore.hasAskedForAccess`). A session linked on another device shows

@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.LocalTime
+import xyz.tleskiv.tt.analytics.sessionEventProperties
 import xyz.tleskiv.tt.data.model.enums.SessionType
 import xyz.tleskiv.tt.di.components.AnalyticsService
 import xyz.tleskiv.tt.model.mappers.toMatchInput
@@ -31,6 +32,7 @@ class EditSessionScreenViewModelImpl(
 	override val inputData = CreateSessionScreenViewModel.InputData(viewModelScope, today())
 	private lateinit var sessionUuid: Uuid
 	private var sessionTime: LocalTime = LocalTime(12, 0)
+	private var isLinkedToHealth = false
 
 	init {
 		loadSession(sessionId)
@@ -51,6 +53,7 @@ class EditSessionScreenViewModelImpl(
 			inputData.rpeValue.value = session.rpe
 			inputData.selectedSessionType.value = session.sessionType ?: SessionType.TECHNIQUE
 			inputData.notes.value = session.notes.orEmpty()
+			isLinkedToHealth = session.healthWorkoutId != null
 
 			inputData.pendingMatches.value = session.matches.map { it.toPendingMatch() }
 
@@ -70,11 +73,12 @@ class EditSessionScreenViewModelImpl(
 				matches = inputData.pendingMatches.value.map { it.toMatchInput() }
 			)
 			analyticsService.capture(
-				"session_edited", mapOf(
-					"session_type" to inputData.selectedSessionType.value.name,
-					"duration_minutes" to inputData.durationMinutes.value,
-					"rpe" to inputData.rpeValue.value,
-					"match_count" to inputData.pendingMatches.value.size
+				"session_edited", sessionEventProperties(
+					sessionType = inputData.selectedSessionType.value,
+					durationMinutes = inputData.durationMinutes.value,
+					rpe = inputData.rpeValue.value,
+					matchCount = inputData.pendingMatches.value.size,
+					isLinkedToHealth = isLinkedToHealth
 				)
 			)
 			onSuccess()

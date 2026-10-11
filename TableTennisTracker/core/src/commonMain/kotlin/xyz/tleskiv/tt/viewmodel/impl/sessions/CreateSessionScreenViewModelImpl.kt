@@ -6,6 +6,7 @@ import kotlin.math.roundToInt
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.LocalTime
+import xyz.tleskiv.tt.analytics.sessionEventProperties
 import xyz.tleskiv.tt.di.components.AnalyticsService
 import xyz.tleskiv.tt.di.components.HealthDataSource
 import xyz.tleskiv.tt.health.HealthWorkout
@@ -50,11 +51,12 @@ class CreateSessionScreenViewModelImpl(
 				healthWorkoutId = inputData.healthWorkout.value?.id
 			)
 			analyticsService.capture(
-				"session_created", mapOf(
-					"session_type" to inputData.selectedSessionType.value.name,
-					"duration_minutes" to inputData.durationMinutes.value,
-					"rpe" to inputData.rpeValue.value,
-					"match_count" to inputData.pendingMatches.value.size
+				"session_created", sessionEventProperties(
+					sessionType = inputData.selectedSessionType.value,
+					durationMinutes = inputData.durationMinutes.value,
+					rpe = inputData.rpeValue.value,
+					matchCount = inputData.pendingMatches.value.size,
+					isLinkedToHealth = inputData.healthWorkout.value != null
 				)
 			)
 			if (inputData.healthWorkout.value != null) analyticsService.capture("health_workout_imported")

@@ -26,6 +26,9 @@ final class SessionFormModel {
     /// The Apple Health workout a new session was imported from, linked to it on save.
     private(set) var healthWorkout: HealthWorkout?
 
+    /// Whether the session being edited is linked to a workout, which keeps its values out of analytics.
+    @ObservationIgnored private var isLinkedToHealth = false
+
     var durationMinutes: Int { Int(duration.rounded()) }
     var rpe: Int { Int(intensity.rounded()) }
 
@@ -76,6 +79,7 @@ final class SessionFormModel {
             intensity = Double(item.rpe)
             notes = item.notes ?? ""
             matches = item.matches.map(PendingMatch.init)
+            isLinkedToHealth = item.healthWorkoutId != nil
         }
         isLoading = false
     }
@@ -156,15 +160,16 @@ final class SessionFormModel {
         notes = preferences.defaultNotes
     }
 
-    /// The Kotlin ViewModels send the enum's `name`, not its `dbValue` — matching it keeps the
-    /// PostHog funnels comparable across platforms.
+    /// Built by `:core`, the same as the Kotlin ViewModels, so the PostHog funnels stay comparable
+    /// and a linked session's health-derived duration and RPE never reach analytics on either.
     private var eventProperties: [String: Any] {
-        [
-            "session_type": kind.kotlin.name,
-            "duration_minutes": durationMinutes,
-            "rpe": rpe,
-            "match_count": matches.count
-        ]
+        SessionEventsKt.sessionEventProperties(
+            sessionType: kind.kotlin,
+            durationMinutes: Int32(durationMinutes),
+            rpe: Int32(rpe),
+            matchCount: Int32(matches.count),
+            isLinkedToHealth: healthWorkout != nil || isLinkedToHealth
+        )
     }
 }
 

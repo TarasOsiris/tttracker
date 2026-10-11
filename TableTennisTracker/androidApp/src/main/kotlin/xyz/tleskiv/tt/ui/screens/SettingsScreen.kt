@@ -49,6 +49,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import xyz.tleskiv.tt.pro.PaywallSource
+import xyz.tleskiv.tt.model.SiteLinks
 import xyz.tleskiv.tt.pro.ProModel
 import xyz.tleskiv.tt.ui.pro.LocalPro
 import xyz.tleskiv.tt.ui.pro.ProBadge
@@ -61,6 +62,7 @@ import xyz.tleskiv.tt.ui.TestTags
 import xyz.tleskiv.tt.ui.widgets.ContentCard
 import xyz.tleskiv.tt.ui.widgets.SimpleTopAppBar
 import xyz.tleskiv.tt.viewmodel.SettingsViewModel
+import java.util.Locale
 
 @Composable
 fun SettingsScreen(
@@ -166,7 +168,7 @@ fun SettingsScreen(
 						SettingsMenuItem(
 							R.string.action_privacy_policy,
 							Icons.Outlined.Lock,
-							{ uriHandler.openUri("https://ttapp.smashyapps.com/privacy") }),
+							{ uriHandler.openUri(SiteLinks.privacyPolicy(Locale.getDefault().toLanguageTag())) }),
 						SettingsMenuItem(R.string.action_rate_app, Icons.Outlined.Star, { viewModel.rateApp() }),
 						SettingsMenuItem(
 							R.string.action_copy_user_id,

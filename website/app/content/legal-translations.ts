@@ -35,8 +35,8 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
             {
               list: [
                 "**Qué lee:** tus entrenamientos de tenis de mesa (hora de inicio y fin, app que los registró), la energía activa (calorías) y la frecuencia cardiaca registradas durante ellos y, en iOS, la puntuación de esfuerzo que hayas dado a un entrenamiento en el Apple Watch.",
-                "**Dónde se quedan:** los datos de salud solo se leen y se muestran en tu dispositivo. Nunca se guardan en la base de datos de la app, nunca se nos envían ni a nosotros ni a iCloud y nunca se incluyen en analíticas ni en informes de errores.",
-                "**Qué conserva la app:** solo el identificador del entrenamiento vinculado a una sesión, para que el vínculo se mantenga. Como el resto de la sesión, se sincroniza a través de tu base de datos privada de iCloud si usas la sincronización con iCloud. Al desvincular el entrenamiento o eliminar la sesión, se borra.",
+                "**Dónde se quedan:** la frecuencia cardiaca, la energía y los demás detalles del entrenamiento solo se leen y se muestran en tu dispositivo. Nunca se guardan en la base de datos de la app, nunca se nos envían ni a nosotros ni a iCloud y nunca se incluyen en analíticas ni en informes de errores.",
+                "**Qué conserva la app:** el identificador del entrenamiento vinculado a una sesión, para que el vínculo se mantenga; al desvincular el entrenamiento o eliminar la sesión, se borra. Cuando importas un entrenamiento en una sesión nueva, su día y su duración (y, en iOS, el esfuerzo con el que lo valoraste) rellenan el formulario, y puedes cambiarlos antes de guardar. Una vez guardados, forman parte de tu registro de entrenamientos como cualquier cosa que introduzcas tú. Tanto el identificador como esos datos se sincronizan con el resto de la sesión a través de tu base de datos privada de iCloud si usas la sincronización con iCloud.",
                 "**Lo que nunca hacemos:** los datos de salud nunca se venden, no se comparten con nadie y no se usan para publicidad, elaboración de perfiles ni ningún otro fin que no sea mostrártelos en la app.",
               ],
             },
@@ -49,7 +49,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
             "La aplicación genera un identificador aleatorio la primera vez que se inicia (visible como ID de usuario en Ajustes). No está vinculado a tu nombre, correo ni cuentas de Apple o Google.",
             {
               list: [
-                "**Analíticas de uso — PostHog** (PostHog Inc., servidores en la UE, Fráncfort). Qué pantallas se abren y qué funciones se utilizan (por ejemplo, tipo de sesión, duración y RPE, o que se vinculó un entrenamiento, nunca datos de salud). También versión de la app, modelo de dispositivo, sistema operativo, idioma y ubicación aproximada por IP. Solo las versiones oficiales de producción envían analíticas. [Política de privacidad de PostHog](https://posthog.com/privacy).",
+                "**Analíticas de uso — PostHog** (PostHog Inc., servidores en la UE, Fráncfort). Qué pantallas se abren y qué funciones se utilizan (por ejemplo, tipo de sesión, duración y RPE, o que se vinculó un entrenamiento). Una sesión vinculada a un entrenamiento se registra sin su duración ni su valoración de esfuerzo, y nunca se envían datos de salud. También versión de la app, modelo de dispositivo, sistema operativo, idioma y ubicación aproximada por IP. Solo las versiones oficiales de producción envían analíticas. [Política de privacidad de PostHog](https://posthog.com/privacy).",
                 "**Informes de errores — Sentry** (Functional Software, Inc., Estados Unidos). Cuando la aplicación sufre un fallo técnico: detalles del error, versión de la app, modelo de dispositivo y eventos recientes. [Política de privacidad de Sentry](https://sentry.io/privacy/).",
                 "**Gestión de compras — RevenueCat** (RevenueCat, Inc., Estados Unidos). Las compras se procesan a través de App Store o Google Play. RevenueCat recibe el recibo de compra para verificar y restaurar Pro en tus dispositivos. [Política de privacidad de RevenueCat](https://www.revenuecat.com/privacy/).",
               ],
@@ -65,7 +65,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
                 "No vendemos, alquilamos ni compartimos tus datos con fines publicitarios.",
                 "La app no muestra publicidad, no incluye SDKs de anuncios y no te rastrea en apps o webs de terceros.",
                 "No hay registro obligatorio y nunca te pediremos tu nombre, correo, teléfono o contactos.",
-                "Los datos de salud de la app Salud o de Health Connect nunca salen de tu dispositivo a través de la app.",
+                "La frecuencia cardiaca y la energía de la app Salud o de Health Connect nunca salen de tu dispositivo a través de la app, y nada de lo que se lee de ellas se vende ni se comparte.",
               ],
             },
           ],
@@ -211,8 +211,8 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
             {
               list: [
                 "**Was gelesen wird:** Ihre Tischtennis-Trainings (Start- und Endzeit, aufzeichnende App), die dabei erfasste aktive Energie (Kalorien) und Herzfrequenz sowie unter iOS die Anstrengung, mit der Sie ein Training auf der Apple Watch bewertet haben.",
-                "**Wo die Daten bleiben:** Gesundheitsdaten werden ausschließlich auf Ihrem Gerät gelesen und angezeigt. Sie werden nie in der Datenbank der App gespeichert, nie an uns oder an iCloud gesendet und sind nie Teil von Analyse- oder Absturzberichten.",
-                "**Was die App speichert:** nur die Kennung des Trainings, mit dem eine Einheit verknüpft ist, damit die Verknüpfung erhalten bleibt. Wie der Rest der Einheit wird sie über Ihre private iCloud-Datenbank synchronisiert, wenn Sie die iCloud-Synchronisierung nutzen. Wenn Sie die Verknüpfung aufheben oder die Einheit löschen, wird sie entfernt.",
+                "**Wo die Daten bleiben:** Herzfrequenz, Energie und die übrigen Details des Trainings werden ausschließlich auf Ihrem Gerät gelesen und angezeigt. Sie werden nie in der Datenbank der App gespeichert, nie an uns oder an iCloud gesendet und sind nie Teil von Analyse- oder Absturzberichten.",
+                "**Was die App speichert:** die Kennung des Trainings, mit dem eine Einheit verknüpft ist, damit die Verknüpfung erhalten bleibt; wenn Sie die Verknüpfung aufheben oder die Einheit löschen, wird sie entfernt. Wenn Sie ein Training in eine neue Einheit importieren, werden Tag und Dauer (und unter iOS die Anstrengung, mit der Sie es bewertet haben) in das Formular übernommen; Sie können diese Angaben vor dem Speichern ändern. Nach dem Speichern gehören sie wie alles, was Sie selbst eingeben, zu Ihrem Trainingstagebuch. Beides wird mit dem Rest der Einheit über Ihre private iCloud-Datenbank synchronisiert, wenn Sie die iCloud-Synchronisierung nutzen.",
                 "**Was wir niemals tun:** Gesundheitsdaten werden niemals verkauft, an Dritte weitergegeben oder für Werbung, Profilbildung oder irgendeinen anderen Zweck verwendet, als sie Ihnen in der App anzuzeigen.",
               ],
             },
@@ -225,7 +225,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
             "Die App erstellt beim ersten Start eine zufällige Kennung (Benutzer-ID in den Einstellungen). Sie ist nicht mit Ihrem Namen oder Konto verknüpft.",
             {
               list: [
-                "**Nutzungsanalyse — PostHog** (PostHog Inc., Serverstandort in der EU, Frankfurt). Erfassung von Bildschirmaufrufen und Funktionsnutzung, etwa dass ein Training verknüpft wurde (niemals Gesundheitsdaten). [PostHog Datenschutz](https://posthog.com/privacy).",
+                "**Nutzungsanalyse — PostHog** (PostHog Inc., Serverstandort in der EU, Frankfurt). Erfassung von Bildschirmaufrufen und Funktionsnutzung, etwa dass ein Training verknüpft wurde. Eine mit einem Training verknüpfte Einheit wird ohne ihre Dauer und Anstrengungsbewertung übermittelt, und Gesundheitsdaten werden niemals gesendet. [PostHog Datenschutz](https://posthog.com/privacy).",
                 "**Absturzberichte — Sentry** (Functional Software, Inc., USA). Technische Fehlerdetails zur Behebung von Softwarefehlern. [Sentry Datenschutz](https://sentry.io/privacy/).",
                 "**Kaufabwicklung — RevenueCat** (RevenueCat, Inc., USA). Prüfung und Wiederherstellung von In-App-Käufen über App Store oder Google Play. [RevenueCat Datenschutz](https://www.revenuecat.com/privacy/).",
               ],
@@ -240,7 +240,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
                 "Kein Verkauf oder Vermietung von Daten an Werbenetzwerke.",
                 "Keine Werbung und keine Werbe-SDKs in der Anwendung.",
                 "Keine Registrierungspflicht; keine Abfrage von Kontaktdaten.",
-                "Gesundheitsdaten aus Apple Health oder Health Connect verlassen Ihr Gerät niemals über die App.",
+                "Herzfrequenz und Energie aus Apple Health oder Health Connect verlassen Ihr Gerät niemals über die App, und nichts, was daraus gelesen wird, wird verkauft oder weitergegeben.",
               ],
             },
           ],
@@ -267,7 +267,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     terms: {
       title: "Nutzungsbedingungen",
       description: `Bedingungen für die Nutzung der ${appNames.de.name}-Apps, TT Tracker Pro und dieser Website.`,
-      updated: "1. Oktober 2026",
+      updated: "11. Oktober 2026",
       intro: `Diese Bedingungen regeln die Nutzung der Apps und Website von ${appNames.de.name}, bereitgestellt von Nineva Studios. Mit dem Download oder der Nutzung stimmen Sie diesen Bedingungen zu.`,
       sections: [
         {
@@ -328,8 +328,8 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
             {
               list: [
                 "**Ce qui est lu :** vos entraînements de tennis de table (heure de début et de fin, app d'enregistrement), l'énergie active (calories) et la fréquence cardiaque enregistrées pendant ceux-ci et, sur iOS, l'évaluation de l'effort que vous avez attribuée à un entraînement sur l'Apple Watch.",
-                "**Où elles restent :** les données de santé sont lues et affichées uniquement sur votre appareil. Elles ne sont jamais enregistrées dans la base de données de l'application, jamais transmises ni à nous ni à iCloud, et jamais incluses dans les statistiques d'utilisation ou les rapports de plantage.",
-                "**Ce que l'application conserve :** uniquement l'identifiant de l'entraînement auquel une séance est liée, afin que le lien soit préservé. Comme le reste de la séance, il est synchronisé via votre base de données iCloud privée si vous utilisez la synchronisation iCloud. Il est supprimé si vous dissociez l'entraînement ou supprimez la séance.",
+                "**Où restent ces données :** la fréquence cardiaque, l'énergie et les autres détails de l'entraînement sont lus et affichés uniquement sur votre appareil. Ils ne sont jamais enregistrés dans la base de données de l'application, jamais transmis ni à nous ni à iCloud, et jamais inclus dans les statistiques d'utilisation ou les rapports de plantage.",
+                "**Ce que l'application conserve :** l'identifiant de l'entraînement auquel une séance est liée, afin que le lien soit préservé ; il est supprimé si vous dissociez l'entraînement ou supprimez la séance. Lorsque vous importez un entraînement dans une nouvelle séance, sa date et sa durée (et, sur iOS, l'effort que vous lui avez attribué) pré-remplissent le formulaire, et vous pouvez les modifier avant d'enregistrer. Une fois la séance enregistrée, ces valeurs font partie de votre journal d'entraînement, comme tout ce que vous saisissez vous-même. L'identifiant et ces valeurs sont synchronisés avec le reste de la séance via votre base de données iCloud privée si vous utilisez la synchronisation iCloud.",
                 "**Ce que nous ne faisons jamais :** les données de santé ne sont jamais vendues, partagées avec qui que ce soit, ni utilisées à des fins publicitaires, de profilage ou à toute autre fin que leur affichage pour vous dans l'application.",
               ],
             },
@@ -342,7 +342,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
             "L'application génère un identifiant aléatoire (ID utilisateur dans Réglages) sans lien avec votre identité.",
             {
               list: [
-                "**Analytique d'utilisation — PostHog** (serveurs dans l'UE à Francfort). Mesure anonyme de l'utilisation des écrans et des fonctionnalités, par exemple la liaison d'un entraînement (jamais aucune donnée de santé). [Confidentialité PostHog](https://posthog.com/privacy).",
+                "**Analytique d'utilisation — PostHog** (serveurs dans l'UE à Francfort). Mesure anonyme de l'utilisation des écrans et des fonctionnalités, par exemple la liaison d'un entraînement. Une séance liée à un entraînement est transmise sans sa durée ni son évaluation de l'effort, et aucune donnée de santé n'est jamais envoyée. [Confidentialité PostHog](https://posthog.com/privacy).",
                 "**Rapports de plantage — Sentry** (États-Unis). Analyse des erreurs techniques de l'application. [Confidentialité Sentry](https://sentry.io/privacy/).",
                 "**Achats — RevenueCat** (États-Unis). Validation et restauration des achats intégrés. [Confidentialité RevenueCat](https://www.revenuecat.com/privacy/).",
               ],
@@ -371,7 +371,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     terms: {
       title: "Conditions d'Utilisation",
       description: `Conditions applicables à l'utilisation des applications ${appNames.fr.name}, de TT Tracker Pro et du site.`,
-      updated: "1er octobre 2026",
+      updated: "11 octobre 2026",
       intro: `Ces conditions régissent l'accès aux applications et au site de ${appNames.fr.name}. En les utilisant, vous acceptez ces dispositions.`,
       sections: [
         {
@@ -384,6 +384,12 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
           heading: "TT Tracker Pro",
           blocks: [
             "TT Tracker Pro est un **achat unique** et non un abonnement. Il débloque les fonctionnalités Pro sur l'ensemble de vos appareils connectés au même compte.",
+          ],
+        },
+        {
+          heading: "Pas un avis médical",
+          blocks: [
+            "L'application, ses statistiques (y compris la fréquence cardiaque et l'énergie lues depuis l'app Santé ou Santé Connect) et les programmes d'entraînement de ce site sont fournis à titre d'information générale et de suivi uniquement. Ils ne constituent ni un avis médical, ni un conseil de santé, ni un conseil d'entraîneur. Consultez un médecin ou un entraîneur qualifié avant de commencer un nouveau programme d'entraînement, et arrêtez-vous si vous ressentez une douleur ou une gêne.",
           ],
         },
         {
@@ -425,8 +431,8 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
             {
               list: [
                 "**O que é lido:** seus treinos de tênis de mesa (início e fim, app que registrou), a energia ativa (calorias) e a frequência cardíaca registradas durante eles e, no iOS, a pontuação de esforço que você deu a um treino no Apple Watch.",
-                "**Onde ficam:** os dados de saúde são lidos e exibidos somente no seu dispositivo. Nunca são armazenados no banco de dados do aplicativo, nunca são enviados para nós nem para o iCloud e nunca entram em métricas de uso ou relatórios de falhas.",
-                "**O que o aplicativo guarda:** apenas o identificador do treino vinculado a uma sessão, para que o vínculo se mantenha. Como o restante da sessão, ele é sincronizado pela sua base privada do iCloud se você usa a sincronização iCloud. Desvincular o treino ou excluir a sessão o remove.",
+                "**Onde ficam:** a frequência cardíaca, a energia e os demais detalhes do treino são lidos e exibidos somente no seu dispositivo. Nunca são armazenados no banco de dados do aplicativo, nunca são enviados para nós nem para o iCloud e nunca entram em métricas de uso ou relatórios de falhas.",
+                "**O que o aplicativo guarda:** o identificador do treino vinculado a uma sessão, para que o vínculo se mantenha; desvincular o treino ou excluir a sessão o remove. Quando você importa um treino para uma nova sessão, o dia e a duração dele (e, no iOS, o esforço com que você o avaliou) preenchem o formulário, e você pode alterá-los antes de salvar. Depois de salvos, eles fazem parte do seu histórico de treinos como qualquer coisa que você mesmo registra. Tanto o identificador quanto esses dados são sincronizados com o restante da sessão pela sua base privada do iCloud se você usa a sincronização iCloud.",
                 "**O que nunca fazemos:** os dados de saúde nunca são vendidos, compartilhados com ninguém nem usados para publicidade, criação de perfis ou qualquer finalidade que não seja mostrá-los a você no aplicativo.",
               ],
             },
@@ -436,7 +442,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
         {
           heading: "Serviços de terceiros",
           blocks: [
-            "Utilizamos PostHog (dados na UE) para métricas de uso, Sentry para relatórios de falhas e RevenueCat para validação de compras. Nenhum dado de saúde é incluído nesses envios.",
+            "Utilizamos PostHog (dados na UE) para métricas de uso, Sentry para relatórios de falhas e RevenueCat para validação de compras. As métricas de uso contam quando um treino é vinculado, e uma sessão vinculada a um treino é registrada sem a duração nem a avaliação de esforço. Nenhum dado de saúde é enviado em momento algum.",
           ],
         },
         {
@@ -455,7 +461,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     terms: {
       title: "Termos de Uso",
       description: `Termos de utilização dos aplicativos ${appNames.pt.name}, TT Tracker Pro e do website.`,
-      updated: "1 de outubro de 2026",
+      updated: "11 de outubro de 2026",
       intro: `Estes termos regulam o uso dos aplicativos ${appNames.pt.name} e do site oficial.`,
       sections: [
         {
@@ -468,6 +474,12 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
           heading: "TT Tracker Pro",
           blocks: [
             "O TT Tracker Pro é uma **compra única** que desbloqueia recursos adicionais permanentemente nos aparelhos vinculados à mesma conta.",
+          ],
+        },
+        {
+          heading: "Não é aconselhamento médico",
+          blocks: [
+            "O aplicativo, suas estatísticas (incluindo a frequência cardíaca e a energia lidas do app Saúde ou do Conexão Saúde) e os planos de treino deste site servem apenas para informação geral e acompanhamento. Eles não são aconselhamento médico, de saúde nem de treinador. Consulte um médico ou um treinador qualificado antes de começar um novo programa de treino e pare se sentir dor ou desconforto.",
           ],
         },
         {
@@ -504,8 +516,8 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
             {
               list: [
                 "**読み取るデータ：**卓球のワークアウト（開始・終了時刻、記録したアプリ）、その間に記録されたアクティブエネルギー（カロリー）と心拍数、およびiOSではApple Watchでワークアウトに付けた負荷の評価。",
-                "**データの保存場所：**ヘルスケアデータは端末上でのみ読み取り・表示されます。アプリのデータベースに保存されることはなく、当社やiCloudに送信されることも、利用状況解析やクラッシュ報告に含まれることもありません。",
-                "**アプリが保持する情報：**連携を維持するため、セッションに連携したワークアウトの識別子のみを保持します。セッションの他のデータと同様、iCloud同期をご利用の場合はお客様のプライベートなiCloudデータベースを通じて同期されます。ワークアウトの連携を解除するか、セッションを削除すると、この識別子も削除されます。",
+                "**データの保存場所：**心拍数、エネルギー、その他のワークアウトの詳細は、端末上でのみ読み取り・表示されます。アプリのデータベースに保存されることはなく、当社やiCloudに送信されることも、利用状況解析やクラッシュ報告に含まれることもありません。",
+                "**アプリが保持する情報：**連携を維持するため、セッションに連携したワークアウトの識別子を保持します。ワークアウトの連携を解除するか、セッションを削除すると、この識別子も削除されます。ワークアウトを読み込んで新しいセッションを作成すると、その日付と所要時間（iOSではワークアウトに付けた負荷の評価も）がフォームに入力され、保存前に変更できます。保存後は、ご自身で入力した内容と同様に練習ログの一部となります。iCloud同期をご利用の場合、識別子とこれらの情報はいずれもセッションの他のデータとともに、お客様のプライベートなiCloudデータベースを通じて同期されます。",
                 "**当社が決して行わないこと：**ヘルスケアデータを販売したり、第三者と共有したり、広告やプロファイリング、その他アプリ内でお客様に表示する以外の目的に使用したりすることは一切ありません。",
               ],
             },
@@ -518,7 +530,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
             "アプリの改善と品質維持のため、個人を特定しない形で以下のサービスを利用しています：",
             {
               list: [
-                "**利用状況解析 — PostHog**（欧州フランクフルトのサーバー）：画面遷移や機能の利用頻度（ワークアウトを連携したかどうか等）の匿名統計。ヘルスケアデータは一切含みません。",
+                "**利用状況解析 — PostHog**（欧州フランクフルトのサーバー）：画面遷移や機能の利用頻度（ワークアウトを連携したかどうか等）の匿名統計。ワークアウトに連携したセッションは所要時間や負荷の評価を含めずに記録され、ヘルスケアデータが送信されることは一切ありません。",
                 "**エラー・クラッシュ報告 — Sentry**：アプリのクラッシュ情報およびエラー解析。",
                 "**購入管理 — RevenueCat**：App StoreまたはGoogle Playでの購入状態の検証および復元。",
               ],
@@ -541,7 +553,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     terms: {
       title: "利用規約",
       description: `「${appNames.ja.name}」、TT Tracker Proおよび本ウェブサイトの利用規約。`,
-      updated: "2026年10月1日",
+      updated: "2026年10月11日",
       intro: `本規約は、Nineva Studiosが提供する「${appNames.ja.name}」アプリおよび関連ウェブサイトの利用条件を定めるものです。`,
       sections: [
         {
@@ -592,12 +604,12 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
         {
           heading: "“健康”App 与 Health Connect",
           blocks: [
-            "您可以将训练记录与手表或健身应用记录的体能训练关联：iOS 上通过“健康”App，Android 上通过 Health Connect。只有在您于系统权限界面中授权后，应用才会读取健康数据，且仅用于填写训练记录并显示训练期间的情况。应用绝不会向“健康”App 或 Health Connect 写入任何数据。",
+            "您可以将训练记录与手表或健身应用记录的锻炼关联：iOS 上通过“健康”App，Android 上通过 Health Connect。只有在您于系统权限界面中授权后，应用才会读取健康数据，且仅用于填写训练记录并显示训练期间的情况。应用绝不会向“健康”App 或 Health Connect 写入任何数据。",
             {
               list: [
-                "**读取的内容：**您的乒乓球体能训练（开始和结束时间、记录所用的应用）、训练期间记录的活动能量（卡路里）和心率，以及在 iOS 上您在 Apple Watch 上为体能训练给出的强度评分。",
-                "**数据存放位置：**健康数据仅在您的设备上读取和显示，绝不会存入应用的数据库，绝不会发送给我们或 iCloud，也绝不会包含在使用统计或崩溃报告中。",
-                "**应用保留的内容：**仅保留训练记录所关联体能训练的标识符，以便保持关联。与训练记录的其他数据一样，如果您使用 iCloud 同步，它会通过您的私有 iCloud 数据库同步。取消关联该体能训练或删除训练记录即会将其移除。",
+                "**读取的内容：**您的乒乓球锻炼（开始和结束时间、记录所用的应用）、锻炼期间记录的活动能量（卡路里）和心率，以及在 iOS 上您在 Apple Watch 上为锻炼给出的强度评分。",
+                "**数据存放位置：**心率、能量及锻炼的其他详细信息仅在您的设备上读取和显示，绝不会存入应用的数据库，绝不会发送给我们或 iCloud，也绝不会包含在使用统计或崩溃报告中。",
+                "**应用保留的内容：**训练记录所关联锻炼的标识符，以便保持关联；取消关联该锻炼或删除训练记录即会将其移除。当您将某次锻炼导入为新的训练记录时，其日期和时长（以及在 iOS 上您为其给出的强度评分）会填入表单，您可以在保存前修改。保存后，这些内容就和您自己输入的任何内容一样，成为训练日志的一部分。如果您使用 iCloud 同步，标识符和这些内容都会随训练记录的其他数据一起，通过您的私有 iCloud 数据库同步。",
                 "**我们绝不会：**出售健康数据或与任何人共享，也不会将其用于广告、用户画像或除在应用中向您展示以外的任何目的。",
               ],
             },
@@ -610,7 +622,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
             "为了保障软件稳定性，应用会生成随机匿名标识符并调用以下服务：",
             {
               list: [
-                "**使用统计 — PostHog**（数据存储在欧盟法兰克福）：记录功能使用频次等匿名数据（例如是否关联了体能训练），绝不包含任何健康数据。",
+                "**使用统计 — PostHog**（数据存储在欧盟法兰克福）：记录功能使用频次等匿名数据（例如是否关联了锻炼）。关联了锻炼的训练记录在上报时不包含时长和强度评分，且绝不会发送任何健康数据。",
                 "**崩溃报告 — Sentry**：分析应用运行时的崩溃错误和系统日志。",
                 "**购买验证 — RevenueCat**：用于在您的多台设备上验证和恢复 Pro 购买凭证。",
               ],
@@ -633,7 +645,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     terms: {
       title: "使用条款",
       description: `「${appNames.zh.name}」移动应用、TT Tracker Pro 及本网站的使用条款。`,
-      updated: "2026年10月1日",
+      updated: "2026年10月11日",
       intro: `本条款适用于 Nineva Studios 提供的「${appNames.zh.name}」应用及官方网站。下载或使用本应用即表示您同意本条款。`,
       sections: [
         {
@@ -687,8 +699,8 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
             {
               list: [
                 "**읽는 데이터:** 탁구 운동 기록(시작 및 종료 시간, 기록한 앱), 운동 중 기록된 활동 에너지(칼로리)와 심박수, 그리고 iOS에서는 Apple Watch에서 운동에 매긴 운동 강도 평가.",
-                "**보관 위치:** 건강 데이터는 사용자 기기에서만 읽고 표시됩니다. 앱 데이터베이스에 저장되지 않으며, 회사나 iCloud로 전송되지 않고, 사용 통계나 오류 보고에도 포함되지 않습니다.",
-                "**앱이 보관하는 정보:** 연결을 유지하기 위해 세션에 연결된 운동의 식별자만 보관합니다. 세션의 다른 데이터와 마찬가지로 iCloud 동기화를 사용하는 경우 사용자의 비공개 iCloud 데이터베이스를 통해 동기화됩니다. 운동 연결을 해제하거나 세션을 삭제하면 함께 삭제됩니다.",
+                "**보관 위치:** 심박수, 에너지 및 운동의 기타 세부 정보는 사용자 기기에서만 읽고 표시됩니다. 앱 데이터베이스에 저장되지 않으며, 회사나 iCloud로 전송되지 않고, 사용 통계나 오류 보고에도 포함되지 않습니다.",
+                "**앱이 보관하는 정보:** 연결을 유지하기 위해 세션에 연결된 운동의 식별자를 보관하며, 운동 연결을 해제하거나 세션을 삭제하면 함께 삭제됩니다. 운동을 가져와 새 세션을 만들면 해당 운동의 날짜와 운동 시간(iOS에서는 운동에 매긴 운동 강도 평가도)이 입력 양식에 채워지며, 저장하기 전에 변경할 수 있습니다. 저장한 후에는 사용자가 직접 입력한 다른 정보와 마찬가지로 훈련 기록의 일부가 됩니다. iCloud 동기화를 사용하는 경우 식별자와 이 정보 모두 세션의 다른 데이터와 함께 사용자의 비공개 iCloud 데이터베이스를 통해 동기화됩니다.",
                 "**회사가 절대 하지 않는 일:** 건강 데이터를 판매하거나 누구와도 공유하지 않으며, 광고, 프로파일링 또는 앱에서 사용자에게 보여 주는 것 이외의 어떠한 목적으로도 사용하지 않습니다.",
               ],
             },
@@ -701,7 +713,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
             "앱 오류 개선 및 안정성 유지를 위해 비식별화된 임의 식별자를 기반으로 다음 서비스를 이용합니다:",
             {
               list: [
-                "**사용 통계 — PostHog** (EU 프랑크푸르트 서버): 익명 기능 사용 빈도 측정(운동 연결 여부 등, 건강 데이터는 절대 포함되지 않음).",
+                "**사용 통계 — PostHog** (EU 프랑크푸르트 서버): 익명 기능 사용 빈도 측정(운동 연결 여부 등). 운동에 연결된 세션은 운동 시간과 운동 강도 평가 없이 전송되며, 건강 데이터는 절대 전송되지 않습니다.",
                 "**오류 보고 — Sentry** (미국): 앱 비정상 종료 시 기술적 오류 로그 분석.",
                 "**구매 관리 — RevenueCat** (미국): 인앱 결제 확인 및 다중 기기 구매 복원 처리.",
               ],
@@ -724,7 +736,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     terms: {
       title: "이용약관",
       description: `「${appNames.ko.name}」 앱, TT Tracker Pro 및 웹사이트 이용약관.`,
-      updated: "2026년 10월 1일",
+      updated: "2026년 10월 11일",
       intro: `본 약관은 Nineva Studios가 제공하는 「${appNames.ko.name}」 앱 및 웹사이트의 이용 조건을 규정합니다.`,
       sections: [
         {
@@ -778,8 +790,8 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
             {
               list: [
                 "**Cosa legge:** i tuoi allenamenti di tennistavolo (ora di inizio e fine, app che li ha registrati), l'energia attiva (calorie) e la frequenza cardiaca registrate durante l'allenamento e, su iOS, il punteggio di sforzo che hai assegnato a un allenamento su Apple Watch.",
-                "**Dove restano:** i dati sulla salute vengono letti e mostrati solo sul tuo dispositivo. Non vengono mai salvati nel database dell'app, mai inviati a noi o a iCloud e mai inclusi nelle statistiche d'uso o nei report sui crash.",
-                "**Cosa conserva l'app:** solo l'identificativo dell'allenamento collegato a una sessione, per mantenere il collegamento. Come il resto della sessione, viene sincronizzato tramite il tuo database privato iCloud se usi la sincronizzazione iCloud. Scollegando l'allenamento o eliminando la sessione viene rimosso.",
+                "**Dove restano:** la frequenza cardiaca, l'energia e gli altri dettagli dell'allenamento vengono letti e mostrati solo sul tuo dispositivo. Non vengono mai salvati nel database dell'app, mai inviati a noi o a iCloud e mai inclusi nelle statistiche d'uso o nei report sui crash.",
+                "**Cosa conserva l'app:** l'identificativo dell'allenamento collegato a una sessione, per mantenere il collegamento; scollegando l'allenamento o eliminando la sessione viene rimosso. Quando importi un allenamento in una nuova sessione, il giorno e la durata (e, su iOS, lo sforzo con cui l'hai valutato) compilano il modulo, e puoi modificarli prima di salvare. Una volta salvati, fanno parte del tuo diario di allenamento come qualsiasi dato che inserisci tu. Sia l'identificativo sia questi dati vengono sincronizzati con il resto della sessione tramite il tuo database privato iCloud se usi la sincronizzazione iCloud.",
                 "**Cosa non facciamo mai:** i dati sulla salute non vengono mai venduti, condivisi con nessuno né usati per pubblicità, profilazione o qualsiasi scopo diverso dal mostrarteli nell'app.",
               ],
             },
@@ -789,7 +801,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
         {
           heading: "Servizi di terze parti",
           blocks: [
-            "Utilizziamo PostHog (server nell'UE a Francoforte) per statistiche d'uso anonime, Sentry per i report sui crash e RevenueCat per la gestione degli acquisti in-app. Nessun dato sulla salute viene mai incluso in questi invii.",
+            "Utilizziamo PostHog (server nell'UE a Francoforte) per statistiche d'uso anonime, Sentry per i report sui crash e RevenueCat per la gestione degli acquisti in-app. Le statistiche d'uso registrano che un allenamento è stato collegato, e una sessione collegata a un allenamento viene registrata senza durata né valutazione dello sforzo. Nessun dato sulla salute viene mai inviato.",
           ],
         },
         {
@@ -808,7 +820,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     terms: {
       title: "Termini di Utilizzo",
       description: `Termini e condizioni per l'uso delle app ${appNames.it.name}, di TT Tracker Pro e del sito web.`,
-      updated: "1° ottobre 2026",
+      updated: "11 ottobre 2026",
       intro: `Questi termini regolano l'utilizzo delle applicazioni ${appNames.it.name} e del sito web forniti da Nineva Studios.`,
       sections: [
         {
@@ -821,6 +833,12 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
           heading: "TT Tracker Pro",
           blocks: [
             "TT Tracker Pro è un **acquisto una tantum** (non un abbonamento). Sblocca le funzionalità Pro su tutti i dispositivi con lo stesso account Apple o Google.",
+          ],
+        },
+        {
+          heading: "Non è un consiglio medico",
+          blocks: [
+            "L'app, le sue statistiche (inclusi la frequenza cardiaca e l'energia lette dall'app Salute o da Connessione Salute) e i piani di allenamento di questo sito hanno solo scopo informativo e di monitoraggio. Non costituiscono consigli medici, sanitari o di allenamento. Consulta un medico o un allenatore qualificato prima di iniziare un nuovo programma di allenamento e interrompi se senti dolore o fastidio.",
           ],
         },
         {
@@ -857,8 +875,8 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
             {
               list: [
                 "**Що читається:** ваші записи тренувань з настільного тенісу (час початку й завершення, додаток, що їх записав), активна енергія (калорії) і пульс, зафіксовані під час них, а в iOS — оцінка зусиль, яку ви поставили тренуванню на Apple Watch.",
-                "**Де залишаються дані:** дані про здоров’я читаються й показуються лише на вашому пристрої. Вони ніколи не зберігаються в базі даних додатка, не надсилаються ні нам, ні в iCloud і не потрапляють до аналітики чи звітів про помилки.",
-                "**Що зберігає додаток:** лише ідентифікатор запису тренування, до якого прив’язано тренування, щоб прив’язка не загубилася. Як і решта даних тренування, він синхронізується через вашу приватну базу даних iCloud, якщо ви користуєтеся синхронізацією з iCloud. Якщо відв’язати запис або видалити тренування, ідентифікатор також видаляється.",
+                "**Де залишаються дані:** пульс, енергія та інші дані запису тренування читаються й показуються лише на вашому пристрої. Вони ніколи не зберігаються в базі даних додатка, не надсилаються ні нам, ні в iCloud і не потрапляють до аналітики чи звітів про помилки.",
+                "**Що зберігає додаток:** ідентифікатор запису тренування, до якого прив’язано тренування, щоб прив’язка не загубилася; якщо відв’язати запис або видалити тренування, ідентифікатор видаляється. Коли ви імпортуєте запис тренування в нове тренування, його дата й тривалість (а в iOS — оцінка зусиль, яку ви йому поставили) підставляються у форму, і ви можете змінити їх перед збереженням. Після збереження вони стають частиною вашого щоденника тренувань, як і все, що ви вводите самі. Ідентифікатор і ці дані синхронізуються разом з рештою тренування через вашу приватну базу даних iCloud, якщо ви користуєтеся синхронізацією з iCloud.",
                 "**Чого ми ніколи не робимо:** дані про здоров’я ніколи не продаються, нікому не передаються й не використовуються для реклами, профілювання чи будь-якої іншої мети, крім показу вам у додатку.",
               ],
             },
@@ -871,7 +889,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
             "Додаток створює випадковий анонімний ідентифікатор при першому запуску (ID користувача в Налаштуваннях). Він не пов'язаний з вашим іменем або обліковим записом.",
             {
               list: [
-                "**Аналітика використання — PostHog** (сервери в ЄС, Франкфурт): анонімна статистика щодо переглянутих екранів та активності, як-от прив’язування запису тренування (без жодних даних про здоров’я). [Політика PostHog](https://posthog.com/privacy).",
+                "**Аналітика використання — PostHog** (сервери в ЄС, Франкфурт): анонімна статистика щодо переглянутих екранів та активності, як-от прив’язування запису тренування. Тренування, прив’язане до запису тренування, надсилається без тривалості й оцінки зусиль, а дані про здоров’я не надсилаються ніколи. [Політика PostHog](https://posthog.com/privacy).",
                 "**Звіти про помилки — Sentry** (США): технічні деталі збоїв для виправлення неполадок. [Політика Sentry](https://sentry.io/privacy/).",
                 "**Керування покупками — RevenueCat** (США): перевірка та відновлення покупок Pro на ваших пристроях. [Політика RevenueCat](https://www.revenuecat.com/privacy/).",
               ],
@@ -886,7 +904,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
                 "Ми не продаємо, не орендуємо та не передаємо ваші дані рекламодавцям.",
                 "Додаток не містить реклами та трекерів рекламних мереж.",
                 "Немає реєстрації: ми ніколи не запитуємо ваше ім'я, телефон чи контакти.",
-                "Дані про здоров’я з Apple Health чи Health Connect ніколи не залишають ваш пристрій через додаток.",
+                "Пульс і енергія з Apple Health чи Health Connect ніколи не залишають ваш пристрій через додаток, і ніщо з прочитаного звідти не продається й нікому не передається.",
               ],
             },
           ],
@@ -913,7 +931,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     terms: {
       title: "Умови використання",
       description: `Умови користування додатками «${appNames.uk.name}», TT Tracker Pro та цим веб-сайтом.`,
-      updated: "1 жовтня 2026 року",
+      updated: "11 жовтня 2026 року",
       intro: `Ці умови регулюють використання додатків «${appNames.uk.name}» та офіційного веб-сайту від Nineva Studios. Завантажуючи або використовуючи додаток, ви погоджуєтеся з цими умовами.`,
       sections: [
         {
