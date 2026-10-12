@@ -1,4 +1,4 @@
-// Top 25 men's singles (ITTF/WTT world ranking, week 40 2026, published 2026-09-28) and their equipment setups.
+// Top 25 men's singles (ITTF/WTT world ranking, week 41 2026, published 2026-10-05) and their equipment setups.
 // Every slot cites a source and an "as of" date. Butterfly's sponsor pages list a player's blade and rubbers but not
 // which rubber is on which side; where they list two different rubbers, sides come from the source named in the label
 // and the slot is "reported", not "confirmed". Undated pages use the date they were read and are at most "reported".
@@ -6,13 +6,13 @@ import type { Player, Source } from "../models";
 
 const ACCESSED = "2026-10-03";
 const VERIFIED = "2026-10-03";
-const RANKING_DATE = "2026-09-28";
+const RANKING_DATE = "2026-10-05";
 
 const ranking: Source = {
   url: "https://www.worldtabletennis.com/rankings",
-  label: "ITTF/WTT Men's Singles World Ranking, week 40 2026",
+  label: "ITTF/WTT Men's Singles World Ranking, week 41 2026",
   kind: "ittf",
-  accessed: ACCESSED,
+  accessed: "2026-10-12",
 };
 
 const rank = (position: number) => ({ position, date: RANKING_DATE, source: ranking });
@@ -202,7 +202,7 @@ export const menPlayers: Player[] = [
     gender: "men",
     hand: "left",
     grip: "shakehand",
-    ranking: rank(1),
+    ranking: rank(4),
     setup: {
       blade: {
         itemId: "dhs-hurricane-king",
@@ -285,7 +285,7 @@ export const menPlayers: Player[] = [
     gender: "men",
     hand: "left",
     grip: "shakehand",
-    ranking: rank(3),
+    ranking: rank(1),
     setup: {
       blade: {
         itemId: "butterfly-fan-zhendong-alc",
@@ -326,7 +326,7 @@ export const menPlayers: Player[] = [
     gender: "men",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(4),
+    ranking: rank(3),
     setup: {
       blade: {
         itemId: "butterfly-harimoto-innerforce-super-alc",
@@ -498,7 +498,7 @@ export const menPlayers: Player[] = [
     gender: "men",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(8),
+    ranking: rank(9),
     setup: {
       blade: {
         itemId: "butterfly-viscaria",
@@ -541,7 +541,7 @@ export const menPlayers: Player[] = [
     gender: "men",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(9),
+    ranking: rank(8),
     setup: {
       blade: {
         itemId: "tibhar-alexis-lebrun-krypto-carbon",
@@ -830,7 +830,7 @@ export const menPlayers: Player[] = [
     gender: "men",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(16),
+    ranking: rank(17),
     setup: {
       blade: {
         itemId: null,
@@ -871,7 +871,7 @@ export const menPlayers: Player[] = [
     gender: "men",
     hand: "left",
     grip: "shakehand",
-    ranking: rank(17),
+    ranking: rank(16),
     setup: {
       blade: {
         itemId: null,
@@ -953,7 +953,7 @@ export const menPlayers: Player[] = [
     gender: "men",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(19),
+    ranking: rank(23),
     setup: {
       blade: {
         itemId: "donic-coton-relevant",
@@ -994,7 +994,7 @@ export const menPlayers: Player[] = [
     gender: "men",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(20),
+    ranking: rank(19),
     setup: {
       blade: {
         itemId: null,
@@ -1077,7 +1077,7 @@ export const menPlayers: Player[] = [
     gender: "men",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(22),
+    ranking: null,
     setup: {
       blade: {
         itemId: null,
@@ -1120,7 +1120,7 @@ export const menPlayers: Player[] = [
     gender: "men",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(23),
+    ranking: rank(20),
     setup: {
       blade: {
         itemId: "butterfly-viscaria",
@@ -1161,7 +1161,7 @@ export const menPlayers: Player[] = [
     gender: "men",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(24),
+    ranking: rank(22),
     setup: {
       blade: {
         itemId: "butterfly-franziska-innerforce-zlc",
@@ -1202,7 +1202,7 @@ export const menPlayers: Player[] = [
     gender: "men",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(25),
+    ranking: rank(24),
     setup: {
       blade: {
         itemId: "butterfly-timo-boll-alc",

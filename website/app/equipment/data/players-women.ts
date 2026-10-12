@@ -1,4 +1,4 @@
-// Top 25 women's singles (ITTF/WTT world ranking, week 40 2026, published 2026-09-28) and their equipment setups.
+// Top 25 women's singles (ITTF/WTT world ranking, week 41 2026, published 2026-10-05) and their equipment setups.
 // Every slot cites a source and an "as of" date. The ranking was read from the data feed behind the official
 // worldtabletennis.com rankings page. Hand and grip come from each player's WTT profile (Qin Yuxuan: Chinese Wikipedia;
 // Joo Cheonhui has none, so null). Sponsor pages list a player's rubbers without saying which side each is on; where a
@@ -11,13 +11,13 @@ import type { Player, Source } from "../models";
 
 const ACCESSED = "2026-10-03";
 const VERIFIED = "2026-10-03";
-const RANKING_DATE = "2026-09-28";
+const RANKING_DATE = "2026-10-05";
 
 const ranking: Source = {
   url: "https://www.worldtabletennis.com/rankings",
-  label: "ITTF/WTT Women's Singles World Ranking, week 40 2026 (published 2026-09-28)",
+  label: "ITTF/WTT Women's Singles World Ranking, week 41 2026 (published 2026-10-05)",
   kind: "ittf",
-  accessed: ACCESSED,
+  accessed: "2026-10-12",
 };
 
 const rank = (position: number) => ({ position, date: RANKING_DATE, source: ranking });
@@ -137,7 +137,7 @@ export const womenPlayers: Player[] = [
     gender: "women",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(1),
+    ranking: rank(2),
     setup: {
       blade: {
         itemId: "butterfly-viscaria-super-alc",
@@ -179,7 +179,7 @@ export const womenPlayers: Player[] = [
     gender: "women",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(2),
+    ranking: rank(1),
     setup: {
       blade: {
         itemId: null,
@@ -442,7 +442,7 @@ export const womenPlayers: Player[] = [
     gender: "women",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(8),
+    ranking: rank(9),
     setup: {
       blade: {
         itemId: null,
@@ -484,7 +484,7 @@ export const womenPlayers: Player[] = [
     gender: "women",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(9),
+    ranking: rank(8),
     setup: {
       blade: {
         itemId: "andro-novacell-off-s",
@@ -567,7 +567,7 @@ export const womenPlayers: Player[] = [
     gender: "women",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(11),
+    ranking: rank(12),
     setup: {
       blade: {
         itemId: null,
@@ -611,7 +611,7 @@ export const womenPlayers: Player[] = [
     gender: "women",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(12),
+    ranking: rank(11),
     setup: {
       blade: {
         itemId: "dhs-hurricane-long-5",
@@ -695,7 +695,7 @@ export const womenPlayers: Player[] = [
     gender: "women",
     hand: null,
     grip: null,
-    ranking: rank(14),
+    ranking: rank(16),
     setup: {
       blade: {
         itemId: null,
@@ -736,7 +736,7 @@ export const womenPlayers: Player[] = [
     gender: "women",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(15),
+    ranking: rank(14),
     setup: {
       blade: {
         itemId: "nittaku-goriki-super-cut",
@@ -778,7 +778,7 @@ export const womenPlayers: Player[] = [
     gender: "women",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(16),
+    ranking: rank(15),
     setup: {
       blade: {
         itemId: "victas-koji-matsushita-offensive",
@@ -985,7 +985,7 @@ export const womenPlayers: Player[] = [
     gender: "women",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(21),
+    ranking: rank(22),
     setup: {
       blade: {
         itemId: "stiga-cybershape-wood",
@@ -1026,7 +1026,7 @@ export const womenPlayers: Player[] = [
     gender: "women",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(22),
+    ranking: rank(21),
     setup: {
       blade: {
         itemId: "butterfly-fan-zhendong-alc",
@@ -1108,7 +1108,7 @@ export const womenPlayers: Player[] = [
     gender: "women",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(24),
+    ranking: rank(25),
     setup: {
       blade: {
         itemId: "nittaku-mima-ito-carbon",
@@ -1149,7 +1149,7 @@ export const womenPlayers: Player[] = [
     gender: "women",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(25),
+    ranking: rank(24),
     setup: {
       blade: {
         itemId: "butterfly-fan-zhendong-alc",
