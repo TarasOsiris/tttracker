@@ -77,6 +77,93 @@ const arenaImage = {
 export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: BlogPost[] } = {
   en: [
   {
+    slug: "china-smash-2026-results-matsushima-wang-manyu-champions",
+    title: "China Smash 2026 Results: Matsushima Wins in Seven, Wang Manyu Sweeps Sato",
+    description:
+      "China Smash 2026 final results: Sora Matsushima beat Lin Yun-ju 4-3 in a seven-game thriller, and Wang Manyu swept Hitomi Sato 4-0 for the title. All five champions.",
+    published: "2026-10-12",
+    readMinutes: 4,
+    keywords: [
+      "China Smash 2026 results",
+      "Sora Matsushima champion",
+      "Wang Manyu China Smash",
+      "Lin Yun-ju final",
+      "WTT Grand Smash Beijing",
+      "table tennis results",
+      "table tennis news today",
+      "Hugo Calderano Lebrun",
+    ],
+    hero: {
+      ...hero,
+      caption: "A packed arena at the 2026 World Team Table Tennis Championships in London. Archive photo, not from Beijing.",
+    },
+    intro:
+      "Japan's Sora Matsushima has won the biggest title of his career, outlasting Lin Yun-ju 4-3 in a final that swung back and forth until the seventh game. In the women's draw, Wang Manyu defended her China Smash crown without dropping a game against Hitomi Sato. Here is how the last Grand Smash of the season ended.",
+    takeaways: [
+      "**Sora Matsushima beat Lin Yun-ju 4-3** (11-7, 11-9, 7-11, 8-11, 5-11, 11-7, 11-9) in the men's singles final.",
+      "**Wang Manyu beat Hitomi Sato 4-0** (11-2, 11-8, 11-3, 11-9) to retain the women's title.",
+      "**Hugo Calderano knocked out top seed Félix Lebrun 4-1** in the quarterfinals.",
+      "**Wang Manyu and Kuai Man won women's doubles**, beating Miwa Harimoto and Hina Hayata 13-11, 11-2, 9-11, 11-7.",
+      "**South Korea took men's doubles (Lim Jong-hoon/Oh Jun-sung) and mixed doubles (Lim Jong-hoon/Shin Yu-bin).**",
+    ],
+    sections: [
+      {
+        heading: "Matsushima survives a seven-game final",
+        blocks: [
+          "[Sora Matsushima](https://en.wikipedia.org/wiki/Sora_Matsushima), the second seed, took the first two games against fifth seed [Lin Yun-ju](https://en.wikipedia.org/wiki/Lin_Yun-ju) 11-7 and 11-9. Lin then won three in a row (11-7, 11-8, 11-5) to lead 3-2. Matsushima answered with 11-7 and 11-9 to win the match 4-3, according to the [Wikipedia bracket](https://en.wikipedia.org/wiki/China_Smash_2026).",
+          "The route there was just as tough. Matsushima beat Feng Yi-hsin 4-1 in the quarterfinals, then China's Zhou Qihao 4-2 in the semifinals. Lin got past Truls Möregårdh 4-0 and then Hugo Calderano 4-3 in the other semifinal, after Calderano had led 2-0 and Lin had led 3-2.",
+        ],
+      },
+      {
+        heading: "Calderano ends Lebrun's run",
+        image: {
+          src: "/blog/felix-lebrun-serve.webp",
+          width: 1000,
+          height: 666,
+          alt: "Felix Lebrun playing a close-to-the-table shot with glasses on and the ball by his paddle",
+          caption: "Lebrun at the 2022 European Championships in Munich, aged 15. Archive photo, not from Beijing.",
+          credit: "Granada, CC BY-SA 4.0",
+          creditUrl: "https://commons.wikimedia.org/wiki/File:20220818_European_Championships_Munich_2022_Felix_Lebrun_850_9499.jpg",
+        },
+        blocks: [
+          "The headline of the quarterfinals was top seed [Félix Lebrun](https://en.wikipedia.org/wiki/F%C3%A9lix_Lebrun) losing 4-1 to [Hugo Calderano](https://en.wikipedia.org/wiki/Hugo_Calderano). Lebrun won game one 11-9, then Calderano took four straight, including two tight ones at 12-10. Zhou Qihao also beat Jang Woo-jin 4-2 to reach the last four, where he finally ran out of road against Matsushima.",
+        ],
+      },
+      {
+        heading: "Wang Manyu is untouchable in Beijing",
+        image: wangManyuImage,
+        blocks: [
+          "[Wang Manyu](https://en.wikipedia.org/wiki/Wang_Manyu) beat Miwa Harimoto 4-1 in the semifinals, while Japan's Hitomi Sato beat Chen Xingtong 4-1 after losing the first game 2-11. In the final Wang gave Sato little to work with: 11-2, 11-8, 11-3, 11-9.",
+          "She added the women's doubles title with Kuai Man, beating Harimoto/Hayata 13-11, 11-2, 9-11, 11-7, per [NewKerala](https://www.newkerala.com/news/a/chinas-wangkuai-claim-womens-doubles-title-wtt-china-463.htm).",
+        ],
+      },
+      {
+        heading: "Korea wins two doubles titles",
+        blocks: [
+          "In men's doubles, Lim Jong-hoon and Oh Jun-sung of South Korea beat the French pair of Alexis and Félix Lebrun. Lim also won the mixed doubles with Shin Yu-bin, so he leaves Beijing with two titles.",
+        ],
+      },
+      {
+        heading: "What it means",
+        blocks: [
+          "This was the fourth and final Grand Smash of the season, with US$2,050,000 in prize money and 2,000 ranking points for each singles winner. With Wang Chuqin and Lin Shidong absent, the men's draw opened up and Matsushima grabbed the chance. Check the official [World Table Tennis](https://www.worldtabletennis.com) results for the full draws. Earlier coverage: [the quarterfinal lineup](/blog/china-smash-2026-upsets-zhu-sibing-zhou-qihao-quarterfinals) and [the preview](/blog/china-smash-2026-beijing-table-tennis-preview).",
+        ],
+      },
+      {
+        heading: "The lesson for your own matches",
+        blocks: [
+          "Matsushima was 2-0 up, 2-3 down and still won, which is a reminder that a match is never over at game three. After your next session, log the score in [Ping Pong & Table Tennis Log](/) and check how you do in deciding games. Then work on weak spots with our [drills](/drills), borrow ideas from the [serve encyclopedia](/serves), learn to read [spin](/spins), or test yourself with the [quiz](/quiz).",
+        ],
+      },
+    ],
+    sources: [
+      { label: "Wikipedia: China Smash 2026 (brackets and scores)", url: "https://en.wikipedia.org/wiki/China_Smash_2026" },
+      { label: "NewKerala: Wang Manyu and Kuai Man retain WTT China Smash doubles title", url: "https://www.newkerala.com/news/a/chinas-wangkuai-claim-womens-doubles-title-wtt-china-463.htm" },
+      { label: "CGTN: WTT China Smash highlighted by string of major early upsets in Beijing", url: "https://news.cgtn.com/news/2026-10-08/WTT-China-Smash-highlighted-by-string-of-major-early-upsets-in-Beijing-1R4py2V4RKo/p.html" },
+      { label: "Olympics.com: China Smash 2026 top stars and how to watch", url: "https://www.olympics.com/en/news/table-tennis-china-smash-2026-top-stars-watch-live" },
+    ],
+  },
+  {
   slug: "how-to-practise-table-tennis-serves-alone",
   title: "How to Practise Table Tennis Serves Alone: A 30-Minute Routine",
   description:
