@@ -47,6 +47,7 @@ class TopLevelBackStack<T : Any>(startKey: T) {
 	}
 
 	fun removeLast() {
+		if (backStack.size <= 1) return
 		val removedKey = topLevelStacks[topLevelKey]?.removeLastOrNull()
 		topLevelStacks.remove(removedKey)
 		topLevelKey = topLevelStacks.keys.last()

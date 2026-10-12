@@ -58,7 +58,7 @@ fun TopNavDisplay(
 
 	NavDisplay(
 		backStack = topLevelBackStack,
-		onBack = { topLevelBackStack.removeLastOrNull() },
+		onBack = { topLevelBackStack.pop(topLevelBackStack.last()) },
 		entryDecorators = listOf(
 			rememberSaveableStateHolderNavEntryDecorator(),
 			rememberViewModelStoreNavEntryDecorator()
@@ -72,21 +72,21 @@ fun TopNavDisplay(
 				is CreateSessionRoute -> NavEntry(key, metadata = modalEntryMetadata) {
 					CreateSessionScreen(
 						initialDate = key.initialDate,
-						onNavigateBack = { topLevelBackStack.removeLastOrNull() }
+						onNavigateBack = { topLevelBackStack.pop(key) }
 					)
 				}
 
 				is EditSessionRoute -> NavEntry(key, metadata = instantTransitionMetadata) {
 					EditSessionScreen(
 						sessionId = key.sessionId,
-						onClose = { topLevelBackStack.removeLastOrNull() }
+						onClose = { topLevelBackStack.pop(key) }
 					)
 				}
 
 				is SessionDetailsRoute -> NavEntry(key, metadata = lateralEntryMetadata) {
 					SessionDetailsScreen(
 						sessionId = key.sessionId,
-						onNavigateBack = { topLevelBackStack.removeLastOrNull() },
+						onNavigateBack = { topLevelBackStack.pop(key) },
 						onEdit = { sessionId ->
 							if (topLevelBackStack.lastOrNull() is SessionDetailsRoute) {
 								topLevelBackStack[topLevelBackStack.lastIndex] = EditSessionRoute(sessionId)
@@ -94,13 +94,13 @@ fun TopNavDisplay(
 								topLevelBackStack.add(EditSessionRoute(sessionId))
 							}
 						},
-						onDeleted = { topLevelBackStack.removeLastOrNull() }
+						onDeleted = { topLevelBackStack.pop(key) }
 					)
 				}
 
 				is SettingsRoute -> NavEntry(key, metadata = lateralEntryMetadata) {
 					SettingsScreen(
-						onNavigateBack = { topLevelBackStack.removeLastOrNull() },
+						onNavigateBack = { topLevelBackStack.pop(key) },
 						onNavigateToGeneralSettings = { topLevelBackStack.add(GeneralSettingsRoute) },
 						onNavigateToOpponents = { topLevelBackStack.add(OpponentsRoute) },
 						onNavigateToDebug = { topLevelBackStack.add(DebugRoute) }
@@ -109,20 +109,25 @@ fun TopNavDisplay(
 
 				is GeneralSettingsRoute -> NavEntry(key, metadata = lateralEntryMetadata) {
 					GeneralSettingsScreen(
-						onNavigateBack = { topLevelBackStack.removeLastOrNull() }
+						onNavigateBack = { topLevelBackStack.pop(key) }
 					)
 				}
 
 				is OpponentsRoute -> NavEntry(key, metadata = lateralEntryMetadata) {
 					OpponentsScreen(
-						onNavigateBack = { topLevelBackStack.removeLastOrNull() }
+						onNavigateBack = { topLevelBackStack.pop(key) }
 					)
 				}
 
 				is DebugRoute -> NavEntry(key, metadata = lateralEntryMetadata) {
-					DebugScreen(onNavigateBack = { topLevelBackStack.removeLastOrNull() })
+					DebugScreen(onNavigateBack = { topLevelBackStack.pop(key) })
 				}
 			}
 		}
 	)
+}
+
+/// A second close from a screen already leaving must not pop the one beneath it, nor empty the stack.
+private fun SnapshotStateList<TopLevelRoute>.pop(key: TopLevelRoute) {
+	if (size > 1 && last() == key) removeAt(lastIndex)
 }
