@@ -77,6 +77,78 @@ const arenaImage = {
 export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: BlogPost[] } = {
   en: [
   {
+    slug: "table-tennis-world-rankings-wang-manyu-no-1-asian-championships-montpellier-preview",
+    title: "Table Tennis Rankings: Wang Manyu Back at No. 1, Asian Championships and Montpellier Next",
+    description:
+      "Wang Manyu is back at world No. 1 and Sora Matsushima holds men's No. 1. Plus the Asian Championships in Tashkent, WTT Champions Montpellier and the 2027 calendar.",
+    published: "2026-10-13",
+    readMinutes: 4,
+    keywords: [
+      "table tennis world rankings",
+      "Wang Manyu world number 1",
+      "Sora Matsushima world number 1",
+      "Asian Table Tennis Championships 2026",
+      "WTT Champions Montpellier 2026",
+      "table tennis 2027 calendar",
+      "WTT Finals Hong Kong 2026",
+      "table tennis news this week",
+    ],
+    hero: lebrunHero,
+    intro:
+      "Two days after the China Smash final, the new ITTF rankings are out: Wang Manyu is back at world No. 1, and Sora Matsushima keeps the top spot on the men's side. The next big dates are already on the calendar, from the Asian Championships in Tashkent to WTT Champions Montpellier. Here is your table tennis news roundup and what to watch next.",
+    takeaways: [
+      "**Wang Manyu returned to world No. 1** in the rankings released Monday, overtaking Sun Yingsha after her China Smash title.",
+      "**Sora Matsushima stays men's No. 1**, ahead of Félix Lebrun, Tomokazu Harimoto, Truls Möregårdh and Wang Chuqin.",
+      "**The Asian Championships run 19-25 October in Tashkent**, and five of China's top players skipped selection.",
+      "**WTT Champions Montpellier is 27 October-1 November** at the Sud de France Arena, with the Lebrun brothers as home favourites.",
+      "**2027 brings a new Doubles World Cup** (19-25 April) and the World Championships Finals in Astana (22-30 May).",
+    ],
+    sections: [
+      {
+        heading: "Wang Manyu reclaims world No. 1",
+        image: wangManyuImage,
+        blocks: [
+          "[Wang Manyu](https://en.wikipedia.org/wiki/Wang_Manyu) gained 2,000 ranking points for winning the China Smash and moved back above her teammate [Sun Yingsha](https://en.wikipedia.org/wiki/Sun_Yingsha). She had first reached No. 1 in September but slipped to second when her points from the 2025 China Smash expired, according to [Sentinel Assam](https://www.sentinelassam.com/sports-news/wang-manyu-reclaims-world-no-1-spot-after-dominant-china-smash-victory). She beat Hitomi Sato 4-0 in the final.",
+          "In the men's list, [Sora Matsushima](https://en.wikipedia.org/wiki/Sora_Matsushima) keeps No. 1 after his title. The same report puts [Félix Lebrun](https://en.wikipedia.org/wiki/F%C3%A9lix_Lebrun) second, [Tomokazu Harimoto](https://en.wikipedia.org/wiki/Tomokazu_Harimoto) third, [Truls Möregårdh](https://en.wikipedia.org/wiki/Truls_M%C3%B6reg%C3%A5rdh) fourth and [Wang Chuqin](https://en.wikipedia.org/wiki/Wang_Chuqin) fifth. Full results are in our [China Smash final recap](/blog/china-smash-2026-results-matsushima-wang-manyu-champions).",
+        ],
+      },
+      {
+        heading: "Asian Championships in Tashkent, without China's big five",
+        blocks: [
+          "The 29th ITTF-ATTU Asian Table Tennis Championships take place in Tashkent, Uzbekistan, from 19 to 25 October, and Oman's federation notes the event is a qualification pathway for the 2027 World Championships Finals. The [South China Morning Post](https://www.scmp.com/sport/china/article/3365765/fan-zhedong-falls-flat-after-cinemas-sell-out-chinas-big-5-skip-asian-championships) reports that five leading Chinese players, including Wang Chuqin and Sun Yingsha, gave up their selection places for scheduling reasons. (We could only see search snippets of that article, so check it for the full detail.)",
+          "That opens the door for Japan, Korea, India and Chinese Taipei to chase medals. The official calendar lives on the [ITTF events page](https://www.ittf.com/2026-events-calendar/).",
+        ],
+      },
+      {
+        heading: "WTT Champions Montpellier: Lebrun at home",
+        blocks: [
+          "The season rolls on at the Sud de France Arena in Pérols, near Montpellier, from 27 October to 1 November, per the [Occitanie tourism listing](https://www.tourisme-occitanie.com/fr/fiche/fete-et-manifestation/wtt-champions-montpellier-2026-perols_TFOFMALAR034V52UT2G/). French coverage points to Félix and Alexis Lebrun as the local leaders. Last year Truls Möregårdh won the men's singles here. Another source gives different dates for this event, so confirm on [worldtabletennis.com](https://www.worldtabletennis.com) before you plan a trip.",
+          "After that comes the season-ending WTT Finals at Kai Tak Arena in Hong Kong, where Hang Seng Bank was just announced as a presenting partner.",
+        ],
+      },
+      {
+        heading: "2027 calendar: new Doubles World Cup",
+        blocks: [
+          "The ITTF and WTT [unveiled the 2027 calendar](https://www.ittf.com/2026/09/01/ittf-and-wtt-unveil-2027-table-tennis-calendar/) on 1 September. A Chinese report on it lists a new ITTF Doubles World Cup on 19-25 April, a Singles World Cup from 29 March, the World Championships Finals in Astana from 22 to 30 May, and a Mixed Team World Cup in Chengdu from 28 November. Dates come from that report and the ITTF page was not readable for us, so treat them as provisional.",
+        ],
+      },
+      {
+        heading: "Turn the headlines into your own progress",
+        blocks: [
+          "Rankings reward consistency, and so does your own game. Log every session in [Ping Pong & Table Tennis Log](/) to see your win rate climb, practise the Lebrun-style short game with our [drills](/drills), expand your [serve repertoire](/serves), learn to read [spin](/spins), and test your rules knowledge in the [quiz](/quiz).",
+        ],
+      },
+    ],
+    sources: [
+      { label: "Sentinel Assam: Wang Manyu reclaims world No. 1", url: "https://www.sentinelassam.com/sports-news/wang-manyu-reclaims-world-no-1-spot-after-dominant-china-smash-victory" },
+      { label: "SCMP: China's big five to skip Asian Championships", url: "https://www.scmp.com/sport/china/article/3365765/fan-zhedong-falls-flat-after-cinemas-sell-out-chinas-big-5-skip-asian-championships" },
+      { label: "Occitanie tourism: WTT Champions Montpellier 2026", url: "https://www.tourisme-occitanie.com/fr/fiche/fete-et-manifestation/wtt-champions-montpellier-2026-perols_TFOFMALAR034V52UT2G/" },
+      { label: "ITTF: 2027 calendar announcement", url: "https://www.ittf.com/2026/09/01/ittf-and-wtt-unveil-2027-table-tennis-calendar/" },
+      { label: "GMW (Chinese): 2027 calendar with new Doubles World Cup", url: "https://m.gmw.cn/2026-09/02/content_1304557644.htm" },
+      { label: "ITTF 2026 events calendar", url: "https://www.ittf.com/2026-events-calendar/" },
+    ],
+  },
+  {
     slug: "china-smash-2026-results-matsushima-wang-manyu-champions",
     title: "China Smash 2026 Results: Matsushima Wins in Seven, Wang Manyu Sweeps Sato",
     description:
