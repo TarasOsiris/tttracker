@@ -420,9 +420,11 @@ Only when Step 7 said to submit.
      section per area, then the standing instructions.
    - **Write it** with `asc review details-create --version-id <VERSION_ID> --contact-… --notes "$(cat <notesFile>)"`
      when the version has no review details yet; copy the contact fields from the previous
-     version's. When details already exist, update their notes. `asc review --help` lists the
-     update subcommand; record its exact name here once confirmed. Read the notes back and confirm
-     the full text was stored. The cap is 4000 characters: tighten the wording and group related
+     version's. When details already exist, update their notes with
+     `asc review details-update --id <DETAIL_ID> --notes "$(cat <notesFile>)"` (the id comes from
+     `details-for-version`). A version created with `--copy-metadata-from` already carries the
+     previous version's review details, contacts and notes included, so it is the update path
+     (confirmed Oct 2026, 1.3.15). Read the notes back and confirm the full text was stored. The cap is 4000 characters: tighten the wording and group related
      items to fit, and never drop an item.
 
 4. **Attach the build** uploaded in Step 6:
