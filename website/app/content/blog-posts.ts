@@ -74,8 +74,87 @@ const arenaImage = {
   caption: "A packed arena at the 2026 World Team Table Tennis Championships in London. Archive photo, not from Beijing.",
 };
 
+const ljubljanaArena = { ...hero, caption: "A packed arena at the 2026 World Team Table Tennis Championships in London. Archive photo, not from Ljubljana." };
+
 export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: BlogPost[] } = {
   en: [
+  {
+    slug: "ettu-congress-ljubljana-2026-youth-best-of-five-games-won-team-format",
+    title: "European Table Tennis Rule Changes 2026: Youth Best-of-Five, New Team Format",
+    description:
+      "The ETTU Congress in Ljubljana cut youth singles to best of five and will test a games-won team format in 2027. Plus Montpellier's top-32 field and the Asian Championships.",
+    published: "2026-10-14",
+    readMinutes: 4,
+    keywords: [
+      "ETTU Congress 2026",
+      "table tennis youth best of five",
+      "European Youth Championships 2027",
+      "table tennis team format games won",
+      "Europe Top 16 Cup wild cards",
+      "WTT Champions Montpellier 2026",
+      "Asian Table Tennis Championships Tashkent",
+      "table tennis news this week",
+    ],
+    hero: ljubljanaArena,
+    intro:
+      "Europe's table tennis bosses just rewrote how young players compete. At the ETTU Congress in Ljubljana, delegates cut youth singles from best of seven to best of five and approved a team format where every single game counts. Here is what changed, why it matters for your own matches, and what is coming up next in Montpellier and Tashkent.",
+    takeaways: [
+      "**Youth singles go best of five.** At the European Youth Championships, all singles matches, knockouts included, move from best of seven to best of five games.",
+      "**A new team test in 2027:** at the European Youth Championships, team results will be decided by games won, not matches won.",
+      "**A youth-to-senior pathway:** the Europe Youth Top 10 Under 19 singles winner gets an automatic place at the next European Championships.",
+      "**Montpellier is a top-32 event:** WTT Champions Montpellier runs 27 October to 1 November with no qualifiers.",
+      "**Asian Championships start 19 October** in Tashkent, and five of China's top players opted out of selection.",
+    ],
+    sections: [
+      {
+        heading: "Youth singles drop to best of five",
+        image: ljubljanaArena,
+        blocks: [
+          "The [European Table Tennis Union](https://ettu.org/ettu-congress-approves-new-competition-formats-and-opportunities-for-european-players) announced the changes on 13 October after its Congress in Ljubljana. At the European Youth Championships, every singles match, knockouts included, moves from best of seven to best of five games. The Europe Youth Top 10 singles for Under 15 and Under 19 follows the same change.",
+          "The stated aim is to reduce the physical demands on young players. Shorter matches also mean fewer late-night finishes and more room to schedule rest days.",
+          "The Top 10 qualification also changes. It now uses the European Under 15 and Under 19 rankings published at least seven weeks before the event, replacing the August rankings, following the tournament's move to spring.",
+        ],
+      },
+      {
+        heading: "A team format where every game counts",
+        blocks: [
+          "The most interesting experiment is for the 2027 European Youth Championships. Team results will be decided by the number of individual games won rather than matches won. Teams stay at two players in Under 15 and three in Under 19, and each individual match is best of three games, so a team match has 15 games.",
+          "All 15 games are played in the group stage. Knockout team matches end once a team reaches eight games. The ETTU says the format will be evaluated after the Championships.",
+          "Why it matters: a team that loses narrowly in a match still banks the games it won, which should cut dead rubbers and reward consistency across all games.",
+        ],
+      },
+      {
+        heading: "Pathways for young stars and wild cards",
+        blocks: [
+          "The Congress also strengthened the path from junior to senior. The reigning Europe Youth Top 10 Under 15 champion gets direct entry into the next Under 19 event, and the Under 19 winner earns an automatic place at the following European Championships, on top of the existing national quota.",
+          "For the Europe Top 16 Cup, each event can now have up to two ETTU wild cards for players whose level may not yet show in the European rankings. The field stays at 22 players.",
+          "Beyond competition rules, the Congress, chaired by ETTU President Pedro Moura, also approved a new Women's Champions League model with a Final 4 in Metz, according to the [ETTU Congress report](https://ettu.org/ettu-congress-in-ljubljana-charts-the-future-of-european-table-tennis). Spain's Raúl Calin was named an [ETTU honorary member](https://ettu.org/ettu-honours-outstanding-contributions-to-european-table-tennis).",
+        ],
+      },
+      {
+        heading: "Next up: Tashkent and Montpellier",
+        image: lebrunInline,
+        blocks: [
+          "The ITTF-ATTU Asian Championships run in Tashkent from 19 to 25 October. China's coach Qin Zhijian cited a heavy schedule as [Wang Chuqin, Sun Yingsha and Wang Manyu opted out of selection](https://www.scmp.com/sport/china/article/3365765/fan-zhedong-falls-flat-after-cinemas-sell-out-chinas-big-5-skip-asian-championships), per the South China Morning Post. The event is also a qualification pathway for the 2027 World Championships Finals.",
+          "Then comes [WTT Champions Montpellier](https://www.montpellier.fr/campagnes/wtt-champions-montpellier-2026), 27 October to 1 November at the Sud de France Arena in Pérols. The city's page describes a field of the world's 32 best players over 12 sessions in six days. No entry list was published at the time of writing, so check [WTT](https://www.worldtabletennis.com/) for the draw.",
+        ],
+      },
+      {
+        heading: "Best of five: train for it",
+        blocks: [
+          "Best of five is also the format most club leagues use, so the youth change mirrors what you play. Log each match in [Ping Pong & Table Tennis Log](/) to see how you fare in deciding games, sharpen your openers with the [serve library](/serves), learn to read [spin](/spins), run through our [drills](/drills) and test your rules knowledge in the [quiz](/quiz).",
+        ],
+      },
+    ],
+    sources: [
+      { label: "ETTU: Congress approves new competition formats", url: "https://ettu.org/ettu-congress-approves-new-competition-formats-and-opportunities-for-european-players" },
+      { label: "ETTU: Congress in Ljubljana charts the future", url: "https://ettu.org/ettu-congress-in-ljubljana-charts-the-future-of-european-table-tennis" },
+      { label: "ETTU: honours for outstanding contributions", url: "https://ettu.org/ettu-honours-outstanding-contributions-to-european-table-tennis" },
+      { label: "SCMP: China's big 5 to skip Asian Championships", url: "https://www.scmp.com/sport/china/article/3365765/fan-zhedong-falls-flat-after-cinemas-sell-out-chinas-big-5-skip-asian-championships" },
+      { label: "City of Montpellier: WTT Champions Montpellier 2026", url: "https://www.montpellier.fr/campagnes/wtt-champions-montpellier-2026" },
+      { label: "ITTF 2026 events calendar", url: "https://www.ittf.com/2026-events-calendar/" },
+    ],
+  },
   {
     slug: "table-tennis-world-rankings-wang-manyu-no-1-asian-championships-montpellier-preview",
     title: "Table Tennis Rankings: Wang Manyu Back at No. 1, Asian Championships and Montpellier Next",
