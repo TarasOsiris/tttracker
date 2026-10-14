@@ -1,1 +1,3 @@
-Cải tiến nhỏ.
+• Apple Health: nhập buổi tập bóng bàn khi tạo buổi tập mới để tự động điền ngày, thời lượng và mức gắng sức.
+• Chi tiết buổi tập hiển thị thời gian và năng lượng hoạt động của bài tập đã liên kết, và với Pro là nhịp tim của bạn.
+• Sửa lỗi và cải tiến.

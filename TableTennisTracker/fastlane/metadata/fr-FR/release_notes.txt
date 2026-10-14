@@ -1,1 +1,3 @@
-Améliorations mineures.
+• Apple Santé : importez une séance de tennis de table lors de la création d'une session pour remplir la date, la durée et l'effort.
+• Les détails de la session affichent l'heure et l'énergie active de la séance liée, et avec Pro votre fréquence cardiaque.
+• Corrections et améliorations.

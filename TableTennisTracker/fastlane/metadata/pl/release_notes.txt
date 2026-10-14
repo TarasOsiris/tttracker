@@ -1,1 +1,3 @@
-Drobne usprawnienia.
+• Apple Zdrowie: importuj trening tenisa stołowego podczas tworzenia sesji, aby uzupełnić datę, czas trwania i wysiłek.
+• Szczegóły sesji pokazują godzinę i energię aktywną powiązanego treningu, a z Pro także tętno.
+• Poprawki i ulepszenia.

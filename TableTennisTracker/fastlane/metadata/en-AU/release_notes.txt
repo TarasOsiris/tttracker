@@ -1,1 +1,3 @@
-Minor improvements.
+• Apple Health: import a table tennis workout when creating a session to fill in the date, duration and effort.
+• Session details show the linked workout's time and active energy, and with Pro your heart rate.
+• Fixes and improvements.

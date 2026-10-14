@@ -1,1 +1,3 @@
-Mindre förbättringar.
+• Apple Hälsa: importera ett bordtennispass när du skapar en session för att fylla i datum, längd och ansträngning.
+• Sessionsdetaljerna visar tid och aktiv energi för det länkade passet, och med Pro din puls.
+• Buggfixar och förbättringar.

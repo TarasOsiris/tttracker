@@ -1,1 +1,3 @@
-Kleinere Verbesserungen.
+• Apple Health: Importiere beim Anlegen einer Einheit ein Tischtennis-Training, um Datum, Dauer und Anstrengung automatisch auszufüllen.
+• Die Einheitendetails zeigen Uhrzeit und Aktivkalorien des verknüpften Trainings, mit Pro auch deine Herzfrequenz.
+• Fehlerbehebungen und Verbesserungen.

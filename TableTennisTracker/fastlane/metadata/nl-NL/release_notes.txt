@@ -1,1 +1,3 @@
-Kleine verbeteringen.
+• Apple Gezondheid: importeer een tafeltennistraining bij het aanmaken van een sessie om datum, duur en inspanning in te vullen.
+• Sessiedetails tonen tijd en actieve energie van de gekoppelde training, en met Pro je hartslag.
+• Foutoplossingen en verbeteringen.

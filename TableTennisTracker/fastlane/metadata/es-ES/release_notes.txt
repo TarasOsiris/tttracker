@@ -1,1 +1,3 @@
-Mejoras menores.
+• Apple Health: importa un entrenamiento de tenis de mesa al crear una sesión para rellenar la fecha, la duración y el esfuerzo.
+• Los detalles de la sesión muestran la hora y la energía activa del entrenamiento vinculado y, con Pro, tu frecuencia cardíaca.
+• Correcciones y mejoras.

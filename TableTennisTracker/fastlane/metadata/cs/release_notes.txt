@@ -1,1 +1,3 @@
-Drobná vylepšení.
+• Apple Zdraví: při vytváření tréninku importujte trénink stolního tenisu z aplikace Zdraví a doplňte datum, délku a námahu.
+• Detail tréninku zobrazuje čas a aktivní energii propojeného tréninku a s Pro i tep.
+• Opravy a vylepšení.

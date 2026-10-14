@@ -1,1 +1,3 @@
-Küçük iyileştirmeler.
+• Apple Sağlık: antrenman oluştururken bir masa tenisi antrenmanını içe aktararak tarih, süre ve eforu otomatik doldurun.
+• Antrenman ayrıntıları bağlı antrenmanın saatini ve aktif enerjisini, Pro ile de kalp atış hızınızı gösterir.
+• Hata düzeltmeleri ve iyileştirmeler.

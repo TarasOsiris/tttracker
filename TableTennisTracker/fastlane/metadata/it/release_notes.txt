@@ -1,1 +1,3 @@
-Piccoli miglioramenti.
+• Apple Salute: importa un allenamento di tennis tavolo quando crei una sessione per compilare data, durata e sforzo.
+• I dettagli della sessione mostrano orario ed energia attiva dell'allenamento collegato e, con Pro, la tua frequenza cardiaca.
+• Correzioni e miglioramenti.

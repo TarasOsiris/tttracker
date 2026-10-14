@@ -1,1 +1,3 @@
-Penambahbaikan kecil.
+• Apple Health: import latihan ping pong semasa mencipta sesi untuk mengisi tarikh, tempoh dan usaha.
+• Butiran sesi menunjukkan masa dan tenaga aktif latihan yang dipautkan, dan dengan Pro kadar denyutan jantung anda.
+• Pembetulan dan penambahbaikan.

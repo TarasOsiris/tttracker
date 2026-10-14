@@ -1,1 +1,3 @@
-Peningkatan kecil.
+• Apple Health: impor latihan tenis meja saat membuat sesi untuk mengisi tanggal, durasi, dan tingkat usaha.
+• Detail sesi menampilkan waktu dan energi aktif latihan yang ditautkan, dan dengan Pro detak jantung Anda.
+• Perbaikan dan peningkatan.

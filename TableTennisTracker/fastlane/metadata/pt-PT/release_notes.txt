@@ -1,1 +1,3 @@
-Pequenas melhorias.
+• Apple Saúde: importe um treino de ténis de mesa ao criar uma sessão para preencher a data, a duração e o esforço.
+• Os detalhes da sessão mostram a hora e a energia ativa do treino associado e, com o Pro, a sua frequência cardíaca.
+• Correções e melhorias.
