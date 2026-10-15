@@ -38,7 +38,7 @@ export const meta: Route.MetaFunction = ({ loaderData }) => {
   const full = `${brand.name} ${rubber.name}`;
   const path = `/equipment/rubbers/${rubber.id}`;
   return equipmentMeta({
-    title: `${full} Rubber Specs: Sponge Hardness, Thickness & Type`,
+    title: `${full} Rubber: Hardness & Specs`,
     description: `${full} (${rubberTypeLabels[rubber.type].toLowerCase()}) specs: sponge hardness ${formatHardness(rubber.hardness)}, thicknesses, ${brand.name}'s own ratings and sources. ${rubber.summary}`,
     path,
     image: rubber.photo && { ...rubber.photo, alt: `${full} rubber` },

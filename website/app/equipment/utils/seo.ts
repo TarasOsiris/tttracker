@@ -21,8 +21,9 @@ export function equipmentMeta({
   /** Share card; defaults to the site's. */
   image?: { src: string; width: number; height: number; alt: string };
 }): MetaDescriptor[] {
+  const brandedTitle = `${title} | ${APP_NAME}`;
   return [
-    ...seo({ title: `${title} | ${APP_NAME}`, description, path, locale: "en", localized: false, ...(image ? { image } : {}) }),
+    ...seo({ title: brandedTitle.length <= 70 ? brandedTitle : title, description, path, locale: "en", localized: false, ...(image ? { image } : {}) }),
     ...jsonLd.map((data) => ({ "script:ld+json": data })),
   ];
 }

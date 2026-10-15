@@ -14,7 +14,7 @@ export function loader() {
 
 export const meta: Route.MetaFunction = ({ loaderData }) =>
   equipmentMeta({
-    title: "Pro Table Tennis Players' Equipment: Blades and Rubbers of the Top Players",
+    title: "Pro Table Tennis Players' Blades and Rubbers",
     description: `What blades and rubbers the world's top table tennis players use: ${loaderData?.rows.length ?? 0} pros' setups with sources and dates, updated weekly.`,
     path: "/equipment/pros",
     jsonLd: [

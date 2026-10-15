@@ -35,7 +35,7 @@ export const meta: Route.MetaFunction = ({ loaderData }) => {
     .filter(Boolean)
     .join(", ");
   return equipmentMeta({
-    title: `${full} Blade Specs: Plies, Carbon, Thickness & Weight`,
+    title: `${full} Blade: Specs & Weight`,
     description: `${full} specs${specs ? ` (${specs})` : ""}: construction, handles, ${brand.name}'s own ratings and sources. ${blade.summary}`,
     path,
     image: blade.photo && { ...blade.photo, alt: `${full} blade` },
