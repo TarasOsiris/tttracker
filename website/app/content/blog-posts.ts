@@ -81,6 +81,7 @@ export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: Blog
   {
     slug: "european-table-tennis-championships-2026-ljubljana-results-lebrun-jorgic",
     title: "European Table Tennis Championships 2026: Ljubljana Results, Lebrun, Jorgic",
+    seoTitle: "European Table Tennis Championships 2026: Ljubljana Results",
     description:
       "Jorgic saved a 2-3 deficit to beat Lillo 4-3, Alexis Lebrun started his title defence 4-0 and Mixed Doubles semifinals are set at the 2026 Europeans in Ljubljana.",
     published: "2026-10-15",
@@ -172,6 +173,7 @@ export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: Blog
   {
     slug: "ettu-congress-ljubljana-2026-youth-best-of-five-games-won-team-format",
     title: "European Table Tennis Rule Changes 2026: Youth Best-of-Five, New Team Format",
+    seoTitle: "European Table Tennis Rules 2026: Youth & Team Formats",
     description:
       "The ETTU Congress in Ljubljana cut youth singles to best of five and will test a games-won team format in 2027. Plus Montpellier's top-32 field and the Asian Championships.",
     published: "2026-10-14",
@@ -249,6 +251,7 @@ export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: Blog
   {
     slug: "table-tennis-world-rankings-wang-manyu-no-1-asian-championships-montpellier-preview",
     title: "Table Tennis Rankings: Wang Manyu Back at No. 1, Asian Championships and Montpellier Next",
+    seoTitle: "Table Tennis Rankings: Wang Manyu No. 1 & Next Tournaments",
     description:
       "Wang Manyu is back at world No. 1 and Sora Matsushima holds men's No. 1. Plus the Asian Championships in Tashkent, WTT Champions Montpellier and the 2027 calendar.",
     published: "2026-10-13",
@@ -321,6 +324,7 @@ export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: Blog
   {
     slug: "china-smash-2026-results-matsushima-wang-manyu-champions",
     title: "China Smash 2026 Results: Matsushima Wins in Seven, Wang Manyu Sweeps Sato",
+    seoTitle: "China Smash 2026 Champions: Matsushima & Wang Manyu",
     description:
       "China Smash 2026 final results: Sora Matsushima beat Lin Yun-ju 4-3 in a seven-game thriller, and Wang Manyu swept Hitomi Sato 4-0 for the title. All five champions.",
     published: "2026-10-12",
@@ -483,6 +487,7 @@ export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: Blog
   {
   slug: "china-smash-2026-upsets-zhu-sibing-zhou-qihao-quarterfinals",
   title: "China Smash 2026: Zhu Sibing and Zhou Qihao Stun Seeds, Quarterfinals Set",
+    seoTitle: "China Smash 2026: Zhu Sibing, Zhou Qihao & Quarterfinals",
   description:
     "China Smash 2026 round of 16: qualifier Zhu Sibing beats Kuai Man, Zhou Qihao sweeps Harimoto, and Sun Yingsha falls to world No. 101. Full quarterfinal lineup.",
   published: "2026-10-09",
@@ -557,6 +562,7 @@ export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: Blog
   {
     slug: "china-smash-2026-day-results-wang-manyu-batra-lebrun-scare",
   title: "China Smash 2026 Results: Wang Manyu Survives Batra, Lebrun Escapes a French Scare",
+    seoTitle: "China Smash 2026: Wang Manyu Beats Batra, Lebrun Survives",
   description:
     "China Smash 2026 round of 32 results from Beijing: Wang Manyu beats Manika Batra, Félix Lebrun survives Coton, Wen Ruibo stops Duda and Harimoto comes back from 0-2.",
   published: "2026-10-07",
@@ -631,6 +637,7 @@ export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: Blog
   {
   slug: "china-smash-2026-beijing-table-tennis-preview",
   title: "China Smash 2026: Lebrun Leads Beijing Draw as Wang Chuqin and Lin Shidong Withdraw",
+    seoTitle: "China Smash 2026 Draw: Lebrun Leads, Wang & Lin Withdraw",
   description:
     "WTT China Smash 2026 in Beijing: Lebrun is top seed after Wang Chuqin and Lin Shidong pulled out, with $2M prize money, 2,000 ranking points and early upsets.",
   published: "2026-10-05",
@@ -724,6 +731,7 @@ export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: Blog
   {
   slug: "asian-games-2026-table-tennis-recap",
   title: "Table Tennis News: Japan Stuns China, Lin Shidong Wins Three Golds at the 2026 Asian Games",
+    seoTitle: "Asian Games 2026 Table Tennis: Japan Upset & Lin’s Three Golds",
   description:
     "Asian Games 2026 table tennis recap: Japan's men end China's gold streak, Lin Shidong and Wang Manyu take singles titles, plus the WTT events to watch in October.",
   published: "2026-10-03",
@@ -818,6 +826,7 @@ export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: Blog
     {
       slug: "asian-games-2026-table-tennis-recap",
       title: "Noticias de Tenis de Mesa: Japón sorprende a China y Lin Shidong gana tres oros en los Juegos Asiáticos 2026",
+    seoTitle: "Tenis de Mesa: Japón y Lin Shidong en los Juegos Asiáticos 2026",
       description:
         "Resumen de tenis de mesa de los Juegos Asiáticos 2026: el equipo masculino de Japón corta la racha de China, Lin Shidong y Wang Manyu ganan en individuales, y los torneos WTT de octubre.",
       published: "2026-10-03",
@@ -912,6 +921,7 @@ export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: Blog
     {
       slug: "asian-games-2026-table-tennis-recap",
       title: "Tischtennis-News: Japan schlägt China sensationell, Lin Shidong holt dreimal Gold bei den Asienspielen 2026",
+    seoTitle: "Tischtennis: Japan und Lin Shidong bei den Asienspielen 2026",
       description:
         "Tischtennis bei den Asienspielen 2026: Japans Herren beenden Chinas Gold-Serie im Team, Lin Shidong und Wang Manyu gewinnen die Einzeltitel, plus die WTT-Turniere im Oktober.",
       published: "2026-10-03",
@@ -1006,6 +1016,7 @@ export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: Blog
     {
       slug: "asian-games-2026-table-tennis-recap",
       title: "Actualités Tennis de Table : Le Japon surprend la Chine, Lin Shidong s'offre trois médailles d'or aux Jeux asiatiques 2026",
+    seoTitle: "Tennis de table : Japon et Lin Shidong aux Jeux asiatiques 2026",
       description:
         "Bilan du tennis de table aux Jeux asiatiques 2026 : l'équipe masculine du Japon brise l'hégémonie chinoise, Lin Shidong et Wang Manyu titrés en simple, et les tournois WTT d'octobre.",
       published: "2026-10-03",
@@ -1100,6 +1111,7 @@ export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: Blog
     {
       slug: "asian-games-2026-table-tennis-recap",
       title: "Notizie Tennis Tavolo: Il Giappone batte la Cina, Lin Shidong vince tre ori ai Giochi Asiatici 2026",
+    seoTitle: "Tennis Tavolo: Giappone e Lin Shidong ai Giochi Asiatici 2026",
       description:
         "Resoconto del tennistavolo ai Giochi Asiatici 2026: la squadra maschile giapponese interrompe il dominio cinese, Lin Shidong e Wang Manyu campioni nel singolo, e i tornei WTT di ottobre.",
       published: "2026-10-03",
@@ -1194,6 +1206,7 @@ export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: Blog
     {
       slug: "asian-games-2026-table-tennis-recap",
       title: "Notícias de Tênis de Mesa: Japão surpreende a China e Lin Shidong conquista três ouros nos Jogos Asiáticos 2026",
+    seoTitle: "Tênis de Mesa: Japão e Lin Shidong nos Jogos Asiáticos 2026",
       description:
         "Resumo do tênis de mesa nos Jogos Asiáticos 2026: equipe masculina do Japão quebra hegemonia chinesa, Lin Shidong e Wang Manyu levam o ouro no individual, e os torneios WTT de outubro.",
       published: "2026-10-03",
@@ -1570,6 +1583,7 @@ export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: Blog
     {
       slug: "asian-games-2026-table-tennis-recap",
       title: "Новини настільного тенісу: Японія шокує Китай, Лінь Шидун виграє три золота на Азійських іграх 2026",
+    seoTitle: "Азійські ігри 2026: Японія та три золота Лінь Шидуна",
       description:
         "Підсумки турніру з настільного тенісу на Азійських іграх 2026: чоловіча збірна Японії перериває переможну серію Китаю, Лінь Шидун і Ван Манью беруть золото в одиночці, а також анонс турнірів WTT у жовтні.",
       published: "2026-10-03",

@@ -33,7 +33,7 @@ export const meta: Route.MetaFunction = ({ data: loaderData, matches, location }
   const image = `${SITE_URL}${post.hero.src}`;
   return [
     ...seo({
-      title: `${post.title} | ${appName}`,
+      title: `${post.seoTitle ?? post.title} | ${appName}`,
       description: post.description,
       path: `/blog/${post.slug}`,
       locale,

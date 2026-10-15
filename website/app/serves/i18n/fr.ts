@@ -56,7 +56,7 @@ export const fr: TranslationDict = {
 
   // Serve Detail
   "serveDetail.backToServes": "Retour aux services",
-  "serveDetail.pageTitle": "{name} : comment le réaliser et le remettre",
+  "serveDetail.pageTitle": "{name} : geste et remise",
   "serveDetail.metaDescription": "{name} : comment réaliser ce service de tennis de table (ping-pong), son effet, son rebond, son placement et la meilleure façon de le remettre. {description}",
   "serveDetail.notFoundTitle": "Service introuvable — Services de tennis de table",
   "serveDetail.howToReturn": "Comment remettre ce service",

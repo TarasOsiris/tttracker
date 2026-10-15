@@ -177,7 +177,7 @@ export const tr: TranslationDict = {
   "nav.quiz": "Test",
   "quiz.pageTitle": "Masa Tenisi Servis Testi — Pinpon Servisini Tahmin Et",
   "quiz.title": "Masa Tenisi Servis Testi",
-  "quiz.subtitle": "Bir masa tenisi servisini falsosundan tanıyabilir misiniz? 29 pinpon servisiyle kendinizi sınayın.",
+  "quiz.subtitle": "Bir masa tenisi servisini falsosundan tanıyabilir misiniz? 29 pinpon servisiyle kendinizi sınayın. 5, 10 veya 15 soru seçin ve puanınızı görün.",
   "quiz.start": "Teste başla",
   "quiz.questionCount": "Soru sayısı",
   "quiz.questions": "soru",

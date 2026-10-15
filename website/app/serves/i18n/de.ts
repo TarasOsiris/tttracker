@@ -56,7 +56,7 @@ export const de: TranslationDict = {
 
   // Serve Detail
   "serveDetail.backToServes": "Zurück zu den Aufschlägen",
-  "serveDetail.pageTitle": "{name}: Technik & Rückschlag",
+  "serveDetail.pageTitle": "{name}: Technik",
   "serveDetail.metaDescription": "{name}: So spielst du diesen Tischtennis-Aufschlag – Schnitt, Länge, Platzierung und der beste Rückschlag. {description}",
   "serveDetail.notFoundTitle": "Aufschlag nicht gefunden – Tischtennis-Aufschläge",
   "serveDetail.howToReturn": "So spielst du den Rückschlag",
@@ -177,7 +177,7 @@ export const de: TranslationDict = {
   "nav.quiz": "Quiz",
   "quiz.pageTitle": "Tischtennis-Aufschlag-Quiz: Erkennst du den Aufschlag?",
   "quiz.title": "Tischtennis-Aufschlag-Quiz",
-  "quiz.subtitle": "Erkennst du einen Tischtennis-Aufschlag an seinem Schnitt? Teste dich mit 29 Aufschlagarten.",
+  "quiz.subtitle": "Erkennst du einen Tischtennis-Aufschlag an seinem Schnitt? Teste dich mit 29 Aufschlagarten. Wähle 5, 10 oder 15 Fragen und prüfe dein Ergebnis.",
   "quiz.start": "Quiz starten",
   "quiz.questionCount": "Anzahl der Fragen",
   "quiz.questions": "Fragen",

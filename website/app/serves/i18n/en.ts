@@ -177,7 +177,7 @@ export const en: TranslationDict = {
   "nav.quiz": "Quiz",
   "quiz.pageTitle": "Table Tennis Serve Quiz — Name the Ping Pong Serve",
   "quiz.title": "Table Tennis Serve Quiz",
-  "quiz.subtitle": "Can you name a table tennis serve from its spin? Test yourself on 29 ping pong serves.",
+  "quiz.subtitle": "Can you name a table tennis serve from its spin? Test yourself on 29 ping pong serves. Choose 5, 10 or 15 questions and review your score.",
   "quiz.start": "Start Quiz",
   "quiz.questionCount": "Number of questions",
   "quiz.questions": "questions",

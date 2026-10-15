@@ -128,7 +128,7 @@ export const privacyPolicy: LegalDocument = {
 
 export const termsOfUse: LegalDocument = {
   title: "Terms of Use",
-  description: `The terms for using the ${APP_NAME} apps, TT Tracker Pro and this website.`,
+  description: `Read the terms governing your use of the ${APP_NAME} mobile apps, TT Tracker Pro subscriptions and this website.`,
   updated: UPDATED,
   intro: `These terms apply to the ${APP_NAME} apps for iOS and Android and the website at ${SITE_URL}, provided by Nineva Studios ("we", "us"). By downloading or using them you agree to these terms. If you do not agree, please do not use them.`,
   sections: [

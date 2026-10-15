@@ -122,7 +122,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     },
     terms: {
       title: "Términos de Uso",
-      description: `Condiciones de uso de las aplicaciones ${appNames.es.name}, TT Tracker Pro y este sitio web.`,
+      description: `Consulta las condiciones que rigen el uso de las aplicaciones ${appNames.es.name}, las suscripciones TT Tracker Pro y este sitio web.`,
       updated: "11 de octubre de 2026",
       intro: `Estos términos se aplican a las aplicaciones ${appNames.es.name} para iOS y Android y al sitio web en ${SITE_URL}, titularidad de Nineva Studios («nosotros»). Al descargar o utilizar la app, aceptas estas condiciones.`,
       sections: [
@@ -460,7 +460,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     },
     terms: {
       title: "Termos de Uso",
-      description: `Termos de utilização dos aplicativos ${appNames.pt.name}, TT Tracker Pro e do website.`,
+      description: `Consulte os termos que regem o uso dos aplicativos ${appNames.pt.name}, das assinaturas TT Tracker Pro e deste website.`,
       updated: "11 de outubro de 2026",
       intro: `Estes termos regulam o uso dos aplicativos ${appNames.pt.name} e do site oficial.`,
       sections: [
@@ -930,7 +930,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     },
     terms: {
       title: "Умови використання",
-      description: `Умови користування додатками «${appNames.uk.name}», TT Tracker Pro та цим веб-сайтом.`,
+      description: `Ознайомтеся з умовами користування додатками «${appNames.uk.name}», підписками TT Tracker Pro та цим веб-сайтом.`,
       updated: "11 жовтня 2026 року",
       intro: `Ці умови регулюють використання додатків «${appNames.uk.name}» та офіційного веб-сайту від Nineva Studios. Завантажуючи або використовуючи додаток, ви погоджуєтеся з цими умовами.`,
       sections: [

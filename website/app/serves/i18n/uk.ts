@@ -56,7 +56,7 @@ export const uk: TranslationDict = {
 
   // Serve Detail
   "serveDetail.backToServes": "До всіх подач",
-  "serveDetail.pageTitle": "{name}: як виконувати і як приймати",
+  "serveDetail.pageTitle": "{name}: виконання й прийом",
   "serveDetail.metaDescription": "{name}: як виконувати цю подачу в настільному тенісі (пінг-понгу) — обертання, відскок, розміщення й найкращий спосіб її прийняти. {description}",
   "serveDetail.notFoundTitle": "Подачу не знайдено — Подачі в настільному тенісі",
   "serveDetail.howToReturn": "Як приймати цю подачу",
@@ -177,7 +177,7 @@ export const uk: TranslationDict = {
   "nav.quiz": "Вікторина",
   "quiz.pageTitle": "Вікторина з настільного тенісу: вгадайте подачу",
   "quiz.title": "Вікторина: подачі в настільному тенісі",
-  "quiz.subtitle": "Чи впізнаєте ви подачу за її обертанням? Перевірте себе на 29 подачах у пінг-понгу.",
+  "quiz.subtitle": "Чи впізнаєте ви подачу за її обертанням? Перевірте себе на 29 подачах у пінг-понгу. Оберіть 5, 10 або 15 запитань і перегляньте свій результат.",
   "quiz.start": "Почати вікторину",
   "quiz.questionCount": "Кількість запитань",
   "quiz.questions": "запитань",

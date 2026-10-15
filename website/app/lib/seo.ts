@@ -22,7 +22,7 @@ export function clampDescription(text: string): string {
  * languages lists just those (`alternates`, which must include English, the x-default).
  */
 export function seo({
-  title,
+  title: rawTitle,
   description: raw,
   path,
   locale,
@@ -39,6 +39,10 @@ export function seo({
   /** Share card; defaults to the language's home hero. `src` may be site-relative. */
   image?: { src: string; width: number; height: number; alt: string };
 }): MetaDescriptor[] {
+  const brandSuffix = ` | ${appNames[locale].name}`;
+  const title = rawTitle.length > 70 && rawTitle.endsWith(brandSuffix)
+    ? rawTitle.slice(0, -brandSuffix.length)
+    : rawTitle;
   const description = clampDescription(raw);
   const imageUrl = image.src.startsWith("/") ? `${SITE_URL}${image.src}` : image.src;
   const url = `${SITE_URL}${localizePath(locale, path)}`;

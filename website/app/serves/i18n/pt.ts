@@ -56,7 +56,7 @@ export const pt: TranslationDict = {
 
   // Serve Detail
   "serveDetail.backToServes": "Voltar para os saques",
-  "serveDetail.pageTitle": "{name}: como fazer o saque e como devolver",
+  "serveDetail.pageTitle": "{name}: saque e devolução",
   "serveDetail.metaDescription": "{name}: como fazer este saque de tênis de mesa (ping pong), o efeito, o quique, onde colocar e a melhor forma de devolver. {description}",
   "serveDetail.notFoundTitle": "Saque não encontrado — Saques de tênis de mesa",
   "serveDetail.howToReturn": "Como devolver este saque",

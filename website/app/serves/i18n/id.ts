@@ -177,7 +177,7 @@ export const id: TranslationDict = {
   "nav.quiz": "Kuis",
   "quiz.pageTitle": "Kuis Servis Tenis Meja — Tebak Jenis Servis Pingpong",
   "quiz.title": "Kuis Servis Tenis Meja",
-  "quiz.subtitle": "Bisakah kamu menebak servis tenis meja dari putarannya? Uji dirimu dengan 29 servis pingpong.",
+  "quiz.subtitle": "Bisakah kamu menebak servis tenis meja dari putarannya? Uji dirimu dengan 29 servis pingpong. Pilih 5, 10, atau 15 pertanyaan dan lihat skormu.",
   "quiz.start": "Mulai Kuis",
   "quiz.questionCount": "Jumlah pertanyaan",
   "quiz.questions": "pertanyaan",

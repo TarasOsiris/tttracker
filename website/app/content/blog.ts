@@ -22,6 +22,8 @@ export type BlogImage = {
 export type BlogPost = {
   slug: string;
   title: string;
+  /** Concise search/share title when the article headline needs more detail. */
+  seoTitle?: string;
   /** Meta description / card summary, aim for 140-160 characters. */
   description: string;
   /** ISO date. */
