@@ -1,4 +1,6 @@
+# Cloudflare email-protection URLs are generated utilities, not indexable pages.
 User-agent: *
 Allow: /
+Disallow: /cdn-cgi/
 
 Sitemap: https://ttapp.smashyapps.com/sitemap.xml
