@@ -43,7 +43,7 @@ export const meta: Route.MetaFunction = ({ loaderData }) => {
         mainEntity: {
           "@type": "Person",
           name: player.name,
-          nationality: player.country,
+          nationality: { "@type": "Country", name: player.country },
           jobTitle: "Table tennis player",
           ...(player.photo ? { image: absolute(player.photo.src) } : {}),
         },
