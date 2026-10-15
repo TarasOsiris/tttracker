@@ -79,6 +79,97 @@ const ljubljanaArena = { ...hero, caption: "A packed arena at the 2026 World Tea
 export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: BlogPost[] } = {
   en: [
   {
+    slug: "european-table-tennis-championships-2026-ljubljana-results-lebrun-jorgic",
+    title: "European Table Tennis Championships 2026: Ljubljana Results, Lebrun, Jorgic",
+    description:
+      "Jorgic saved a 2-3 deficit to beat Lillo 4-3, Alexis Lebrun started his title defence 4-0 and Mixed Doubles semifinals are set at the 2026 Europeans in Ljubljana.",
+    published: "2026-10-15",
+    readMinutes: 5,
+    keywords: [
+      "European Table Tennis Championships 2026",
+      "Ljubljana table tennis results",
+      "Alexis Lebrun European Championships",
+      "Darko Jorgic Diego Lillo",
+      "ETTU European Individual Championships",
+      "table tennis mixed doubles Europeans 2026",
+      "Truls Moregard Ljubljana",
+      "table tennis news this week",
+    ],
+    hero: {
+      src: "/blog/alexis-lebrun-euros.webp",
+      width: 1200,
+      height: 675,
+      alt: "Alexis Lebrun in a red France shirt and glasses leaning over the net to receive a serve",
+      caption: "Alexis Lebrun, the defending champion. Archive photo from the 2022 European Championships in Munich, not from Ljubljana.",
+      credit: "Granada, CC BY-SA 4.0",
+      creditUrl: "https://commons.wikimedia.org/wiki/File:20220818_European_Championships_Munich_2022_Alexis_Lebrun_850_9513.jpg",
+    },
+    intro:
+      "Home hero Darko Jorgic was one game from going out in the first round of the European Championships in Ljubljana. Down 2-3 against Spain's Diego Lillo, he won the last two games 11-8, 11-6 for a 4-3 escape. Around him, the defending champion started with a 4-0 and the favourites mostly fell in line. Here is what has happened so far, and what to watch before Sunday's finals.",
+    takeaways: [
+      "**Jorgic survives:** the Slovenian beat Diego Lillo 4-3 (11-4, 6-11, 11-6, 9-11, 9-11, 11-8, 11-6) after trailing 2-3.",
+      "**Alexis Lebrun starts his defence 4-0** against Tiago Apolonia (11-4, 11-7, 11-0, 13-11), and Félix Lebrun also won in four straight.",
+      "**Moregard is through:** Truls Moregard beat Ivan Kahn 4-0, but he and Elias Ranefur lost the men's doubles round of 16 to France's Dorr and Bourrassaud.",
+      "**British exits:** Liam Pitchford lost 4-0 to Slovenia's Deni Kozul, and Connor Green went out 4-2 to Flavien Coton.",
+      "**Mixed Doubles semifinals are set,** with Lebrun/Lutz, Duda/Mittelham, Ionescu/Szocs and Karlsson/Källberg all in medal position.",
+    ],
+    sections: [
+      {
+        heading: "Jorgic's seven-game escape",
+        image: {
+          src: "/blog/alexis-lebrun-return.webp",
+          width: 1000,
+          height: 666,
+          alt: "Alexis Lebrun in a red France shirt crouching to receive a serve, with the ball just above the table",
+          caption: "Alexis Lebrun receiving serve. Archive photo from the 2022 European Championships in Munich.",
+          credit: "Granada, CC BY-SA 4.0",
+          creditUrl: "https://commons.wikimedia.org/wiki/File:20220818_European_Championships_Munich_2022_Alexis_Lebrun_850_9641.jpg",
+        },
+        blocks: [
+          "The [European Individual Championships](https://www.ettu.org/european-individual-championships/) run from 11 to 18 October at Arena Stožice in Ljubljana. [Darko Jorgic](https://en.wikipedia.org/wiki/Darko_Jorgi%C4%87), the 2022 European runner-up, carries the home crowd's hopes, and his round of 64 match against Lillo nearly ended them.",
+          "He lost games four and five 9-11, 9-11 to fall behind 2-3, then reset: 11-8 and 11-6 to take the decider. According to the [ETTU report](https://www.ettu.org/jorgic-survives-dramatic-seven-game-battle-as-leading-contenders-advance-in-ljubljana/), Jorgic's comeback was one of the headline results of the day.",
+          "Why it matters: main-draw matches are best of seven, so a slow start is survivable. Qualifying groups were best of five, where there is no room to recover.",
+        ],
+      },
+      {
+        heading: "Lebrun brothers and Moregard cruise",
+        blocks: [
+          "Defending champion [Alexis Lebrun](https://en.wikipedia.org/wiki/Alexis_Lebrun) beat Portugal's Tiago Apolonia 4-0, including an 11-0 third game. His brother [Félix Lebrun](https://en.wikipedia.org/wiki/F%C3%A9lix_Lebrun) also won in four straight games, and [Truls Moregard](https://en.wikipedia.org/wiki/Truls_M%C3%B6reg%C3%A5rd) beat Netherlands' Ivan Kahn 4-0 (13-11, 11-9, 12-10, 11-7), all three of his first games were close and he closed each out.",
+          "Germany's Patrick Franziska (4-0 over Ovidiu Ionescu) and Dang Qiu (4-0 over Dimitrije Levajac) also advanced without dropping a game. Sweden's Anton Källberg needed seven games to beat Nikita Artemenko 4-3, with scores of 11-8, 11-6, 8-11, 12-14, 11-8, 6-11, 11-8.",
+          "In doubles, the Lebruns beat Jorgic and Kozul 3-0 (15-13, 11-9, 11-8) in the round of 16, while Moregard and Ranefur lost 3-1 to France's Esteban Dorr and Florian Bourrassaud (8-11, 11-8, 11-9, 11-9).",
+        ],
+      },
+      {
+        heading: "British hopes fade",
+        blocks: [
+          "Liam Pitchford topped his qualifying group without dropping a game, but lost 4-0 to Slovenia's Deni Kozul (11-9, 12-10, 11-7, 11-8) in the round of 64. Connor Green lost 4-2 to France's Flavien Coton, including 13-11 in the third game, as reported by [Table Tennis England](https://www.tabletennisengland.co.uk/news/2026/european-championships-2026/).",
+          "Tom Jarvis did win his opener, 4-0 over Romania's Andrei Istrate, and faces Germany's Benedikt Duda. In women's doubles, Wales' Tin-Tin Ho and Anna Hursey won a five-game thriller before losing to Poland's Wielgos and Brzyska.",
+        ],
+      },
+      {
+        heading: "Mixed Doubles: four teams in medal position",
+        blocks: [
+          "The mixed quarterfinals produced the closest matches so far, per the [ETTU report](https://ettu.org/four-nations-celebrate-mixed-doubles-medals-after-dramatic-quarterfinal-battles-in-ljubljana). Alexis Lebrun and Charlotte Lutz beat Luxembourg's Mladenovic and Ni Xia Lian 3-2 (13-11, 5-11, 11-9, 8-11, 11-9), and Romania's Eduard Ionescu and Bernadette Szocs edged France's Poret and Pavade 3-2.",
+          "Benedikt Duda and Nina Mittelham beat Moldova's Chiriacova and Ursu 3-0, and Sweden's Kristian Karlsson and Christina Källberg beat Portugal's Santa and Geraldo 3-0. Doubles finals are on 16 and 17 October, with the singles champions crowned on 18 October.",
+        ],
+      },
+      {
+        heading: "What's next, and how to use it",
+        blocks: [
+          "Round of 32 and 16 matches decide the singles quarterfinals this week, and the [Asian Championships](https://www.ittf.com/2026-events-calendar/) in Tashkent begin on 19 October. Check [WTT](https://www.worldtabletennis.com/) and the [ETTU site](https://www.ettu.org/) for live scores.",
+          "The lesson from Jorgic's comeback is mental: reset after a lost game. Log your own deciding games in [Ping Pong & Table Tennis Log](/), practise pressure points with the [drills](/drills), build a reliable opener from the [serve library](/serves), study [spin](/spins), and test your rules in the [quiz](/quiz).",
+        ],
+      },
+    ],
+    sources: [
+      { label: "ETTU: Jorgic survives dramatic seven-game battle", url: "https://www.ettu.org/jorgic-survives-dramatic-seven-game-battle-as-leading-contenders-advance-in-ljubljana/" },
+      { label: "ETTU: Lebrun brothers, Moregard and Jorgic head the field", url: "https://www.ettu.org/lebrun-brothers-moregard-and-home-favourite-jorgic-head-ljubljana-field/" },
+      { label: "ETTU: Lebrun brothers stay on course", url: "https://www.ettu.org/lebrun-brothers-stay-on-course-as-ninkovic-and-peto-produce-serbian-breakthrough-in-ljubljana/" },
+      { label: "ETTU: Mixed Doubles medals after dramatic quarterfinals", url: "https://ettu.org/four-nations-celebrate-mixed-doubles-medals-after-dramatic-quarterfinal-battles-in-ljubljana" },
+      { label: "Table Tennis England: European Championships 2026", url: "https://www.tabletennisengland.co.uk/news/2026/european-championships-2026/" },
+    ],
+  },
+  {
     slug: "ettu-congress-ljubljana-2026-youth-best-of-five-games-won-team-format",
     title: "European Table Tennis Rule Changes 2026: Youth Best-of-Five, New Team Format",
     description:
