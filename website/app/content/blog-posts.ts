@@ -75,9 +75,83 @@ const arenaImage = {
 };
 
 const ljubljanaArena = { ...hero, caption: "A packed arena at the 2026 World Team Table Tennis Championships in London. Archive photo, not from Ljubljana." };
-
 export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: BlogPost[] } = {
   en: [
+  {
+    slug: "european-table-tennis-championships-2026-round-of-16-haug-freitas-lebrun-moregard",
+    title: "Europeans 2026 Round of 16: Haug Stuns Freitas, Lebruns and Moregard Advance",
+    seoTitle: "Europeans 2026 Round of 16: Haug Beats Freitas, Lebrun, Moregard",
+    description:
+      "Borgar Haug beat Marcos Freitas 4-3, Jorgic and Alexis Lebrun came back from 0-2, and Ni Xia Lian, 63, won again as the Ljubljana Europeans reach the last 16.",
+    published: "2026-10-16",
+    readMinutes: 5,
+    keywords: [
+      "European Table Tennis Championships 2026",
+      "Borgar Haug Marcos Freitas",
+      "Ljubljana table tennis results",
+      "Felix Lebrun Ljubljana",
+      "Ni Xia Lian 63",
+      "Truls Moregard Europeans",
+      "Lebrun Lutz Duda Mittelham mixed doubles final",
+      "table tennis news today",
+    ],
+    hero: lebrunHero,
+    intro:
+      "Norway's Borgar Haug took down 11th seed Marcos Freitas 4-3 in the European Championships round of 16 in Ljubljana, and he was not even the only man to survive a scare. Darko Jorgic and Alexis Lebrun both came back from 0-2 down. And at 63, Luxembourg's Ni Xia Lian is still winning seven-game matches.",
+    takeaways: [
+      "**Haug beats Freitas 4-3** (11-4, 11-6, 8-11, 11-4, 5-11, 7-11, 11-7) after leading 3-1.",
+      "**Jorgic and Alexis Lebrun both recovered from 0-2** against Redzimski and Ursu to reach the quarterfinals.",
+      "**Félix Lebrun (4-0 over Ivor Ban) and Truls Moregard (4-0 over Andre Bertelsmeier)** cruised through.",
+      "**Ni Xia Lian, aged 63,** beat Margaryta Pesotska 4-3, leading 3-1 and winning the seventh game 11-9.",
+      "**Mixed Doubles final is set:** Lebrun/Lutz (France) against Duda/Mittelham (Germany).",
+    ],
+    sections: [
+      {
+        heading: "Haug's 4-3 over Freitas",
+        blocks: [
+          "Borgar Haug raced to a 3-1 lead over Portugal's [Marcos Freitas](https://en.wikipedia.org/wiki/Marcos_Freitas) with 11-4, 11-6 and 11-4 wins either side of a game lost, then had to survive 5-11 and 7-11 before closing the seventh 11-7. In the [ETTU report](https://www.ettu.org/borgar-haug-stuns-marcos-freitas-as-europes-leading-stars-battle-into-the-last-16-in-ljubljana/), Haug said he felt he \"got off to a very good start\", then found solutions and went into the decider determined to give everything.",
+          "Why it matters: a 3-1 lead is the most dangerous scoreline in table tennis. Haug went from cruising to under pressure in two games and still held on.",
+        ],
+      },
+      {
+        heading: "Favourites: two scares, two cruises",
+        image: lebrunInline,
+        blocks: [
+          "Fourth seed [Darko Jorgic](https://en.wikipedia.org/wiki/Darko_Jorgi%C4%87) beat Poland's Milosz Redzimski after trailing 0-2. Second seed [Alexis Lebrun](https://en.wikipedia.org/wiki/Alexis_Lebrun) did the same against Moldova's Vladislav Ursu, crediting coach Nathanaël Molin's tactical adjustments and a \"wide range of technical options\". Full game scores were not published.",
+          "Top seed [Félix Lebrun](https://en.wikipedia.org/wiki/F%C3%A9lix_Lebrun) beat Croatia's Ivor Ban 4-0 (11-6, 11-5, 11-3, 11-7), saying he served very well. [Truls Moregard](https://en.wikipedia.org/wiki/Truls_M%C3%B6reg%C3%A5rd) beat Germany's Andre Bertelsmeier 4-0 (11-5, 11-2, 11-9, 18-16).",
+          "Also through: Dang Qiu (4-0 over Jonathan Groth), Patrick Franziska (4-0 over Deni Kozul), Anton Källberg (4-2 over Iulian Chirita) and Simon Gauzy, who beat fellow Frenchman Flavien Coton 4-2 after losing the first two games. Qiu says he is looking forward to revenge against Gauzy, who beat him in Saarlouis a year ago.",
+        ],
+      },
+      {
+        heading: "Ni Xia Lian, 63, keeps going",
+        blocks: [
+          "In the women's round of 32, Luxembourg's Ni Xia Lian beat Ukraine's Margaryta Pesotska 4-3, leading 3-1 before taking the seventh game 11-9, according to the [ETTU report](https://www.ettu.org/ni-xia-lian-defies-age-as-polcanova-winter-and-szocs-advance-in-ljubljana/). Next she plays Germany's Annett Kaufmann.",
+          "Sofia Polcanova (4-1 over Hana Arapovic), Sabine Winter (4-0 over Lea Rakovac), Bernadette Szocs (4-0 over Alexia Nodin) and Prithika Pavade (4-2 over Adina Diaconu) also advanced. Nina Mittelham plays Andreea Dragoman in the last 16.",
+        ],
+      },
+      {
+        heading: "Doubles: French final in sight, mixed final set",
+        blocks: [
+          "In men's doubles, the Lebruns beat Finland's Naumi and Olah 3-2, and Esteban Dorr and Florian Bourrassaud beat Serbia's Peto and Ninkovic 3-0 (12-10, 11-7, 11-8), so the semifinal is an all-French one, per the [ETTU report](https://www.ettu.org/french-showdown-awaits-as-four-pairs-secure-mens-doubles-medals-in-ljubljana/). Källberg/Karlsson came back from 0-2 against Duda/Qiu to win 3-2.",
+          "In mixed, Alexis Lebrun and Charlotte Lutz beat Karlsson and Källberg 3-2 (6-11, 11-9, 13-11, 11-13, 11-9) and face Germany's Benedikt Duda and Nina Mittelham in the [final](https://www.ettu.org/lebrun-and-lutz-will-face-duda-and-mittelham-in-mixed-doubles-final/). I did not find the final's result when writing this.",
+        ],
+      },
+      {
+        heading: "What's next, and how to use it",
+        blocks: [
+          "Singles quarterfinals follow, then the finals on 18 October. After that, [WTT Champions Montpellier](https://www.montpellier.fr/campagnes/wtt-champions-montpellier-2026) runs 27 October to 1 November at the Sud de France Arena. Live scores are on [WTT](https://www.worldtabletennis.com/) and the [ETTU site](https://www.ettu.org/).",
+          "The takeaway from Haug, Jorgic and Lebrun is that a score is never safe. Track your own comebacks in [Ping Pong & Table Tennis Log](/), practise closing out games with the [drills](/drills), add a reliable serve from the [serve library](/serves), study [spin](/spins) and test your knowledge in the [quiz](/quiz).",
+        ],
+      },
+    ],
+    sources: [
+      { label: "ETTU: Haug stuns Freitas as Europe's leading stars battle into the last 16", url: "https://www.ettu.org/borgar-haug-stuns-marcos-freitas-as-europes-leading-stars-battle-into-the-last-16-in-ljubljana/" },
+      { label: "ETTU: Ni Xia Lian defies age as Polcanova, Winter and Szocs advance", url: "https://www.ettu.org/ni-xia-lian-defies-age-as-polcanova-winter-and-szocs-advance-in-ljubljana/" },
+      { label: "ETTU: French showdown awaits as four pairs secure Men's Doubles medals", url: "https://www.ettu.org/french-showdown-awaits-as-four-pairs-secure-mens-doubles-medals-in-ljubljana/" },
+      { label: "ETTU: Lebrun and Lutz will face Duda and Mittelham in Mixed Doubles final", url: "https://www.ettu.org/lebrun-and-lutz-will-face-duda-and-mittelham-in-mixed-doubles-final/" },
+      { label: "City of Montpellier: WTT Champions Montpellier 2026", url: "https://www.montpellier.fr/campagnes/wtt-champions-montpellier-2026" },
+    ],
+  },
   {
     slug: "european-table-tennis-championships-2026-ljubljana-results-lebrun-jorgic",
     title: "European Table Tennis Championships 2026: Ljubljana Results, Lebrun, Jorgic",
