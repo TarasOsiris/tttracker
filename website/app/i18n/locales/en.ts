@@ -314,7 +314,7 @@ export const en: Messages = {
     refundTitle: "Refunds",
     refundBody: "Payments go through the App Store or Google Play, so refunds are handled by them: [request one from Apple](https://reportaproblem.apple.com) or [from Google Play](https://support.google.com/googleplay/answer/2479637).",
     dataTitle: "Your data",
-    dataBody: "Your log stays on your device, so we can't see or recover it. To ask us to delete the analytics linked to you, email us your User ID from Settings → Copy User ID. Details are in the [Privacy Policy](/privacy).",
+    dataBody: "Your log stays on your device, so we can't see or recover it. To ask us to delete the analytics linked to you, email us from Settings → Send feedback, which adds your User ID. Details are in the [Privacy Policy](/privacy).",
     faqTitle: "Common questions",
   },
   drillsPage: {

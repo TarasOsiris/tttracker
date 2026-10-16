@@ -314,7 +314,7 @@ export const de: Messages = {
     refundTitle: "Erstattungen",
     refundBody: "Bezahlt wird über den App Store oder Google Play, daher wickeln sie auch Erstattungen ab: [bei Apple anfragen](https://reportaproblem.apple.com) oder [bei Google Play](https://support.google.com/googleplay/answer/2479637).",
     dataTitle: "Deine Daten",
-    dataBody: "Dein Trainingstagebuch bleibt auf deinem Gerät, wir können es weder sehen noch wiederherstellen. Wenn wir die mit dir verknüpften Analysedaten löschen sollen, schick uns deine Benutzer-ID aus Einstellungen → Benutzer-ID kopieren. Details in der [Datenschutzerklärung](/privacy).",
+    dataBody: "Dein Trainingstagebuch bleibt auf deinem Gerät, wir können es weder sehen noch wiederherstellen. Wenn wir die mit dir verknüpften Analysedaten löschen sollen, schreib uns über Einstellungen → Feedback senden, dann ist deine Benutzer-ID schon eingetragen. Details in der [Datenschutzerklärung](/privacy).",
     faqTitle: "Häufige Fragen",
   },
   drillsPage: {

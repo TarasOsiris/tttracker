@@ -314,7 +314,7 @@ export const fr: Messages = {
     refundTitle: "Remboursements",
     refundBody: "Les paiements passent par l'App Store ou Google Play, qui gèrent donc les remboursements : [demandez-le à Apple](https://reportaproblem.apple.com) ou [à Google Play](https://support.google.com/googleplay/answer/2479637).",
     dataTitle: "Vos données",
-    dataBody: "Votre carnet reste sur votre appareil : nous ne pouvons ni le voir ni le récupérer. Pour nous demander de supprimer les données d'analyse liées à vous, envoyez-nous votre ID utilisateur depuis Paramètres → Copier l'ID utilisateur. Détails dans la [Politique de confidentialité](/privacy).",
+    dataBody: "Votre carnet reste sur votre appareil : nous ne pouvons ni le voir ni le récupérer. Pour nous demander de supprimer les données d'analyse liées à vous, écrivez-nous depuis Paramètres → Envoyer des commentaires, qui ajoute votre ID utilisateur. Détails dans la [Politique de confidentialité](/privacy).",
     faqTitle: "Questions fréquentes",
   },
   drillsPage: {

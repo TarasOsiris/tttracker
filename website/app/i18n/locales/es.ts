@@ -316,7 +316,7 @@ export const es: Messages = {
     refundTitle: "Reembolsos",
     refundBody: "Los pagos se hacen a través del App Store o Google Play, así que ellos gestionan los reembolsos: [solicítalo a Apple](https://reportaproblem.apple.com) o [a Google Play](https://support.google.com/googleplay/answer/2479637).",
     dataTitle: "Tus datos",
-    dataBody: "Tu diario se queda en tu dispositivo, así que no podemos verlo ni recuperarlo. Para pedirnos que borremos la analítica vinculada a ti, envíanos tu ID de usuario desde Configuración → Copiar ID de usuario. Más detalles en la [Política de privacidad](/privacy).",
+    dataBody: "Tu diario se queda en tu dispositivo, así que no podemos verlo ni recuperarlo. Para pedirnos que borremos la analítica vinculada a ti, escríbenos desde Configuración → Enviar comentarios, que añade tu ID de usuario. Más detalles en la [Política de privacidad](/privacy).",
     faqTitle: "Preguntas frecuentes",
   },
   drillsPage: {

@@ -2,7 +2,8 @@
 // legal-translations.ts; the others show the English text, marked as English. Inline links use
 // [label](url); a block is a paragraph or a list.
 // Keep the Privacy Policy in step with the SDKs the apps ship (PostHog, Sentry, RevenueCat, CloudKit,
-// HealthKit, Health Connect) and with what the website loads (Google Analytics).
+// HealthKit, Health Connect) and with what the website loads (Google Analytics, YouTube and Instagram
+// embeds).
 import { APP_NAME, links, SITE_URL } from "./site";
 
 export type LegalBlock = string | { list: string[] };
@@ -10,12 +11,13 @@ export type LegalSection = { heading: string; blocks: LegalBlock[] };
 export type LegalDocument = { title: string; description: string; updated: string; intro: string; sections: LegalSection[] };
 
 const UPDATED = "October 11, 2026";
+const PRIVACY_UPDATED = "October 16, 2026";
 const contact = `[${links.email}](mailto:${links.email})`;
 
 export const privacyPolicy: LegalDocument = {
   title: "Privacy Policy",
   description: `How ${APP_NAME} handles your data: what stays on your device, what the app sends, and who receives it.`,
-  updated: UPDATED,
+  updated: PRIVACY_UPDATED,
   intro: `${APP_NAME} is a training journal for table tennis players, made by Nineva Studios ("we", "us"). This policy covers the ${APP_NAME} apps for iOS and Android and the website at ${SITE_URL}. The short version: there are no accounts, your training log stays on your device, we never sell data, and the app shows no ads.`,
   sections: [
     {
@@ -39,7 +41,7 @@ export const privacyPolicy: LegalDocument = {
         "You can link a training session to a workout recorded by your watch or fitness app: through Apple Health on iOS, and Health Connect on Android. The app reads health data only after you allow it in the system's permission screen, and only to fill in a session and show what happened during it. It never writes anything to Apple Health or Health Connect.",
         {
           list: [
-            "**What it reads:** your table tennis workouts (start and end time, recording app), the active energy (calories) and heart rate recorded during them, and on iOS the effort score you gave a workout on Apple Watch.",
+            "**What it reads:** your table tennis workouts (start and end time, recording app), the active energy (calories) and heart rate recorded during them, and on iOS the effort score you gave a workout on Apple Watch, or else the one Apple estimated for it.",
             "**Where it stays:** heart rate, energy and the workout's other details are read and shown on your device only. They are never stored in the app's database, never sent to us or to iCloud, and never included in analytics or crash reports.",
             "**What the app keeps:** the identifier of the workout a session is linked to, so the link survives; unlinking the workout or deleting the session removes it. When you import a workout into a new session, its day and length (and on iOS the effort you rated it) fill in the form, which you can change before saving. Once saved, they are part of your training log like anything you enter yourself. Both sync with the rest of the session through your private iCloud database if you use iCloud sync.",
             "**What we never do:** health data is never sold, shared with anyone, or used for advertising, profiling or any purpose other than showing it to you in the app.",
@@ -51,15 +53,15 @@ export const privacyPolicy: LegalDocument = {
     {
       heading: "What the app sends, and to whom",
       blocks: [
-        "The app creates a random identifier the first time it runs (shown as User ID in Settings). It is not linked to your name, email or Apple or Google account, and it is the only identifier attached to what follows.",
+        "The app creates a random identifier the first time it runs. It is not linked to your name, email or Apple or Google account, and it is the only identifier attached to analytics and crash reports. RevenueCat keeps purchases under a separate random identifier of its own, which is the User ID that Settings → Copy User ID copies.",
         {
           list: [
-            "**Usage analytics — PostHog** (PostHog Inc., data stored in the EU, Frankfurt). Which screens are opened and which features are used, for example that a session was created with its type, duration, effort rating (RPE) and number of matches, that a setting was changed, or that a workout was linked. A session linked to a workout is reported without its duration or effort rating, and no health data is ever sent. Also app version, device model, operating system, language, and an approximate location (country or city) derived from your IP address. Only release builds send analytics. [PostHog privacy policy](https://posthog.com/privacy).",
-            "**Crash reports — Sentry** (Functional Software, Inc., United States). When the app crashes or hits an error: the technical details of the error, the app version, device model, operating system, and the recent app events leading up to it. [Sentry privacy policy](https://sentry.io/privacy/).",
-            "**Purchases — RevenueCat** (RevenueCat, Inc., United States). Purchases are made through the App Store or Google Play, which handle payment: we never see your card or billing details. RevenueCat receives the purchase receipt and its product, price, currency and country, along with device and operating system details and your IP address, so the app can tell whether Pro is unlocked and restore it on your other devices. [RevenueCat privacy policy](https://www.revenuecat.com/privacy/).",
+            "**Usage analytics — PostHog** (PostHog Inc., data stored in the EU, Frankfurt). Which screens are opened and which features are used, and when the app is installed, updated or opened, for example that a session was created with its type, duration, effort rating (RPE) and number of matches, that a setting was changed, or that a workout was linked. A session linked to a workout is reported without its duration or effort rating, and no health data is ever sent. Also app version, device model, operating system, language, and an approximate location (country or city) derived from your IP address. Only release builds send analytics. [PostHog privacy policy](https://posthog.com/privacy).",
+            "**Crash reports — Sentry** (Functional Software, Inc., United States). When the app crashes or hits an error: the technical details of the error, the app version, device model, operating system, the recent app events leading up to it, and the IP address the report is sent from. [Sentry privacy policy](https://sentry.io/privacy/).",
+            "**Purchases — RevenueCat** (RevenueCat, Inc., United States). Purchases are made through the App Store or Google Play, which handle payment: we never see your card or billing details. RevenueCat receives the purchase receipt and its product, price, currency and country, the random identifier it assigns, when its purchase screen is shown or closed, along with device and operating system details and your IP address, so the app can tell whether Pro is unlocked and restore it on your other devices. [RevenueCat privacy policy](https://www.revenuecat.com/privacy/).",
           ],
         },
-        "If you send feedback from the app, your email app opens a message to us with the app version and your User ID filled in. We receive your email address and whatever you write, and use them only to reply.",
+        "If you send feedback from the app, your email app opens a message to us with the app version and the app's random identifier filled in. We receive your email address and whatever you write, and use them only to reply.",
       ],
     },
     {
@@ -68,7 +70,7 @@ export const privacyPolicy: LegalDocument = {
         {
           list: [
             "We do not sell or rent your data, or share it for advertising.",
-            "The app shows no ads, contains no advertising SDKs, and does not track you across other companies' apps or websites. It does not request the iOS advertising identifier.",
+            "The app shows no ads, contains no advertising SDKs, and does not track you across other companies' apps or websites. It does not request the iOS advertising identifier (IDFA) or collect the Android advertising ID.",
             "There is no sign-up, and we never ask for your name, email, phone number or contacts.",
             "Heart rate and energy from Apple Health or Health Connect never leave your device through the app, and nothing read from them is sold or shared.",
           ],
@@ -79,7 +81,8 @@ export const privacyPolicy: LegalDocument = {
       heading: "This website",
       blocks: [
         "The website uses Google Analytics (Google LLC) to count visits and see which pages are read. It runs in Google's Consent Mode. Visitors in the EEA, the UK and Switzerland are asked first: until you accept, Google Analytics sets no cookies, and Google receives only cookieless signals about each page view (such as the page, time and browser) without an identifier. Elsewhere, analytics cookies are on by default. With cookies allowed, Google Analytics receives your IP address, browser and device details, and the pages you visit. [How Google uses this data](https://policies.google.com/technologies/partner-sites).",
-        "You can accept or refuse analytics cookies at any time with Cookie settings at the bottom of every page. That choice, your theme and the serves you mark as favorites are kept in your browser's local storage and never sent to us.",
+        "Some pages of the serve encyclopedia embed videos from YouTube (Google LLC) and Instagram (Meta Platforms, Inc.). When such a video loads, your browser connects to that service, which receives your IP address, browser details and the page it is embedded in, and may set its own cookies: see the [Google Privacy Policy](https://policies.google.com/privacy) and the [Instagram Privacy Policy](https://privacycenter.instagram.com/policy).",
+        "You can accept or refuse analytics cookies at any time with Cookie settings at the bottom of every page. That choice, your theme, the serves you mark as favorites and the training-plan steps you tick off are kept in your browser's local storage and never sent to us.",
       ],
     },
     {
@@ -97,13 +100,13 @@ export const privacyPolicy: LegalDocument = {
     {
       heading: "International transfers",
       blocks: [
-        "Sentry and RevenueCat are based in the United States. Where data about people in the EU, UK or Switzerland is transferred there, it is protected by the safeguards these providers offer, such as the EU Standard Contractual Clauses.",
+        "Sentry and RevenueCat, and Google and Meta for this website, are based in the United States. Where data about people in the EU, UK or Switzerland is transferred there, it is protected by the safeguards these providers offer, such as the EU Standard Contractual Clauses.",
       ],
     },
     {
       heading: "Your choices and rights",
       blocks: [
-        `You can ask to access, correct or delete the data linked to your User ID, or object to its processing: email ${contact} and include the User ID from Settings → Copy User ID, since it is the only way we can find your data. Depending on where you live (for example under the GDPR or California law) you may also have the right to data portability and to complain to your local data protection authority.`,
+        `You can ask to access, correct or delete the data linked to your User ID, or object to its processing: email ${contact}. Sending it from Settings → Send feedback fills in the identifier used for analytics and crash reports; for purchase records, also include the User ID from Settings → Copy User ID. These identifiers are the only way we can find your data. Depending on where you live (for example under the GDPR or California law) you may also have the right to data portability and to complain to your local data protection authority.`,
         "Your training data itself is on your device and in your own iCloud account, where you can delete it at any time.",
       ],
     },

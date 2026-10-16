@@ -314,7 +314,7 @@ export const ja: Messages = {
     refundTitle: "返金",
     refundBody: "お支払いはApp StoreまたはGoogle Playを通じて行われるため、返金もそれぞれが対応します：[Appleに返金をリクエスト](https://reportaproblem.apple.com)、[Google Playに返金をリクエスト](https://support.google.com/googleplay/answer/2479637)。",
     dataTitle: "データについて",
-    dataBody: "練習記録は端末内に保存されるため、当社が閲覧したり復元したりすることはできません。お客様に関連する分析データの削除をご希望の場合は、「設定」→「ユーザーIDをコピー」で取得したユーザーIDをお送りください。詳しくは[プライバシーポリシー](/privacy)をご覧ください。",
+    dataBody: "練習記録は端末内に保存されるため、当社が閲覧したり復元したりすることはできません。お客様に関連する分析データの削除をご希望の場合は、「設定」→「フィードバックを送信」からご連絡ください。ユーザーIDが自動で記入されます。詳しくは[プライバシーポリシー](/privacy)をご覧ください。",
     faqTitle: "よくある質問",
   },
   drillsPage: {

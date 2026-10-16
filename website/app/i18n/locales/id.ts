@@ -318,7 +318,7 @@ export const id: Messages = {
     refundTitle: "Pengembalian dana",
     refundBody: "Pembayaran dilakukan lewat App Store atau Google Play, jadi pengembalian dana juga diurus oleh mereka: [ajukan ke Apple](https://reportaproblem.apple.com) atau [ke Google Play](https://support.google.com/googleplay/answer/2479637).",
     dataTitle: "Datamu",
-    dataBody: "Jurnalmu tersimpan di perangkatmu, jadi kami tidak bisa melihat atau memulihkannya. Untuk meminta kami menghapus data analitik yang terkait denganmu, kirimkan ID pengguna dari Pengaturan → Salin ID pengguna. Detailnya ada di [Kebijakan Privasi](/privacy).",
+    dataBody: "Jurnalmu tersimpan di perangkatmu, jadi kami tidak bisa melihat atau memulihkannya. Untuk meminta kami menghapus data analitik yang terkait denganmu, kirim email kepada kami lewat Pengaturan → Kirim masukan, yang otomatis menyertakan ID penggunamu. Detailnya ada di [Kebijakan Privasi](/privacy).",
     faqTitle: "Pertanyaan umum",
   },
   drillsPage: {

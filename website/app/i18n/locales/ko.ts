@@ -314,7 +314,7 @@ export const ko: Messages = {
     refundTitle: "환불",
     refundBody: "결제는 App Store 또는 Google Play를 통해 이루어지므로 환불도 각 스토어에서 처리합니다. [Apple에 요청하기](https://reportaproblem.apple.com) 또는 [Google Play에 요청하기](https://support.google.com/googleplay/answer/2479637).",
     dataTitle: "내 데이터",
-    dataBody: "훈련 기록은 기기에 저장되므로 저희가 보거나 복구할 수 없습니다. 나와 연결된 분석 데이터 삭제를 원하시면 설정 → 사용자 ID 복사로 얻은 사용자 ID를 보내 주세요. 자세한 내용은 [개인정보 처리방침](/privacy)을 참고하세요.",
+    dataBody: "훈련 기록은 기기에 저장되므로 저희가 보거나 복구할 수 없습니다. 나와 연결된 분석 데이터 삭제를 원하시면 설정 → 피드백 보내기로 연락해 주세요. 사용자 ID가 자동으로 포함됩니다. 자세한 내용은 [개인정보 처리방침](/privacy)을 참고하세요.",
     faqTitle: "자주 묻는 질문",
   },
   drillsPage: {

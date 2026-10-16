@@ -314,7 +314,7 @@ export const zh: Messages = {
     refundTitle: "退款",
     refundBody: "付款通过 App Store 或 Google Play 完成，因此退款也由它们处理：[向 Apple 申请](https://reportaproblem.apple.com) 或 [向 Google Play 申请](https://support.google.com/googleplay/answer/2479637)。",
     dataTitle: "你的数据",
-    dataBody: "你的训练记录保存在你的设备上，我们无法查看或恢复。如需删除与你相关的分析数据，请通过 设置 → 复制用户ID 获取用户 ID 并发送给我们。详情见[隐私政策](/privacy)。",
+    dataBody: "你的训练记录保存在你的设备上，我们无法查看或恢复。如需删除与你相关的分析数据，请通过 设置 → 发送反馈 给我们发邮件，邮件中会自动附上你的用户 ID。详情见[隐私政策](/privacy)。",
     faqTitle: "常见问题",
   },
   drillsPage: {

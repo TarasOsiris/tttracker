@@ -318,7 +318,7 @@ export const tr: Messages = {
     refundTitle: "İadeler",
     refundBody: "Ödemeler App Store veya Google Play üzerinden yapıldığı için iadeleri de onlar yürütür: [Apple'dan isteyin](https://reportaproblem.apple.com) ya da [Google Play'den](https://support.google.com/googleplay/answer/2479637).",
     dataTitle: "Verileriniz",
-    dataBody: "Günlüğünüz cihazınızda kalır; bu yüzden onu göremez ve kurtaramayız. Sizinle ilişkili analiz verilerinin silinmesini istiyorsanız Ayarlar → Kullanıcı kimliğini kopyala ile alacağınız kimliği bize gönderin. Ayrıntılar [Gizlilik Politikası](/privacy)'nda.",
+    dataBody: "Günlüğünüz cihazınızda kalır; bu yüzden onu göremez ve kurtaramayız. Sizinle ilişkili analiz verilerinin silinmesini istiyorsanız Ayarlar → Geri bildirim gönder ile bize yazın; kullanıcı kimliğiniz otomatik olarak eklenir. Ayrıntılar [Gizlilik Politikası](/privacy)'nda.",
     faqTitle: "Sık sorulan sorular",
   },
   drillsPage: {
