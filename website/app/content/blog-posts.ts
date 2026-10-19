@@ -78,6 +78,85 @@ const ljubljanaArena = { ...hero, caption: "A packed arena at the 2026 World Tea
 export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: BlogPost[] } = {
   en: [
   {
+    slug: "felix-lebrun-european-champion-2026-abraamian-qualifier-gold-ljubljana",
+    title: "Félix Lebrun Wins European Gold 2026: Abraamian, a Qualifier, Wins Women's Title",
+    seoTitle: "Félix Lebrun European Champion 2026: Abraamian Wins Women's Gold",
+    description:
+      "Félix Lebrun came back from 2-3 to beat Källberg 4-3 (11-1 decider) for Europeans gold, while qualifier Elizabet Abraamian won the women's title. Full Ljubljana results.",
+    published: "2026-10-19",
+    readMinutes: 5,
+    keywords: [
+      "Felix Lebrun European champion 2026",
+      "European Table Tennis Championships 2026 results",
+      "Elizabet Abraamian",
+      "Lebrun Kallberg final",
+      "Ljubljana table tennis",
+      "Duda Mittelham mixed doubles",
+      "Lebrun brothers men's doubles",
+      "table tennis news today",
+    ],
+    hero: { ...lebrunHero, caption: "Félix Lebrun in action. Archive photo from the 2022 European Championships in Munich, not from Ljubljana." },
+    intro:
+      "Félix Lebrun trailed Sweden's Anton Källberg 2-3 in the European final, then won the last two games, the decider 11-1. The same day, 23-year-old Elizabet Abraamian became the first qualifier ever to win the European women's singles title. Ljubljana ended with a golden double, a doubles record and a few lost suitcases.",
+    takeaways: [
+      "**Félix Lebrun beat Anton Källberg 4-3** (7-11, 11-9, 13-11, 8-11, 9-11, 11-6, 11-1) after trailing 2-3.",
+      "**Elizabet Abraamian, seeded 35 and 23, won women's singles** by beating Annett Kaufmann 4-3 in the final, the first qualifier ever to take the title.",
+      "**The Lebrun brothers retained men's doubles** with a 3-2 win over Källberg/Karlsson, only the second pair to defend the title after Boll/Süss.",
+      "**Duda/Mittelham won mixed doubles** 3-2 over Alexis Lebrun/Charlotte Lutz, with the deciding game 17-15.",
+      "**Kukulkova/Bajor took women's doubles** 3-0 over Wielgos/Brzyska of Poland.",
+    ],
+    sections: [
+      {
+        heading: "Félix Lebrun: from 2-3 down to an 11-1 decider",
+        image: { ...lebrunInline, caption: "Lebrun at the 2022 European Championships in Munich, aged 15. Archive photo, not from Ljubljana." },
+        blocks: [
+          "In the men's singles final at Arena Stožice on 18 October, top seed [Félix Lebrun](https://en.wikipedia.org/wiki/F%C3%A9lix_Lebrun) beat Sweden's Anton Källberg 4-3 (7-11, 11-9, 13-11, 8-11, 9-11, 11-6, 11-1). Källberg led 3-2 and was a game from the title; Lebrun took the last two games, the seventh by 11-1. In the semifinal he had beaten France's Léo de Nodrest 4-2 (6-11, 11-8, 5-11, 11-7, 11-8, 14-12), per the [ETTU report](https://www.ettu.org/felix-lebrun-completes-golden-double-with-european-mens-singles-title-in-ljubljana/).",
+          "At 20, Lebrun follows his brother [Alexis](https://en.wikipedia.org/wiki/Alexis_Lebrun), the 2024 champion, and it was his second gold of the week. De Nodrest, meanwhile, was the first men's qualifier in the semifinals since the qualification-group format began in 2012.",
+          "Why it matters: a deciding game that lopsided shows what a reset does. Lebrun lost two close games (8-11, 9-11), then stopped trying to win points and started winning rallies on his terms.",
+        ],
+      },
+      {
+        heading: "Abraamian: a qualifier wins the women's title",
+        blocks: [
+          "Seeded 35th, Elizabet Abraamian came through the qualification groups, saved a deciding game in which she trailed 2-5, and then beat France's Prithika Pavade 4-3 in the semifinal from 2-3 down, saving a match point (8-11, 11-5, 7-11, 11-8, 8-11, 12-10, 13-11). In the final she beat Germany's Annett Kaufmann 4-3 (15-13, 11-5, 5-11, 9-11, 12-10, 6-11, 11-6), according to the [ETTU report](https://www.ettu.org/elizabet-abraamian-completes-remarkable-journey-from-qualification-to-european-gold-in-ljubljana/).",
+          "She is the first qualifier ever to win the European singles title and the first from the qualification groups to reach the semifinals since Yu Fu in 2013. Before the event she dealt with injury, visa trouble and a trip from Italy to Moscow on which her luggage was lost; the bags arrived three days later. Pavade and Nina Mittelham took bronze, and it was the first senior European final for both finalists.",
+        ],
+      },
+      {
+        heading: "Doubles: a record for the Lebruns, Duda's first mixed title",
+        image: {
+          src: "/blog/alexis-lebrun-return.webp",
+          width: 1000,
+          height: 666,
+          alt: "Alexis Lebrun in a red France shirt crouching to receive a serve, with the ball just above the table",
+          caption: "Alexis Lebrun receiving serve. Archive photo from the 2022 European Championships in Munich, not from Ljubljana.",
+          credit: "Granada, CC BY-SA 4.0",
+          creditUrl: "https://commons.wikimedia.org/wiki/File:20220818_European_Championships_Munich_2022_Alexis_Lebrun_850_9641.jpg",
+        },
+        blocks: [
+          "On 17 October, Alexis and Félix Lebrun beat Kristian Karlsson and Anton Källberg 3-2 (5-11, 11-5, 11-8, 7-11, 11-8) for their second straight men's doubles title. Only Timo Boll and Christian Süss, with four in a row from 2007 to 2010, had defended it before, says the [ETTU](https://www.ettu.org/alexis-and-felix-lebrun-retain-european-mens-doubles-crown-after-fantastic-final-in-ljubljana/). Karlsson's silver was his tenth European Championships medal.",
+          "In mixed doubles, Germany's Benedikt Duda and Nina Mittelham beat Alexis Lebrun and Charlotte Lutz 3-2 (11-7, 7-11, 13-11, 6-11, 17-15), and the French pair held several match points in the fifth game. It was Duda's first European mixed title and Mittelham's second, per the [ETTU](https://www.ettu.org/duda-and-mittelham-crowned-european-mixed-doubles-champions-after-dramatic-final-in-ljubljana/). Lebrun and Lutz had only been playing together since July.",
+          "Poland's Natalia Bajor and Slovakia's Tatiana Kukulkova won women's doubles 3-0 over Zuzanna Wielgos and Anna Brzyska, taking the first game 14-12 after Brzyska's pair held two game points, per the [ETTU](https://www.ettu.org/kukulkova-and-bajor-crowned-european-womens-doubles-champions-in-ljubljana/).",
+        ],
+      },
+      {
+        heading: "What's next, and how to use it",
+        blocks: [
+          "Next up is [WTT Champions Montpellier](https://www.montpellier.fr/campagnes/wtt-champions-montpellier-2026) from 27 October to 1 November. Live scores are on [WTT](https://www.worldtabletennis.com/) and the [ETTU site](https://www.ettu.org/).",
+          "The lesson from Lebrun and Abraamian is to stay in the match when it slips. Log your own deciders in [Ping Pong & Table Tennis Log](/), rehearse closing out games with the [drills](/drills), build a reliable serve from the [serve library](/serves), learn how [spin](/spins) works and test yourself in the [quiz](/quiz).",
+        ],
+      },
+    ],
+    sources: [
+      { label: "ETTU: Félix Lebrun completes golden double with European men's singles title", url: "https://www.ettu.org/felix-lebrun-completes-golden-double-with-european-mens-singles-title-in-ljubljana/" },
+      { label: "ETTU: Elizabet Abraamian completes remarkable journey from qualification to European gold", url: "https://www.ettu.org/elizabet-abraamian-completes-remarkable-journey-from-qualification-to-european-gold-in-ljubljana/" },
+      { label: "ETTU: Alexis and Félix Lebrun retain European men's doubles crown", url: "https://www.ettu.org/alexis-and-felix-lebrun-retain-european-mens-doubles-crown-after-fantastic-final-in-ljubljana/" },
+      { label: "ETTU: Duda and Mittelham crowned European mixed doubles champions", url: "https://www.ettu.org/duda-and-mittelham-crowned-european-mixed-doubles-champions-after-dramatic-final-in-ljubljana/" },
+      { label: "ETTU: Kukulkova and Bajor crowned European women's doubles champions", url: "https://www.ettu.org/kukulkova-and-bajor-crowned-european-womens-doubles-champions-in-ljubljana/" },
+      { label: "City of Montpellier: WTT Champions Montpellier 2026", url: "https://www.montpellier.fr/campagnes/wtt-champions-montpellier-2026" },
+    ],
+  },
+  {
     slug: "european-table-tennis-championships-2026-round-of-16-haug-freitas-lebrun-moregard",
     title: "Europeans 2026 Round of 16: Haug Stuns Freitas, Lebruns and Moregard Advance",
     seoTitle: "Europeans 2026 Round of 16: Haug Beats Freitas, Lebrun, Moregard",
