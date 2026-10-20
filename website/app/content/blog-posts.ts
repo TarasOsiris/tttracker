@@ -78,6 +78,82 @@ const ljubljanaArena = { ...hero, caption: "A packed arena at the 2026 World Tea
 export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: BlogPost[] } = {
   en: [
   {
+    slug: "wtt-champions-montpellier-2026-preview-lebrun-wang-manyu-rankings",
+    title: "WTT Champions Montpellier 2026 Preview: Lebrun Brothers, No. 1 Rankings, Schedule",
+    seoTitle: "WTT Champions Montpellier 2026 Preview: Dates, Lebruns, Rankings",
+    description:
+      "WTT Champions Montpellier runs 27 Oct-1 Nov 2026 with 32 players per draw. Dates, finals times, French entrants, world No. 1s Matsushima and Wang Manyu, and what to watch.",
+    published: "2026-10-20",
+    readMinutes: 4,
+    keywords: [
+      "WTT Champions Montpellier 2026",
+      "Montpellier table tennis schedule",
+      "Felix Lebrun Montpellier",
+      "Wang Manyu world number 1",
+      "Sora Matsushima world number 1",
+      "table tennis rankings October 2026",
+      "WTT Champions 2026 how to watch",
+      "table tennis news today",
+    ],
+    hero: { ...lebrunHero, caption: "Félix Lebrun in action. Archive photo from the 2022 European Championships in Munich, not from Montpellier." },
+    intro:
+      "A week after Ljubljana, the table tennis circus moves to the south of France. WTT Champions Montpellier starts on 27 October with only the top 32 players in each singles draw, and the two Lebrun brothers get to play it at home as European champion and world No. 2.",
+    takeaways: [
+      "**WTT Champions Montpellier runs 27 October to 1 November 2026** at the Sud de France Arena in Pérols, with men's and women's singles.",
+      "**Finals day is Sunday 1 November:** semifinals at 11:00 and the singles finals at 17:30 local time, per [Olympics.com](https://www.olympics.com/fr/infos/wtt-champions-montpellier-2026-programme-calendrier-dates-heures-sessions-felix-lebrun-alexis-lebrun).",
+      "**France's entrants:** Alexis and Félix Lebrun, Flavien Coton and Thibault Poret in the men's draw; Jia Nan Yuan and Prithika Pavade among the women.",
+      "**Sora Matsushima is men's world No. 1 and Wang Manyu is women's No. 1** after China Smash, with Félix Lebrun second in the men's list.",
+      "**Check the final entry lists:** Chinese stars have withdrawn from this event in recent years, so the field can change late.",
+    ],
+    sections: [
+      {
+        heading: "What WTT Champions Montpellier is, and when to watch",
+        blocks: [
+          "WTT Champions is the elite tier of the [World Table Tennis](https://www.worldtabletennis.com/) circuit. Montpellier brings together the 32 best men and 32 best women in the world, and the schedule listed by [Olympics.com](https://www.olympics.com/fr/infos/wtt-champions-montpellier-2026-programme-calendrier-dates-heures-sessions-felix-lebrun-alexis-lebrun) puts the semifinals at 11:00 and the singles finals at 17:30 on Sunday 1 November. The venue is the Sud de France Arena in Pérols, just outside Montpellier, according to the [Équipe de France](https://www.equipe-france.fr/tennis-de-table/wtt-champions-montpellier-2026) page.",
+          "Only singles are played, which keeps the draw tight: there are no easy rounds, and a seed can lose on day one. If you care about upsets, the opening round is where to look.",
+        ],
+      },
+      {
+        heading: "The home angle: Lebrun, Lebrun and a European gold",
+        image: { ...lebrunInline, caption: "Félix Lebrun at the 2022 European Championships in Munich, aged 15. Archive photo, not from Montpellier." },
+        blocks: [
+          "[Félix Lebrun](https://en.wikipedia.org/wiki/F%C3%A9lix_Lebrun) arrives as European champion after coming back from 2-3 down to beat Anton Källberg 4-3 in Ljubljana, with the seventh game won 11-1 (see our [Europeans recap](/blog/felix-lebrun-european-champion-2026-abraamian-qualifier-gold-ljubljana)). [Alexis Lebrun](https://en.wikipedia.org/wiki/Alexis_Lebrun) is also in the field, along with Flavien Coton and Thibault Poret.",
+          "On the women's side France is represented by Jia Nan Yuan and Prithika Pavade, who took Europeans bronze last week. Expect the arena to be loud whenever a French player is on court.",
+        ],
+      },
+      {
+        heading: "The rankings picture: two No. 1s to watch",
+        image: {
+          ...wangManyuImage,
+          caption: "Wang Manyu in action, in an archive photo from 2016. Not from Montpellier.",
+        },
+        blocks: [
+          "After China Smash the ITTF list was topped by Japan's Sora Matsushima in the men's singles, with Félix Lebrun second, while [Wang Manyu](https://en.wikipedia.org/wiki/Wang_Manyu) returned to women's No. 1 by beating Hitomi Sato 4-0 in the final, as reported by [China Daily](https://www.chinadailyhk.com/article/640965). Sato rose to eighth and Miwa Harimoto stayed third. In doubles the Lebrun brothers lead the men's list.",
+          "Our [rankings post](/blog/table-tennis-world-rankings-wang-manyu-no-1-asian-championships-montpellier-preview) has the full picture. A Champions title is worth a lot, so a deep run here can reshuffle the top of both lists before the season finals.",
+        ],
+      },
+      {
+        heading: "Watch for late withdrawals",
+        blocks: [
+          "Last year several Chinese players, including Wang Chuqin and Sun Yingsha, pulled out of Montpellier before the draw, as [IANS reported](https://ianslive.in/table-tennis-chinas-wang-sun-pull-out-of-wtt-champions-montpellier--20251021220127). We have not seen a confirmed 2026 entry list, so check the [WTT event page](https://www.worldtabletennis.com/) for the draw once it is published rather than assuming any one star is playing.",
+        ],
+      },
+      {
+        heading: "Turn the viewing into practice",
+        blocks: [
+          "Watching the pros is most useful if you copy one thing. Pick a player, notice how they open a rally after the serve, then try it. Log your own matches in [Ping Pong & Table Tennis Log](/), learn new serves from the [serve library](/serves), see how [spin](/spins) changes the bounce, run the [drills](/drills) and test your knowledge in the [quiz](/quiz).",
+        ],
+      },
+    ],
+    sources: [
+      { label: "Olympics.com: WTT Champions Montpellier 2026 programme", url: "https://www.olympics.com/fr/infos/wtt-champions-montpellier-2026-programme-calendrier-dates-heures-sessions-felix-lebrun-alexis-lebrun" },
+      { label: "Équipe de France: WTT Champions Montpellier 2026", url: "https://www.equipe-france.fr/tennis-de-table/wtt-champions-montpellier-2026" },
+      { label: "China Daily HK: ITTF rankings after China Smash (13 Oct 2026)", url: "https://www.chinadailyhk.com/article/640965" },
+      { label: "IANS: Wang, Sun pull out of WTT Champions Montpellier (2025)", url: "https://ianslive.in/table-tennis-chinas-wang-sun-pull-out-of-wtt-champions-montpellier--20251021220127" },
+      { label: "ETTU: Félix Lebrun completes golden double", url: "https://www.ettu.org/felix-lebrun-completes-golden-double-with-european-mens-singles-title-in-ljubljana/" },
+    ],
+  },
+  {
     slug: "felix-lebrun-european-champion-2026-abraamian-qualifier-gold-ljubljana",
     title: "Félix Lebrun Wins European Gold 2026: Abraamian, a Qualifier, Wins Women's Title",
     seoTitle: "Félix Lebrun European Champion 2026: Abraamian Wins Women's Gold",
