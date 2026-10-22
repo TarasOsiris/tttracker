@@ -78,6 +78,91 @@ const ljubljanaArena = { ...hero, caption: "A packed arena at the 2026 World Tea
 export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: BlogPost[] } = {
   en: [
   {
+    slug: "chris-tam-wtt-managing-director-africa-championships-tangier-2026",
+    title: "Chris Tam Named WTT Managing Director + Africa Championships 2026 Tangier",
+    seoTitle: "Chris Tam WTT Managing Director, Africa Championships Tangier 2026",
+    description:
+      "Chris Tam is the new WTT managing director after Steve Dainton left. Plus the 2026 Africa Championships in Tangier (to 25 Oct) and the Parkinson's worlds in Shanghai.",
+    published: "2026-10-22",
+    readMinutes: 4,
+    keywords: [
+      "Chris Tam WTT managing director",
+      "World Table Tennis new boss",
+      "Steve Dainton WTT",
+      "ITTF Africa Championships 2026",
+      "Tangier table tennis 2026",
+      "World Parkinson's Table Tennis Championships",
+      "2027 World Championships Astana qualification",
+      "table tennis news today",
+    ],
+    hero: {
+      src: "/blog/ibrahim-hamadtou-hero.webp",
+      width: 1200,
+      height: 675,
+      alt: "Egyptian para table tennis player Ibrahim Hamadtou holding the racket in his mouth, eyes on a ball flying towards the table",
+      caption: "Egypt's Ibrahim Hamadtou playing with the racket in his mouth. Archive photo from 2015, not from Tangier.",
+      credit: "Gaël Marziou, CC BY 2.0",
+      creditUrl: "https://commons.wikimedia.org/wiki/File:Ibrahim_Hamadtou.jpg",
+    },
+    intro:
+      "While the big names pack their bags for Montpellier, the sport's power structure quietly changed this week: World Table Tennis has a new managing director, and he is an accountant, not a former player. Meanwhile Africa is crowning its continental champions in Tangier, and Shanghai is hosting the world championships for players with Parkinson's and Alzheimer's.",
+    takeaways: [
+      "**Chris Tam is the new managing director of World Table Tennis (WTT)**, announced on 19 October 2026, replacing Steve Dainton, who left table tennis on 1 May.",
+      "**Tam stays ITTF chief operations officer** and is backed by Bart Vermoesen and Tristan Lavier as executive directors; the WTT board also added an independent member.",
+      "**The ITTF Africa Championships run 18-25 October in Tangier,** Morocco's first time hosting since 2016, with Egypt the favourites and the event doubling as qualification for the 2027 World Championships in Astana.",
+      "**Nigeria is missing from the team events** because it skipped the Western Region qualifier in Conakry.",
+      "**Over 200 players from 33 countries and territories** are in Shanghai for the World Table Tennis for Health Festival, the first held in Asia.",
+    ],
+    sections: [
+      {
+        heading: "Chris Tam takes the wheel at WTT",
+        blocks: [
+          "According to [Sportcal](https://www.sportcal.com/?p=154346), the ITTF has promoted Chris Tam to managing director of WTT, the body that runs the commercial side of the sport and the tour you watch every week. A Singaporean chartered accountant, Tam joined the ITTF in 2024 as director of operations, became chief operations officer in January 2026 and has been WTT's acting COO since May. He keeps the ITTF COO role.",
+          "He succeeds Steve Dainton, who became WTT CEO in January and ended his 21 years in table tennis on 1 May, staying on as an adviser while a successor was found. ITTF president and WTT board chair Petra Sörling said Tam \"has led WTT's operations through a strong 2026 season with rigour, and he has the board's full confidence.\"",
+          "**Why it matters:** WTT decides calendars, prize money and broadcast deals. Sportcal also notes the ITTF recently signed an eight-year marketing rights deal with Infront, which becomes WTT's lead agency for commercial development. Expect continuity rather than a shake-up, but the next big tour decisions will carry Tam's name. The ITTF's own [news page](https://www.ittf.com/news/) lists the announcement dated 19 October.",
+        ],
+      },
+      {
+        heading: "Africa Championships 2026: Tangier hosts the continent",
+        image: {
+          src: "/blog/ibrahim-hamadtou.webp",
+          width: 800,
+          height: 1121,
+          alt: "Ibrahim Hamadtou leaning towards the table with the racket gripped in his teeth while the ball arrives",
+          caption: "Ibrahim Hamadtou, the Egyptian para player known for his mouth-held racket. Archive photo from 2015, not from the Africa Championships.",
+          credit: "Gaël Marziou, CC BY 2.0",
+          creditUrl: "https://commons.wikimedia.org/wiki/File:Ibrahim_Hamadtou.jpg",
+        },
+        blocks: [
+          "The ITTF Africa Championships started on Sunday 18 October in Tangier and run through 25 October, reports [ThisDay](https://www.thisdaylive.com/2026/10/18/tangier-sets-stage-for-continental-table-tennis-showdown/). Men's and women's team events, doubles, mixed doubles and singles are all on the programme, hosted by the Royal Moroccan Table Tennis Federation. It is Morocco's first time hosting since Agadir in 2016.",
+          "Defending champions Egypt are the favourites, with Algeria, Tunisia, Morocco and Madagascar expected to push them. Nigeria will not play the team events after missing the Western Region tournament in Conakry, though Mathew Kuti and Sultan Agunbiade received singles wildcards, per [Guardian Nigeria](https://guardian.ng/?p=2907335). We could not find results yet, so check the ITTF Africa pages for scores.",
+          "**Why it matters:** the championships also feed qualification for the 2027 ITTF World Championships in Astana, Kazakhstan, the first Worlds in Central Asia. Egyptian table tennis has a proud history, including para star [Ibrahim Hamadtou](https://en.wikipedia.org/wiki/Ibrahim_Hamadtou), pictured here in an archive photo.",
+        ],
+      },
+      {
+        heading: "Shanghai: table tennis as medicine",
+        blocks: [
+          "The World Table Tennis for Health Festival opened on 20 October at the Fok Yingdong Sports Centre, Shanghai Jiao Tong University, according to [Sport and Dev](https://sportanddev.org/latest/news/2026-world-table-tennis-health-festival-opens-shanghai). It is the first time the festival has been held in Asia. More than 200 players living with Parkinson's or Alzheimer's from 33 countries and territories compete in the World Parkinson's and World Alzheimer's Table Tennis Championships, with live streams on the ITTF Foundation YouTube channel from 21 to 25 October.",
+          "After the event the tables will be donated to eight local organisations, including hospitals, fitness centres and sports bureaus. Sörling said: \"Here, table tennis brings people together across borders and backgrounds.\"",
+          "**Why it matters:** the sport's fast hand-eye demands and social side are exactly why it is used in health programmes. It is a reminder that a rally is a good workout at any level.",
+        ],
+      },
+      {
+        heading: "Next up, and how to use it",
+        blocks: [
+          "The next headline event is [WTT Champions Montpellier](/blog/wtt-champions-montpellier-2026-preview-lebrun-wang-manyu-rankings) from 27 October to 1 November. Whether you follow the pros or play at the club, track your own progress: log matches in [Ping Pong & Table Tennis Log](/), pick up new serves in the [serve library](/serves), learn how [spin](/spins) works, run the [drills](/drills) and test yourself with the [quiz](/quiz).",
+        ],
+      },
+    ],
+    sources: [
+      { label: "Sportcal: Chris Tam promoted to WTT managing director (19 Oct 2026)", url: "https://www.sportcal.com/?p=154346" },
+      { label: "ITTF news", url: "https://www.ittf.com/news/" },
+      { label: "ThisDay: Tangier sets stage for continental table tennis showdown", url: "https://www.thisdaylive.com/2026/10/18/tangier-sets-stage-for-continental-table-tennis-showdown/" },
+      { label: "Guardian Nigeria: Kuti, Agunbiade, Coker get wildcards for Tangier 2026", url: "https://guardian.ng/?p=2907335" },
+      { label: "Sport and Dev: 2026 World Table Tennis for Health Festival opens in Shanghai", url: "https://sportanddev.org/latest/news/2026-world-table-tennis-health-festival-opens-shanghai" },
+    ],
+  },
+  {
     slug: "wtt-champions-montpellier-2026-preview-lebrun-wang-manyu-rankings",
     title: "WTT Champions Montpellier 2026 Preview: Lebrun Brothers, No. 1 Rankings, Schedule",
     seoTitle: "WTT Champions Montpellier 2026 Preview: Dates, Lebruns, Rankings",
