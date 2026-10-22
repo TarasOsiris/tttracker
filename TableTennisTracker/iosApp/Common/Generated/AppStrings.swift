@@ -278,6 +278,18 @@ enum L {
 	/// Generate 100 Random Sessions
 	static var debugGenerateRandomSessions: String { Localization.string("debug_generate_random_sessions") }
 
+	/// Ask for a store review after the next new session, or clear the counters so the usual rules start over.
+	static var debugReviewPromptDescription: String { Localization.string("debug_review_prompt_description") }
+
+	/// Request Review After Next Session
+	static var debugReviewPromptRequest: String { Localization.string("debug_review_prompt_request") }
+
+	/// Reset Review Prompt
+	static var debugReviewPromptReset: String { Localization.string("debug_review_prompt_reset") }
+
+	/// Review Prompt
+	static var debugReviewPromptTitle: String { Localization.string("debug_review_prompt_title") }
+
 	/// Seed Store Screenshot Data
 	static var debugSeedShowcaseData: String { Localization.string("debug_seed_showcase_data") }
 

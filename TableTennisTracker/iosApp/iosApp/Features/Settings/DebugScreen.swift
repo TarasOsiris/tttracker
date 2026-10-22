@@ -43,6 +43,19 @@ struct DebugScreen: View {
                 .accessibilityIdentifier("debug.seedShowcase")
                 .disabled(model.isBusy)
             }
+            Section(L.debugReviewPromptTitle) {
+                Text(L.debugReviewPromptDescription)
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+                Button(L.debugReviewPromptRequest) {
+                    Task { await model.requestReviewAfterNextSession() }
+                }
+                .accessibilityIdentifier("debug.requestReview")
+                Button(L.debugReviewPromptReset) {
+                    Task { await model.resetReviewPrompt() }
+                }
+                .accessibilityIdentifier("debug.resetReview")
+            }
             Section(L.debugClearDatabaseTitle) {
                 Text(L.debugClearDatabaseDescription)
                     .font(.footnote)

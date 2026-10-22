@@ -67,7 +67,7 @@ class SettingsViewModel(
 
 	fun rateApp() {
 		externalAppLauncher.openAppStore()
-		analyticsService.capture("app_rated")
+		analyticsService.capture("rate_app_opened")
 	}
 
 	fun copyUserId() {

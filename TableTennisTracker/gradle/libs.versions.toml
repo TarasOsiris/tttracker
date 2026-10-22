@@ -29,6 +29,7 @@ sentryKmp = "0.27.0"
 sentryAndroid = "6.21.0"
 posthogAndroid = "3.61.1"
 revenuecat = "10.20.0"
+playReview = "2.0.2"
 
 androidx-lifecycle = "2.11.0"
 androidx-nav3 = "1.1.1"
@@ -107,6 +108,8 @@ kmp-lifecycle-viewmodel = { module = "org.jetbrains.androidx.lifecycle:lifecycle
 posthog-android = { module = "com.posthog:posthog-android", version.ref = "posthogAndroid" }
 revenuecat-purchases = { module = "com.revenuecat.purchases:purchases", version.ref = "revenuecat" }
 revenuecat-purchases-ui = { module = "com.revenuecat.purchases:purchases-ui", version.ref = "revenuecat" }
+play-review = { module = "com.google.android.play:review", version.ref = "playReview" }
+play-review-ktx = { module = "com.google.android.play:review-ktx", version.ref = "playReview" }
 sentry-kmp = { module = "io.sentry:sentry-kotlin-multiplatform", version.ref = "sentryKmp" }
 
 [plugins]

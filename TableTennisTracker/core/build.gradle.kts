@@ -30,6 +30,9 @@ kotlin {
 		compilerOptions {
 			jvmTarget.set(JvmTarget.JVM_11)
 		}
+
+		// Host (JVM) unit tests: the commonTest suite runs here without a device or simulator.
+		withHostTest {}
 	}
 
 	listOf(iosArm64(), iosSimulatorArm64()).forEach { iosTarget ->
@@ -70,17 +73,15 @@ kotlin {
 			implementation(libs.koin.core.viewmodel)
 			implementation(libs.sqldelight.coroutines)
 		}
+		// kotlin.test rather than a Kotest spec: Kotlin/Native has no Kotest runner configured, so a
+		// spec would compile and silently never run there. Kotest is used for its assertions only.
 		commonTest.dependencies {
+			implementation(libs.kotlin.test)
 			implementation(libs.kotest.assertions.core)
 			implementation(libs.kotest.framework.engine)
 		}
 		iosMain.dependencies {
 			implementation(libs.sqldelight.driver.native)
-		}
-		// kotlin.test rather than a Kotest spec: Kotlin/Native has no Kotest runner configured, so a
-		// spec would compile and silently never run.
-		iosTest.dependencies {
-			implementation(libs.kotlin.test)
 		}
 	}
 }

@@ -12,6 +12,7 @@ enum Services {
     static var trainingAnalytics: any TrainingAnalyticsService { IosServices.shared.trainingAnalyticsService }
     static var insights: any InsightsService { IosServices.shared.insightsService }
     static var userId: any UserIdService { IosServices.shared.userIdService }
+    static var reviewPrompt: any ReviewPromptService { IosServices.shared.reviewPromptService }
     static var deviceInfo: any NativeInfoProvider { IosServices.shared.nativeInfoProvider }
     static var launcher: any ExternalAppLauncher { IosServices.shared.externalAppLauncher }
     static var clipboard: any ClipboardManager { IosServices.shared.clipboardManager }

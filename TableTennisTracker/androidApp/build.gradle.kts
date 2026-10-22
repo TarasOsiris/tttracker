@@ -153,6 +153,10 @@ dependencies {
 	implementation(libs.revenuecat.purchases)
 	implementation(libs.revenuecat.purchases.ui)
 
+	// Google Play In-App Review
+	implementation(libs.play.review)
+	implementation(libs.play.review.ktx)
+
 	implementation(libs.sqldelight.driver.android)
 
 	debugImplementation(libs.compose.ui.tooling)

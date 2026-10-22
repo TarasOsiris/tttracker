@@ -24,13 +24,24 @@ final class DebugModel {
 
     @ObservationIgnored private let sessions: any TrainingSessionService
     @ObservationIgnored private let opponents: any OpponentService
+    @ObservationIgnored private let reviewPrompt: any ReviewPromptService
 
     init(
         sessions: any TrainingSessionService = Services.sessions,
-        opponents: any OpponentService = Services.opponents
+        opponents: any OpponentService = Services.opponents,
+        reviewPrompt: any ReviewPromptService = Services.reviewPrompt
     ) {
         self.sessions = sessions
         self.opponents = opponents
+        self.reviewPrompt = reviewPrompt
+    }
+
+    func requestReviewAfterNextSession() async {
+        try? await reviewPrompt.forceNextRequest()
+    }
+
+    func resetReviewPrompt() async {
+        try? await reviewPrompt.reset()
     }
 
     /// Sessions first: that clears their matches in one transaction, so nothing is left pointing at

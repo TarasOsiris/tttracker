@@ -24,11 +24,14 @@ final class SessionsModel {
     var calendar: Calendar { .days(firstWeekday: firstWeekday) }
 
     @ObservationIgnored private let subscriptions = FlowSubscriptions()
+    @ObservationIgnored private let reviewPrompt: any ReviewPromptService
 
     init(
         sessions: any TrainingSessionService = Services.sessions,
-        preferences: any UserPreferencesRepository = Services.preferences
+        preferences: any UserPreferencesRepository = Services.preferences,
+        reviewPrompt: any ReviewPromptService = Services.reviewPrompt
     ) {
+        self.reviewPrompt = reviewPrompt
         refreshToday()
 
         subscriptions.insert(
@@ -49,6 +52,14 @@ final class SessionsModel {
                 self?.highlightsToday = $0
             }
         )
+    }
+
+    func shouldRequestReview() async -> Bool {
+        (try? await reviewPrompt.shouldRequestReview())?.boolValue == true
+    }
+
+    func markReviewRequested() async {
+        try? await reviewPrompt.markRequested()
     }
 
     /// Re-anchors the window on the current day. Idempotent, so it is safe on every foreground.

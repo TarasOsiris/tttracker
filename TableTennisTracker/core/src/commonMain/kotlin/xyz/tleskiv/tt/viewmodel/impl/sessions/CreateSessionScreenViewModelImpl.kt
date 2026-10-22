@@ -11,6 +11,7 @@ import xyz.tleskiv.tt.di.components.AnalyticsService
 import xyz.tleskiv.tt.di.components.HealthDataSource
 import xyz.tleskiv.tt.health.HealthWorkout
 import xyz.tleskiv.tt.model.mappers.toMatchInput
+import xyz.tleskiv.tt.service.ReviewPromptService
 import xyz.tleskiv.tt.service.TrainingSessionService
 import xyz.tleskiv.tt.service.UserPreferencesService
 import xyz.tleskiv.tt.util.today
@@ -22,7 +23,8 @@ class CreateSessionScreenViewModelImpl(
 	private val sessionService: TrainingSessionService,
 	private val preferencesService: UserPreferencesService,
 	private val analyticsService: AnalyticsService,
-	private val healthDataSource: HealthDataSource
+	private val healthDataSource: HealthDataSource,
+	private val reviewPromptService: ReviewPromptService
 ) : CreateSessionScreenViewModel() {
 	private val _startDate = date ?: today()
 	override val initialDate: LocalDate = _startDate
@@ -39,7 +41,12 @@ class CreateSessionScreenViewModelImpl(
 		}
 	}
 
+	/** Set by the first Save, so a double tap cannot add the session (and its matches) twice. */
+	private var isSaving = false
+
 	override fun saveSession(onSuccess: () -> Unit) {
+		if (isSaving) return
+		isSaving = true
 		viewModelScope.launch {
 			sessionService.addSession(
 				dateTime = LocalDateTime(inputData.selectedDate.value, LocalTime(12, 0)),
@@ -60,6 +67,7 @@ class CreateSessionScreenViewModelImpl(
 				)
 			)
 			if (inputData.healthWorkout.value != null) analyticsService.capture("health_workout_imported")
+			reviewPromptService.recordSessionCreated()
 			onSuccess()
 		}
 	}

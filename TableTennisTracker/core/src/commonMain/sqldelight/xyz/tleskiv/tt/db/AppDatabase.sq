@@ -85,6 +85,9 @@ SELECT * FROM app_metadata ORDER BY created_at DESC;
 selectByKey:
 SELECT * FROM app_metadata WHERE key = ?;
 
+selectByKeys:
+SELECT * FROM app_metadata WHERE key IN ?;
+
 insert:
 INSERT OR REPLACE INTO app_metadata (key, value, created_at, updated_at)
 VALUES (?, ?, ?, ?);

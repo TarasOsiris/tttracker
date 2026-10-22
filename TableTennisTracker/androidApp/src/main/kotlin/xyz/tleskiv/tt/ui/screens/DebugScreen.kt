@@ -17,6 +17,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -60,6 +61,13 @@ fun DebugScreen(
 				enabled = !isGenerating && !isClearing,
 				onGenerate = { viewModel.generateRandomSessions(100) },
 				onSeedShowcase = { viewModel.seedShowcaseData() }
+			)
+
+			Spacer(modifier = Modifier.height(16.dp))
+
+			ReviewPromptSection(
+				onRequestAfterNextSession = viewModel::requestReviewAfterNextSession,
+				onReset = viewModel::resetReviewPrompt
 			)
 
 			Spacer(modifier = Modifier.height(16.dp))
@@ -116,6 +124,33 @@ private fun DataGenerationSection(
 				modifier = Modifier.fillMaxWidth().testTag(TestTags.DEBUG_SEED_SHOWCASE)
 			) {
 				Text(stringResource(R.string.debug_seed_showcase_data))
+			}
+		}
+	}
+}
+
+@Composable
+private fun ReviewPromptSection(onRequestAfterNextSession: () -> Unit, onReset: () -> Unit) {
+	ContentCard {
+		Column(modifier = Modifier.padding(16.dp)) {
+			Text(
+				text = stringResource(R.string.debug_review_prompt_title),
+				style = MaterialTheme.typography.titleMedium,
+				color = MaterialTheme.colorScheme.onSurface
+			)
+			Spacer(modifier = Modifier.height(8.dp))
+			Text(
+				text = stringResource(R.string.debug_review_prompt_description),
+				style = MaterialTheme.typography.bodyMedium,
+				color = MaterialTheme.colorScheme.onSurfaceVariant
+			)
+			Spacer(modifier = Modifier.height(16.dp))
+			Button(onClick = onRequestAfterNextSession, modifier = Modifier.fillMaxWidth()) {
+				Text(stringResource(R.string.debug_review_prompt_request))
+			}
+			Spacer(modifier = Modifier.height(8.dp))
+			OutlinedButton(onClick = onReset, modifier = Modifier.fillMaxWidth()) {
+				Text(stringResource(R.string.debug_review_prompt_reset))
 			}
 		}
 	}

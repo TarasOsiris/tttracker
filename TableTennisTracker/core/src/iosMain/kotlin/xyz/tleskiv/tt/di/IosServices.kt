@@ -11,6 +11,7 @@ import xyz.tleskiv.tt.repo.UserPreferencesRepository
 import xyz.tleskiv.tt.service.InsightsService
 import xyz.tleskiv.tt.service.MatchService
 import xyz.tleskiv.tt.service.OpponentService
+import xyz.tleskiv.tt.service.ReviewPromptService
 import xyz.tleskiv.tt.service.TrainingAnalyticsService
 import xyz.tleskiv.tt.service.TrainingSessionService
 import xyz.tleskiv.tt.service.UserIdService
@@ -39,6 +40,7 @@ object IosServices : KoinComponent {
 	val insightsService: InsightsService get() = get()
 	val matchService: MatchService get() = get()
 	val userIdService: UserIdService get() = get()
+	val reviewPromptService: ReviewPromptService get() = get()
 	val nativeInfoProvider: NativeInfoProvider get() = get()
 	val externalAppLauncher: ExternalAppLauncher get() = get()
 	val clipboardManager: ClipboardManager get() = get()

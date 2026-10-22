@@ -2,6 +2,7 @@ package xyz.tleskiv.tt.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
@@ -10,10 +11,12 @@ import xyz.tleskiv.tt.model.AppAccent
 import xyz.tleskiv.tt.model.AppLocale
 import xyz.tleskiv.tt.model.AppThemeMode
 import xyz.tleskiv.tt.repo.UserPreferencesRepository
+import xyz.tleskiv.tt.service.ReviewPromptService
 
 class AppViewModel(
 	private val userPreferencesRepository: UserPreferencesRepository,
-	private val localeApplier: LocaleApplier
+	private val localeApplier: LocaleApplier,
+	private val reviewPromptService: ReviewPromptService
 ) : ViewModel() {
 
 	val themeMode: StateFlow<AppThemeMode?> = userPreferencesRepository.themeMode
@@ -41,4 +44,10 @@ class AppViewModel(
 		val tag = if (locale == AppLocale.SYSTEM) null else locale.languageTag
 		localeApplier.applyLocale(tag)
 	}
+
+	val sessionCreated: SharedFlow<Unit> = reviewPromptService.sessionCreated
+
+	suspend fun shouldRequestReview(): Boolean = reviewPromptService.shouldRequestReview()
+
+	suspend fun markReviewRequested() = reviewPromptService.markRequested()
 }

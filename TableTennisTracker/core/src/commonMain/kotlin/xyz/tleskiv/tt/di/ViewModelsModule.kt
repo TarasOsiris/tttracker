@@ -41,7 +41,7 @@ val viewModelModule = module {
 	viewModelOf(::SessionsScreenViewModelImpl) bind SessionsScreenViewModel::class
 	viewModelOf(::AnalyticsScreenViewModelImpl) bind AnalyticsScreenViewModel::class
 	viewModel<CreateSessionScreenViewModel> { params ->
-		CreateSessionScreenViewModelImpl(params.getOrNull<LocalDate>(), get(), get(), get(), get())
+		CreateSessionScreenViewModelImpl(params.getOrNull<LocalDate>(), get(), get(), get(), get(), get())
 	}
 	viewModel<HealthWorkoutPickerViewModel> { params ->
 		HealthWorkoutPickerViewModelImpl(params.getOrNull<HealthWorkoutPickerViewModel.Target>(), get(), get())

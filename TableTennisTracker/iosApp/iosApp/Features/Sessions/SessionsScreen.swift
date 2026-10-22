@@ -1,3 +1,4 @@
+import StoreKit
 import SwiftUI
 
 struct SessionsScreen: View {
@@ -34,7 +35,13 @@ struct SessionsScreen: View {
     /// choosing rather than on whichever day the list is parked at.
     @Binding var newSession: NewSessionTarget?
 
+    /// Set by the create form once it has stored a session; turned into `asksForReview` only after the
+    /// sheet has fully gone, so a cancelled form never asks.
+    @State private var didCreateSession = false
+    @State private var asksForReview = false
+
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.requestReview) private var requestReview
 
     init(
         model: SessionsModel,
@@ -60,8 +67,12 @@ struct SessionsScreen: View {
         .onChange(of: scenePhase) { _, phase in
             if phase == .active { model.refreshToday() }
         }
-        .sheet(item: $newSession) { target in
-            SessionFormScreen(day: target.day)
+        .sheet(item: $newSession, onDismiss: sessionFormDidDismiss) { target in
+            SessionFormScreen(day: target.day) { didCreateSession = true }
+        }
+        // Keyed on the scene phase too, so leaving the app during the wait cancels the ask.
+        .task(id: asksForReview && scenePhase == .active) {
+            await askForReviewIfDue()
         }
         .navigationTitle(L.navSessions)
         .navigationBarTitleDisplayMode(.inline)
@@ -85,6 +96,23 @@ struct SessionsScreen: View {
     }
 
     private func create(on day: Date) { newSession = NewSessionTarget(day: day) }
+
+    private func sessionFormDidDismiss() {
+        asksForReview = didCreateSession
+        didCreateSession = false
+    }
+
+    /// A moment after the form has closed, and only over the list itself: never once the app has left
+    /// the foreground, while another sheet is up, or more often than the policy in `:core` allows.
+    private func askForReviewIfDue() async {
+        guard asksForReview else { return }
+        defer { asksForReview = false }
+        try? await Task.sleep(for: .seconds(1.5))
+        guard !Task.isCancelled, newSession == nil, !UIApplication.shared.isPresentingOverKeyWindow else { return }
+        guard await model.shouldRequestReview() else { return }
+        requestReview()
+        await model.markReviewRequested()
+    }
 
     private func select(_ day: Date) {
         topDay = day
@@ -153,5 +181,15 @@ struct SessionsScreen: View {
                 .padding(.vertical, 8)
             }
         }
+    }
+}
+
+private extension UIApplication {
+    /// Whether anything — Settings, a paywall, an alert — is presented over the key window's root.
+    var isPresentingOverKeyWindow: Bool {
+        connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .flatMap(\.windows)
+            .contains { $0.isKeyWindow && $0.rootViewController?.presentedViewController != nil }
     }
 }

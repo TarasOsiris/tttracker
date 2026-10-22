@@ -12057,6 +12057,50 @@
         }
       }
     },
+    "debug_review_prompt_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ask for a store review after the next new session, or clear the counters so the usual rules start over."
+          }
+        }
+      }
+    },
+    "debug_review_prompt_request" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Request Review After Next Session"
+          }
+        }
+      }
+    },
+    "debug_review_prompt_reset" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset Review Prompt"
+          }
+        }
+      }
+    },
+    "debug_review_prompt_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Review Prompt"
+          }
+        }
+      }
+    },
     "debug_seed_showcase_data" : {
       "extractionState" : "manual",
       "localizations" : {

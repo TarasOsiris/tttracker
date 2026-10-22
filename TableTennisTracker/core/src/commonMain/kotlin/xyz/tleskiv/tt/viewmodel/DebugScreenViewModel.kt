@@ -19,6 +19,7 @@ import xyz.tleskiv.tt.repo.UserPreferencesRepository
 import xyz.tleskiv.tt.service.MatchInput
 import xyz.tleskiv.tt.service.MatchService
 import xyz.tleskiv.tt.service.OpponentService
+import xyz.tleskiv.tt.service.ReviewPromptService
 import xyz.tleskiv.tt.service.TrainingSessionService
 import xyz.tleskiv.tt.showcase.ShowcaseSeeder
 import kotlin.random.Random
@@ -31,7 +32,8 @@ class DebugScreenViewModel(
 	private val opponentService: OpponentService,
 	private val matchService: MatchService,
 	private val userPreferencesRepository: UserPreferencesRepository,
-	private val localeApplier: LocaleApplier
+	private val localeApplier: LocaleApplier,
+	private val reviewPromptService: ReviewPromptService
 ) : ViewModel() {
 
 	private val _isGenerating = MutableStateFlow(false)
@@ -143,6 +145,14 @@ class DebugScreenViewModel(
 				competitionLevel = if (Random.nextBoolean()) competitionLevels.random() else null
 			)
 		}
+	}
+
+	fun resetReviewPrompt() {
+		viewModelScope.launch { reviewPromptService.reset() }
+	}
+
+	fun requestReviewAfterNextSession() {
+		viewModelScope.launch { reviewPromptService.forceNextRequest() }
 	}
 
 	fun clearAllSessions() {

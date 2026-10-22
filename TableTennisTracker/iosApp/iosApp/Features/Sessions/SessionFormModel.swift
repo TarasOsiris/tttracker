@@ -34,6 +34,9 @@ final class SessionFormModel {
 
     private(set) var isLoading: Bool
 
+    /// Set by the first Save, so a double tap cannot add the session (and its matches) twice.
+    private(set) var isSaving = false
+
     /// The last action that did not go through, if it has not been dismissed yet.
     var failure: OperationFailure?
 
@@ -42,12 +45,13 @@ final class SessionFormModel {
     /// Linking an existing session is done from its details, so only a new one imports.
     var canImportFromHealth: Bool { !isEditing && health.isAvailable }
 
-    var canSave: Bool { Self.durationRange.contains(durationMinutes) }
+    var canSave: Bool { Self.durationRange.contains(durationMinutes) && !isSaving }
 
     @ObservationIgnored private let editing: KotlinUuid?
     @ObservationIgnored private let sessions: any TrainingSessionService
     @ObservationIgnored private let defaults: any UserPreferencesService
     @ObservationIgnored private let analytics: any AnalyticsService
+    @ObservationIgnored private let reviewPrompt: any ReviewPromptService
     @ObservationIgnored private let health: HealthStore
 
     init(
@@ -56,6 +60,7 @@ final class SessionFormModel {
         sessions: any TrainingSessionService = Services.sessions,
         defaults: any UserPreferencesService = Services.sessionDefaults,
         analytics: any AnalyticsService = Services.analytics,
+        reviewPrompt: any ReviewPromptService = Services.reviewPrompt,
         health: HealthStore = .shared
     ) {
         // Resolve the id once, so an unparseable one cannot fall through to the create path and add
@@ -67,6 +72,7 @@ final class SessionFormModel {
         self.sessions = sessions
         self.defaults = defaults
         self.analytics = analytics
+        self.reviewPrompt = reviewPrompt
         self.health = health
     }
 
@@ -87,9 +93,10 @@ final class SessionFormModel {
     /// Returns `true` when the session was stored, so the sheet only dismisses on success.
     func save() async -> Bool {
         guard canSave, let dateTime = day.kotlinLocalDateTimeAtNoon else {
-            failure = OperationFailure()
+            if !isSaving { failure = OperationFailure() }
             return false
         }
+        isSaving = true
         do {
             if let editing {
                 // Always the full list: `editSession` updates the matches it is given by id, adds the
@@ -116,9 +123,11 @@ final class SessionFormModel {
                 )
                 analytics.capture(event: "session_created", properties: eventProperties)
                 if healthWorkout != nil { analytics.capture(event: "health_workout_imported", properties: nil) }
+                try? await reviewPrompt.recordSessionCreated()
             }
             return true
         } catch {
+            isSaving = false
             failure = OperationFailure(error)
             return false
         }

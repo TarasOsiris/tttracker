@@ -7,8 +7,12 @@ struct SessionFormScreen: View {
     @State private var editingMatch: MatchEditorTarget?
     @State private var picksHealthWorkout = false
 
-    init(sessionId: String? = nil, day: Date) {
+    /// Called once the session has been stored, just before the sheet dismisses itself.
+    private let onSave: () -> Void
+
+    init(sessionId: String? = nil, day: Date, onSave: @escaping () -> Void = {}) {
         _model = StateModel(wrappedValue: SessionFormModel(sessionId: sessionId, day: day))
+        self.onSave = onSave
     }
 
     var body: some View {
@@ -55,7 +59,11 @@ struct SessionFormScreen: View {
     }
 
     private func save() {
-        Task { if await model.save() { dismiss() } }
+        Task {
+            guard await model.save() else { return }
+            onSave()
+            dismiss()
+        }
     }
 
     private var healthSection: some View {
