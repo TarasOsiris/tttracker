@@ -78,6 +78,99 @@ const ljubljanaArena = { ...hero, caption: "A packed arena at the 2026 World Tea
 export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: BlogPost[] } = {
   en: [
   {
+    slug: "asian-table-tennis-championships-2026-tashkent-results-japan-women-china-men-korea",
+    title: "Asian Table Tennis Championships 2026: Japan Stun China, Korea's B-Team Shocks Harimoto",
+    seoTitle: "Asian Table Tennis Championships 2026 Results: Japan Beat China, Korea Silver",
+    description:
+      "Asian Championships 2026 Tashkent results: Japan beat China 3-2 for the women's team title, China won men's gold 3-0 over a Korean B-team that beat Harimoto.",
+    published: "2026-10-23",
+    readMinutes: 5,
+    keywords: [
+      "Asian Table Tennis Championships 2026",
+      "Asian Championships Tashkent results",
+      "Japan women China table tennis final",
+      "Honoka Hashimoto",
+      "Kang Dong-soo Harimoto",
+      "ITTF-ATTU Asian Championships",
+      "China men's team title 2026",
+      "table tennis news today",
+    ],
+    hero: {
+      src: "/blog/hayata-hina-hero.webp",
+      width: 1200,
+      height: 675,
+      alt: "Japan's Hina Hayata in a green and black shirt leaning in to play a shot over the net at an Asian Championships",
+      caption: "Japan's Hina Hayata in action. Archive photo from the 2017 Asian Championships in Wuxi, not from Tashkent.",
+      credit: "XIAOYU TANG, CC BY-SA 2.0",
+      creditUrl: "https://commons.wikimedia.org/wiki/File:Hayata_Hina_ATTC2017_9.jpeg",
+    },
+    intro:
+      "China have won the Asian men's team title four years running, but the headline from Tashkent is on the other side of the draw: Japan came from 2-1 down to beat China 3-2 in the women's final. And before the men's final, a Korean B-team led by a player ranked 158th knocked out Tomokazu Harimoto and world No. 1 Sora Matsushima's Japan.",
+    takeaways: [
+      "**Japan beat China 3-2 in the women's team final** at the ITTF-ATTU Asian Championships in Tashkent, with Honoka Hashimoto winning the decisive fifth match 3-1 over Wang Yidi.",
+      "**China won the men's team final 3-0 against South Korea** for a fourth straight title (2023, 2024, 2025, 2026), without Wang Chuqin, Sun Yingsha or Wang Manyu.",
+      "**Korea's B-team stunned Japan 3-1 in the men's semifinal**: Kang Dong-soo (ranked 158th) beat Hiroto Shinozuka 3-0 and then Harimoto 3-1 in the decider.",
+      "**Park Gyu-hyun beat world No. 1 Sora Matsushima 3-0** in that same semifinal; Korea were without Jang Woo-jin and Im Jong-hoon, who played the Asian Games.",
+      "**Singles finals are on Sunday 25 October,** and WTT Champions Montpellier starts on 27 October.",
+    ],
+    sections: [
+      {
+        heading: "Japan beat China in a women's final for the ages",
+        image: {
+          src: "/blog/hayata-hina-celebrate.webp",
+          width: 700,
+          height: 1050,
+          alt: "Hina Hayata clenching her fist and shouting between points",
+          caption: "Hina Hayata celebrating a point. Archive photo from the 2017 Asian Championships, not from Tashkent.",
+          credit: "XIAOYU TANG, CC BY-SA 2.0",
+          creditUrl: "https://commons.wikimedia.org/wiki/File:Hayata_Hina_ATTC2017_26.jpeg",
+        },
+        blocks: [
+          "Both semifinals ended 3-0, then the final went the distance, according to [IANS](https://ianslive.in/china-retains-mens-team-crown-japan-takes-womens-title-at-table-tennis-asian-cships--20261022233022). [Honoka Hashimoto](https://en.wikipedia.org/wiki/Honoka_Hashimoto) opened with a 3-0 win over Chen Yi, but Wang Yidi beat [Miwa Harimoto](https://en.wikipedia.org/wiki/Miwa_Harimoto) 3-2 and Kuai Man beat [Hina Hayata](https://en.wikipedia.org/wiki/Hina_Hayata) 3-0 to put China 2-1 up.",
+          "Japan then won the last two matches: Harimoto beat Chen Yi 3-0, and Hashimoto closed the title with a 3-1 win over Wang Yidi.",
+          "**Why it matters:** China's women are still the benchmark, and they lost with a lineup that did not include Sun Yingsha or Wang Manyu. Even so, Japan's depth, with three different winners across five matches, is exactly the sort of team result that rewrites the pecking order ahead of the 2028 Olympics.",
+        ],
+      },
+      {
+        heading: "China's youth team wins men's gold, but Korea steal the story",
+        blocks: [
+          "China beat South Korea 3-0 in the men's final on 22 October, per IANS: Zhou Qihao beat Kang Dong-soo 3-1, [Lin Shidong](https://en.wikipedia.org/wiki/Lin_Shidong) beat Park Gyu-hyun 3-0 and Xiang Peng beat Park Gang-hyun 3-1. It is China's fourth consecutive Asian men's team title, won without Wang Chuqin.",
+          "The games were closer than the scoreline, according to the [Seoul Economic Daily](https://en.sedaily.com/sports/2026/10/23/koreas-backup-table-tennis-squad-reaches-asian-final-falls): Kang lost the first match 8-11, 5-11, 11-9, 9-11, and Park Gang-hyun, the highest-ranked Korean at 46th, took the third game 11-9 before losing the fourth 7-11.",
+          "**Why it matters:** this is a squad Korea sent without Jang Woo-jin and Im Jong-hoon, and it still reached its first Asian team final in five years. For a sport where rankings are treated as destiny, a final built around players ranked 158th, 80th and 46th is a good sign for Korea's next generation.",
+        ],
+      },
+      {
+        heading: "The upset: Kang Dong-soo beats Harimoto",
+        image: {
+          src: "/blog/harimoto-tomokazu.webp",
+          width: 1000,
+          height: 666,
+          alt: "Young Tomokazu Harimoto crouching over the table about to serve during a practice session",
+          caption: "Tomokazu Harimoto serving, in an archive photo from 2017.",
+          credit: "Peter Porai-Koshits, CC BY-SA 4.0",
+          creditUrl: "https://commons.wikimedia.org/wiki/File:ITTF_World_Tour_2017_German_Open_Harimoto_Tomokazu_02.jpg",
+        },
+        blocks: [
+          "The men's semifinal was the shock of the week. As [SBS](https://news.sbs.co.kr/english/article.do?news_id=N1008810681) reports, Kang beat world No. 20 Shinozuka 3-0, Harimoto (No. 3) beat Park Gang-hyun 3-0, and Park Gyu-hyun beat [Sora Matsushima](https://en.wikipedia.org/wiki/Sora_Matsushima), the world No. 1, 3-0. That left [Tomokazu Harimoto](https://en.wikipedia.org/wiki/Tomokazu_Harimoto) against Kang in the decider, and Kang won it 3-1 to send Korea to the final.",
+          "**Why it matters:** team formats punish any lineup that relies on one star. Japan won only one of four matches despite fielding two of the world's top three, a reminder that a hot underdog, a settled game plan and a decisive fourth match can beat rankings.",
+        ],
+      },
+      {
+        heading: "What's next and how to use it",
+        blocks: [
+          "The Asian Championships continue with singles and mixed doubles; the singles finals are on Sunday 25 October, per the [ITTF event page](https://www.ittf.com/tournament/3474/ITTF%20Attu%20Asian%20championships%202026/). Then the circuit moves to [WTT Champions Montpellier](/blog/wtt-champions-montpellier-2026-preview-lebrun-wang-manyu-rankings), 27 October to 1 November.",
+          "Team finals are decided by who handles pressure, not who has the fanciest backhand. Log your own matches in [Ping Pong & Table Tennis Log](/) to see how you do in deciders, sharpen your first three balls with the [serve library](/serves), study [spin](/spins), run the [drills](/drills) and test yourself with the [quiz](/quiz).",
+        ],
+      },
+    ],
+    sources: [
+      { label: "IANS: China retains men's team crown, Japan takes women's title at Asian Championships", url: "https://ianslive.in/china-retains-mens-team-crown-japan-takes-womens-title-at-table-tennis-asian-cships--20261022233022" },
+      { label: "SBS: S. Korea beats Japan to reach Asian Championships men's team final", url: "https://news.sbs.co.kr/english/article.do?news_id=N1008810681" },
+      { label: "Seoul Economic Daily: Korea's backup squad reaches Asian final, falls to China", url: "https://en.sedaily.com/sports/2026/10/23/koreas-backup-table-tennis-squad-reaches-asian-final-falls" },
+      { label: "ITTF-ATTU Asian Championships Tashkent 2026", url: "https://www.ittf.com/tournament/3474/ITTF%20Attu%20Asian%20championships%202026/" },
+    ],
+  },
+  {
     slug: "chris-tam-wtt-managing-director-africa-championships-tangier-2026",
     title: "Chris Tam Named WTT Managing Director + Africa Championships 2026 Tangier",
     seoTitle: "Chris Tam WTT Managing Director, Africa Championships Tangier 2026",
