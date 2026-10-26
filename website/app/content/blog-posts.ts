@@ -78,6 +78,85 @@ const ljubljanaArena = { ...hero, caption: "A packed arena at the 2026 World Tea
 export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: BlogPost[] } = {
   en: [
   {
+    slug: "wtt-champions-montpellier-2026-draw-lebrun-brothers-wang-chuqin-out",
+    title: "WTT Champions Montpellier 2026 Draw: Lebrun Brothers on Collision Course, Wang Chuqin Out",
+    seoTitle: "WTT Champions Montpellier 2026 Draw: Lebrun Brothers, Wang Chuqin Out",
+    description:
+      "Montpellier draw is out: Alexis and Félix Lebrun could meet in the quarterfinals, Wang Chuqin has withdrawn injured, and Matsushima and Wang Manyu lead the field from 27 October.",
+    published: "2026-10-26",
+    readMinutes: 4,
+    keywords: [
+      "WTT Champions Montpellier 2026 draw",
+      "Lebrun brothers quarterfinal",
+      "Wang Chuqin withdraws",
+      "Felix Lebrun Montpellier",
+      "Sora Matsushima Montpellier",
+      "Wang Manyu Montpellier",
+      "table tennis news today",
+    ],
+    hero: {
+      src: "/blog/alexis-lebrun-euros.webp",
+      width: 1200,
+      height: 675,
+      alt: "Alexis Lebrun in a red France shirt and glasses leaning over the net to receive a serve",
+      caption: "Alexis Lebrun, who could meet his brother in the quarterfinals. Archive photo from the 2022 European Championships in Munich, not from Montpellier.",
+      credit: "Granada, CC BY-SA 4.0",
+      creditUrl: "https://commons.wikimedia.org/wiki/File:20220818_European_Championships_Munich_2022_Alexis_Lebrun_850_9513.jpg",
+    },
+    intro:
+      "The draw for WTT Champions Montpellier was made on Sunday, and France got a spicy one: Alexis and Félix Lebrun are on course for a brother-versus-brother quarterfinal. The bigger blow landed two days earlier, when Wang Chuqin pulled out injured. Play starts tomorrow, 27 October.",
+    takeaways: [
+      "**The draw took place Sunday 25 October** at the Sud de France Arena, and the Lebrun brothers could meet in the quarterfinals, a one-in-four chance according to [Titres Presse](https://www.titrespresse.com/26495292603/wtt-champions-montpellier).",
+      "**Wang Chuqin has withdrawn with an injury** (announced 23 October), per [tennis2table](https://tennis2table.com/actualite/internationale/wtt-world-table-tennis/wtt-champions-montpellier-2026-2.html). He is the reigning world champion.",
+      "**Sora Matsushima arrives as world No. 1** after winning China Smash; Félix Lebrun is No. 2 and Alexis Lebrun No. 8.",
+      "**Wang Manyu is women's No. 1** and defending champion Wang Yidi is No. 4, with Hitomi Sato and Sabine Winter also in the field.",
+      "**The event runs 27 October to 1 November,** with finals on Sunday 1 November.",
+    ],
+    sections: [
+      {
+        heading: "Lebrun vs Lebrun? The draw sets up a family quarterfinal",
+        image: { ...lebrunInline, caption: "Félix Lebrun at the 2022 European Championships in Munich, aged 15. Archive photo, not from Montpellier." },
+        blocks: [
+          "Both [Félix](https://en.wikipedia.org/wiki/F%C3%A9lix_Lebrun) and [Alexis Lebrun](https://en.wikipedia.org/wiki/Alexis_Lebrun) landed in the same quarter of the 32-player knockout draw, which means they would meet in the quarterfinals if both win their opening matches. [Titres Presse](https://www.titrespresse.com/26495292603/wtt-champions-montpellier) quotes the odds as roughly one in four. We could not see the first-round opponents in the sources we read, so check the official WTT bracket for those.",
+          "Félix is the local favourite, world No. 2 and fresh from the European title in Ljubljana (see our [Europeans recap](/blog/felix-lebrun-european-champion-2026-abraamian-qualifier-gold-ljubljana)). Alexis is world No. 8 and was a semifinalist here last year, per [Presse Agence](https://presseagence.fr/montpellier-tennis-de-table-un-plateau-de-rois-pour-le-wtt-champions-2026/).",
+        ],
+      },
+      {
+        heading: "Wang Chuqin is out: who benefits?",
+        blocks: [
+          "Our [preview](/blog/wtt-champions-montpellier-2026-preview-lebrun-wang-manyu-rankings) warned the entry list could change, and it did. [tennis2table](https://tennis2table.com/actualite/internationale/wtt-world-table-tennis/wtt-champions-montpellier-2026-2.html) reports that Wang Chuqin withdrew injured on 23 October and was replaced in the men's draw by South Korea's An Jaehyun. Titres Presse calls Wang Félix Lebrun's \"bête noire\", so France's home favourite loses a feared opponent. Defending champion [Truls Möregård](https://en.wikipedia.org/wiki/Truls_M%C3%B6reg%C3%A5rdh) remains in the field.",
+          "Wang was also absent from China Smash, which Matsushima won. If you want the full context on who is where, our [rankings post](/blog/table-tennis-world-rankings-wang-manyu-no-1-asian-championships-montpellier-preview) has the list.",
+        ],
+      },
+      {
+        heading: "Matsushima, Wang Manyu and the rest of the field",
+        image: { ...wangManyuImage, caption: "Wang Manyu in action, in an archive photo from 2016. Not from Montpellier." },
+        blocks: [
+          "[Sora Matsushima](https://en.wikipedia.org/wiki/Sora_Matsushima), 19, is world No. 1 and was runner-up in Montpellier last year. On the women's side [Wang Manyu](https://en.wikipedia.org/wiki/Wang_Manyu) has been No. 1 since 12 October after beating Hitomi Sato in the China Smash final. Wang Yidi (No. 4) defends her title, Sato is No. 8, and Germany's Sabine Winter (No. 9) was a finalist last year.",
+          "French women are in the mix too: Prithika Pavade, Europeans bronze medallist, and Jia Nan Yuan (No. 33). Matches are shown in France on L'Équipe, per the [City of Montpellier](https://encommun.montpellier.fr/articles/2026-10-24-wtt-2026-le-retour-des-meilleurs-pongistes-mondiaux-montpellier).",
+        ],
+      },
+      {
+        heading: "Asian Championships: the team story still echoes",
+        blocks: [
+          "Last week's Asian Championships in Tashkent ended the team events with China taking the men's title and Japan beating China 3-2 in the women's final; our [full recap](/blog/asian-table-tennis-championships-2026-tashkent-results-japan-women-china-men-korea) has the scores. We could not find confirmed singles results at the time of writing, so we are not reporting them.",
+        ],
+      },
+      {
+        heading: "Turn the viewing into practice",
+        blocks: [
+          "Brothers who know each other's game inside out make a great study: watch how they handle serve and receive, then copy one pattern. Log your own matches in [Ping Pong & Table Tennis Log](/), learn new serves from the [serve library](/serves), see how [spin](/spins) changes the bounce, work through the [drills](/drills) and test yourself in the [quiz](/quiz).",
+        ],
+      },
+    ],
+    sources: [
+      { label: "Titres Presse: WTT Champions Montpellier draw", url: "https://www.titrespresse.com/26495292603/wtt-champions-montpellier" },
+      { label: "tennis2table: WTT Champions Montpellier 2026", url: "https://tennis2table.com/actualite/internationale/wtt-world-table-tennis/wtt-champions-montpellier-2026-2.html" },
+      { label: "Presse Agence: WTT Champions 2026 Montpellier", url: "https://presseagence.fr/montpellier-tennis-de-table-un-plateau-de-rois-pour-le-wtt-champions-2026/" },
+      { label: "City of Montpellier: WTT 2026", url: "https://encommun.montpellier.fr/articles/2026-10-24-wtt-2026-le-retour-des-meilleurs-pongistes-mondiaux-montpellier" },
+    ],
+  },
+  {
     slug: "asian-table-tennis-championships-2026-tashkent-results-japan-women-china-men-korea",
     title: "Asian Table Tennis Championships 2026: Japan Stun China, Korea's B-Team Shocks Harimoto",
     seoTitle: "Asian Table Tennis Championships 2026 Results: Japan Beat China, Korea Silver",
