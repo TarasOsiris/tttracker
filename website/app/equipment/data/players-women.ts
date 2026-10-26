@@ -1,4 +1,4 @@
-// Top 25 women's singles (ITTF/WTT world ranking, week 42 2026, published 2026-10-13) and their equipment setups.
+// Top 25 women's singles (ITTF/WTT world ranking, week 43 2026, published 2026-10-19) and their equipment setups.
 // Every slot cites a source and an "as of" date. The ranking was read from the data feed behind the official
 // worldtabletennis.com rankings page. Hand and grip come from each player's WTT profile (Qin Yuxuan: Chinese Wikipedia;
 // Joo Cheonhui has none, so null). Sponsor pages list a player's rubbers without saying which side each is on; where a
@@ -11,11 +11,11 @@ import type { Player, Source } from "../models";
 
 const ACCESSED = "2026-10-03";
 const VERIFIED = "2026-10-03";
-const RANKING_DATE = "2026-10-13";
+const RANKING_DATE = "2026-10-19";
 
 const ranking: Source = {
   url: "https://www.worldtabletennis.com/rankings",
-  label: "ITTF/WTT Women's Singles World Ranking, week 42 2026 (published 2026-10-13)",
+  label: "ITTF/WTT Women's Singles World Ranking, week 43 2026 (published 2026-10-19)",
   kind: "ittf",
   accessed: "2026-10-19",
 };

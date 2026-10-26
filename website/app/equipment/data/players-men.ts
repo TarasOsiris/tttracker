@@ -1,4 +1,4 @@
-// Top 25 men's singles (ITTF/WTT world ranking, week 42 2026, published 2026-10-13) and their equipment setups.
+// Top 25 men's singles (ITTF/WTT world ranking, week 43 2026, published 2026-10-19) and their equipment setups.
 // Every slot cites a source and an "as of" date. Butterfly's sponsor pages list a player's blade and rubbers but not
 // which rubber is on which side; where they list two different rubbers, sides come from the source named in the label
 // and the slot is "reported", not "confirmed". Undated pages use the date they were read and are at most "reported".
@@ -6,11 +6,11 @@ import type { Player, Source } from "../models";
 
 const ACCESSED = "2026-10-03";
 const VERIFIED = "2026-10-03";
-const RANKING_DATE = "2026-10-13";
+const RANKING_DATE = "2026-10-19";
 
 const ranking: Source = {
   url: "https://www.worldtabletennis.com/rankings",
-  label: "ITTF/WTT Men's Singles World Ranking, week 42 2026",
+  label: "ITTF/WTT Men's Singles World Ranking, week 43 2026 (published 2026-10-19)",
   kind: "ittf",
   accessed: "2026-10-19",
 };
@@ -150,6 +150,7 @@ const franziskaTtd: Source = {
   accessed: ACCESSED,
 };
 const jhaBf = butterfly("jha-kanak", "Butterfly: Kanak Jha sponsoring page");
+const kallbergBf = butterfly("kallberg-anton", "Butterfly: Anton Källberg sponsoring page (equipment as of May 22, 2026)");
 
 const zhouQihaoPpong: Source = {
   url: "https://www.ppongsuper.com/top-10-new-table-tennis-products-of-2025/",
@@ -1235,5 +1236,39 @@ export const menPlayers: Player[] = [
       credit: "Marcus Cyron, CC BY-SA 3.0",
     },
     lastVerified: VERIFIED,
+  },
+  {
+    id: "anton-kallberg",
+    name: "Anton Källberg",
+    country: "SWE",
+    gender: "men",
+    hand: "right",
+    grip: "shakehand",
+    ranking: rank(25),
+    setup: {
+      blade: {
+        itemId: "butterfly-timo-boll-alc",
+        name: "Butterfly Timo Boll ALC",
+        confidence: "confirmed",
+        source: kallbergBf,
+        asOf: "2026-05-22",
+      },
+      forehand: {
+        itemId: "butterfly-dignics-09c",
+        name: "Butterfly Dignics 09C",
+        confidence: "confirmed",
+        source: kallbergBf,
+        asOf: "2026-05-22",
+      },
+      backhand: {
+        itemId: "butterfly-dignics-09c",
+        name: "Butterfly Dignics 09C",
+        confidence: "confirmed",
+        source: kallbergBf,
+        asOf: "2026-05-22",
+      },
+    },
+    history: [],
+    lastVerified: "2026-10-26",
   },
 ];
