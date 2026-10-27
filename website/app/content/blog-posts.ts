@@ -78,6 +78,69 @@ const ljubljanaArena = { ...hero, caption: "A packed arena at the 2026 World Tea
 export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: BlogPost[] } = {
   en: [
   {
+    slug: "asian-table-tennis-championships-2026-singles-chen-yi-tomokazu-harimoto-montpellier-day-one",
+    title: "Asian Championships 2026: Chen Yi and Tomokazu Harimoto Win Singles Gold",
+    seoTitle: "Asian Championships 2026 Singles: Chen Yi, Tomokazu Harimoto Win Gold",
+    description:
+      "Chen Yi beat Miwa Harimoto 3-0 and Tomokazu Harimoto edged Li Tianyang 3-2 in Tashkent. China won 4 titles to Japan's 3. Plus Montpellier opening-day matches to watch.",
+    published: "2026-10-27",
+    readMinutes: 4,
+    keywords: [
+      "Asian Table Tennis Championships 2026 results",
+      "Chen Yi women's singles champion",
+      "Tomokazu Harimoto Asian champion",
+      "Tashkent table tennis",
+      "WTT Champions Montpellier day one",
+      "Felix Lebrun Anders Lind",
+      "table tennis news today",
+    ],
+    hero,
+    intro:
+      "Tomokazu Harimoto needed five games to beat Li Tianyang for the Asian title, while China's Chen Yi, 22, swept Miwa Harimoto in the women's final. The Tashkent finals ended on Sunday with China on four titles and Japan on three. Now the spotlight moves to Montpellier, where play started today.",
+    takeaways: [
+      "**Tomokazu Harimoto won men's singles,** beating China's Li Tianyang 3-2 in the final, per [Butterfly Online](https://butterflyonline.com/china-wins-4-japan-wins-3-at-asian-championships/).",
+      "**Chen Yi, 22, won women's singles** with an 11-5, 11-8, 11-6 final win over Japan's Miwa Harimoto, after sweeping teammate Wang Yidi in the semifinals ([UNI](https://www.uniindia.com/sports/sports-tt-asian-championships-chen-harimoto/225525)).",
+      "**Medal-event tally: China 4, Japan 3.** China took men's team, men's doubles and women's doubles (Kuai Man / Wang Yidi) plus the women's singles; Japan took women's team, mixed doubles (Miwa Harimoto / Sora Matsushima) and men's singles.",
+      "**WTT Champions Montpellier is under way** (27 October to 1 November). Félix Lebrun plays Anders Lind at 18:30 tonight and Truls Möregårdh meets Thibault Poret at 20:50, per the [published schedule](https://dicodusport.fr/blog/le-programme-et-les-resultats-en-direct-du-wtt-champions-montpellier-2026/).",
+    ],
+    sections: [
+      {
+        heading: "Tomokazu Harimoto edges Li Tianyang in five games",
+        image: { ...harimotoImage, caption: "Tomokazu Harimoto serving, in an archive photo from 2017. Not from Tashkent." },
+        blocks: [
+          "[Tomokazu Harimoto](https://en.wikipedia.org/wiki/Tomokazu_Harimoto) took the Asian men's singles crown with a 3-2 win over Li Tianyang, according to Butterfly Online's wrap-up. The sources we read did not give the game scores, so we will not guess them.",
+          "Why it matters: China won the men's team final 3-0 over Korea for a fourth straight title, so a Japanese singles champion is a real dent in the usual script. Harimoto arrives in Montpellier as world No. 3, per [Écho des Tribunes](https://echo-des-tribunes.com/herault-tribune/articles/wtt-champions-montpellier-les-freres-lebrun-fixes-sur-leurs-adversaires-un-tirage-releve-pour-les-francais), and plays Simon Gauzy tomorrow.",
+        ],
+      },
+      {
+        heading: "Chen Yi powers past Miwa Harimoto",
+        blocks: [
+          "In the women's final Chen Yi won 11-5, 11-8, 11-6 against Miwa Harimoto. Earlier she had swept Wang Yidi, her own teammate, in the semifinals, according to UNI. Japan still had a great week: the women's team beat China 3-2 in the team final (see our [team recap](/blog/asian-table-tennis-championships-2026-tashkent-results-japan-women-china-men-korea)), and Miwa Harimoto and Sora Matsushima won mixed doubles.",
+          "China's other titles came in the men's and women's doubles, the latter through Kuai Man and Wang Yidi. Final scores for the doubles were not in the reports we saw.",
+        ],
+      },
+      {
+        heading: "Montpellier opening days: matches to circle",
+        blocks: [
+          "Today (Tuesday 27 October), French qualifier Camille Lutz meets China's Sun Yingsha at 13:10, [Félix Lebrun](https://en.wikipedia.org/wiki/F%C3%A9lix_Lebrun) plays Denmark's Anders Lind at 18:30, and Thibault Poret takes on defending champion Truls Möregårdh at 20:50. Wednesday brings Alexis Lebrun against Patrick Franziska (20:15), Gauzy against Harimoto (19:05), Prithika Pavade against Hitomi Sato (18:30) and Jia Nan Yuan against Sabine Winter (20:50).",
+          "We do not have results yet, so check the official [WTT site](https://www.worldtabletennis.com) for live scores. Our [draw report](/blog/wtt-champions-montpellier-2026-draw-lebrun-brothers-wang-chuqin-out) explains the bracket, including the possible Lebrun-versus-Lebrun quarterfinal. Finals are on Sunday 1 November.",
+        ],
+      },
+      {
+        heading: "Turn the viewing into practice",
+        blocks: [
+          "A five-game final is a lesson in staying calm at 2-2. Track your own deciding games in [Ping Pong & Table Tennis Log](/), steal a serve from the [serve library](/serves), learn how [spin](/spins) changes the bounce, run the [drills](/drills) and test yourself in the [quiz](/quiz).",
+        ],
+      },
+    ],
+    sources: [
+      { label: "UNI: Chen, Harimoto crowned in singles at Asian Championships", url: "https://www.uniindia.com/sports/sports-tt-asian-championships-chen-harimoto/225525" },
+      { label: "Butterfly Online: China Wins 4, Japan Wins 3 at Asian Championships", url: "https://butterflyonline.com/china-wins-4-japan-wins-3-at-asian-championships/" },
+      { label: "Écho des Tribunes: Montpellier draw", url: "https://echo-des-tribunes.com/herault-tribune/articles/wtt-champions-montpellier-les-freres-lebrun-fixes-sur-leurs-adversaires-un-tirage-releve-pour-les-francais" },
+      { label: "Dico du Sport: Montpellier 2026 schedule", url: "https://dicodusport.fr/blog/le-programme-et-les-resultats-en-direct-du-wtt-champions-montpellier-2026/" },
+    ],
+  },
+  {
     slug: "wtt-champions-montpellier-2026-draw-lebrun-brothers-wang-chuqin-out",
     title: "WTT Champions Montpellier 2026 Draw: Lebrun Brothers on Collision Course, Wang Chuqin Out",
     seoTitle: "WTT Champions Montpellier 2026 Draw: Lebrun Brothers, Wang Chuqin Out",
