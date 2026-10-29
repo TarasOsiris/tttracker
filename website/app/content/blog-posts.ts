@@ -78,6 +78,70 @@ const ljubljanaArena = { ...hero, caption: "A packed arena at the 2026 World Tea
 export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: BlogPost[] } = {
   en: [
   {
+    slug: "simon-gauzy-beats-tomokazu-harimoto-wtt-champions-montpellier-2026",
+    title: "Simon Gauzy Beats Tomokazu Harimoto at WTT Champions Montpellier 2026",
+    seoTitle: "Gauzy Beats Harimoto 3-0 at WTT Champions Montpellier 2026",
+    description:
+      "Simon Gauzy stunned world No. 3 Tomokazu Harimoto 3-0 (15-13, 11-7, 11-6) in Montpellier, while Alexis Lebrun and Flavien Coton went out. Results and what's next.",
+    published: "2026-10-29",
+    readMinutes: 4,
+    keywords: [
+      "Simon Gauzy Tomokazu Harimoto",
+      "WTT Champions Montpellier 2026 results",
+      "Alexis Lebrun Montpellier",
+      "Felix Lebrun Zhou Qihao",
+      "Flavien Coton Jang Woojin",
+      "table tennis news today",
+      "French table tennis",
+    ],
+    hero,
+    intro:
+      "\"First time I've beaten him, and it's in front of you!\" Simon Gauzy said after he took down Tomokazu Harimoto, the world No. 3 and newly crowned Asian champion, 3-0 on Wednesday night in Montpellier. The French crowd got its upset, but it was a mixed day for the home team: Alexis Lebrun and Flavien Coton both lost.",
+    takeaways: [
+      "**Simon Gauzy beat Tomokazu Harimoto 15-13, 11-7, 11-6** in his opening match at WTT Champions Montpellier on 28 October, per [Tennis2Table](https://tennis2table.com/tennis-de-table/wtt-champions-montpellier-simon-gauzy-fait-tomber-harimoto.html).",
+      "**Gauzy's next opponent** is Liang Jingkun or Wen Ruibo, according to [FFL](https://fflose.com/la-deroute-inexplicable-de-simon-gauzy-au-wtt-champions-de-montpellier/).",
+      "**Alexis Lebrun is out.** Reports say he lost to Patrick Franziska despite holding four match points; we could not confirm the game scores.",
+      "**Flavien Coton lost to Korea's Jang Woojin** in a close match, and in the women's draw Hitomi Sato and Sabine Winter advanced.",
+    ],
+    sections: [
+      {
+        heading: "Gauzy wins the match of his career against Harimoto",
+        image: { ...harimotoImage, caption: "Tomokazu Harimoto serving, in an archive photo from 2017. Not from Montpellier." },
+        blocks: [
+          "The first game decided it. Gauzy took it 15-13, then ran away with 11-7 and 11-6, ending a long losing run against [Tomokazu Harimoto](https://en.wikipedia.org/wiki/Tomokazu_Harimoto). \"I told myself that if I could do it, maybe it would be here,\" he said, per Tennis2Table.",
+          "Why it matters: Harimoto came to France as the Asian singles champion after a five-game final win over Li Tianyang (see our [Tashkent recap](/blog/asian-table-tennis-championships-2026-singles-chen-yi-tomokazu-harimoto-montpellier-day-one)). Losing in straight games in his first match is a rough reset, and it opens the top half of the draw for a home favourite.",
+        ],
+      },
+      {
+        heading: "A tough night for the other French hopes",
+        blocks: [
+          "Alexis Lebrun's match against Germany's Patrick Franziska was the evening headliner. FFL reports he lost despite having four match points, but the two reports we found disagree on the game scores, so we are not printing any. Flavien Coton went five games with South Korea's Jang Woojin before losing.",
+          "[Félix Lebrun](https://en.wikipedia.org/wiki/F%C3%A9lix_Lebrun) is still alive: he beat Anders Lind 11-8, 11-3, 11-3 on Tuesday and was scheduled to play China's Zhou Qihao at 20:15 on Wednesday. We did not find that result yet, so check the official [WTT site](https://www.worldtabletennis.com) for the score. Read how the bracket was drawn in our [draw report](/blog/wtt-champions-montpellier-2026-draw-lebrun-brothers-wang-chuqin-out).",
+        ],
+      },
+      {
+        heading: "Women's draw: Sato and Winter through",
+        image: { ...lebrunInline, caption: "Félix Lebrun at the 2022 European Championships in Munich. Archive photo, not from Montpellier." },
+        blocks: [
+          "In the women's first round, Japan's Hitomi Sato beat France's Prithika Pavade 10-12, 6-11, 14-12, 1-11 (that listing shows a four-game score, so we quote it as published), and Germany's Sabine Winter beat Jia Nan Yuan 4-11, 11-5, 4-11, 9-11. Camille Lutz had already lost 3-0 to Sun Yingsha on Tuesday.",
+          "Why it matters: France has far fewer women left than men, so Winter, a finalist here last year, is a name to watch. Finals are on Sunday 1 November (women 17:30, men 18:30 local, per the schedule).",
+        ],
+      },
+      {
+        heading: "Turn the viewing into practice",
+        blocks: [
+          "Gauzy won the tight first game 15-13, and that is where matches are won. Log your own deuce games in [Ping Pong & Table Tennis Log](/), learn a new serve from the [serve library](/serves), see how [spin](/spins) changes the bounce, work the [drills](/drills) and test yourself in the [quiz](/quiz).",
+        ],
+      },
+    ],
+    sources: [
+      { label: "Tennis2Table: Simon Gauzy bat Harimoto 3-0", url: "https://tennis2table.com/tennis-de-table/wtt-champions-montpellier-simon-gauzy-fait-tomber-harimoto.html" },
+      { label: "FFL: Gauzy at WTT Champions Montpellier", url: "https://fflose.com/la-deroute-inexplicable-de-simon-gauzy-au-wtt-champions-de-montpellier/" },
+      { label: "Dico du Sport: Montpellier 2026 schedule and results", url: "https://dicodusport.fr/blog/le-programme-et-les-resultats-en-direct-du-wtt-champions-montpellier-2026/" },
+      { label: "Equipe-France.fr: Félix Lebrun shines, Poret and Lutz out", url: "https://www.equipe-france.fr/tennis-de-table/wtt-champions-montpellier-2026-felix-lebrun-brille-poret-et-lutz-elimines" },
+    ],
+  },
+  {
     slug: "asian-table-tennis-championships-2026-singles-chen-yi-tomokazu-harimoto-montpellier-day-one",
     title: "Asian Championships 2026: Chen Yi and Tomokazu Harimoto Win Singles Gold",
     seoTitle: "Asian Championships 2026 Singles: Chen Yi, Tomokazu Harimoto Win Gold",
