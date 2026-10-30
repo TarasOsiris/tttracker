@@ -78,6 +78,86 @@ const ljubljanaArena = { ...hero, caption: "A packed arena at the 2026 World Tea
 export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: BlogPost[] } = {
   en: [
   {
+    slug: "alexis-lebrun-loses-franziska-four-match-points-wtt-champions-montpellier-2026",
+    title: "Alexis Lebrun Loses to Franziska From 2-0 Up at WTT Champions Montpellier",
+    seoTitle: "Alexis Lebrun Out of WTT Champions Montpellier 2026: 3-2 Loss to Franziska",
+    description:
+      "Alexis Lebrun led Patrick Franziska 2-0 and held match points but lost 11-9, 11-4, 12-14, 7-11, 9-11 in Montpellier. Plus Friday's Félix Lebrun and Gauzy matches.",
+    published: "2026-10-30",
+    readMinutes: 4,
+    keywords: [
+      "Alexis Lebrun Patrick Franziska",
+      "WTT Champions Montpellier 2026",
+      "Felix Lebrun Zhou Qihao",
+      "Simon Gauzy Liang Jingkun",
+      "table tennis results today",
+      "WTT Champions Montpellier schedule",
+      "French table tennis news",
+    ],
+    hero: {
+      src: "/blog/alexis-lebrun-euros.webp",
+      width: 1200,
+      height: 675,
+      alt: "Alexis Lebrun in a red France shirt and glasses leaning over the net to receive a serve",
+      caption: "Alexis Lebrun, archive photo from the 2022 European Championships in Munich, not from Montpellier.",
+      credit: "Granada, CC BY-SA 4.0",
+      creditUrl: "https://commons.wikimedia.org/wiki/File:20220818_European_Championships_Munich_2022_Alexis_Lebrun_850_9513.jpg",
+    },
+    intro:
+      "Two games up, match points in hand, a home crowd roaring: Alexis Lebrun had Patrick Franziska where he wanted him in Montpellier, and still lost 3-2. \"I had match points. It's hard,\" the world No. 8 said afterwards. Friday brings the next French test, with his brother Félix and Simon Gauzy both in the round of 16.",
+    takeaways: [
+      "**Franziska beat Alexis Lebrun 3-2** (9-11, 4-11, 14-12, 11-7, 11-9 from Franziska's side) in the first round of WTT Champions Montpellier, per the [Olympics.com results page](https://www.olympics.com/fr/infos/wtt-champions-montpellier-2026-resultats-programme-score-matchs-tennis-de-table) as relayed by [Dico du Sport](https://dicodusport.fr/blog/le-programme-et-les-resultats-en-direct-du-wtt-champions-montpellier-2026/).",
+      "**Flavien Coton also blew a 2-0 lead**, losing 11-5, 11-9, 9-11, 6-11, 9-11 to South Korea's Jang Woojin.",
+      "**Friday 30 October:** Simon Gauzy plays China's Liang Jingkun, and Félix Lebrun plays Zhou Qihao (20:15), per the [city of Montpellier](https://encommun.montpellier.fr/articles/2026-10-29-wtt-champions-2026-des-hauts-et-des-bas-pour-les-pongistes-francais) and the [FFTT](https://www.fftt.com/actualites/wtt/suivre-le-wtt-champions-de-montpellier-2026/).",
+      "**Wang Chuqin withdrew injured** on 23 October and An Jaehyun took his place in the draw, per [Tennis2Table](https://tennis2table.com/actualite/internationale/wtt-world-table-tennis/wtt-champions-montpellier-2026-2.html).",
+    ],
+    sections: [
+      {
+        heading: "How Alexis Lebrun let it slip",
+        blocks: [
+          "The scoreline reads like a thriller. Lebrun took the first two games 11-9 and 11-4, then Patrick Franziska won the third 14-12, the fourth 11-7 and the decider 11-9. Per the French reports, Lebrun had match points in that tight third game and could not convert them. The ranking gap was small too: Lebrun is world No. 8 and Franziska No. 12.",
+          "Why it matters: Alexis reached the semifinals here last year and was drawn on course for a brother-versus-brother quarterfinal (see our [draw report](/blog/wtt-champions-montpellier-2026-draw-lebrun-brothers-wang-chuqin-out)). That now cannot happen, and the French hopes in the men's draw rest on Félix and Gauzy.",
+        ],
+      },
+      {
+        heading: "Coton and Poret: close, then out",
+        image: {
+          src: "/blog/alexis-lebrun-return.webp",
+          width: 1000,
+          height: 666,
+          alt: "Alexis Lebrun in a red France shirt crouching to receive a serve, with the ball just above the table",
+          caption: "Alexis Lebrun receiving serve. Archive photo from the 2022 European Championships in Munich, not from Montpellier.",
+          credit: "Granada, CC BY-SA 4.0",
+          creditUrl: "https://commons.wikimedia.org/wiki/File:20220818_European_Championships_Munich_2022_Alexis_Lebrun_850_9641.jpg",
+        },
+        blocks: [
+          "Flavien Coton, ranked 23rd, led Jang Woojin 2-0 and 9-5 in the decider according to Tennis2Table, then lost 9-11 in the fifth. Thibault Poret was beaten 3-0 (8-11, 6-11, 8-11) by Sweden's Truls Möregårdh.",
+          "Why it matters: five-game matches turn on a handful of points. Both French players led and lost, a reminder that closing a match out is its own skill.",
+        ],
+      },
+      {
+        heading: "Friday: Félix Lebrun and Gauzy carry France",
+        image: { ...lebrunInline, caption: "Félix Lebrun at the 2022 European Championships in Munich, aged 15. Archive photo, not from Montpellier." },
+        blocks: [
+          "Félix Lebrun, the Montpellier-area favourite and newly crowned European champion, beat Anders Lind 11-8, 11-3, 11-3 in his opener and now faces Zhou Qihao, ranked 13th, in the round of 16. Simon Gauzy, ranked 30th, stunned Tomokazu Harimoto 15-13, 11-7, 11-6 (full story in our [Gauzy report](/blog/simon-gauzy-beats-tomokazu-harimoto-wtt-champions-montpellier-2026)) and meets Liang Jingkun.",
+          "We could not find results for these Friday matches at the time of writing, so check the official [WTT site](https://www.worldtabletennis.com) for scores. The finals are on Sunday 1 November (women 17:30, men 18:30), per the schedule.",
+        ],
+      },
+      {
+        heading: "Turn the heartbreak into practice",
+        blocks: [
+          "Leading 2-0 and losing is a mental game as much as a technical one. Track your own five-game matches and decider records in [Ping Pong & Table Tennis Log](/), sharpen your closing serves in the [serve library](/serves), study how [spin](/spins) changes tight points, run the [drills](/drills) and test yourself in the [quiz](/quiz).",
+        ],
+      },
+    ],
+    sources: [
+      { label: "Dico du Sport: Montpellier 2026 schedule and live results", url: "https://dicodusport.fr/blog/le-programme-et-les-resultats-en-direct-du-wtt-champions-montpellier-2026/" },
+      { label: "Ville de Montpellier: des hauts et des bas pour les pongistes français", url: "https://encommun.montpellier.fr/articles/2026-10-29-wtt-champions-2026-des-hauts-et-des-bas-pour-les-pongistes-francais" },
+      { label: "Tennis2Table: WTT Champions Montpellier 2026", url: "https://tennis2table.com/actualite/internationale/wtt-world-table-tennis/wtt-champions-montpellier-2026-2.html" },
+      { label: "FFTT: Suivre le WTT Champions de Montpellier 2026", url: "https://www.fftt.com/actualites/wtt/suivre-le-wtt-champions-de-montpellier-2026/" },
+    ],
+  },
+  {
     slug: "simon-gauzy-beats-tomokazu-harimoto-wtt-champions-montpellier-2026",
     title: "Simon Gauzy Beats Tomokazu Harimoto at WTT Champions Montpellier 2026",
     seoTitle: "Gauzy Beats Harimoto 3-0 at WTT Champions Montpellier 2026",
