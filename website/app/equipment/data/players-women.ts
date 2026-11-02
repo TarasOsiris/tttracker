@@ -1,4 +1,4 @@
-// Top 25 women's singles (ITTF/WTT world ranking, week 43 2026, published 2026-10-19) and their equipment setups.
+// Top 25 women's singles (ITTF/WTT world ranking, week 44 2026, published 2026-10-26) and their equipment setups.
 // Every slot cites a source and an "as of" date. The ranking was read from the data feed behind the official
 // worldtabletennis.com rankings page. Hand and grip come from each player's WTT profile (Qin Yuxuan: Chinese Wikipedia;
 // Joo Cheonhui has none, so null). Sponsor pages list a player's rubbers without saying which side each is on; where a
@@ -11,13 +11,13 @@ import type { Player, Source } from "../models";
 
 const ACCESSED = "2026-10-03";
 const VERIFIED = "2026-10-03";
-const RANKING_DATE = "2026-10-19";
+const RANKING_DATE = "2026-10-26";
 
 const ranking: Source = {
-  url: "https://www.worldtabletennis.com/rankings",
-  label: "ITTF/WTT Women's Singles World Ranking, week 43 2026 (published 2026-10-19)",
+  url: "https://tabletennis-reference.com/player/world_ranking/women",
+  label: "ITTF/WTT Women's Singles World Ranking, week 44 2026 (published 2026-10-26; read via tabletennis-reference.com mirror, top 5 cross-checked with spread-sports.jp)",
   kind: "ittf",
-  accessed: "2026-10-19",
+  accessed: "2026-11-02",
 };
 
 const rank = (position: number) => ({ position, date: RANKING_DATE, source: ranking });
@@ -484,7 +484,7 @@ export const womenPlayers: Player[] = [
     gender: "women",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(9),
+    ranking: rank(10),
     setup: {
       blade: {
         itemId: "andro-novacell-off-s",
@@ -525,7 +525,7 @@ export const womenPlayers: Player[] = [
     gender: "women",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(10),
+    ranking: rank(9),
     setup: {
       blade: {
         itemId: "dhs-w968-hurricane-long-5",
