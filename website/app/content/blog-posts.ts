@@ -78,6 +78,76 @@ const ljubljanaArena = { ...hero, caption: "A packed arena at the 2026 World Tea
 export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: BlogPost[] } = {
   en: [
   {
+    slug: "jang-woojin-wins-wtt-champions-montpellier-2026-sun-yingsha-kuai-man-final",
+    title: "Jang Woojin Wins WTT Champions Montpellier 2026, Sun Yingsha Beats Kuai Man",
+    seoTitle: "WTT Champions Montpellier 2026 Results: Jang Woojin and Sun Yingsha Win Titles",
+    description:
+      "Jang Woojin edged Patrick Franziska 4-3 and Sun Yingsha beat Kuai Man 4-1 to win WTT Champions Montpellier 2026. Full knockout results and what comes next.",
+    published: "2026-11-02",
+    readMinutes: 4,
+    keywords: [
+      "WTT Champions Montpellier 2026 results",
+      "Jang Woojin WTT Champions",
+      "Sun Yingsha Kuai Man final",
+      "Patrick Franziska final",
+      "table tennis news",
+      "WTT Champions Frankfurt 2026",
+      "WTT Finals Hong Kong 2026",
+    ],
+    hero: {
+      src: "/blog/jang-woo-jin-montpellier.webp",
+      width: 1200,
+      height: 675,
+      alt: "Jang Woo-jin of South Korea in a green and purple shirt stretching over the net to reach a short ball",
+      caption: "Jang Woo-jin, archive photo from the 2017 Asian Table Tennis Championships, not from Montpellier.",
+      credit: "Xiaoyu Tang, CC BY-SA 2.0",
+      creditUrl: "https://commons.wikimedia.org/wiki/File:Jang_Woo-jin_ATTC2017_1.jpeg",
+    },
+    intro:
+      "The French crowd came for the Lebrun brothers and went home with a Korean champion. Jang Woojin, the world No. 10, edged Patrick Franziska 4-3 in the men's final of WTT Champions Montpellier, while Sun Yingsha beat Kuai Man 4-1 in an all-Chinese women's final.",
+    takeaways: [
+      "**Jang Woojin (KOR) beat Patrick Franziska (GER) 4-3** in the men's final, per [Tennis2Table](https://tennis2table.com/actualite/internationale/wtt-world-table-tennis/wtt-champions-montpellier-2026-2.html) and [Wikipedia](https://en.wikipedia.org/wiki/Jang_Woo-jin).",
+      "**Sun Yingsha beat Kuai Man 4-1** for the women's title, after edging Wang Yidi 4-3 in the semifinal.",
+      "**Both men's semifinals went the distance:** Jang beat Hugo Calderano 4-3 and Franziska beat Truls Möregårdh 4-3.",
+      "**Next up:** a WTT Champions event in Germany (3-8 November), then a Contender in Istanbul and a Star Contender in Muscat, per the [Goal.com schedule](https://www.goal.com/en-za/news/watch-stream-world-table-tennis-series/blt785781aba1cff83d).",
+    ],
+    sections: [
+      {
+        heading: "Jang Woojin outlasts Franziska in seven games",
+        blocks: [
+          "[Jang Woo-jin](https://en.wikipedia.org/wiki/Jang_Woo-jin) is 31 and ranked 10th, his career high being 8th. He knocked out China's Liang Jingkun 4-1 in the quarterfinal, edged Brazil's [Hugo Calderano](https://en.wikipedia.org/wiki/Hugo_Calderano) 4-3 in the semifinal, then won the final 4-3 against [Patrick Franziska](https://en.wikipedia.org/wiki/Patrick_Franziska). He had also beaten France's Flavien Coton in round one (see our [Alexis Lebrun report](/blog/alexis-lebrun-loses-franziska-four-match-points-wtt-champions-montpellier-2026)).",
+          "Franziska had his own run: he beat Zhou Qihao 4-3 in the quarterfinal and Möregårdh 4-3 in the semifinal, the same man who had beaten Alexis Lebrun earlier in the week. Three straight seven-game wins, then one loss at the last step. Why it matters: with Wang Chuqin out injured and both Lebruns beaten, the men's title went to a Korean veteran and not to a Chinese or French favourite.",
+        ],
+      },
+      {
+        heading: "Sun Yingsha takes the women's title",
+        blocks: [
+          "The women's draw ended with three Chinese players in the semifinals. Sun Yingsha edged Hina Hayata of Japan 4-3 in the quarterfinal and Wang Yidi 4-3 in the semifinal. Kuai Man beat Chen Yi 4-2 to reach the final, where Sun won 4-1, per [Tennis2Table](https://tennis2table.com/actualite/internationale/wtt-world-table-tennis/wtt-champions-montpellier-2026-2.html) and [Wikipedia](https://en.wikipedia.org/wiki/Sun_Yingsha). Sun is ranked No. 2 as of 12 October.",
+          "Why it matters: two of her wins here needed a seventh game, a sign of how tight the women's elite is. Japan's Miwa Harimoto and Hitomi Sato were also in the quarterfinals, but no Japanese player reached the last four.",
+        ],
+      },
+      {
+        heading: "What is next on the calendar",
+        blocks: [
+          "There is no rest. The Goal.com listing shows a WTT Champions event in Germany from 3 to 8 November (a separate listing places it in Frankfurt), a Contender in Istanbul on 10-15 November and a Star Contender in Muscat on 16-21 November, with WTT Finals Hong Kong closing the season on 8-13 December. Check the official [WTT site](https://www.worldtabletennis.com) for draws.",
+        ],
+      },
+      {
+        heading: "Learn from the final",
+        blocks: [
+          "Three of the four semifinal results were 4-3. Matches that close are won on serve and third-ball attack. Log your own deciding games in [Ping Pong & Table Tennis Log](/), practise variations in the [serve library](/serves), see how [spin](/spins) works, run the [drills](/drills) and test yourself in the [quiz](/quiz).",
+        ],
+      },
+    ],
+    sources: [
+      { label: "Tennis2Table: WTT Champions Montpellier 2026", url: "https://tennis2table.com/actualite/internationale/wtt-world-table-tennis/wtt-champions-montpellier-2026-2.html" },
+      { label: "Wikipedia: Jang Woo-jin", url: "https://en.wikipedia.org/wiki/Jang_Woo-jin" },
+      { label: "Wikipedia: Sun Yingsha", url: "https://en.wikipedia.org/wiki/Sun_Yingsha" },
+      { label: "Goal.com: WTT 2026 schedule", url: "https://www.goal.com/en-za/news/watch-stream-world-table-tennis-series/blt785781aba1cff83d" },
+      { label: "FFTT: Suivre le WTT Champions de Montpellier 2026", url: "https://www.fftt.com/actualites/wtt/suivre-le-wtt-champions-de-montpellier-2026/" },
+    ],
+  },
+  {
     slug: "alexis-lebrun-loses-franziska-four-match-points-wtt-champions-montpellier-2026",
     title: "Alexis Lebrun Loses to Franziska From 2-0 Up at WTT Champions Montpellier",
     seoTitle: "Alexis Lebrun Out of WTT Champions Montpellier 2026: 3-2 Loss to Franziska",
