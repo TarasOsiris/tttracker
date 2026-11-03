@@ -78,6 +78,92 @@ const ljubljanaArena = { ...hero, caption: "A packed arena at the 2026 World Tea
 export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: BlogPost[] } = {
   en: [
   {
+    slug: "wtt-champions-frankfurt-2026-draw-wang-chuqin-matsushima-harimoto-ovtcharov",
+    title: "WTT Champions Frankfurt 2026 Draw: Wang Chuqin, Matsushima, Harimoto and Germany's Stars",
+    seoTitle: "WTT Champions Frankfurt 2026 Draw, Seeds and Matches to Watch",
+    description:
+      "WTT Champions Frankfurt 2026 starts 3 November: Matsushima top seed, Wang Chuqin opens against Anders Lind, Liang Jingkun meets Calderano. Draw and matches to watch.",
+    published: "2026-11-03",
+    readMinutes: 4,
+    keywords: [
+      "WTT Champions Frankfurt 2026",
+      "WTT Champions Frankfurt draw",
+      "Wang Chuqin Anders Lind",
+      "Sora Matsushima top seed",
+      "Dimitrij Ovtcharov Frankfurt",
+      "table tennis news",
+      "WTT Champions Germany schedule",
+    ],
+    hero: {
+      src: "/blog/ovtcharov-frankfurt.webp",
+      width: 1200,
+      height: 675,
+      alt: "Germany's Dimitrij Ovtcharov in a black, red and gold shirt clenching his fist after winning a point",
+      caption: "Germany's Dimitrij Ovtcharov, one of five German men in the Frankfurt draw. Archive photo from the 2022 European Championships in Munich, not from Frankfurt.",
+      credit: "Sandro Halank, CC BY-SA 4.0",
+      creditUrl: "https://commons.wikimedia.org/wiki/File:Dimitrij_Ovtcharov_(GER)_2022.jpg",
+    },
+    intro:
+      "One week after Montpellier ended, the circuit has already moved on. WTT Champions Frankfurt opens today, 3 November, with a 500,000 dollar prize pool, 32 players per singles draw and a first-round clash between Liang Jingkun and Hugo Calderano. Wang Chuqin, fresh from sitting out Montpellier, starts against Anders Lind.",
+    takeaways: [
+      "**Dates and venue:** 3-8 November 2026 in Frankfurt am Main, 500,000 US dollars in prize money, per [German Wikipedia](https://de.wikipedia.org/wiki/WTT_Champions_Frankfurt_2026).",
+      "**Seeds:** Sora Matsushima is top seed and Tomokazu Harimoto second, with Wang Chuqin fourth, according to [PingSunday's draw report](https://pingsunday.com/wtt-champions-frankfurt-2026-draw-wang-chuqin-anders-lind/).",
+      "**Round-of-32 headliners:** Wang Chuqin v Anders Lind, Liang Jingkun v Hugo Calderano, Truls Möregårdh v Oh Junsung.",
+      "**Home crowd:** Germany has five players in each draw, including Patrick Franziska, Dimitrij Ovtcharov and Dang Qiu among the men.",
+      "**Unconfirmed:** a fan forum says Sun Yingsha withdrew and Natalia Bajor replaced her. Check the official draw before relying on it.",
+    ],
+    sections: [
+      {
+        heading: "The men's draw: Matsushima leads, Wang Chuqin returns",
+        blocks: [
+          "Both singles draws are straight 32-player knockouts, so there is no group stage to hide in. [Sora Matsushima](https://en.wikipedia.org/wiki/Sora_Matsushima) is the top seed and [Tomokazu Harimoto](https://en.wikipedia.org/wiki/Tomokazu_Harimoto) is second, with [Wang Chuqin](https://en.wikipedia.org/wiki/Wang_Chuqin) fourth. Wang opens against Sweden's Anders Lind in the round of 32 on 3 November at 13:45 CET, per PingSunday.",
+          "Harimoto's section includes Vladimir Sidorenko. Why it matters: a straight knockout means one bad day ends your week, as Harimoto learned in Montpellier when [Simon Gauzy knocked him out](/blog/simon-gauzy-beats-tomokazu-harimoto-wtt-champions-montpellier-2026).",
+        ],
+      },
+      {
+        heading: "Matches to watch in round one",
+        image: {
+          src: "/blog/harimoto-tomokazu.webp",
+          width: 1000,
+          height: 666,
+          alt: "Young Tomokazu Harimoto crouching over the table about to serve during a practice session",
+          caption: "Tomokazu Harimoto serving, in an archive photo from 2017.",
+          credit: "Peter Porai-Koshits, CC BY-SA 4.0",
+          creditUrl: "https://commons.wikimedia.org/wiki/File:ITTF_World_Tour_2017_German_Open_Harimoto_Tomokazu_02.jpg",
+        },
+        blocks: [
+          "[Liang Jingkun](https://en.wikipedia.org/wiki/Liang_Jingkun) against [Hugo Calderano](https://en.wikipedia.org/wiki/Hugo_Calderano) is the pick of the round: a Chinese veteran against the Brazilian who reached the Montpellier semifinal. Truls Möregårdh, who has been in form, faces Korea's Oh Junsung.",
+          "The women's draw is also stacked. Japan's Miwa Harimoto and Hina Hayata and China's Chen Xingtong and Wang Yidi are all listed, per German Wikipedia, and Honoka Sato opens against compatriot Satsuki Odo. Draws change, so confirm on the official [WTT site](https://www.worldtabletennis.com).",
+        ],
+      },
+      {
+        heading: "Germany at home",
+        blocks: [
+          "Five Germans in each draw. The men are [Patrick Franziska](https://en.wikipedia.org/wiki/Patrick_Franziska), Benedikt Duda, Wim Verdonschot, Dang Qiu and [Dimitrij Ovtcharov](https://en.wikipedia.org/wiki/Dimitrij_Ovtcharov). The women are Han Ying, Sabine Winter, Josephina Neumann, Annett Kaufmann and Nina Mittelham. Franziska reached the Montpellier final, losing 4-3, so he arrives with momentum and a crowd behind him. France also sends Simon Gauzy, Thibault Poret, Flavien Coton, Jia Nan Yuan and Prithika Pavade.",
+        ],
+      },
+      {
+        heading: "What comes next and how to follow along",
+        blocks: [
+          "After Frankfurt the calendar lists a Contender in Istanbul (10-15 November), a Star Contender in Muscat (16-21 November) and WTT Finals Hong Kong in December, per the [Goal.com schedule](https://www.goal.com/en-za/news/watch-stream-world-table-tennis-series/blt785781aba1cff83d). Matches stream on the WTT YouTube channel.",
+        ],
+      },
+      {
+        heading: "Turn the watching into practice",
+        blocks: [
+          "Knockout tables reward players who start fast. Log your own matches and opening-game results in [Ping Pong & Table Tennis Log](/), copy a pro serve from the [serve library](/serves), learn how [spin](/spins) changes the ball, run the [drills](/drills) and test yourself in the [quiz](/quiz).",
+        ],
+      },
+    ],
+    sources: [
+      { label: "PingSunday: WTT Champions Frankfurt 2026 draw", url: "https://pingsunday.com/wtt-champions-frankfurt-2026-draw-wang-chuqin-anders-lind/" },
+      { label: "Wikipedia (DE): WTT Champions Frankfurt 2026", url: "https://de.wikipedia.org/wiki/WTT_Champions_Frankfurt_2026" },
+      { label: "Tennis2Table: WTT Champions Frankfurt 2026", url: "https://tennis2table.com/actualite/internationale/wtt-world-table-tennis/wtt-champions-frankfurt-2026.html" },
+      { label: "Goal.com: WTT 2026 schedule", url: "https://www.goal.com/en-za/news/watch-stream-world-table-tennis-series/blt785781aba1cff83d" },
+      { label: "Table Tennis Daily forum: Frankfurt 2026 thread", url: "https://www.tabletennisdaily.com/forum/topics/wtt-champions-frankfurt-2026-november-3-8.39968/page-2#post-594353" },
+    ],
+  },
+  {
     slug: "jang-woojin-wins-wtt-champions-montpellier-2026-sun-yingsha-kuai-man-final",
     title: "Jang Woojin Wins WTT Champions Montpellier 2026, Sun Yingsha Beats Kuai Man",
     seoTitle: "WTT Champions Montpellier 2026 Results: Jang Woojin and Sun Yingsha Win Titles",
