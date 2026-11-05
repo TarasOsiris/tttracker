@@ -14,6 +14,7 @@ import {
 import { Link } from "react-router";
 import type { Route } from "./+types/home";
 import { CtaSection } from "~/components/site/cta-section";
+import { AppStoreReviews } from "~/components/site/app-store-reviews";
 import { DrillCard } from "~/components/site/drill-card";
 import { Faq, faqJsonLd, JsonLd } from "~/components/site/faq";
 import { Squiggle } from "~/components/site/icons";
@@ -112,6 +113,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
       <DrillsTeaser drills={loaderData.drills} />
       <ServesTeaser serves={loaderData.serves} />
       <Pricing />
+      <AppStoreReviews />
       <section id="faq" className="px-4 py-20 sm:px-6 sm:py-24">
         <div className="mx-auto max-w-3xl">
           <SectionHeading eyebrow={t.faq.eyebrow} title={t.faq.title} />

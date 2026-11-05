@@ -1,0 +1,37 @@
+{
+  "fetchedAt": "2026-11-05",
+  "apps": {
+    "table-tennis-tracker": [
+      {
+        "id": "14529917042",
+        "rating": 5,
+        "title": "Solid app",
+        "text": "This is one of the best apps I have used to track my table. Tennis training has a lot of options.",
+        "author": "BumblebeeLviv",
+        "date": "2026-09-09",
+        "country": "ua",
+        "lang": "en"
+      },
+      {
+        "id": "13867753177",
+        "rating": 5,
+        "title": "Pingmk",
+        "text": "Is the best tracking app highly recommend",
+        "author": "Masonk24",
+        "date": "2026-03-20",
+        "country": "us",
+        "lang": "en"
+      },
+      {
+        "id": "13680252432",
+        "rating": 5,
+        "title": "Great app for structured table tennis training",
+        "text": "Highly recommend for both beginners and intermediate players looking to train smarter and more consistently",
+        "author": "Tomaso34",
+        "date": "2026-01-26",
+        "country": "ua",
+        "lang": "en"
+      }
+    ]
+  }
+}

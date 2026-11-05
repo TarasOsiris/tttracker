@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "react-router dev",
-    "build": "react-router build",
+    "build": "node scripts/fetch-app-store-reviews.mjs && react-router build",
     "typecheck": "react-router typegen && tsc",
     "lint": "eslint .",
     "preview": "serve build/client"
