@@ -212,6 +212,10 @@ export const en: Messages = {
   faq: {
     eyebrow: "FAQ",
     title: "Questions, answered",
+    alsoPlay: {
+      text: "Also play tennis? Try {link}.",
+      link: "Tennis Tracker, our tennis match and practice log",
+    },
     items: [
       {
         q: "Is TT Tracker free?",
@@ -280,6 +284,14 @@ export const en: Messages = {
     blog: "Blog",
     support: "Support",
     changelog: "What's new",
+    moreApps: {
+      title: "More apps from us",
+      sibling: "Tennis match and practice log",
+      routines: "Reusable checklists for routines",
+      captionsBro: "iPhone video editor with AI captions",
+      screenshotBro: "App Store and Google Play screenshot maker",
+      allApps: "All our apps",
+    },
   },
   blog: {
     title: "Table Tennis News & Tips Blog",

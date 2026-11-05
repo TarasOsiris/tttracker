@@ -213,6 +213,10 @@ export const pt: Messages = {
   faq: {
     eyebrow: "Perguntas frequentes",
     title: "Perguntas respondidas",
+    alsoPlay: {
+      text: "Também joga tênis? Experimente o {link}.",
+      link: "Tennis Tracker, nosso registro de partidas e treinos de tênis",
+    },
     items: [
       {
         q: "O TT Tracker é grátis?",
@@ -281,6 +285,14 @@ export const pt: Messages = {
     blog: "Blog",
     support: "Suporte",
     changelog: "Novidades",
+    moreApps: {
+      title: "Outros apps nossos",
+      sibling: "Registro de partidas e treinos de tênis",
+      routines: "Checklists reutilizáveis para suas rotinas",
+      captionsBro: "Editor de vídeo para iPhone com legendas por IA",
+      screenshotBro: "Criador de capturas para App Store e Google Play",
+      allApps: "Todos os nossos apps",
+    },
   },
   blog: {
     title: "Blog de Notícias e Dicas de Tênis de Mesa",

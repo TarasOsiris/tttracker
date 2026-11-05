@@ -214,6 +214,10 @@ export const id: Messages = {
   faq: {
     eyebrow: "FAQ",
     title: "Pertanyaan yang sering diajukan",
+    alsoPlay: {
+      text: "Juga main tenis? Coba {link}.",
+      link: "Tennis Tracker, catatan pertandingan dan latihan tenis kami",
+    },
     items: [
       {
         q: "Apakah TT Tracker gratis?",
@@ -284,6 +288,14 @@ export const id: Messages = {
     blog: "Blog",
     support: "Dukungan",
     changelog: "Yang baru",
+    moreApps: {
+      title: "Aplikasi kami lainnya",
+      sibling: "Catatan pertandingan dan latihan tenis",
+      routines: "Checklist yang bisa dipakai ulang untuk rutinitas",
+      captionsBro: "Editor video iPhone dengan subtitle AI",
+      screenshotBro: "Pembuat screenshot App Store dan Google Play",
+      allApps: "Semua aplikasi kami",
+    },
   },
   blog: {
     title: "Blog Berita & Tips Tenis Meja",

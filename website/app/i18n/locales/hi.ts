@@ -214,6 +214,10 @@ export const hi: Messages = {
   faq: {
     eyebrow: "सवाल-जवाब",
     title: "आपके सवाल, हमारे जवाब",
+    alsoPlay: {
+      text: "टेनिस भी खेलते हैं? {link} आज़माएँ।",
+      link: "Tennis Tracker, हमारा टेनिस मैच और प्रैक्टिस लॉग",
+    },
     items: [
       {
         q: "क्या TT Tracker मुफ़्त है?",
@@ -282,6 +286,14 @@ export const hi: Messages = {
     blog: "ब्लॉग",
     support: "सहायता",
     changelog: "नया क्या है",
+    moreApps: {
+      title: "हमारे और ऐप",
+      sibling: "टेनिस मैच और प्रैक्टिस लॉग",
+      routines: "रूटीन के लिए दोबारा इस्तेमाल होने वाली चेकलिस्ट",
+      captionsBro: "AI कैप्शन वाला iPhone वीडियो एडिटर",
+      screenshotBro: "App Store और Google Play स्क्रीनशॉट मेकर",
+      allApps: "हमारे सभी ऐप",
+    },
   },
   blog: {
     title: "टेबल टेनिस समाचार एवं टिप्स ब्लॉग",

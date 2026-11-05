@@ -1,6 +1,6 @@
 import { useSyncExternalStore } from "react";
 import { Link } from "react-router";
-import { links, navLinks, socials, storeLinks } from "~/content/site";
+import { links, moreApps, navLinks, socials, storeLinks } from "~/content/site";
 import { localeInfo } from "~/i18n/config";
 import { useI18n } from "~/i18n/use-i18n";
 import { openConsentSettings } from "./consent-banner";
@@ -156,9 +156,25 @@ export function SiteFooter() {
         </Column>
       </div>
       <div className="border-t">
+        <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+          <h3 className="font-display text-sm font-semibold">{t.footer.moreApps.title}</h3>
+          <ul className="mt-4 grid grid-cols-2 gap-x-6 gap-y-5 text-sm sm:gap-x-10 md:grid-cols-3 lg:grid-cols-5">
+            {moreApps.map((app) => (
+              <li key={app.url}>
+                {/* Followed links to our own sites, so no noreferrer. */}
+                <a href={app.url} target="_blank" rel="noopener" className="group block">
+                  <span className="font-medium text-foreground underline-offset-2 group-hover:underline">{app.name}</span>{" "}
+                  <span className="mt-0.5 block text-muted-foreground">{t.footer.moreApps[app.key]}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div className="border-t">
         <p className="mx-auto max-w-6xl px-4 py-6 text-xs text-muted-foreground sm:px-6">
           © {year}{" "}
-          <a href={links.studio} target="_blank" rel="noopener noreferrer" className="underline-offset-2 hover:underline">
+          <a href={links.studio} target="_blank" rel="noopener" className="underline-offset-2 hover:underline">
             Nineva Studios
           </a>
           . {t.footer.legal}

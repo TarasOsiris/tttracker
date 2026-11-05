@@ -212,6 +212,10 @@ export const ar: Messages = {
   faq: {
     eyebrow: "الأسئلة الشائعة",
     title: "أسئلة وأجوبة",
+    alsoPlay: {
+      text: "تلعب التنس أيضًا؟ جرّب {link}.",
+      link: "Tennis Tracker، سجلّنا لمباريات وتدريبات التنس",
+    },
     items: [
       {
         q: "هل TT Tracker مجاني؟",
@@ -280,6 +284,14 @@ export const ar: Messages = {
     blog: "المدونة",
     support: "الدعم",
     changelog: "الجديد",
+    moreApps: {
+      title: "المزيد من تطبيقاتنا",
+      sibling: "سجل مباريات وتدريبات التنس",
+      routines: "قوائم مهام قابلة لإعادة الاستخدام لروتينك",
+      captionsBro: "محرر فيديو لـ iPhone مع ترجمة نصية بالذكاء الاصطناعي",
+      screenshotBro: "صانع لقطات شاشة لـ App Store وGoogle Play",
+      allApps: "جميع تطبيقاتنا",
+    },
   },
   blog: {
     title: "مدونة أخبار ونصائح تنس الطاولة",

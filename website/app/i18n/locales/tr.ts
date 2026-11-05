@@ -214,6 +214,10 @@ export const tr: Messages = {
   faq: {
     eyebrow: "SSS",
     title: "Sorular ve yanıtlar",
+    alsoPlay: {
+      text: "Tenis de mi oynuyorsunuz? Şunu deneyin: {link}.",
+      link: "Tennis Tracker, tenis maç ve antrenman günlüğümüz",
+    },
     items: [
       {
         q: "TT Tracker ücretsiz mi?",
@@ -284,6 +288,14 @@ export const tr: Messages = {
     blog: "Blog",
     support: "Destek",
     changelog: "Yenilikler",
+    moreApps: {
+      title: "Diğer uygulamalarımız",
+      sibling: "Tenis maç ve antrenman günlüğü",
+      routines: "Rutinler için tekrar kullanılabilir kontrol listeleri",
+      captionsBro: "Yapay zekâ altyazılı iPhone video düzenleyici",
+      screenshotBro: "App Store ve Google Play ekran görüntüsü oluşturucu",
+      allApps: "Tüm uygulamalarımız",
+    },
   },
   blog: {
     title: "Masa Tenisi Haberleri ve İpuçları Blogu",

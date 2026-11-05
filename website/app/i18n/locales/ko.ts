@@ -212,6 +212,10 @@ export const ko: Messages = {
   faq: {
     eyebrow: "FAQ",
     title: "궁금한 점, 답해 드립니다",
+    alsoPlay: {
+      text: "테니스도 치시나요? {link}도 사용해 보세요.",
+      link: "Tennis Tracker, 테니스 경기·연습 기록 앱",
+    },
     items: [
       {
         q: "탁구 훈련일지는 무료인가요?",
@@ -280,6 +284,14 @@ export const ko: Messages = {
     blog: "블로그",
     support: "지원",
     changelog: "새로운 기능",
+    moreApps: {
+      title: "저희의 다른 앱",
+      sibling: "테니스 경기·연습 기록",
+      routines: "루틴을 위한 재사용 체크리스트",
+      captionsBro: "AI 자막 iPhone 동영상 편집기",
+      screenshotBro: "App Store·Google Play 스크린샷 제작 도구",
+      allApps: "모든 앱 보기",
+    },
   },
   blog: {
     title: "탁구 뉴스 & 훈련 팁 블로그",

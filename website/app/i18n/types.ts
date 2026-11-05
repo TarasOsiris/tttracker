@@ -119,7 +119,13 @@ export type Messages = {
     oneTime: string;
     priceNote: string;
   };
-  faq: { eyebrow: string; title: string; items: QA[] };
+  faq: {
+    eyebrow: string;
+    title: string;
+    items: QA[];
+    /** One line under the FAQ pointing to our app for the sibling sport: `text` holds {link}, `link` is its label. */
+    alsoPlay: { text: string; link: string };
+  };
   cta: {
     homeTitle: string;
     homeSubtitle: string;
@@ -155,6 +161,8 @@ export type Messages = {
     support: string;
     /** Link to the English-only changelog. */
     changelog: string;
+    /** "More apps from us": the heading and a short descriptor per app (`moreApps` in content/site.ts). */
+    moreApps: { title: string; sibling: string; routines: string; captionsBro: string; screenshotBro: string; allApps: string };
   };
   blog: {
     title: string;

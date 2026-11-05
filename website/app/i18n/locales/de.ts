@@ -212,6 +212,10 @@ export const de: Messages = {
   faq: {
     eyebrow: "FAQ",
     title: "Fragen & Antworten",
+    alsoPlay: {
+      text: "Spielst du auch Tennis? Probier {link}.",
+      link: "Tennis Tracker, unser Match- und Trainingstagebuch für Tennis",
+    },
     items: [
       {
         q: "Ist TT Tracker kostenlos?",
@@ -280,6 +284,14 @@ export const de: Messages = {
     blog: "Blog",
     support: "Support",
     changelog: "Neuigkeiten",
+    moreApps: {
+      title: "Weitere Apps von uns",
+      sibling: "Match- und Trainingstagebuch für Tennis",
+      routines: "Wiederverwendbare Checklisten für Routinen",
+      captionsBro: "iPhone-Videoeditor mit KI-Untertiteln",
+      screenshotBro: "Screenshot-Generator für App Store und Google Play",
+      allApps: "Alle unsere Apps",
+    },
   },
   blog: {
     title: "Tischtennis News & Tipps Blog",

@@ -212,6 +212,10 @@ export const zh: Messages = {
   faq: {
     eyebrow: "常见问题",
     title: "常见问题解答",
+    alsoPlay: {
+      text: "也打网球？试试 {link}。",
+      link: "Tennis Tracker，我们的网球比赛与练习记录应用",
+    },
     items: [
       {
         q: "乒乓球笔记免费吗？",
@@ -280,6 +284,14 @@ export const zh: Messages = {
     blog: "博客",
     support: "支持",
     changelog: "更新内容",
+    moreApps: {
+      title: "我们的更多应用",
+      sibling: "网球比赛与练习记录",
+      routines: "可重复使用的日常清单",
+      captionsBro: "带 AI 字幕的 iPhone 视频编辑器",
+      screenshotBro: "App Store 与 Google Play 截图制作工具",
+      allApps: "我们的全部应用",
+    },
   },
   blog: {
     title: "乒乓球新闻与技巧博客",

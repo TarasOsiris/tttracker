@@ -118,10 +118,26 @@ export default function Home({ loaderData }: Route.ComponentProps) {
           <div className="mt-12">
             <Faq items={t.faq.items} />
           </div>
+          <AlsoPlay />
         </div>
       </section>
       <CtaSection title={t.cta.homeTitle} subtitle={t.cta.homeSubtitle} />
     </>
+  );
+}
+
+/** One line under the FAQ pointing to our tracker for the sibling sport; `text` holds a {link} placeholder. */
+function AlsoPlay() {
+  const { t } = useI18n();
+  const [before, after] = t.faq.alsoPlay.text.split("{link}");
+  return (
+    <p className="mt-8 text-center text-[15px] leading-relaxed text-muted-foreground">
+      {before}
+      <a href={links.tennisTracker} target="_blank" rel="noopener" className="font-medium text-primary underline-offset-2 hover:underline">
+        {t.faq.alsoPlay.link}
+      </a>
+      {after}
+    </p>
   );
 }
 

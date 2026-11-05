@@ -212,6 +212,10 @@ export const uk: Messages = {
   faq: {
     eyebrow: "Часті запитання",
     title: "Відповіді на запитання",
+    alsoPlay: {
+      text: "Граєте ще й у теніс? Спробуйте {link}.",
+      link: "Tennis Tracker — наш журнал матчів і тренувань з тенісу",
+    },
     items: [
       {
         q: "TT Tracker безкоштовний?",
@@ -280,6 +284,14 @@ export const uk: Messages = {
     blog: "Блог",
     support: "Підтримка",
     changelog: "Що нового",
+    moreApps: {
+      title: "Інші наші застосунки",
+      sibling: "Журнал матчів і тренувань з тенісу",
+      routines: "Багаторазові чеклисти для рутин",
+      captionsBro: "Відеоредактор для iPhone із ШІ-субтитрами",
+      screenshotBro: "Скриншоти для App Store і Google Play",
+      allApps: "Усі наші застосунки",
+    },
   },
   blog: {
     title: "Блог про настільний теніс: новини та поради",

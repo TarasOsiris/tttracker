@@ -212,6 +212,10 @@ export const zhTw: Messages = {
   faq: {
     eyebrow: "常見問題",
     title: "你的問題，這裡有解答",
+    alsoPlay: {
+      text: "也打網球嗎？試試 {link}。",
+      link: "Tennis Tracker，我們的網球比賽與練習紀錄 App",
+    },
     items: [
       {
         q: "桌球筆記（TT Tracker）是免費的嗎？",
@@ -280,6 +284,14 @@ export const zhTw: Messages = {
     blog: "部落格",
     support: "支援",
     changelog: "更新內容",
+    moreApps: {
+      title: "我們的更多 App",
+      sibling: "網球比賽與練習紀錄",
+      routines: "可重複使用的例行清單",
+      captionsBro: "內建 AI 字幕的 iPhone 影片編輯器",
+      screenshotBro: "App Store 與 Google Play 截圖製作工具",
+      allApps: "我們的所有 App",
+    },
   },
   blog: {
     title: "桌球新聞與技巧部落格",

@@ -34,8 +34,26 @@ export const links = {
   appStore: `https://apps.apple.com/app/id${APP_STORE_ID}`,
   googlePlay: `https://play.google.com/store/apps/details?id=${PLAY_PACKAGE}`,
   email: "info@ninevastudios.com",
-  studio: "https://ninevastudios.com",
+  studio: "https://ninevastudios.com/",
+  /** Smashy Apps, the catalog of our apps; this site is one of its subdomains. */
+  smashyApps: "https://smashyapps.com/",
+  tennisTracker: "https://tennisapp.smashyapps.com/",
+  checklistRoutines: "https://routines.smashyapps.com/",
+  captionsBro: "https://captionsbro.app/",
+  screenshotBro: "https://screenshotbro.app/",
 };
+
+/**
+ * Our other apps for the footer's "More apps from us", most relevant first, ending with the Smashy Apps catalog.
+ * `key` picks the descriptor in `t.footer.moreApps`; app names stay untranslated.
+ */
+export const moreApps = [
+  { key: "sibling", name: "Tennis Tracker", url: links.tennisTracker },
+  { key: "routines", name: "Checklist Routines", url: links.checklistRoutines },
+  { key: "captionsBro", name: "Captions Bro", url: links.captionsBro },
+  { key: "screenshotBro", name: "Screenshot Bro", url: links.screenshotBro },
+  { key: "allApps", name: "Smashy Apps", url: links.smashyApps },
+] as const;
 
 /** The developer's own profiles, shown as icons in the footer. */
 export const socials = {

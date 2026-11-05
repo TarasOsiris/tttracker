@@ -212,6 +212,10 @@ export const ja: Messages = {
   faq: {
     eyebrow: "よくある質問",
     title: "疑問にお答えします",
+    alsoPlay: {
+      text: "テニスもプレーしますか？{link}もお試しください。",
+      link: "Tennis Tracker（テニスの試合・練習記録アプリ）",
+    },
     items: [
       {
         q: "卓球ノートは無料ですか？",
@@ -280,6 +284,14 @@ export const ja: Messages = {
     blog: "ブログ",
     support: "サポート",
     changelog: "新機能",
+    moreApps: {
+      title: "その他のアプリ",
+      sibling: "テニスの試合・練習記録",
+      routines: "ルーティン用の繰り返し使えるチェックリスト",
+      captionsBro: "AI字幕付きのiPhone動画編集アプリ",
+      screenshotBro: "App Store・Google Play用スクリーンショット作成",
+      allApps: "すべてのアプリ",
+    },
   },
   blog: {
     title: "卓球ニュース＆上達のヒント ブログ",
