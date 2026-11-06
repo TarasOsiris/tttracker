@@ -78,6 +78,85 @@ const ljubljanaArena = { ...hero, caption: "A packed arena at the 2026 World Tea
 export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: BlogPost[] } = {
   en: [
   {
+    slug: "wtt-champions-frankfurt-2026-wang-yidi-out-kallberg-upset-ovtcharov-wins",
+    title: "WTT Champions Frankfurt 2026: Wang Yidi Out, Kallberg Upset, Ovtcharov Wins",
+    seoTitle: "WTT Champions Frankfurt 2026 Results: Wang Yidi, Kallberg Out",
+    description:
+      "WTT Champions Frankfurt 2026 day 2: Wang Yidi loses to Han Ying, Lim Jong-hoon stuns Kallberg, Ovtcharov beats Assar 3-1 and Wang Chuqin meets Wen Ruibo.",
+    published: "2026-11-06",
+    readMinutes: 4,
+    keywords: [
+      "WTT Champions Frankfurt 2026 results",
+      "Wang Yidi Han Ying",
+      "Lim Jong-hoon Anton Kallberg",
+      "Dimitrij Ovtcharov Omar Assar",
+      "Wang Chuqin Wen Ruibo",
+      "table tennis news",
+      "WTT Champions Frankfurt",
+    ],
+    hero: {
+      src: "/blog/ovtcharov-frankfurt.webp",
+      width: 1200,
+      height: 675,
+      alt: "Germany's Dimitrij Ovtcharov in a black, red and gold shirt clenching his fist after winning a point",
+      caption: "Germany's Dimitrij Ovtcharov, who beat Omar Assar 3-1 in Frankfurt. Archive photo from the 2022 European Championships in Munich, not from Frankfurt.",
+      credit: "Sandro Halank, CC BY-SA 4.0",
+      creditUrl: "https://commons.wikimedia.org/wiki/File:Dimitrij_Ovtcharov_(GER)_2022.jpg",
+    },
+    intro:
+      "The home crowd in Frankfurt got a new favourite on Wednesday: Germany's Han Ying beat China's third-seeded Wang Yidi in straight games. Elsewhere a comeback from two games down ended Sweden's Anton Kallberg's run, and Dimitrij Ovtcharov won his opener at home.",
+    takeaways: [
+      "**Upset:** Han Ying (Germany, world No. 16) beat Wang Yidi 11-8, 12-10, 11-4 in the women's first round, per [People's Daily](http://en.people.cn/n3/2026/1105/c90000-20516101.html).",
+      "**Comeback:** Lim Jong-hoon of Korea came back from two games down to beat Anton Kallberg in five.",
+      "**Home win:** Dimitrij Ovtcharov beat Egypt's Omar Assar 3-1.",
+      "**Next up:** Wen Ruibo (world No. 14) beat An Jae-hyun 11-5, 11-6, 11-3 and now meets compatriot Wang Chuqin in the round of 16.",
+      "**Germany's women:** Annett Kaufmann, Sabine Winter and Nina Mittelham also reached the round of 16.",
+    ],
+    sections: [
+      {
+        heading: "Han Ying shocks Wang Yidi",
+        blocks: [
+          "[Han Ying](https://en.wikipedia.org/wiki/Han_Ying) won 11-8, 12-10, 11-4 against the third seed, and the close second game was the turning point. Why it matters: a straight 32-player knockout leaves no group stage to recover in, and China's women lose one of their strongest names before the round of 16.",
+          "Three more Germans, Kaufmann, Winter and Mittelham, are through too, so the home crowd has plenty to cheer in the women's draw.",
+        ],
+      },
+      {
+        heading: "Kallberg falls, Ovtcharov survives",
+        blocks: [
+          "[Anton Kallberg](https://en.wikipedia.org/wiki/Anton_Kallberg) was two games up and lost in five to Korea's Lim Jong-hoon. It is a reminder that a two-game lead means little in a knockout.",
+          "[Dimitrij Ovtcharov](https://en.wikipedia.org/wiki/Dimitrij_Ovtcharov) beat Omar Assar 3-1 in front of his home crowd. He advances to the round of 16.",
+        ],
+      },
+      {
+        heading: "Day one recap and Wang Chuqin v Wen Ruibo",
+        image: {
+          src: "/blog/harimoto-tomokazu.webp",
+          width: 1000,
+          height: 666,
+          alt: "Young Tomokazu Harimoto crouching over the table about to serve during a practice session",
+          caption: "Tomokazu Harimoto serving, in an archive photo from 2017.",
+          credit: "Peter Porai-Koshits, CC BY-SA 4.0",
+          creditUrl: "https://commons.wikimedia.org/wiki/File:ITTF_World_Tour_2017_German_Open_Harimoto_Tomokazu_02.jpg",
+        },
+        blocks: [
+          "On Tuesday, per [PingSunday](https://pingsunday.com/wtt-champions-frankfurt-2026-results-3-november/) and Infinity Sport, [Wang Chuqin](https://en.wikipedia.org/wiki/Wang_Chuqin) beat Anders Lind 11-7, 14-12, 11-9 and [Tomokazu Harimoto](https://en.wikipedia.org/wiki/Tomokazu_Harimoto) beat Vladimir Sidorenko 11-6, 11-8, 11-7 in about 20 minutes. Dang Qiu edged Elias Ranefur 3-2, and Sora Matsushima beat Joao Geraldo in straight games. In the women's draw Joo Cheonhui beat Adriana Diaz and Bernadette Szocs beat Peng Yu-Han.",
+          "The round of 16 pairs Wang Chuqin with Wen Ruibo, an all-Chinese clash. I could not find the result before publishing, so check the official [WTT site](https://www.worldtabletennis.com) for the latest. The final is on Sunday 8 November.",
+        ],
+      },
+      {
+        heading: "Turn the watching into practice",
+        blocks: [
+          "Han Ying won the close second game 12-10. Track your own deuce games and comebacks in [Ping Pong & Table Tennis Log](/), copy pro serves from the [serve library](/serves), see how [spin](/spins) works, run the [drills](/drills) and test yourself in the [quiz](/quiz). Earlier: our [Frankfurt draw preview](/blog/wtt-champions-frankfurt-2026-draw-wang-chuqin-matsushima-harimoto-ovtcharov).",
+        ],
+      },
+    ],
+    sources: [
+      { label: "People's Daily: China's Wen advances, Wang exits at WTT Champions Frankfurt", url: "http://en.people.cn/n3/2026/1105/c90000-20516101.html" },
+      { label: "PingSunday: WTT Champions Frankfurt 2026 results, 3 November", url: "https://pingsunday.com/wtt-champions-frankfurt-2026-results-3-november/" },
+      { label: "Infinity Sport: Revenge galore in Frankfurt", url: "https://www.infinitysport.asia/news/revenge-galore-in-frankfurt/" },
+    ],
+  },
+  {
     slug: "wtt-champions-frankfurt-2026-draw-wang-chuqin-matsushima-harimoto-ovtcharov",
     title: "WTT Champions Frankfurt 2026 Draw: Wang Chuqin, Matsushima, Harimoto and Germany's Stars",
     seoTitle: "WTT Champions Frankfurt 2026 Draw, Seeds and Matches to Watch",
