@@ -1,4 +1,4 @@
-// Top 25 women's singles (ITTF/WTT world ranking, week 44 2026, published 2026-10-26) and their equipment setups.
+// Top 25 women's singles (ITTF/WTT world ranking, week 45 2026, published 2026-11-02) and their equipment setups.
 // Every slot cites a source and an "as of" date. The ranking was read from the data feed behind the official
 // worldtabletennis.com rankings page. Hand and grip come from each player's WTT profile (Qin Yuxuan: Chinese Wikipedia;
 // Joo Cheonhui has none, so null). Sponsor pages list a player's rubbers without saying which side each is on; where a
@@ -11,13 +11,13 @@ import type { Player, Source } from "../models";
 
 const ACCESSED = "2026-10-03";
 const VERIFIED = "2026-10-03";
-const RANKING_DATE = "2026-10-26";
+const RANKING_DATE = "2026-11-02";
 
 const ranking: Source = {
   url: "https://tabletennis-reference.com/player/world_ranking/women",
-  label: "ITTF/WTT Women's Singles World Ranking, week 44 2026 (published 2026-10-26; read via tabletennis-reference.com mirror, top 5 cross-checked with spread-sports.jp)",
+  label: "ITTF/WTT Women's Singles World Ranking, week 45 2026 (published 2026-11-02; read via tabletennis-reference.com mirror, listed as updated 2026/11/2)",
   kind: "ittf",
-  accessed: "2026-11-02",
+  accessed: "2026-11-09",
 };
 
 const rank = (position: number) => ({ position, date: RANKING_DATE, source: ranking });
@@ -272,7 +272,7 @@ export const womenPlayers: Player[] = [
     gender: "women",
     hand: "left",
     grip: "shakehand",
-    ranking: rank(5),
+    ranking: rank(4),
     setup: {
       blade: {
         itemId: "butterfly-viscaria",
@@ -315,7 +315,7 @@ export const womenPlayers: Player[] = [
     gender: "women",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(4),
+    ranking: rank(5),
     setup: {
       blade: {
         itemId: "dhs-w968-hurricane-long-5",
@@ -442,7 +442,7 @@ export const womenPlayers: Player[] = [
     gender: "women",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(11),
+    ranking: rank(10),
     setup: {
       blade: {
         itemId: null,
@@ -484,7 +484,7 @@ export const womenPlayers: Player[] = [
     gender: "women",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(10),
+    ranking: rank(13),
     setup: {
       blade: {
         itemId: "andro-novacell-off-s",
@@ -525,7 +525,7 @@ export const womenPlayers: Player[] = [
     gender: "women",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(9),
+    ranking: rank(8),
     setup: {
       blade: {
         itemId: "dhs-w968-hurricane-long-5",
@@ -611,7 +611,7 @@ export const womenPlayers: Player[] = [
     gender: "women",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(13),
+    ranking: rank(11),
     setup: {
       blade: {
         itemId: "dhs-hurricane-long-5",
@@ -653,7 +653,7 @@ export const womenPlayers: Player[] = [
     gender: "women",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(8),
+    ranking: rank(9),
     setup: {
       blade: {
         itemId: "nittaku-goriki-super-cut",
@@ -985,7 +985,7 @@ export const womenPlayers: Player[] = [
     gender: "women",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(22),
+    ranking: rank(23),
     setup: {
       blade: {
         itemId: "stiga-cybershape-wood",
@@ -1026,7 +1026,7 @@ export const womenPlayers: Player[] = [
     gender: "women",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(21),
+    ranking: rank(22),
     setup: {
       blade: {
         itemId: "butterfly-fan-zhendong-alc",
@@ -1067,7 +1067,7 @@ export const womenPlayers: Player[] = [
     gender: "women",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(23),
+    ranking: rank(21),
     setup: {
       blade: {
         itemId: "tibhar-szocs-signature",
