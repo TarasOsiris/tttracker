@@ -78,6 +78,93 @@ const ljubljanaArena = { ...hero, caption: "A packed arena at the 2026 World Tea
 export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: BlogPost[] } = {
   en: [
   {
+    slug: "wtt-champions-frankfurt-2026-harimoto-hayata-win-franziska-final",
+    title: "WTT Champions Frankfurt 2026: Harimoto, Hayata Win, Franziska Falls",
+    seoTitle: "WTT Champions Frankfurt 2026 Results: Harimoto and Hayata Win Titles",
+    description:
+      "Tomokazu Harimoto beat Patrick Franziska 4-2 and Hina Hayata beat Satsuki Odo 4-2 to win WTT Champions Frankfurt 2026. Full semifinal results and what is next.",
+    published: "2026-11-09",
+    readMinutes: 4,
+    keywords: [
+      "WTT Champions Frankfurt 2026 results",
+      "Tomokazu Harimoto Frankfurt",
+      "Hina Hayata Satsuki Odo final",
+      "Patrick Franziska final",
+      "Sora Matsushima upset",
+      "table tennis news",
+      "WTT Finals Hong Kong 2026",
+    ],
+    hero: {
+      src: "/blog/hayata-hina-hero.webp",
+      width: 1200,
+      height: 675,
+      alt: "Japan's Hina Hayata in a green and black shirt leaning in to play a shot over the net",
+      caption: "Japan's Hina Hayata in action. Archive photo from the 2017 Asian Championships in Wuxi, not from Frankfurt.",
+      credit: "XIAOYU TANG, CC BY-SA 2.0",
+      creditUrl: "https://commons.wikimedia.org/wiki/File:Hayata_Hina_ATTC2017_9.jpeg",
+    },
+    intro:
+      "Japan swept the singles titles in Frankfurt on Sunday: Tomokazu Harimoto beat Germany's Patrick Franziska 4-2 in the men's final, and Hina Hayata beat her compatriot Satsuki Odo 4-2 in the women's. The story of the weekend, though, was the 34-year-old Franziska, who knocked out world No. 1 Sora Matsushima on the way to a home final.",
+    takeaways: [
+      "**Men's final:** Tomokazu Harimoto beat Patrick Franziska 4-2 on Sunday 8 November, per [Sportschau](https://www.sportschau.de/regional/hr/hr-wtt-frankfurt-2026-patrick-franziska-verpasst-tischtennis-coup-nur-knapp-100.html).",
+      "**Women's final:** Hina Hayata beat Satsuki Odo 4-2, an all-Japanese final.",
+      "**Upset:** Franziska beat top seed and defending champion Sora Matsushima 4-2 in the quarterfinals, then Shunsuke Togami 4-2 in the semifinals.",
+      "**Close call:** Harimoto needed seven games, winning the last 11-8, to beat Lin Yun-Ju in the semifinals.",
+      "**Next:** a calendar listing shows a Contender in Istanbul (10-15 November) and the WTT Finals in Hong Kong (8-13 December).",
+    ],
+    sections: [
+      {
+        heading: "Harimoto beats Franziska in the men's final",
+        image: {
+          src: "/blog/harimoto-tomokazu.webp",
+          width: 1000,
+          height: 666,
+          alt: "Young Tomokazu Harimoto crouching over the table about to serve during a practice session",
+          caption: "Tomokazu Harimoto serving, in an archive photo from 2017.",
+          credit: "Peter Porai-Koshits, CC BY-SA 4.0",
+          creditUrl: "https://commons.wikimedia.org/wiki/File:ITTF_World_Tour_2017_German_Open_Harimoto_Tomokazu_02.jpg",
+        },
+        blocks: [
+          "[Tomokazu Harimoto](https://en.wikipedia.org/wiki/Tomokazu_Harimoto) won the final 4-2. [Tabletennis Reference](https://tabletennis-reference.com/matches/detail/6402) lists the games as 2-11, 11-9, 11-13, 11-8, 11-4, 11-4 from Harimoto's side: Franziska took the first game 11-2, then Harimoto won the last three games without trouble.",
+          "In the semifinals Harimoto edged [Lin Yun-Ju](https://en.wikipedia.org/wiki/Lin_Yun-ju) 4-3, taking the deciding game 11-8, according to [Real TT](https://real-tt.com/en/blog/tournaments/wtt-champions-frankfurt-2026/). **Why it matters:** two straight wins over seven-game opposition show Harimoto is peaking before the season-ending events.",
+        ],
+      },
+      {
+        heading: "Franziska's run: Matsushima, Togami, then a home final",
+        blocks: [
+          "[Patrick Franziska](https://en.wikipedia.org/wiki/Patrick_Franziska) beat Benedikt Duda 12-10 in a fifth game on Friday, according to [hessenschau](https://www.hessenschau.de/sport/mehr-sport/wtt-champions-in-frankfurt-winter-und-franziska-wahren-titelchancen-v1,wtt-freitag-100.html), then beat [Sora Matsushima](https://en.wikipedia.org/wiki/Sora_Matsushima) 4-2 on Saturday and Shunsuke Togami 4-2 in the semifinals. Reaching the final earned him a prize of 20,000 dollars, per Sportschau. His coach Lars Hielscher said: \"Seitdem spielt er einfach grandios!\" (\"Since then he has simply been playing brilliantly\").",
+          "**Why it matters:** a 34-year-old beating the world No. 1 and defending champion in a knockout shows how little rankings guarantee over a single best-of-seven.",
+        ],
+      },
+      {
+        heading: "Hayata wins an all-Japanese women's final",
+        blocks: [
+          "[Hina Hayata](https://en.wikipedia.org/wiki/Hina_Hayata) beat [Satsuki Odo](https://en.wikipedia.org/wiki/Satsuki_Odo) 4-2. Tabletennis Reference lists the games as 12-10, 11-3, 6-11, 11-5, 8-11, 11-6 from Hayata's side. She reached the final by beating [Miwa Harimoto](https://en.wikipedia.org/wiki/Miwa_Harimoto) 4-1, while Odo beat Germany's Sabine Winter 4-1.",
+          "Hayata had said earlier this month she would give it her all in Frankfurt and then take a proper break, so this is a fitting finish to her season. Winter, the last German woman standing, went out in the semifinals.",
+        ],
+      },
+      {
+        heading: "What is next",
+        blocks: [
+          "According to a calendar listing, a Contender in Istanbul runs 10-15 November, a Star Contender in Muscat 16-21 November and the WTT Finals in Hong Kong 8-13 December. Check the official [WTT site](https://www.worldtabletennis.com) before planning, as dates can change. Earlier: our [Montpellier results](/blog/jang-woojin-wins-wtt-champions-montpellier-2026-sun-yingsha-kuai-man-final).",
+        ],
+      },
+      {
+        heading: "Turn the watching into practice",
+        blocks: [
+          "Franziska won a 13-11 game and Hayata won a 12-10 opener: deuce games decide finals. Track yours in [Ping Pong & Table Tennis Log](/), copy pro serves from the [serve library](/serves), learn how [spin](/spins) works, run the [drills](/drills) and test yourself in the [quiz](/quiz).",
+        ],
+      },
+    ],
+    sources: [
+      { label: "Sportschau: Franziska misses the table tennis coup in the Frankfurt final", url: "https://www.sportschau.de/regional/hr/hr-wtt-frankfurt-2026-patrick-franziska-verpasst-tischtennis-coup-nur-knapp-100.html" },
+      { label: "Real TT: WTT Champions Frankfurt 2026 results and champions", url: "https://real-tt.com/en/blog/tournaments/wtt-champions-frankfurt-2026/" },
+      { label: "Tabletennis Reference: WTT Champions Frankfurt 2026", url: "https://tabletennis-reference.com/matches/detail/6402" },
+      { label: "hessenschau: Winter und Franziska wahren Titelchancen", url: "https://www.hessenschau.de/sport/mehr-sport/wtt-champions-in-frankfurt-winter-und-franziska-wahren-titelchancen-v1,wtt-freitag-100.html" },
+      { label: "World Table Tennis", url: "https://www.worldtabletennis.com" },
+    ],
+  },
+  {
     slug: "wtt-champions-frankfurt-2026-wang-yidi-out-kallberg-upset-ovtcharov-wins",
     title: "WTT Champions Frankfurt 2026: Wang Yidi Out, Kallberg Upset, Ovtcharov Wins",
     seoTitle: "WTT Champions Frankfurt 2026 Results: Wang Yidi, Kallberg Out",
