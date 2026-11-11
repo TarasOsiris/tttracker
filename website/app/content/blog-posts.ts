@@ -78,6 +78,97 @@ const ljubljanaArena = { ...hero, caption: "A packed arena at the 2026 World Tea
 export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: BlogPost[] } = {
   en: [
   {
+    slug: "wtt-finals-hong-kong-2026-qualified-players-lebrun-harimoto-sun-yingsha",
+    title: "WTT Finals Hong Kong 2026: Who Has Qualified So Far (Dec 9-13)",
+    seoTitle: "WTT Finals Hong Kong 2026 Qualified Players: Lebrun, Harimoto, Sun Yingsha",
+    description:
+      "WTT Finals Hong Kong 2026 runs 9-13 December at Kai Tak Arena. See who has qualified so far, including Lebrun, Harimoto, Sun Yingsha and Hayata, and who is chasing.",
+    published: "2026-11-11",
+    readMinutes: 4,
+    keywords: [
+      "WTT Finals Hong Kong 2026",
+      "WTT Finals qualified players",
+      "Felix Lebrun WTT Finals",
+      "Tomokazu Harimoto defending champion",
+      "Sun Yingsha Kuai Man Wang Yidi",
+      "Kai Tak Arena table tennis",
+      "table tennis news",
+    ],
+    hero: {
+      src: "/blog/felix-lebrun.webp",
+      width: 1200,
+      height: 675,
+      alt: "Felix Lebrun leaning over the table to play a forehand with the ball just leaving his paddle",
+      caption: "Félix Lebrun in action. Archive photo from the 2022 European Championships in Munich, not from Hong Kong.",
+      credit: "Granada, CC BY-SA 4.0",
+      creditUrl: "https://commons.wikimedia.org/wiki/File:20220818_European_Championships_Munich_2022_Felix_Lebrun_850_9499.jpg",
+    },
+    intro:
+      "The season finale is four weeks away. WTT Finals Hong Kong 2026 takes over the new Kai Tak Arena on 9-13 December with only 16 men, 16 women and 8 mixed doubles pairs. Some names are already locked in; others, like Wang Chuqin, still have work to do.",
+    takeaways: [
+      "**When and where:** 9-13 December 2026 at Kai Tak Arena, Kai Tak Sports Park, Hong Kong, per [Archyde](https://www.archyde.com/wtt-finals-hong-kong-2026-sets-dates-and-ticket-sales/). Some earlier listings said 8 December, so check the official [WTT site](https://www.worldtabletennis.com).",
+      "**Field:** 16 men's singles players, 16 women's singles players and 8 mixed doubles pairs.",
+      "**Men's names in:** Félix Lebrun, Sora Matsushima and defending champion Tomokazu Harimoto (as of mid-October).",
+      "**Women's names in:** Sun Yingsha, Miwa Harimoto, Hina Hayata, Kuai Man, Wang Yidi and Satsuki Odo (as of mid-October).",
+      "**Still chasing:** Wang Chuqin was 8th in the race in mid-October with five men's places still open.",
+    ],
+    sections: [
+      {
+        heading: "What the Finals are",
+        blocks: [
+          "The Finals close the WTT season. Singles places go to the highest-ranked players, 16 men and 16 women, according to [gmw.cn](https://m.gmw.cn/2026-10/13/content_1304574912.htm). The venue is the newly built Kai Tak Arena, and ticket sales opened on 20 October for members and 23 October for the public, per Archyde.",
+          "**Why it matters:** a 16-player field with no soft first rounds means every match is against a top-level opponent.",
+        ],
+      },
+      {
+        heading: "Men: Lebrun, Matsushima and Harimoto are in",
+        image: {
+          src: "/blog/harimoto-tomokazu.webp",
+          width: 1000,
+          height: 666,
+          alt: "Young Tomokazu Harimoto crouching over the table about to serve during a practice session",
+          caption: "Tomokazu Harimoto serving, in an archive photo from 2017.",
+          credit: "Peter Porai-Koshits, CC BY-SA 4.0",
+          creditUrl: "https://commons.wikimedia.org/wiki/File:ITTF_World_Tour_2017_German_Open_Harimoto_Tomokazu_02.jpg",
+        },
+        blocks: [
+          "Both reports list [Félix Lebrun](https://en.wikipedia.org/wiki/F%C3%A9lix_Lebrun), [Sora Matsushima](https://en.wikipedia.org/wiki/Sora_Matsushima) and [Tomokazu Harimoto](https://en.wikipedia.org/wiki/Tomokazu_Harimoto) among the men already through. Harimoto is the defending Finals champion, and he has just won WTT Champions Frankfurt, covered in our [Frankfurt report](/blog/wtt-champions-frankfurt-2026-harimoto-hayata-win-franziska-final).",
+          "[Wang Chuqin](https://en.wikipedia.org/wiki/Wang_Chuqin) was 8th in the race in mid-October, with five men's places still open. Those lists are a month old, so treat them as a snapshot, not the final field.",
+        ],
+      },
+      {
+        heading: "Women: six places filled",
+        blocks: [
+          "Archyde lists [Sun Yingsha](https://en.wikipedia.org/wiki/Sun_Yingsha), [Miwa Harimoto](https://en.wikipedia.org/wiki/Miwa_Harimoto), [Hina Hayata](https://en.wikipedia.org/wiki/Hina_Hayata), Kuai Man, Wang Yidi and [Satsuki Odo](https://en.wikipedia.org/wiki/Satsuki_Odo) as locked in. Sun and Kuai also played the women's final in Montpellier, where Sun won 4-1, per [People's Daily](https://en.people.cn/n3/2026/1102/c90000-20514624.html).",
+        ],
+      },
+      {
+        heading: "Mixed doubles and the home crowd",
+        blocks: [
+          "Lim Jonghoon and Shin Yubin are named as defending champions, and Hong Kong's Wong Chun Ting and Doo Hoi Kem as the local pair, according to gmw.cn. Neither source gives the full list of eight pairs.",
+        ],
+      },
+      {
+        heading: "Before then",
+        blocks: [
+          "Calendar listings put a Contender in Istanbul on 10-15 November and a Star Contender in Muscat on 16-21 November, last chances to collect ranking points. I could not find draws or results for Istanbul yet.",
+        ],
+      },
+      {
+        heading: "Turn the watching into practice",
+        blocks: [
+          "Players at this level win on third-ball attacks and serve variation. Log your own matches in [Ping Pong & Table Tennis Log](/), study the [serve library](/serves), learn how [spin](/spins) works, run the [drills](/drills) and test yourself in the [quiz](/quiz).",
+        ],
+      },
+    ],
+    sources: [
+      { label: "Archyde: WTT Finals Hong Kong 2026 sets dates and ticket sales", url: "https://www.archyde.com/wtt-finals-hong-kong-2026-sets-dates-and-ticket-sales/" },
+      { label: "gmw.cn: WTT Finals Hong Kong 2026 field", url: "https://m.gmw.cn/2026-10/13/content_1304574912.htm" },
+      { label: "People's Daily: Montpellier finals report", url: "https://en.people.cn/n3/2026/1102/c90000-20514624.html" },
+      { label: "World Table Tennis", url: "https://www.worldtabletennis.com" },
+    ],
+  },
+  {
     slug: "wtt-champions-frankfurt-2026-harimoto-hayata-win-franziska-final",
     title: "WTT Champions Frankfurt 2026: Harimoto, Hayata Win, Franziska Falls",
     seoTitle: "WTT Champions Frankfurt 2026 Results: Harimoto and Hayata Win Titles",
