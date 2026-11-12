@@ -78,6 +78,83 @@ const ljubljanaArena = { ...hero, caption: "A packed arena at the 2026 World Tea
 export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: BlogPost[] } = {
   en: [
   {
+    slug: "wtt-contender-istanbul-2026-jarvis-hursey-main-draw-qualifying-results",
+    title: "WTT Contender Istanbul 2026: Jarvis and Hursey Open Main Draw, Qualifying Results",
+    seoTitle: "WTT Contender Istanbul 2026: Main Draw Starts, Jarvis, Hursey, Qualifying Results",
+    description:
+      "WTT Contender Istanbul 2026 (10-15 Nov): qualifying results, Tom Jarvis vs Artemenko, Anna Hursey vs Yeh Yi-Tian and the Thursday doubles. Plus what comes next.",
+    published: "2026-11-12",
+    readMinutes: 3,
+    keywords: [
+      "WTT Contender Istanbul 2026",
+      "Istanbul Contender results",
+      "Tom Jarvis table tennis",
+      "Anna Hursey",
+      "Connor Green",
+      "WTT Contender qualifying",
+      "table tennis news",
+    ],
+    hero: {
+      src: "/blog/felix-lebrun.webp",
+      width: 1200,
+      height: 675,
+      alt: "Felix Lebrun leaning over the table to play a forehand with the ball just leaving his paddle",
+      caption: "Archive photo of Félix Lebrun at the 2022 European Championships in Munich, not from Istanbul.",
+      credit: "Granada, CC BY-SA 4.0",
+      creditUrl: "https://commons.wikimedia.org/wiki/File:20220818_European_Championships_Munich_2022_Felix_Lebrun_850_9499.jpg",
+    },
+    intro:
+      "A week after Frankfurt's big names, the circuit moves to Türkiye. WTT Contender Istanbul runs 10-15 November, and the main draw gets going on Thursday with a seeded Welshman, a top-40 Welsh woman and a handful of qualifying upsets already in the books.",
+    takeaways: [
+      "**Event:** WTT Contender Istanbul, 10-15 November 2026, per the [ITTF calendar](https://www.ittf.com/2026-events-calendar).",
+      "**Men's last 32:** Tom Jarvis (world No. 51, 8th seed) plays Nikita Artemenko (No. 76) on Thursday.",
+      "**Women's last 32:** Anna Hursey (No. 38) plays Yeh Yi-Tian of Chinese Taipei (No. 49).",
+      "**Qualifying:** unranked Ao Hualei of China beat Connor Green (No. 118) 3-1.",
+      "**Next:** a Star Contender in Muscat on 16-21 November, then WTT Finals Hong Kong in December.",
+    ],
+    sections: [
+      {
+        heading: "Thursday's main draw matches",
+        blocks: [
+          "According to [Table Tennis England](https://www.tabletennisengland.co.uk/news/2026/wtt-contender-istanbul-2026/), Wales' Tom Jarvis, seeded eighth, meets Nikita Artemenko in the last 32 at 9:20am UK time. Anna Hursey follows at 3:15pm UK time against Yeh Yi-Tian. Rankings quoted are world rankings at the time of the draw.",
+          "**Why it matters:** Contenders are where players ranked outside the top 30 pick up the points that decide seeding at bigger events. A seed against a No. 76 is a match he is expected to win, which makes it a good one to watch for nerves.",
+        ],
+      },
+      {
+        heading: "Qualifying: Ao Hualei stops Green",
+        image: batraInline,
+        blocks: [
+          "Connor Green (No. 118) had a first-round bye, then lost 3-1 to the unranked Ao Hualei: 11-7, 11-8, 8-11, 11-7. Green took the third game from 5-5, but led 4-1 in the fourth and still lost it, and Ao closed on his second match point.",
+          "In the women's qualifying, Tianer Yu (No. 358) beat Kazakhstan's Sarvinoz Mirkadirova (No. 187) 3-1 (8-11, 11-5, 11-9, 11-7), then lost 3-1 to the USA's Jessica Reyes Lai (No. 164): 11-8, 4-11, 11-6, 11-8.",
+          "**Why it matters:** an unranked player beating a No. 118 shows how deep qualifying is. A 4-1 lead in a game is not safe at this level.",
+        ],
+      },
+      {
+        heading: "Doubles also start Thursday",
+        blocks: [
+          "Green and Hursey, the third seeds in mixed doubles, play Leonardo Iizuka and Laura Watanabe of Brazil in the round of 16 at 7:35am UK time. In men's doubles, Green and Jarvis face Italy's Danilo Faso and Türkiye's Gorcem Okay at 11:05am.",
+        ],
+      },
+      {
+        heading: "What is next",
+        blocks: [
+          "Calendar listings place a Star Contender in Muscat on 16-21 November and [WTT Finals Hong Kong](/blog/wtt-finals-hong-kong-2026-qualified-players-lebrun-harimoto-sun-yingsha) on 9-13 December. Catch up on the last big event in our [Frankfurt report](/blog/wtt-champions-frankfurt-2026-harimoto-hayata-win-franziska-final). Check the official [WTT site](https://www.worldtabletennis.com) for draws; I could not find main-draw results yet.",
+        ],
+      },
+      {
+        heading: "Turn the watching into practice",
+        blocks: [
+          "Close games are decided by who keeps their routine at 5-5. Log your own matches in [Ping Pong & Table Tennis Log](/), study the [serve library](/serves), learn how [spin](/spins) works, run the [drills](/drills) and test yourself in the [quiz](/quiz).",
+        ],
+      },
+    ],
+    sources: [
+      { label: "Table Tennis England: WTT Contender Istanbul 2026", url: "https://www.tabletennisengland.co.uk/news/2026/wtt-contender-istanbul-2026/" },
+      { label: "ITTF 2026 events calendar", url: "https://www.ittf.com/2026-events-calendar" },
+      { label: "World Table Tennis", url: "https://www.worldtabletennis.com" },
+    ],
+  },
+  {
     slug: "wtt-finals-hong-kong-2026-qualified-players-lebrun-harimoto-sun-yingsha",
     title: "WTT Finals Hong Kong 2026: Who Has Qualified So Far (Dec 9-13)",
     seoTitle: "WTT Finals Hong Kong 2026 Qualified Players: Lebrun, Harimoto, Sun Yingsha",
