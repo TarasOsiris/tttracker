@@ -78,6 +78,73 @@ const ljubljanaArena = { ...hero, caption: "A packed arena at the 2026 World Tea
 export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: BlogPost[] } = {
   en: [
   {
+    slug: "wtt-contender-istanbul-2026-jarvis-upset-artemenko-hursey-faces-hashimoto",
+    title: "WTT Contender Istanbul 2026: Jarvis Upset by Artemenko, Hursey Meets Hashimoto",
+    seoTitle: "WTT Contender Istanbul 2026 Results: Jarvis Out, Hursey vs Hashimoto Next",
+    description:
+      "WTT Contender Istanbul 2026 results: 8th seed Tom Jarvis loses 3-2 to Artemenko after a match point, Anna Hursey beats Yeh Yi-Tian and now faces Honoka Hashimoto.",
+    published: "2026-11-13",
+    readMinutes: 3,
+    keywords: [
+      "WTT Contender Istanbul 2026 results",
+      "Tom Jarvis Artemenko",
+      "Anna Hursey Honoka Hashimoto",
+      "Istanbul Contender table tennis",
+      "WTT Contender results",
+      "Wales table tennis",
+      "table tennis news",
+    ],
+    hero: arenaImage,
+    intro:
+      "Eighth seed Tom Jarvis had a 2-1 lead and a match point against a player ranked 25 places below him in Istanbul, and still lost. On the same day Anna Hursey cruised past Yeh Yi-Tian and earned a date with the top seed.",
+    takeaways: [
+      "**Upset:** Tom Jarvis (No. 51, 8th seed) lost 3-2 to Nikita Artemenko (No. 76): 10-12, 11-9, 11-7, 10-12, 8-11 from Jarvis's side.",
+      "**Match point saved:** Artemenko saved a match point and won the decider 11-8.",
+      "**Hursey through:** Anna Hursey (No. 38) beat Yeh Yi-Tian 3-1 (11-6, 11-2, 7-11, 11-9) and plays first seed Honoka Hashimoto next.",
+      "**Doubles:** Jarvis and Connor Green lost 3-0 in the round of 16; Green and Hursey won their mixed round-of-16 match 3-0.",
+      "**Why Istanbul matters:** the city hosts the European Games next summer, so this event is an early look at the venue.",
+    ],
+    sections: [
+      {
+        heading: "Jarvis falls to Artemenko in five",
+        blocks: [
+          "Per [Table Tennis England](https://www.tabletennisengland.co.uk/news/2026/wtt-contender-istanbul-2026/), Jarvis lost 3-2 to Nikita Artemenko in the last 32 (12-10, 9-11, 7-11, 12-10, 11-8 in Artemenko's favour). Jarvis led 2-1 in games, but Artemenko won the deciding game after saving a match point.",
+          "**Why it matters:** it echoes Connor Green's qualifying exit, where another lead slipped away. At Contender level a ranking gap of 25 places is small, and the player who stays calm at 10-10 usually wins.",
+        ],
+      },
+      {
+        heading: "Hursey advances to a Hashimoto showdown",
+        blocks: [
+          "Wales' Anna Hursey beat Yeh Yi-Tian of Chinese Taipei 3-1 (11-6, 11-2, 7-11, 11-9). She now plays the first seed, Japan's Honoka Hashimoto, in the round of 16. Hashimoto heads a women's field with four top-20 players, per the [pre-event report](https://www.tabletennisengland.co.uk/news/2026/jarvis-seeded-as-trio-head-to-wtt-contender-istanbul/).",
+          "**Why it matters:** Hursey is the 12th-ranked player in the event, so she is a live underdog against a world No. 14 and has little to lose.",
+        ],
+      },
+      {
+        heading: "Doubles: mixed pair still alive",
+        blocks: [
+          "Jarvis and Green lost their men's doubles round of 16 to Italy's Danilo Faso and Türkiye's Gorkem Ocal, 3-0 (12-10, 11-8, 11-8). Green and Hursey beat Brazil's Leonardo Iizuka and Laura Watanabe 3-0 (11-8, 11-5, 11-8) and meet Guilherme Teodoro and Giulia Takahashi of Brazil in Friday's quarter-finals.",
+        ],
+      },
+      {
+        heading: "Context and what to watch",
+        blocks: [
+          "The event runs 10-15 November and streams on the WTT YouTube channel. Istanbul also hosts the European Games next summer. For the bigger picture, read our [WTT Finals Hong Kong qualification list](/blog/wtt-finals-hong-kong-2026-qualified-players-lebrun-harimoto-sun-yingsha) and the [Frankfurt Champions report](/blog/wtt-champions-frankfurt-2026-harimoto-hayata-win-franziska-final), or our [earlier Istanbul preview](/blog/wtt-contender-istanbul-2026-jarvis-hursey-main-draw-qualifying-results). I could not retrieve further results beyond these; check the official [WTT site](https://www.worldtabletennis.com) for the full draw.",
+        ],
+      },
+      {
+        heading: "Turn the watching into practice",
+        blocks: [
+          "Jarvis's loss is a lesson in closing games. Log your own deciding games in [Ping Pong & Table Tennis Log](/), practise a reliable serve from the [serve library](/serves), learn how [spin](/spins) works, run the [drills](/drills) and test yourself in the [quiz](/quiz).",
+        ],
+      },
+    ],
+    sources: [
+      { label: "Table Tennis England: WTT Contender Istanbul 2026", url: "https://www.tabletennisengland.co.uk/news/2026/wtt-contender-istanbul-2026/" },
+      { label: "Table Tennis England: Jarvis seeded as trio head to Istanbul", url: "https://www.tabletennisengland.co.uk/news/2026/jarvis-seeded-as-trio-head-to-wtt-contender-istanbul/" },
+      { label: "World Table Tennis", url: "https://www.worldtabletennis.com" },
+    ],
+  },
+  {
     slug: "wtt-contender-istanbul-2026-jarvis-hursey-main-draw-qualifying-results",
     title: "WTT Contender Istanbul 2026: Jarvis and Hursey Open Main Draw, Qualifying Results",
     seoTitle: "WTT Contender Istanbul 2026: Main Draw Starts, Jarvis, Hursey, Qualifying Results",
