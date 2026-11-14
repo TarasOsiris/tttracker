@@ -46,4 +46,9 @@ final class SwiftAnalyticsService: NSObject, AnalyticsService {
         guard isEnabled else { return }
         PostHogSDK.shared.reset()
     }
+
+    func setPersonProperties(properties: [String: Any]) {
+        guard isEnabled else { return }
+        PostHogSDK.shared.setPersonProperties(userPropertiesToSet: properties)
+    }
 }

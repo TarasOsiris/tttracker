@@ -17,4 +17,9 @@ final class SwiftCrashReporter: NSObject, CrashReporter {
         SentrySDK.setUser(User(userId: userId))
         initialized = true
     }
+
+    func setTag(key: String, value: String) {
+        guard initialized else { return }
+        SentrySDK.configureScope { scope in scope.setTag(value: value, key: key) }
+    }
 }

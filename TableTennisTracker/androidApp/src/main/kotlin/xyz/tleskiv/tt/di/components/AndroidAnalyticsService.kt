@@ -43,6 +43,11 @@ class AndroidAnalyticsService(
 		PostHog.reset()
 	}
 
+	override fun setPersonProperties(properties: Map<String, Any>) {
+		if (!isEnabled) return
+		PostHog.capture("\$set", userProperties = properties)
+	}
+
 	companion object {
 		private const val POSTHOG_HOST = "https://eu.i.posthog.com"
 	}
