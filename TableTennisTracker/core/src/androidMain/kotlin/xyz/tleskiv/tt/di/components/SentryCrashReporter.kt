@@ -12,4 +12,8 @@ class SentryCrashReporter : CrashReporter {
 		Sentry.setUser(User().apply { id = userId })
 		initialized = true
 	}
+
+	override fun setTag(key: String, value: String) {
+		if (initialized) Sentry.configureScope { it.setTag(key, value) }
+	}
 }

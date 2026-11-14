@@ -1,5 +1,6 @@
 import Foundation
 import RevenueCat
+import Shared
 
 /// Configures RevenueCat at launch. `ProModel` reads the Pro entitlement and `ProPaywallSheet` shows
 /// the paywall.
@@ -22,6 +23,8 @@ enum SwiftPurchases {
 
         Purchases.logLevel = .warn
         Purchases.configure(with: Configuration.Builder(withAPIKey: apiKey).build())
+        // Lets Smashy Control link this RevenueCat customer to their PostHog activity and Sentry crashes.
+        StoreUserLinkKt.linkStoreUser(storeUserId: Purchases.shared.appUserID)
     }
 
     /// The id RevenueCat knows this user by, which is what support looks a customer up with. Nil

@@ -6,7 +6,9 @@ import org.koin.android.ext.android.get
 import org.koin.android.ext.koin.androidLogger
 import xyz.tleskiv.tt.appwidget.WidgetUpdater
 import xyz.tleskiv.tt.di.androidPlatformModule
+import xyz.tleskiv.tt.di.components.PurchasesIdProvider
 import xyz.tleskiv.tt.di.initApp
+import xyz.tleskiv.tt.di.linkStoreUser
 
 class TTApplication : Application() {
 
@@ -19,6 +21,7 @@ class TTApplication : Application() {
 		}
 
 		PurchasesSetup.configure(this)
+		linkStoreUser(get<PurchasesIdProvider>().appUserId)
 		get<WidgetUpdater>().start()
 	}
 }
