@@ -48,8 +48,8 @@ android {
 		applicationId = "xyz.tleskiv.tt"
 		minSdk = libs.versions.android.minSdk.get().toInt()
 		targetSdk = libs.versions.android.targetSdk.get().toInt()
-		versionCode = 28
-		versionName = "1.3.0"
+		versionCode = 29
+		versionName = "1.3.1"
 		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 		// Routes instrumentation output through the test-services provider, which writes to
 		// /sdcard/googletest/test_outputfiles — the one place `adb pull` can read on API 30+ without

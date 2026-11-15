@@ -1,3 +1,3 @@
-• Apple Zdrowie: importuj trening tenisa stołowego podczas tworzenia sesji, aby uzupełnić datę, czas trwania i wysiłek.
-• Szczegóły sesji pokazują godzinę i energię aktywną powiązanego treningu, a z Pro także tętno.
+• „Oceń aplikację” w Ustawieniach za każdym razem otwiera teraz stronę opinii w App Store.
+• Dwukrotne stuknięcie Zapisz nie dodaje już tej samej sesji dwa razy.
 • Poprawki i ulepszenia.

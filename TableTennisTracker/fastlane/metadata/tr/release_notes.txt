@@ -1,3 +1,3 @@
-• Apple Sağlık: antrenman oluştururken bir masa tenisi antrenmanını içe aktararak tarih, süre ve eforu otomatik doldurun.
-• Antrenman ayrıntıları bağlı antrenmanın saatini ve aktif enerjisini, Pro ile de kalp atış hızınızı gösterir.
+• Ayarlar'daki "Uygulamayı değerlendir" artık her seferinde App Store değerlendirme sayfasını açıyor.
+• Kaydet'e iki kez dokunmak artık aynı antrenmanı iki kez eklemiyor.
 • Hata düzeltmeleri ve iyileştirmeler.

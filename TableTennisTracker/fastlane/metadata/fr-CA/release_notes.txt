@@ -1,3 +1,3 @@
-• Apple Santé : importez un entraînement de tennis de table à la création d'une session pour remplir la date, la durée et l'effort.
-• Les détails de la session affichent l'heure et l'énergie active de l'entraînement lié, et avec Pro votre fréquence cardiaque.
-• Correctifs et améliorations.
+• « Évaluer l'application » dans les Paramètres ouvre désormais à chaque fois la page d'avis de l'App Store.
+• Toucher Enregistrer deux fois n'ajoute plus la même session en double.
+• Corrections et améliorations.

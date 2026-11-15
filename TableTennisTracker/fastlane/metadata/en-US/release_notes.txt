@@ -1,3 +1,3 @@
-• Apple Health: import a table tennis workout when creating a session to fill in the date, duration and effort.
-• Session details show the linked workout's time and active energy, and with Pro your heart rate.
+• "Rate the app" in Settings now opens the App Store review page every time.
+• Tapping Save twice no longer adds the same session twice.
 • Fixes and improvements.
