@@ -10,7 +10,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     privacy: {
       title: "Política de Privacidad",
       description: `Cómo gestiona tus datos ${appNames.es.name}: qué permanece en tu dispositivo, qué envía la aplicación y quién lo recibe.`,
-      updated: "16 de octubre de 2026",
+      updated: "15 de noviembre de 2026",
       intro: `${appNames.es.name} es un diario de entrenamiento para jugadores de tenis de mesa, desarrollado por Nineva Studios («nosotros»). Esta política cubre las aplicaciones ${appNames.es.name} para iOS y Android y el sitio web en ${SITE_URL}. En resumen: no hay cuentas de usuario, tus datos de entrenamiento permanecen en tu dispositivo, nunca vendemos datos y la aplicación no contiene anuncios.`,
       sections: [
         {
@@ -46,10 +46,10 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
         {
           heading: "Qué envía la aplicación y a quién",
           blocks: [
-            "La aplicación genera un identificador aleatorio la primera vez que se inicia. No está vinculado a tu nombre, correo ni cuentas de Apple o Google, y es el único identificador asociado a las analíticas y los informes de fallos. RevenueCat guarda las compras con un identificador aleatorio propio e independiente, que es el ID de usuario que copia Ajustes → Copiar ID de usuario.",
+            "La aplicación genera un identificador aleatorio la primera vez que se inicia. No está vinculado a tu nombre, correo ni cuentas de Apple o Google, y a él se asocian las analíticas y los informes de fallos. RevenueCat guarda las compras con un identificador aleatorio propio e independiente, que es el ID de usuario que copia Ajustes → Copiar ID de usuario. La aplicación también registra ese ID de RevenueCat junto con las analíticas y los informes de fallos, para poder relacionar una consulta sobre una compra con la actividad y los errores de esa instalación. Estos dos son los únicos identificadores asociados a las analíticas y los informes de fallos.",
             {
               list: [
-                "**Analíticas de uso — PostHog** (PostHog Inc., servidores en la UE, Fráncfort). Qué pantallas se abren y qué funciones se utilizan, y cuándo se instala, actualiza o abre la app: por ejemplo, que se creó una sesión con su tipo, duración, valoración de esfuerzo (RPE) y número de partidos, que se cambió un ajuste o que se vinculó un entrenamiento. Una sesión vinculada a un entrenamiento se registra sin su duración ni su valoración de esfuerzo, y nunca se envían datos de salud. También versión de la app, modelo de dispositivo, sistema operativo, idioma y una ubicación aproximada (país o ciudad) derivada de tu dirección IP. Solo las versiones de producción envían analíticas. [Política de privacidad de PostHog](https://posthog.com/privacy).",
+                "**Analíticas de uso — PostHog** (PostHog Inc., datos almacenados en EE. UU.). Qué pantallas se abren y qué funciones se utilizan, y cuándo se instala, actualiza o abre la app: por ejemplo, que se creó una sesión con su tipo, duración, valoración de esfuerzo (RPE) y número de partidos, que se cambió un ajuste o que se vinculó un entrenamiento. Una sesión vinculada a un entrenamiento se registra sin su duración ni su valoración de esfuerzo, y nunca se envían datos de salud. También versión de la app, modelo de dispositivo, sistema operativo, idioma y una ubicación aproximada (país o ciudad) derivada de tu dirección IP. Solo las versiones de producción envían analíticas. [Política de privacidad de PostHog](https://posthog.com/privacy).",
                 "**Informes de errores — Sentry** (Functional Software, Inc., Estados Unidos). Cuando la aplicación falla o sufre un error: los detalles técnicos del error, la versión de la app, el modelo de dispositivo, el sistema operativo, los eventos recientes de la app que lo precedieron y la dirección IP desde la que se envía el informe. [Política de privacidad de Sentry](https://sentry.io/privacy/).",
                 "**Gestión de compras — RevenueCat** (RevenueCat, Inc., Estados Unidos). Las compras se realizan a través de App Store o Google Play, que gestionan el pago: nunca vemos tu tarjeta ni tus datos de facturación. RevenueCat recibe el recibo de compra con su producto, precio, moneda y país, el identificador aleatorio que asigna y cuándo se muestra o se cierra su pantalla de compra, además de datos del dispositivo y del sistema operativo y tu dirección IP, para que la app sepa si Pro está desbloqueado y pueda restaurarlo en tus otros dispositivos. [Política de privacidad de RevenueCat](https://www.revenuecat.com/privacy/).",
               ],
@@ -93,7 +93,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
         {
           heading: "Transferencias internacionales",
           blocks: [
-            "Sentry y RevenueCat, así como Google y Meta para este sitio web, tienen su sede en EE. UU. En caso de transferir datos de usuarios de la UE o Reino Unido, se aplican las Cláusulas Contractuales Tipo de la UE.",
+            "PostHog, Sentry y RevenueCat, así como Google y Meta para este sitio web, tienen su sede en EE. UU. En caso de transferir datos de usuarios de la UE o Reino Unido, se aplican las Cláusulas Contractuales Tipo de la UE.",
           ],
         },
         {
@@ -188,7 +188,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     privacy: {
       title: "Datenschutzerklärung",
       description: `Wie ${appNames.de.name} mit Ihren Daten umgeht: Was auf Ihrem Gerät verbleibt, was übertragen wird und wer Zugriff hat.`,
-      updated: "16. Oktober 2026",
+      updated: "15. November 2026",
       intro: `${appNames.de.name} ist ein Trainingstagebuch für Tischtennisspieler, entwickelt von Nineva Studios („wir“, „uns“). Diese Erklärung gilt für die ${appNames.de.name}-Apps für iOS und Android sowie die Website unter ${SITE_URL}. Kurz zusammengefasst: Es gibt keine Benutzerkonten, Ihre Trainingsdaten verbleiben auf Ihrem Gerät, Daten werden niemals verkauft und die App ist werbefrei.`,
       sections: [
         {
@@ -223,10 +223,10 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
         {
           heading: "Datenübertragungen an Dritte",
           blocks: [
-            "Die App erstellt beim ersten Start eine zufällige Kennung. Sie ist nicht mit Ihrem Namen, Ihrer E-Mail-Adresse oder Ihrem Apple- oder Google-Konto verknüpft und die einzige Kennung, die Analyse- und Absturzberichten beigefügt wird. RevenueCat führt Käufe unter einer eigenen, separaten zufälligen Kennung; das ist die Benutzer-ID, die Einstellungen → Benutzer-ID kopieren kopiert.",
+            "Die App erstellt beim ersten Start eine zufällige Kennung. Sie ist nicht mit Ihrem Namen, Ihrer E-Mail-Adresse oder Ihrem Apple- oder Google-Konto verknüpft; unter ihr werden Nutzungsanalysen und Absturzberichte abgelegt. RevenueCat führt Käufe unter einer eigenen, separaten zufälligen Kennung; das ist die Benutzer-ID, die Einstellungen → Benutzer-ID kopieren kopiert. Die App speichert diese RevenueCat-ID außerdem bei Nutzungsanalysen und Absturzberichten, damit sich eine Frage zu einem Kauf der Aktivität und den Fehlern dieser Installation zuordnen lässt. Diese beiden sind die einzigen Kennungen, die Analyse- und Absturzberichten beigefügt werden.",
             {
               list: [
-                "**Nutzungsanalyse — PostHog** (PostHog Inc., Serverstandort in der EU, Frankfurt). Welche Bildschirme geöffnet und welche Funktionen genutzt werden und wann die App installiert, aktualisiert oder geöffnet wird, zum Beispiel dass eine Einheit mit Art, Dauer, Anstrengungsbewertung (RPE) und Anzahl der Spiele erstellt, eine Einstellung geändert oder ein Training verknüpft wurde. Eine mit einem Training verknüpfte Einheit wird ohne ihre Dauer und Anstrengungsbewertung übermittelt, und Gesundheitsdaten werden niemals gesendet. Außerdem App-Version, Gerätemodell, Betriebssystem, Sprache und ein aus Ihrer IP-Adresse abgeleiteter ungefährer Standort (Land oder Stadt). Nur Release-Versionen senden Analysedaten. [PostHog Datenschutz](https://posthog.com/privacy).",
+                "**Nutzungsanalyse — PostHog** (PostHog Inc., Datenspeicherung in den USA). Welche Bildschirme geöffnet und welche Funktionen genutzt werden und wann die App installiert, aktualisiert oder geöffnet wird, zum Beispiel dass eine Einheit mit Art, Dauer, Anstrengungsbewertung (RPE) und Anzahl der Spiele erstellt, eine Einstellung geändert oder ein Training verknüpft wurde. Eine mit einem Training verknüpfte Einheit wird ohne ihre Dauer und Anstrengungsbewertung übermittelt, und Gesundheitsdaten werden niemals gesendet. Außerdem App-Version, Gerätemodell, Betriebssystem, Sprache und ein aus Ihrer IP-Adresse abgeleiteter ungefährer Standort (Land oder Stadt). Nur Release-Versionen senden Analysedaten. [PostHog Datenschutz](https://posthog.com/privacy).",
                 "**Absturzberichte — Sentry** (Functional Software, Inc., USA). Wenn die App abstürzt oder auf einen Fehler stößt: die technischen Details des Fehlers, App-Version, Gerätemodell, Betriebssystem, die vorangegangenen App-Ereignisse und die IP-Adresse, von der der Bericht gesendet wird. [Sentry Datenschutz](https://sentry.io/privacy/).",
                 "**Kaufabwicklung — RevenueCat** (RevenueCat, Inc., USA). Käufe laufen über den App Store oder Google Play, die die Zahlung abwickeln: Ihre Karten- oder Rechnungsdaten sehen wir nie. RevenueCat erhält den Kaufbeleg mit Produkt, Preis, Währung und Land, die von RevenueCat vergebene zufällige Kennung und wann der Kaufbildschirm angezeigt oder geschlossen wird, außerdem Geräte- und Betriebssystemangaben und Ihre IP-Adresse, damit die App erkennt, ob Pro freigeschaltet ist, und es auf Ihren anderen Geräten wiederherstellen kann. [RevenueCat Datenschutz](https://www.revenuecat.com/privacy/).",
               ],
@@ -308,7 +308,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     privacy: {
       title: "Politique de Confidentialité",
       description: `Comment ${appNames.fr.name} protège vos données : ce qui reste sur votre appareil, ce qui est transmis et à qui.`,
-      updated: "16 octobre 2026",
+      updated: "15 novembre 2026",
       intro: `${appNames.fr.name} est un journal d'entraînement pour les joueurs de tennis de table, édité par Nineva Studios (« nous »). Cette politique s'applique aux applications pour iOS et Android et au site ${SITE_URL}. En résumé : aucun compte requis, vos données restent sur votre appareil, nous ne vendons aucune donnée et l'application ne diffuse aucune publicité.`,
       sections: [
         {
@@ -342,10 +342,10 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
         {
           heading: "Données transmises et partenaires",
           blocks: [
-            "L'application génère un identifiant aléatoire à son premier lancement. Il n'est lié ni à votre nom, ni à votre e-mail, ni à votre compte Apple ou Google, et c'est le seul identifiant joint aux statistiques d'utilisation et aux rapports de plantage. RevenueCat enregistre les achats sous son propre identifiant aléatoire, distinct : c'est l'ID utilisateur que copie Réglages → Copier l'ID utilisateur.",
+            "L'application génère un identifiant aléatoire à son premier lancement. Il n'est lié ni à votre nom, ni à votre e-mail, ni à votre compte Apple ou Google, et les statistiques d'utilisation et les rapports de plantage y sont rattachés. RevenueCat enregistre les achats sous son propre identifiant aléatoire, distinct : c'est l'ID utilisateur que copie Réglages → Copier l'ID utilisateur. L'application enregistre aussi cet identifiant RevenueCat avec les statistiques d'utilisation et les rapports de plantage, afin qu'une question sur un achat puisse être rapprochée de l'activité et des erreurs de cette installation. Ce sont les deux seuls identifiants joints aux statistiques d'utilisation et aux rapports de plantage.",
             {
               list: [
-                "**Statistiques d'utilisation — PostHog** (PostHog Inc., serveurs dans l'UE à Francfort). Les écrans ouverts et les fonctionnalités utilisées, ainsi que l'installation, la mise à jour et l'ouverture de l'application : par exemple qu'une séance a été créée avec son type, sa durée, son évaluation de l'effort (RPE) et son nombre de matchs, qu'un réglage a été modifié ou qu'un entraînement a été lié. Une séance liée à un entraînement est transmise sans sa durée ni son évaluation de l'effort, et aucune donnée de santé n'est jamais envoyée. Également la version de l'application, le modèle d'appareil, le système d'exploitation, la langue et une localisation approximative (pays ou ville) déduite de votre adresse IP. Seules les versions publiées envoient des statistiques. [Confidentialité PostHog](https://posthog.com/privacy).",
+                "**Statistiques d'utilisation — PostHog** (PostHog Inc., données stockées aux États-Unis). Les écrans ouverts et les fonctionnalités utilisées, ainsi que l'installation, la mise à jour et l'ouverture de l'application : par exemple qu'une séance a été créée avec son type, sa durée, son évaluation de l'effort (RPE) et son nombre de matchs, qu'un réglage a été modifié ou qu'un entraînement a été lié. Une séance liée à un entraînement est transmise sans sa durée ni son évaluation de l'effort, et aucune donnée de santé n'est jamais envoyée. Également la version de l'application, le modèle d'appareil, le système d'exploitation, la langue et une localisation approximative (pays ou ville) déduite de votre adresse IP. Seules les versions publiées envoient des statistiques. [Confidentialité PostHog](https://posthog.com/privacy).",
                 "**Rapports de plantage — Sentry** (Functional Software, Inc., États-Unis). Lorsque l'application plante ou rencontre une erreur : les détails techniques de l'erreur, la version de l'application, le modèle d'appareil, le système d'exploitation, les événements récents de l'application qui l'ont précédée et l'adresse IP depuis laquelle le rapport est envoyé. [Confidentialité Sentry](https://sentry.io/privacy/).",
                 "**Achats — RevenueCat** (RevenueCat, Inc., États-Unis). Les achats passent par l'App Store ou Google Play, qui gèrent le paiement : nous ne voyons jamais vos données de carte ou de facturation. RevenueCat reçoit le reçu d'achat avec le produit, le prix, la devise et le pays, l'identifiant aléatoire qu'il attribue et l'affichage ou la fermeture de son écran d'achat, ainsi que des informations sur l'appareil et le système d'exploitation et votre adresse IP, afin que l'application sache si Pro est débloqué et puisse le restaurer sur vos autres appareils. [Confidentialité RevenueCat](https://www.revenuecat.com/privacy/).",
               ],
@@ -415,7 +415,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     privacy: {
       title: "Política de Privacidade",
       description: `Como o ${appNames.pt.name} trata os seus dados: o que permanece no dispositivo e quais dados técnicos são transmitidos.`,
-      updated: "16 de outubro de 2026",
+      updated: "15 de novembro de 2026",
       intro: `O ${appNames.pt.name} é um diário de treino para mesatenistas, desenvolvido pela Nineva Studios («nós»). Em suma: não exigimos cadastro, os dados de treino ficam no seu aparelho, nunca vendemos dados e o aplicativo não contém anúncios.`,
       sections: [
         {
@@ -448,10 +448,10 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
         {
           heading: "Serviços de terceiros",
           blocks: [
-            "O aplicativo cria um identificador aleatório na primeira vez que é aberto. Ele não está ligado ao seu nome, e-mail nem à sua conta Apple ou Google, e é o único identificador anexado às métricas de uso e aos relatórios de falhas. O RevenueCat registra as compras com um identificador aleatório próprio e separado, que é o ID de usuário copiado em Configurações → Copiar ID do usuário.",
+            "O aplicativo cria um identificador aleatório na primeira vez que é aberto. Ele não está ligado ao seu nome, e-mail nem à sua conta Apple ou Google, e as métricas de uso e os relatórios de falhas ficam associados a ele. O RevenueCat registra as compras com um identificador aleatório próprio e separado, que é o ID de usuário copiado em Configurações → Copiar ID do usuário. O aplicativo também registra esse ID do RevenueCat junto com as métricas de uso e os relatórios de falhas, para que uma dúvida sobre uma compra possa ser relacionada à atividade e aos erros dessa instalação. Esses dois são os únicos identificadores anexados às métricas de uso e aos relatórios de falhas.",
             {
               list: [
-                "**Métricas de uso — PostHog** (PostHog Inc., dados na UE, Frankfurt). Quais telas são abertas e quais recursos são usados, e quando o aplicativo é instalado, atualizado ou aberto: por exemplo, que uma sessão foi criada com seu tipo, duração, avaliação de esforço (RPE) e número de partidas, que um ajuste foi alterado ou que um treino foi vinculado. Uma sessão vinculada a um treino é registrada sem a duração nem a avaliação de esforço, e nenhum dado de saúde é enviado em momento algum. Também a versão do aplicativo, o modelo do aparelho, o sistema operacional, o idioma e uma localização aproximada (país ou cidade) derivada do seu endereço IP. Só as versões publicadas enviam métricas. [Privacidade do PostHog](https://posthog.com/privacy).",
+                "**Métricas de uso — PostHog** (PostHog Inc., dados armazenados nos Estados Unidos). Quais telas são abertas e quais recursos são usados, e quando o aplicativo é instalado, atualizado ou aberto: por exemplo, que uma sessão foi criada com seu tipo, duração, avaliação de esforço (RPE) e número de partidas, que um ajuste foi alterado ou que um treino foi vinculado. Uma sessão vinculada a um treino é registrada sem a duração nem a avaliação de esforço, e nenhum dado de saúde é enviado em momento algum. Também a versão do aplicativo, o modelo do aparelho, o sistema operacional, o idioma e uma localização aproximada (país ou cidade) derivada do seu endereço IP. Só as versões publicadas enviam métricas. [Privacidade do PostHog](https://posthog.com/privacy).",
                 "**Relatórios de falhas — Sentry** (Functional Software, Inc., Estados Unidos). Quando o aplicativo trava ou encontra um erro: os detalhes técnicos do erro, a versão do aplicativo, o modelo do aparelho, o sistema operacional, os eventos recentes do aplicativo que o antecederam e o endereço IP de onde o relatório é enviado. [Privacidade do Sentry](https://sentry.io/privacy/).",
                 "**Compras — RevenueCat** (RevenueCat, Inc., Estados Unidos). As compras são feitas pela App Store ou pelo Google Play, que processam o pagamento: nunca vemos seu cartão nem seus dados de cobrança. O RevenueCat recebe o recibo da compra com produto, preço, moeda e país, o identificador aleatório que ele atribui e quando a tela de compra é exibida ou fechada, além de dados do aparelho e do sistema operacional e seu endereço IP, para que o aplicativo saiba se o Pro está desbloqueado e possa restaurá-lo nos seus outros aparelhos. [Privacidade do RevenueCat](https://www.revenuecat.com/privacy/).",
               ],
@@ -516,7 +516,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     privacy: {
       title: "プライバシーポリシー",
       description: `「${appNames.ja.name}」におけるユーザーデータの取り扱いについて：端末内に保持されるデータと外部送信される情報。`,
-      updated: "2026年10月16日",
+      updated: "2026年11月15日",
       intro: `「${appNames.ja.name}」はNineva Studios（以下「当社」）が提供する卓球選手のための練習記録アプリです。要約：アカウント作成は不要で、練習ログはお使いの端末内にのみ保存され、データの販売や広告の表示は一切行いません。`,
       sections: [
         {
@@ -550,10 +550,10 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
         {
           heading: "外部送信される技術情報",
           blocks: [
-            "アプリは初回起動時にランダムな識別子を作成します。この識別子はお客様の氏名、メールアドレス、AppleまたはGoogleのアカウントとは紐づいておらず、利用状況解析とクラッシュ報告に付与される唯一の識別子です。購入情報はRevenueCatが独自に割り当てる別のランダムな識別子で管理され、「設定」→「ユーザーIDをコピー」でコピーされるのはこのIDです。",
+            "アプリは初回起動時にランダムな識別子を作成します。この識別子はお客様の氏名、メールアドレス、AppleまたはGoogleのアカウントとは紐づいておらず、利用状況解析とクラッシュ報告はこの識別子に紐づけられます。購入情報はRevenueCatが独自に割り当てる別のランダムな識別子で管理され、「設定」→「ユーザーIDをコピー」でコピーされるのはこのIDです。購入に関するお問い合わせをそのインストールの利用状況やエラーと照合できるよう、アプリはこのRevenueCatのIDも利用状況解析とクラッシュ報告に記録します。利用状況解析とクラッシュ報告に付与される識別子はこの2つだけです。",
             {
               list: [
-                "**利用状況解析 — PostHog**（PostHog Inc.、EUフランクフルトのサーバー）：開いた画面と使用した機能、アプリのインストール・アップデート・起動のタイミング。例えば、セッションを作成したこと（種類、所要時間、負荷の評価（RPE）、試合数）、設定を変更したこと、ワークアウトを連携したことなどです。ワークアウトに連携したセッションは所要時間や負荷の評価を含めずに記録され、ヘルスケアデータが送信されることは一切ありません。このほか、アプリのバージョン、端末の機種、OS、言語、IPアドレスから推定されるおおよその位置（国または都市）を受け取ります。解析データを送信するのはリリース版のみです。[PostHogのプライバシーポリシー](https://posthog.com/privacy)",
+                "**利用状況解析 — PostHog**（PostHog Inc.、データは米国に保存）：開いた画面と使用した機能、アプリのインストール・アップデート・起動のタイミング。例えば、セッションを作成したこと（種類、所要時間、負荷の評価（RPE）、試合数）、設定を変更したこと、ワークアウトを連携したことなどです。ワークアウトに連携したセッションは所要時間や負荷の評価を含めずに記録され、ヘルスケアデータが送信されることは一切ありません。このほか、アプリのバージョン、端末の機種、OS、言語、IPアドレスから推定されるおおよその位置（国または都市）を受け取ります。解析データを送信するのはリリース版のみです。[PostHogのプライバシーポリシー](https://posthog.com/privacy)",
                 "**エラー・クラッシュ報告 — Sentry**（Functional Software, Inc.、米国）：アプリのクラッシュやエラーの発生時に、エラーの技術的な詳細、アプリのバージョン、端末の機種、OS、直前のアプリ内イベント、報告の送信元IPアドレスを受け取ります。[Sentryのプライバシーポリシー](https://sentry.io/privacy/)",
                 "**購入管理 — RevenueCat**（RevenueCat, Inc.、米国）：購入と支払いはApp StoreまたはGoogle Playが処理するため、当社がカード情報や請求情報を目にすることはありません。RevenueCatは、Proの解除状態の確認とお客様の他の端末での復元のために、購入レシート（商品、価格、通貨、国）、RevenueCatが割り当てるランダムな識別子、購入画面の表示・終了、端末とOSの情報、IPアドレスを受け取ります。[RevenueCatのプライバシーポリシー](https://www.revenuecat.com/privacy/)",
               ],
@@ -618,7 +618,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     privacy: {
       title: "隐私政策",
       description: `「${appNames.zh.name}」如何处理您的数据：存储在设备上的内容、技术传输信息及相关第三方服务。`,
-      updated: "2026年10月16日",
+      updated: "2026年11月15日",
       intro: `「${appNames.zh.name}」是由 Nineva Studios（“我们”）专为乒乓球爱好者打造的训练日志应用。简要说明：无需注册账号，训练与比赛记录保存在您的本地设备中，我们绝不出售任何数据，应用内无任何广告。`,
       sections: [
         {
@@ -652,10 +652,10 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
         {
           heading: "技术数据与第三方服务",
           blocks: [
-            "应用首次启动时会生成一个随机标识符。它与您的姓名、电子邮箱或 Apple、Google 账号均无关联，是附加在使用统计和崩溃报告上的唯一标识符。RevenueCat 会用它自己分配的另一个随机标识符记录购买，“设置”→“复制用户ID”复制的就是这个 ID。",
+            "应用首次启动时会生成一个随机标识符。它与您的姓名、电子邮箱或 Apple、Google 账号均无关联，使用统计和崩溃报告都归在它下面。RevenueCat 会用它自己分配的另一个随机标识符记录购买，“设置”→“复制用户ID”复制的就是这个 ID。应用还会把这个 RevenueCat ID 一并记录在使用统计和崩溃报告中，以便将有关购买的咨询与该安装的使用情况和错误对应起来。附加在使用统计和崩溃报告上的标识符只有这两个。",
             {
               list: [
-                "**使用统计 — PostHog**（PostHog Inc.，数据存储在欧盟法兰克福）：打开了哪些页面、使用了哪些功能，以及应用何时被安装、更新或打开，例如创建了一条训练记录（含类型、时长、强度评分 RPE 和比赛场数）、更改了某项设置或关联了锻炼。关联了锻炼的训练记录在上报时不包含时长和强度评分，且绝不会发送任何健康数据。此外还包括应用版本、设备型号、操作系统、语言，以及根据 IP 地址推断的大致位置（国家或城市）。只有正式发布版本会发送统计数据。[PostHog 隐私政策](https://posthog.com/privacy)",
+                "**使用统计 — PostHog**（PostHog Inc.，数据存储在美国）：打开了哪些页面、使用了哪些功能，以及应用何时被安装、更新或打开，例如创建了一条训练记录（含类型、时长、强度评分 RPE 和比赛场数）、更改了某项设置或关联了锻炼。关联了锻炼的训练记录在上报时不包含时长和强度评分，且绝不会发送任何健康数据。此外还包括应用版本、设备型号、操作系统、语言，以及根据 IP 地址推断的大致位置（国家或城市）。只有正式发布版本会发送统计数据。[PostHog 隐私政策](https://posthog.com/privacy)",
                 "**崩溃报告 — Sentry**（Functional Software, Inc.，美国）：应用崩溃或出错时，发送错误的技术细节、应用版本、设备型号、操作系统、出错前的近期应用事件，以及发送报告时的 IP 地址。[Sentry 隐私政策](https://sentry.io/privacy/)",
                 "**购买验证 — RevenueCat**（RevenueCat, Inc.，美国）：购买通过 App Store 或 Google Play 完成并由其处理付款，我们看不到您的银行卡或账单信息。RevenueCat 会收到购买凭证及其商品、价格、币种和国家/地区、它分配的随机标识符、购买页面何时显示或关闭，以及设备和操作系统信息和您的 IP 地址，以便应用判断 Pro 是否已解锁，并在您的其他设备上恢复。[RevenueCat 隐私政策](https://www.revenuecat.com/privacy/)",
               ],
@@ -720,7 +720,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     privacy: {
       title: "개인정보 처리방침",
       description: `「${appNames.ko.name}」의 개인정보 처리 안내: 기기 내 저장 데이터, 외부 전송 항목 및 제3자 제공 현황.`,
-      updated: "2026년 10월 16일",
+      updated: "2026년 11월 15일",
       intro: `「${appNames.ko.name}」은 Nineva Studios(이하 '회사')가 개발한 탁구인을 위한 훈련일지 앱입니다. 요약: 별도의 회원가입이나 계정이 필요 없으며, 모든 기록은 사용자 기기에 안전하게 보관되고, 데이터 판매나 광고는 절대 하지 않습니다.`,
       sections: [
         {
@@ -753,10 +753,10 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
         {
           heading: "외부 전송 기술 데이터",
           blocks: [
-            "앱은 처음 실행될 때 임의의 식별자를 만듭니다. 이 식별자는 사용자의 이름, 이메일, Apple 또는 Google 계정과 연결되지 않으며, 사용 통계와 오류 보고에 붙는 유일한 식별자입니다. 구매 정보는 RevenueCat이 자체적으로 부여하는 별도의 임의 식별자로 관리되며, 설정 → 사용자 ID 복사로 복사되는 것이 바로 이 ID입니다.",
+            "앱은 처음 실행될 때 임의의 식별자를 만듭니다. 이 식별자는 사용자의 이름, 이메일, Apple 또는 Google 계정과 연결되지 않으며, 사용 통계와 오류 보고는 이 식별자로 기록됩니다. 구매 정보는 RevenueCat이 자체적으로 부여하는 별도의 임의 식별자로 관리되며, 설정 → 사용자 ID 복사로 복사되는 것이 바로 이 ID입니다. 앱은 구매 관련 문의를 해당 설치의 사용 기록 및 오류와 연결할 수 있도록 이 RevenueCat ID도 사용 통계와 오류 보고에 함께 기록합니다. 사용 통계와 오류 보고에 붙는 식별자는 이 두 가지뿐입니다.",
             {
               list: [
-                "**사용 통계 — PostHog** (PostHog Inc., EU 프랑크푸르트 서버): 어떤 화면을 열고 어떤 기능을 사용하는지, 앱을 언제 설치·업데이트·실행하는지. 예를 들어 세션을 만든 사실(종류, 운동 시간, 운동 강도 평가(RPE), 경기 수), 설정을 바꾼 사실, 운동을 연결한 사실 등입니다. 운동에 연결된 세션은 운동 시간과 운동 강도 평가 없이 전송되며, 건강 데이터는 절대 전송되지 않습니다. 또한 앱 버전, 기기 모델, 운영체제, 언어, IP 주소로 추정한 대략적인 위치(국가 또는 도시)도 전송됩니다. 정식 출시 버전만 사용 통계를 보냅니다. [PostHog 개인정보 처리방침](https://posthog.com/privacy)",
+                "**사용 통계 — PostHog** (PostHog Inc., 미국에 데이터 저장): 어떤 화면을 열고 어떤 기능을 사용하는지, 앱을 언제 설치·업데이트·실행하는지. 예를 들어 세션을 만든 사실(종류, 운동 시간, 운동 강도 평가(RPE), 경기 수), 설정을 바꾼 사실, 운동을 연결한 사실 등입니다. 운동에 연결된 세션은 운동 시간과 운동 강도 평가 없이 전송되며, 건강 데이터는 절대 전송되지 않습니다. 또한 앱 버전, 기기 모델, 운영체제, 언어, IP 주소로 추정한 대략적인 위치(국가 또는 도시)도 전송됩니다. 정식 출시 버전만 사용 통계를 보냅니다. [PostHog 개인정보 처리방침](https://posthog.com/privacy)",
                 "**오류 보고 — Sentry** (Functional Software, Inc., 미국): 앱이 비정상 종료되거나 오류가 발생했을 때 오류의 기술적 세부 정보, 앱 버전, 기기 모델, 운영체제, 직전의 앱 이벤트, 보고서를 보낸 IP 주소. [Sentry 개인정보 처리방침](https://sentry.io/privacy/)",
                 "**구매 관리 — RevenueCat** (RevenueCat, Inc., 미국): 구매와 결제는 App Store 또는 Google Play가 처리하므로 회사는 카드나 결제 정보를 볼 수 없습니다. RevenueCat은 Pro 잠금 해제 여부를 확인하고 다른 기기에서 복원할 수 있도록 구매 영수증(상품, 가격, 통화, 국가), RevenueCat이 부여한 임의 식별자, 구매 화면의 표시 및 닫힘, 기기와 운영체제 정보, IP 주소를 받습니다. [RevenueCat 개인정보 처리방침](https://www.revenuecat.com/privacy/)",
               ],
@@ -821,7 +821,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     privacy: {
       title: "Informativa sulla Privacy",
       description: `Come ${appNames.it.name} gestisce i tuoi dati: cosa rimane sul tuo dispositivo e quali dati tecnici vengono trasmessi.`,
-      updated: "16 ottobre 2026",
+      updated: "15 novembre 2026",
       intro: `${appNames.it.name} è un diario di allenamento per giocatori di tennistavolo, creato da Nineva Studios («noi»). In breve: nessun account richiesto, i dati rimangono sul tuo dispositivo, non vendiamo dati e non mostriamo pubblicità.`,
       sections: [
         {
@@ -854,10 +854,10 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
         {
           heading: "Servizi di terze parti",
           blocks: [
-            "L'app crea un identificativo casuale al primo avvio. Non è collegato al tuo nome, alla tua email o al tuo account Apple o Google, ed è l'unico identificativo associato alle statistiche d'uso e ai report sui crash. RevenueCat registra gli acquisti con un proprio identificativo casuale separato, che è l'ID utente copiato da Impostazioni → Copia ID utente.",
+            "L'app crea un identificativo casuale al primo avvio. Non è collegato al tuo nome, alla tua email o al tuo account Apple o Google, e le statistiche d'uso e i report sui crash sono associati a esso. RevenueCat registra gli acquisti con un proprio identificativo casuale separato, che è l'ID utente copiato da Impostazioni → Copia ID utente. L'app registra anche questo ID RevenueCat insieme alle statistiche d'uso e ai report sui crash, così che una domanda su un acquisto possa essere collegata all'attività e agli errori di quell'installazione. Sono questi due gli unici identificativi associati alle statistiche d'uso e ai report sui crash.",
             {
               list: [
-                "**Statistiche d'uso — PostHog** (PostHog Inc., server nell'UE a Francoforte). Quali schermate vengono aperte e quali funzioni vengono usate, e quando l'app viene installata, aggiornata o aperta: ad esempio che è stata creata una sessione con tipo, durata, valutazione dello sforzo (RPE) e numero di partite, che è stata cambiata un'impostazione o che è stato collegato un allenamento. Una sessione collegata a un allenamento viene registrata senza durata né valutazione dello sforzo, e nessun dato sulla salute viene mai inviato. Inoltre versione dell'app, modello del dispositivo, sistema operativo, lingua e una posizione approssimativa (paese o città) ricavata dal tuo indirizzo IP. Solo le versioni pubblicate inviano statistiche. [Privacy di PostHog](https://posthog.com/privacy).",
+                "**Statistiche d'uso — PostHog** (PostHog Inc., dati conservati negli Stati Uniti). Quali schermate vengono aperte e quali funzioni vengono usate, e quando l'app viene installata, aggiornata o aperta: ad esempio che è stata creata una sessione con tipo, durata, valutazione dello sforzo (RPE) e numero di partite, che è stata cambiata un'impostazione o che è stato collegato un allenamento. Una sessione collegata a un allenamento viene registrata senza durata né valutazione dello sforzo, e nessun dato sulla salute viene mai inviato. Inoltre versione dell'app, modello del dispositivo, sistema operativo, lingua e una posizione approssimativa (paese o città) ricavata dal tuo indirizzo IP. Solo le versioni pubblicate inviano statistiche. [Privacy di PostHog](https://posthog.com/privacy).",
                 "**Report sui crash — Sentry** (Functional Software, Inc., Stati Uniti). Quando l'app si arresta o incontra un errore: i dettagli tecnici dell'errore, la versione dell'app, il modello del dispositivo, il sistema operativo, gli eventi recenti dell'app che lo hanno preceduto e l'indirizzo IP da cui viene inviato il report. [Privacy di Sentry](https://sentry.io/privacy/).",
                 "**Acquisti — RevenueCat** (RevenueCat, Inc., Stati Uniti). Gli acquisti avvengono tramite App Store o Google Play, che gestiscono il pagamento: non vediamo mai i dati della tua carta o di fatturazione. RevenueCat riceve la ricevuta d'acquisto con prodotto, prezzo, valuta e paese, l'identificativo casuale che assegna e quando la sua schermata d'acquisto viene mostrata o chiusa, oltre ai dati del dispositivo e del sistema operativo e al tuo indirizzo IP, così l'app sa se Pro è sbloccato e può ripristinarlo sugli altri tuoi dispositivi. [Privacy di RevenueCat](https://www.revenuecat.com/privacy/).",
               ],
@@ -922,7 +922,7 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
     privacy: {
       title: "Політика конфіденційності",
       description: `Як додаток «${appNames.uk.name}» обробляє ваші дані: що зберігається на пристрої, які технічні дані надсилаються та хто має до них доступ.`,
-      updated: "16 жовтня 2026 р.",
+      updated: "15 листопада 2026 р.",
       intro: `«${appNames.uk.name}» — це тренувальний щоденник для гравців у настільний теніс від Nineva Studios («ми»). Коротко: реєстрація не потрібна, ваші тренування зберігаються на вашому пристрої, ми ніколи не продаємо дані, а в додатку немає реклами.`,
       sections: [
         {
@@ -956,10 +956,10 @@ export const legalTranslations: Partial<Record<Locale, { privacy: LegalDocument;
         {
           heading: "Що і кому надсилає додаток",
           blocks: [
-            "Додаток створює випадковий ідентифікатор під час першого запуску. Він не пов'язаний з вашим іменем, електронною поштою чи обліковим записом Apple або Google і є єдиним ідентифікатором, що додається до аналітики та звітів про помилки. RevenueCat веде покупки під власним окремим випадковим ідентифікатором — саме його копіює Налаштування → Копіювати ID користувача.",
+            "Додаток створює випадковий ідентифікатор під час першого запуску. Він не пов'язаний з вашим іменем, електронною поштою чи обліковим записом Apple або Google, і до нього прив'язуються аналітика та звіти про помилки. RevenueCat веде покупки під власним окремим випадковим ідентифікатором — саме його копіює Налаштування → Копіювати ID користувача. Додаток також записує цей ID RevenueCat в аналітику та звіти про помилки, щоб запит щодо покупки можна було зіставити з активністю та помилками цього встановлення. Це єдині два ідентифікатори, що додаються до аналітики та звітів про помилки.",
             {
               list: [
-                "**Аналітика використання — PostHog** (PostHog Inc., сервери в ЄС, Франкфурт): які екрани відкриваються й якими функціями користуються, а також коли додаток установлюють, оновлюють чи відкривають — наприклад, що створено тренування з його типом, тривалістю, оцінкою зусиль (RPE) і кількістю матчів, що змінено налаштування чи прив’язано запис тренування. Тренування, прив’язане до запису тренування, надсилається без тривалості й оцінки зусиль, а дані про здоров’я не надсилаються ніколи. Також версія додатка, модель пристрою, операційна система, мова й приблизне місцезнаходження (країна чи місто), визначене за IP-адресою. Аналітику надсилають лише релізні версії. [Політика PostHog](https://posthog.com/privacy).",
+                "**Аналітика використання — PostHog** (PostHog Inc., дані зберігаються в США): які екрани відкриваються й якими функціями користуються, а також коли додаток установлюють, оновлюють чи відкривають — наприклад, що створено тренування з його типом, тривалістю, оцінкою зусиль (RPE) і кількістю матчів, що змінено налаштування чи прив’язано запис тренування. Тренування, прив’язане до запису тренування, надсилається без тривалості й оцінки зусиль, а дані про здоров’я не надсилаються ніколи. Також версія додатка, модель пристрою, операційна система, мова й приблизне місцезнаходження (країна чи місто), визначене за IP-адресою. Аналітику надсилають лише релізні версії. [Політика PostHog](https://posthog.com/privacy).",
                 "**Звіти про помилки — Sentry** (Functional Software, Inc., США): коли додаток аварійно завершується або натрапляє на помилку — технічні деталі помилки, версія додатка, модель пристрою, операційна система, останні події в додатку перед нею та IP-адреса, з якої надіслано звіт. [Політика Sentry](https://sentry.io/privacy/).",
                 "**Керування покупками — RevenueCat** (RevenueCat, Inc., США): покупки здійснюються через App Store або Google Play, які обробляють оплату, тож ми ніколи не бачимо даних вашої картки чи рахунку. RevenueCat отримує квитанцію покупки з продуктом, ціною, валютою й країною, випадковий ідентифікатор, який він призначає, дані про показ і закриття екрана покупки, а також дані про пристрій і операційну систему та вашу IP-адресу, щоб додаток знав, чи розблоковано Pro, і міг відновити його на інших ваших пристроях. [Політика RevenueCat](https://www.revenuecat.com/privacy/).",
               ],

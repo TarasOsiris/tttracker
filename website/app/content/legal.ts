@@ -11,7 +11,7 @@ export type LegalSection = { heading: string; blocks: LegalBlock[] };
 export type LegalDocument = { title: string; description: string; updated: string; intro: string; sections: LegalSection[] };
 
 const UPDATED = "October 11, 2026";
-const PRIVACY_UPDATED = "October 16, 2026";
+const PRIVACY_UPDATED = "November 15, 2026";
 const contact = `[${links.email}](mailto:${links.email})`;
 
 export const privacyPolicy: LegalDocument = {
@@ -53,10 +53,10 @@ export const privacyPolicy: LegalDocument = {
     {
       heading: "What the app sends, and to whom",
       blocks: [
-        "The app creates a random identifier the first time it runs. It is not linked to your name, email or Apple or Google account, and it is the only identifier attached to analytics and crash reports. RevenueCat keeps purchases under a separate random identifier of its own, which is the User ID that Settings → Copy User ID copies.",
+        "The app creates a random identifier the first time it runs. It is not linked to your name, email or Apple or Google account, and analytics and crash reports are filed under it. RevenueCat keeps purchases under a separate random identifier of its own, which is the User ID that Settings → Copy User ID copies. The app also records that RevenueCat ID with its analytics and crash reports, so a question about a purchase can be matched to that installation's activity and errors. These two are the only identifiers attached to analytics and crash reports.",
         {
           list: [
-            "**Usage analytics — PostHog** (PostHog Inc., data stored in the EU, Frankfurt). Which screens are opened and which features are used, and when the app is installed, updated or opened, for example that a session was created with its type, duration, effort rating (RPE) and number of matches, that a setting was changed, or that a workout was linked. A session linked to a workout is reported without its duration or effort rating, and no health data is ever sent. Also app version, device model, operating system, language, and an approximate location (country or city) derived from your IP address. Only release builds send analytics. [PostHog privacy policy](https://posthog.com/privacy).",
+            "**Usage analytics — PostHog** (PostHog Inc., data stored in the United States). Which screens are opened and which features are used, and when the app is installed, updated or opened, for example that a session was created with its type, duration, effort rating (RPE) and number of matches, that a setting was changed, or that a workout was linked. A session linked to a workout is reported without its duration or effort rating, and no health data is ever sent. Also app version, device model, operating system, language, and an approximate location (country or city) derived from your IP address. Only release builds send analytics. [PostHog privacy policy](https://posthog.com/privacy).",
             "**Crash reports — Sentry** (Functional Software, Inc., United States). When the app crashes or hits an error: the technical details of the error, the app version, device model, operating system, the recent app events leading up to it, and the IP address the report is sent from. [Sentry privacy policy](https://sentry.io/privacy/).",
             "**Purchases — RevenueCat** (RevenueCat, Inc., United States). Purchases are made through the App Store or Google Play, which handle payment: we never see your card or billing details. RevenueCat receives the purchase receipt and its product, price, currency and country, the random identifier it assigns, when its purchase screen is shown or closed, along with device and operating system details and your IP address, so the app can tell whether Pro is unlocked and restore it on your other devices. [RevenueCat privacy policy](https://www.revenuecat.com/privacy/).",
           ],
@@ -100,7 +100,7 @@ export const privacyPolicy: LegalDocument = {
     {
       heading: "International transfers",
       blocks: [
-        "Sentry and RevenueCat, and Google and Meta for this website, are based in the United States. Where data about people in the EU, UK or Switzerland is transferred there, it is protected by the safeguards these providers offer, such as the EU Standard Contractual Clauses.",
+        "PostHog, Sentry and RevenueCat, and Google and Meta for this website, are based in the United States. Where data about people in the EU, UK or Switzerland is transferred there, it is protected by the safeguards these providers offer, such as the EU Standard Contractual Clauses.",
       ],
     },
     {

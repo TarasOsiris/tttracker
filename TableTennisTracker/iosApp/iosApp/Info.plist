@@ -47,7 +47,7 @@
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>TT Tracker only reads your workouts from Health. It never saves or changes anything in Health.</string>
 	<key>POSTHOG_API_KEY</key>
-	<string>phc_c48wFADznJ68OBUeAcQLdKAf5K0GUNxMjf4xXhoopde</string>
+	<string>phc_qYMXMZpAYQcufgzt6wMmqrZyDBSJJS3LFm2nb2oHsLyS</string>
 	<key>REVENUECAT_API_KEY</key>
 	<string>$(REVENUECAT_API_KEY)</string>
 	<key>SENTRY_DSN</key>

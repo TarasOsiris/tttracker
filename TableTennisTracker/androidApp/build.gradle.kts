@@ -65,7 +65,7 @@ android {
 		buildConfigField(
 			"String",
 			"POSTHOG_API_KEY",
-			"\"${System.getenv("POSTHOG_API_KEY") ?: "phc_c48wFADznJ68OBUeAcQLdKAf5K0GUNxMjf4xXhoopde"}\""
+			"\"${System.getenv("POSTHOG_API_KEY") ?: "phc_qYMXMZpAYQcufgzt6wMmqrZyDBSJJS3LFm2nb2oHsLyS"}\""
 		)
 	}
 

@@ -7,7 +7,7 @@ import Shared
 /// Living on the Swift side means the app links PostHog through SwiftPM rather than a Kotlin
 /// cinterop binding, and event properties can be sent, which the cinterop bindings could not do.
 final class SwiftAnalyticsService: NSObject, AnalyticsService {
-    private static let host = "https://eu.i.posthog.com"
+    private static let host = "https://us.i.posthog.com"
 
     private let isEnabled: Bool
 

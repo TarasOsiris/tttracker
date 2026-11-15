@@ -49,6 +49,6 @@ class AndroidAnalyticsService(
 	}
 
 	companion object {
-		private const val POSTHOG_HOST = "https://eu.i.posthog.com"
+		private const val POSTHOG_HOST = "https://us.i.posthog.com"
 	}
 }
