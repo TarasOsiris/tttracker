@@ -25,3 +25,6 @@
 
 # Room (WorkManager) instantiates generated *_Impl databases by reflection
 -keep class * extends androidx.room.RoomDatabase { <init>(); }
+
+# Play In-App Review ktx references a compile-time-only annotation from play-services-basement
+-dontwarn com.google.android.gms.common.annotation.NoNullnessRewrite
