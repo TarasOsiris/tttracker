@@ -1,4 +1,4 @@
-// Top 25 men's singles (ITTF/WTT world ranking, week 45 2026, published 2026-11-02) and their equipment setups.
+// Top 25 men's singles (ITTF/WTT world ranking, week 46 2026, published 2026-11-09) and their equipment setups.
 // Every slot cites a source and an "as of" date. Butterfly's sponsor pages list a player's blade and rubbers but not
 // which rubber is on which side; where they list two different rubbers, sides come from the source named in the label
 // and the slot is "reported", not "confirmed". Undated pages use the date they were read and are at most "reported".
@@ -6,13 +6,13 @@ import type { Player, Source } from "../models";
 
 const ACCESSED = "2026-10-03";
 const VERIFIED = "2026-10-03";
-const RANKING_DATE = "2026-11-02";
+const RANKING_DATE = "2026-11-09";
 
 const ranking: Source = {
   url: "https://tabletennis-reference.com/player/world_ranking/men",
-  label: "ITTF/WTT Men's Singles World Ranking, week 45 2026 (published 2026-11-02; read via tabletennis-reference.com mirror, listed as updated 2026/11/2)",
+  label: "ITTF/WTT Men's Singles World Ranking, week 46 2026 (published 2026-11-09 per spread-sports.jp; read via tabletennis-reference.com mirror, which shows rank changes from week 45 and no day)",
   kind: "ittf",
-  accessed: "2026-11-09",
+  accessed: "2026-11-16",
 };
 
 const rank = (position: number) => ({ position, date: RANKING_DATE, source: ranking });
@@ -245,7 +245,7 @@ export const menPlayers: Player[] = [
     gender: "men",
     hand: "right",
     grip: "penhold",
-    ranking: rank(2),
+    ranking: rank(3),
     setup: {
       blade: {
         itemId: "tibhar-felix-lebrun-hyper-carbon",
@@ -327,7 +327,7 @@ export const menPlayers: Player[] = [
     gender: "men",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(3),
+    ranking: rank(2),
     setup: {
       blade: {
         itemId: "butterfly-harimoto-innerforce-super-alc",
@@ -376,7 +376,7 @@ export const menPlayers: Player[] = [
     gender: "men",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(5),
+    ranking: rank(6),
     setup: {
       blade: {
         itemId: "stiga-cybershape-carbon-cwt",
@@ -417,7 +417,7 @@ export const menPlayers: Player[] = [
     gender: "men",
     hand: "left",
     grip: "shakehand",
-    ranking: rank(6),
+    ranking: rank(5),
     setup: {
       blade: {
         itemId: "butterfly-viscaria-super-alc",
@@ -583,7 +583,7 @@ export const menPlayers: Player[] = [
     gender: "men",
     hand: "right",
     grip: "penhold",
-    ranking: rank(11),
+    ranking: rank(16),
     setup: {
       blade: {
         itemId: "butterfly-viscaria",
@@ -666,7 +666,7 @@ export const menPlayers: Player[] = [
     gender: "men",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(13),
+    ranking: rank(14),
     setup: {
       blade: {
         itemId: "tibhar-shang-kun-hybrid-ac",
@@ -707,7 +707,7 @@ export const menPlayers: Player[] = [
     gender: "men",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(16),
+    ranking: rank(15),
     setup: {
       blade: {
         itemId: "butterfly-fan-zhendong-alc",
@@ -748,7 +748,7 @@ export const menPlayers: Player[] = [
     gender: "men",
     hand: "left",
     grip: "shakehand",
-    ranking: rank(17),
+    ranking: rank(18),
     setup: {
       blade: {
         itemId: "donic-anders-lind-exceptional",
@@ -789,7 +789,7 @@ export const menPlayers: Player[] = [
     gender: "men",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(14),
+    ranking: rank(13),
     setup: {
       blade: {
         itemId: null,
@@ -872,7 +872,7 @@ export const menPlayers: Player[] = [
     gender: "men",
     hand: "left",
     grip: "shakehand",
-    ranking: rank(18),
+    ranking: rank(17),
     setup: {
       blade: {
         itemId: null,
@@ -1162,7 +1162,7 @@ export const menPlayers: Player[] = [
     gender: "men",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(15),
+    ranking: rank(11),
     setup: {
       blade: {
         itemId: "butterfly-franziska-innerforce-zlc",
@@ -1244,7 +1244,7 @@ export const menPlayers: Player[] = [
     gender: "men",
     hand: "right",
     grip: "shakehand",
-    ranking: rank(25),
+    ranking: null,
     setup: {
       blade: {
         itemId: "butterfly-timo-boll-alc",
