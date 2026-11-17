@@ -78,6 +78,92 @@ const ljubljanaArena = { ...hero, caption: "A packed arena at the 2026 World Tea
 export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: BlogPost[] } = {
   en: [
   {
+    slug: "fang-bo-wins-wtt-contender-istanbul-2026-kazakhstan-comeback-hashimoto",
+    title: "Fang Bo Wins WTT Contender Istanbul 2026 for Kazakhstan After Five-Year Retirement",
+    seoTitle: "Fang Bo Wins WTT Contender Istanbul 2026: Kazakhstan Comeback at 34",
+    description:
+      "Fang Bo, 34, wins WTT Contender Istanbul 2026 for Kazakhstan after a five-year retirement. Plus Hashimoto's title, Green and Hursey's mixed gold, and Muscat next.",
+    published: "2026-11-17",
+    readMinutes: 4,
+    keywords: [
+      "Fang Bo WTT Contender Istanbul 2026",
+      "Fang Bo Kazakhstan",
+      "WTT Contender Istanbul results",
+      "Honoka Hashimoto Istanbul",
+      "WTT Star Contender Muscat 2026",
+      "Green Hursey mixed doubles",
+      "table tennis news",
+    ],
+    hero: {
+      src: "/blog/fang-bo-istanbul-hero.webp",
+      width: 1200,
+      height: 675,
+      alt: "Fang Bo in a green and yellow China shirt holding his racket at the table with a crowd behind him",
+      caption: "Fang Bo in an archive photo from the 2017 Asian Table Tennis Championships, not from Istanbul.",
+      credit: "XIAOYU TANG, CC BY-SA 2.0",
+      creditUrl: "https://commons.wikimedia.org/wiki/File:Fang_Bo_ATTC2017.jpeg",
+    },
+    intro:
+      "A 34-year-old who spent the last few years as a livestream host just won a WTT Contender. Fang Bo, now playing for Kazakhstan, came back from a five-year retirement, entered Istanbul ranked 160th and left with the title.",
+    takeaways: [
+      "**Comeback title:** Fang Bo (Kazakhstan, No. 160) won the men's singles in Istanbul, beating Kang Dongsoo (No. 120) in the final.",
+      "**Ranking jump:** the 400 points for first place should lift him to about No. 65.",
+      "**Hashimoto wins:** top seed Honoka Hashimoto beat Joo Cheonhui 4-1 in the women's final.",
+      "**British gold:** Connor Green and Anna Hursey won mixed doubles, beating Tikhonov and Panfilova 3-0.",
+      "**Next up:** the WTT Star Contender in Muscat runs 16-21 November.",
+    ],
+    sections: [
+      {
+        heading: "Fang Bo turns back the clock in Istanbul",
+        image: {
+          src: "/blog/fang-bo-2016-serve.webp",
+          width: 1000,
+          height: 666,
+          alt: "Fang Bo in an orange China shirt watching the ball he has tossed up for a serve",
+          caption: "Fang Bo serving at the 2016 World Team Championships. Archive photo, not from Istanbul.",
+          credit: "XIAOYU TANG, CC BY-SA 2.0",
+          creditUrl: "https://commons.wikimedia.org/wiki/File:Fang_Bo_WTTC2016_2.jpeg",
+        },
+        blocks: [
+          "According to [Butterfly's report](https://butterflyonline.com/istan-bo-fang-bo-is-back-on-top-in-turkey/), Fang Bo won his first three matches 3-0, against Mehdi Bouloussa (No. 70), Chen Junsong (No. 89) and Lubomir Jancarik (No. 49). In the semi-final he came back from a game down to beat Ricardo Walther (No. 143). In the final he \"easily\" beat Korea's Kang Dongsoo (No. 120); the report gives no score.",
+          "The back story is the hook. A decade ago Fang Bo was a solid member of China's national team, and his peak came at the [2015 World Championships](https://en.wikipedia.org/wiki/2015_World_Table_Tennis_Championships), where Butterfly says he beat Xu Xin and Zhang Jike before losing to [Ma Long](https://en.wikipedia.org/wiki/Ma_Long_(table_tennis)) in the final. In recent years he was known in China as an announcer and livestream host.",
+          "**Why it matters:** the 400 ranking points should move him from No. 160 to about No. 65, which could get him into bigger main draws. It is also a reminder that Contender fields are open to anyone with form and experience.",
+        ],
+      },
+      {
+        heading: "Hashimoto, Kihara/Hirano and the doubles",
+        blocks: [
+          "Top seed [Honoka Hashimoto](https://en.wikipedia.org/wiki/Honoka_Hashimoto) of Japan won the women's singles, dropping only three games across five wins, and beat Joo Cheonhui of Korea 4-1 in the final. In women's doubles, Miyuu Kihara and Miu Hirano beat Hashimoto and a partner named Nagasaki in the final.",
+          "Russia's Nikita Artemenko and Maksim Grebnev, the top seeds, won the men's doubles. Artemenko was also the player who beat Tom Jarvis in the last 32; see [our earlier report](/blog/wtt-contender-istanbul-2026-jarvis-upset-artemenko-hursey-faces-hashimoto).",
+        ],
+      },
+      {
+        heading: "Green and Hursey win mixed doubles",
+        blocks: [
+          "England's Connor Green and Wales' Anna Hursey, the third seeds, won the mixed doubles title, beating Russia's Evgeny Tikhonov and Maria Panfilova 3-0 in the final, per [Table Tennis England](https://www.tabletennisengland.co.uk/news/). On the way they beat two Brazilian pairs and the second-seeded Korean team of Lim Yunoh and Joo Cheonhui in the semi-final.",
+          "**Why it matters:** it is a bright end to the week for the pair after Green's qualifying exit and Jarvis's loss on earlier days.",
+        ],
+      },
+      {
+        heading: "What's next: Muscat Star Contender",
+        blocks: [
+          "The tour moves straight to the WTT Star Contender in Muscat, 16-21 November, with Darko Jorgic, Shunsuke Togami and Dang Qiu the top men's seeds, per Butterfly. The season finale, the WTT Finals in Hong Kong, follows in December: see [who has qualified](/blog/wtt-finals-hong-kong-2026-qualified-players-lebrun-harimoto-sun-yingsha). Draws and results are on the official [WTT site](https://www.worldtabletennis.com); I could not retrieve Muscat results before publishing.",
+        ],
+      },
+      {
+        heading: "Turn the watching into practice",
+        blocks: [
+          "Fang Bo's run is a lesson in experience beating raw rankings. Log your own matches in [Ping Pong & Table Tennis Log](/), work on a reliable serve from the [serve library](/serves), learn how [spin](/spins) behaves, run the [drills](/drills) and test yourself in the [quiz](/quiz).",
+        ],
+      },
+    ],
+    sources: [
+      { label: "Butterfly: Istan-Bo! Fang Bo is Back on Top in Turkey", url: "https://butterflyonline.com/istan-bo-fang-bo-is-back-on-top-in-turkey/" },
+      { label: "Table Tennis England news", url: "https://www.tabletennisengland.co.uk/news/" },
+      { label: "World Table Tennis", url: "https://www.worldtabletennis.com" },
+    ],
+  },
+  {
     slug: "wtt-contender-istanbul-2026-jarvis-upset-artemenko-hursey-faces-hashimoto",
     title: "WTT Contender Istanbul 2026: Jarvis Upset by Artemenko, Hursey Meets Hashimoto",
     seoTitle: "WTT Contender Istanbul 2026 Results: Jarvis Out, Hursey vs Hashimoto Next",
