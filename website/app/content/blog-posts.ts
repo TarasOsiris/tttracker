@@ -78,6 +78,92 @@ const ljubljanaArena = { ...hero, caption: "A packed arena at the 2026 World Tea
 export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: BlogPost[] } = {
   en: [
   {
+    slug: "world-para-table-tennis-championships-pattaya-2026-results-thailand-korea-china",
+    title: "World Para Table Tennis Championships 2026: Pattaya Results, Thai Gold, Didier Ends Devos Run",
+    seoTitle: "World Para Table Tennis Championships 2026 Pattaya: Results and Winners",
+    description:
+      "World Para Table Tennis Championships 2026 in Pattaya: Thailand's two golds, Korea and China's doubles titles, Taiwan's Lin and Tian, and India's first-ever medal.",
+    published: "2026-11-18",
+    readMinutes: 4,
+    keywords: [
+      "World Para Table Tennis Championships 2026",
+      "Pattaya 2026 para table tennis results",
+      "ITTF World Para Championships Pattaya",
+      "Lucas Didier Laurens Devos",
+      "Sonalben Patel medal",
+      "Lin Tzu-yu Tian Shiau-wen",
+      "para table tennis news",
+    ],
+    hero: {
+      src: "/blog/berthier-paralympics-hero.webp",
+      width: 1200,
+      height: 675,
+      alt: "French para table tennis player Clément Berthier smiling and pointing at his name on a wall of names at the Paris 2024 Paralympic Games",
+      caption:
+        "Clément Berthier, a men's doubles finalist in Pattaya, pointing at his name at the Paris 2024 Paralympics. Archive photo, not from Pattaya.",
+      credit: "Margauxberthier16, CC BY 4.0",
+      creditUrl: "https://commons.wikimedia.org/wiki/File:Cl%C3%A9ment_Berthier_aux_Jeux_Paralympiques_de_Paris_2024.jpg",
+    },
+    intro:
+      "The first para table tennis world championships with exactly as many women as men (165 each) are under way in Pattaya, Thailand, and the doubles titles are already settled. Thailand won two, South Korea five and China three, while a match-up between Taiwan and China from last month's Asian Para Games was repeated with the same winner.",
+    takeaways: [
+      "**Equal field:** Pattaya 2026 is the first edition with full gender parity, 165 men and 165 women, per the [ITTF recap](https://newswav.com/article/first-world-champions-crowned-at-pattaya-2026-as-home-crowd-celebrates-two-A2611_XkNFSm).",
+      "**Thai double:** Rungroj Thainiyom won men's doubles MD14 and mixed doubles XD14 at home.",
+      "**Taiwan beats China again:** Lin Tzu-yu and Tian Shiau-wen won WD20 gold, 10-12, 11-9, 11-2, 13-11.",
+      "**India's first:** Sonalben Patel reached the Class 3 women's semi-finals, guaranteeing India's first world championships medal.",
+      "**Singles to finish:** the 20 singles titles are decided by Thursday 19 November.",
+    ],
+    sections: [
+      {
+        heading: "Thailand's home double and Korea's haul",
+        image: {
+          src: "/blog/asean-para-games-2017-doubles.webp",
+          width: 1000,
+          height: 666,
+          alt: "Two players in red and yellow shirts at a table during a para table tennis doubles match, with the ball in play and opponents at the far end",
+          caption: "A Class 9 team match at the 2017 ASEAN Para Games in Kuala Lumpur, Philippines against Myanmar. Archive photo, not from Pattaya.",
+          credit: "Joey Razon for the Philippine News Agency, public domain",
+          creditUrl: "https://commons.wikimedia.org/wiki/File:Catalan-Gaela_table_tennis_vs_Myanmar_Class_9_KL_2017.jpg",
+        },
+        blocks: [
+          "The host nation got its party early. Per the [ITTF's finals-day summary](https://newswav.com/article/first-world-champions-crowned-at-pattaya-2026-as-home-crowd-celebrates-two-A2611_XkNFSm), Rungroj Thainiyom and Chalermpong Punpoo won MD14 over France's Clement Berthier and Esteban Herrault 3-2 (11-8, 6-11, 15-13, 5-11, 11-5). Thainiyom then added the XD14 mixed title with Kanlaya Chaiwut-Kriabklang, beating Russia's Artem Iakovlev and Maliak Alieva 3-1.",
+          "South Korea collected five titles and five silvers, with three finals all-Korean. Seo Su Yeon won WD5 with Yoon Jiyu and XD4 with Park Jin Cheol, beating her own WD5 partner in the final. In WD10, Jung Young A and Kang Oejeong came back from two games down to win 3-2.",
+          "China took three: Huang Wenjuan and Liu Xiaowu won WD14 without dropping a game, Feng Panfeng and Gu Xiaodan won XD7 from two games down, and Peng Weinan and Xiong Guiyan won XD17 over Croatia's Borna Zohil and Mirjana Lucic.",
+          "**Why it matters:** the world championships award ranking points toward qualification for the 2028 Los Angeles Paralympics, per [Focus Taiwan](https://focustaiwan.tw/sports/202611150008).",
+        ],
+      },
+      {
+        heading: "Taiwan's Lin and Tian beat China again",
+        blocks: [
+          "Taiwan's [Lin Tzu-yu and Tian Shiau-wen](https://focustaiwan.tw/sports/202611150008) lost the first game 10-12 to China's Hou Chunxiao and Xiong Guiyan, then won 11-9, 11-2 and 13-11 to take WD20 gold on Sunday 15 November. It was the same final as at the Aichi-Nagoya Asian Para Games last month, with the same result.",
+          "Elsewhere on the finals day, Germany's Valentin Baus and Thomas Schmidberger won MD8 over Thailand's Wanchai Chaiwut and Yuttajak Glinbanchuen 3-1, Ukraine's Lev Kats and Ivan Mai won MD18 over Spain 3-2, and Brazil's Lucas Carvalhal and Joyce de Oliveira won XD10 3-0.",
+        ],
+      },
+      {
+        heading: "Singles: Didier, Devos and India's first medal",
+        blocks: [
+          "Singles started on Sunday afternoon, and the reigning Paralympic champions Kim Gi Tae (Class 11), Yan Shuo (Class 7), Najlah Al Dayyeni (Class 6) and Kim Young-Gun (Class 4) all won their openers.",
+          "The headline of the week so far, going by the title of the [ITTF's report](https://www.ittf.com/2026/11/18/lucas-didier-ends-laurens-devoss-11-year-unbeaten-run-at-pattaya-2026/): France's Lucas Didier ended Belgian Laurens Devos's 11-year unbeaten run. I could not open the article, so I cannot give you the score or round.",
+          "India has its first world championships medal. Per [The Bridge](https://thebridge.in/para-sports/ittf-world-para-cships-sonalben-patel-confirms-first-ever-medal-58406), Sonalben Patel beat Brazil's Thais Fraga Severo 3-0 (11-9, 11-4, 11-5) on 17 November to reach the Class 3 semi-final against Italy's Carlotta Ragazzini. A semi-final place guarantees at least bronze.",
+          "I could not confirm any singles gold medallists before publishing; see the official [ITTF event page](https://www.ittf.com/tournament/3258/WorldParaChampionships_Pattaya2026) for results.",
+        ],
+      },
+      {
+        heading: "Turn the watching into practice",
+        blocks: [
+          "Doubles titles are won on serve and return, and on the first three balls. Work on your serve with the [serve library](/serves), learn how [spin](/spins) changes the return, run the [drills](/drills), test yourself in the [quiz](/quiz), and log your own matches in [Ping Pong & Table Tennis Log](/).",
+        ],
+      },
+    ],
+    sources: [
+      { label: "ITTF finals-day summary via Newswav", url: "https://newswav.com/article/first-world-champions-crowned-at-pattaya-2026-as-home-crowd-celebrates-two-A2611_XkNFSm" },
+      { label: "Focus Taiwan: Taiwan's Lin, Tian win World Para Table Tennis gold", url: "https://focustaiwan.tw/sports/202611150008" },
+      { label: "The Bridge: Sonalben Patel confirms India's first-ever medal", url: "https://thebridge.in/para-sports/ittf-world-para-cships-sonalben-patel-confirms-first-ever-medal-58406" },
+      { label: "ITTF: Lucas Didier ends Laurens Devos's 11-year unbeaten run (headline only, page not retrievable)", url: "https://www.ittf.com/2026/11/18/lucas-didier-ends-laurens-devoss-11-year-unbeaten-run-at-pattaya-2026/" },
+      { label: "ITTF event page: World Para Championships Pattaya 2026", url: "https://www.ittf.com/tournament/3258/WorldParaChampionships_Pattaya2026" },
+    ],
+  },
+  {
     slug: "fang-bo-wins-wtt-contender-istanbul-2026-kazakhstan-comeback-hashimoto",
     title: "Fang Bo Wins WTT Contender Istanbul 2026 for Kazakhstan After Five-Year Retirement",
     seoTitle: "Fang Bo Wins WTT Contender Istanbul 2026: Kazakhstan Comeback at 34",
