@@ -78,6 +78,80 @@ const ljubljanaArena = { ...hero, caption: "A packed arena at the 2026 World Tea
 export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: BlogPost[] } = {
   en: [
   {
+    slug: "wtt-star-contender-muscat-2026-day-one-thakkar-sreeja-batra-bhattacharjee-match-points",
+    title: "WTT Star Contender Muscat 2026: Thakkar, Sreeja Win; Bhattacharjee Loses From 10-6",
+    seoTitle: "WTT Star Contender Muscat 2026 Day 1: India Results, Thakkar, Sreeja, Batra",
+    description:
+      "WTT Star Contender Muscat 2026 day one: Thakkar and Sreeja Akula advance, Bhattacharjee blows four match points, India's doubles pairs reach the quarter-finals.",
+    published: "2026-11-19",
+    readMinutes: 4,
+    keywords: [
+      "WTT Star Contender Muscat 2026",
+      "Muscat table tennis results",
+      "Manav Thakkar Muscat",
+      "Sreeja Akula Muscat",
+      "Manika Batra Swastika Ghosh doubles",
+      "India table tennis WTT",
+      "table tennis news",
+    ],
+    hero: batraHero,
+    intro:
+      "Ankur Bhattacharjee had four match points at 10-6 in the fourth game, then watched China's Sun Yang win six points in a row and take the match 3-2. That was the sharpest sting from day one of the main draw at WTT Star Contender Muscat 2026, a day that also gave India two singles wins and two doubles pairs in the quarter-finals.",
+    takeaways: [
+      "**Main draw opened on Wednesday 18 November** at the Sultan Qaboos Sports Complex in Bausher, with more than 200 players from 37 countries and a $300,000 prize purse.",
+      "**Thakkar and Sreeja advance:** Manav Thakkar beat Kang Dongsoo 3-1, and Sreeja Akula beat Sarah De Nutte 3-2 after losing the first two games.",
+      "**Heartbreak:** Bhattacharjee lost 2-3 to Sun Yang from 10-6 up in game four; Manush Shah lost 2-3 to Ryuusei Kawakami.",
+      "**Doubles:** Thakkar/Shah and Batra/Ghosh both reached the quarter-finals.",
+      "**Next:** Thakkar meets Japan's Togami and Sreeja meets Hashimoto in the Round of 32.",
+    ],
+    sections: [
+      {
+        heading: "The Star Contender at a glance",
+        blocks: [
+          "This is the second edition of the event, hosted by the Oman Table Tennis Association with the [ITTF](https://www.ittf.com) and [WTT](https://www.worldtabletennis.com). According to the [Times of Oman](https://timesofoman.com/article/179214-wtt-star-contender-muscat-to-begin-in-muscat-from-monday), it covers singles, doubles and mixed doubles with more than 200 players, and the organisers called it a particularly strong field.",
+          "The top-ranked men in Muscat include Germany's Dang Qiu (No. 11), Slovenia's Darko Jorgic (No. 12) and Japan's Shunsuke Togami (No. 15), per the [Oman Observer](https://www.omanobserver.om/article/1199848/sports/tennis/main-draw-gets-underway-at-wtt-star-contender-muscat-2026). In the women's draw, Japan's Satsuki Odo (No. 13) and Honoka Hashimoto (No. 14) lead the ranked names. Qualifying wins included China's Yuan Licen over Lee Seungsoo 3-1.",
+          "**Why it matters:** this is one of the last chances to collect ranking points before the [WTT Finals in Hong Kong](/blog/wtt-finals-hong-kong-2026-qualified-players-lebrun-harimoto-sun-yingsha) on 9-13 December.",
+        ],
+      },
+      {
+        heading: "India's day: two wins, two painful losses",
+        image: batraInline,
+        blocks: [
+          "Everything here comes from [India Sports Hub's report](https://www.indiasportshub.com/articles/wtt-star-contender-muscat-2026-manav-thakkar-sreeja-akula-and-indian-doubles-pairs-advance), the only day-one result source I could retrieve, so treat the other matches as unconfirmed.",
+          "**Manav Thakkar** beat South Korea's Kang Dongsoo 3-1 (11-7, 11-8, 12-14, 11-5). **Sreeja Akula** beat Luxembourg's Sarah De Nutte 3-2 after losing the first two games 7-11 and 4-11, then winning the next three 11-4, 11-6 and 11-2.",
+          "The losses hurt. **Ankur Bhattacharjee** led China's Sun Yang 10-6 in the fourth game with four match points, lost six straight points, and lost the fifth game 7-11. **Manush Shah** also lost 2-3, to Japan's Ryuusei Kawakami (world No. 65), and [Manika Batra](https://en.wikipedia.org/wiki/Manika_Batra) lost to China's Wei Jingming in the women's singles Round of 64.",
+          "**Why it matters:** a four-point lead in a late game is a reminder that closing out is its own skill. Bhattacharjee's collapse is the kind of moment worth studying: slow down, pick one serve and one plan.",
+        ],
+      },
+      {
+        heading: "Doubles pairs reach the quarter-finals",
+        blocks: [
+          "Second-seeded Thakkar and Shah beat Lubomir Jancarik and Aditya Sareen 3-0 (11-7, 11-9, 11-4) and face Germany's Bertelsmeier and Verdonschot next. In women's doubles, Batra and Swastika Ghosh beat Sofia Polcanova and Yangzi Liu 3-1, dropping the first game 11-13 before winning 11-7, 11-8, 13-11. Their quarter-final opponents are Romania's third-seeded Bernadette Szocs and Elizabeta Samara.",
+          "**Why it matters:** with doubles returning to the Olympic programme at LA 2028, the ITTF added a Doubles World Cup to the 2027 calendar; see our [calendar report](/blog/table-tennis-world-rankings-wang-manyu-no-1-asian-championships-montpellier-preview).",
+        ],
+      },
+      {
+        heading: "What to watch next",
+        blocks: [
+          "Round of 32 highlights: Thakkar against Togami and Sreeja against Hashimoto, plus the Dang Qiu and Odo openers. I could not find results for those matches yet, so check the official [WTT site](https://www.worldtabletennis.com). The previous event, Istanbul, is covered in our [Fang Bo report](/blog/fang-bo-wins-wtt-contender-istanbul-2026-kazakhstan-comeback-hashimoto).",
+          "Note: the Oman Observer's day references are slightly off (17 November is a Tuesday), so the Wednesday 18 November start date is from India Sports Hub.",
+        ],
+      },
+      {
+        heading: "Turn the watching into practice",
+        blocks: [
+          "Throwing away a 10-6 lead is a mental-game lesson. Log your own deciding games in [Ping Pong & Table Tennis Log](/), build a dependable serve from the [serve library](/serves), learn how [spin](/spins) works, run the [drills](/drills) and test yourself in the [quiz](/quiz).",
+        ],
+      },
+    ],
+    sources: [
+      { label: "India Sports Hub: Muscat 2026 day one", url: "https://www.indiasportshub.com/articles/wtt-star-contender-muscat-2026-manav-thakkar-sreeja-akula-and-indian-doubles-pairs-advance" },
+      { label: "Oman Observer: Main draw gets underway", url: "https://www.omanobserver.om/article/1199848/sports/tennis/main-draw-gets-underway-at-wtt-star-contender-muscat-2026" },
+      { label: "Times of Oman: Star Contender to begin Monday", url: "https://timesofoman.com/article/179214-wtt-star-contender-muscat-to-begin-in-muscat-from-monday" },
+      { label: "World Table Tennis", url: "https://www.worldtabletennis.com" },
+    ],
+  },
+  {
     slug: "world-para-table-tennis-championships-pattaya-2026-results-thailand-korea-china",
     title: "World Para Table Tennis Championships 2026: Pattaya Results, Thai Gold, Didier Ends Devos Run",
     seoTitle: "World Para Table Tennis Championships 2026 Pattaya: Results and Winners",
