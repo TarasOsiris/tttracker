@@ -78,6 +78,76 @@ const ljubljanaArena = { ...hero, caption: "A packed arena at the 2026 World Tea
 export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: BlogPost[] } = {
   en: [
   {
+    slug: "ittf-world-youth-championships-2026-istanbul-preview-moved-from-bahrain",
+    title: "ITTF World Youth Championships 2026: Istanbul Preview After the Move From Bahrain",
+    seoTitle: "ITTF World Youth Championships 2026 Istanbul: Dates, Venue, What to Watch",
+    description:
+      "The ITTF World Youth Championships 2026 start 21 November in Istanbul after moving from Bahrain. Dates, venue, U19 and U15 events, plus Muscat upsets by Yuan and Andras.",
+    published: "2026-11-20",
+    readMinutes: 4,
+    keywords: [
+      "ITTF World Youth Championships 2026",
+      "World Youth Championships Istanbul",
+      "table tennis Istanbul 2026",
+      "U19 U15 table tennis",
+      "WTT Star Contender Muscat 2026 results",
+      "Yuan Licen Jonathan Groth",
+      "table tennis news",
+    ],
+    hero,
+    intro:
+      "The next world title event in table tennis starts tomorrow, and it is not where anyone planned. The ITTF World Youth Championships 2026 were due in Bahrain; instead they open in Istanbul on 21 November, the first ITTF world title event ever held in Türkiye. Meanwhile in Muscat, a world No. 115 just beat a world No. 51 in straight games.",
+    takeaways: [
+      "**Dates:** the ITTF World Youth Championships run 21-28 November 2026 in Istanbul, with Under-19 and Under-15 categories.",
+      "**Moved from Bahrain:** the Bahrain Table Tennis Association withdrew after consulting the ITTF, citing the safety of athletes, officials and delegations; the ITTF announced the new host on 5 June.",
+      "**Venue:** Ata Sporları Merkezi, which has hosted WTT events before.",
+      "**Muscat upset:** China's Yuan Licen (No. 115) beat Denmark's Jonathan Groth (No. 51) 11-9, 11-8, 11-7 at WTT Star Contender Muscat.",
+      "**Comeback:** Hungary's Csaba Andras saved five match points to beat France's Mehdi Bouloussa 3-2 after trailing 0-2.",
+    ],
+    sections: [
+      {
+        heading: "Why the Youth Worlds are in Istanbul",
+        image: { ...hero, caption: "A packed arena at the 2026 World Team Table Tennis Championships in London. Archive photo, not from Istanbul." },
+        blocks: [
+          "The [ITTF](https://www.ittf.com) said on 5 June that the championships would move from Bahrain to Istanbul, with the 21-28 November dates unchanged. According to [IANS](https://ianslive.in/ittf-world-youth-cships-2026-to-be-held-in-istanbul-from-nov-21-28--20260605162414), the Bahrain Table Tennis Association withdrew after consulting the ITTF, citing the safety of athletes, officials and delegations amid the war in West Asia. [Francs Jeux](https://www.francsjeux.com/en/short/Table-tennis%3A-the-junior-world-championships-relocated-to-T%C3%BCrkiye/) also reported the move for security reasons.",
+          "The event takes place at Ata Sporları Merkezi. IANS adds it is the first ITTF world title event held in Türkiye and a platform for Turkish organisers ahead of Istanbul 2027, the fourth European Games. ITTF President Petra Sörling said she had \"every confidence that Turkiye will deliver an outstanding event\".",
+          "**Why it matters:** a host swap with under six months of notice is hard for any federation, and the age-group worlds are where tomorrow's [WTT](https://www.worldtabletennis.com) names are first seen. Félix Lebrun was already a European-level star at 15; see our [European Championships report](/blog/felix-lebrun-european-champion-2026-abraamian-qualifier-gold-ljubljana).",
+        ],
+      },
+      {
+        heading: "What to expect from the U19 and U15 events",
+        image: lebrunInline,
+        blocks: [
+          "The championships bring together the best Under-19 and Under-15 players. I could not retrieve an entry list or the draw (the ITTF tournament page returned an error), so I will not name favourites. The ITTF's [event page](https://www.ittf.com/tournament/3377/WorldYouthChampionships2026/) is the place to check seedings and live results once play begins.",
+          "A caution from the sources: the ITTF's own 2026 calendar still showed Manama as the host, so older listings may be out of date; the Istanbul reports are the later ones.",
+          "**Why it matters:** the same spin, serve and receive patterns decide these matches as in the pro game, only at 14 or 17 years old. Watching a junior match is often the best way to see how the next generation builds a rally.",
+        ],
+      },
+      {
+        heading: "Meanwhile at WTT Star Contender Muscat",
+        blocks: [
+          "Our [day-one report](/blog/wtt-star-contender-muscat-2026-day-one-thakkar-sreeja-batra-bhattacharjee-match-points) focused on India. The [Oman Observer](https://www.omanobserver.om/ampArticle/1199902) reported two more results worth knowing about on the opening day of the main draw (18 November).",
+          "**Yuan Licen** (No. 115) beat **Jonathan Groth** (No. 51) 11-9, 11-8, 11-7. Yuan had already beaten qualifying sixth seed Lilian Bardet in five games. **Csaba Andras** (No. 52) came back from 0-2 down against Mehdi Bouloussa to win 10-12, 6-11, 12-10, 14-12, 11-7, saving five match points on the way.",
+          "Other results: Germany's Andre Bertelsmeier beat Tang Yiren 3-2, Japan's Ryoichi Yoshiyama beat Norway's Borgar Haug 3-1, and in women's singles Wei Jingming beat India's Manika Batra 3-1 and Sachi Aoki beat Zong Geman 3-2. The Oman Observer's list was an excerpt, so it may not cover every match. I found no later-round results yet.",
+          "**Why it matters:** ranking gaps of 60 places mean little over three games on a fast surface. Ranking points from events like this feed the field for the [WTT Finals in Hong Kong](/blog/wtt-finals-hong-kong-2026-qualified-players-lebrun-harimoto-sun-yingsha).",
+        ],
+      },
+      {
+        heading: "Turn the watching into practice",
+        blocks: [
+          "Andras saved five match points by staying patient in a long game. Log your own close games in [Ping Pong & Table Tennis Log](/), practise a reliable serve from the [serve library](/serves), learn how [spin](/spins) works, run the [drills](/drills) and test yourself in the [quiz](/quiz).",
+        ],
+      },
+    ],
+    sources: [
+      { label: "IANS: ITTF World Youth C'ships 2026 to be held in Istanbul", url: "https://ianslive.in/ittf-world-youth-cships-2026-to-be-held-in-istanbul-from-nov-21-28--20260605162414" },
+      { label: "Francs Jeux: junior world championships relocated to Türkiye", url: "https://www.francsjeux.com/en/short/Table-tennis%3A-the-junior-world-championships-relocated-to-T%C3%BCrkiye/" },
+      { label: "Oman Observer: Yuan stuns Groth, Andras stages comeback", url: "https://www.omanobserver.om/ampArticle/1199902" },
+      { label: "ITTF: World Youth Championships 2026 event page", url: "https://www.ittf.com/tournament/3377/WorldYouthChampionships2026/" },
+      { label: "World Table Tennis", url: "https://www.worldtabletennis.com" },
+    ],
+  },
+  {
     slug: "wtt-star-contender-muscat-2026-day-one-thakkar-sreeja-batra-bhattacharjee-match-points",
     title: "WTT Star Contender Muscat 2026: Thakkar, Sreeja Win; Bhattacharjee Loses From 10-6",
     seoTitle: "WTT Star Contender Muscat 2026 Day 1: India Results, Thakkar, Sreeja, Batra",
