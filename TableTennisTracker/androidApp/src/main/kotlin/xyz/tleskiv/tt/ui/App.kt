@@ -3,6 +3,7 @@ package xyz.tleskiv.tt.ui
 import android.content.Context
 import android.content.res.Configuration
 import android.os.LocaleList
+import android.view.ContextThemeWrapper
 import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
@@ -126,9 +127,12 @@ private val REVIEW_PROMPT_DELAY = 1500.milliseconds
 /// Android resolves `res/values-*` through the Configuration, not through `Locale.setDefault`, so
 /// an in-app language choice only reaches `stringResource` as an overridden Context handed down the
 /// tree. Deriving it from the activity context each time keeps SYSTEM honest after a switch away.
+/// The override wraps the activity rather than replacing it (`createConfigurationContext` would): the
+/// locals found by walking the context chain — `LocalActivity`, `LocalActivityResultRegistryOwner`
+/// for permission launchers — must still reach the activity, or they come back empty and crash.
 private fun Context.localizedFor(locale: AppLocale): Context {
 	if (locale == AppLocale.SYSTEM) return this
 	val configuration = Configuration(resources.configuration)
 	configuration.setLocales(LocaleList(Locale.forLanguageTag(locale.languageTag)))
-	return createConfigurationContext(configuration)
+	return ContextThemeWrapper(this, theme).apply { applyOverrideConfiguration(configuration) }
 }
