@@ -139,11 +139,11 @@ export const womenPlayers: Player[] = [
     ranking: rank(1),
     setup: {
       blade: {
-        itemId: "butterfly-viscaria-super-alc",
-        name: "Viscaria Super ALC",
-        confidence: "reported",
-        source: dku51July,
-        asOf: "2026-07-25",
+        itemId: "butterfly-fan-zhendong-alc",
+        name: "Fan Zhendong ALC",
+        confidence: "confirmed",
+        source: { url: "https://www.butterfly-global.com/en/sponsoring/detail/wang-manyu.html", label: "Butterfly: Wang Manyu sponsoring page (equipment as of November 2, 2026: Fan Zhendong ALC, Dignics 09C)", kind: "manufacturer", accessed: "2026-11-21" },
+        asOf: "2026-11-21",
       },
       forehand: {
         itemId: "dhs-hurricane-3-neo",
@@ -1275,9 +1275,9 @@ export const womenPlayers: Player[] = [
         fromItemId: "nittaku-acoustic-carbon",
         to: "Nittaku Mima Ito Carbon",
         toItemId: "nittaku-mima-ito-carbon",
-        confidence: "reported",
+        confidence: "confirmed",
         note: "Signature version of her long-time Acoustic Carbon, released for her 20th birthday (21 Oct 2020)",
-        source: { url: "https://tabletennisteacher.com/?p=2674", label: "Table Tennis Teacher: Mima Ito Equipment and Profile [2024] (Acoustic Carbon for many years; signature blade for her 20th birthday)", kind: "press", accessed: "2026-11-21" },
+        source: { url: "https://www.nittaku.com/products/rackets/post-145-2", label: "Nittaku: Mima Ito Carbon (the Mima Ito model of the Acoustic Carbon she long used, released on her 20th birthday)", kind: "manufacturer", accessed: "2026-11-21" },
       },
     ],
     photo: {
