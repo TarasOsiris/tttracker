@@ -59,7 +59,7 @@ function SectionTitle({ label, title }: { label: string; title: string }) {
 
 export default function PlayerProfile({ loaderData }: Route.ComponentProps) {
   const { summary: p, profile, equipment, snapshot, related, news } = loaderData;
-  const videoUrl = `https://www.youtube.com/@WTT/search?query=${encodeURIComponent(p.name)}`;
+  const videoUrl = `https://www.youtube.com/channel/UC9ckyA_A3MfXUa0ttxMoIZw/search?query=${encodeURIComponent(p.name)}`;
   const facts = [
     ["Represents", p.countryName],
     ["Born", profile.birthDate ? formatDate(profile.birthDate) : String(profile.birthYear)],
