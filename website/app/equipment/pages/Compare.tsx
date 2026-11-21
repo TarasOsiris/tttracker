@@ -248,6 +248,29 @@ export default function Compare({ loaderData }: Route.ComponentProps) {
           )}
         </div>
       )}
+
+      {loaderData.articles.length > 0 && (
+        <section aria-labelledby="versus-heading">
+          <h2 id="versus-heading" className="text-2xl font-bold tracking-tight">
+            Blade vs blade, explained
+          </h2>
+          <p className="mt-1 text-sm text-muted-foreground">How popular blades differ in feel, speed and who they suit, with the specs side by side and sources.</p>
+          <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {loaderData.articles.map((r) => (
+              <li key={r.slug}>
+                <Link to={`/equipment/compare/${r.slug}`} className="block h-full rounded-2xl border bg-card p-4 hover:border-primary/40">
+                  <span className="font-semibold">
+                    {r.a.name} <span className="text-muted-foreground">vs</span> {r.b.name}
+                  </span>
+                  <span className="mt-1 block text-xs text-muted-foreground">
+                    {r.a.brandName === r.b.brandName ? r.a.brandName : `${r.a.brandName} vs ${r.b.brandName}`}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
     </div>
   );
 }

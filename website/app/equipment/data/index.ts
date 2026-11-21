@@ -20,6 +20,7 @@ import * as yinhe from "./brands/yinhe";
 import { glossary } from "./glossary";
 import { guides } from "./guides";
 import { players } from "./players";
+import { comparisons } from "./versus";
 
 type BrandModule = { brand: Brand; blades: Blade[]; rubbers: Rubber[] };
 
@@ -30,4 +31,4 @@ const byName = <T extends { name: string }>(a: T, b: T) => a.name.localeCompare(
 export const brands: Brand[] = modules.map((m) => m.brand).sort(byName);
 export const blades: Blade[] = modules.flatMap((m) => m.blades);
 export const rubbers: Rubber[] = modules.flatMap((m) => m.rubbers);
-export { glossary, guides, players };
+export { comparisons, glossary, guides, players };

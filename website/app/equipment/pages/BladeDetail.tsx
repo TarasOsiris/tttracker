@@ -83,7 +83,7 @@ export const meta: Route.MetaFunction = ({ loaderData }) => {
 };
 
 export default function BladeDetail({ loaderData }: Route.ComponentProps) {
-  const { blade, brand, usedBy, similar, distribution, weightMid } = loaderData;
+  const { blade, brand, usedBy, similar, distribution, weightMid, comparisons } = loaderData;
   const schematic = schematicPlies(blade);
   const rows = [
     { label: "Brand", value: brand.name },
@@ -185,6 +185,26 @@ export default function BladeDetail({ loaderData }: Route.ComponentProps) {
         </div>
       </div>
 
+      {comparisons.length > 0 && (
+        <section>
+          <h2 className="text-2xl font-bold tracking-tight">{blade.name} compared</h2>
+          <ul className="mt-3 flex flex-wrap gap-2">
+            {comparisons.map((c) => {
+              const other = c.a.id === blade.id ? c.b : c.a;
+              return (
+                <li key={c.slug}>
+                  <Link
+                    to={`/equipment/compare/${c.slug}`}
+                    className="inline-flex rounded-full border bg-card px-4 py-2 text-sm font-medium hover:border-primary/40 hover:bg-secondary"
+                  >
+                    {blade.name} vs {other.brandName === brand.name ? other.name : `${other.brandName} ${other.name}`}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      )}
       {similar.length > 0 && (
         <section>
           <h2 className="text-2xl font-bold tracking-tight">Similar construction</h2>

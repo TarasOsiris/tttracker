@@ -1,13 +1,13 @@
 // Build-time access to the equipment data. Validates everything once, then hands each page only what it renders,
 // so a blade page doesn't ship the whole catalog.
-import { blades, brands, glossary, guides, players, rubbers } from "./data";
+import { blades, brands, comparisons, glossary, guides, players, rubbers } from "./data";
 import { type HardnessBand, hardnessBands } from "./hardness";
 import { construction } from "./labels";
 import type { Blade, Brand, Image, Player, Rubber, SetupSlot } from "./models";
 import { validateEquipment } from "./validate";
 import type { BladePoint } from "./components/GuideDiagrams";
 
-validateEquipment({ brands, blades, rubbers, players, guides, glossary });
+validateEquipment({ brands, blades, rubbers, players, guides, glossary, comparisons });
 
 const brandById = new Map(brands.map((b) => [b.id, b]));
 const bladeById = new Map(blades.map((b) => [b.id, b]));
@@ -138,6 +138,7 @@ export function bladePayload(id: string) {
     similar: similarBlades(blade),
     distribution: bladeDistribution(id),
     weightMid: blade.weightG ? midWeight(blade.weightG) : null,
+    comparisons: comparisonLinks(id),
   };
 }
 
@@ -175,6 +176,7 @@ export function comparePayload() {
     blades: blades.map((b) => ({ ...strip(b), brandName: brandById.get(b.brandId)!.name, brandLogo: brandById.get(b.brandId)!.logo, construction: construction(b) })),
     rubbers: rubbers.map((r) => ({ ...strip(r), brandName: brandById.get(r.brandId)!.name, brandLogo: brandById.get(r.brandId)!.logo, bands: hardnessBands(r.hardness) })),
     brands: brands.map((b) => brandRef(b.id)),
+    articles: comparisonLinks(),
     suggestions: suggestedComparisons
       .filter((s) => s.ids.every((id) => (s.kind === "blade" ? bladeById : rubberById).has(id)))
       .map((s) => ({
@@ -243,27 +245,26 @@ export function prosPayload() {
   };
 }
 
-/** A catalog item's page link and picture: the maker's photo, or the spec-drawn illustration without one. */
-export type ItemVisual = { href: string; image: Pick<Image, "src" | "width" | "height">; brandName: string; brandLogo?: Image };
+/** A catalog item's page link and picture (the maker's photo, or the spec-drawn illustration), as ProductThumb takes them. */
+export type ItemVisual = { href: string; photo?: Image; illustration: string; brandName: string };
 
 function itemVisual(slot: SetupSlot, itemId: string | null | undefined): ItemVisual | null {
   if (!itemId) return null;
   const kind = slot === "blade" ? "blades" : "rubbers";
   const item = slot === "blade" ? bladeById.get(itemId) : rubberById.get(itemId);
   if (!item) return null;
-  const brand = brandById.get(item.brandId)!;
-  const image = item.photo
-    ? { src: item.photo.src, width: item.photo.width, height: item.photo.height }
-    : { src: `/equipment/img/${kind}/${item.id}.svg`, width: 56, height: 64 };
-  return { href: `/equipment/${kind}/${item.id}`, image, brandName: brand.name, brandLogo: brand.logo };
+  return { href: `/equipment/${kind}/${item.id}`, photo: item.photo, illustration: illustrationUrl(kind, item.id), brandName: brandById.get(item.brandId)!.name };
 }
+
+const slotOrder: SetupSlot[] = ["blade", "forehand", "backhand"];
 
 export type ResolvedSetupChange = Player["history"][number] & { fromItem: ItemVisual | null; toItem: ItemVisual | null };
 
 export function playerPayload(id: string) {
   const player = playerById.get(id);
   if (!player) return null;
-  const { history, ...rest } = player;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- the raw setup ships resolved below
+  const { history, setup: _raw, ...rest } = player;
   const setup = resolveSetup(player);
   return {
     player: rest,
@@ -273,14 +274,15 @@ export function playerPayload(id: string) {
       forehand: itemVisual("forehand", setup.forehand.itemId),
       backhand: itemVisual("backhand", setup.backhand.itemId),
     },
-    // Newest first; on the same date, blade before rubbers.
+    // Newest first; on the same date, blade before rubbers. History is written oldest first, so reversing before the
+    // stable sort puts the later of two same-day entries on top.
     history: [...history]
-      .sort((a, b) => b.date.localeCompare(a.date) || slotOrder.indexOf(a.slot) - slotOrder.indexOf(b.slot))
+      .reverse()
+      .sort((x, y) => y.date.localeCompare(x.date) || slotOrder.indexOf(x.slot) - slotOrder.indexOf(y.slot))
       .map((h): ResolvedSetupChange => ({ ...h, fromItem: itemVisual(h.slot, h.fromItemId), toItem: itemVisual(h.slot, h.toItemId) })),
   };
 }
 
-const slotOrder: SetupSlot[] = ["blade", "forehand", "backhand"];
 
 export type SearchEntry = { label: string; kind: "Blade" | "Rubber" | "Player" | "Brand" | "Guide"; href: string; image?: string };
 
@@ -394,3 +396,44 @@ export function illustrationSubject(kind: "blades" | "rubbers", id: string) {
 }
 
 export const illustrationUrl = (kind: "blades" | "rubbers", id: string) => `/equipment/img/${kind}/${id}.svg`;
+
+/** The spec rows a blade-vs-blade article shows, with pictures and the pros who use each blade. */
+function versusSide(id: string) {
+  const b = bladeById.get(id)!;
+  const brand = brandById.get(b.brandId)!;
+  // Only what the page renders: specs, not the catalog prose.
+  const blade = {
+    id: b.id, name: b.name, photo: b.photo, plies: b.plies, layup: b.layup, fibers: b.fibers, fiberName: b.fiberName, fiberPosition: b.fiberPosition,
+    outerWood: b.outerWood, thicknessMm: b.thicknessMm, weightG: b.weightG, handles: b.handles, manufacturerClass: b.manufacturerClass,
+    manufacturerRatings: b.manufacturerRatings, madeIn: b.madeIn,
+  };
+  return {
+    blade,
+    brand: { id: brand.id, name: brand.name, logo: brand.logo },
+    illustration: illustrationUrl("blades", b.id),
+    usedBy: usedBy("blade", id),
+  };
+}
+
+export type ComparisonLink = { slug: string; title: string; a: { id: string; name: string; brandName: string }; b: { id: string; name: string; brandName: string } };
+
+function comparisonLink(c: (typeof comparisons)[number]): ComparisonLink {
+  const side = (id: string) => {
+    const blade = bladeById.get(id)!;
+    return { id, name: blade.name, brandName: brandById.get(blade.brandId)!.name };
+  };
+  return { slug: c.slug, title: c.title, a: side(c.a), b: side(c.b) };
+}
+
+export function comparisonLinks(bladeId?: string): ComparisonLink[] {
+  return comparisons.filter((c) => !bladeId || c.a === bladeId || c.b === bladeId).map(comparisonLink);
+}
+
+export function versusPayload(slug: string) {
+  const comparison = comparisons.find((c) => c.slug === slug);
+  if (!comparison) return null;
+  const related = comparisons
+    .filter((c) => c.slug !== slug && [c.a, c.b].some((id) => id === comparison.a || id === comparison.b))
+    .map(comparisonLink);
+  return { comparison, a: versusSide(comparison.a), b: versusSide(comparison.b), related };
+}

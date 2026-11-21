@@ -258,6 +258,28 @@ export interface Guide {
   updated: IsoDate;
 }
 
+/** A "blade vs blade" article at /equipment/compare/<slug>; the spec table is drawn from the catalog, the text from here. */
+export interface BladeComparison {
+  /** "<a>-vs-<b>" from the two catalog ids without a shared brand prefix, e.g. "viscaria-vs-timo-boll-alc". */
+  slug: string;
+  /** Catalog blade ids. */
+  a: string;
+  b: string;
+  /** Page title, at most 60 characters, e.g. "Viscaria vs Timo Boll ALC: Which Blade Suits You?". */
+  title: string;
+  /** Meta description, 120-160 characters. */
+  description: string;
+  /** Two to four sentences; may use [label](url) and **bold**. */
+  intro: string;
+  /** One sentence each: who should pick this blade. */
+  verdict: { a: string; b: string };
+  sections: { heading: string; blocks: LegalBlock[] }[];
+  faq: { q: string; a: string }[];
+  /** Every page linked from the text, and every page a claim relies on. */
+  sources: Source[];
+  updated: IsoDate;
+}
+
 export interface GlossaryTerm {
   id: string;
   term: string;

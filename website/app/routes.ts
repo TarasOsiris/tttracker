@@ -22,6 +22,7 @@ const equipmentPages: [path: string, file: string][] = [
   ["equipment/rubbers/:rubberId", "RubberDetail"],
   ["equipment/brands/:brandId", "BrandDetail"],
   ["equipment/compare", "Compare"],
+  ["equipment/compare/:slug", "Versus"],
   ["equipment/pros", "Pros"],
   ["equipment/pros/:playerId", "PlayerDetail"],
   ["equipment/guides", "Guides"],

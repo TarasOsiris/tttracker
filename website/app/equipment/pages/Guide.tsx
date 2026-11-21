@@ -5,7 +5,7 @@ import { BrandLogo, Credit, ProductThumb } from "../components/Media";
 import { Sources } from "../components/Parts";
 import type { GuideFigure } from "../models";
 import type { FigureProduct } from "../store.server";
-import { formatDate } from "../labels";
+import { anchorId, formatDate } from "../labels";
 import { guidePayload } from "../store.server";
 import { absolute, breadcrumbs, equipmentMeta } from "../utils/seo";
 import { inline } from "~/components/site/legal-page";
@@ -44,12 +44,6 @@ export const meta: Route.MetaFunction = ({ loaderData }) => {
   });
 };
 
-const slugify = (s: string) =>
-  s
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
-
 /** About 220 words a minute, counting the intro and every block. */
 function readingMinutes(guide: Route.ComponentProps["loaderData"]["guide"]): number {
   const text = [guide.intro, ...guide.sections.flatMap((s) => s.blocks.flatMap((b) => (typeof b === "string" ? [b] : b.list)))].join(" ");
@@ -72,9 +66,9 @@ export default function Guide({ loaderData }: Route.ComponentProps) {
         </p>
         <p className="mt-6 text-lg leading-relaxed text-muted-foreground">{inline(guide.intro)}</p>
         {guide.sections.map((s) => (
-          <section key={s.heading} id={slugify(s.heading)} className="mt-10 scroll-mt-24">
+          <section key={s.heading} id={anchorId(s.heading)} className="mt-10 scroll-mt-24">
             <h2 className="font-display text-xl font-bold tracking-tight sm:text-2xl">
-              <a href={`#${slugify(s.heading)}`} className="hover:text-primary">
+              <a href={`#${anchorId(s.heading)}`} className="hover:text-primary">
                 {s.heading}
               </a>
             </h2>
@@ -104,7 +98,7 @@ export default function Guide({ loaderData }: Route.ComponentProps) {
           <ol className="mt-2 space-y-1.5">
             {guide.sections.map((s) => (
               <li key={s.heading}>
-                <a href={`#${slugify(s.heading)}`} className="text-muted-foreground hover:text-primary">
+                <a href={`#${anchorId(s.heading)}`} className="text-muted-foreground hover:text-primary">
                   {s.heading}
                 </a>
               </li>

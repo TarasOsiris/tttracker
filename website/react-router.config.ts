@@ -6,7 +6,7 @@ import { drillSlugs } from "./app/content/drills";
 import { releases } from "./app/content/changelog";
 import { SITE_URL } from "./app/content/site";
 import { defaultLocale, type Locale, localeInfo, locales, localizePath } from "./app/i18n/config";
-import { blades, brands, guides, players, rubbers } from "./app/equipment/data";
+import { blades, brands, comparisons, guides, players, rubbers } from "./app/equipment/data";
 import { motions, serves } from "./app/serves/data";
 
 const neutralPaths = [
@@ -52,6 +52,7 @@ const pages: Page[] = [
   // Blog posts are written in English; a language gets a page only for the posts translated into it.
   ...blogPages(),
   ...equipmentPaths.map((path) => ({ path, locales: [defaultLocale] })),
+  ...comparisons.map((c) => ({ path: `/equipment/compare/${c.slug}`, locales: [defaultLocale], lastmod: () => c.updated })),
   { path: "/changelog", locales: [defaultLocale], lastmod: () => releases[0].date },
 ];
 

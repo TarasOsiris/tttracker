@@ -96,6 +96,22 @@ export function formatDate(iso: string): string {
   return new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" });
 }
 
+/** The in-page anchor id for a section heading ("Speed & feel" → "speed-feel"). */
+export function anchorId(heading: string): string {
+  return heading
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+/** Anchors the blade-vs-blade page sets itself; article headings must not reuse them. */
+export const versusPageAnchors = ["verdict", "specs", "faq", "sources"];
+
+/** The machine-readable form of an approximate date, for `<time dateTime>`: "2024", "2024-10" or "2024-10-11". */
+export function approxDateAttr(iso: string, precision: "day" | "month" | "year" = "day"): string {
+  return iso.slice(0, { year: 4, month: 7, day: 10 }[precision]);
+}
+
 /** A date shown only as precisely as it is known: "Oct 11, 2024", "Oct 2024" or "2024". */
 export function formatApproxDate(iso: string, precision: "day" | "month" | "year" = "day"): string {
   if (precision === "year") return iso.slice(0, 4);

@@ -1,9 +1,9 @@
 import { data, Link } from "react-router";
 import type { Route } from "./+types/PlayerDetail";
 import { PageHeader } from "../components/Parts";
-import { Credit } from "../components/Media";
+import { Credit, ProductThumb } from "../components/Media";
 import { ConfidencePill, SetupCell, setupLabel } from "../components/SetupCell";
-import { flag, formatApproxDate, formatDate } from "../labels";
+import { approxDateAttr, flag, formatApproxDate, formatDate } from "../labels";
 import type { SetupSlot } from "../models";
 import { type ItemVisual, type ResolvedSetupChange, playerPayload } from "../store.server";
 import { cn } from "~/lib/utils";
@@ -59,27 +59,16 @@ const slotNames: Record<SetupSlot, string> = { blade: "Blade", forehand: "Foreha
 /** The product picture, linked to its catalog page; a neutral placeholder keeps rows aligned for off-catalog items. */
 function ItemPicture({ visual, name, size }: { visual: ItemVisual | null; name: string; size: "sm" | "lg" }) {
   const box = size === "lg" ? "h-28 w-24" : "h-16 w-14";
-  if (!visual) {
-    return <span aria-hidden="true" className={cn("shrink-0 rounded-xl border border-dashed bg-secondary/40", box)} />;
-  }
+  if (!visual) return <span aria-hidden="true" className={cn("shrink-0 rounded-xl border border-dashed bg-secondary/40", box)} />;
   return (
-    <Link to={visual.href} tabIndex={-1} aria-hidden="true" className={cn("flex shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white ring-1 ring-black/5", box)}>
-      <img
-        src={visual.image.src}
-        alt=""
-        title={name}
-        width={visual.image.width}
-        height={visual.image.height}
-        loading="lazy"
-        decoding="async"
-        className="h-full w-full object-contain p-1"
-      />
+    <Link to={visual.href} tabIndex={-1} aria-hidden="true" title={name} className="shrink-0">
+      <ProductThumb photo={visual.photo} fallback={visual.illustration} className={box} />
     </Link>
   );
 }
 
 function HistoryItem({ name, visual }: { name: string; visual: ItemVisual | null }) {
-  const label = visual && !name.toLowerCase().startsWith(visual.brandName.toLowerCase()) ? `${visual.brandName} ${name}` : name;
+  const label = setupLabel({ brandName: visual?.brandName ?? null, name });
   return (
     <div className="flex min-w-0 flex-1 items-center gap-3">
       <ItemPicture visual={visual} name={label} size="sm" />
@@ -99,7 +88,7 @@ function HistoryEntry({ change }: { change: ResolvedSetupChange }) {
     <li className="relative pl-6">
       <span aria-hidden="true" className="absolute top-2 left-0 size-3 rounded-full border-2 border-primary bg-background" />
       <p className="text-sm">
-        <time dateTime={change.date} className="font-semibold">
+        <time dateTime={approxDateAttr(change.date, change.precision)} className="font-semibold">
           {formatApproxDate(change.date, change.precision)}
         </time>
         <span className="text-muted-foreground"> · {slotNames[change.slot]}</span>
@@ -107,8 +96,9 @@ function HistoryEntry({ change }: { change: ResolvedSetupChange }) {
       <div className="mt-2 rounded-2xl border bg-card p-3">
         <div className="flex flex-col gap-2 text-sm sm:flex-row sm:items-center">
           <HistoryItem name={change.from} visual={change.fromItem} />
-          <span className="self-start pl-5 text-muted-foreground sm:self-auto sm:pl-0" aria-label="replaced by">
+          <span className="self-start pl-5 text-muted-foreground sm:self-auto sm:pl-0">
             <span aria-hidden="true" className="inline-block rotate-90 sm:rotate-0">→</span>
+            <span className="sr-only">replaced by</span>
           </span>
           <HistoryItem name={change.to} visual={change.toItem} />
         </div>

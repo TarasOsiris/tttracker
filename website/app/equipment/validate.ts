@@ -2,9 +2,15 @@
 // value without a source or a rating without its scale can never reach the site.
 import { existsSync } from "node:fs";
 import { join } from "node:path";
-import type { Blade, Brand, Guide, GlossaryTerm, Image, Player, Rubber, Source } from "./models";
+import { anchorId, versusPageAnchors } from "./labels";
+import type { Blade, BladeComparison, Brand, Guide, GlossaryTerm, Image, Player, Rubber, Source } from "./models";
 
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
+/** YYYY-MM-DD and a real calendar day (no 2025-02-30). */
+const isIsoDate = (d: string) => {
+  const t = ISO_DATE.test(d) ? new Date(`${d}T00:00:00Z`) : null;
+  return t != null && !Number.isNaN(t.getTime()) && t.toISOString().startsWith(d);
+};
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const FIBERS = new Set(["arylate-carbon", "zylon-carbon", "super-zlc", "zylon", "carbon", "aramid-carbon", "aramid", "texalium", "glass", "basalt", "other"]);
 const HANDLES = new Set(["FL", "ST", "AN", "CON", "CS", "JP"]);
@@ -12,6 +18,8 @@ const RUBBER_TYPES = new Set(["classic", "tensor", "tacky", "hybrid", "short-pip
 const SCALES = new Set(["esn", "japanese", "chinese", "unstated"]);
 const SOURCE_KINDS = new Set(["manufacturer", "ittf", "retailer", "press", "player", "reference"]);
 const CONFIDENCE = new Set(["confirmed", "reported", "unverified"]);
+const PRECISIONS = new Set(["day", "month", "year"]);
+const SLOTS = new Set(["blade", "forehand", "backhand"]);
 
 export function validateEquipment(data: {
   brands: Brand[];
@@ -20,7 +28,9 @@ export function validateEquipment(data: {
   players: Player[];
   guides: Guide[];
   glossary: GlossaryTerm[];
+  comparisons: BladeComparison[];
 }): void {
+  const today = new Date().toISOString().slice(0, 10);
   const errors: string[] = [];
   const err = (where: string, msg: string) => errors.push(`${where}: ${msg}`);
 
@@ -28,7 +38,7 @@ export function validateEquipment(data: {
     if (!/^https?:\/\//.test(s.url)) err(where, `source url "${s.url}" is not absolute`);
     if (!s.label.trim()) err(where, `source ${s.url} has no label`);
     if (!SOURCE_KINDS.has(s.kind)) err(where, `source ${s.url} has unknown kind "${s.kind}"`);
-    if (!ISO_DATE.test(s.accessed)) err(where, `source ${s.url} has bad accessed date "${s.accessed}"`);
+    if (!isIsoDate(s.accessed)) err(where, `source ${s.url} has bad accessed date "${s.accessed}"`);
   };
   const checkSources = (where: string, sources: Source[]) => {
     if (sources.length === 0) err(where, "has no sources");
@@ -71,7 +81,7 @@ export function validateEquipment(data: {
     if (!item.id.startsWith(`${item.brandId}-`)) err(where, `id should start with "${item.brandId}-"`);
     checkSources(where, item.sources);
     checkImage(where, item.photo);
-    if (!ISO_DATE.test(item.lastVerified)) err(where, `bad lastVerified "${item.lastVerified}"`);
+    if (!isIsoDate(item.lastVerified)) err(where, `bad lastVerified "${item.lastVerified}"`);
     if (!item.summary.trim()) err(where, "has no summary");
     if (item.description.length === 0) err(where, "has no description");
     const urls = new Set(item.sources.map((s) => s.url));
@@ -115,9 +125,9 @@ export function validateEquipment(data: {
     const where = `player ${p.id}`;
     if (p.ranking) {
       checkSource(where, p.ranking.source);
-      if (!ISO_DATE.test(p.ranking.date)) err(where, `bad ranking date "${p.ranking.date}"`);
+      if (!isIsoDate(p.ranking.date)) err(where, `bad ranking date "${p.ranking.date}"`);
     }
-    if (!ISO_DATE.test(p.lastVerified)) err(where, `bad lastVerified "${p.lastVerified}"`);
+    if (!isIsoDate(p.lastVerified)) err(where, `bad lastVerified "${p.lastVerified}"`);
     checkImage(where, p.photo);
     for (const slot of ["blade", "forehand", "backhand"] as const) {
       const s = p.setup[slot];
@@ -128,18 +138,18 @@ export function validateEquipment(data: {
       const ids = slot === "blade" ? bladeIds : rubberIds;
       if (s.itemId != null && !ids.has(s.itemId)) err(where, `${slot} points at unknown ${slot === "blade" ? "blade" : "rubber"} "${s.itemId}"`);
       if (!CONFIDENCE.has(s.confidence)) err(where, `${slot} has unknown confidence "${s.confidence}"`);
-      if (!ISO_DATE.test(s.asOf)) err(where, `${slot} has bad asOf "${s.asOf}"`);
+      if (!isIsoDate(s.asOf)) err(where, `${slot} has bad asOf "${s.asOf}"`);
       checkSource(`${where} ${slot}`, s.source);
     }
     p.history.forEach((h) => {
       checkSource(`${where} history`, h.source);
-      if (!ISO_DATE.test(h.date)) err(where, `history entry has bad date "${h.date}"`);
-      else if (h.date > new Date().toISOString().slice(0, 10)) err(where, `history entry is dated in the future "${h.date}"`);
+      if (!isIsoDate(h.date)) err(where, `history entry has bad date "${h.date}"`);
+      else if (h.date > today) err(where, `history entry is dated in the future "${h.date}"`);
       if (h.precision === "year" && !h.date.endsWith("-01-01")) err(where, `year-precision history date "${h.date}" must be YYYY-01-01`);
       if (h.precision === "month" && !h.date.endsWith("-01")) err(where, `month-precision history date "${h.date}" must be YYYY-MM-01`);
-      if (h.precision != null && !["day", "month", "year"].includes(h.precision)) err(where, `history entry has unknown precision "${h.precision}"`);
+      if (h.precision != null && !PRECISIONS.has(h.precision)) err(where, `history entry has unknown precision "${h.precision}"`);
       if (!CONFIDENCE.has(h.confidence)) err(where, `history entry has unknown confidence "${h.confidence}"`);
-      if (!["blade", "forehand", "backhand"].includes(h.slot)) err(where, `history entry has unknown slot "${h.slot}"`);
+      if (!SLOTS.has(h.slot)) err(where, `history entry has unknown slot "${h.slot}"`);
       const ids = h.slot === "blade" ? bladeIds : rubberIds;
       for (const id of [h.fromItemId, h.toItemId]) {
         if (id != null && !ids.has(id)) err(where, `history ${h.slot} points at unknown ${h.slot === "blade" ? "blade" : "rubber"} "${id}"`);
@@ -172,9 +182,11 @@ export function validateEquipment(data: {
     rubbers: rubberIds,
     pros: new Set(data.players.map((p) => p.id)),
     guides: guideSlugs,
+    brands: new Set(data.brands.map((b) => b.id)),
+    compare: new Set(data.comparisons.map((c) => c.slug)),
   };
   const checkLinks = (where: string, text: string) => {
-    for (const m of text.matchAll(/\]\(\/equipment\/(blades|rubbers|pros|guides)\/([^)?#\s]+)/g)) {
+    for (const m of text.matchAll(/\]\(\/equipment\/(blades|rubbers|pros|guides|brands|compare)\/([^)?#\s]+)/g)) {
       if (!pages[m[1]].has(m[2])) err(where, `links to missing page /equipment/${m[1]}/${m[2]}`);
     }
   };
@@ -185,6 +197,43 @@ export function validateEquipment(data: {
   for (const t of data.glossary) checkLinks(`glossary ${t.id}`, t.definition);
   for (const item of [...data.blades, ...data.rubbers]) {
     [...item.description, ...item.facts.map((f) => f.text), ...(item.notes ?? [])].forEach((t) => checkLinks(item.id, t));
+  }
+
+  const comparisonSlugs = new Set<string>();
+  const pairs = new Set<string>();
+  for (const c of data.comparisons) {
+    const where = `comparison ${c.slug}`;
+    if (!SLUG.test(c.slug) || !c.slug.includes("-vs-")) err(where, "slug must be lowercase words joined by hyphens, with -vs-");
+    if (comparisonSlugs.has(c.slug)) err(where, "duplicate slug");
+    comparisonSlugs.add(c.slug);
+    for (const id of [c.a, c.b]) if (!bladeIds.has(id)) err(where, `points at unknown blade "${id}"`);
+    if (c.a === c.b) err(where, "compares a blade with itself");
+    const pair = [c.a, c.b].sort().join("|");
+    if (pairs.has(pair)) err(where, "the same pair is compared twice");
+    pairs.add(pair);
+    if (c.title.length > 60) err(where, `title is ${c.title.length} characters (max 60)`);
+    if (c.description.length < 120 || c.description.length > 160) err(where, `description is ${c.description.length} characters (want 120-160)`);
+    if (!c.intro.trim() || !c.verdict.a.trim() || !c.verdict.b.trim()) err(where, "missing intro or verdict");
+    if (c.sections.length < 3) err(where, "needs at least 3 sections");
+    if (c.faq.length < 2) err(where, "needs at least 2 FAQ entries");
+    if (!isIsoDate(c.updated)) err(where, `bad updated date "${c.updated}"`);
+    checkSources(where, c.sources);
+    // Section anchors come from the headings; they must be unique and not clash with the page's own anchors.
+    const anchors = new Set(versusPageAnchors);
+    for (const sec of c.sections) {
+      const id = anchorId(sec.heading);
+      if (!id || anchors.has(id)) err(where, `section heading "${sec.heading}" is empty or repeats an anchor on the page`);
+      anchors.add(id);
+    }
+    const texts = [c.intro, c.verdict.a, c.verdict.b, ...c.sections.flatMap((s) => [s.heading, ...s.blocks.flatMap((b) => (typeof b === "string" ? [b] : b.list))]), ...c.faq.flatMap((f) => [f.q, f.a])];
+    // FAQ text renders as plain text (and goes into FAQPage JSON-LD), so markdown would show literally.
+    for (const f of c.faq) if (/\]\(|\*\*/.test(f.q + f.a)) err(where, `FAQ "${f.q}" uses markdown, which FAQ answers don't render`);
+    const sourceUrls = new Set(c.sources.map((s) => s.url));
+    for (const t of texts) {
+      checkLinks(where, t);
+      // Outside links in the text must be listed as sources, so the sources list is complete.
+      for (const m of t.matchAll(/\]\((https?:\/\/[^)\s]+)\)/g)) if (!sourceUrls.has(m[1])) err(where, `links to ${m[1]}, which isn't in its sources`);
+    }
   }
 
   if (errors.length) {
