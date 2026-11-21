@@ -17,6 +17,7 @@ export const tr: Messages = {
     serves: "Servisler",
     drills: "Alıştırmalar",
     equipment: "Ekipman",
+    players: "Oyuncu profilleri",
     blog: "Blog",
     faq: "SSS",
     pricing: "Fiyatlar",
@@ -35,6 +36,7 @@ export const tr: Messages = {
     serves: "Servisler, falso, kurallar ve test",
     drills: "Yazdırılabilir antrenman planları",
     equipment: "Raket, lastik ve profesyonel ekipman (İngilizce)",
+    players: "İlk 10 erkek ve kadın oyuncu (İngilizce)",
     blog: "Masa tenisi haberleri (İngilizce)",
   },
   store: {

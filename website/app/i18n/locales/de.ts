@@ -17,6 +17,7 @@ export const de: Messages = {
     serves: "Aufschläge",
     drills: "Trainingspläne",
     equipment: "Material",
+    players: "Spielerporträts",
     blog: "Blog",
     faq: "FAQ",
     pricing: "Preise",
@@ -35,6 +36,7 @@ export const de: Messages = {
     serves: "Aufschläge, Schnitt, Regeln und Quiz",
     drills: "Trainingspläne zum Ausdrucken",
     equipment: "Hölzer, Beläge, Profi-Material (Englisch)",
+    players: "Die Top 10 der Herren und Damen (Englisch)",
     blog: "Tischtennis-News (Englisch)",
   },
   store: {

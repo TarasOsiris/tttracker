@@ -17,6 +17,7 @@ export const zh: Messages = {
     serves: "发球",
     drills: "训练计划",
     equipment: "器材",
+    players: "球员档案",
     blog: "博客",
     faq: "常见问题",
     pricing: "价格",
@@ -35,6 +36,7 @@ export const zh: Messages = {
     serves: "发球、旋转、规则与测验",
     drills: "可打印的训练计划",
     equipment: "底板、胶皮与职业球员装备（英文）",
+    players: "深入了解男女世界前十球员（英语）",
     blog: "乒乓球新闻（英文）",
   },
   store: {

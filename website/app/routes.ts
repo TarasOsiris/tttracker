@@ -62,6 +62,8 @@ export default [
     equipmentPages.map(([path, file]) => route(path, `equipment/pages/${file}.tsx`)),
   ),
   route("equipment/img/:kind/:file", "equipment/pages/Illustration.ts"),
+  route("players", "routes/players.tsx"),
+  route("players/:playerId", "routes/player-profile.tsx"),
   route("changelog", "routes/changelog.tsx"),
   // Becomes the static 404.html at build time; not a page of its own.
   route("404", "routes/not-found.tsx"),

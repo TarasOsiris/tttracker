@@ -17,6 +17,7 @@ export const zhTw: Messages = {
     serves: "發球",
     drills: "訓練計畫",
     equipment: "器材",
+    players: "球員檔案",
     blog: "部落格",
     faq: "常見問題",
     pricing: "價格",
@@ -35,6 +36,7 @@ export const zhTw: Messages = {
     serves: "發球、旋轉、規則與測驗",
     drills: "可列印的訓練計畫",
     equipment: "球拍、膠皮與職業選手裝備（英文）",
+    players: "深入了解男女世界前十球員（英語）",
     blog: "桌球新聞（英文）",
   },
   store: {

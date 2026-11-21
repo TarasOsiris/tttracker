@@ -17,6 +17,7 @@ export const ja: Messages = {
     serves: "サーブ",
     drills: "練習メニュー",
     equipment: "用具",
+    players: "選手プロフィール",
     blog: "ブログ",
     faq: "よくある質問",
     pricing: "料金",
@@ -35,6 +36,7 @@ export const ja: Messages = {
     serves: "サーブ・回転・ルール・クイズ",
     drills: "印刷できる練習メニュー",
     equipment: "ラケット・ラバー・トップ選手の用具（英語）",
+    players: "男女トップ10を詳しく紹介（英語）",
     blog: "卓球ニュース（英語）",
   },
   store: {

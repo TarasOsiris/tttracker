@@ -17,6 +17,7 @@ export const ko: Messages = {
     serves: "서브",
     drills: "훈련 프로그램",
     equipment: "용품",
+    players: "선수 프로필",
     blog: "블로그",
     faq: "FAQ",
     pricing: "가격",
@@ -35,6 +36,7 @@ export const ko: Messages = {
     serves: "서브, 회전, 규칙, 퀴즈",
     drills: "인쇄용 훈련 계획",
     equipment: "블레이드, 러버, 프로 용품 (영어)",
+    players: "남녀 세계 상위 10명 심층 소개 (영어)",
     blog: "탁구 뉴스 (영어)",
   },
   store: {

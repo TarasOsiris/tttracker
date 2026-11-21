@@ -17,6 +17,7 @@ export const es: Messages = {
     serves: "Saques",
     drills: "Ejercicios",
     equipment: "Material",
+    players: "Perfiles de jugadores",
     blog: "Blog",
     faq: "Preguntas",
     pricing: "Precios",
@@ -35,6 +36,7 @@ export const es: Messages = {
     serves: "Saques, efectos, reglas y quiz",
     drills: "Planes de entrenamiento imprimibles",
     equipment: "Maderas, gomas y equipos pro (inglés)",
+    players: "Los 10 mejores hombres y mujeres (en inglés)",
     blog: "Noticias de tenis de mesa (inglés)",
   },
   store: {

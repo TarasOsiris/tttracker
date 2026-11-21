@@ -1,4 +1,4 @@
-import { Check, ChevronDown, CircleHelp, ClipboardList, Crown, Globe, Layers, Menu, Newspaper, RotateCw, Sparkles, Workflow, type LucideIcon } from "lucide-react";
+import { Check, ChevronDown, CircleHelp, ClipboardList, Crown, Globe, Layers, Menu, Newspaper, RotateCw, Sparkles, Users, Workflow, type LucideIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useLocation, useMatches } from "react-router";
 import { Button } from "~/components/ui/button";
@@ -102,6 +102,7 @@ function useActiveHref() {
   if (neutral.startsWith("/drills")) return "/drills";
   if (neutral.startsWith("/blog")) return "/blog";
   if (neutral.startsWith("/equipment")) return "/equipment";
+  if (neutral.startsWith("/players")) return "/players";
   if (/^\/(serves|motions|spins|rules|quiz|about)(\/|$)/.test(neutral)) return "/serves";
   return neutral === "/" && section ? `/#${section}` : null;
 }
@@ -116,6 +117,7 @@ const navIcons: Record<NavLink["key"], LucideIcon> = {
   serves: RotateCw,
   drills: ClipboardList,
   equipment: Layers,
+  players: Users,
   blog: Newspaper,
 };
 

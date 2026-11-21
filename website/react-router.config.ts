@@ -8,6 +8,7 @@ import { SITE_URL } from "./app/content/site";
 import { defaultLocale, type Locale, localeInfo, locales, localizePath } from "./app/i18n/config";
 import { blades, brands, comparisons, guides, players, rubbers } from "./app/equipment/data";
 import { motions, serves } from "./app/serves/data";
+import { profileIds, rankingSnapshot } from "./app/players/rankings";
 
 const neutralPaths = [
   "/",
@@ -52,6 +53,9 @@ const pages: Page[] = [
   // Blog posts are written in English; a language gets a page only for the posts translated into it.
   ...blogPages(),
   ...equipmentPaths.map((path) => ({ path, locales: [defaultLocale] })),
+  ...["/players", ...profileIds.map((id) => `/players/${id}`)].map((path) => ({
+    path, locales: [defaultLocale], lastmod: () => rankingSnapshot.checked,
+  })),
   ...comparisons.map((c) => ({ path: `/equipment/compare/${c.slug}`, locales: [defaultLocale], lastmod: () => c.updated })),
   { path: "/changelog", locales: [defaultLocale], lastmod: () => releases[0].date },
 ];

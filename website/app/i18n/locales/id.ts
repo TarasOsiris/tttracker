@@ -17,6 +17,7 @@ export const id: Messages = {
     serves: "Servis",
     drills: "Program latihan",
     equipment: "Peralatan",
+    players: "Profil pemain",
     blog: "Blog",
     faq: "FAQ",
     pricing: "Harga",
@@ -35,6 +36,7 @@ export const id: Messages = {
     serves: "Servis, putaran, aturan, dan kuis",
     drills: "Program latihan yang bisa dicetak",
     equipment: "Blade, karet, dan perlengkapan pro (Inggris)",
+    players: "10 pemain putra dan putri terbaik (bahasa Inggris)",
     blog: "Berita tenis meja (Inggris)",
   },
   store: {

@@ -7,6 +7,7 @@ import { approxDateAttr, flag, formatApproxDate, formatDate } from "../labels";
 import type { SetupSlot } from "../models";
 import { type ItemVisual, type ResolvedSetupChange, playerPayload } from "../store.server";
 import { cn } from "~/lib/utils";
+import { profileIds } from "~/players/rankings";
 import { absolute, breadcrumbs, equipmentMeta } from "../utils/seo";
 
 export function loader({ params }: Route.LoaderArgs) {
@@ -159,6 +160,12 @@ export default function PlayerDetail({ loaderData }: Route.ComponentProps) {
           </p>
         </PageHeader>
       </div>
+
+      {profileIds.includes(player.id) && (
+        <Link to={`/players/${player.id}`} className="inline-flex rounded-full border px-5 py-3 font-medium text-primary hover:bg-secondary">
+          Explore {player.name}’s full player profile
+        </Link>
+      )}
 
       <section className="grid gap-4 md:grid-cols-3">
         {slots.map(({ slot, label }) => (

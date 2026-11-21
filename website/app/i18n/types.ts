@@ -14,6 +14,7 @@ export type Messages = {
     serves: string;
     drills: string;
     equipment: string;
+    players: string;
     blog: string;
     faq: string;
     pricing: string;
@@ -33,6 +34,7 @@ export type Messages = {
     serves: string;
     drills: string;
     equipment: string;
+    players: string;
     blog: string;
   };
   store: { appStore: string; googlePlay: string };

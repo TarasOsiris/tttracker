@@ -12,7 +12,13 @@ Copy lives in `app/content/` (`site.ts`, `drills.ts`, `changelog.ts`). Adding a 
 
 ## Blog
 
-Posts live in `app/content/blog-posts.ts`, written in English. A translation goes in its language's list under the same slug; a language gets a post page, hreflang entry and sitemap entry only for posts really translated into it, and a blog index only when it has at least one (`blog.server.ts`). Other localized blog URLs 301 to the English page (nginx rule, and `serve.json` redirects written at build time). At build time the first mention of a player who has an `/equipment/pros` page links there, replacing a Wikipedia link to them.
+Posts live in `app/content/blog-posts.ts`, written in English. A translation goes in its language's list under the same slug; a language gets a post page, hreflang entry and sitemap entry only for posts really translated into it, and a blog index only when it has at least one (`blog.server.ts`). Other localized blog URLs 301 to the English page (nginx rule, and `serve.json` redirects written at build time). At build time the first mention of a player links to their `/players` profile when available, otherwise their `/equipment/pros` page, replacing a Wikipedia link to them.
+
+## Player profiles
+
+Learn › Player profiles (`/players`, English only) covers the men's and women's singles top 10, with searchable, URL-backed division filters. Each `/players/:playerId` page includes a biography, sourced career milestones, editorial playing-style and practice notes, equipment from the existing encyclopedia, and related news. Photo credits stay attached to the existing player assets.
+
+`app/players/rankings.ts` owns the dated selection, points, publication date and ranking sources; `men.ts` and `women.ts` hold the biographies and their sources. Refresh the snapshot and profile content together: this is an editorial selection, not a live ranking feed. The directory and all profile pages are prerendered and added to the sitemap automatically. `store.server.ts` checks that each division has ranks 1–10, every selected player has a profile and equipment record, and each milestone has a source. Only summaries reach the directory; a profile loads its own full content. Unknown birth dates stay unfilled rather than inferred from a birth year.
 
 ## Pricing and analytics
 

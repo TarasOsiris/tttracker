@@ -1,6 +1,7 @@
 // Build-time only (.server): loaders hand each page the one post or the summaries it renders, so the client
 // bundle never carries the posts. Relative imports, because react-router.config.ts reads this file too.
 import { players } from "../equipment/data/players";
+import { profileIds } from "../players/rankings";
 import { defaultLocale, type Locale, locales, localizePath } from "../i18n/config";
 import type { BlogPost, PostLink, PostSummary } from "./blog";
 import type { LegalBlock } from "./legal";
@@ -87,7 +88,7 @@ function resolveHref(url: string, locale: Locale): string {
   if (post) return postLocales(post[1]).includes(locale) ? localizePath(locale, url) : url;
   if (path === "/blog") return blogLocales.includes(locale) ? localizePath(locale, url) : url;
   // English-only sections exist once, at the root.
-  if (/^\/(equipment|changelog)(\/|$)/.test(path)) return url;
+  if (/^\/(equipment|players|changelog)(\/|$)/.test(path)) return url;
   return localizePath(locale, path) + (hash ? `#${hash}` : "");
 }
 
@@ -107,13 +108,13 @@ const proPages = players.map((p) => {
   const letters = Array.from(fold(p.name).replace(/[^\p{L}]/gu, ""));
   return {
     key: letters.join(""),
-    href: `/equipment/pros/${p.id}`,
+    href: profileIds.includes(p.id) ? `/players/${p.id}` : `/equipment/pros/${p.id}`,
     pattern: new RegExp(`(?<!\\p{L})${letters.map((c) => c.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("[-\\s]?")}(?!\\p{L})`, "u"),
   };
 });
 
 /**
- * Points the first mention of each player who has a pro-setup page at that page: a Wikipedia link with the
+ * Points the first mention of each player at their profile, or their pro-setup page when no profile exists. A Wikipedia link with the
  * player's name becomes an internal link, and so does the first plain mention of a player not linked yet.
  * Later Wikipedia links to the same player become plain text, so a post links each player once.
  */

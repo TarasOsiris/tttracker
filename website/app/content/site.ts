@@ -70,6 +70,7 @@ export const navLinks = [
   { href: "/#faq", key: "faq", group: "app" },
   { href: "/serves", key: "serves", group: "learn" },
   { href: "/drills", key: "drills", group: "learn" },
+  { href: "/players", key: "players", group: "learn", englishOnly: true },
   // The equipment encyclopedia is English only, so every language links to the same page. The blog links to the
   // language's own index where it has translated posts, otherwise to the English one (`blogHref`).
   { href: "/equipment", key: "equipment", group: "learn", englishOnly: true },
