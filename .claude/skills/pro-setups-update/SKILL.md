@@ -24,8 +24,11 @@ you're unsure, keep the current value and say so in the commit body. Never remov
 For each player, search for equipment news since their slot `asOf` dates: sponsor announcements and sponsor team pages
 (Butterfly, DHS, Stiga, Xiom, Nittaku, Tibhar, Andro, Victas, Joola...), the player's own posts, interviews, and
 reputable equipment coverage. Match photos alone are not enough to change a slot (at most `unverified`).
-- Change a slot only with a source newer than its current `asOf`. Append the old item to `history`
-  ({ date, slot, from, to, source }) and set the new slot's `source`, `asOf` and `confidence`:
+- Change a slot only with a source newer than its current `asOf`. Append the switch to `history`
+  ({ date, precision, slot, from, fromItemId, to, toItemId, confidence, note, source }; see `SetupChange` in models.ts).
+  The player page shows it as a dated timeline with product pictures, so: `precision` "month"/"year" when the source
+  doesn't give the day (date then `YYYY-MM-01`/`YYYY-01-01`), catalog ids only for the exact retail item, and a short
+  `note` with the context ("Switched sponsor from X to Y"). Then set the new slot's `source`, `asOf` and `confidence`:
   - `confirmed`: the player, their sponsor/federation, or an official WTT/ITTF source states it.
   - `reported`: a reputable equipment site, interview or news outlet reports it.
   - `unverified`: only seen in photos/footage. Use sparingly.

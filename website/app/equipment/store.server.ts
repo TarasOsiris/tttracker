@@ -243,11 +243,44 @@ export function prosPayload() {
   };
 }
 
+/** A catalog item's page link and picture: the maker's photo, or the spec-drawn illustration without one. */
+export type ItemVisual = { href: string; image: Pick<Image, "src" | "width" | "height">; brandName: string; brandLogo?: Image };
+
+function itemVisual(slot: SetupSlot, itemId: string | null | undefined): ItemVisual | null {
+  if (!itemId) return null;
+  const kind = slot === "blade" ? "blades" : "rubbers";
+  const item = slot === "blade" ? bladeById.get(itemId) : rubberById.get(itemId);
+  if (!item) return null;
+  const brand = brandById.get(item.brandId)!;
+  const image = item.photo
+    ? { src: item.photo.src, width: item.photo.width, height: item.photo.height }
+    : { src: `/equipment/img/${kind}/${item.id}.svg`, width: 56, height: 64 };
+  return { href: `/equipment/${kind}/${item.id}`, image, brandName: brand.name, brandLogo: brand.logo };
+}
+
+export type ResolvedSetupChange = Player["history"][number] & { fromItem: ItemVisual | null; toItem: ItemVisual | null };
+
 export function playerPayload(id: string) {
   const player = playerById.get(id);
   if (!player) return null;
-  return { player, setup: resolveSetup(player) };
+  const { history, ...rest } = player;
+  const setup = resolveSetup(player);
+  return {
+    player: rest,
+    setup,
+    setupVisuals: {
+      blade: itemVisual("blade", setup.blade.itemId),
+      forehand: itemVisual("forehand", setup.forehand.itemId),
+      backhand: itemVisual("backhand", setup.backhand.itemId),
+    },
+    // Newest first; on the same date, blade before rubbers.
+    history: [...history]
+      .sort((a, b) => b.date.localeCompare(a.date) || slotOrder.indexOf(a.slot) - slotOrder.indexOf(b.slot))
+      .map((h): ResolvedSetupChange => ({ ...h, fromItem: itemVisual(h.slot, h.fromItemId), toItem: itemVisual(h.slot, h.toItemId) })),
+  };
 }
+
+const slotOrder: SetupSlot[] = ["blade", "forehand", "backhand"];
 
 export type SearchEntry = { label: string; kind: "Blade" | "Rubber" | "Player" | "Brand" | "Guide"; href: string; image?: string };
 

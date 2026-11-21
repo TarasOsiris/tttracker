@@ -2,9 +2,11 @@ import { data, Link } from "react-router";
 import type { Route } from "./+types/PlayerDetail";
 import { PageHeader } from "../components/Parts";
 import { Credit } from "../components/Media";
-import { SetupCell, setupLabel } from "../components/SetupCell";
-import { flag, formatDate } from "../labels";
-import { playerPayload } from "../store.server";
+import { ConfidencePill, SetupCell, setupLabel } from "../components/SetupCell";
+import { flag, formatApproxDate, formatDate } from "../labels";
+import type { SetupSlot } from "../models";
+import { type ItemVisual, type ResolvedSetupChange, playerPayload } from "../store.server";
+import { cn } from "~/lib/utils";
 import { absolute, breadcrumbs, equipmentMeta } from "../utils/seo";
 
 export function loader({ params }: Route.LoaderArgs) {
@@ -52,8 +54,79 @@ export const meta: Route.MetaFunction = ({ loaderData }) => {
   });
 };
 
+const slotNames: Record<SetupSlot, string> = { blade: "Blade", forehand: "Forehand", backhand: "Backhand" };
+
+/** The product picture, linked to its catalog page; a neutral placeholder keeps rows aligned for off-catalog items. */
+function ItemPicture({ visual, name, size }: { visual: ItemVisual | null; name: string; size: "sm" | "lg" }) {
+  const box = size === "lg" ? "h-28 w-24" : "h-16 w-14";
+  if (!visual) {
+    return <span aria-hidden="true" className={cn("shrink-0 rounded-xl border border-dashed bg-secondary/40", box)} />;
+  }
+  return (
+    <Link to={visual.href} tabIndex={-1} aria-hidden="true" className={cn("flex shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white ring-1 ring-black/5", box)}>
+      <img
+        src={visual.image.src}
+        alt=""
+        title={name}
+        width={visual.image.width}
+        height={visual.image.height}
+        loading="lazy"
+        decoding="async"
+        className="h-full w-full object-contain p-1"
+      />
+    </Link>
+  );
+}
+
+function HistoryItem({ name, visual }: { name: string; visual: ItemVisual | null }) {
+  const label = visual && !name.toLowerCase().startsWith(visual.brandName.toLowerCase()) ? `${visual.brandName} ${name}` : name;
+  return (
+    <div className="flex min-w-0 flex-1 items-center gap-3">
+      <ItemPicture visual={visual} name={label} size="sm" />
+      {visual ? (
+        <Link to={visual.href} className="min-w-0 font-medium text-foreground hover:text-primary hover:underline">
+          {label}
+        </Link>
+      ) : (
+        <span className="min-w-0 font-medium">{label}</span>
+      )}
+    </div>
+  );
+}
+
+function HistoryEntry({ change }: { change: ResolvedSetupChange }) {
+  return (
+    <li className="relative pl-6">
+      <span aria-hidden="true" className="absolute top-2 left-0 size-3 rounded-full border-2 border-primary bg-background" />
+      <p className="text-sm">
+        <time dateTime={change.date} className="font-semibold">
+          {formatApproxDate(change.date, change.precision)}
+        </time>
+        <span className="text-muted-foreground"> · {slotNames[change.slot]}</span>
+      </p>
+      <div className="mt-2 rounded-2xl border bg-card p-3">
+        <div className="flex flex-col gap-2 text-sm sm:flex-row sm:items-center">
+          <HistoryItem name={change.from} visual={change.fromItem} />
+          <span className="self-start pl-5 text-muted-foreground sm:self-auto sm:pl-0" aria-label="replaced by">
+            <span aria-hidden="true" className="inline-block rotate-90 sm:rotate-0">→</span>
+          </span>
+          <HistoryItem name={change.to} visual={change.toItem} />
+        </div>
+        {change.note && <p className="mt-2 text-sm text-muted-foreground">{change.note}</p>}
+        <p className="mt-2 flex flex-wrap items-center gap-1.5 text-[11px] text-muted-foreground">
+          <ConfidencePill confidence={change.confidence} />
+          <span>Source:</span>
+          <a href={change.source.url} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+            {change.source.label}
+          </a>
+        </p>
+      </div>
+    </li>
+  );
+}
+
 export default function PlayerDetail({ loaderData }: Route.ComponentProps) {
-  const { player, setup } = loaderData;
+  const { player, setup, setupVisuals, history } = loaderData;
   return (
     <article className="space-y-8">
       <nav aria-label="Breadcrumb" className="text-sm text-muted-foreground">
@@ -99,10 +172,13 @@ export default function PlayerDetail({ loaderData }: Route.ComponentProps) {
 
       <section className="grid gap-4 md:grid-cols-3">
         {slots.map(({ slot, label }) => (
-          <div key={slot} className="rounded-3xl border bg-card p-5">
-            <p className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">{label}</p>
-            <div className="mt-2 text-lg">
-              <SetupCell item={setup[slot]} slot={slot} detailed />
+          <div key={slot} className="flex gap-4 rounded-3xl border bg-card p-5">
+            {setupVisuals[slot] && <ItemPicture visual={setupVisuals[slot]} name={setupLabel(setup[slot])} size="lg" />}
+            <div className="min-w-0">
+              <p className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">{label}</p>
+              <div className="mt-2 text-lg">
+                <SetupCell item={setup[slot]} slot={slot} detailed />
+              </div>
             </div>
           </div>
         ))}
@@ -113,23 +189,29 @@ export default function PlayerDetail({ loaderData }: Route.ComponentProps) {
         is known it's noted above; the linked product is the closest one you can buy. Last checked {formatDate(player.lastVerified)}.
       </p>
 
-      {player.history.length > 0 && (
-        <section>
-          <h2 className="text-xl font-bold tracking-tight">Equipment changes</h2>
-          <ol className="mt-3 space-y-2 text-sm">
-            {[...player.history]
-              .sort((a, b) => b.date.localeCompare(a.date))
-              .map((h) => (
-                <li key={`${h.date}-${h.slot}`} className="rounded-2xl border bg-card p-3">
-                  <span className="text-muted-foreground">{formatDate(h.date)} · {h.slot}:</span> {h.from} → <strong>{h.to}</strong>{" "}
-                  <a href={h.source.url} target="_blank" rel="noopener noreferrer" className="text-xs text-primary hover:underline">
-                    {h.source.label}
-                  </a>
-                </li>
+      <section aria-labelledby="history-heading">
+        <h2 id="history-heading" className="text-xl font-bold tracking-tight">
+          {player.name}'s equipment history
+        </h2>
+        {history.length > 0 ? (
+          <>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Documented switches, newest first. Each one links to the source that reports it; dates are only as precise as
+              that source.
+            </p>
+            <ol className="relative mt-5 space-y-6 before:absolute before:top-3 before:bottom-3 before:left-[5px] before:w-0.5 before:bg-border">
+              {history.map((h) => (
+                <HistoryEntry key={`${h.date}-${h.slot}-${h.to}`} change={h} />
               ))}
-          </ol>
-        </section>
-      )}
+            </ol>
+          </>
+        ) : (
+          <p className="mt-1 text-sm text-muted-foreground">
+            We haven't found a dated, sourced record of {player.name}'s earlier equipment yet. Changes are added here as
+            sponsors and reputable equipment sites report them.
+          </p>
+        )}
+      </section>
 
       <p>
         <Link to="/equipment/pros" className="text-sm font-medium text-primary hover:underline">

@@ -96,6 +96,13 @@ export function formatDate(iso: string): string {
   return new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" });
 }
 
+/** A date shown only as precisely as it is known: "Oct 11, 2024", "Oct 2024" or "2024". */
+export function formatApproxDate(iso: string, precision: "day" | "month" | "year" = "day"): string {
+  if (precision === "year") return iso.slice(0, 4);
+  if (precision === "month") return new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-US", { year: "numeric", month: "short", timeZone: "UTC" });
+  return formatDate(iso);
+}
+
 /** Three-letter ITTF code to a flag emoji, for the common codes that differ from ISO alpha-2. */
 const ittfToIso2: Record<string, string> = {
   CHN: "CN", JPN: "JP", KOR: "KR", TPE: "TW", HKG: "HK", SGP: "SG", IND: "IN", GER: "DE", FRA: "FR", SWE: "SE",

@@ -186,11 +186,22 @@ export interface SetupItem {
 
 export type SetupSlot = "blade" | "forehand" | "backhand";
 
+/** One switch in a player's equipment history, shown as a dated timeline on their page. */
 export interface SetupChange {
+  /** Full date; `precision` says how much of it is known ("2019-01-01" with "year" means some time in 2019). */
   date: IsoDate;
+  /** Defaults to "day". */
+  precision?: "day" | "month" | "year";
   slot: SetupSlot;
+  /** Names as the source reports them; "Unknown" when the source names only the new item. */
   from: string;
   to: string;
+  /** Catalog ids (blade ids for the blade slot, rubber ids otherwise), only when the item is exactly that retail product. */
+  fromItemId?: string | null;
+  toItemId?: string | null;
+  confidence: Confidence;
+  /** Short context, e.g. "Signature blade released with Butterfly". */
+  note?: string;
   source: Source;
 }
 

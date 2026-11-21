@@ -134,6 +134,16 @@ export function validateEquipment(data: {
     p.history.forEach((h) => {
       checkSource(`${where} history`, h.source);
       if (!ISO_DATE.test(h.date)) err(where, `history entry has bad date "${h.date}"`);
+      else if (h.date > new Date().toISOString().slice(0, 10)) err(where, `history entry is dated in the future "${h.date}"`);
+      if (h.precision === "year" && !h.date.endsWith("-01-01")) err(where, `year-precision history date "${h.date}" must be YYYY-01-01`);
+      if (h.precision === "month" && !h.date.endsWith("-01")) err(where, `month-precision history date "${h.date}" must be YYYY-MM-01`);
+      if (h.precision != null && !["day", "month", "year"].includes(h.precision)) err(where, `history entry has unknown precision "${h.precision}"`);
+      if (!CONFIDENCE.has(h.confidence)) err(where, `history entry has unknown confidence "${h.confidence}"`);
+      if (!["blade", "forehand", "backhand"].includes(h.slot)) err(where, `history entry has unknown slot "${h.slot}"`);
+      const ids = h.slot === "blade" ? bladeIds : rubberIds;
+      for (const id of [h.fromItemId, h.toItemId]) {
+        if (id != null && !ids.has(id)) err(where, `history ${h.slot} points at unknown ${h.slot === "blade" ? "blade" : "rubber"} "${id}"`);
+      }
     });
   }
 
