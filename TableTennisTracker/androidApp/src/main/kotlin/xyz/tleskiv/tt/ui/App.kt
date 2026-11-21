@@ -127,9 +127,7 @@ private val REVIEW_PROMPT_DELAY = 1500.milliseconds
 /// Android resolves `res/values-*` through the Configuration, not through `Locale.setDefault`, so
 /// an in-app language choice only reaches `stringResource` as an overridden Context handed down the
 /// tree. Deriving it from the activity context each time keeps SYSTEM honest after a switch away.
-/// The override wraps the activity rather than replacing it (`createConfigurationContext` would): the
-/// locals found by walking the context chain — `LocalActivity`, `LocalActivityResultRegistryOwner`
-/// for permission launchers — must still reach the activity, or they come back empty and crash.
+/// It wraps the activity so `LocalActivity` and permission launchers still find it through the context chain.
 private fun Context.localizedFor(locale: AppLocale): Context {
 	if (locale == AppLocale.SYSTEM) return this
 	val configuration = Configuration(resources.configuration)
