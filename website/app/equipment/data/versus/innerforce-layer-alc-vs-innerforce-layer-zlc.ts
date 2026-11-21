@@ -31,7 +31,7 @@ export const comparison: BladeComparison = {
     {
       heading: "Which strokes to compare at the club",
       blocks: [
-        "For opening against backspin, try each blade with the same sponge and topsheet. Start with a slow, high-clearance loop, then aim a stronger loop deep to the same corner. The holding sensation Butterfly describes is relevant to the first shot. Use the second to see whether the slightly higher rebound TTGearLab measured for the ZLC makes any practical difference for you. A cleaner brush and a different racket angle can change the trajectory more than this blade swap.",
+        "For opening against backspin, try each blade with the same sponge and topsheet. Start with a slow, high-clearance loop, then aim a stronger loop deep to the same corner. The holding sensation Butterfly describes is relevant to the first shot. Use the second to see whether the slightly higher elasticity index TTGearLab calculated for the ZLC makes any practical difference for you. A cleaner brush and a different racket angle can change the trajectory more than this blade swap.",
         "For close play, work through a short push, a flick and a block against a partner’s first loop. A backhand-led player should count which racket keeps relaxed blocks on the table when the partner speeds up. A forehand-led player can add a third-ball loop followed by a counter a step back. Either model makes sense for an intermediate or advanced topspin player. If the ALC already gives you consistent depth from mid-distance, the lab measurements give little reason to switch purely for speed.",
       ],
     },

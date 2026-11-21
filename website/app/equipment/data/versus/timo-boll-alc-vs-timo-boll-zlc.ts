@@ -11,7 +11,7 @@ export const comparison: BladeComparison = {
     "The [Timo Boll ALC](/equipment/blades/butterfly-timo-boll-alc) and [Timo Boll ZLC](/equipment/blades/butterfly-timo-boll-zlc) share their shakehand head dimensions and put the composite close to the surface. Butterfly’s speed ratings are nearly equal, while its Vibration rating is higher for the thinner ZLC. The more useful comparison is how each responds on a small block and then on a full counterloop.",
   verdict: {
     a: "you prefer a milder impact sensation on blocks and opening loops or you play with an anatomic handle.",
-    b: "you like a firmer sensation on impact and want to compare the extra rebound on stronger contacts that TTGearLab measured.",
+    b: "you like a firmer sensation on impact and want to test whether the higher elasticity indices TTGearLab calculated for it show up on your stronger contacts.",
   },
   sections: [
     {
@@ -47,7 +47,7 @@ export const comparison: BladeComparison = {
       heading: "Grips, sample weights and the name on the handle",
       blocks: [
         "Both are sold in flared and straight shakehand with matching published dimensions. The ALC also comes in anatomic. Butterfly Japan lists averages of 87 g for the ALC and 85 g for the ZLC, while the [North American specification table](https://butterflyonline.com/butterfly-blade-specifications/) lists 84 g for both. Ask for an actual weight if you have a narrow preference. Check a specific regional listing for handle availability, since the current published lineups focus on shakehand.",
-        "Penhold buyers may come across older versions. Butterfly’s [2020–2021 technology catalogue](https://butterflyonline.com/Catalogs/2020-2021%20Butterfly%20Technology%20Catalog.pdf?x80142=) lists Chinese penhold versions of both blades. Check the exact model and condition on a used listing, and take its specifications from the CS entry. For example, that catalogue lists the ALC CS at 5.4 mm, while the current shakehand specification is 5.8 mm.",
+        "Penhold buyers may come across older versions. Butterfly’s [2020–2021 technology catalogue](https://butterflyonline.com/Catalogs/2020-2021%20Butterfly%20Technology%20Catalog.pdf?x80142=) lists Chinese penhold versions of both blades. Check the exact model and condition on a used listing, and take its specifications from the CS entry rather than the shakehand one; the catalogue's own pages don't always agree on penhold thickness, so ask the seller to measure.",
         "Butterfly’s [equipment timeline](https://www.butterfly-global.com/en/story/timo-boll/) documents Boll competing with the ALC and returning to it in 2022 after a spell using Primorac Carbon. His [equipment profile](https://www.butterfly-global.com/en/sponsoring/detail/boll-timo.html) specifies a custom handle. Among the tracker’s active players, Butterfly also lists the Timo Boll ALC for [Hiroto Shinozuka](/equipment/pros/hiroto-shinozuka). The two models share Boll’s name, and these sources document use of the ALC in particular.",
       ],
     },

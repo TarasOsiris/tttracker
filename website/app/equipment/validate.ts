@@ -141,7 +141,9 @@ export function validateEquipment(data: {
       if (!isIsoDate(s.asOf)) err(where, `${slot} has bad asOf "${s.asOf}"`);
       checkSource(`${where} ${slot}`, s.source);
     }
-    p.history.forEach((h) => {
+    p.history.forEach((h, i) => {
+      // Written oldest first: the page relies on this order for switches on the same date.
+      if (i > 0 && h.date < p.history[i - 1].date) err(where, `history isn't oldest first at "${h.date}"`);
       checkSource(`${where} history`, h.source);
       if (!isIsoDate(h.date)) err(where, `history entry has bad date "${h.date}"`);
       else if (h.date > today) err(where, `history entry is dated in the future "${h.date}"`);
@@ -203,7 +205,9 @@ export function validateEquipment(data: {
   const pairs = new Set<string>();
   for (const c of data.comparisons) {
     const where = `comparison ${c.slug}`;
-    if (!SLUG.test(c.slug) || !c.slug.includes("-vs-")) err(where, "slug must be lowercase words joined by hyphens, with -vs-");
+    const [slugA, slugB, ...extra] = c.slug.split("-vs-");
+    if (!SLUG.test(c.slug) || extra.length || !slugB || !c.a.endsWith(slugA) || !c.b.endsWith(slugB))
+      err(where, `slug must be "<end of a's id>-vs-<end of b's id>", e.g. "viscaria-vs-timo-boll-alc"`);
     if (comparisonSlugs.has(c.slug)) err(where, "duplicate slug");
     comparisonSlugs.add(c.slug);
     for (const id of [c.a, c.b]) if (!bladeIds.has(id)) err(where, `points at unknown blade "${id}"`);
@@ -216,7 +220,7 @@ export function validateEquipment(data: {
     if (!c.intro.trim() || !c.verdict.a.trim() || !c.verdict.b.trim()) err(where, "missing intro or verdict");
     if (c.sections.length < 3) err(where, "needs at least 3 sections");
     if (c.faq.length < 2) err(where, "needs at least 2 FAQ entries");
-    if (!isIsoDate(c.updated)) err(where, `bad updated date "${c.updated}"`);
+    if (!isIsoDate(c.updated) || c.updated > today) err(where, `bad updated date "${c.updated}"`);
     checkSources(where, c.sources);
     // Section anchors come from the headings; they must be unique and not clash with the page's own anchors.
     const anchors = new Set(versusPageAnchors);

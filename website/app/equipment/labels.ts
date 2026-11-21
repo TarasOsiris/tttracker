@@ -105,7 +105,7 @@ export function anchorId(heading: string): string {
 }
 
 /** Anchors the blade-vs-blade page sets itself; article headings must not reuse them. */
-export const versusPageAnchors = ["verdict", "specs", "faq", "sources"];
+export const versusPageAnchors = ["main", "verdict", "specs", "faq", "sources"];
 
 /** The machine-readable form of an approximate date, for `<time dateTime>`: "2024", "2024-10" or "2024-10-11". */
 export function approxDateAttr(iso: string, precision: "day" | "month" | "year" = "day"): string {
