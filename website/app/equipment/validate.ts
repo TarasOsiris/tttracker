@@ -30,7 +30,8 @@ export function validateEquipment(data: {
   glossary: GlossaryTerm[];
   comparisons: BladeComparison[];
 }): void {
-  const today = new Date().toISOString().slice(0, 10);
+  // A day ahead of UTC, so a date written in a timezone east of UTC just after midnight isn't "in the future".
+  const today = new Date(Date.now() + 86_400_000).toISOString().slice(0, 10);
   const errors: string[] = [];
   const err = (where: string, msg: string) => errors.push(`${where}: ${msg}`);
 
@@ -143,7 +144,11 @@ export function validateEquipment(data: {
     }
     p.history.forEach((h, i) => {
       // Written oldest first: the page relies on this order for switches on the same date.
-      if (i > 0 && h.date < p.history[i - 1].date) err(where, `history isn't oldest first at "${h.date}"`);
+      // Compared only as precisely as both dates are known: "2024" (year) may follow "2024-03-15".
+      const prev = p.history[i - 1];
+      const known = (x: typeof h) => ({ year: 4, month: 7, day: 10 })[x.precision ?? "day"];
+      const len = prev ? Math.min(known(prev), known(h)) : 0;
+      if (prev && h.date.slice(0, len) < prev.date.slice(0, len)) err(where, `history isn't oldest first at "${h.date}"`);
       checkSource(`${where} history`, h.source);
       if (!isIsoDate(h.date)) err(where, `history entry has bad date "${h.date}"`);
       else if (h.date > today) err(where, `history entry is dated in the future "${h.date}"`);
@@ -206,7 +211,7 @@ export function validateEquipment(data: {
   for (const c of data.comparisons) {
     const where = `comparison ${c.slug}`;
     const [slugA, slugB, ...extra] = c.slug.split("-vs-");
-    if (!SLUG.test(c.slug) || extra.length || !slugB || !c.a.endsWith(slugA) || !c.b.endsWith(slugB))
+    if (!SLUG.test(c.slug) || extra.length || !slugB || ![c.a, c.b].every((id, k) => id === [slugA, slugB][k] || id.endsWith(`-${[slugA, slugB][k]}`)))
       err(where, `slug must be "<end of a's id>-vs-<end of b's id>", e.g. "viscaria-vs-timo-boll-alc"`);
     if (comparisonSlugs.has(c.slug)) err(where, "duplicate slug");
     comparisonSlugs.add(c.slug);
@@ -221,6 +226,7 @@ export function validateEquipment(data: {
     if (c.sections.length < 3) err(where, "needs at least 3 sections");
     if (c.faq.length < 2) err(where, "needs at least 2 FAQ entries");
     if (!isIsoDate(c.updated) || c.updated > today) err(where, `bad updated date "${c.updated}"`);
+    if (!isIsoDate(c.published) || c.published > c.updated) err(where, `bad published date "${c.published}" (must not be after updated)`);
     checkSources(where, c.sources);
     // Section anchors come from the headings; they must be unique and not clash with the page's own anchors.
     const anchors = new Set(versusPageAnchors);

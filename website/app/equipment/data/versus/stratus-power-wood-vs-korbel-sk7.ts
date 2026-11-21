@@ -121,5 +121,6 @@ export const comparison: BladeComparison = {
       accessed: "2026-11-21",
     },
   ],
+  published: "2026-11-21",
   updated: "2026-11-21",
 };

@@ -6,12 +6,12 @@ export const comparison: BladeComparison = {
   b: "butterfly-timo-boll-zlc",
   title: "Timo Boll ALC vs Timo Boll ZLC | Butterfly Blade Guide",
   description:
-    "Compare the two Timo Boll blades for touch, blocks and stronger loops, with measured rebound, grip options and rubber pairings for different swing styles.",
+    "Compare the two Timo Boll blades for touch, blocks and stronger loops, with lab elasticity indices, grip options and rubber pairings for different swing styles.",
   intro:
     "The [Timo Boll ALC](/equipment/blades/butterfly-timo-boll-alc) and [Timo Boll ZLC](/equipment/blades/butterfly-timo-boll-zlc) share their shakehand head dimensions and put the composite close to the surface. Butterfly’s speed ratings are nearly equal, while its Vibration rating is higher for the thinner ZLC. The more useful comparison is how each responds on a small block and then on a full counterloop.",
   verdict: {
     a: "you prefer a milder impact sensation on blocks and opening loops or you play with an anatomic handle.",
-    b: "you like a firmer sensation on impact and want to test whether the higher elasticity indices TTGearLab calculated for it show up on your stronger contacts.",
+    b: "you like a firmer sensation on impact and want to test whether the higher central elasticity index TTGearLab calculated for it shows up on your stronger contacts.",
   },
   sections: [
     {
@@ -55,7 +55,7 @@ export const comparison: BladeComparison = {
   faq: [
     {
       q: "Is the Timo Boll ZLC faster than the Timo Boll ALC?",
-      a: "Butterfly gives the ALC a base-speed score of 11.8 and the ZLC 11.7. TTGearLab measured similar primary elasticity but higher central elasticity for the ZLC, consistent with more rebound on harder hits.",
+      a: "Butterfly gives the ALC a base-speed score of 11.8 and the ZLC 11.7. TTGearLab’s indices, calculated from vibration measurements, show similar primary but higher central elasticity for the ZLC, which it reads as more rebound on harder hits.",
     },
     {
       q: "Which Timo Boll blade is softer?",
@@ -154,5 +154,6 @@ export const comparison: BladeComparison = {
       accessed: "2026-11-21",
     },
   ],
+  published: "2026-11-21",
   updated: "2026-11-21",
 };

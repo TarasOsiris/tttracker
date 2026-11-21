@@ -6,7 +6,7 @@ export const comparison: BladeComparison = {
   b: "butterfly-viscaria",
   title: "Primorac Carbon vs Viscaria | Butterfly Blade Guide",
   description:
-    "Compare Primorac Carbon and Viscaria for direct drives, opening loops, blocks and touch, with measured rebound, handle options and practical rubber pairings.",
+    "Compare Primorac Carbon and Viscaria for direct drives, opening loops, blocks and touch, with lab elasticity data, handle options and practical rubber pairings.",
   intro:
     "The [Primorac Carbon](/equipment/blades/butterfly-primorac-carbon) and [Viscaria](/equipment/blades/butterfly-viscaria) have the same shakehand head dimensions and use different constructions. Butterfly rates Primorac Carbon higher for base speed and harder in feel, while it describes the Viscaria as suited to a varied, spin-led attack. Think about whether your points usually start with a low ball you need to lift or an opening you can exploit with a direct drive.",
   verdict: {
@@ -55,7 +55,7 @@ export const comparison: BladeComparison = {
   faq: [
     {
       q: "Is Primorac Carbon faster than Viscaria?",
-      a: "Yes on Butterfly’s base-speed scale, with Reaction ratings of 12.5 and 11.8 respectively. TTGearLab also measured higher primary and central elasticity for Primorac Carbon.",
+      a: "Yes on Butterfly’s base-speed scale, with Reaction ratings of 12.5 and 11.8 respectively. TTGearLab’s elasticity indices are also higher for Primorac Carbon, on both primary and central elasticity.",
     },
     {
       q: "Which blade is easier for an intermediate looper?",
@@ -124,5 +124,6 @@ export const comparison: BladeComparison = {
       accessed: "2026-11-21",
     },
   ],
+  published: "2026-11-21",
   updated: "2026-11-21",
 };

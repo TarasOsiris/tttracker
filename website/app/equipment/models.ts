@@ -277,6 +277,8 @@ export interface BladeComparison {
   faq: { q: string; a: string }[];
   /** Every page linked from the text, and every page a claim relies on. */
   sources: Source[];
+  /** First publication; stays fixed when the article is revised. */
+  published: IsoDate;
   updated: IsoDate;
 }
 

@@ -25,7 +25,7 @@ export const comparison: BladeComparison = {
       heading: "Why the speed ratings are so close",
       blocks: [
         "On Butterfly’s [scales for base speed and impact feel](https://www.butterfly-global.com/en/products/blade/matrix.html), the ALC is rated 10.7 Reaction and 9.4 Vibration. The ZLC is rated 10.5 and 9.5. Those numbers make broad claims about one being much faster or much firmer hard to justify. They also give little guidance about how high the ball will arc off your backhand rubber.",
-        "[TTGearLab’s measurements](https://ttgearlab.com/2023/01/17/performance-indices-db-butterfly-blades/) put the two close in primary elasticity, with the ZLC slightly ahead of the ALC sample group measured in 2023. It also measured slightly higher central elasticity, the index it relates to rebound on harder contact. The older ALC samples tested in 2018 were farther behind. Butterfly and TTGearLab use separate scales and methods. If you are replacing a Layer ALC you have played for years, use your own racket as the baseline for the comparison.",
+        "[TTGearLab’s elasticity indices](https://ttgearlab.com/2023/01/17/performance-indices-db-butterfly-blades/) put the two close in primary elasticity, with the ZLC slightly ahead of the ALC sample group measured in 2023. The ZLC’s central elasticity index, which TTGearLab relates to rebound on harder contact, is also slightly higher. The older ALC samples tested in 2018 were farther behind. Butterfly and TTGearLab use separate scales and methods. If you are replacing a Layer ALC you have played for years, use your own racket as the baseline for the comparison.",
       ],
     },
     {
@@ -131,5 +131,6 @@ export const comparison: BladeComparison = {
       accessed: "2026-11-21",
     },
   ],
+  published: "2026-11-21",
   updated: "2026-11-21",
 };

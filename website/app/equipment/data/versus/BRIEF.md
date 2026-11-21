@@ -65,7 +65,8 @@ export const comparison: BladeComparison = {
   sections: [{ heading: "…", blocks: ["paragraph", { list: ["item", "item"] }] }],
   faq: [{ q: "…?", a: "…" }],
   sources: [{ url: "https://…", label: "…", kind: "manufacturer", accessed: "2026-11-21" }],
-  updated: "2026-11-21",
+  published: "2026-11-21",   // first publication; never changes
+  updated: "2026-11-21",     // bump when revising
 };
 ```
 

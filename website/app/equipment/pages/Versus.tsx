@@ -49,7 +49,7 @@ export const meta: Route.MetaFunction = ({ loaderData }) => {
         "@type": "Article",
         headline: c.title,
         description: c.description,
-        datePublished: c.updated,
+        datePublished: c.published,
         dateModified: c.updated,
         author: { "@type": "Organization", name: APP_NAME },
         url: absolute(path),
