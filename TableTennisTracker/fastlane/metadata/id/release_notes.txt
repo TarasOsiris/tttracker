@@ -1,3 +1,3 @@
-• "Beri nilai aplikasi" di Pengaturan kini selalu membuka halaman ulasan App Store.
-• Mengetuk Simpan dua kali tidak lagi menambahkan sesi yang sama dua kali.
-• Perbaikan dan peningkatan.
+• Atur durasi, tingkat usaha, jenis, dan catatan bawaan untuk sesi baru di Pengaturan.
+• Lihat persentase kemenangan di grafik menang/kalah.
+• Buka situs web dalam bahasa aplikasi dari Pengaturan.

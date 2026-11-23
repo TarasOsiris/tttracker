@@ -1,3 +1,3 @@
-• "Valuta l'app" nelle Impostazioni ora apre ogni volta la pagina delle recensioni dell'App Store.
-• Toccare due volte Salva non aggiunge più la stessa sessione due volte.
-• Correzioni e miglioramenti.
+• Imposta durata, intensità, tipo e note predefiniti per le nuove sessioni nelle impostazioni.
+• Visualizza la percentuale di vittorie nel grafico di vittorie e sconfitte.
+• Apri il sito web nella lingua dell’app dalle impostazioni.

@@ -1,3 +1,3 @@
-• « Évaluer l'application » dans les Paramètres ouvre désormais à chaque fois la page d'avis de l'App Store.
-• Toucher Enregistrer deux fois n'ajoute plus la même session en double.
-• Corrections et améliorations.
+• Définissez la durée, l’effort, le type et les notes par défaut des nouvelles séances dans les réglages.
+• Consultez votre pourcentage de victoires dans le graphique des victoires et défaites.
+• Ouvrez le site dans la langue de l’app depuis les réglages.

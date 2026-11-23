@@ -1,3 +1,3 @@
-• «Calificar la aplicación» en Configuración ahora abre siempre la página de reseñas del App Store.
-• Tocar Guardar dos veces ya no añade la misma sesión dos veces.
-• Correcciones y mejoras.
+• Configura la duración, el esfuerzo, el tipo y las notas predeterminados de las nuevas sesiones en Ajustes.
+• Consulta tu porcentaje de victorias en el gráfico de victorias y derrotas.
+• Abre el sitio web en el idioma de la app desde Ajustes.

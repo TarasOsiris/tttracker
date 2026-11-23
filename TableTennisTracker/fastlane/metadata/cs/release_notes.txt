@@ -1,3 +1,3 @@
-• „Ohodnotit aplikaci“ v Nastavení nyní pokaždé otevře stránku pro hodnocení v App Storu.
-• Dvojité klepnutí na Uložit už nepřidá stejný trénink dvakrát.
-• Opravy a vylepšení.
+• V nastavení určete výchozí délku, námahu, typ a poznámky pro nové tréninky.
+• Zobrazte si úspěšnost v grafu výher a proher.
+• Otevřete web z nastavení v jazyce aplikace.

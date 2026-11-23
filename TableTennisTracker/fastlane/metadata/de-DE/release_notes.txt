@@ -1,3 +1,3 @@
-• „App bewerten“ in den Einstellungen öffnet jetzt jedes Mal die Bewertungsseite im App Store.
-• Doppeltes Tippen auf „Speichern“ legt dieselbe Einheit nicht mehr zweimal an.
-• Fehlerbehebungen und Verbesserungen.
+• Lege in den Einstellungen Dauer, Anstrengung, Trainingsart und Notizen für neue Einheiten fest.
+• Sieh deine Siegquote im Sieg/Niederlage-Diagramm.
+• Öffne die Website über die Einstellungen in deiner App-Sprache.

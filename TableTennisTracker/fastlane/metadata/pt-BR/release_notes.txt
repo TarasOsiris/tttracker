@@ -1,3 +1,3 @@
-• "Avalie o aplicativo" em Configurações agora sempre abre a página de avaliações da App Store.
-• Tocar em Salvar duas vezes não adiciona mais a mesma sessão duas vezes.
-• Correções e melhorias.
+• Defina a duração, o esforço, o tipo e as notas padrão das novas sessões nas configurações.
+• Veja sua porcentagem de vitórias no gráfico de vitórias e derrotas.
+• Abra o site no idioma do aplicativo pelas configurações.

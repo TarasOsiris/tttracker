@@ -1,3 +1,3 @@
-• "Betygsätt appen" i Inställningar öppnar nu alltid recensionssidan i App Store.
-• Att trycka på Spara två gånger lägger inte längre till samma session två gånger.
-• Buggfixar och förbättringar.
+• Ange standardvärden för längd, ansträngning, typ och anteckningar för nya pass i Inställningar.
+• Se din vinstprocent i diagrammet över vinster och förluster.
+• Öppna webbplatsen på appens språk från Inställningar.
