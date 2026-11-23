@@ -1,4 +1,4 @@
-// Top 25 men's singles (ITTF/WTT world ranking, week 46 2026, published 2026-11-09) and their equipment setups.
+// Top 25 men's singles (ITTF/WTT world ranking, week 47 2026, published 2026-11-16) and their equipment setups.
 // Every slot cites a source and an "as of" date. Butterfly's sponsor pages list a player's blade and rubbers but not
 // which rubber is on which side; where they list two different rubbers, sides come from the source named in the label
 // and the slot is "reported", not "confirmed". Undated pages use the date they were read and are at most "reported".
@@ -6,13 +6,13 @@ import type { Player, Source } from "../models";
 
 const ACCESSED = "2026-10-03";
 const VERIFIED = "2026-10-03";
-const RANKING_DATE = "2026-11-09";
+const RANKING_DATE = "2026-11-16";
 
 const ranking: Source = {
   url: "https://tabletennis-reference.com/player/world_ranking/men",
-  label: "ITTF/WTT Men's Singles World Ranking, week 46 2026 (published 2026-11-09 per spread-sports.jp; read via tabletennis-reference.com mirror, which shows rank changes from week 45 and no day)",
+  label: "ITTF/WTT Men's Singles World Ranking, week 47 2026 (published 2026-11-16 per spread-sports.jp; read via tabletennis-reference.com mirror, 'updated on 2026/11/16', which shows rank changes from the previous week and no day)",
   kind: "ittf",
-  accessed: "2026-11-16",
+  accessed: "2026-11-23",
 };
 
 const rank = (position: number) => ({ position, date: RANKING_DATE, source: ranking });

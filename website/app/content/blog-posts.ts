@@ -78,6 +78,82 @@ const ljubljanaArena = { ...hero, caption: "A packed arena at the 2026 World Tea
 export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: BlogPost[] } = {
   en: [
   {
+    slug: "mixed-team-world-cup-chengdu-2026-great-britain-squad-preview-china-japan",
+    title: "Mixed Team World Cup 2026 Chengdu: GB Squad, Format and Teams to Watch",
+    seoTitle: "Mixed Team World Cup 2026 Chengdu: Dates, Format, GB Squad, China and Japan",
+    description:
+      "Mixed Team World Cup 2026 in Chengdu runs 29 Nov-6 Dec with 20 teams. Great Britain's first-ever squad, Pitchford and Hursey, plus China, Japan and Sweden rosters.",
+    published: "2026-11-23",
+    readMinutes: 5,
+    keywords: [
+      "Mixed Team World Cup 2026",
+      "ITTF Mixed Team World Cup Chengdu",
+      "Great Britain table tennis team",
+      "Liam Pitchford",
+      "Wang Chuqin Sun Yingsha",
+      "LA 2028 table tennis mixed team",
+      "table tennis news",
+    ],
+    hero: {
+      src: "/blog/pitchford-gb-hero.webp",
+      width: 1200,
+      height: 675,
+      alt: "Liam Pitchford in a red England shirt reaching for a forehand with the ball just beside his paddle",
+      caption: "Liam Pitchford, named in the GB squad, at the 2016 World Team Championships in Kuala Lumpur. Archive photo, not from Chengdu.",
+      credit: "XIAOYU TANG, CC BY-SA 2.0",
+      creditUrl: "https://commons.wikimedia.org/wiki/File:Liam_Pitchford_WTTC2016_16.jpeg",
+    },
+    intro:
+      "For the first time, Great Britain will play a table tennis world event in its own colours, outside the Olympic system. The ITTF Mixed Team World Cup starts in Chengdu on 29 November with 20 teams, up from 16, and it is a direct road to Los Angeles 2028. China, as ever, arrive with the stars; Britain arrive with a new kit and a top-12 target.",
+    takeaways: [
+      "**Dates and venue:** 29 November to 6 December 2026 in Chengdu, China. The group stage runs 29 November to 4 December.",
+      "**Bigger field:** 20 teams in two groups of 10, up from 16 last year, with 3-4 players per gender.",
+      "**GB debut:** Connor Green, Tom Jarvis, Liam Pitchford and Sam Walker, with Charlotte Carey, Tin-Tin Ho, Anna Hursey and Tianer Yu. Target: top 12.",
+      "**China:** six places locked by ranking: Wang Chuqin, Lin Shidong, Huang Youzheng, Wang Manyu, Sun Yingsha and Kuai Man.",
+      "**Olympic link:** the 2027 edition gives the top six teams direct LA 2028 qualification, per Table Tennis England.",
+    ],
+    sections: [
+      {
+        heading: "Why Great Britain's squad is a first",
+        blocks: [
+          "[Table Tennis England](https://www.tabletennisengland.co.uk/news/2026/great-britain-table-tennis-team-has-been-named-for-the-mixed-team-world-cup-in-chengdu/) calls it the first GB table tennis team to compete outside the Team GB ecosystem. Until now, GB colours appeared only at the Olympics and European Games. The squad trains at a camp in Grenzau, Germany, before flying out.",
+          "The men are Connor Green, Tom Jarvis, [Liam Pitchford](https://en.wikipedia.org/wiki/Liam_Pitchford) and Sam Walker (all England). The women are Charlotte Carey (Wales), Tin-Tin Ho (England), Anna Hursey (Wales) and Tianer Yu (England). Green and Hursey just won mixed doubles at WTT Contender Istanbul, and Jarvis made headlines there too; see our [Istanbul coverage](/blog/fang-bo-wins-wtt-contender-istanbul-2026-kazakhstan-comeback-hashimoto).",
+          "The kit comes from Butterfly and Tees Sport, with a Union Flag design and a black-and-red Nagoya match shirt. The stated aim is a top-12 finish. **Why it matters:** the 2027 Mixed Team World Cup gives the top six teams a direct LA 2028 place, and the European Games in Istanbul (16-27 June 2027) also offer a route, so this is a first rehearsal.",
+        ],
+      },
+      {
+        heading: "Format: 20 teams, a race to eight games",
+        image: { ...hero, caption: "A packed arena at the 2026 World Team Table Tennis Championships in London. Archive photo, not from Chengdu." },
+        blocks: [
+          "According to a [Global Game Guide](https://www.globalgameguide.com/article/2026-table-tennis-mixed-team-world-cup-guide) summary of the ITTF playing system, the 20 teams are split into two round-robin groups of ten. The top eight in each group move to placement matches that decide the semifinals, final and bronze medal; ninth and tenth are tied for 17th. Treat it as a secondary source, as we could not open the ITTF document.",
+          "Each tie is a race to eight games, not a set number of matches. Each match is best of three games. Table Tennis England lists the order as mixed doubles, women's singles, men's singles, then two doubles matches, so up to five matches and up to 15 games can be played. A 2-0 win in the first match is worth two of the eight games you need.",
+          "**Why it matters:** because games count, not matches, a team that drops a single 11-9 game can still win the tie. Mixed doubles is the opener, so serve and receive in that first match shape the mood of the whole tie.",
+        ],
+      },
+      {
+        heading: "Who else is going",
+        blocks: [
+          "[China](https://en.wikipedia.org/wiki/China_national_table_tennis_team) have six players qualified by ranking: [Wang Chuqin](https://en.wikipedia.org/wiki/Wang_Chuqin), Lin Shidong, Huang Youzheng, [Wang Manyu](https://en.wikipedia.org/wiki/Wang_Manyu), [Sun Yingsha](https://en.wikipedia.org/wiki/Sun_Yingsha) and Kuai Man. A seventh player was undecided as of 2 November. Sun and Kuai met in the Montpellier final, which Sun won 4-1; see our [Montpellier report](/blog/jang-woojin-wins-wtt-champions-montpellier-2026-sun-yingsha-kuai-man-final).",
+          "Japan's association announced Sora Matsushima, [Tomokazu Harimoto](https://en.wikipedia.org/wiki/Tomokazu_Harimoto), Shunsuke Togami and Hiroto Shinozuka, with Miwa Harimoto, [Hina Hayata](https://en.wikipedia.org/wiki/Hina_Hayata), Satsuki Odo and Honoka Hashimoto. That list was described as preliminary. Sweden's list has Elias Ranefur, Anton Källberg, Kristian Karlsson and Mattias Karlsson, with Stina Källberg, Filippa Bergand, Nomin Baasan and Alma Rööse; Truls Möregårdh is left out while he prepares for the WTT Finals in Hong Kong.",
+          "South Korea, Germany and France are named as teams to watch, but we did not see confirmed rosters or the group draw, so check [ITTF](https://www.ittf.com) before you plan your viewing.",
+        ],
+      },
+      {
+        heading: "Practise like a mixed team",
+        blocks: [
+          "Mixed team is about quick pairings. Log your doubles sessions and singles results in [Ping Pong & Table Tennis Log](/), sharpen your openers with the [serve library](/serves), learn how spin changes the return in [our spin guide](/spins), and test yourself in the [quiz](/quiz). Try playing first to eight games with a friend to feel the pressure.",
+        ],
+      },
+    ],
+    sources: [
+      { label: "Table Tennis England: GB team named for the Mixed Team World Cup in Chengdu", url: "https://www.tabletennisengland.co.uk/news/2026/great-britain-table-tennis-team-has-been-named-for-the-mixed-team-world-cup-in-chengdu/" },
+      { label: "Global Game Guide: 2026 Table Tennis Mixed Team World Cup guide", url: "https://www.globalgameguide.com/article/2026-table-tennis-mixed-team-world-cup-guide" },
+      { label: "People's Daily: Sun, Jang triumph at WTT Champions Montpellier", url: "https://en.people.cn/n3/2026/1102/c90000-20514624.html" },
+      { label: "ITTF", url: "https://www.ittf.com" },
+      { label: "Wikipedia: ITTF Mixed Team World Cup", url: "https://en.wikipedia.org/wiki/ITTF_Mixed_Team_World_Cup" },
+    ],
+  },
+  {
     slug: "ittf-world-youth-championships-2026-istanbul-preview-moved-from-bahrain",
     title: "ITTF World Youth Championships 2026: Istanbul Preview After the Move From Bahrain",
     seoTitle: "ITTF World Youth Championships 2026 Istanbul: Dates, Venue, What to Watch",
