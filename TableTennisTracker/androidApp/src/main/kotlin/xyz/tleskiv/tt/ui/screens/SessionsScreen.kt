@@ -7,8 +7,8 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -30,6 +30,7 @@ import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.ButtonGroupDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
@@ -37,7 +38,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.ToggleButton
 import androidx.compose.runtime.Composable
-import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
@@ -99,10 +99,12 @@ import xyz.tleskiv.tt.util.ext.displayText
 import xyz.tleskiv.tt.util.ext.formatDateHeader
 import xyz.tleskiv.tt.util.ext.formatMonthYear
 import xyz.tleskiv.tt.util.ui.collectAsMutableState
+import xyz.tleskiv.tt.util.ui.toColor
 import xyz.tleskiv.tt.viewmodel.sessions.SessionsScreenViewModel
 import xyz.tleskiv.tt.viewmodel.sessions.SessionsScreenViewModel.SessionUiModel
 
 private const val DATE_LIST_RANGE_DAYS = 365
+private const val MAX_DAY_DOTS = 4
 
 @Composable
 fun SessionsScreen(
@@ -431,7 +433,7 @@ private fun MonthCalendarView(
 				isSelected = date == selectedDate,
 				isToday = highlightCurrentDay && date == currentDate,
 				isInCurrentMonth = day.position == DayPosition.MonthDate,
-				sessionCount = sessionsByDate[date]?.size ?: 0,
+				sessions = sessionsByDate[date].orEmpty(),
 				onClick = onDateSelected,
 				isLandscape = isLandscape
 			)
@@ -472,7 +474,7 @@ private fun WeekCalendarView(
 				isSelected = date == selectedDate,
 				isToday = highlightCurrentDay && date == currentDate,
 				isInCurrentMonth = day.position == WeekDayPosition.RangeDate,
-				sessionCount = sessionsByDate[date]?.size ?: 0,
+				sessions = sessionsByDate[date].orEmpty(),
 				onClick = onDateSelected,
 				isLandscape = isLandscape
 			)
@@ -486,7 +488,7 @@ private fun DayCell(
 	isSelected: Boolean,
 	isToday: Boolean,
 	isInCurrentMonth: Boolean,
-	sessionCount: Int,
+	sessions: List<SessionUiModel>,
 	onClick: (LocalDate) -> Unit,
 	isLandscape: Boolean
 ) {
@@ -500,7 +502,6 @@ private fun DayCell(
 		isInCurrentMonth -> MaterialTheme.colorScheme.onPrimaryContainer
 		else -> MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.4f)
 	}
-	val dotColor = if (isSelected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.tertiary
 
 	Box(
 		modifier = Modifier
@@ -518,13 +519,20 @@ private fun DayCell(
 				fontWeight = if (isToday || isSelected) FontWeight.Bold else FontWeight.Normal,
 				color = textColor
 			)
-			if (sessionCount > 0) {
-				Row(horizontalArrangement = Arrangement.spacedBy(2.dp)) {
-					repeat(minOf(sessionCount, 4)) {
-						Box(modifier = Modifier.size(4.dp).background(dotColor, CircleShape))
-					}
-				}
-			}
+			if (sessions.isNotEmpty()) SessionTypeDots(sessions, isSelected)
+		}
+	}
+}
+
+@Composable
+private fun SessionTypeDots(sessions: List<SessionUiModel>, isSelected: Boolean) {
+	val outline = if (isSelected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.outline.copy(alpha = 0.4f)
+	Row(horizontalArrangement = Arrangement.spacedBy(2.dp)) {
+		sessions.take(MAX_DAY_DOTS).forEach { session ->
+			Box(
+				modifier = Modifier.size(5.dp).background(session.sessionType.toColor(), CircleShape)
+					.border(0.5.dp, outline, CircleShape)
+			)
 		}
 	}
 }
@@ -652,11 +660,7 @@ private fun TodayButton(onClick: () -> Unit, modifier: Modifier = Modifier) {
 		modifier = modifier
 			.clip(MaterialTheme.shapes.medium)
 			.background(MaterialTheme.colorScheme.secondaryContainer)
-			.clickable(
-				interactionSource = remember { MutableInteractionSource() },
-				indication = null,
-				onClick = onClick
-			)
+			.clickable(onClick = onClick)
 			.padding(horizontal = 12.dp, vertical = 8.dp),
 		contentAlignment = Alignment.Center
 	) {

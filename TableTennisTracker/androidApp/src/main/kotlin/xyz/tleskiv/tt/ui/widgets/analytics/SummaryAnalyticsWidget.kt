@@ -23,18 +23,19 @@ import xyz.tleskiv.tt.R
 import xyz.tleskiv.tt.analytics.SummaryStats
 import xyz.tleskiv.tt.ui.theme.lossColor
 import xyz.tleskiv.tt.ui.theme.winColor
+import xyz.tleskiv.tt.util.ext.formatPercent
+import xyz.tleskiv.tt.util.ext.winRate
 
 @Composable
 fun SummaryAnalyticsWidget(stats: SummaryStats) {
 	val hours = stats.totalTrainingMinutes / 60
 	val minutes = stats.totalTrainingMinutes % 60
 	val timeText = stringResource(R.string.analytics_hours_minutes, hours, minutes)
-	val totalMatches = stats.matchesWon + stats.matchesLost
-	val winRate = if (totalMatches > 0) (stats.matchesWon * 100) / totalMatches else 0
+	val winRate = stats.winRate
 	val winRateColor = when {
-		totalMatches == 0 -> MaterialTheme.colorScheme.onSurfaceVariant
-		winRate >= 60 -> winColor
-		winRate >= 40 -> MaterialTheme.colorScheme.onSurface
+		winRate == null -> MaterialTheme.colorScheme.onSurfaceVariant
+		winRate >= 0.6 -> winColor
+		winRate >= 0.4 -> MaterialTheme.colorScheme.onSurface
 		else -> lossColor
 	}
 
@@ -73,7 +74,7 @@ fun SummaryAnalyticsWidget(stats: SummaryStats) {
 				StatBox(
 					modifier = Modifier.weight(1f),
 					emoji = "📈",
-					value = "$winRate%",
+					value = formatPercent(winRate ?: 0.0),
 					label = stringResource(R.string.analytics_win_rate),
 					valueColor = winRateColor
 				)

@@ -15,11 +15,14 @@ object SiteLinks {
 		AppLocale.INDONESIAN to "id", AppLocale.HINDI to "hi", AppLocale.ARABIC to "ar"
 	)
 
+	/** The site's home page in the language the app is shown in, given as a tag such as `de-DE`. */
+	fun home(languageTag: String): String = "$SITE_URL${localePrefix(languageTag)}"
+
 	/** The privacy policy in the language the app is shown in, given as a tag such as `de-DE`. */
 	fun privacyPolicy(languageTag: String): String = page("privacy", languageTag)
 
-	private fun page(path: String, languageTag: String): String {
-		val prefix = siteLocales[AppLocale.matching(languageTag)]?.let { "/$it" }.orEmpty()
-		return "$SITE_URL$prefix/$path"
-	}
+	private fun page(path: String, languageTag: String): String = "$SITE_URL${localePrefix(languageTag)}/$path"
+
+	private fun localePrefix(languageTag: String): String =
+		siteLocales[AppLocale.matching(languageTag)]?.let { "/$it" }.orEmpty()
 }

@@ -27,6 +27,7 @@ import xyz.tleskiv.tt.ui.theme.lossColor
 import xyz.tleskiv.tt.ui.theme.lossTextLight
 import xyz.tleskiv.tt.ui.theme.winColor
 import xyz.tleskiv.tt.ui.theme.winTextLight
+import xyz.tleskiv.tt.util.ext.wholePercentFormat
 import xyz.tleskiv.tt.util.ui.getRpeColor
 import xyz.tleskiv.tt.util.ui.toColor
 import java.util.Date
@@ -43,8 +44,7 @@ class WidgetEnvironment(context: Context, appLocale: AppLocale, accent: AppAccen
 
 	fun integer(value: Int): String = NumberFormat.getIntegerInstance(locale).format(value)
 
-	fun percent(fraction: Double): String =
-		NumberFormat.getPercentInstance(locale).apply { maximumFractionDigits = 0 }.format(fraction)
+	fun percent(fraction: Double): String = locale.wholePercentFormat().format(fraction)
 
 	fun record(won: Int, lost: Int): String = string(R.string.match_score_format, won, lost)
 

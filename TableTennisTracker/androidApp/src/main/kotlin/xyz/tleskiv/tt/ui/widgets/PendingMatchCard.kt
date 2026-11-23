@@ -70,7 +70,7 @@ fun PendingMatchCard(
 					fontWeight = FontWeight.SemiBold
 				)
 
-				IconButton(onClick = onEdit, modifier = Modifier.size(32.dp)) {
+				IconButton(onClick = onEdit) {
 					Icon(
 						imageVector = ImageVector.vectorResource(R.drawable.ic_edit),
 						contentDescription = stringResource(R.string.action_edit),
@@ -79,7 +79,7 @@ fun PendingMatchCard(
 					)
 				}
 
-				IconButton(onClick = onDelete, modifier = Modifier.size(32.dp)) {
+				IconButton(onClick = onDelete) {
 					Icon(
 						imageVector = ImageVector.vectorResource(R.drawable.ic_delete),
 						contentDescription = stringResource(R.string.action_delete),

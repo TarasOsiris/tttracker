@@ -164,7 +164,7 @@ fun SettingsScreen(
 						SettingsMenuItem(
 							R.string.action_visit_website,
 							Icons.Outlined.Language,
-							{ uriHandler.openUri("https://ttapp.tleskiv.xyz") }),
+							{ uriHandler.openUri(SiteLinks.home(Locale.getDefault().toLanguageTag())) }),
 						SettingsMenuItem(
 							R.string.action_privacy_policy,
 							Icons.Outlined.Lock,

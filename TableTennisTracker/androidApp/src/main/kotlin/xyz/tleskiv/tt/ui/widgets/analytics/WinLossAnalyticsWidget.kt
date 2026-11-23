@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,6 +20,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import io.github.koalaplot.core.pie.DefaultSlice
 import io.github.koalaplot.core.pie.PieChart
@@ -27,16 +31,18 @@ import xyz.tleskiv.tt.R
 import xyz.tleskiv.tt.analytics.SummaryStats
 import xyz.tleskiv.tt.ui.theme.lossColor
 import xyz.tleskiv.tt.ui.theme.winColor
+import xyz.tleskiv.tt.util.ext.formatPercent
+import xyz.tleskiv.tt.util.ext.winRate
 
 @OptIn(ExperimentalKoalaPlotApi::class)
 @Composable
 fun WinLossAnalyticsWidget(stats: SummaryStats) {
-	val totalMatches = stats.matchesWon + stats.matchesLost
+	val winRate = stats.winRate
 	val winsLabel = stringResource(R.string.analytics_wins)
 	val lossesLabel = stringResource(R.string.analytics_losses)
 
 	AnalyticsWidget(title = R.string.analytics_win_loss_chart) {
-		if (totalMatches == 0) {
+		if (winRate == null) {
 			Box(
 				modifier = Modifier.fillMaxWidth().height(200.dp),
 				contentAlignment = Alignment.Center
@@ -54,16 +60,19 @@ fun WinLossAnalyticsWidget(stats: SummaryStats) {
 				modifier = Modifier.fillMaxWidth().padding(16.dp),
 				horizontalAlignment = Alignment.CenterHorizontally
 			) {
-				PieChart(
-					values = listOf(stats.matchesWon.toFloat(), stats.matchesLost.toFloat()),
-					modifier = Modifier.size(160.dp),
-					slice = { index ->
-						DefaultSlice(color = colors[index], hoverExpandFactor = 1.05f, hoverElement = {})
-					},
-					holeSize = 0.6f,
-					label = {},
-					labelConnector = {}
-				)
+				Box(contentAlignment = Alignment.Center) {
+					PieChart(
+						values = listOf(stats.matchesWon.toFloat(), stats.matchesLost.toFloat()),
+						modifier = Modifier.size(160.dp),
+						slice = { index ->
+							DefaultSlice(color = colors[index], hoverExpandFactor = 1.05f, hoverElement = {})
+						},
+						holeSize = 0.6f,
+						label = {},
+						labelConnector = {}
+					)
+					WinRateCenterLabel(winRate = formatPercent(winRate))
+				}
 				Spacer(modifier = Modifier.height(16.dp))
 				Row(
 					modifier = Modifier.fillMaxWidth(),
@@ -75,6 +84,26 @@ fun WinLossAnalyticsWidget(stats: SummaryStats) {
 				}
 			}
 		}
+	}
+}
+
+@Composable
+private fun WinRateCenterLabel(winRate: String) {
+	Column(modifier = Modifier.widthIn(max = 88.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+		Text(
+			text = winRate,
+			style = MaterialTheme.typography.headlineSmall,
+			fontWeight = FontWeight.Bold,
+			color = MaterialTheme.colorScheme.onSurface
+		)
+		Text(
+			text = stringResource(R.string.analytics_win_rate),
+			style = MaterialTheme.typography.labelSmall,
+			color = MaterialTheme.colorScheme.onSurfaceVariant,
+			textAlign = TextAlign.Center,
+			maxLines = 2,
+			overflow = TextOverflow.Ellipsis
+		)
 	}
 }
 

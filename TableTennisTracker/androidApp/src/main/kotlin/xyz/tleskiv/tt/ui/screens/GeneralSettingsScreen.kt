@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -22,6 +24,7 @@ import androidx.compose.material.icons.outlined.BrightnessMedium
 import androidx.compose.material.icons.outlined.CalendarMonth
 import androidx.compose.material.icons.outlined.Language
 import androidx.compose.material.icons.outlined.Palette
+import androidx.compose.material.icons.outlined.Today
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -163,6 +166,8 @@ fun GeneralSettingsScreen(
 		Column(
 			modifier = Modifier
 				.fillMaxSize()
+				.navigationBarsPadding()
+				.imePadding()
 				.verticalScroll(rememberScrollState())
 				.padding(16.dp)
 		) {
@@ -342,7 +347,7 @@ private fun HighlightCurrentDayRow(enabled: Boolean, onToggle: (Boolean) -> Unit
 			verticalAlignment = Alignment.CenterVertically
 		) {
 			Icon(
-				imageVector = Icons.Outlined.CalendarMonth,
+				imageVector = Icons.Outlined.Today,
 				contentDescription = null,
 				tint = MaterialTheme.colorScheme.onSurfaceVariant
 			)

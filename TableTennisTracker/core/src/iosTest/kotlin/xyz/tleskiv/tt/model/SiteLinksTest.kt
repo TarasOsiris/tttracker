@@ -32,4 +32,20 @@ class SiteLinksTest {
 
 		SiteLinks.privacyPolicy("pl-PL") shouldBe expected
 	}
+
+	@Test
+	fun home_englishTag_isTheSiteRoot() {
+		val languageTag = "en-GB"
+		val expected = "https://ttapp.smashyapps.com"
+
+		SiteLinks.home(languageTag) shouldBe expected
+	}
+
+	@Test
+	fun home_languageTheSiteHas_isItsTranslatedHome() {
+		val languageTag = "ja-JP"
+		val expected = "https://ttapp.smashyapps.com/ja"
+
+		SiteLinks.home(languageTag) shouldBe expected
+	}
 }

@@ -91,36 +91,11 @@ struct SessionFormScreen: View {
     }
 
     private var durationSection: some View {
-        Section {
-            LabeledContent(L.labelDuration) {
-                Text(model.durationMinutes.trainingDuration, format: .trainingDuration)
-                    .font(.body.weight(.semibold))
-            }
-            Slider(
-                value: $model.duration,
-                in: Double(SessionFormModel.durationRange.lowerBound)...Double(SessionFormModel.durationRange.upperBound),
-                step: 5
-            )
-            .accessibilityLabel(L.labelDuration)
-            .accessibilityValue(
-                Text(model.durationMinutes.trainingDuration, format: .trainingDuration)
-            )
-        }
+        Section { DurationSliderRows(duration: $model.duration) }
     }
 
     private var typeSection: some View {
-        Section {
-            Picker(L.labelSessionType, selection: $model.kind) {
-                ForEach(SessionKind.allCases) { kind in
-                    Label {
-                        Text(kind.label)
-                    } icon: {
-                        Circle().fill(Color.sessionKind(kind)).frame(width: 10, height: 10)
-                    }
-                    .tag(kind)
-                }
-            }
-        }
+        Section { SessionKindPicker(selection: $model.kind) }
     }
 
     private var rpeSection: some View {

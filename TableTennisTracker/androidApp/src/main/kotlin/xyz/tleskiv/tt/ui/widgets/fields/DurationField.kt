@@ -3,6 +3,7 @@ package xyz.tleskiv.tt.ui.widgets.fields
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Slider
+import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -17,10 +18,9 @@ import xyz.tleskiv.tt.ui.widgets.FieldLabel
 import kotlin.math.roundToInt
 
 private const val MinDurationMinutes = 10
-private const val MaxDurationMinutes = 180
-private const val DurationStepMinutes = 10
-private val DurationSliderSteps =
-	((MaxDurationMinutes - MinDurationMinutes) / DurationStepMinutes) - 1
+private const val MaxDurationMinutes = 300
+private const val DurationStepMinutes = 5
+private const val DurationSliderSteps = (MaxDurationMinutes - MinDurationMinutes) / DurationStepMinutes - 1
 
 @Composable
 fun DurationField(durationMinutes: Int, onDurationChange: (Int) -> Unit) {
@@ -46,6 +46,7 @@ fun DurationField(durationMinutes: Int, onDurationChange: (Int) -> Unit) {
 			},
 			valueRange = MinDurationMinutes.toFloat()..MaxDurationMinutes.toFloat(),
 			steps = DurationSliderSteps,
+			track = { SliderDefaults.Track(sliderState = it, drawTick = { _, _ -> }) },
 			modifier = Modifier.fillMaxWidth().testTag(TestTags.DURATION_SLIDER)
 		)
 		Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {

@@ -8,8 +8,10 @@ struct SettingsScreen: View {
     @State private var showsCopied = false
     @Environment(ProModel.self) private var pro: ProModel?
 
-    private static let website = URL(string: "https://ninevastudios.com")
     /// In the language the app is shown in, where the website has it.
+    private var website: URL? {
+        URL(string: SiteLinks.shared.home(languageTag: LocalizationController.shared.languageTag))
+    }
     private var privacyPolicy: URL? {
         URL(string: SiteLinks.shared.privacyPolicy(languageTag: LocalizationController.shared.languageTag))
     }
@@ -119,9 +121,9 @@ struct SettingsScreen: View {
 
     private var aboutSection: some View {
         Section(L.settingsSectionAbout) {
-            // Hoisted to constants rather than force-unwrapped inline: a link with no destination
-            // is worth dropping a row for, not worth a crash.
-            if let website = Self.website {
+            // Optional rather than force-unwrapped: a link with no destination is worth dropping a
+            // row for, not worth a crash.
+            if let website {
                 Link(destination: website) {
                     Label(L.actionVisitWebsite, systemImage: "globe")
                 }

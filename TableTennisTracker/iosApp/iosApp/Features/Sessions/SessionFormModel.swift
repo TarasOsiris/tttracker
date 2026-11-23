@@ -9,6 +9,7 @@ import Shared
 final class SessionFormModel {
     /// `VALID_DURATION_RANGE` is private to the Kotlin ViewModel, so it is restated rather than read.
     static let durationRange = 10...300
+    static let durationSliderRange = Double(durationRange.lowerBound)...Double(durationRange.upperBound)
     static let notesLimit = 1000
 
     var day: Date
@@ -138,8 +139,7 @@ final class SessionFormModel {
     func importWorkout(_ workout: HealthWorkout) async {
         healthWorkout = workout
         day = workout.start
-        let range = Double(Self.durationRange.lowerBound)...Double(Self.durationRange.upperBound)
-        duration = ((Double(workout.durationMinutes) / 5).rounded() * 5).clamped(to: range)
+        duration = ((Double(workout.durationMinutes) / 5).rounded() * 5).clamped(to: Self.durationSliderRange)
         if let effort = await health.effortScore(of: workout) {
             intensity = Double(effort).clamped(to: 1...10)
         }

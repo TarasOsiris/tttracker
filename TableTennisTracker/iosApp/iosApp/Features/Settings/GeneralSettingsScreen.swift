@@ -2,6 +2,7 @@ import SwiftUI
 
 struct GeneralSettingsScreen: View {
     @StateModel private var model = GeneralSettingsModel()
+    @StateModel private var sessionDefaults = SessionDefaultsModel()
     @Environment(ProModel.self) private var pro: ProModel?
     @State private var showsPaywall = false
 
@@ -31,11 +32,43 @@ struct GeneralSettingsScreen: View {
 
                 Toggle(L.settingsHighlightCurrentDay, isOn: model.highlightCurrentDay.binding)
             }
+
+            if sessionDefaults.isLoaded { sessionDefaultsSection }
         }
+        .task { await sessionDefaults.load() }
         .sheet(isPresented: $showsPaywall) { ProPaywallSheet(source: .accentColor) }
         .accessibilityIdentifier(SettingsRoute.general.screenIdentifier)
         .navigationTitle(L.actionUiSettings)
         .navigationBarTitleDisplayMode(.inline)
+    }
+
+    private var sessionDefaultsSection: some View {
+        Section(L.settingsSectionSessions) {
+            DurationSliderRows(duration: $sessionDefaults.duration)
+
+            HStack {
+                Text(L.labelIntensityRpe)
+                Spacer()
+                RpeBadge(rpe: sessionDefaults.rpe, namesItself: false)
+            }
+            Slider(value: $sessionDefaults.intensity, in: 1...10, step: 1)
+                .tint(Color.rpe(sessionDefaults.rpe))
+                .accessibilityLabel(L.labelIntensityRpe)
+                .accessibilityValue(rpeLabel(sessionDefaults.rpe))
+
+            SessionKindPicker(selection: $sessionDefaults.kind)
+
+            TextField(L.labelDefaultNotes, text: notesBinding, axis: .vertical)
+                .lineLimit(2...6)
+        }
+    }
+
+    /// Clamped as it is typed, so an over-long paste is stored only once, already cut to the limit.
+    private var notesBinding: Binding<String> {
+        Binding(
+            get: { sessionDefaults.notes },
+            set: { sessionDefaults.notes = String($0.prefix(SessionFormModel.notesLimit)) }
+        )
     }
 
     /// Every colour is listed for everyone; choosing one other than the default without Pro opens

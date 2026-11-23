@@ -18,6 +18,7 @@ import androidx.glance.layout.height
 import androidx.glance.text.FontWeight
 import xyz.tleskiv.tt.R
 import xyz.tleskiv.tt.deeplink.DeepLink
+import xyz.tleskiv.tt.util.ext.winRate
 
 /// The analytics screen's headline totals.
 class SummaryWidget : TTGlanceWidget() {

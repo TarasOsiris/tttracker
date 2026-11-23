@@ -21,6 +21,7 @@ import xyz.tleskiv.tt.data.model.Opponent
 import xyz.tleskiv.tt.data.model.TrainingSession
 import xyz.tleskiv.tt.data.model.enums.SessionType
 import xyz.tleskiv.tt.model.AppAccent
+import xyz.tleskiv.tt.util.ext.winRate
 import kotlin.uuid.Uuid
 
 class WidgetDataTest : FunSpec({

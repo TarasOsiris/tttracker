@@ -72,9 +72,6 @@ data class WidgetLastSession(
 
 data class WidgetMatch(val opponent: String, val myGames: Int, val opponentGames: Int)
 
-val SummaryStats.winRate: Double?
-	get() = (matchesWon + matchesLost).takeIf { it > 0 }?.let { matchesWon.toDouble() / it }
-
 /// The heatmap's days, bucketed by the rule `:core` shares with both in-app heatmaps; the busiest
 /// day is taken over the whole log, as on iOS, so a day keeps its shade as the window moves.
 fun List<DailyTrainingLoad>.toWidgetDays(today: LocalDate): List<WidgetDayLoad> {

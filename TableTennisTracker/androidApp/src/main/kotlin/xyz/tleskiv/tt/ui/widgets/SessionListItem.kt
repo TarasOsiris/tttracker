@@ -8,9 +8,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -23,7 +21,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import xyz.tleskiv.tt.R
 import xyz.tleskiv.tt.util.labelRes
-import xyz.tleskiv.tt.util.ui.getRpeColor
 import xyz.tleskiv.tt.util.ui.toColor
 import xyz.tleskiv.tt.viewmodel.sessions.SessionsScreenViewModel.SessionUiModel
 
@@ -74,19 +71,7 @@ fun SessionListItem(
 				}
 			}
 
-			Box(
-				modifier = Modifier
-					.size(32.dp)
-					.background(color = MaterialTheme.colorScheme.surfaceContainerHigh, shape = CircleShape),
-				contentAlignment = Alignment.Center
-			) {
-				Text(
-					text = session.rpe.toString(),
-					style = MaterialTheme.typography.labelMedium,
-					fontWeight = FontWeight.Bold,
-					color = getRpeColor(session.rpe)
-				)
-			}
+			RpeBadge(session.rpe)
 		}
 	}
 }
