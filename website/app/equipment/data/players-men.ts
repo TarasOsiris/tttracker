@@ -471,7 +471,7 @@ export const menPlayers: Player[] = [
       sourceUrl: "https://commons.wikimedia.org/wiki/File:ITTF_World_Tour_2017_German_Open_Harimoto_Tomokazu_06.jpg",
       credit: "Peter Porai-Koshits, CC BY-SA 4.0",
     },
-    lastVerified: VERIFIED,
+    lastVerified: "2026-11-23",
   },
   {
     id: "truls-moregardh",
@@ -813,7 +813,7 @@ export const menPlayers: Player[] = [
       sourceUrl: "https://commons.wikimedia.org/wiki/File:20220814_European_Championships_Munich_2022_Dang_Qiu_850_2751.jpg",
       credit: "Granada, CC BY-SA 4.0",
     },
-    lastVerified: VERIFIED,
+    lastVerified: "2026-11-23",
   },
   {
     id: "jang-woojin",
@@ -1682,7 +1682,7 @@ export const menPlayers: Player[] = [
       sourceUrl: "https://commons.wikimedia.org/wiki/File:Table_tennis_at_the_2018_Summer_Youth_Olympics_%E2%80%93_Men%27s_Singles_Bronze_Medal_Match_024_(cropped).jpg",
       credit: "Marcus Cyron, CC BY-SA 3.0",
     },
-    lastVerified: VERIFIED,
+    lastVerified: "2026-11-23",
   },
   {
     id: "anton-kallberg",
@@ -1752,6 +1752,6 @@ export const menPlayers: Player[] = [
         source: { url: "https://www.butterfly-global.com/en/sponsoring/detail/kallberg-anton.html", label: "Butterfly: Anton Källberg player page (equipment as of May 22, 2026: Timo Boll ALC, Dignics 09C, Dignics 09C)", kind: "manufacturer", accessed: "2026-11-21" },
       },
     ],
-    lastVerified: "2026-10-26",
+    lastVerified: "2026-11-23",
   },
 ];
