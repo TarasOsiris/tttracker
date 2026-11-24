@@ -78,6 +78,86 @@ const ljubljanaArena = { ...hero, caption: "A packed arena at the 2026 World Tea
 export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: BlogPost[] } = {
   en: [
   {
+    slug: "wtt-star-contender-muscat-2026-results-korea-win-doubles-thakkar-shah-runners-up-sun-yang-jorgic",
+    title: "WTT Star Contender Muscat 2026 Results: Korea Win Doubles, Sun Yang Stuns Jorgic",
+    seoTitle: "WTT Star Contender Muscat 2026 Results: Lim/Oh Beat Thakkar/Shah, Jorgic Upset",
+    description:
+      "WTT Star Contender Muscat 2026: Lim Jonghoon and Oh Junsung beat India's Thakkar/Shah 3-1 in the doubles final; qualifier Sun Yang knocked out top seed Jorgic.",
+    published: "2026-11-24",
+    readMinutes: 4,
+    keywords: [
+      "WTT Star Contender Muscat 2026 results",
+      "Lim Jonghoon Oh Junsung",
+      "Manav Thakkar Manush Shah",
+      "Sun Yang Darko Jorgic",
+      "Muscat table tennis",
+      "India table tennis WTT",
+      "table tennis news",
+    ],
+    hero: {
+      src: "/blog/swedish-open-doubles-2018.webp",
+      width: 1200,
+      height: 675,
+      alt: "Two doubles pairs in a match at a table tennis tournament, with players crouched ready to receive and serve",
+      caption: "A doubles match at the 2018 Swedish Open. Archive photo, not from Muscat.",
+      credit: "Haxpett, CC BY 4.0",
+      creditUrl: "https://commons.wikimedia.org/wiki/File:Swedish_Open_Championships,_2018_01.jpg",
+    },
+    intro:
+      "India's Manav Thakkar and Manush Shah won the first game of the Muscat men's doubles final 12-10, then lost the next three by 11-2, 11-8 and 11-8. South Korea's top seeds Lim Jonghoon and Oh Junsung took the title, while on the singles side a qualifier named Sun Yang sent top seed Darko Jorgic home.",
+    takeaways: [
+      "**Men's doubles final:** Lim Jonghoon/Oh Junsung (South Korea, top seeds) beat Manav Thakkar/Manush Shah (India, second seeds) 3-1: 10-12, 11-2, 11-8, 11-8.",
+      "**India's near miss:** it was the pair's second Star Contender final after Brazil 2025, and India still has no title at the level.",
+      "**Semifinal:** Thakkar/Shah beat France's Flavien Coton and Simon Gauzy 3-1 (11-9, 8-11, 11-6, 11-8).",
+      "**Upset:** qualifier Sun Yang of China beat top seed Darko Jorgic 3-1 on Thursday 19 November.",
+      "**Singles champions:** I could not find a confirmed report of the singles finals, so they are not named here.",
+    ],
+    sections: [
+      {
+        heading: "Korea's doubles pair take control after a tight first game",
+        blocks: [
+          "The final went India's way early: Thakkar and Shah took game one 12-10. Then [Lim Jonghoon and Oh Junsung](https://www.worldtabletennis.com) turned it around, winning 11-2, 11-8 and 11-8, per [India Sports Hub](https://www.indiasportshub.com/articles/manav-thakkar-manush-shah-finish-runners-up-at-wtt-star-contender-muscat-after-final-defeat-to-south-korea) and [The Bridge](https://thebridge.in/table-tennis/wtt-star-contender-muscat-manav-manush-runners-up-58442).",
+          "On the way to the final, the Koreans beat France's Joe Seyfried and Vincent Picard 3-0 in the quarter-finals. Thakkar and Shah edged Germany's Andre Bertelsmeier and Wim Verdonschot 3-2 in theirs, per the [Oman Observer](https://www.omanobserver.om/article/1199957/sports/other-sports/yang-stuns-top-seed-jorgic-to-enter-last-16).",
+          "**Why it matters:** the lopsided 11-2 second game shows how fast doubles can swing once one pair finds the third-ball attack. Winning game one is not a guarantee.",
+        ],
+      },
+      {
+        heading: "Sun Yang stuns Jorgic; Japan fills the women's draw",
+        blocks: [
+          "Qualifier Sun Yang beat top seed Darko Jorgic of Slovenia 3-1 in the round of 32. In the same round, Japan's Shunsuke Togami, the second seed, beat Thakkar 3-0, and Hiroto Shinozuka beat compatriot Ryuusei Kawakami 3-1.",
+          "In the women's singles round of 16, top seed [Satsuki Odo](https://en.wikipedia.org/wiki/Satsuki_Odo) beat Ece Harac 3-1 and second seed Honoka Hashimoto beat India's Sreeja Akula 3-1. Japanese players won most of the matches I could see in that round.",
+          "**Why it matters:** a qualifier beating a top-12 player shows how small the gap can be in a one-day knockout, even before the later rounds.",
+        ],
+      },
+      {
+        heading: "India's week in Muscat",
+        blocks: [
+          "Besides the final, India's results were mixed. Thakkar lost to Togami, Akula lost to Hashimoto, and [Manika Batra](https://en.wikipedia.org/wiki/Manika_Batra) and Swastika Ghosh lost the women's doubles quarter-final 3-0 to Romania's Bernadette Szocs and Elizabeta Samara. Batra and Ankur Bhattacharjee lost their first mixed doubles match to Spain's Alvaro Robles and Maria Xiao, 9-11, 11-13, 11-9, 8-11.",
+          "Two of the reports give different scores for the Batra/Ghosh loss (3-1 and straight games); the Oman Observer's 3-0 is the one used here. For the opening day, see our [Muscat day-one report](/blog/wtt-star-contender-muscat-2026-day-one-thakkar-sreeja-batra-bhattacharjee-match-points).",
+        ],
+      },
+      {
+        heading: "What's next",
+        blocks: [
+          "The Mixed Team World Cup in Chengdu begins on 29 November; read our [preview](/blog/mixed-team-world-cup-chengdu-2026-great-britain-squad-preview-china-japan). The [WTT Finals in Hong Kong](/blog/wtt-finals-hong-kong-2026-qualified-players-lebrun-harimoto-sun-yingsha) follow on 9-13 December. Check [worldtabletennis.com](https://www.worldtabletennis.com) for the full Muscat results.",
+        ],
+      },
+      {
+        heading: "Turn the watching into practice",
+        blocks: [
+          "Doubles is won on serve and third ball. Log your doubles sessions in [Ping Pong & Table Tennis Log](/), build a reliable serve from the [serve library](/serves), learn how [spin](/spins) changes the return, run the [drills](/drills) and test yourself in the [quiz](/quiz).",
+        ],
+      },
+    ],
+    sources: [
+      { label: "India Sports Hub: Thakkar/Shah runners-up at Muscat", url: "https://www.indiasportshub.com/articles/manav-thakkar-manush-shah-finish-runners-up-at-wtt-star-contender-muscat-after-final-defeat-to-south-korea" },
+      { label: "The Bridge: Manav-Manush runners-up", url: "https://thebridge.in/table-tennis/wtt-star-contender-muscat-manav-manush-runners-up-58442" },
+      { label: "Sportscape: Thakkar-Shah runners-up", url: "https://www.sportscapemagazine.com/blog/manav-thakkar-manush-shah-wtt-star-contender-muscat-2026-runners-up" },
+      { label: "Oman Observer: Yang stuns top seed Jorgic", url: "https://www.omanobserver.om/article/1199957/sports/other-sports/yang-stuns-top-seed-jorgic-to-enter-last-16" },
+      { label: "World Table Tennis", url: "https://www.worldtabletennis.com" },
+    ],
+  },
+  {
     slug: "mixed-team-world-cup-chengdu-2026-great-britain-squad-preview-china-japan",
     title: "Mixed Team World Cup 2026 Chengdu: GB Squad, Format and Teams to Watch",
     seoTitle: "Mixed Team World Cup 2026 Chengdu: Dates, Format, GB Squad, China and Japan",
