@@ -16,9 +16,11 @@ Posts live in `app/content/blog-posts.ts`, written in English. A translation goe
 
 ## Player profiles
 
-Learn › Player profiles (`/players`, English only) covers the men's and women's singles top 10, with searchable, URL-backed division filters. Each `/players/:playerId` page includes a biography, sourced career milestones, editorial playing-style and practice notes, equipment from the existing encyclopedia, and related news. Photo credits stay attached to the existing player assets.
+Learn › Player profiles (`/players`, English only) covers the men's and women's singles top 10. Each profile includes ranked form, a monthly singles history, filterable results and podium finishes, doubles partners, player comparisons, featured WTT footage, playing-style notes and linked practice plans.
 
-`app/players/rankings.ts` owns the dated selection, points, publication date and ranking sources; `men.ts` and `women.ts` hold the biographies and their sources. Refresh the snapshot and profile content together: this is an editorial selection, not a live ranking feed. The directory and all profile pages are prerendered and added to the sitemap automatically. `store.server.ts` checks that each division has ranks 1–10, every selected player has a profile and equipment record, and each milestone has a source. Only summaries reach the directory; a profile loads its own full content. Unknown birth dates stay unfilled rather than inferred from a birth year.
+`app/players/rankings.ts` owns the dated singles selection. `app/players/data/profiles.json` links each profile to its ITTF ID, monthly ranking source, previous weekly rank and available doubles individual rankings. Update both files together from the published ranking data. `men.ts` and `women.ts` hold sourced biographies and editorial analysis. `replays.ts` links official footage by event and player IDs.
+
+Refresh match scores, entry ranks and medals with `python3 scripts/import-player-results.py /path/to/cache --download-through YYYY-MM-DD` from `website/`. The importer uses WTT’s public event archive, entry lists and medal tables. The Paris 2024 results book supplies dates for archived cards with empty start times. The generated ledger stores each match once and references participants by ITTF ID. The browser receives only the current player’s matches, related participants and the summaries needed for comparisons. The directory and profiles are prerendered and added to the sitemap.
 
 ## Pricing and analytics
 

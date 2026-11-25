@@ -17,7 +17,7 @@ export const loader = () => ({ players: profileSummaries(), snapshot: rankingSna
 export const shouldRevalidate = () => false;
 
 export const meta: Route.MetaFunction = ({ data }) => [
-  ...seo({ title: "Top 10 Table Tennis Players: Men’s & Women’s Profiles", description: "Meet the men’s and women’s top 10: biographies, career milestones, playing styles, equipment and lessons to take into your next table tennis session.", path: "/players", locale: "en", localized: false }),
+  ...seo({ title: "Top 10 Table Tennis Players: Men’s & Women’s Profiles", description: "Meet the men’s and women’s top 10: match results, ranking history, career milestones, playing styles, equipment and training ideas.", path: "/players", locale: "en", localized: false }),
   { "script:ld+json": breadcrumbList("en", "Home", [{ name: "Player profiles", path: "/players" }]) },
   ...(data ? [{ "script:ld+json": {
     "@context": "https://schema.org", "@type": "CollectionPage", name: "Table tennis player profiles",
@@ -53,14 +53,14 @@ export default function Players({ loaderData: { players, snapshot } }: Route.Com
             <div>
               <p className="text-sm font-semibold tracking-widest text-blue-200 uppercase">The player collection</p>
               <h1 className="mt-4 max-w-3xl font-display text-4xl leading-tight font-extrabold tracking-tight text-balance sm:text-6xl">Meet the players.<br />Understand the game.</h1>
-              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-blue-100">Twenty players at the top of table tennis. Explore their stories, study their styles and bring something new to your own game.</p>
+              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-blue-100">Twenty players at the top of table tennis. Explore match results and ranking history, compare playing styles and equipment, and find a drill to try.</p>
               <a href="#directory" className="mt-8 inline-flex rounded-full bg-white px-6 py-3 font-semibold text-[#16325c] hover:bg-blue-100">Explore player profiles</a>
             </div>
             <div className="rounded-2xl border border-white/20 bg-white/5 p-5">
               <Users className="size-6 text-blue-200" aria-hidden="true" />
               <p className="mt-4 text-2xl font-bold">10 men. 10 women.</p>
               <p className="mt-2 text-sm leading-relaxed text-blue-100">ITTF singles top 10<br />Week {snapshot.week} · {formatDate(snapshot.date)}</p>
-              <p className="mt-4 border-t border-white/20 pt-4 text-sm text-blue-100">Biography · Career · Playing style · Equipment · Practice ideas</p>
+              <p className="mt-4 border-t border-white/20 pt-4 text-sm text-blue-100">Results · Ranking history · Style · Equipment</p>
             </div>
           </div>
         </section>
@@ -114,7 +114,7 @@ export default function Players({ loaderData: { players, snapshot } }: Route.Com
           </div>}
           <div className="mt-10 rounded-2xl border bg-surface-low p-5 sm:p-6">
             <RankingNote date={snapshot.date} week={snapshot.week} officialUrl={snapshot.officialUrl} />
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">Selection checked {formatDate(snapshot.checked)}. Publication date from ITTF; positions and points read from ranking mirrors and cross-checked. Profiles are in English.</p>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">Selection checked {formatDate(snapshot.checked)}. Publication date from ITTF; positions and points from official World Table Tennis data. Profiles are in English.</p>
             <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm">{snapshot.sources.map((s) => <li key={s.url}><a href={s.url} target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-4">{s.label}</a></li>)}</ul>
           </div>
         </section>

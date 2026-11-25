@@ -5,6 +5,7 @@ export const womenProfiles: PlayerProfile[] = [
     id: "wang-manyu", birthDate: "1999-02-09", birthYear: 1999,
     headline: "A world singles champion whose reach and rally quality set a formidable standard.",
     specialty: "Two-wing rally control",
+    styleTags: ["Two-wing attack", "Depth", "Counterattack"],
     bio: [
       "Wang Manyu is a Chinese right-handed shakehand player and the 2021 women’s singles world champion. Her career includes Olympic team gold at Tokyo and Paris, Asian Games singles titles in 2018 and 2026, and the 2025 WTT Finals Hong Kong singles trophy.",
       "She returned to world No. 1 after winning the 2026 China Smash. Her game is a useful reference for sustained quality: covering both wings, maintaining depth in fast exchanges and turning a neutral rally into pressure without needing a winner on every contact. For a learner, the recovery between strokes is as instructive as the final attack.",
@@ -21,7 +22,7 @@ export const womenProfiles: PlayerProfile[] = [
       { title: "Pressure that survives a block", description: "A strong attack is more valuable when it leaves a good next position. Study how the racket and feet recover after the first acceleration." },
     ],
     watch: ["How deep do her neutral topspins land?", "Which wing handles a ball into the elbow?", "When does she change from control to acceleration?"],
-    practice: { title: "Two-wing depth", steps: ["Alternate one forehand and one backhand against a steady block.", "Aim beyond the middle of the table while keeping a comfortable net clearance.", "After six balls, place one toward the playing elbow and continue the rally."], goal: "Complete five sequences without sacrificing balance for speed." },
+    practice: { drill: "forehand-backhand-consistency", title: "Two-wing depth", steps: ["Alternate one forehand and one backhand against a steady block.", "Aim beyond the middle of the table while keeping a comfortable net clearance.", "After six balls, place one toward the playing elbow and continue the rally."], goal: "Complete five sequences without sacrificing balance for speed." },
     sources: [
       { label: "Butterfly · birth date and major achievements", url: "https://www.butterfly-global.com/en/sponsoring/detail/wang-manyu.html" },
       { label: "Chinese Olympic Committee · October 2026 ranking return", url: "https://en.olympic.cn/news/Sports_News/2026/1012/711680.html" },
@@ -31,6 +32,7 @@ export const womenProfiles: PlayerProfile[] = [
     id: "sun-yingsha", birthDate: "2000-11-04", birthYear: 2000,
     headline: "A two-time singles world champion with an attacking answer from almost anywhere.",
     specialty: "Forehand attack and transitions",
+    styleTags: ["Forehand attack", "Third-ball attack", "Footwork"],
     bio: [
       "Sun Yingsha is a Chinese right-handed shakehand attacker who won the women’s singles World Championships in 2023 and defended the title in 2025. Her Olympic record includes team gold in Tokyo, followed by mixed doubles and team gold in Paris, alongside singles silver at both Games.",
       "Her mixed doubles partnership with Wang Chuqin has also produced world titles. Across singles and doubles, her matches offer a study in keeping the initiative while moving: creating forehand space, maintaining an active backhand and recovering quickly enough to handle a redirected block. The first attack is one part of a longer pattern.",
@@ -47,13 +49,14 @@ export const womenProfiles: PlayerProfile[] = [
       { title: "Attack followed by recovery", description: "A wide first attack can open the table for both players. Track the first recovery step and the position of the racket before the block arrives." },
     ],
     watch: ["Which ball makes her commit to a forehand?", "How does she move away from a ball into the body?", "Where does her next attack go after a wide opening?"],
-    practice: { title: "Attack and stay in the point", steps: ["Open with a controlled forehand against a predictable long push.", "Have the block return to the backhand or middle at random.", "Play a balanced next topspin to a large target and continue for two more balls."], goal: "Measure how often you make the ball after your first attack." },
+    practice: { drill: "footwork-drills", title: "Attack and stay in the point", steps: ["Open with a controlled forehand against a predictable long push.", "Have the block return to the backhand or middle at random.", "Play a balanced next topspin to a large target and continue for two more balls."], goal: "Measure how often you make the ball after your first attack." },
     sources: [{ label: "Wikipedia · biography, world titles and Olympic record", url: "https://en.wikipedia.org/wiki/Sun_Yingsha" }],
   },
   {
     id: "miwa-harimoto", birthDate: "2008-06-16", birthYear: 2008,
     headline: "Japan’s next generation is already winning at Champions level.",
     specialty: "Fast two-wing combinations",
+    styleTags: ["Two-wing attack", "Backhand", "Footwork"],
     bio: [
       "Miwa Harimoto is a Japanese right-handed shakehand player who has moved rapidly from youth promise into elite senior competition. She is the younger sister of Tomokazu Harimoto and, in this ranking edition, both siblings sit in the singles top three.",
       "Her 2025 results included singles titles at the WTT Star Contenders in London and Foz do Iguaçu. In 2026 she won WTT Champions Chongqing, Yokohama and Macao, as well as helping Japan to World Team Championships silver and the Asian women’s team title. Her matches provide a useful study in linking attacks on both wings without allowing the rally tempo to break her balance.",
@@ -70,13 +73,14 @@ export const womenProfiles: PlayerProfile[] = [
       { title: "A stable base", description: "Fast hands depend on the stance underneath them. Follow the feet through a direction change instead of focusing only on the final contact." },
     ],
     watch: ["How does she reset the racket after a forehand?", "Which balls prompt an immediate backhand attack?", "Does her stance change when the rally accelerates?"],
-    practice: { title: "Keep the transition smooth", steps: ["Play two backhands and one forehand against a partner’s block.", "Return immediately to a neutral stance for the next backhand.", "Once consistent, let the partner choose when to switch the ball to the forehand."], goal: "Stay balanced through ten changes of wing at controlled speed." },
+    practice: { drill: "forehand-backhand-consistency", title: "Keep the transition smooth", steps: ["Play two backhands and one forehand against a partner’s block.", "Return immediately to a neutral stance for the next backhand.", "Once consistent, let the partner choose when to switch the ball to the forehand."], goal: "Stay balanced through ten changes of wing at controlled speed." },
     sources: [{ label: "Butterfly · birth date and senior career results", url: "https://www.butterfly-global.com/en/sponsoring/detail/harimoto-miwa.html" }],
   },
   {
     id: "kuai-man", birthDate: "2004-02-07", birthYear: 2004,
     headline: "A left-handed world doubles champion with a growing singles record.",
     specialty: "Left-handed opening patterns",
+    styleTags: ["Receive", "Third-ball attack", "Placement"],
     bio: [
       "Kuai Man is a Chinese left-handed shakehand player whose youth success included World Youth U19 singles titles in 2021 and 2023. Her senior results span all formats: World Championships mixed doubles bronze with Lin Shidong in 2023, women’s doubles gold in 2025, and a singles silver at the 2025 World Cup.",
       "She also won WTT Star Contender Doha in 2025 and the Asian Games mixed doubles, women’s doubles and team titles in 2026. Her left-handed game is valuable to study in both singles and doubles, especially the way serve and receive placement shape the first attack and the space available afterward.",
@@ -93,13 +97,14 @@ export const womenProfiles: PlayerProfile[] = [
       { title: "Doubles spacing", description: "A left-right partnership changes where each player can stand. Look at the route away from the table after contact and the room it leaves for the partner." },
     ],
     watch: ["Which serve positions open a forehand lane?", "When does she receive short rather than attack?", "In doubles, how does she clear her partner’s hitting space?"],
-    practice: { title: "Choose the receive", steps: ["Ask a partner to alternate a clearly short serve and a clearly long serve.", "Touch the short ball low and open with topspin against the long ball.", "Continue each point so you must recover from the receive position."], goal: "Make the correct length decision on eight of ten serves." },
+    practice: { drill: "serve-and-receive", title: "Choose the receive", steps: ["Ask a partner to alternate a clearly short serve and a clearly long serve.", "Touch the short ball low and open with topspin against the long ball.", "Continue each point so you must recover from the receive position."], goal: "Make the correct length decision on eight of ten serves." },
     sources: [{ label: "Wikipedia · birth date, youth titles and senior medals", url: "https://en.wikipedia.org/wiki/Kuai_Man" }],
   },
   {
     id: "wang-yidi", birthDate: "1997-02-14", birthYear: 1997,
     headline: "A world doubles champion with depth, pace and an uncompromising rally game.",
     specialty: "Sustained two-wing pressure",
+    styleTags: ["Two-wing attack", "Depth", "Placement"],
     bio: [
       "Wang Yidi is a Chinese right-handed shakehand attacker. Her major individual achievements include World Championships singles bronze in 2021, the 2022 Asian Cup singles title, and women’s doubles gold at the 2023 World Championships.",
       "Her record also includes world team titles in 2022, 2024 and 2026, plus a career-high singles ranking of No. 2 in 2023. For a learner, her matches provide a study in repeatable attacking quality: deep placement, a stable stance, and pressure that continues after the opponent makes a good block. The lesson is often the quality of the fourth and fifth balls rather than a single spectacular winner.",
@@ -116,13 +121,14 @@ export const womenProfiles: PlayerProfile[] = [
       { title: "Pressure into the body", description: "The elbow is a moving target. Watch the opponent’s stance before an attack to understand why a middle placement can be more awkward than a wider one." },
     ],
     watch: ["How often do rally balls reach the final third of the table?", "When does she switch from a diagonal to the middle?", "How much does her racket preparation change under pressure?"],
-    practice: { title: "Build pressure through depth", steps: ["Mark a generous deep target zone on the table.", "Rally at medium pace, counting only balls that reach the zone.", "After four deep balls, change toward the middle and continue without increasing speed."], goal: "Reach the target consistently before making the drill faster." },
+    practice: { drill: "forehand-backhand-consistency", title: "Build pressure through depth", steps: ["Mark a generous deep target zone on the table.", "Rally at medium pace, counting only balls that reach the zone.", "After four deep balls, change toward the middle and continue without increasing speed."], goal: "Reach the target consistently before making the drill faster." },
     sources: [{ label: "Wikipedia · biography and international medal record", url: "https://en.wikipedia.org/wiki/Wang_Yidi" }],
   },
   {
     id: "hina-hayata", birthDate: "2000-07-07", birthYear: 2000,
     headline: "Japan’s left-handed Olympic singles medallist, dangerous from both wings.",
     specialty: "Left-handed two-wing attack",
+    styleTags: ["Forehand attack", "Two-wing attack", "Footwork"],
     bio: [
       "Hina Hayata is a Japanese left-handed attacker born in Kitakyushu. She won women’s singles bronze and team silver at Paris 2024, following a singles bronze at the 2023 World Championships in Durban.",
       "Her career also includes World Championships doubles silvers and mixed doubles silvers, showing the breadth of her international game. A two-wing attacking style gives learners several things to watch: the spacing needed for a full forehand, a backhand that can keep the initiative, and the different angles available against a right-handed opponent. Her doubles matches also make the importance of moving away after contact especially clear.",
@@ -139,13 +145,14 @@ export const womenProfiles: PlayerProfile[] = [
       { title: "Angles against right-handers", description: "Follow how each crosscourt direction changes the opponent’s reach. Compare the diagonal that feels natural with the down-the-line option that changes the point." },
     ],
     watch: ["Which backhands set up the next forehand?", "How does she create room for a ball into the elbow?", "When does she change a left-right diagonal down the line?"],
-    practice: { title: "Backhand to forehand transition", steps: ["Play two controlled backhands to a partner’s block.", "Receive the next ball toward the middle and make space for a forehand.", "Recover for one more random ball, keeping the entire sequence at medium pace."], goal: "Make the transition without reaching or losing balance." },
+    practice: { drill: "footwork-drills", title: "Backhand to forehand transition", steps: ["Play two controlled backhands to a partner’s block.", "Receive the next ball toward the middle and make space for a forehand.", "Recover for one more random ball, keeping the entire sequence at medium pace."], goal: "Make the transition without reaching or losing balance." },
     sources: [{ label: "Wikipedia · birthplace, playing style and championship medals", url: "https://en.wikipedia.org/wiki/Hina_Hayata" }],
   },
   {
     id: "chen-xingtong", birthDate: "1997-05-27", birthYear: 1997,
     headline: "A repeat world singles medallist whose rally control rewards a closer look.",
     specialty: "Backhand stability and placement",
+    styleTags: ["Backhand", "Placement", "Depth"],
     bio: [
       "Chen Xingtong is a Chinese right-handed shakehand player from Shenyang. She won World Championships women’s singles bronze in both 2023 and 2025 and has contributed to China’s world team titles in 2022, 2024 and 2026.",
       "Her individual titles include the 2017 Swedish Open, 2023 WTT Star Contender Bangkok and 2025 WTT Champions Yokohama, where she defeated Sun Yingsha in the final. Her matches are useful for examining how a player sustains quality through long exchanges, then chooses a change of placement. Look for the rally ball that creates the opening, as well as the stroke that finishes it.",
@@ -162,13 +169,14 @@ export const womenProfiles: PlayerProfile[] = [
       { title: "Direction at the right moment", description: "A line change is most effective when the opponent has committed. Observe their feet before the switch rather than judging the shot in isolation." },
     ],
     watch: ["Which ball ends a repeated backhand diagonal?", "How does she maintain depth under pace?", "What changes just before she accelerates?"],
-    practice: { title: "Patient diagonal, deliberate switch", steps: ["Rally six backhands crosscourt at a sustainable pace.", "Choose a slightly easier ball and change down the line.", "Continue the point so the direction change must leave you ready."], goal: "Make five successful changes without forcing a low-percentage ball." },
+    practice: { drill: "forehand-backhand-consistency", title: "Patient diagonal, deliberate switch", steps: ["Rally six backhands crosscourt at a sustainable pace.", "Choose a slightly easier ball and change down the line.", "Continue the point so the direction change must leave you ready."], goal: "Make five successful changes without forcing a low-percentage ball." },
     sources: [{ label: "Wikipedia · biography, world medals and singles titles", url: "https://en.wikipedia.org/wiki/Chen_Xingtong" }],
   },
   {
-    id: "chen-yi", birthDate: null, birthYear: 2004,
+    id: "chen-yi", birthDate: "2004-08-24", birthYear: 2004,
     headline: "A rising Chinese contender turning youth promise into major senior results.",
     specialty: "Two-wing counterattack",
+    styleTags: ["Counterattack", "Depth", "Two-wing attack"],
     bio: [
       "Chen Yi is a Chinese right-handed shakehand player born in 2004. Her progress included Asian youth singles gold in 2019, an increasing presence in senior WTT events, and a first senior WTT doubles title at Contender Almaty in 2023.",
       "Her 2025 US Smash run took her past Sun Yingsha and into the singles final, helping her break into the world top 10. In 2026 she reached the WTT Champions Macao final and won the Asian Championships singles title. Her developing senior game provides a useful study in maintaining attacking quality when an opponent changes pace, depth or direction.",
@@ -185,17 +193,18 @@ export const womenProfiles: PlayerProfile[] = [
       { title: "Choosing the opening", description: "Separate the first topspin from the subsequent counter. The opening needs enough spin and placement to survive the opponent’s response." },
     ],
     watch: ["Which openings does she counter instead of block?", "What changes when an incoming ball lands shorter?", "Does she recover to the same position after both wings?"],
-    practice: { title: "Adjust to depth", steps: ["Ask a partner to block mainly deep to your backhand.", "Mix in an occasional shorter block so you must move forward before contact.", "Play to a large target and recover rather than trying to finish every short ball."], goal: "Recognise the shorter ball early and keep the next stroke balanced." },
+    practice: { drill: "multiball-training", title: "Adjust to depth", steps: ["Ask a partner to block mainly deep to your backhand.", "Mix in an occasional shorter block so you must move forward before contact.", "Play to a large target and recover rather than trying to finish every short ball."], goal: "Recognise the shorter ball early and keep the next stroke balanced." },
     sources: [
       { label: "Wikipedia (German) · biography and senior results", url: "https://de.wikipedia.org/wiki/Chen_Yi_(Tischtennisspielerin)" },
       { label: "Asian Championships 2026 · women’s singles results", url: "https://en.wikipedia.org/wiki/2026_Asian_Table_Tennis_Championships_%E2%80%93_Women%27s_singles" },
-      { label: "ITTF · Chen Yi player record and birth year", url: "https://results.ittf.link/index.php?Itemid=158&listid=60&option=com_fabrik&view=list&vw_profiles___player_id_raw=132132" },
+      { label: "World Table Tennis · Chen Yi player record", url: "https://www.worldtabletennis.com/playerDescription?playerId=132132" },
     ],
   },
   {
     id: "hitomi-sato", birthDate: "1997-12-23", birthYear: 1997,
     headline: "Defensive craft, spin variation and the patience to build a different kind of point.",
     specialty: "Defence and spin variation",
+    styleTags: ["Chopping", "Spin variation", "Defence"],
     bio: [
       "Hitomi Sato is a Japanese right-handed shakehand player from Hakodate, Hokkaido. She won women’s doubles bronze with Honoka Hashimoto at the 2019 World Championships, Asian team gold in 2021 and World Team Championships silver in 2022.",
       "Her defensive game offers a different perspective within this top 10: patience, changes of spin and the transition from defence to attack. When watching a rally, pay attention to the attacker as well as the defender. A change in the attacker’s contact height or timing can reveal what the previous defensive ball achieved. Her equipment page documents the reported setup separately, with sources and dates.",
@@ -212,7 +221,7 @@ export const womenProfiles: PlayerProfile[] = [
       { title: "The attacking opportunity", description: "A defensive rally can contain a deliberate change of initiative. Look for a higher or shorter ball that makes a controlled attack a sensible choice." },
     ],
     watch: ["How does the attacker’s stroke change after each chop?", "When does she move toward the table?", "Which ball creates an opportunity to attack?"],
-    practice: { title: "Read the defensive ball", steps: ["Work with a partner who can feed controlled backspin or practise a push-to-push rally.", "Alternate a heavier backspin ball and a lighter one, keeping placement predictable.", "Call out the spin you expect before making a controlled opening topspin."], goal: "Identify the spin change and adjust the racket angle before adding speed." },
+    practice: { drill: "match-play-prep", title: "Read the defensive ball", steps: ["Work with a partner who can feed controlled backspin or practise a push-to-push rally.", "Alternate a heavier backspin ball and a lighter one, keeping placement predictable.", "Call out the spin you expect before making a controlled opening topspin."], goal: "Identify the spin change and adjust the racket angle before adding speed." },
     sources: [
       { label: "Wikipedia · biography and international medal record", url: "https://en.wikipedia.org/wiki/Hitomi_Sato_(table_tennis)" },
       { label: "MIKI HOUSE Sports Club · birth date and world doubles medal", url: "https://sports.mikihouse.co.jp/playerlist/satohitomi/" },
@@ -222,6 +231,7 @@ export const womenProfiles: PlayerProfile[] = [
     id: "satsuki-odo", birthDate: "2004-05-16", birthYear: 2004,
     headline: "A Champions title winner whose decisive attacking game has reached the top 10.",
     specialty: "Direct attack and early initiative",
+    styleTags: ["Third-ball attack", "Receive", "Forehand attack"],
     bio: [
       "Satsuki Odo is a Japanese right-handed shakehand player born in Ōno, Fukui. She began playing at three and won consecutive All Japan junior singles titles in 2020 and 2021. Her senior breakthrough accelerated in 2024 with WTT singles titles and Asian Championships gold in women’s doubles and team.",
       "She then won WTT Champions Montpellier in 2024, beating Miwa Harimoto in the final and entering the singles world top 10. A mixed doubles silver at the 2025 World Championships added a major global medal. Her matches are a useful place to study the decision to take initiative: recognising a playable receive and committing to a controlled first attack.",
@@ -238,7 +248,7 @@ export const womenProfiles: PlayerProfile[] = [
       { title: "Commitment with recovery", description: "An attacking decision still needs a next position. Watch the recovery after a decisive stroke to see whether both wings remain available." },
     ],
     watch: ["Which receives prompt an immediate attack?", "Where does the first topspin land?", "How does she prepare for the opponent’s first block?"],
-    practice: { title: "Recognise a long receive", steps: ["Serve short and ask a partner to mix short and long pushes.", "Keep a short ball low; open with a controlled topspin when the ball comes long.", "Play the next block to a chosen target and then continue freely."], goal: "Choose correctly on serve length before trying to win with the opening." },
+    practice: { drill: "serve-and-receive", title: "Recognise a long receive", steps: ["Serve short and ask a partner to mix short and long pushes.", "Keep a short ball low; open with a controlled topspin when the ball comes long.", "Play the next block to a chosen target and then continue freely."], goal: "Choose correctly on serve length before trying to win with the opening." },
     sources: [{ label: "Wikipedia · birth date, junior titles and senior career", url: "https://en.wikipedia.org/wiki/Satsuki_Odo" }],
   },
 ];

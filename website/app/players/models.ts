@@ -1,3 +1,4 @@
+import type { drillSlugs } from "../content/drills";
 import type { Image } from "../equipment/models";
 
 export type Division = "men" | "women";
@@ -8,11 +9,12 @@ export type PlayerProfile = {
   birthYear: number;
   headline: string;
   specialty: string;
+  styleTags: string[];
   bio: string[];
   milestones: { year: string; title: string; detail: string; source: number }[];
   game: { title: string; description: string }[];
   watch: string[];
-  practice: { title: string; steps: string[]; goal: string };
+  practice: { drill: typeof drillSlugs[number]; title: string; steps: string[]; goal: string };
   sources: ProfileSource[];
 };
 
@@ -29,6 +31,7 @@ export type ProfileSummary = {
   points: number;
   headline: string;
   specialty: string;
+  styleTags: string[];
 };
 
 export const countryNames: Record<string, string> = {
@@ -43,6 +46,6 @@ export function searchText(text: string) {
 export function filterProfiles(profiles: ProfileSummary[], division: Division | "all", query: string) {
   const terms = searchText(query).trim().split(/\s+/).filter(Boolean);
   return profiles.filter((p) => (division === "all" || p.gender === division) && terms.every((term) =>
-    searchText(`${p.name} ${p.country} ${p.countryName} ${p.specialty} ${p.hand}-handed ${p.grip}`).includes(term),
+    searchText(`${p.name} ${p.country} ${p.countryName} ${p.specialty} ${p.styleTags.join(" ")} ${p.hand}-handed ${p.grip}`).includes(term),
   ));
 }

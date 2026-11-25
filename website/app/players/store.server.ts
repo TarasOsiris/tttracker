@@ -1,6 +1,9 @@
 import { blogPostsByLocale } from "../content/blog-posts";
+import { setupLabel } from "../equipment/components/SetupCell";
 import { players } from "../equipment/data/players";
 import { playerPayload } from "../equipment/store.server";
+import { profileCompetition, profileRecord } from "./competition.server";
+import type { ComparisonPlayer } from "./competition";
 import { menProfiles } from "./men";
 import { womenProfiles } from "./women";
 import { countryNames, searchText, type ProfileSummary } from "./models";
@@ -40,7 +43,7 @@ export function profileSummaries(): ProfileSummary[] {
       const { id, name, country, hand, grip, photo } = player;
       return {
         id, name, country, countryName: countryNames[country], gender, hand, grip, photo,
-        rank: rank.rank, points: rank.points, headline: profile.headline, specialty: profile.specialty,
+        rank: rank.rank, points: rank.points, headline: profile.headline, specialty: profile.specialty, styleTags: profile.styleTags,
       };
     });
   });
@@ -58,9 +61,24 @@ export function profileDetail(id: string) {
     .filter((post) => searchText(`${post.title} ${post.keywords.join(" ")}`).replace(/[-\s]/g, "").includes(name))
     .slice(0, 3)
     .map(({ slug, title, published, description }) => ({ slug, title, published, description }));
+  const competition = profileCompetition(id, new Map(summaries.map((p) => [p.id, p.name])));
+  const division = summaries.filter((p) => p.gender === summary.gender);
+  const comparison: ComparisonPlayer[] = summaries.map((p) => {
+    const setup = (p.id === id ? equipment : playerPayload(p.id))?.setup;
+    return {
+      id: p.id, ittfId: profileRecord(p.id).ittfId, name: p.name, country: p.countryName, division: p.gender,
+      rank: p.rank, points: p.points, hand: p.hand, grip: p.grip, specialty: p.specialty,
+      pattern: byId.get(p.id)!.game[0].title, monthly: profileRecord(p.id).monthly,
+      equipment: setup ? [setupLabel(setup.blade), setupLabel(setup.forehand), setupLabel(setup.backhand)] : [],
+    };
+  });
   return {
-    summary, profile, equipment, snapshot: rankingSnapshot, news,
-    related: summaries.filter((p) => p.gender === summary.gender && p.id !== id)
+    summary, profile, equipment, competition, snapshot: rankingSnapshot, news,
+    comparison: {
+      player: comparison.find((p) => p.id === id)!,
+      options: comparison.filter((p) => p.id !== id),
+    },
+    related: division.filter((p) => p.id !== id)
       .sort((a, b) => Math.abs(a.rank - summary.rank) - Math.abs(b.rank - summary.rank)).slice(0, 3),
   };
 }
