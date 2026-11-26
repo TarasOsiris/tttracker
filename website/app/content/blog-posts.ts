@@ -78,6 +78,97 @@ const ljubljanaArena = { ...hero, caption: "A packed arena at the 2026 World Tea
 export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: BlogPost[] } = {
   en: [
   {
+    slug: "mixed-team-world-cup-2026-chengdu-what-happened-2025-china-japan-8-1-20-teams",
+    title: "Mixed Team World Cup 2026: What Happened in 2025 and What Changes in Chengdu",
+    seoTitle: "Mixed Team World Cup 2026 Chengdu: 2025 Recap, 20 Teams, Format Changes",
+    description:
+      "Mixed Team World Cup 2026 starts 29 Nov in Chengdu. Last year China beat Japan 8-1, Germany took bronze and Croatia stunned India. What changes with 20 teams.",
+    published: "2026-11-26",
+    readMinutes: 5,
+    keywords: [
+      "Mixed Team World Cup 2026",
+      "ITTF Mixed Team World Cup Chengdu",
+      "Mixed Team World Cup 2025 result China Japan",
+      "Wang Chuqin Sun Yingsha mixed doubles",
+      "mixed team table tennis format",
+      "WTT Finals Hong Kong 2026",
+      "table tennis news",
+    ],
+    hero: {
+      src: "/blog/wang-chuqin-2016.webp",
+      width: 1200,
+      height: 675,
+      alt: "Teenage Wang Chuqin in a blue and orange shirt clenching his fist and shouting after winning a point",
+      caption: "Wang Chuqin celebrating a point as a teenager in 2016. Archive photo, not from Chengdu.",
+      credit: "XIAOYU TANG, CC BY-SA 2.0",
+      creditUrl: "https://commons.wikimedia.org/wiki/File:Wang_Chuqin_ACTTC2016_1.jpeg",
+    },
+    intro:
+      "Three days from now, 20 teams start fighting over the biggest trophy in mixed table tennis, and the favourite has never lost it. China won the first two Mixed Team World Cups, then beat Japan 8-1 in last year's Chengdu final; the question this time is whether a bigger field and a new format give anyone a real chance.",
+    takeaways: [
+      "**2025 final:** China beat Japan 8-1 in Chengdu, with Japan already 0-6 down before the last match, per Butterfly's report.",
+      "**Bronze:** Germany beat South Korea in the 2025 bronze match, per Wikipedia's event page.",
+      "**Upset of the week:** 16th seed Croatia beat 8th seed India 8-6 in the 2025 group stage and reached the round-robin stage.",
+      "**What changes in 2026:** 20 teams instead of 16, two groups of ten instead of four groups of four, at the Chengdu High-tech Sports Center, 29 November to 6 December.",
+      "**Next up:** WTT Finals Hong Kong runs 9-13 December with Felix Lebrun already confirmed.",
+    ],
+    sections: [
+      {
+        heading: "How China beat Japan 8-1 last year",
+        blocks: [
+          "The 2025 event was the third edition of the [ITTF Mixed Team World Cup](https://en.wikipedia.org/wiki/2025_ITTF_Mixed_Team_World_Cup), played in Chengdu from 30 November to 7 December 2025. China went through the round-robin stage unbeaten at 7-0, with Japan second on 5-2, and met Japan again in the final.",
+          "[Butterfly's report](https://butterflyonline.com/mixed-team-world-cup-china-tops-japan-in-chengdu/) has the final at 8-1. [Wang Chuqin](https://en.wikipedia.org/wiki/Wang_Chuqin) and [Sun Yingsha](https://en.wikipedia.org/wiki/Sun_Yingsha) won the mixed doubles 3-0 against Sora Matsushima and Satsuki Odo, and [Wang Manyu](https://en.wikipedia.org/wiki/Wang_Manyu) beat Miwa Harimoto 3-0. [Lin Shidong](https://en.wikipedia.org/wiki/Lin_Shidong) beat [Tomokazu Harimoto](https://en.wikipedia.org/wiki/Tomokazu_Harimoto) after Harimoto took the opening game. Japan trailed 0-6 before the final match.",
+          "**Why it matters:** the format is a race to eight games, so a dominant opener snowballs. China's mixed doubles pair set the tone by winning without dropping a game.",
+        ],
+      },
+      {
+        heading: "Germany's bronze and Croatia's upset",
+        image: {
+          src: "/blog/mixed-doubles-yog-2018.webp",
+          width: 1000,
+          height: 666,
+          alt: "Wang Chuqin in a red China shirt stretching to reach a ball at the table during the mixed doubles final in Buenos Aires",
+          caption: "Wang Chuqin in the 2018 Youth Olympics mixed doubles final against Japan's Miu Hirano and Tomokazu Harimoto. Archive photo from Buenos Aires, not from Chengdu.",
+          credit: "Marcus Cyron, CC BY-SA 3.0",
+          creditUrl: "https://commons.wikimedia.org/wiki/File:Table_tennis_at_the_2018_Summer_Youth_Olympics_%E2%80%93_Mixed_Final_Doubles_114.jpg",
+        },
+        blocks: [
+          "Behind the finalists, [Wikipedia's event page](https://en.wikipedia.org/wiki/2025_ITTF_Mixed_Team_World_Cup) records that Germany beat South Korea for bronze, after losing to Japan in the semifinal while China beat Korea. France finished fifth in the round-robin stage.",
+          "The best story of the group stage was Croatia. As 16th seeds they beat eighth-seeded India 8-6 and moved on to the round-robin stage, finishing sixth. Hong Kong, China, seeded 10th, also advanced from Group 1.",
+          "The same page notes that it was the first edition since mixed team became an Olympic event, and that ranking points for the winner rose from 1,000 to 2,500. That is why even mid-ranked teams treat this like a major.",
+        ],
+      },
+      {
+        heading: "What changes in 2026",
+        blocks: [
+          "According to [ITTF's announcement of the confirmed teams](https://www.ittf.com/2026/11/19/teams-confirmed-for-ittf-mixed-team-world-cup-chengdu-2026/) (we could only read it through search snippets, as the site blocks automated access), the 2026 field has 20 teams and 154 players, 77 men and 77 women, at the Chengdu High-tech Sports Center from 29 November to 6 December. The teams play in two groups of ten, one round-robin each.",
+          "By region that means seven Asian teams (China, Japan, Korea, Chinese Taipei, Hong Kong China, India, Singapore), nine from Europe (Germany, France, Romania, Sweden, Russia, Poland, Croatia, Slovakia, Great Britain), two from the Americas (Brazil, USA), plus Egypt and Australia. For the Great Britain squad, see [our Chengdu preview](/blog/mixed-team-world-cup-chengdu-2026-great-britain-squad-preview-china-japan).",
+          "Look out for Korea's [Lim Jonghoon](https://en.wikipedia.org/wiki/Lim_Jong-hoon) and [Shin Yubin](https://en.wikipedia.org/wiki/Shin_Yu-bin), who took mixed doubles bronze at Paris 2024. And note the Olympic angle: Table Tennis England says the 2027 edition will give the top six teams direct qualification for LA 2028.",
+        ],
+      },
+      {
+        heading: "After Chengdu: WTT Finals Hong Kong",
+        blocks: [
+          "The season's last big individual event follows quickly. [WTT Finals Hong Kong](https://www.discoverhongkong.com/eng/events/event.id88604.wtt-finals-hong-kong-2026.html) runs 9-13 December at Kai Tak Arena, with 16 men and 16 women in singles and eight mixed doubles teams. Felix Lebrun is already confirmed after winning Europe Smash Sweden. Our earlier look at [who qualified](/blog/wtt-finals-hong-kong-2026-qualified-players-lebrun-harimoto-sun-yingsha) has more.",
+        ],
+      },
+      {
+        heading: "Try the mixed-team mindset yourself",
+        blocks: [
+          "A race to eight games rewards fast starts. Play a first-to-eight match against a friend and log it in [Ping Pong & Table Tennis Log](/) to see how often the opening game decides the match. Sharpen your first ball with the [serve library](/serves), learn how spin changes the return in [our spin guide](/spins), and set up a routine from the [drill library](/drills). Test yourself in the [quiz](/quiz).",
+        ],
+      },
+    ],
+    sources: [
+      { label: "Wikipedia: 2025 ITTF Mixed Team World Cup", url: "https://en.wikipedia.org/wiki/2025_ITTF_Mixed_Team_World_Cup" },
+      { label: "Butterfly: Mixed Team World Cup, China tops Japan in Chengdu", url: "https://butterflyonline.com/mixed-team-world-cup-china-tops-japan-in-chengdu/" },
+      { label: "ITTF: Teams confirmed for ITTF Mixed Team World Cup Chengdu 2026 (search snippet only)", url: "https://www.ittf.com/2026/11/19/teams-confirmed-for-ittf-mixed-team-world-cup-chengdu-2026/" },
+      { label: "Table Tennis England: GB team named for the Mixed Team World Cup", url: "https://www.tabletennisengland.co.uk/news/2026/great-britain-table-tennis-team-has-been-named-for-the-mixed-team-world-cup-in-chengdu/" },
+      { label: "Discover Hong Kong: WTT Finals Hong Kong 2026", url: "https://www.discoverhongkong.com/eng/events/event.id88604.wtt-finals-hong-kong-2026.html" },
+      { label: "Wikipedia: ITTF Mixed Team World Cup", url: "https://en.wikipedia.org/wiki/ITTF_Mixed_Team_World_Cup" },
+    ],
+  },
+  {
     slug: "wtt-star-contender-muscat-2026-results-korea-win-doubles-thakkar-shah-runners-up-sun-yang-jorgic",
     title: "WTT Star Contender Muscat 2026 Results: Korea Win Doubles, Sun Yang Stuns Jorgic",
     seoTitle: "WTT Star Contender Muscat 2026 Results: Lim/Oh Beat Thakkar/Shah, Jorgic Upset",
