@@ -78,6 +78,91 @@ const ljubljanaArena = { ...hero, caption: "A packed arena at the 2026 World Tea
 export const blogPostsByLocale: Partial<Record<Locale, BlogPost[]>> & { en: BlogPost[] } = {
   en: [
   {
+    slug: "world-youth-championships-2026-istanbul-china-three-team-titles-japan-u15-boys-usa-bronze",
+    title: "World Youth Championships 2026: China Win 3 Team Titles, Japan Take U15 Boys",
+    seoTitle: "ITTF World Youth Championships 2026 Istanbul: Team Results, China, Japan, USA",
+    description:
+      "ITTF World Youth Championships 2026 in Istanbul: China won three of four team titles, Japan beat China in U15 boys, and TeamUSA took U19 girls bronze. Results and what's next.",
+    published: "2026-11-27",
+    readMinutes: 4,
+    keywords: [
+      "World Youth Championships 2026 results",
+      "ITTF World Youth Championships Istanbul",
+      "China Japan U19 team final",
+      "TeamUSA U19 girls bronze",
+      "Wen Ruibo Jiang Yiyi mixed doubles",
+      "junior table tennis",
+      "table tennis news",
+    ],
+    hero: {
+      ...hero,
+      caption: "A packed arena at the 2026 World Team Table Tennis Championships in London. Archive photo, not from Istanbul.",
+    },
+    intro:
+      "China took three of the four team titles at the ITTF World Youth Championships in Istanbul, but the headline of the week is the one they lost: Japan beat China in the Under-15 boys' final. With team events done, the doubles and singles are where the next batch of stars gets sorted.",
+    takeaways: [
+      "**Team titles:** per the ITTF report, China won the Under-19 boys', Under-19 girls' and Under-15 girls' team events.",
+      "**Japan's win:** Japan beat China in the Under-15 boys' team final.",
+      "**U19 girls' final:** an aggregator lists China 3-1 Japan on 23 November in Istanbul.",
+      "**TeamUSA:** the U19 girls took bronze after losing the semi-final to Japan, per Butterfly.",
+      "**All-China mixed doubles final:** Li Hechen/Yao Ruixian faced Wen Ruibo/Jiang Yiyi for gold, per the ITTF's pre-final report.",
+    ],
+    sections: [
+      {
+        heading: "China's three titles, and Japan's one",
+        blocks: [
+          "The [ITTF's report on the end of the team events](https://www.ittf.com/2026/11/24/china-claim-three-titles-as-team-events-conclude-in-istanbul/) says China won the Under-19 boys', Under-19 girls' and Under-15 girls' team events, while Japan beat China in the Under-15 boys' final. (ittf.com blocks automated access, so I could read only the search snippet, not the full report. Treat details beyond it with care.)",
+          "On the scoreboard side, a results aggregator lists [China 3-1 Japan](https://www.indiasportshub.com/scores/6b06b0686d4de314cfa63e4d) in a women's team final on 23 November, and [China 3-2 Japan](https://www.indiasportshub.com/scores/6b06c75d6d4de314cfab7e1b) in a men's team semi-final on 22 November. Those pages do not state the age group or individual scores. [Butterfly](https://butterflyonline.com/world-youth-championships-girls-team-bronze-for-teamusa-in-ealy-action/) wrote that Japan and China would meet in the U19 girls' final on Monday, which fits the first result.",
+          "**Why it matters:** China and Japan keep meeting in the late rounds at every level, from the [Mixed Team World Cup final](/blog/mixed-team-world-cup-2026-chengdu-what-happened-2025-china-japan-8-1-20-teams) to the age groups. A 3-2 semi-final shows how thin the margin can be.",
+        ],
+      },
+      {
+        heading: "TeamUSA's U19 girls take bronze",
+        image: {
+          src: "/blog/mixed-doubles-yog-2018.webp",
+          width: 1000,
+          height: 666,
+          alt: "Wang Chuqin in a red China shirt stretching to reach a ball at the table during a youth mixed doubles final",
+          caption: "Wang Chuqin in the 2018 Youth Olympics mixed doubles final. Archive photo from Buenos Aires, not from Istanbul.",
+          credit: "Marcus Cyron, CC BY-SA 3.0",
+          creditUrl: "https://commons.wikimedia.org/wiki/File:Table_tennis_at_the_2018_Summer_Youth_Olympics_%E2%80%93_Mixed_Final_Doubles_114.jpg",
+        },
+        blocks: [
+          "Butterfly reports that the fifth-seeded US girls beat Australia 3-1 and then Chinese Taipei 3-1 in an upset, before losing the semi-final to Japan and taking bronze. Sally Moyland won both of her matches in the quarter-final round and Lilian Ma won the other. The squad was Moyland, Satya Aspathi, Ma and Hildy Chen.",
+          "**Why it matters:** a bronze from a fifth seed shows how deep the junior field is. Moyland is also seeded seventh in the U19 girls' singles.",
+        ],
+      },
+      {
+        heading: "What's next: doubles and singles",
+        blocks: [
+          "The ITTF's pre-final report says Li Hechen and Yao Ruixian set up an all-China mixed doubles final against Wen Ruibo and Jiang Yiyi (we found no result yet). In the singles, Butterfly lists Jiang Yiyi, Mao Takamori and Hana Goda as the top U19 girls' seeds, and Wen Ruibo, Emanuel Otalvaro of Colombia and Alan Kurmangaliyev of Kazakhstan as the top U19 boys' seeds.",
+          "The championships run until 28 November. See our [Istanbul preview](/blog/ittf-world-youth-championships-2026-istanbul-preview-moved-from-bahrain) for the background, and the [Wikipedia page on the championships](https://en.wikipedia.org/wiki/ITTF_World_Youth_Championships) for the history.",
+        ],
+      },
+      {
+        heading: "Pro-league footnote: MLTT Week 6",
+        blocks: [
+          "In the US, Butterfly's [MLTT Week 6 report](https://butterflyonline.com/mltt-week-6-blazers-burn-bright-in-portland/) says the Atlanta Blazers went 3-0 in Portland, beating New York 17-4, Portland 13-8 and Los Angeles 14-7, with Portland second at 2-1. The article's earlier-week list repeats the same scores, so check those numbers elsewhere. Next up is Week 7 in Fremont, California.",
+        ],
+      },
+      {
+        heading: "Learn from the juniors",
+        blocks: [
+          "Junior matches are great for seeing how a good third ball is built. Log your own matches in [Ping Pong & Table Tennis Log](/), copy a reliable serve from the [serve library](/serves), study [spin](/spins), work through the [drills](/drills) and test yourself in the [quiz](/quiz).",
+        ],
+      },
+    ],
+    sources: [
+      { label: "ITTF: China claim three titles as team events conclude in Istanbul (search snippet only)", url: "https://www.ittf.com/2026/11/24/china-claim-three-titles-as-team-events-conclude-in-istanbul/" },
+      { label: "ITTF: China tee up mixed doubles gold medal showdown in Istanbul (search snippet only)", url: "https://www.ittf.com/2026/11/24/china-tee-up-mixed-doubles-gold-medal-showdown-in-istanbul/" },
+      { label: "Butterfly: World Youth Championships, girls team bronze for TeamUSA", url: "https://butterflyonline.com/world-youth-championships-girls-team-bronze-for-teamusa-in-ealy-action/" },
+      { label: "India Sports Hub: China vs Japan (Women's) result", url: "https://www.indiasportshub.com/scores/6b06b0686d4de314cfa63e4d" },
+      { label: "India Sports Hub: China vs Japan (Men's) result", url: "https://www.indiasportshub.com/scores/6b06c75d6d4de314cfab7e1b" },
+      { label: "Butterfly: MLTT Week 6, Blazers burn bright in Portland", url: "https://butterflyonline.com/mltt-week-6-blazers-burn-bright-in-portland/" },
+      { label: "Wikipedia: ITTF World Youth Championships", url: "https://en.wikipedia.org/wiki/ITTF_World_Youth_Championships" },
+    ],
+  },
+  {
     slug: "mixed-team-world-cup-2026-chengdu-what-happened-2025-china-japan-8-1-20-teams",
     title: "Mixed Team World Cup 2026: What Happened in 2025 and What Changes in Chengdu",
     seoTitle: "Mixed Team World Cup 2026 Chengdu: 2025 Recap, 20 Teams, Format Changes",
